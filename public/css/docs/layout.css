@@ -1032,6 +1032,7 @@ h2 {
 	max-height: 832px;
 	width: 100%;
 	max-width: 380px; /* 1040px */
+	overflow: auto;
 }
 
 .settings-menu-head {
