@@ -45,4 +45,42 @@ sscal.ndarray( <span class="hljs-number">3</span>, <span class="hljs-number">5.0
 
 sscal( x.length, <span class="hljs-number">5.0</span>, x, <span class="hljs-number">1</span> );
 <span class="hljs-built_in">console</span>.log( x );
-</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/daxpy"><code>@stdlib/blas/base/daxpy</code></a></span><span class="delimiter">: </span><span class="description">multiply a vector x by a constant and add the result to y.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/dscal"><code>@stdlib/blas/base/dscal</code></a></span><span class="delimiter">: </span><span class="description">multiply a double-precision floating-point vector by a constant.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/gscal"><code>@stdlib/blas/base/gscal</code></a></span><span class="delimiter">: </span><span class="description">multiply a vector by a constant.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/saxpy"><code>@stdlib/blas/base/saxpy</code></a></span><span class="delimiter">: </span><span class="description">multiply a vector x by a constant and add the result to y.</span></li></ul></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/sscal.h"</span></span>
+</code></pre><h4 id="c_sscal-n-alpha-x-stride-">c_sscal( N, alpha, *X, stride )</h4><p>Multiplies each element of a single-precision floating-point vector by a constant.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">1.0f</span>, <span class="hljs-number">2.0f</span>, <span class="hljs-number">3.0f</span>, <span class="hljs-number">4.0f</span> };
+
+c_sscal( <span class="hljs-number">4</span>, <span class="hljs-number">5.0f</span>, x, <span class="hljs-number">1</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] CBLAS_INT</code> number of indexed elements.</li><li><strong>alpha</strong>: <code>[in] float</code> scalar constant.</li><li><strong>X</strong>: <code>[inout] float*</code> input array.</li><li><strong>stride</strong>: <code>[in] CBLAS_INT</code> index increment for <code>X</code>.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">c_sscal</span><span class="hljs-params">( <span class="hljs-keyword">const</span> CBLAS_INT N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> alpha, <span class="hljs-keyword">float</span> *X, <span class="hljs-keyword">const</span> CBLAS_INT stride )</span></span>;
+</code></pre><h4 id="c_sscal_ndarray-n-alpha-x-stride-offset-">c_sscal_ndarray( N, alpha, *X, stride, offset )</h4><p>Multiplies each element of a single-precision floating-point vector by a constant using alternative indexing semantics.</p><pre><code class="hljs language-c"><span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">1.0f</span>, <span class="hljs-number">2.0f</span>, <span class="hljs-number">3.0f</span>, <span class="hljs-number">4.0f</span> };
+
+c_sscal_ndarray( <span class="hljs-number">4</span>, <span class="hljs-number">5.0f</span>, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] CBLAS_INT</code> number of indexed elements.</li><li><strong>alpha</strong>: <code>[in] float</code> scalar constant.</li><li><strong>X</strong>: <code>[inout] float*</code> input array.</li><li><strong>stride</strong>: <code>[in] CBLAS_INT</code> index increment for <code>X</code>.</li><li><strong>offset</strong>: <code>[in] CBLAS_INT</code> starting index for <code>X</code>.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">c_sscal_ndarray</span><span class="hljs-params">( <span class="hljs-keyword">const</span> CBLAS_INT N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> alpha, <span class="hljs-keyword">float</span> *X, <span class="hljs-keyword">const</span> CBLAS_INT stride, <span class="hljs-keyword">const</span> CBLAS_INT offset )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/sscal.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-comment">// Create a strided array:</span>
+    <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">1.0f</span>, <span class="hljs-number">-2.0f</span>, <span class="hljs-number">3.0f</span>, <span class="hljs-number">-4.0f</span>, <span class="hljs-number">5.0f</span>, <span class="hljs-number">-6.0f</span>, <span class="hljs-number">7.0f</span>, <span class="hljs-number">-8.0f</span> };
+
+    <span class="hljs-comment">// Specify the number of elements:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">8</span>;
+
+    <span class="hljs-comment">// Specify a stride:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> stride = <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// Scale the vector:</span>
+    c_sscal( N, <span class="hljs-number">5.0f</span>, x, stride );
+
+    <span class="hljs-comment">// Print the result:</span>
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">8</span>; i++ ) {
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"x[ %i ] = %f\n"</span>, i, x[ i ] );
+    }
+
+    <span class="hljs-comment">// Scale the vector using alternative indexing semantics:</span>
+    c_sscal_ndarray( N, <span class="hljs-number">5.0f</span>, x, -stride, N<span class="hljs-number">-1</span> );
+
+    <span class="hljs-comment">// Print the result:</span>
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">8</span>; i++ ) {
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"x[ %i ] = %f\n"</span>, i, x[ i ] );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/daxpy"><code>@stdlib/blas/base/daxpy</code></a></span><span class="delimiter">: </span><span class="description">multiply a vector <code>x</code> by a constant and add the result to <code>y</code>.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/dscal"><code>@stdlib/blas/base/dscal</code></a></span><span class="delimiter">: </span><span class="description">multiply a double-precision floating-point vector by a constant.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/gscal"><code>@stdlib/blas/base/gscal</code></a></span><span class="delimiter">: </span><span class="description">multiply a vector by a constant.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/blas/base/saxpy"><code>@stdlib/blas/base/saxpy</code></a></span><span class="delimiter">: </span><span class="description">multiply a vector <code>x</code> by a constant and add the result to <code>y</code>.</span></li></ul></section><section class="links"></section>

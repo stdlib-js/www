@@ -8,13 +8,9 @@
 <span class="hljs-keyword">var</span> cubes = ns.iterCubesSeq();
 
 <span class="hljs-comment">// Iterate over both sequences and log the first five pairs:</span>
-<span class="hljs-keyword">var</span> square;
-<span class="hljs-keyword">var</span> cube;
 <span class="hljs-keyword">var</span> i;
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">5</span>; i++ ) {
-    square = squares.next().value;
-    cube = cubes.next().value;
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Square: %d, Cube: %d'</span>, square, cube );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Square: %d, Cube: %d'</span>, squares.next().value, cubes.next().value );
 }
 
 <span class="hljs-comment">// Calculate the sum of the first ten Fibonacci numbers:</span>

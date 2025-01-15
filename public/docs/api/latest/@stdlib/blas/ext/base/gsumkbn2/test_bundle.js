@@ -770,19 +770,16 @@ module.exports = isFloat64Array;
 * var gsumkbn2 = require( '@stdlib/blas/ext/base/gsumkbn2' );
 *
 * var x = [ 1.0, -2.0, 2.0 ];
-* var N = x.length;
 *
-* var v = gsumkbn2( N, x, 1 );
+* var v = gsumkbn2( x.length, x, 1 );
 * // returns 1.0
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gsumkbn2 = require( '@stdlib/blas/ext/base/gsumkbn2' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gsumkbn2.ndarray( N, x, 2, 1 );
+* var v = gsumkbn2.ndarray( 4, x, 2, 1 );
 * // returns 5.0
 */
 
@@ -825,7 +822,8 @@ module.exports = main;
 
 // MODULES //
 
-var abs = require( '@stdlib/math/base/special/abs' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -843,61 +841,17 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var x = [ 1.0, -2.0, 2.0 ];
-* var N = x.length;
 *
-* var v = gsumkbn2( N, x, 1 );
+* var v = gsumkbn2( x.length, x, 1 );
 * // returns 1.0
 */
-function gsumkbn2( N, x, stride ) {
-	var sum;
-	var ccs;
-	var ix;
-	var cs;
-	var cc;
-	var v;
-	var t;
-	var c;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	sum = 0.0;
-	ccs = 0.0; // second order correction term for lost low order bits
-	cs = 0.0; // first order correction term for lost low order bits
-	for ( i = 0; i < N; i++ ) {
-		v = x[ ix ];
-		t = sum + v;
-		if ( abs( sum ) >= abs( v ) ) {
-			c = (sum-t) + v;
-		} else {
-			c = (v-t) + sum;
-		}
-		sum = t;
-		t = cs + c;
-		if ( abs( cs ) >= abs( c ) ) {
-			cc = (cs-t) + c;
-		} else {
-			cc = (c-t) + cs;
-		}
-		cs = t;
-		ccs += cc;
-		ix += stride;
-	}
-	return sum + cs + ccs;
+function gsumkbn2( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -905,7 +859,7 @@ function gsumkbn2( N, x, stride ) {
 
 module.exports = gsumkbn2;
 
-},{"@stdlib/math/base/special/abs":23}],17:[function(require,module,exports){
+},{"./ndarray.js":17,"@stdlib/strided/base/stride2offset":25}],17:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -946,20 +900,17 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gsumkbn2( N, x, 2, 1 );
+* var v = gsumkbn2( 4, x, 2, 1 );
 * // returns 5.0
 */
-function gsumkbn2( N, x, stride, offset ) {
+function gsumkbn2( N, x, strideX, offsetX ) {
 	var sum;
 	var ccs;
 	var ix;
@@ -973,10 +924,10 @@ function gsumkbn2( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
 	sum = 0.0;
 	ccs = 0.0; // second order correction term for lost low order bits
 	cs = 0.0; // first order correction term for lost low order bits
@@ -997,7 +948,7 @@ function gsumkbn2( N, x, stride, offset ) {
 		}
 		cs = t;
 		ccs += cc;
-		ix += stride;
+		ix += strideX;
 	}
 	return sum + cs + ccs;
 }
@@ -1074,7 +1025,6 @@ tape( 'attached to the main export is a method providing an ndarray interface', 
 // MODULES //
 
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var Float64Array = require( '@stdlib/array/float64' );
 var gsumkbn2 = require( './../lib' );
@@ -1148,7 +1098,6 @@ tape( 'if provided an `N` parameter equal to `1`, the function returns the first
 });
 
 tape( 'the function supports a `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -1163,15 +1112,13 @@ tape( 'the function supports a `stride` parameter', function test( t ) {
 		2.0
 	];
 
-	N = floor( x.length / 2 );
-	v = gsumkbn2( N, x, 2 );
+	v = gsumkbn2( 4, x, 2 );
 
 	t.strictEqual( v, 5.0, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function supports a negative `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -1186,21 +1133,20 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 		2.0
 	];
 
-	N = floor( x.length / 2 );
-	v = gsumkbn2( N, x, -2 );
+	v = gsumkbn2( 4, x, -2 );
 
 	t.strictEqual( v, 5.0, 'returns expected value' );
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the sum of the first element repeated N times', function test( t ) {
 	var x;
 	var v;
 
 	x = [ 1.0, -2.0, -4.0, 5.0, 3.0 ];
 
 	v = gsumkbn2( x.length, x, 0 );
-	t.strictEqual( v, 1.0, 'returns expected value' );
+	t.strictEqual( v, 5.0, 'returns expected value' );
 
 	t.end();
 });
@@ -1208,7 +1154,6 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns the f
 tape( 'the function supports view offsets', function test( t ) {
 	var x0;
 	var x1;
-	var N;
 	var v;
 
 	x0 = new Float64Array([
@@ -1224,16 +1169,15 @@ tape( 'the function supports view offsets', function test( t ) {
 	]);
 
 	x1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
-	N = floor(x1.length / 2);
 
-	v = gsumkbn2( N, x1, 2 );
+	v = gsumkbn2( 4, x1, 2 );
 	t.strictEqual( v, 5.0, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/blas/ext/base/gsumkbn2/test/test.main.js")
-},{"./../lib":15,"@stdlib/array/float64":1,"@stdlib/math/base/assert/is-nan":21,"@stdlib/math/base/special/floor":25,"tape":177}],20:[function(require,module,exports){
+},{"./../lib":15,"@stdlib/array/float64":1,"@stdlib/math/base/assert/is-nan":21,"tape":177}],20:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -1258,7 +1202,6 @@ tape( 'the function supports view offsets', function test( t ) {
 // MODULES //
 
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var gsumkbn2 = require( './../lib/ndarray.js' );
 
@@ -1331,7 +1274,6 @@ tape( 'if provided an `N` parameter equal to `1`, the function returns the first
 });
 
 tape( 'the function supports a `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -1346,15 +1288,13 @@ tape( 'the function supports a `stride` parameter', function test( t ) {
 		2.0
 	];
 
-	N = floor( x.length / 2 );
-	v = gsumkbn2( N, x, 2, 0 );
+	v = gsumkbn2( 4, x, 2, 0 );
 
 	t.strictEqual( v, 5.0, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function supports a negative `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -1369,27 +1309,25 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 		2.0
 	];
 
-	N = floor( x.length / 2 );
-	v = gsumkbn2( N, x, -2, 6 );
+	v = gsumkbn2( 4, x, -2, 6 );
 
 	t.strictEqual( v, 5.0, 'returns expected value' );
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first indexed element', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the sum of the first element repeated N times', function test( t ) {
 	var x;
 	var v;
 
 	x = [ 1.0, -2.0, -4.0, 5.0, 3.0 ];
 
 	v = gsumkbn2( x.length, x, 0, 0 );
-	t.strictEqual( v, 1.0, 'returns expected value' );
+	t.strictEqual( v, 5.0, 'returns expected value' );
 
 	t.end();
 });
 
 tape( 'the function supports an `offset` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -1403,16 +1341,15 @@ tape( 'the function supports an `offset` parameter', function test( t ) {
 		3.0,
 		4.0   // 3
 	];
-	N = floor( x.length / 2 );
 
-	v = gsumkbn2( N, x, 2, 1 );
+	v = gsumkbn2( 4, x, 2, 1 );
 	t.strictEqual( v, 5.0, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/blas/ext/base/gsumkbn2/test/test.ndarray.js")
-},{"./../lib/ndarray.js":17,"@stdlib/math/base/assert/is-nan":21,"@stdlib/math/base/special/floor":25,"tape":177}],21:[function(require,module,exports){
+},{"./../lib/ndarray.js":17,"@stdlib/math/base/assert/is-nan":21,"tape":177}],21:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1619,7 +1556,7 @@ module.exports = abs;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -1637,40 +1574,31 @@ module.exports = abs;
 'use strict';
 
 /**
-* Round a double-precision floating-point number toward negative infinity.
+* Determine the index offset which specifies the location of the first indexed value in a strided array.
 *
-* @module @stdlib/math/base/special/floor
+* @module @stdlib/strided/base/stride2offset
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
+* var stride2offset = require( '@stdlib/strided/base/stride2offset' );
 *
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* v = floor( 9.99999 );
-* // returns 9.0
-*
-* v = floor( 0.0 );
-* // returns 0.0
-*
-* v = floor( NaN );
-* // returns NaN
+* var offset = stride2offset( 10, -10 );
+* // returns 90
 */
 
 // MODULES //
 
-var main = require( './main.js' );
+var stride2offset = require( './main.js' );
 
 
 // EXPORTS //
 
-module.exports = main;
+module.exports = stride2offset;
 
 },{"./main.js":26}],26:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -1687,36 +1615,30 @@ module.exports = main;
 
 'use strict';
 
-// TODO: implementation (?)
+// MAIN //
 
 /**
-* Rounds a double-precision floating-point number toward negative infinity.
+* Returns the index offset which specifies the location of the first indexed value in a strided array.
 *
-* @param {number} x - input value
-* @returns {number} rounded value
-*
-* @example
-* var v = floor( -4.2 );
-* // returns -5.0
+* @param {NonNegativeInteger} N - number of indexed elements
+* @param {integer} stride - index increment
+* @returns {NonNegativeInteger} offset - offset
 *
 * @example
-* var v = floor( 9.99999 );
-* // returns 9.0
-*
-* @example
-* var v = floor( 0.0 );
-* // returns 0.0
-*
-* @example
-* var v = floor( NaN );
-* // returns NaN
+* var offset = stride2offset( 10, -10 );
+* // returns 90
 */
-var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
+function stride2offset( N, stride ) {
+	if ( stride > 0 ) {
+		return 0;
+	}
+	return ( 1 - N ) * stride;
+}
 
 
 // EXPORTS //
 
-module.exports = floor;
+module.exports = stride2offset;
 
 },{}],27:[function(require,module,exports){
 /**

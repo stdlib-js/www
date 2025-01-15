@@ -26,6 +26,32 @@ y = stdev( <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0<
     mu = ( randu()*<span class="hljs-number">10.0</span> ) - <span class="hljs-number">5.0</span>;
     sigma = randu() * <span class="hljs-number">20.0</span>;
     y = stdev( mu, sigma );
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'µ: %d, σ: %d, Var(X;µ,σ): %d'</span>, mu.toFixed( <span class="hljs-number">4</span> ), sigma.toFixed( <span class="hljs-number">4</span> ), y.toFixed( <span class="hljs-number">4</span> ) );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'µ: %d, σ: %d, SD(X;µ,σ): %d'</span>, mu.toFixed( <span class="hljs-number">4</span> ), sigma.toFixed( <span class="hljs-number">4</span> ), y.toFixed( <span class="hljs-number">4</span> ) );
 }
-</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/stats/base/dists/normal/stdev.h"</span></span>
+</code></pre><h4 id="stdlib_base_dists_normal_stdev-mu-sigma-">stdlib_base_dists_normal_stdev( mu, sigma )</h4><p>Evaluates the standard deviation for a normal distribution with mean <code>mu</code> and standard deviation <code>sigma</code>.</p><pre><code class="hljs language-c"><span class="hljs-keyword">double</span> out = stdlib_base_dists_normal_stdev( <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns ~1.4189</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>mu</strong>: <code>[in] double</code> mean.</li><li><strong>sigma</strong>: <code>[in] double</code> standard deviation.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_dists_normal_stdev</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> mu, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> sigma )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/stats/base/dists/normal/stdev.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdlib.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">random_uniform</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> min, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> max )</span> </span>{
+    <span class="hljs-keyword">double</span> v = (<span class="hljs-keyword">double</span>)rand() / ( (<span class="hljs-keyword">double</span>)RAND_MAX + <span class="hljs-number">1.0</span> );
+    <span class="hljs-keyword">return</span> min + ( v*(max-min) );
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">double</span> mu;
+    <span class="hljs-keyword">double</span> sigma;
+    <span class="hljs-keyword">double</span> y;
+    <span class="hljs-keyword">int</span> i;
+
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">10</span>; i++ ) {
+        mu = random_uniform( <span class="hljs-number">-5.0</span>, <span class="hljs-number">5.0</span> );
+        sigma = random_uniform( <span class="hljs-number">0.1</span>, <span class="hljs-number">20.0</span> );
+        y = stdlib_base_dists_normal_stdev( mu, sigma );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"µ: %.4f, σ: %.4f, SD(X;µ,σ): %.4f\n"</span>, mu, sigma, y );
+    }
+}
+</code></pre></section></section><section class="references"></section><section class="related"></section><section class="links"></section>

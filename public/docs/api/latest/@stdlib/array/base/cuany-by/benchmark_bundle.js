@@ -1132,7 +1132,7 @@ var pow = require( '@stdlib/math/base/special/pow' );
 var isArray = require( '@stdlib/assert/is-array' );
 var filled = require( '@stdlib/array/base/filled' );
 var isPositiveInteger = require( '@stdlib/assert/is-positive-integer' ).isPrimitive;
-var pkg = require( '@stdlib/array/base/cuany-by/package.json' ).name;
+var pkg = require( './../package.json' ).name;
 var cuanyBy = require( './../lib' );
 
 
@@ -1202,7 +1202,7 @@ function main() {
 
 main();
 
-},{"./../lib":17,"@stdlib/array/base/cuany-by/package.json":19,"@stdlib/array/base/filled":20,"@stdlib/assert/is-array":119,"@stdlib/assert/is-positive-integer":193,"@stdlib/bench":260,"@stdlib/math/base/special/pow":333}],16:[function(require,module,exports){
+},{"./../lib":17,"./../package.json":19,"@stdlib/array/base/filled":20,"@stdlib/assert/is-array":119,"@stdlib/assert/is-positive-integer":193,"@stdlib/bench":260,"@stdlib/math/base/special/pow":333}],16:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *

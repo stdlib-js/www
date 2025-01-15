@@ -1852,7 +1852,7 @@ tape( 'the function cumulatively tests whether every array element in a provided
 var tape = require( 'tape' );
 var hasOwnProp = require( '@stdlib/assert/has-own-property' );
 var hasMethod = require( '@stdlib/assert/is-method' );
-var cueveryByRight = require( '@stdlib/array/base/cuevery-by-right/lib' );
+var cueveryByRight = require( './../lib' );
 
 
 // TESTS //
@@ -1870,7 +1870,7 @@ tape( 'attached to the main export is an `assign` method', function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/array/base/cuevery-by-right/test/test.js")
-},{"@stdlib/array/base/cuevery-by-right/lib":18,"@stdlib/assert/has-own-property":95,"@stdlib/assert/is-method":148,"tape":400}],22:[function(require,module,exports){
+},{"./../lib":18,"@stdlib/assert/has-own-property":95,"@stdlib/assert/is-method":148,"tape":400}],22:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -1897,7 +1897,7 @@ tape( 'attached to the main export is an `assign` method', function test( t ) {
 var tape = require( 'tape' );
 var Float64Array = require( '@stdlib/array/float64' );
 var toAccessorArray = require( '@stdlib/array/base/to-accessor-array' );
-var cueveryByRight = require( '@stdlib/array/base/cuevery-by-right/lib' );
+var cueveryByRight = require( './../lib' );
 
 
 // FUNCTIONS //
@@ -2015,7 +2015,7 @@ tape( 'the function cumulatively tests whether every array element in a provided
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/array/base/cuevery-by-right/test/test.main.js")
-},{"@stdlib/array/base/cuevery-by-right/lib":18,"@stdlib/array/base/to-accessor-array":29,"@stdlib/array/float64":54,"tape":400}],23:[function(require,module,exports){
+},{"./../lib":18,"@stdlib/array/base/to-accessor-array":29,"@stdlib/array/float64":54,"tape":400}],23:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *

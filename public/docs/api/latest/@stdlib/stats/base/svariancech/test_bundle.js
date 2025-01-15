@@ -2075,109 +2075,6 @@ module.exports = isnan;
 'use strict';
 
 /**
-* Round a double-precision floating-point number toward negative infinity.
-*
-* @module @stdlib/math/base/special/floor
-*
-* @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* v = floor( 9.99999 );
-* // returns 9.0
-*
-* v = floor( 0.0 );
-* // returns 0.0
-*
-* v = floor( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":40}],40:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// TODO: implementation (?)
-
-/**
-* Rounds a double-precision floating-point number toward negative infinity.
-*
-* @param {number} x - input value
-* @returns {number} rounded value
-*
-* @example
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* @example
-* var v = floor( 9.99999 );
-* // returns 9.0
-*
-* @example
-* var v = floor( 0.0 );
-* // returns 0.0
-*
-* @example
-* var v = floor( NaN );
-* // returns NaN
-*/
-var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
-
-
-// EXPORTS //
-
-module.exports = floor;
-
-},{}],41:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
 * Convert a double-precision floating-point number to the nearest single-precision floating-point number.
 *
 * @module @stdlib/number/float64/base/to-float32
@@ -2209,7 +2106,7 @@ if ( typeof builtin === 'function' ) {
 
 module.exports = float64ToFloat32;
 
-},{"./main.js":42,"./polyfill.js":43}],42:[function(require,module,exports){
+},{"./main.js":40,"./polyfill.js":41}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2239,7 +2136,7 @@ var fround = ( typeof Math.fround === 'function' ) ? Math.fround : null; // esli
 
 module.exports = fround;
 
-},{}],43:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2292,7 +2189,7 @@ function float64ToFloat32( x ) {
 
 module.exports = float64ToFloat32;
 
-},{"@stdlib/array/float32":1}],44:[function(require,module,exports){
+},{"@stdlib/array/float32":1}],42:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2348,7 +2245,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":45}],45:[function(require,module,exports){
+},{"./main.js":43}],43:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2408,7 +2305,7 @@ var Obj = Object; // eslint-disable-line stdlib/require-globals
 
 module.exports = Obj;
 
-},{}],46:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2471,7 +2368,7 @@ setReadOnly( main, 'REGEXP', REGEXP );
 
 module.exports = main;
 
-},{"./main.js":47,"./regexp.js":48,"@stdlib/utils/define-nonenumerable-read-only-property":74}],47:[function(require,module,exports){
+},{"./main.js":45,"./regexp.js":46,"@stdlib/utils/define-nonenumerable-read-only-property":74}],45:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2527,7 +2424,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],48:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2589,7 +2486,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":47}],49:[function(require,module,exports){
+},{"./main.js":45}],47:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2626,7 +2523,7 @@ setReadOnly( svariancech, 'ndarray', ndarray );
 
 module.exports = svariancech;
 
-},{"./ndarray.js":50,"./svariancech.js":51,"@stdlib/utils/define-nonenumerable-read-only-property":74}],50:[function(require,module,exports){
+},{"./ndarray.js":48,"./svariancech.js":49,"@stdlib/utils/define-nonenumerable-read-only-property":74}],48:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2671,21 +2568,19 @@ var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
 * @param {PositiveInteger} N - number of indexed elements
 * @param {number} correction - degrees of freedom adjustment
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} variance
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
-* var floor = require( '@stdlib/math/base/special/floor' );
 *
 * var x = new Float32Array( [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ] );
-* var N = floor( x.length / 2 );
 *
-* var v = svariancech( N, 1, x, 2, 1 );
+* var v = svariancech( 4, 1, x, 2, 1 );
 * // returns 6.25
 */
-function svariancech( N, correction, x, stride, offset ) {
+function svariancech( N, correction, x, strideX, offsetX ) {
 	var mu;
 	var ix;
 	var M2;
@@ -2698,14 +2593,14 @@ function svariancech( N, correction, x, stride, offset ) {
 	if ( N <= 0 || n <= 0.0 ) {
 		return NaN;
 	}
-	if ( N === 1 || stride === 0 ) {
+	if ( N === 1 || strideX === 0 ) {
 		return 0.0;
 	}
-	ix = offset;
+	ix = offsetX;
 
 	// Use an estimate for the mean:
 	mu = x[ ix ];
-	ix += stride;
+	ix += strideX;
 
 	// Compute the variance...
 	M2 = 0.0;
@@ -2714,7 +2609,7 @@ function svariancech( N, correction, x, stride, offset ) {
 		d = float64ToFloat32( x[ ix ] - mu );
 		M2 = float64ToFloat32( M2 + float64ToFloat32( d*d ) );
 		M = float64ToFloat32( M + d );
-		ix += stride;
+		ix += strideX;
 	}
 	return float64ToFloat32( float64ToFloat32(M2/n) - float64ToFloat32( float64ToFloat32(M/N)*float64ToFloat32(M/n) ) ); // eslint-disable-line max-len
 }
@@ -2724,7 +2619,7 @@ function svariancech( N, correction, x, stride, offset ) {
 
 module.exports = svariancech;
 
-},{"@stdlib/number/float64/base/to-float32":41}],51:[function(require,module,exports){
+},{"@stdlib/number/float64/base/to-float32":39}],49:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2747,7 +2642,8 @@ module.exports = svariancech;
 
 // MODULES //
 
-var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -2769,53 +2665,19 @@ var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
 * @param {PositiveInteger} N - number of indexed elements
 * @param {number} correction - degrees of freedom adjustment
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} variance
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = svariancech( N, 1, x, 1 );
+* var v = svariancech( x.length, 1, x, 1 );
 * // returns ~4.3333
 */
-function svariancech( N, correction, x, stride ) {
-	var mu;
-	var ix;
-	var M2;
-	var M;
-	var d;
-	var n;
-	var i;
-
-	n = N - correction;
-	if ( N <= 0 || n <= 0.0 ) {
-		return NaN;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return 0.0;
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	// Use an estimate for the mean:
-	mu = x[ ix ];
-	ix += stride;
-
-	// Compute the variance...
-	M2 = 0.0;
-	M = 0.0;
-	for ( i = 1; i < N; i++ ) {
-		d = float64ToFloat32( x[ ix ] - mu );
-		M2 = float64ToFloat32( M2 + float64ToFloat32( d*d ) );
-		M = float64ToFloat32( M + d );
-		ix += stride;
-	}
-	return float64ToFloat32( float64ToFloat32(M2/n) - float64ToFloat32( float64ToFloat32(M/N)*float64ToFloat32(M/n) ) ); // eslint-disable-line max-len
+function svariancech( N, correction, x, strideX ) {
+	return ndarray( N, correction, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -2823,7 +2685,7 @@ function svariancech( N, correction, x, stride ) {
 
 module.exports = svariancech;
 
-},{"@stdlib/number/float64/base/to-float32":41}],52:[function(require,module,exports){
+},{"./ndarray.js":48,"@stdlib/strided/base/stride2offset":55}],50:[function(require,module,exports){
 (function (__filename){(function (){
 /* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib');});/**
 * @license Apache-2.0
@@ -2909,7 +2771,7 @@ tape( 'if a native implementation is not available, the main export is a JavaScr
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/svariancech/test/test.js")
-},{"./../lib":49,"./../lib/svariancech.js":51,"@stdlib/assert/is-browser":21,"proxyquireify":224,"tape":234}],53:[function(require,module,exports){
+},{"./../lib":47,"./../lib/svariancech.js":49,"@stdlib/assert/is-browser":21,"proxyquireify":224,"tape":234}],51:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -2934,7 +2796,6 @@ tape( 'if a native implementation is not available, the main export is a JavaScr
 // MODULES //
 
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -3035,7 +2896,6 @@ tape( 'if provided a `correction` parameter yielding `N-correction` less than or
 });
 
 tape( 'the function supports a `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3050,15 +2910,13 @@ tape( 'the function supports a `stride` parameter', function test( t ) {
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = svariancech( N, 1, x, 2, 0 );
+	v = svariancech( 4, 1, x, 2, 0 );
 
 	t.strictEqual( v, 6.25, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function supports a negative `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3073,8 +2931,7 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = svariancech( N, 1, x, -2, 6 );
+	v = svariancech( 4, 1, x, -2, 6 );
 
 	t.strictEqual( v, 6.25, 'returns expected value' );
 	t.end();
@@ -3093,7 +2950,6 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns `0`',
 });
 
 tape( 'the function supports an `offset` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3107,16 +2963,15 @@ tape( 'the function supports an `offset` parameter', function test( t ) {
 		3.0,
 		4.0   // 3
 	]);
-	N = floor( x.length / 2 );
 
-	v = svariancech( N, 1, x, 2, 1 );
+	v = svariancech( 4, 1, x, 2, 1 );
 	t.strictEqual( v, 6.25, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/svariancech/test/test.ndarray.js")
-},{"./../lib/ndarray.js":50,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nan":37,"@stdlib/math/base/special/floor":39,"@stdlib/number/float64/base/to-float32":41,"tape":234}],54:[function(require,module,exports){
+},{"./../lib/ndarray.js":48,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nan":37,"@stdlib/number/float64/base/to-float32":39,"tape":234}],52:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -3142,7 +2997,6 @@ tape( 'the function supports an `offset` parameter', function test( t ) {
 
 var resolve = require( 'path' ).resolve;
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -3251,7 +3105,6 @@ tape( 'if provided a `correction` parameter yielding `N-correction` less than or
 });
 
 tape( 'the function supports a `stride` parameter', opts, function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3266,15 +3119,13 @@ tape( 'the function supports a `stride` parameter', opts, function test( t ) {
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = svariancech( N, 1, x, 2, 0 );
+	v = svariancech( 4, 1, x, 2, 0 );
 
 	t.strictEqual( v, 6.25, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function supports a negative `stride` parameter', opts, function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3289,8 +3140,7 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = svariancech( N, 1, x, -2, 6 );
+	v = svariancech( 4, 1, x, -2, 6 );
 
 	t.strictEqual( v, 6.25, 'returns expected value' );
 	t.end();
@@ -3309,7 +3159,6 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns `0`',
 });
 
 tape( 'the function supports an `offset` parameter', opts, function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3323,16 +3172,15 @@ tape( 'the function supports an `offset` parameter', opts, function test( t ) {
 		3.0,
 		4.0   // 3
 	]);
-	N = floor( x.length / 2 );
 
-	v = svariancech( N, 1, x, 2, 1 );
+	v = svariancech( 4, 1, x, 2, 1 );
 	t.strictEqual( v, 6.25, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/svariancech/test/test.ndarray.native.js","/lib/node_modules/@stdlib/stats/base/svariancech/test")
-},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nan":37,"@stdlib/math/base/special/floor":39,"@stdlib/number/float64/base/to-float32":41,"@stdlib/utils/try-require":97,"path":111,"tape":234}],55:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nan":37,"@stdlib/number/float64/base/to-float32":39,"@stdlib/utils/try-require":97,"path":111,"tape":234}],53:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -3357,7 +3205,6 @@ tape( 'the function supports an `offset` parameter', opts, function test( t ) {
 // MODULES //
 
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -3458,7 +3305,6 @@ tape( 'if provided a `correction` parameter yielding `N-correction` less than or
 });
 
 tape( 'the function supports a `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3473,15 +3319,13 @@ tape( 'the function supports a `stride` parameter', function test( t ) {
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = svariancech( N, 1, x, 2 );
+	v = svariancech( 4, 1, x, 2 );
 
 	t.strictEqual( v, 6.25, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function supports a negative `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3496,8 +3340,7 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = svariancech( N, 1, x, -2 );
+	v = svariancech( 4, 1, x, -2 );
 
 	t.strictEqual( v, 6.25, 'returns expected value' );
 	t.end();
@@ -3518,7 +3361,6 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns `0`',
 tape( 'the function supports view offsets', function test( t ) {
 	var x0;
 	var x1;
-	var N;
 	var v;
 
 	x0 = new Float32Array([
@@ -3534,16 +3376,15 @@ tape( 'the function supports view offsets', function test( t ) {
 	]);
 
 	x1 = new Float32Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
-	N = floor(x1.length / 2);
 
-	v = svariancech( N, 1, x1, 2 );
+	v = svariancech( 4, 1, x1, 2 );
 	t.strictEqual( v, 6.25, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/svariancech/test/test.svariancech.js")
-},{"./../lib/svariancech.js":51,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nan":37,"@stdlib/math/base/special/floor":39,"@stdlib/number/float64/base/to-float32":41,"tape":234}],56:[function(require,module,exports){
+},{"./../lib/svariancech.js":49,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nan":37,"@stdlib/number/float64/base/to-float32":39,"tape":234}],54:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -3569,7 +3410,6 @@ tape( 'the function supports view offsets', function test( t ) {
 
 var resolve = require( 'path' ).resolve;
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -3678,7 +3518,6 @@ tape( 'if provided a `correction` parameter yielding `N-correction` less than or
 });
 
 tape( 'the function supports a `stride` parameter', opts, function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3693,15 +3532,13 @@ tape( 'the function supports a `stride` parameter', opts, function test( t ) {
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = svariancech( N, 1, x, 2 );
+	v = svariancech( 4, 1, x, 2 );
 
 	t.strictEqual( v, 6.25, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function supports a negative `stride` parameter', opts, function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3716,8 +3553,7 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = svariancech( N, 1, x, -2 );
+	v = svariancech( 4, 1, x, -2 );
 
 	t.strictEqual( v, 6.25, 'returns expected value' );
 	t.end();
@@ -3738,7 +3574,6 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns `0`',
 tape( 'the function supports view offsets', opts, function test( t ) {
 	var x0;
 	var x1;
-	var N;
 	var v;
 
 	x0 = new Float32Array([
@@ -3754,16 +3589,103 @@ tape( 'the function supports view offsets', opts, function test( t ) {
 	]);
 
 	x1 = new Float32Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
-	N = floor(x1.length / 2);
 
-	v = svariancech( N, 1, x1, 2 );
+	v = svariancech( 4, 1, x1, 2 );
 	t.strictEqual( v, 6.25, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/svariancech/test/test.svariancech.native.js","/lib/node_modules/@stdlib/stats/base/svariancech/test")
-},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nan":37,"@stdlib/math/base/special/floor":39,"@stdlib/number/float64/base/to-float32":41,"@stdlib/utils/try-require":97,"path":111,"tape":234}],57:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nan":37,"@stdlib/number/float64/base/to-float32":39,"@stdlib/utils/try-require":97,"path":111,"tape":234}],55:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Determine the index offset which specifies the location of the first indexed value in a strided array.
+*
+* @module @stdlib/strided/base/stride2offset
+*
+* @example
+* var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+*
+* var offset = stride2offset( 10, -10 );
+* // returns 90
+*/
+
+// MODULES //
+
+var stride2offset = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = stride2offset;
+
+},{"./main.js":56}],56:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns the index offset which specifies the location of the first indexed value in a strided array.
+*
+* @param {NonNegativeInteger} N - number of indexed elements
+* @param {integer} stride - index increment
+* @returns {NonNegativeInteger} offset - offset
+*
+* @example
+* var offset = stride2offset( 10, -10 );
+* // returns 90
+*/
+function stride2offset( N, stride ) {
+	if ( stride > 0 ) {
+		return 0;
+	}
+	return ( 1 - N ) * stride;
+}
+
+
+// EXPORTS //
+
+module.exports = stride2offset;
+
+},{}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4965,7 +4887,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":22,"@stdlib/regexp/function-name":46,"@stdlib/utils/native-class":92}],74:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":22,"@stdlib/regexp/function-name":44,"@stdlib/utils/native-class":92}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5545,7 +5467,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":81,"@stdlib/object/ctor":44}],84:[function(require,module,exports){
+},{"./detect.js":81,"@stdlib/object/ctor":42}],84:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17677,4 +17599,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[52,53,54,55,56]);
+},{}]},{},[50,51,52,53,54]);

@@ -1431,7 +1431,7 @@ module.exports = assign;
 * var cusomeByRight = require( '@stdlib/array/base/cusome-by-right' );
 *
 * function fcn( value ) {
-*	 return ( value > 0 );
+*     return ( value > 0 );
 * }
 *
 * var x = [ 1, 1, 0, 0, 0 ];

@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -26724,9 +26726,9 @@ var ndarray = require( './ndarray.js' );
 * Adds a scalar constant to each element in a double-precision floating-point strided array.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - scalar
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
-* @param {integer} strideX - index increment
+* @param {integer} strideX - stride length
 * @returns {Float64Array} input array
 *
 * @example
@@ -26778,9 +26780,9 @@ var M = 5;
 * Adds a scalar constant to each element in a double-precision floating-point strided array.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - scalar
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
-* @param {integer} strideX - index increment
+* @param {integer} strideX - stride length
 * @param {NonNegativeInteger} offsetX - starting index
 * @returns {Float64Array} input array
 *
@@ -26788,9 +26790,8 @@ var M = 5;
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 3.0, -4.0, 5.0, -6.0 ] );
-* var alpha = 5.0;
 *
-* dapx( 3, alpha, x, 1, x.length-3 );
+* dapx( 3, 5.0, x, 1, x.length-3 );
 * // x => <Float64Array>[ 1.0, -2.0, 3.0, 1.0, 10.0, -1.0 ]
 */
 function dapx( N, alpha, x, strideX, offsetX ) {

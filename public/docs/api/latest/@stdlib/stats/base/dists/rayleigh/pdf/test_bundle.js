@@ -711,7 +711,7 @@ function hasFloat64ArraySupport() {
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./float64array.js":13,"@stdlib/assert/is-float64array":31}],16:[function(require,module,exports){
+},{"./float64array.js":13,"@stdlib/assert/is-float64array":43}],16:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1116,7 +1116,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":24,"@stdlib/assert/is-uint16array":36,"@stdlib/constants/uint16/max":56}],24:[function(require,module,exports){
+},{"./uint16array.js":24,"@stdlib/assert/is-uint16array":52,"@stdlib/constants/uint16/max":76}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1257,7 +1257,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":27,"@stdlib/assert/is-uint32array":38,"@stdlib/constants/uint32/max":57}],27:[function(require,module,exports){
+},{"./uint32array.js":27,"@stdlib/assert/is-uint32array":54,"@stdlib/constants/uint32/max":77}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1398,7 +1398,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":30,"@stdlib/assert/is-uint8array":40,"@stdlib/constants/uint8/max":58}],30:[function(require,module,exports){
+},{"./uint8array.js":30,"@stdlib/assert/is-uint8array":56,"@stdlib/constants/uint8/max":78}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1450,6 +1450,681 @@ module.exports = main;
 'use strict';
 
 /**
+* Test if a value is an array.
+*
+* @module @stdlib/assert/is-array
+*
+* @example
+* var isArray = require( '@stdlib/assert/is-array' );
+*
+* var bool = isArray( [] );
+* // returns true
+*
+* bool = isArray( {} );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":32}],32:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// VARIABLES //
+
+var f;
+
+
+// FUNCTIONS //
+
+/**
+* Tests if a value is an array.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is an array
+*
+* @example
+* var bool = isArray( [] );
+* // returns true
+*
+* @example
+* var bool = isArray( {} );
+* // returns false
+*/
+function isArray( value ) {
+	return ( nativeClass( value ) === '[object Array]' );
+}
+
+
+// MAIN //
+
+if ( Array.isArray ) {
+	f = Array.isArray;
+} else {
+	f = isArray;
+}
+
+
+// EXPORTS //
+
+module.exports = f;
+
+},{"@stdlib/utils/native-class":198}],33:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a boolean.
+*
+* @module @stdlib/assert/is-boolean
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+* var isBoolean = require( '@stdlib/assert/is-boolean' );
+*
+* var bool = isBoolean( false );
+* // returns true
+*
+* bool = isBoolean( new Boolean( false ) );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+* var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+*
+* var bool = isBoolean( false );
+* // returns true
+*
+* bool = isBoolean( new Boolean( true ) );
+* // returns false
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+* var isBoolean = require( '@stdlib/assert/is-boolean' ).isObject;
+*
+* var bool = isBoolean( true );
+* // returns false
+*
+* bool = isBoolean( new Boolean( false ) );
+* // returns true
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var isPrimitive = require( './primitive.js' );
+var isObject = require( './object.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'isPrimitive', isPrimitive );
+setReadOnly( main, 'isObject', isObject );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":34,"./object.js":35,"./primitive.js":36,"@stdlib/utils/define-nonenumerable-read-only-property":180}],34:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isPrimitive = require( './primitive.js' );
+var isObject = require( './object.js' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a boolean.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a boolean
+*
+* @example
+* var bool = isBoolean( false );
+* // returns true
+*
+* @example
+* var bool = isBoolean( true );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var bool = isBoolean( new Boolean( false ) );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var bool = isBoolean( new Boolean( true ) );
+* // returns true
+*/
+function isBoolean( value ) {
+	return ( isPrimitive( value ) || isObject( value ) );
+}
+
+
+// EXPORTS //
+
+module.exports = isBoolean;
+
+},{"./object.js":35,"./primitive.js":36}],35:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var hasToStringTag = require( '@stdlib/assert/has-tostringtag-support' );
+var nativeClass = require( '@stdlib/utils/native-class' );
+var Boolean = require( '@stdlib/boolean/ctor' );
+var test = require( './try2serialize.js' );
+
+
+// VARIABLES //
+
+var FLG = hasToStringTag();
+
+
+// MAIN //
+
+/**
+* Tests if a value is a boolean object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a boolean object
+*
+* @example
+* var bool = isBoolean( true );
+* // returns false
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var bool = isBoolean( new Boolean( false ) );
+* // returns true
+*/
+function isBoolean( value ) {
+	if ( typeof value === 'object' ) {
+		if ( value instanceof Boolean ) {
+			return true;
+		}
+		if ( FLG ) {
+			return test( value );
+		}
+		return ( nativeClass( value ) === '[object Boolean]' );
+	}
+	return false;
+}
+
+
+// EXPORTS //
+
+module.exports = isBoolean;
+
+},{"./try2serialize.js":38,"@stdlib/assert/has-tostringtag-support":20,"@stdlib/boolean/ctor":60,"@stdlib/utils/native-class":198}],36:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Tests if a value is a boolean primitive.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a boolean primitive
+*
+* @example
+* var bool = isBoolean( true );
+* // returns true
+*
+* @example
+* var bool = isBoolean( false );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var bool = isBoolean( new Boolean( true ) );
+* // returns false
+*/
+function isBoolean( value ) {
+	return ( typeof value === 'boolean' );
+}
+
+
+// EXPORTS //
+
+module.exports = isBoolean;
+
+},{}],37:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// eslint-disable-next-line stdlib/no-redeclare
+var toString = Boolean.prototype.toString; // non-generic
+
+
+// EXPORTS //
+
+module.exports = toString;
+
+},{}],38:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var toString = require( './tostring.js' ); // eslint-disable-line stdlib/no-redeclare
+
+
+// MAIN //
+
+/**
+* Attempts to serialize a value to a string.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value can be serialized
+*/
+function test( value ) {
+	try {
+		toString.call( value );
+		return true;
+	} catch ( err ) { // eslint-disable-line no-unused-vars
+		return false;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = test;
+
+},{"./tostring.js":37}],39:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a Buffer instance.
+*
+* @module @stdlib/assert/is-buffer
+*
+* @example
+* var isBuffer = require( '@stdlib/assert/is-buffer' );
+*
+* var v = isBuffer( new Buffer( 'beep' ) );
+* // returns true
+*
+* v = isBuffer( {} );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":40}],40:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isObjectLike = require( '@stdlib/assert/is-object-like' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a Buffer instance.
+*
+* @param {*} value - value to validate
+* @returns {boolean} boolean indicating if a value is a Buffer instance
+*
+* @example
+* var v = isBuffer( new Buffer( 'beep' ) );
+* // returns true
+*
+* @example
+* var v = isBuffer( new Buffer( [1,2,3,4] ) );
+* // returns true
+*
+* @example
+* var v = isBuffer( {} );
+* // returns false
+*
+* @example
+* var v = isBuffer( [] );
+* // returns false
+*/
+function isBuffer( value ) {
+	return (
+		isObjectLike( value ) &&
+		(
+			// eslint-disable-next-line no-underscore-dangle
+			value._isBuffer || // for envs missing Object.prototype.constructor (e.g., Safari 5-7)
+			(
+				value.constructor &&
+
+				// WARNING: `typeof` is not a foolproof check, as certain envs consider RegExp and NodeList instances to be functions
+				typeof value.constructor.isBuffer === 'function' &&
+				value.constructor.isBuffer( value )
+			)
+		)
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isBuffer;
+
+},{"@stdlib/assert/is-object-like":50}],41:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is an `Error` object.
+*
+* @module @stdlib/assert/is-error
+*
+* @example
+* var isError = require( '@stdlib/assert/is-error' );
+*
+* var bool = isError( new Error( 'beep' ) );
+* // returns true
+*
+* bool = isError( {} );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":42}],42:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var getPrototypeOf = require( '@stdlib/utils/get-prototype-of' );
+var nativeClass = require( '@stdlib/utils/native-class' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is an `Error` object.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value is an `Error` object
+*
+* @example
+* var bool = isError( new Error( 'beep' ) );
+* // returns true
+*
+* @example
+* var bool = isError( {} );
+* // returns false
+*/
+function isError( value ) {
+	if ( typeof value !== 'object' || value === null ) {
+		return false;
+	}
+	// Check for `Error` objects from the same realm (same Node.js `vm` or same `Window` object)...
+	if ( value instanceof Error ) {
+		return true;
+	}
+	// Walk the prototype tree until we find an object having the desired native class...
+	while ( value ) {
+		if ( nativeClass( value ) === '[object Error]' ) {
+			return true;
+		}
+		value = getPrototypeOf( value );
+	}
+	return false;
+}
+
+
+// EXPORTS //
+
+module.exports = isError;
+
+},{"@stdlib/utils/get-prototype-of":188,"@stdlib/utils/native-class":198}],43:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
 * Test if a value is a Float64Array.
 *
 * @module @stdlib/assert/is-float64array
@@ -1473,7 +2148,7 @@ var isFloat64Array = require( './main.js' );
 
 module.exports = isFloat64Array;
 
-},{"./main.js":32}],32:[function(require,module,exports){
+},{"./main.js":44}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1532,7 +2207,105 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":159}],33:[function(require,module,exports){
+},{"@stdlib/utils/native-class":198}],45:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is a function.
+*
+* @module @stdlib/assert/is-function
+*
+* @example
+* var isFunction = require( '@stdlib/assert/is-function' );
+*
+* function beep() {
+*     return 'beep';
+* }
+*
+* var bool = isFunction( beep );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":46}],46:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var typeOf = require( '@stdlib/utils/type-of' );
+
+
+// MAIN //
+
+/**
+* Tests if a value is a function.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether value is a function
+*
+* @example
+* function beep() {
+*     return 'beep';
+* }
+*
+* var bool = isFunction( beep );
+* // returns true
+*/
+function isFunction( value ) {
+	// Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
+	return ( typeOf( value ) === 'function' );
+}
+
+
+// EXPORTS //
+
+module.exports = isFunction;
+
+},{"@stdlib/utils/type-of":209}],47:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1571,7 +2344,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{"@stdlib/array/uint16":4,"@stdlib/array/uint8":10}],34:[function(require,module,exports){
+},{"@stdlib/array/uint16":4,"@stdlib/array/uint8":10}],48:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1613,7 +2386,7 @@ var IS_LITTLE_ENDIAN = require( './main.js' );
 
 module.exports = IS_LITTLE_ENDIAN;
 
-},{"./main.js":35}],35:[function(require,module,exports){
+},{"./main.js":49}],49:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1686,7 +2459,127 @@ bool = isLittleEndian();
 
 module.exports = bool;
 
-},{"./ctors.js":33}],36:[function(require,module,exports){
+},{"./ctors.js":47}],50:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if a value is object-like.
+*
+* @module @stdlib/assert/is-object-like
+*
+* @example
+* var isObjectLike = require( '@stdlib/assert/is-object-like' );
+*
+* var bool = isObjectLike( {} );
+* // returns true
+*
+* bool = isObjectLike( [] );
+* // returns true
+*
+* bool = isObjectLike( null );
+* // returns false
+*
+* @example
+* var isObjectLike = require( '@stdlib/assert/is-object-like' ).isObjectLikeArray;
+*
+* var bool = isObjectLike( [ {}, [] ] );
+* // returns true
+*
+* bool = isObjectLike( [ {}, '3.0' ] );
+* // returns false
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var arrayfun = require( '@stdlib/assert/tools/array-function' );
+var main = require( './main.js' );
+
+
+// VARIABLES //
+
+var isObjectLikeArray = arrayfun( main );
+
+
+// MAIN //
+
+setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":51,"@stdlib/assert/tools/array-function":58,"@stdlib/utils/define-nonenumerable-read-only-property":180}],51:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Tests if a value is object-like.
+*
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating whether a value is object-like
+*
+* @example
+* var bool = isObjectLike( {} );
+* // returns true
+*
+* @example
+* var bool = isObjectLike( [] );
+* // returns true
+*
+* @example
+* var bool = isObjectLike( null );
+* // returns false
+*/
+function isObjectLike( value ) {
+	return (
+		value !== null &&
+		typeof value === 'object'
+	);
+}
+
+
+// EXPORTS //
+
+module.exports = isObjectLike;
+
+},{}],52:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1731,7 +2624,7 @@ var isUint16Array = require( './main.js' );
 
 module.exports = isUint16Array;
 
-},{"./main.js":37}],37:[function(require,module,exports){
+},{"./main.js":53}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1790,7 +2683,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":159}],38:[function(require,module,exports){
+},{"@stdlib/utils/native-class":198}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1835,7 +2728,7 @@ var isUint32Array = require( './main.js' );
 
 module.exports = isUint32Array;
 
-},{"./main.js":39}],39:[function(require,module,exports){
+},{"./main.js":55}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1894,7 +2787,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":159}],40:[function(require,module,exports){
+},{"@stdlib/utils/native-class":198}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1939,7 +2832,7 @@ var isUint8Array = require( './main.js' );
 
 module.exports = isUint8Array;
 
-},{"./main.js":41}],41:[function(require,module,exports){
+},{"./main.js":57}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1998,7 +2891,252 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":159}],42:[function(require,module,exports){
+},{"@stdlib/utils/native-class":198}],58:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a function which tests if every element in an array passes a test condition.
+*
+* @module @stdlib/assert/tools/array-function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+* var arrayfcn = require( '@stdlib/assert/tools/array-function' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":59}],59:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isArray = require( '@stdlib/assert/is-array' );
+var format = require( '@stdlib/string/format' );
+
+
+// MAIN //
+
+/**
+* Returns a function which tests if every element in an array passes a test condition.
+*
+* @param {Function} predicate - function to apply
+* @throws {TypeError} must provide a function
+* @returns {Function} an array function
+*
+* @example
+* var isOdd = require( '@stdlib/assert/is-odd' );
+*
+* var arr1 = [ 1, 3, 5, 7 ];
+* var arr2 = [ 3, 5, 8 ];
+*
+* var validate = arrayfcn( isOdd );
+*
+* var bool = validate( arr1 );
+* // returns true
+*
+* bool = validate( arr2 );
+* // returns false
+*/
+function arrayfcn( predicate ) {
+	if ( typeof predicate !== 'function' ) {
+		throw new TypeError( format( 'invalid argument. Must provide a function. Value: `%s`.', predicate ) );
+	}
+	return every;
+
+	/**
+	* Tests if every element in an array passes a test condition.
+	*
+	* @private
+	* @param {*} value - value to test
+	* @returns {boolean} boolean indicating whether a value is an array for which all elements pass a test condition
+	*/
+	function every( value ) {
+		var len;
+		var i;
+		if ( !isArray( value ) ) {
+			return false;
+		}
+		len = value.length;
+		if ( len === 0 ) {
+			return false;
+		}
+		for ( i = 0; i < len; i++ ) {
+			if ( predicate( value[ i ] ) === false ) {
+				return false;
+			}
+		}
+		return true;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = arrayfcn;
+
+},{"@stdlib/assert/is-array":31,"@stdlib/string/format":171}],60:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Boolean constructor.
+*
+* @module @stdlib/boolean/ctor
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var Boolean = require( '@stdlib/boolean/ctor' );
+*
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":61}],61:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns a boolean.
+*
+* @name Boolean
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {(boolean|Boolean)} boolean
+*
+* @example
+* var b = Boolean( null );
+* // returns false
+*
+* b = Boolean( [] );
+* // returns true
+*
+* b = Boolean( {} );
+* // returns true
+*
+* @example
+* var b = new Boolean( false );
+* // returns <Boolean>
+*/
+var Bool = Boolean; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Bool;
+
+},{}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2057,7 +3195,7 @@ var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
 
 module.exports = FLOAT64_EPSILON;
 
-},{}],43:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2117,7 +3255,7 @@ var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_EXPONENT_BIAS;
 
-},{}],44:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2175,7 +3313,7 @@ var FLOAT64_HIGH_WORD_ABS_MASK = 0x7fffffff>>>0; // eslint-disable-line id-lengt
 
 module.exports = FLOAT64_HIGH_WORD_ABS_MASK;
 
-},{}],45:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2233,7 +3371,7 @@ var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
 
 module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
-},{}],46:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2291,7 +3429,7 @@ var FLOAT64_HIGH_WORD_SIGN_MASK = 0x80000000>>>0; // eslint-disable-line id-leng
 
 module.exports = FLOAT64_HIGH_WORD_SIGN_MASK;
 
-},{}],47:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2349,7 +3487,7 @@ var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = 0x000fffff;
 
 module.exports = FLOAT64_HIGH_WORD_SIGNIFICAND_MASK;
 
-},{}],48:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2402,7 +3540,7 @@ var LN2 = 6.93147180559945309417232121458176568075500134360255254120680009493393
 
 module.exports = LN2;
 
-},{}],49:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2458,7 +3596,7 @@ var FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL = -1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],50:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2514,7 +3652,7 @@ var FLOAT64_MAX_BASE2_EXPONENT = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_MAX_BASE2_EXPONENT;
 
-},{}],51:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2570,7 +3708,7 @@ var FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL = -1074|0; // asm type annotation
 
 module.exports = FLOAT64_MIN_BASE2_EXPONENT_SUBNORMAL;
 
-},{}],52:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2632,7 +3770,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":98}],53:[function(require,module,exports){
+},{"@stdlib/number/ctor":118}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2681,7 +3819,7 @@ var FLOAT64_NUM_HIGH_WORD_SIGNIFICAND_BITS = 20|0; // eslint-disable-line id-len
 
 module.exports = FLOAT64_NUM_HIGH_WORD_SIGNIFICAND_BITS;
 
-},{}],54:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2739,7 +3877,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],55:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2803,7 +3941,7 @@ var FLOAT64_SMALLEST_NORMAL = 2.2250738585072014e-308;
 
 module.exports = FLOAT64_SMALLEST_NORMAL;
 
-},{}],56:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2866,7 +4004,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],57:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2929,7 +4067,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],58:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2992,7 +4130,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],59:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3043,7 +4181,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":60}],60:[function(require,module,exports){
+},{"./main.js":80}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3102,7 +4240,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":63}],61:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":83}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3153,7 +4291,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":62}],62:[function(require,module,exports){
+},{"./main.js":82}],82:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3213,7 +4351,7 @@ function isInfinite( x ) {
 
 module.exports = isInfinite;
 
-},{"@stdlib/constants/float64/ninf":52,"@stdlib/constants/float64/pinf":54}],63:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":72,"@stdlib/constants/float64/pinf":74}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3258,7 +4396,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":64}],64:[function(require,module,exports){
+},{"./main.js":84}],84:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3309,7 +4447,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":79}],65:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":99}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3354,7 +4492,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":66}],66:[function(require,module,exports){
+},{"./main.js":86}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3400,7 +4538,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],67:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3451,7 +4589,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":68}],68:[function(require,module,exports){
+},{"./main.js":88}],88:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3514,7 +4652,7 @@ function isOdd( x ) {
 
 module.exports = isOdd;
 
-},{"@stdlib/math/base/assert/is-even":59}],69:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-even":79}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3568,7 +4706,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":70}],70:[function(require,module,exports){
+},{"./main.js":90}],90:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3626,7 +4764,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],71:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3677,7 +4815,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":72}],72:[function(require,module,exports){
+},{"./main.js":92}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3729,7 +4867,7 @@ var ceil = Math.ceil; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = ceil;
 
-},{}],73:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3783,7 +4921,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":74}],74:[function(require,module,exports){
+},{"./main.js":94}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3877,7 +5015,7 @@ function copysign( x, y ) {
 
 module.exports = copysign;
 
-},{"@stdlib/constants/float64/high-word-abs-mask":44,"@stdlib/constants/float64/high-word-sign-mask":46,"@stdlib/number/float64/base/from-words":102,"@stdlib/number/float64/base/get-high-word":106,"@stdlib/number/float64/base/to-words":118}],75:[function(require,module,exports){
+},{"@stdlib/constants/float64/high-word-abs-mask":64,"@stdlib/constants/float64/high-word-sign-mask":66,"@stdlib/number/float64/base/from-words":122,"@stdlib/number/float64/base/get-high-word":126,"@stdlib/number/float64/base/to-words":138}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3978,7 +5116,7 @@ function expmulti( hi, lo, k ) {
 
 module.exports = expmulti;
 
-},{"./polyval_p.js":78,"@stdlib/math/base/special/ldexp":81}],76:[function(require,module,exports){
+},{"./polyval_p.js":98,"@stdlib/math/base/special/ldexp":101}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4029,7 +5167,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":77}],77:[function(require,module,exports){
+},{"./main.js":97}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4265,7 +5403,7 @@ function exp( x ) {
 
 module.exports = exp;
 
-},{"./expmulti.js":75,"@stdlib/constants/float64/ninf":52,"@stdlib/constants/float64/pinf":54,"@stdlib/math/base/assert/is-nan":65,"@stdlib/math/base/special/trunc":96}],78:[function(require,module,exports){
+},{"./expmulti.js":95,"@stdlib/constants/float64/ninf":72,"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/assert/is-nan":85,"@stdlib/math/base/special/trunc":116}],98:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4314,7 +5452,7 @@ function evalpoly( x ) {
 
 module.exports = evalpoly;
 
-},{}],79:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4365,7 +5503,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":80}],80:[function(require,module,exports){
+},{"./main.js":100}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4417,7 +5555,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],81:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4477,7 +5615,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":82}],82:[function(require,module,exports){
+},{"./main.js":102}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4629,7 +5767,7 @@ function ldexp( frac, exp ) {
 
 module.exports = ldexp;
 
-},{"@stdlib/constants/float64/exponent-bias":43,"@stdlib/constants/float64/max-base2-exponent":50,"@stdlib/constants/float64/max-base2-exponent-subnormal":49,"@stdlib/constants/float64/min-base2-exponent-subnormal":51,"@stdlib/constants/float64/ninf":52,"@stdlib/constants/float64/pinf":54,"@stdlib/math/base/assert/is-infinite":61,"@stdlib/math/base/assert/is-nan":65,"@stdlib/math/base/special/copysign":73,"@stdlib/number/float64/base/exponent":100,"@stdlib/number/float64/base/from-words":102,"@stdlib/number/float64/base/normalize":109,"@stdlib/number/float64/base/to-words":118}],83:[function(require,module,exports){
+},{"@stdlib/constants/float64/exponent-bias":63,"@stdlib/constants/float64/max-base2-exponent":70,"@stdlib/constants/float64/max-base2-exponent-subnormal":69,"@stdlib/constants/float64/min-base2-exponent-subnormal":71,"@stdlib/constants/float64/ninf":72,"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/assert/is-infinite":81,"@stdlib/math/base/assert/is-nan":85,"@stdlib/math/base/special/copysign":93,"@stdlib/number/float64/base/exponent":120,"@stdlib/number/float64/base/from-words":122,"@stdlib/number/float64/base/normalize":129,"@stdlib/number/float64/base/to-words":138}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4692,7 +5830,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":86}],84:[function(require,module,exports){
+},{"./main.js":106}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4906,7 +6044,7 @@ function log2ax( out, ax, ahx ) {
 
 module.exports = log2ax;
 
-},{"./polyval_l.js":87,"@stdlib/constants/float64/exponent-bias":43,"@stdlib/constants/float64/num-high-word-significand-bits":53,"@stdlib/number/float64/base/get-high-word":106,"@stdlib/number/float64/base/set-high-word":112,"@stdlib/number/float64/base/set-low-word":114}],85:[function(require,module,exports){
+},{"./polyval_l.js":107,"@stdlib/constants/float64/exponent-bias":63,"@stdlib/constants/float64/num-high-word-significand-bits":73,"@stdlib/number/float64/base/get-high-word":126,"@stdlib/number/float64/base/set-high-word":132,"@stdlib/number/float64/base/set-low-word":134}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4999,7 +6137,7 @@ function logx( out, ax ) {
 
 module.exports = logx;
 
-},{"./polyval_w.js":89,"@stdlib/number/float64/base/set-low-word":114}],86:[function(require,module,exports){
+},{"./polyval_w.js":109,"@stdlib/number/float64/base/set-low-word":134}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5385,7 +6523,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"./log2ax.js":84,"./logx.js":85,"./pow2.js":90,"./x_is_zero.js":91,"./y_is_huge.js":92,"./y_is_infinite.js":93,"@stdlib/constants/float64/high-word-abs-mask":44,"@stdlib/constants/float64/ninf":52,"@stdlib/constants/float64/pinf":54,"@stdlib/math/base/assert/is-infinite":61,"@stdlib/math/base/assert/is-integer":63,"@stdlib/math/base/assert/is-nan":65,"@stdlib/math/base/assert/is-odd":67,"@stdlib/math/base/special/abs":69,"@stdlib/math/base/special/sqrt":94,"@stdlib/number/float64/base/set-low-word":114,"@stdlib/number/float64/base/to-words":118,"@stdlib/number/uint32/base/to-int32":121}],87:[function(require,module,exports){
+},{"./log2ax.js":104,"./logx.js":105,"./pow2.js":110,"./x_is_zero.js":111,"./y_is_huge.js":112,"./y_is_infinite.js":113,"@stdlib/constants/float64/high-word-abs-mask":64,"@stdlib/constants/float64/ninf":72,"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/assert/is-infinite":81,"@stdlib/math/base/assert/is-integer":83,"@stdlib/math/base/assert/is-nan":85,"@stdlib/math/base/assert/is-odd":87,"@stdlib/math/base/special/abs":89,"@stdlib/math/base/special/sqrt":114,"@stdlib/number/float64/base/set-low-word":134,"@stdlib/number/float64/base/to-words":138,"@stdlib/number/uint32/base/to-int32":141}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5434,7 +6572,7 @@ function evalpoly( x ) {
 
 module.exports = evalpoly;
 
-},{}],88:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5483,7 +6621,7 @@ function evalpoly( x ) {
 
 module.exports = evalpoly;
 
-},{}],89:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5532,7 +6670,7 @@ function evalpoly( x ) {
 
 module.exports = evalpoly;
 
-},{}],90:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5669,7 +6807,7 @@ function pow2( j, hp, lp ) {
 
 module.exports = pow2;
 
-},{"./polyval_p.js":88,"@stdlib/constants/float64/exponent-bias":43,"@stdlib/constants/float64/high-word-abs-mask":44,"@stdlib/constants/float64/high-word-significand-mask":47,"@stdlib/constants/float64/ln-two":48,"@stdlib/constants/float64/num-high-word-significand-bits":53,"@stdlib/math/base/special/ldexp":81,"@stdlib/number/float64/base/get-high-word":106,"@stdlib/number/float64/base/set-high-word":112,"@stdlib/number/float64/base/set-low-word":114,"@stdlib/number/uint32/base/to-int32":121}],91:[function(require,module,exports){
+},{"./polyval_p.js":108,"@stdlib/constants/float64/exponent-bias":63,"@stdlib/constants/float64/high-word-abs-mask":64,"@stdlib/constants/float64/high-word-significand-mask":67,"@stdlib/constants/float64/ln-two":68,"@stdlib/constants/float64/num-high-word-significand-bits":73,"@stdlib/math/base/special/ldexp":101,"@stdlib/number/float64/base/get-high-word":126,"@stdlib/number/float64/base/set-high-word":132,"@stdlib/number/float64/base/set-low-word":134,"@stdlib/number/uint32/base/to-int32":141}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5771,7 +6909,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/constants/float64/ninf":52,"@stdlib/constants/float64/pinf":54,"@stdlib/math/base/assert/is-odd":67,"@stdlib/math/base/special/copysign":73}],92:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":72,"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/assert/is-odd":87,"@stdlib/math/base/special/copysign":93}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5869,7 +7007,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/constants/float64/high-word-abs-mask":44,"@stdlib/number/float64/base/get-high-word":106}],93:[function(require,module,exports){
+},{"@stdlib/constants/float64/high-word-abs-mask":64,"@stdlib/number/float64/base/get-high-word":126}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5959,7 +7097,7 @@ function pow( x, y ) {
 
 module.exports = pow;
 
-},{"@stdlib/constants/float64/pinf":54,"@stdlib/math/base/special/abs":69}],94:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/special/abs":89}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6013,7 +7151,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":95}],95:[function(require,module,exports){
+},{"./main.js":115}],115:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6066,7 +7204,7 @@ var sqrt = Math.sqrt; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = sqrt;
 
-},{}],96:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6126,7 +7264,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":97}],97:[function(require,module,exports){
+},{"./main.js":117}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6201,7 +7339,7 @@ function trunc( x ) {
 
 module.exports = trunc;
 
-},{"@stdlib/math/base/special/ceil":71,"@stdlib/math/base/special/floor":79}],98:[function(require,module,exports){
+},{"@stdlib/math/base/special/ceil":91,"@stdlib/math/base/special/floor":99}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6243,7 +7381,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":99}],99:[function(require,module,exports){
+},{"./main.js":119}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6268,7 +7406,7 @@ module.exports = main;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],100:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6319,7 +7457,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":101}],101:[function(require,module,exports){
+},{"./main.js":121}],121:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6387,7 +7525,7 @@ function exponent( x ) {
 
 module.exports = exponent;
 
-},{"@stdlib/constants/float64/exponent-bias":43,"@stdlib/constants/float64/high-word-exponent-mask":45,"@stdlib/number/float64/base/get-high-word":106}],102:[function(require,module,exports){
+},{"@stdlib/constants/float64/exponent-bias":63,"@stdlib/constants/float64/high-word-exponent-mask":65,"@stdlib/number/float64/base/get-high-word":126}],122:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6447,7 +7585,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":104}],103:[function(require,module,exports){
+},{"./main.js":124}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6496,7 +7634,7 @@ indices = {
 
 module.exports = indices;
 
-},{"@stdlib/assert/is-little-endian":34}],104:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":48}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6618,7 +7756,7 @@ function fromWords( high, low ) {
 
 module.exports = fromWords;
 
-},{"./indices.js":103,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],105:[function(require,module,exports){
+},{"./indices.js":123,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],125:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6658,7 +7796,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = HIGH;
 
-},{"@stdlib/assert/is-little-endian":34}],106:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":48}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6700,7 +7838,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":107}],107:[function(require,module,exports){
+},{"./main.js":127}],127:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6793,7 +7931,7 @@ function getHighWord( x ) {
 
 module.exports = getHighWord;
 
-},{"./high.js":105,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],108:[function(require,module,exports){
+},{"./high.js":125,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],128:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6892,7 +8030,7 @@ function normalize( x, out, stride, offset ) {
 
 module.exports = normalize;
 
-},{"@stdlib/constants/float64/smallest-normal":55,"@stdlib/math/base/assert/is-infinite":61,"@stdlib/math/base/assert/is-nan":65,"@stdlib/math/base/special/abs":69}],109:[function(require,module,exports){
+},{"@stdlib/constants/float64/smallest-normal":75,"@stdlib/math/base/assert/is-infinite":81,"@stdlib/math/base/assert/is-nan":85,"@stdlib/math/base/special/abs":89}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6960,7 +8098,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":108,"./main.js":110,"@stdlib/utils/define-nonenumerable-read-only-property":152}],110:[function(require,module,exports){
+},{"./assign.js":128,"./main.js":130,"@stdlib/utils/define-nonenumerable-read-only-property":180}],130:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7035,9 +8173,9 @@ function normalize( x ) {
 
 module.exports = normalize;
 
-},{"./assign.js":108}],111:[function(require,module,exports){
-arguments[4][105][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":34,"dup":105}],112:[function(require,module,exports){
+},{"./assign.js":128}],131:[function(require,module,exports){
+arguments[4][125][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":48,"dup":125}],132:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7091,7 +8229,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":113}],113:[function(require,module,exports){
+},{"./main.js":133}],133:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7197,7 +8335,7 @@ function setHighWord( x, high ) {
 
 module.exports = setHighWord;
 
-},{"./high.js":111,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],114:[function(require,module,exports){
+},{"./high.js":131,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],134:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7259,7 +8397,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":116}],115:[function(require,module,exports){
+},{"./main.js":136}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7299,7 +8437,7 @@ if ( isLittleEndian === true ) {
 
 module.exports = LOW;
 
-},{"@stdlib/assert/is-little-endian":34}],116:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":48}],136:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7413,7 +8551,7 @@ function setLowWord( x, low ) {
 
 module.exports = setLowWord;
 
-},{"./low.js":115,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],117:[function(require,module,exports){
+},{"./low.js":135,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],137:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7522,7 +8660,7 @@ function toWords( x, out, stride, offset ) {
 
 module.exports = toWords;
 
-},{"./indices.js":119,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],118:[function(require,module,exports){
+},{"./indices.js":139,"@stdlib/array/float64":1,"@stdlib/array/uint32":7}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7583,9 +8721,9 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":117,"./main.js":120,"@stdlib/utils/define-nonenumerable-read-only-property":152}],119:[function(require,module,exports){
-arguments[4][103][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":34,"dup":103}],120:[function(require,module,exports){
+},{"./assign.js":137,"./main.js":140,"@stdlib/utils/define-nonenumerable-read-only-property":180}],139:[function(require,module,exports){
+arguments[4][123][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":48,"dup":123}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7632,7 +8770,7 @@ function toWords( x ) {
 
 module.exports = toWords;
 
-},{"./assign.js":117}],121:[function(require,module,exports){
+},{"./assign.js":137}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7678,7 +8816,7 @@ var uint32ToInt32 = require( './main.js' );
 
 module.exports = uint32ToInt32;
 
-},{"./main.js":122}],122:[function(require,module,exports){
+},{"./main.js":142}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7727,7 +8865,304 @@ function uint32ToInt32( x ) {
 
 module.exports = uint32ToInt32;
 
-},{}],123:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Object constructor.
+*
+* @module @stdlib/object/ctor
+*
+* @example
+* var Object = require( '@stdlib/object/ctor' );
+*
+* var o = new Object( null );
+* // returns {}
+*
+* o = new Object( 5.0 );
+* // returns <Number>
+*
+* o = new Object( 'beep' );
+* // returns <String>
+*
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":144}],144:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns an object.
+*
+* @name Object
+* @constructor
+* @type {Function}
+* @param {*} value - input value
+* @returns {Object} object
+*
+* @example
+* var o = new Object( null );
+* // returns {}
+*
+* @example
+* var o = new Object( 5.0 );
+* // returns <Number>
+*
+* @example
+* var o = new Object( 'beep' );
+* // returns <String>
+*
+* @example
+* var o1 = {};
+*
+* var o2 = new Object( o1 );
+* // returns {}
+*
+* var bool = ( o1 === o2 );
+* // returns true
+*/
+var Obj = Object; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = Obj;
+
+},{}],145:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Regular expression to capture everything that is not a space immediately after the `function` keyword and before the first left parenthesis.
+*
+* @module @stdlib/regexp/function-name
+*
+* @example
+* var reFunctionName = require( '@stdlib/regexp/function-name' );
+* var RE_FUNCTION_NAME = reFunctionName();
+*
+* function fname( fcn ) {
+*     return RE_FUNCTION_NAME.exec( fcn.toString() )[ 1 ];
+* }
+*
+* var fn = fname( Math.sqrt );
+* // returns 'sqrt'
+*
+* fn = fname( Int8Array );
+* // returns 'Int8Array'
+*
+* fn = fname( Object.prototype.toString );
+* // returns 'toString'
+*
+* fn = fname( function(){} );
+* // returns ''
+*/
+
+// MODULES //
+
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var main = require( './main.js' );
+var REGEXP = require( './regexp.js' );
+
+
+// MAIN //
+
+setReadOnly( main, 'REGEXP', REGEXP );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":146,"./regexp.js":147,"@stdlib/utils/define-nonenumerable-read-only-property":180}],146:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns a regular expression to capture everything that is not a space immediately after the `function` keyword and before the first left parenthesis.
+*
+* @returns {RegExp} regular expression
+*
+* @example
+* var RE_FUNCTION_NAME = reFunctionName();
+*
+* function fname( fcn ) {
+*     return RE_FUNCTION_NAME.exec( fcn.toString() )[ 1 ];
+* }
+*
+* var fn = fname( Math.sqrt );
+* // returns 'sqrt'
+*
+* fn = fname( Int8Array );
+* // returns 'Int8Array'
+*
+* fn = fname( Object.prototype.toString );
+* // returns 'toString'
+*
+* fn = fname( function(){} );
+* // returns ''
+*/
+function reFunctionName() {
+	return /^\s*function\s*([^(]*)/i;
+}
+
+
+// EXPORTS //
+
+module.exports = reFunctionName;
+
+},{}],147:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var reFunctionName = require( './main.js' );
+
+
+// MAIN //
+
+/**
+* Captures everything that is not a space immediately after the `function` keyword and before the first left parenthesis.
+*
+* Regular expression: `/^\s*function\s*([^(]*)/i`
+*
+* -   `/^\s*`
+*     -   Match zero or more spaces at beginning
+*
+* -   `function`
+*     -   Match the word `function`
+*
+* -   `\s*`
+*     -   Match zero or more spaces after the word `function`
+*
+* -   `()`
+*     -   Capture
+*
+* -   `[^(]*`
+*     -   Match anything except a left parenthesis `(` zero or more times
+*
+* -   `/i`
+*     -   ignore case
+*
+* @constant
+* @type {RegExp}
+* @default /^\s*function\s*([^(]*)/i
+*/
+var RE_FUNCTION_NAME = reFunctionName();
+
+
+// EXPORTS //
+
+module.exports = RE_FUNCTION_NAME;
+
+},{"./main.js":146}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7802,7 +9237,7 @@ function factory( mu ) {
 
 module.exports = factory;
 
-},{"@stdlib/constants/float64/pinf":54,"@stdlib/math/base/assert/is-nan":65,"@stdlib/utils/constant-function":150}],124:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/assert/is-nan":85,"@stdlib/utils/constant-function":176}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7859,7 +9294,7 @@ setReadOnly( main, 'factory', factory );
 
 module.exports = main;
 
-},{"./factory.js":123,"./main.js":125,"@stdlib/utils/define-nonenumerable-read-only-property":152}],125:[function(require,module,exports){
+},{"./factory.js":148,"./main.js":150,"@stdlib/utils/define-nonenumerable-read-only-property":180}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7923,7 +9358,7 @@ function pdf( x, mu ) {
 
 module.exports = pdf;
 
-},{"@stdlib/constants/float64/pinf":54,"@stdlib/math/base/assert/is-nan":65}],126:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/assert/is-nan":85}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8010,7 +9445,7 @@ function factory( sigma ) {
 
 module.exports = factory;
 
-},{"@stdlib/constants/float64/pinf":54,"@stdlib/math/base/assert/is-nan":65,"@stdlib/math/base/special/exp":76,"@stdlib/math/base/special/pow":83,"@stdlib/stats/base/dists/degenerate/pdf":124,"@stdlib/utils/constant-function":150}],127:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/assert/is-nan":85,"@stdlib/math/base/special/exp":96,"@stdlib/math/base/special/pow":103,"@stdlib/stats/base/dists/degenerate/pdf":149,"@stdlib/utils/constant-function":176}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8067,7 +9502,7 @@ setReadOnly( main, 'factory', factory );
 
 module.exports = main;
 
-},{"./factory.js":126,"./main.js":128,"@stdlib/utils/define-nonenumerable-read-only-property":152}],128:[function(require,module,exports){
+},{"./factory.js":151,"./main.js":153,"@stdlib/utils/define-nonenumerable-read-only-property":180}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8156,16 +9591,16 @@ function pdf( x, sigma ) {
 
 module.exports = pdf;
 
-},{"@stdlib/constants/float64/pinf":54,"@stdlib/math/base/assert/is-nan":65,"@stdlib/math/base/special/exp":76,"@stdlib/math/base/special/pow":83}],129:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/assert/is-nan":85,"@stdlib/math/base/special/exp":96,"@stdlib/math/base/special/pow":103}],154:[function(require,module,exports){
 module.exports={"sigma":[26.654234970110647,12.10137418981303,6.438792015259487,9.876333786213642,35.84775015033323,8.22096343209936,2.1488068012723294,47.89661625363806,19.567651853795997,18.452369975232997,24.540294334070044,6.119546313952117,35.54417887757075,34.28265536820499,0.5194892097206583,35.85773310102503,13.962012869712815,1.9467783859836274,22.850640104585562,33.23487255919686,41.09588972054969,4.101164315389161,26.69470824918051,4.150274694651069,37.3127500652467,48.125922005073605,19.554893368611804,19.486624172807264,38.11114931695212,9.312487435267968,26.489376600597836,41.706235947168494,26.418599679982524,6.692041297068929,20.851302434855768,44.39577475924402,30.549547213731067,8.015708699458912,17.079173146879477,46.27714356305482,29.672030501585887,15.617365171439356,14.711672154552435,42.62841278960451,26.838802629564775,1.1721548079699384,2.0749108399088056,43.36409361174112,4.496208104217237,22.778812552608873,28.06436320092476,22.25787425500425,25.896391935711005,21.71541259566426,37.182611829064385,41.2179379130624,17.9127393819144,2.1064407556798725,44.87592291158297,7.116851911619593,46.00044962356221,33.279503150081936,3.0234623570981944,29.98476448524062,29.876994076222996,24.3000526583942,27.490406355812482,49.64897315708464,23.71854970806757,44.51749694322259,25.602245869733764,47.18378961627215,47.03058118073516,18.679554913644015,18.46999096063825,30.815899898157816,22.362875718980778,24.722078417810845,1.826067564124989,46.34514541657365,28.114258133456303,43.10923785915506,45.04163506730413,43.22295677821113,46.78642343653052,30.988708309903533,6.231947398673143,37.874098420298296,38.48689299969236,32.524770137713574,21.500493084528884,23.836665864760363,21.02430867448276,30.967773020003097,22.572235058321233,27.065135778158357,36.40971671464312,48.34302939245948,11.007241757270926,35.41252902665627,46.08134723411879,41.092454969575044,45.927424453508245,28.79938972454007,12.49707377698951,12.334900190534604,8.147845429531364,15.287136787007437,18.745920545372876,15.185782391482427,41.00985177174004,9.51477146551255,36.58195442901455,43.04795432920196,1.7702169136455281,38.310272546828905,40.017590304523665,31.406258400218512,35.00894841252163,38.386014019292936,43.75088963380177,0.956648700638485,25.069223200431335,47.90299396919835,41.31302473001628,24.862556331144003,47.02313572794925,43.0343974663428,9.559797466861053,6.425355570928359,29.888848828049674,16.99585381661546,32.18999290289748,22.55763537810743,25.816402517668635,9.760891582432507,34.95231621043228,43.852441228977035,10.287531311644226,37.454091008517764,4.466290977572385,32.74361266890501,13.596398513272733,0.15007936763945517,1.5970036215358085,31.314725426739322,24.128739475505213,12.194040948235585,7.058471328829219,1.2629142814084116,47.8483229900927,41.51528188599284,18.640267821093847,29.072879219468305,27.39974255355587,45.855708735420876,49.32871052779618,32.98907392747117,48.27077286068189,31.199197019770008,6.49384243949831,7.712045718868632,40.90802591747996,33.43860396261541,8.851488140602015,31.42387351489113,23.144032163301997,17.995350069940798,10.604723386303805,42.16117421244174,38.54244353488264,8.658311896288017,26.14204584152917,19.900343053607294,11.253608527651505,2.037580578144371,17.632157003696868,34.43098989554042,2.559588630023202,42.209099460212194,14.60338060710853,49.09892346125142,15.241399948281764,11.861948178280091,46.43146081274418,46.87509905552047,5.111828123047857,28.732228730289656,42.80764535689615,13.36249157450805,46.580892491018965,45.819988018717424,3.7699015389547896,29.78400268189354,14.44072277189915,22.08824796224923,11.754092084374157,11.988372801385283,23.01090393107814,1.174187261378512,15.040766420628005,37.58797211490597,1.2872664052505534,14.450035399472426,4.251486153711026,6.156913268082875,23.010808057727328,35.321911972462495,8.868233265682301,26.60929781824779,38.140144373324425,12.345588822986064,25.177802433345754,21.431466777101694,24.952525654610803,27.001347583415725,34.479721105270535,37.085254294061976,40.83240722498132,35.06138897659391,30.14586362891253,27.579487263111492,3.148724876117537,34.608061919629726,36.20630670077236,21.904526564848116,28.433170700766976,13.249207201928591,12.243799804338106,17.381331442868376,48.79122607625369,28.572906421702893,8.151923711255659,6.813268096889502,38.06733324870818,49.56772089858765,10.531704827856958,7.887899352321693,9.913191260664956,33.39667035511012,8.877834417435315,27.26231403161282,34.4611914670554,22.20495854798814,47.029866307879495,10.624178738199753,19.722623183311782,39.45888873373906,44.030526696407215,36.268259384286786,5.452951959598195,8.907187124209436,24.26097283261085,34.599482005335894,48.74507293564461,48.28765235607274,48.49344062095386,34.29564662356911,11.083894949224272,26.318850659595007,45.78499463803579,7.046271143318816,37.99588477492194,47.31300367558598,33.314759542289416,11.402012467212518,3.2424624267087254,37.52617931294664,18.009992013257513,12.901999749720773,42.195808765334185,32.621701871570416,31.672808205878177,4.563238180470841,7.714501949886399,12.38293751908709,25.533038238766547,1.941582764547467,12.947938122490942,31.430656706522942,35.574706157411796,43.97545035329672,36.422599025325006,46.84038981451318,46.8010786403582,2.8673283890437107,33.91229825001233,22.369880851509027,26.379126399987985,25.714369188454167,31.65320926751487,7.200286161675329,26.734658068672346,47.2111762656387,38.91605309022227,37.22384130023904,26.89359622665667,33.133298387934694,12.430071936681141,42.00189782835817,22.577867892951165,38.98173309737574,24.00623186234946,44.4165465699205,12.094976420158787,48.211441809115776,13.879547684990868,23.59994853937072,48.34157157861759,29.91101841624384,48.54275954258377,16.75426654804564,33.273205056652856,12.95011031641966,1.6810073285900229,9.745248992320544,33.56603648442147,38.37150297603345,39.890274178077455,37.21485811070331,28.640864880681182,7.735848129555367,1.24856314672247,49.42709991423426,31.31228465387966,32.61705102121436,3.040601421906064,12.139825145702465,18.5276642523974,2.2476887812879376,40.998283525706036,47.236836356166044,33.29569408024474,42.50644413421233,48.522344577344946,13.207445721895294,24.68538065453575,7.814913384293654,12.66029286363748,34.68680535641029,32.48494649623307,14.72587294127543,22.834475863345748,39.52758214737897,33.84325731561293,6.300344018967019,42.73145965040166,25.471431863360404,12.989549006504951,29.57973734057253,36.02826843670683,22.403561813227146,6.969081313993719,28.036864869220068,37.67756916353145,13.185563877807061,5.21896291967856,22.399190635072042,43.15424827905817,41.25651871602054,5.121863640714686,14.220270313226901,28.15479429402935,10.530915744875447,11.641627275723732,24.022919514607644,24.365764573357406,13.661753001930899,42.374199631598486,44.113815959143,42.676814067022605,19.700817336962007,48.00144508719003,24.271402191118383,47.14194691186161,6.7269331515226956,20.74952825187485,20.855448496325103,21.655922570785357,37.56384280877646,12.425272179055092,48.30938354644155,9.702205406080067,10.676216265267568,25.975347994485976,0.589912623113864,22.497768552884835,43.18953711259117,43.70189994441303,22.840457037172857,10.705091297015311,6.367681085655108,34.76115454462909,32.640519671774605,41.249023589074554,6.025092707941882,5.230241922580692,28.977236612920652,27.88130535138108,45.28989583443237,17.98951363144733,49.58046545911981,24.04780901707109,49.000894570686484,27.00901173782716,14.969332922746336,38.15750353180872,36.334696542326206,33.91740454873424,40.03313188872991,46.7410567729975,17.826543433924734,44.316390492562654,24.42702109349537,18.810117509961245,41.91896201930029,39.66444835728748,6.90057392113228,10.388757536797167,20.380253027877014,38.770774044616054,6.986235679702501,1.5853177244078642,15.97077978214828,4.898713493441987,8.735700513764233,5.268677143169487,46.61622702124429,23.54170632623567,7.869268599575296,25.750964989641577,19.48173111650553,24.354375255007188,9.107862950432821,2.476279951205429,0.6145140077398525,19.520482873915903,19.6821366358057,13.961247899770546,27.293253133299544,45.13612730783566,3.1797339975050742,40.51866230728125,14.207464389691626,8.447770819539835,39.33271360981445,41.86190480803829,7.522489012458566,2.426355124391766,44.742290823664,5.680765687180678,8.970236280321764,30.41490237671961,41.532910028326675,17.222113920658842,35.93163590831132,49.6823849361693,22.808275865229856,17.051455642395897,47.46693247014766,7.881206418145514,33.32590931213614,46.66283389656138,33.89189857819738,10.569997843335411,37.728162171504465,33.88484288937682,3.1043950926812225,14.653519252054647,23.18571371902346,44.28665588704035,37.48269720748624,2.781307596190885,46.194292566998655,49.900419529703136,37.698258249212714,2.0038450424690324,12.794555469826118,30.046411202643142,28.830806765516805,19.050638674920183,41.499703266818045,3.9222389808737934,43.55580475009459,47.677030839214666,11.371702537936578,47.79793252806945,39.16115103837458,21.98036683707725,0.24467356124102668,0.21811218984907343,15.44187840534218,35.223476311710066,5.7403065584669015,32.78332543556173,29.116688799777123,18.517677640745735,12.346001550692398,48.2963503475617,37.47516215997662,23.512111337245678,45.641532978902234,46.10158598109214,40.725078326019904,26.143805712503156,0.9918019468217243,1.4820651937433094,39.360264643550714,44.56905075059709,16.507330593621905,40.78094852139421,1.560579439685894,8.971872619881783,30.161540148154852,43.292911621659435,18.166587153263347,1.3515526667904343,27.434148836673067,3.796280975598665,31.18233204586144,13.010898615277465,43.8881147984471,19.18462164585003,46.57601489292804,47.12627698947176,10.404214667557099,31.455139489525997,45.01640529362898,19.349877503820146,23.04556798570635,32.19700141386894,15.07226601685555,31.756343865572447,36.20017661583924,33.116893950883394,39.75590410417308,43.76877642385038,44.90267209780646,42.512911646378114,23.853833529480774,33.402647920602725,21.322379799979842,34.65084014295543,35.93777798115092,3.5832658333952216,19.361174052661255,21.971689817586327,16.22236607417579,48.095076998294594,38.96212101433883,25.13185061467652,46.68494310029902,5.173231408127044,27.070047502904703,6.003102028819063,32.649866452502266,37.83651369045595,16.150016800082987,43.346718170916574,39.858347232630194,27.696168903260187,26.479174983297902,5.544104502865199,13.889729729885813,29.73826280289692,8.213569013187128,47.42411997026997,14.189963736581513,29.36601921657661,45.34978105630686,13.234597366099642,12.079071982788857,6.309913735442985,5.375856770574772,36.759288478726546,20.284878117278982,2.22142412363896,16.359122889790623,41.94517348616898,21.580083310622598,18.48416125291531,9.375468431165734,19.100762510389934,26.036065469319148,37.89291156049522,45.49969377819614,12.88682118151212,34.78259138368689,38.54569778009297,15.769797928460061,42.19991202341302,11.900143532461394,41.147224179918,49.81042665647036,10.239184733623198,3.55109316034502,48.96873793871666,2.5126819408810896,38.993141675552444,47.362019139268696,18.88637231780671,46.85626173300953,41.82331811869196,21.207339191663323,30.165886195155668,38.55232269648246,44.3324485307394,6.565161341980752,40.92546163175537,7.9433105022644,41.35144765672403,39.32097602359204,32.07445340899654,31.44325568623686,5.3726040198490255,9.000766819207717,11.690197000339541,28.498919395683796,39.06607190477038,49.47867483117674,5.287605195942568,4.16534049692766,9.450014108946847,12.231481070282136,28.29775838950217,14.455312642601804,13.59876919267753,10.131905977918532,10.934584475953624,10.831444497433395,13.248158757678363,44.34161583438547,49.223946617734185,4.080845155434254,6.714590174558133,34.70745619142581,7.000382633237445,13.677426988247676,14.191508167165024,19.434007660075515,39.006221678499685,2.9988213164520716,27.265086180220266,29.95949204917935,34.74595127461614,9.064296026793306,49.02320789610999,13.426129362244389,46.02618485408099,25.538045584758386,32.30264357463823,17.373141665216394,11.157963333713072,10.152404166187857,39.99943065552941,44.026257576575404,6.564498885688108,14.65168095758046,11.016754104913485,11.653198295316248,27.114770357660532,45.49150144271804,13.804825505230722,41.898254312604124,45.677283865423234,45.208357789932954,27.66025316822731,21.394856001130414,24.326225625768082,22.924583172071177,41.93040491777046,29.5729138988313,25.643091805524698,3.882354398927901,35.419669509552406,39.68692290675604,21.611333575753843,4.5686418689175,49.19687334142603,23.60707516063031,31.889337265014838,5.868840706310086,44.23247839115496,5.158100150823675,7.37841051902155,40.61808164893998,44.257940251239646,11.446733241085871,17.176992529068926,4.036610118823425,25.353037928720312,30.95869945106653,17.363564559944265,33.30524997964018,16.23972759060398,44.217310641038985,47.40745146704812,29.803436317694942,0.2909138522820931,34.94837543186947,33.40827804018264,43.507590994311606,24.575373506306363,40.18957920540686,47.69809292971403,29.479308157775563,10.820849570819547,16.561724276836088,24.71603501483782,35.671915336541815,28.35129454735126,40.86770771739634,41.358507498726205,1.3225244953794402,15.087111686036337,40.18776234688194,1.6730402961093183,29.217791989676346,41.16420636325514,47.852711084325264,11.171068403831075,10.248661622443112,25.24752151569337,18.829589796356526,31.812907994982066,6.82296340909212,0.0003582501387211501,10.824258730018222,43.32901676958485,34.07454245120722,10.729702856310475,19.216802728249725,22.984376080293146,28.39168875951692,34.1136897410695,45.42870560846469,29.573987543013423,18.934621634536086,40.12299822496676,31.210558274368914,2.995440695880902,27.288485780959004,40.6549017424521,1.366099960896483,46.97295673540269,45.76689343288789,37.72432711439411,23.451911763478684,38.7421940532174,36.70776943375752,43.1684338505335,32.012986188521765,40.10947070728107,44.102784751336884,12.224949455292734,44.68349587531396,20.549043307627734,7.293166439337662,8.321336415450242,34.83944266009853,37.56154569770865,37.16991784291203,15.655582437951242,44.20589377368418,24.04370657122096,28.95938301757027,33.857151637526606,13.542088246410977,3.9893266255353943,43.02956817815544,28.96076044672544,3.3645977999837595,16.836076626717155,48.14355800893543,45.95995089414121,48.18540819116139,13.732305119527854,14.657380999430902,31.771097571575957,31.538831591839,28.07945759709033,21.85084992557457,16.778237331752432,10.66991251622147,20.204602873677647,14.89299166892437,18.857783423600626,30.376209919459296,39.35417775646335,39.37444894984575,9.13889657570458,45.98439336773335,35.858670610497256,22.18499276173911,32.88467717539181,1.3767773718651788,40.471833592819074,45.27145517398854,33.10603834154243,8.524472863680021,27.91986060392575,29.721606450975603,2.9266103837463087,36.31477323784288,44.418975362780614,25.627211973600705,36.03095711135653,25.59726498670132,5.744578116476873,33.82831168624073,47.703384183582045,5.463982693114177,37.44917058616464,21.28071292278113,27.98371629399805,0.6813269496218521,14.679795839842203,43.13200673253854,41.2852552751768,23.77803649050234,28.943808344537082,17.181759992402412,6.062382482413309,37.81615013071424,10.705202185327089,43.51409159534989,7.312331478299794,15.02811627863564,30.23717086353025,26.356997666722393,5.1645076325533275,48.667184484292704,48.53337585795023,3.2572311102073592,2.5737786084740866,0.952731796879569,35.256730662834215,25.260179381752877,13.624278013433743,37.27934433258824,22.28680403837724,1.184214006276696,11.630327500985238,24.01885202435743,46.8487388484972,41.21606379462537,9.82745803207944,28.57450539993537,34.28035469140772,46.99673962535129,38.27819416108369,6.921270701165216,16.679085908491885,9.735935536547323,19.80862552662832,12.284341388402831,18.394879131385455,10.487633762251935,21.895323945733914,42.33754983080538,45.66078994522107,16.31353560599328,23.63254854077296,1.250627026389517,6.623178026520149,42.401568725018,23.630072967154312,25.32694392578343,11.177095912945944,23.695624482285215,20.41177714724036,6.293339192002834,15.94017989337445,18.927367986777654,45.77257369266744,6.207206739348914,45.814671993962065,19.379796338724642,0.5134848674737791,43.97300670102481,46.89415255505436,24.535150724864874,42.91487402175086,5.886592636143783,28.78467102833273,3.0867430334256984,25.06101473054121,30.666924084147272,3.0026795779192317,4.451175416419173,39.78669025416163,38.94341791598836,8.48765917835036,4.516088235979487,29.290515591017417,22.483212532542407,45.22536157008378,22.957795799221646,32.11015060440784,16.719534369072807,43.85911848229409,31.907377064251396,49.27896019186252,32.51925842525362,43.737904284012785,42.64155327277338,18.002523333511068,47.3165971367147,16.94973459642276,8.355208132270919,2.4153697263336493,37.092128303258086,6.0992091730169395,39.34135301702201,20.613994026332026,33.71191873166153,38.88041809683268,13.66936199461668,49.986576691665384,14.428749287295107,40.38029595025755,9.123899694117988,3.1738039395318385,40.699105183249884,30.355453494604344,12.000588204027684,1.386688762155952,19.449887897611806,28.201146128529007,31.871660419139193,19.61944906646912,35.93476374536021,15.320404054446001,11.517670380093413,13.402366131746335,20.634142798405865,41.62004491857074,16.14780964706507,5.089604171011763,25.693649347653025,43.94831286254672,10.256419800140094,6.628094996931244,35.83664583543934,44.07217102911014,45.29550172156043,49.15830338888046,29.12385590642952,7.362523699105383,1.0928687859854902,3.2056847096364027,39.128471318109625,14.225076168729089,18.792293738074296,41.937413548754265,17.370329357968316,34.01050521195624,25.014784247930045,28.813139419747092,28.82620216497733,11.091319938296685,32.3222329880579,22.710908394997233,1.002084285574656,30.522418771562165,40.531279383955656,38.02735935364792,19.288052766251408,3.2668112311890263,34.53246933444694,15.840430182550858,42.75124671611725,14.633049122036079,10.39802098090239,43.96343411812761,48.21770447668911,19.465794032697293,2.1512846470656433,39.40429359240433,31.70484800851836,30.8553908768877,16.856879274170076,48.49150346810877,25.238496519443444,13.212389548097592,48.778197357622375,9.1290400721441,10.077458962381947,43.07503565565939,10.09976885790037,10.158226326137033,0.4450333598064571,22.801883411374945,20.039823764564968,45.01142905242548,16.425323273475044,6.449786045293148,6.046870565438356,12.177892169516246,4.413347915510302],"expected":[0.010522956437600357,0.03962298552760179,0.07932804009948398,0.06003049684449005,0.0033235209275399237,0.061528220143708234,0.0006084700025497947,0.0025597478095760718,0.02370837142176625,0.027976834565438966,0.008341244080363925,0.02772593082178808,0.006287518346725076,0.004740465010504717,4.421396061843936e-295,0.012257409205315001,0.030686109209694706,1.7226327773747843e-16,0.015551326905382466,0.002778026129116612,0.0027316441486534035,4.813334835804945e-5,0.006641165732802509,0.05203557176571119,0.010138540154995775,0.002253288259877149,0.022347707652999867,0.024955579463056064,0.011715755952778618,0.052979493007658314,0.004599396591037989,0.006725311531864532,0.0011727345880015328,0.04621371313850305,0.027349910725373044,0.006193857630153033,0.004412056172612837,0.040662239342520626,0.027019731521995844,0.005105522906764913,0.002224162368717131,0.033547125050024794,0.037264295504307716,0.00848811784310794,5.2282616139180934e-5,4.505882691440571e-34,0.28904242380152323,0.0009062659381077131,0.03247601043316333,0.007630621371933878,0.005662773824042076,0.008585826356606846,0.021354012078677414,0.026739266554731248,0.0024958881735292642,0.010462224809814265,0.0003485610005818136,0.0121491093561519,0.004368587788858478,0.06429027321672565,0.002147191160980716,0.0008288652044223314,0.06555239626474291,0.012644428050130115,0.004059552407818935,0.02279762857836011,0.006904116701384375,0.0067160140872296,0.01934838964475357,0.002552569442845353,0.017150842021707066,0.0012154888704211152,0.004664007779875186,0.007720257885109922,0.03178800735512862,0.005061888835190626,0.02537943058428097,0.004318480362858118,2.053886170774783e-6,0.00736597482233721,0.01498633883320665,0.00546604420266265,0.004854785020531844,0.009092739024921144,0.002500444464530279,0.008439320037462665,0.09574005198015209,0.010313800833629871,0.011488099402477515,0.013325564854924848,0.02629429633670013,0.020913235582889458,0.018396319784738716,0.00236281336780995,0.009310444307862018,0.010491381521078704,0.0004609557226823793,0.0026588246755424785,0.010863275549245233,0.012684597965680694,0.007949389697806739,0.007866568585978942,0.007062528723518247,0.003972277630454641,0.04637398774373554,0.047035255640519406,0.0048948309244783595,0.039650330322568574,0.032344270907731336,0.03623620550001242,0.000682042016136128,0.04785658942477142,0.009437267390069738,0.006169580245218822,3.9874578347138548e-22,0.007882788886863253,0.01011719873566937,0.016458095028895857,0.00026979691604497283,0.0006548124345549254,0.005966552156898367,0.1976763037109288,0.0183848160172434,0.001354249093093892,0.0003743108459837753,0.0220307161132251,0.00661783592928126,0.009107382399281445,0.050025729964818764,0.043338943952067756,0.014074484912951098,0.025380660654351236,0.013900367644903924,0.022438710671296866,0.021134460013570933,0.05760526067127713,0.013518899394233773,0.0010009796746929527,0.04850207934555501,0.002280818762960927,0.08106039341899658,0.006477668356208751,0.019935166917582958,0.0,7.727468500695066e-18,0.004848695736903983,0.005552299684688165,0.04426142964692961,0.030544960968028022,5.051021376522527e-37,0.006560642951389059,0.0010902179741288478,0.0139662276225472,0.013753083918775052,0.013383376883381645,0.005003333772385991,0.00010554254081752003,0.015097939054277571,0.00626257366723602,0.013001864115081932,0.0927037637737285,0.07171746844994761,0.00820329414967373,0.0028670056445534355,0.028138561073944027,0.013650910820320902,0.02431389387098712,0.032397470934665,0.054960065556440535,0.007473779537007179,0.0062041776105279224,0.06795907171277848,0.018244824279551618,0.025640051327090362,0.05150147556135059,8.901608288349385e-12,0.03354222178985579,0.011350532478579265,7.051284797131761e-7,0.0058204134962386135,0.0413432408939583,0.005853936693343628,0.007874954069570804,0.03910297226943525,0.0067266836468822845,0.0066804784060715714,0.06759193196706158,0.018082481170189537,0.0032098539037425746,0.040761680369194364,0.0063706061225802975,0.002532634186480769,0.03701229380632448,0.002194624725971013,0.03811215722005307,0.026658576797917305,0.051601306662593376,0.04822176743634924,0.00792654193825726,0.4591826763557478,0.0025096398859646113,0.012107964122708356,2.971560917726088e-19,0.03395051685397216,0.10771255951639515,0.02546842256595489,0.007085011918355006,0.005195376097901859,0.06212521084711246,0.015519839291497963,0.010750353621141484,0.007252321148535272,0.021812581635110344,0.023414603833035303,0.003907562836227737,0.009673390462780183,0.013851797336109032,0.01169018134439778,0.010409313364746995,0.0006131774643321478,0.0003539068495319884,0.005450241907571972,1.0187734533770335e-8,0.0010204533745440552,0.0049465476403354885,0.0025466182642741118,0.009998365193120551,0.04569858747739522,0.048468340483686416,0.03289042897915375,0.005073188028576421,0.00937920208493062,0.025919166967744486,0.07241198233894101,0.011662110238708659,0.004741275982089541,0.03202294516309915,0.05405212674964213,0.046881499203824346,0.014776231666089476,0.06803615648354212,0.008394801639307765,0.0076823658635788265,0.02078955106084062,0.001883060444461037,0.0353142341296102,0.030720252901997785,0.010174340883197517,0.009118740874905005,0.011766612721869416,0.006550527451540487,0.06808501904695179,0.011808368226571336,0.008569613034421733,0.003099338048791913,0.0015674236782658069,0.004433975241491913,0.009629098162317686,0.03796090176240243,0.0009087538233495115,0.008022412018397236,0.08607390730403447,0.001723138698316875,0.005686078855101829,0.011094642046090016,0.046128523446966024,0.070964578937877,0.003150827004860691,0.028130208773132305,0.006386415006094603,0.004244178998391226,0.007078648304444987,0.012961169070843685,0.128943170355986,0.039495393582743496,0.009530820535613618,0.0051324348895910666,0.0017119826383284584,0.028744759717018308,0.002708519382576571,0.005001768186786498,0.0017368911492569718,0.0029678389197661825,0.004397881199910619,0.0002974888398918866,0.169803894487258,0.013429963492146495,0.026339830602917,0.015981019369562737,0.021822546667853115,0.008874020420761634,0.06658948548012042,0.019618101131847233,0.004089240048214362,0.009348117839653272,0.009174442494341475,0.013156301755730035,0.006129769067200925,0.04404324422499657,0.0022063009014766694,0.002525735610133089,0.005409063281791197,0.004992681176443123,0.0027032305499923672,0.045300067205011375,0.0004672297235281865,0.0420527735594633,0.02474057146347074,0.000896417585917536,0.009698865149974029,0.0008615633415297429,0.03354077822535268,0.0011553480979052226,0.038887818101904364,2.828758955744133e-20,0.01870504740110425,0.002335659313242258,0.009367787500251997,0.00011312643762230076,0.009896519878274194,0.004827566141396642,0.047342667447843885,0.17952188722309753,0.005737788788666081,0.0022816888662376736,0.0008602401739276698,0.19793854066095729,0.045061176096631815,0.006540465134570031,0.2028952399942856,0.005592511805221528,0.0025040386823713136,0.0030836746266933563,0.004177431323381909,0.005938105565982701,0.04549994397296946,0.01874509446888474,0.012540689684060736,0.03546923317004273,0.004729341254292411,0.007193428837666133,0.03384385033830706,0.022002953133064062,0.0041288966676751426,0.004503755549878094,0.07596918104495234,0.003202748068987613,0.015339991242636977,0.03953646444902498,0.006927567945192051,0.006516365027961185,0.026147684160378735,0.08366175946479552,0.01570678068137273,0.003928724439598055,0.03898907442332024,0.002131550545399224,0.022937207349701307,0.006114481030215454,0.006484648554748425,0.07751214759221058,0.03709537443005869,0.01736208051414506,0.05459375617892588,0.04384114891088804,0.022243944629448044,0.014667420849464104,0.029933937521913957,0.007184079682566704,0.0036909001602007502,0.0024782556849835278,0.029443574124533252,0.0034255368120892165,0.014573850473923192,0.007126933802926675,0.07036603727752533,0.012301430517764179,0.0008592611047008007,0.02774897280654974,0.007216818768351782,0.0474196725096543,0.007739329999592839,0.05225363742866416,0.0410462891489223,0.02107547418535158,1.0409609196783663e-107,0.019145446772428413,0.008066139072584615,0.008235337417499869,0.011538588628005187,0.012253952396909122,0.07118399729079664,0.010372300755163906,0.0056209812286231176,0.009261065429497128,0.06086233761211817,0.07557853362863666,0.0019210768960249652,0.016920152315449646,0.007447471686685387,0.017610538527029533,0.002841822319340423,0.0017892489715863413,0.003431848690469764,0.01334012433489905,0.030091806638288154,0.00039649571243550297,0.012390249074643814,0.002980212288590152,0.007813366605099289,0.0026890649509542664,0.0030300298192440125,8.986428220530782e-6,0.0024493122791469537,0.03208438480165412,0.0019750330047741773,0.00666177550917649,0.012131832120680643,0.035830814422989986,0.02972423861838439,0.008404445167037212,0.07465781244513818,3.2264836309980205e-20,0.03779681457741276,0.06633184466044,0.0007295283445178791,0.08492187001794477,0.0027680216640203962,0.01696795853015578,0.030873545656443326,0.010923556319208117,0.028236745584807054,0.023936227439836248,0.06190239100496835,1.7060446420992275e-9,8.684900021474005e-13,0.008269020362199864,0.00375783636162658,0.03917796556130483,0.017333874111735238,0.007205024157064244,0.05928132927176969,0.003197714339386428,0.04254430248022759,0.019658195040881784,0.005725452900877667,0.00956114784995888,0.049098380478786535,9.558605398807751e-11,0.0054455976685813725,0.0028566954468415115,0.04312524169302943,0.016948673998781236,0.009838603433861056,0.02032508081806879,0.007045930580151018,0.00410988164251671,0.008285056888146255,0.0262727329389441,0.007019639900593787,0.02488050683338917,0.014205636051571264,0.001512864970480965,0.012866046257568502,0.05450169753190379,0.010716940753021192,0.0036745997667730398,0.14394997649381697,0.041015340656369845,0.013959005885174826,0.007237892719774303,0.001903069893534815,0.155204850777922,0.0003410179384801794,0.0008010017125402138,0.0034138374761234916,0.07747820174653071,0.038170228850629706,0.012145300910608507,0.0017782468656890962,0.021554154451544818,0.0028276520287277424,0.008163926401234055,0.00316079698393042,0.003187339393497961,0.0442585137620909,0.00418236173373181,0.007772876517829294,0.02627109822682275,0.0,1.6160127933606475e-214,0.028869057450531956,0.0044669268171676855,0.10399126556566157,0.0064493841821972285,0.009631146402733003,2.576318935958057e-5,0.04777174158839039,0.005902418546284245,0.0016815461018047009,0.010807675515279981,0.008223711225400193,0.002952567728523103,0.0038175118143784718,0.006090221246469261,1.8603166167602096e-7,1.9395717942167587e-6,0.002850708138311206,0.002746389167225627,0.024319872773904336,0.004560260072483517,2.4720269342708632e-6,0.0375069843543655,0.007024722295604731,0.004036879492458454,0.03303786693656403,1.0130270093870893e-18,0.01901347783288384,0.15747827091739997,0.012653967448005605,0.04253568013786047,0.0028551059190672985,0.02304048757616376,0.008340127266564865,0.002339838751415956,0.05397778706659274,0.013424262594751966,0.008114455002512871,0.026460174271759843,0.023103830274229072,0.010162970120849144,0.028930779403507315,0.0013336170139605652,0.0025075223767901758,0.009310672676685932,0.00678993915478958,0.00277381070167373,0.002861081059530808,0.006933000205328059,9.480715568964405e-5,0.0077833846429454815,0.024297856182499567,0.008996360567902546,0.01204952349310292,7.272850314950374e-5,0.008395253448864347,0.02017690746919096,0.036194143013306875,0.0021927410651030477,0.003451852516368188,0.013139944591397654,0.003775024012031521,0.11279853243369664,0.0009693252596666995,0.08664480754615562,0.0023617137058475563,0.0011674061163731604,0.035357798129478334,0.007709104341196471,0.0024438833911541594,0.007056292761713265,0.0006681810187849252,0.05957280217992986,0.01964211229460238,0.006612046464696413,0.06999913762202155,0.000506516132345785,0.04121682494205418,0.011259122164362742,0.0013449149780356126,0.01416049828613554,0.04501952307104882,0.0818932720475979,0.0009891288461491515,0.011135760048637396,0.029256419848882297,0.22291782118079273,0.005021135790667312,0.009663700034147191,0.024074114797792135,0.026205722589554413,0.0640935595793452,0.005285420802678653,0.0018351336713874214,0.009961573320422247,0.0009505871621587841,0.046765587641922346,0.010865352542234075,0.009620448629165414,0.018996102880532915,0.0005262602096408333,0.020151473030018203,0.008683579955021559,0.0035398528242417955,0.05616319889500841,0.06949615957026266,0.006097630414359285,0.0005376523630308115,0.003230214491841074,0.006451884206032619,0.018309870390385913,0.007790732118850879,0.002944227584565776,0.01350708119782417,0.01616566098931184,0.008546001171164047,0.0014551493781503287,0.06897244082300444,0.009821696600432831,0.03351696910326415,0.0006643298145841403,0.004265911770511032,0.004016430422812278,0.0015146355694588367,0.10948237103293718,0.030975136004979583,0.047326082784395436,0.01761381737552681,0.00757762217167953,0.0068406040025407525,0.04111798558581111,0.057324259345508756,0.04902857574185104,0.04524642508669675,0.0045289623829029915,0.004748562754186047,0.00857808976205834,0.04115584262940411,0.0496967035451835,0.0337030380419172,0.032598430371854864,0.001452045015405847,0.0064910746203656385,0.014852171092584394,0.07131414619824064,0.007409744374426028,0.02958738046711923,0.03856712451779098,0.04265406965162441,0.0025797171806299785,6.949043487804266e-5,0.18062705966916592,0.018891394039847426,0.01469188184899342,0.008862777304413112,0.06691067594048013,0.004834711349434796,0.04516890210444498,0.006170105411990119,0.02206364338948129,0.014129813993701343,0.013733335175772618,0.04988300116215428,0.046569829879239494,0.008499235131976254,0.007610180587889381,0.0748998753244377,0.03350768240212121,0.013280672055149972,0.04184744461819552,0.01956837053155598,0.0019323022513546876,0.04133531759955478,0.006554075089368027,0.006782165942603849,0.0069296053353878565,0.01174481568535122,0.015378375107994642,0.003635765018766592,0.017120220991712645,0.008913158186331193,0.004151769898464539,0.021534881838806075,0.00023635747199842234,0.0038335275851455095,0.0032224187006133394,0.02183423692342202,0.11487253566678506,0.006189239674052176,0.003007743109322672,0.00988822733445087,0.022570392192386657,0.0049734458357821795,0.01740228041790378,0.05089455798041189,0.0063057776815346,0.007871972920500198,0.0359020375806462,0.027563296084447856,0.0006304574148193583,0.011456703841178344,0.0073191178375577445,0.00953132601138949,0.011979393967421021,0.021321686927256046,0.006838542707316896,0.006684073547502899,0.0017668476274094306,0.0,0.005280473160551445,0.003365867814566939,0.004687975189613506,0.00822210894110019,0.006859825057458729,0.0026898122187394673,0.01637411665783719,0.0026172365797549,0.03017818418646037,0.008704035425692109,0.010601245259914948,0.0192540377436394,0.009749919335593165,0.009299329516223795,1.7992792656668554e-46,0.03892673093101419,0.005506935171105388,7.536603647826667e-31,0.006570050559606129,0.0061205253666180934,0.002377446067253342,0.05314679830782512,0.013317219527811244,0.010409042602983908,0.009165559446561417,0.011444977327130299,0.08723109714556491,0.0,0.022241901209481656,0.0035762995436046403,0.002977870199231646,0.05167104388048907,0.030172798683927086,0.024941652011102395,0.013790925274578213,0.0014735194030127228,0.004125845427087668,0.013646205934267656,0.03125881502616517,0.010097184633686683,0.009700066938802255,0.09092286982767452,0.01759533428532649,0.006898458879676764,2.5163375477718436e-24,0.0007125963725470415,0.00570583363557052,0.0012990152707834462,0.0008750652697613403,0.0076323555625864015,0.004800651764659829,0.0027001610157820536,0.009353094587185399,0.008842241941103862,0.007090586325141235,0.04960955550121033,0.004354708436583534,0.027317562105300525,0.06423080383222578,0.05555381963126234,0.01109667938978443,0.005511794327909755,0.009147720579708214,0.03640118006295876,0.004461860524666863,0.0036541559899075744,0.01747714892291991,0.012038441056115007,0.042710078914777475,0.15194396065381607,0.008258539998475945,0.017785643675861558,0.15468916116889528,0.036021297426431155,0.006225239198667437,0.008477908502700282,0.0018177676265340446,0.04399988405135758,0.037663781893325025,0.007240693059139527,0.006638727567383398,0.013042550633037324,0.0046237532684074,0.0047869353584812395,0.05638130202887045,0.007136327550912029,0.015351428940435306,0.015200299309121671,0.01375107778833347,0.005002509871204435,0.009563468801185014,0.034652327302729095,0.0006431844475358521,0.007167551258161631,0.004595178607218793,0.010640641979825494,0.01703584917245619,0.007004741160951877,0.0003607683036842761,0.014844827999649889,0.06568236364031933,0.01738504159773471,0.005057012051761858,4.496736825663806e-5,0.012529019687100903,0.00027546308448575394,0.018715698049457927,0.003559245908207739,0.020084313308778586,0.0825369898186813,0.012137078139112918,0.0018158077026122223,0.025528894845690316,0.011475018714028411,0.019941233724834924,0.013489600683254617,0.634950507058715,0.041240123016884914,0.005635655660506678,0.007602512453066227,0.004025712481890528,0.01633653478383297,0.009905707124790645,0.06323327608953776,0.0038261469868891037,0.04069131933869417,0.0010275590306228438,0.08256140556733053,0.040350856748776434,0.009149533594141857,0.007366716200394249,0.04795230770393762,0.00610237159527154,0.0077975717103665465,0.00010823373434275736,2.4977846369821703e-7,3.430345511003188e-24,0.012212462937061602,0.01743639634500049,0.01798379840226749,0.009684524373881596,0.02662115549574409,0.04998465155288465,0.04925363122332831,0.007839980809775833,0.002006429987221804,0.001304015743090426,0.02589730797646244,0.008124292256589288,0.00939889769919646,0.006942548274180832,0.0049298717522879565,0.01667110481346851,0.010434444655215652,0.03345274939401782,0.02921238535732815,0.04030436539502882,0.006058008857827278,0.037012942185215475,0.009516906917279123,0.0055870355165254515,0.0011881506199586443,0.016015721189414724,0.019669048784778632,5.531312187607382e-51,0.046493956174362625,0.004415681029560763,0.01823128387787985,0.002560027522841125,0.05340140669799699,0.00600145613374319,0.027701348691342498,0.07863281994520055,0.01709486691642535,0.027416198246343313,0.00325740762688628,0.06876809463234496,0.0051510741728626385,0.02606504341167641,0.004409289091577966,0.006912746599706555,0.0005875802113623236,0.01681719245278625,0.00590270804736157,0.009999528201508798,0.013453458821307147,3.737049898428972e-9,0.009328686545800798,0.010178835145943928,0.07290793060967093,0.045527203939988554,0.006630176979456331,0.007582413863265757,0.032635973855672594,0.0037343404316392548,0.015387184207081087,0.02566039756036699,0.007675830574917155,0.015002765066244081,0.008915487540557416,0.0006779562792754865,0.00037142288026001564,0.00951312800701395,0.003330711967843525,0.009044276636568357,0.0030556696212941303,0.00834653281493849,0.02743909863981394,0.004955307616889156,0.019779189523961516,0.07018711811256297,1.2769045640724867e-5,0.0010686164720288473,0.01847389820808198,0.00031673764918844176,0.023629175812749478,0.010571126611284001,0.010473800417559456,0.03739477991206071,0.00021842305180715647,0.04055177960327401,0.007962691932819059,0.06564986689813339,0.022955562754232488,0.006470149885813429,0.01261950186290267,0.04905627444857324,3.6309146670806774e-7,0.02681622751749214,0.018022039009253654,0.013766980656487321,0.026752055655748234,0.008907006476317099,0.03952930392737296,0.03879105669073431,0.04366263256443818,0.025038531268832487,0.008352448668570886,0.028224429581428873,0.010492675864825923,0.008977768827205556,0.007267174526305837,0.027857150601404555,0.052810008956647905,0.003501434152954677,0.007263806180471357,0.0062994455904109735,0.0062680058331415385,0.011310627132057695,0.02887407890982067,2.8960375442812757e-7,0.09007181454956785,0.010414561043505188,0.016288171053567974,0.03220830396992272,0.008904275613702618,0.026602254855967997,0.0018129858662881372,0.006586943793941504,0.008609770204100918,0.018402392214978372,0.037878178060719414,0.013186181668772515,0.025521928115441538,0.3680528624992725,0.005312520162477122,0.009774042826547804,0.01047818669388734,0.0060362402713400355,2.659755514949231e-5,0.0007701278643575796,0.0363070179052996,0.005630007329870753,0.025739170884474926,0.013482143576748392,0.005222585819334032,0.0015396210487791469,0.025851426087976945,6.252714552215742e-15,0.010507593947071884,0.014897306232991438,0.01585843304140835,0.004940386746386642,0.005043099527826388,0.01950496280912537,0.002073465674694273,0.0018399388933519074,0.04266213856766419,0.004647895348230132,0.00948178591084832,0.051504486105806914,0.059660909502845326,3.6184614609144755e-257,0.02420075208252386,0.02933312217267803,0.002711076216748497,0.03692655829009093,0.0626947413830798,0.09121282657468581,0.04489818263160016,0.13301304129554775],"x":[7.803364624418814,6.7925184998922505,9.268972846842289,8.425720542729751,4.3017902771691485,5.00501999735357,8.610079308284648,5.917266211384633,10.476791720817133,11.611515088760683,5.1344760036571335,13.948824986459233,8.155451393462343,5.647585010235301,19.186533107384378,17.835605323004096,6.715410070471073,16.925551549412752,8.735759821987411,3.081707264559257,4.642934695626244,18.368097005482955,4.809996343118321,0.918523084914602,15.36411267528508,5.24999643885121,9.652860890922295,11.167573066300687,19.360255705024166,13.820964315161511,3.2517456327024252,12.21031771339204,0.8188945089906641,12.76543213346407,15.907874305971287,12.719458570312465,4.155939985537116,14.980609737612767,9.077202260698032,11.26249974340206,1.962505715524503,10.074870586441298,19.612324086694883,16.646502010887826,0.03766032049113299,14.748292813687062,1.8587362089881854,1.7055014565178883,0.6637237959394238,4.021520234085925,4.518225824790729,4.334971923621058,18.465869308044415,17.350372983945718,3.4657035492973076,19.993530834739786,0.11184363503193406,6.523821008084494,8.975407494863724,11.177323572802994,4.56598307471944,0.9183387856569647,6.628971137076731,12.379870825598505,3.650853232839393,17.39109126705976,5.3160709689760655,17.632793898248135,12.50886383974061,5.0919006299117475,12.718265935868232,2.7105237773535062,10.580602035572495,2.722562040866001,15.24565000291846,4.867201978907771,16.869700953737734,2.6546341331864953,9.719618761131512,16.910184984272266,13.232942596542898,10.46170062088207,10.099891525041858,18.643295480380942,5.511506150715291,8.408155545999133,5.4509607001971405,16.214464089150948,19.29542592012071,15.881319553338162,16.074232171275796,14.184096594638472,8.892440795373195,2.2720519230676617,4.854719642337777,8.031057303940674,0.611160100629391,6.26622216206393,1.3257693382215407,18.136168887166832,18.258978270345455,14.087374969018406,15.806059161098315,3.3165453990990246,15.251823383332038,15.01997053173518,0.32521397768878746,15.676786214909884,18.400215553268048,10.721614586106941,1.1475128192327322,4.9641770780330985,13.522292137424273,11.876512020923826,17.88098759121853,12.167910725533506,17.908040120103095,19.804164266665765,0.3306849933673828,0.9651620417439943,11.847318474801716,2.123084533634718,13.300355694385324,3.114164814813871,0.6389374390720093,17.394250287548118,15.444112362996659,18.49911350587408,5.345443200079205,1.8663520580879966,14.039943226294325,8.247523642744476,16.399387950184135,13.748165769350535,17.925609944014962,7.209491594495905,19.20739154205939,1.9267795072266747,6.13048076020601,3.2113352471083756,1.7452600312777689,7.110702611241537,3.834789364002149,11.114698736088112,14.485917831842862,4.811138328576758,3.2622062260853157,16.57175826615669,15.127606155600745,16.554864445276273,15.869615682324145,1.8809405407275337,5.032841481954025,12.809440385057055,10.870150488099322,10.81759724127986,0.2568224336785141,19.603790111024754,15.348878122243725,13.995512216773601,7.063796861286371,5.501161151830103,14.635185096174288,3.220617734941724,18.18298910721539,15.138261366656419,17.124113184061507,14.542912127349954,12.78760811511427,14.042870637288951,9.500733253477929,7.196828197132321,14.560816995622785,12.285814097356766,13.73240420897384,14.895912490431101,14.909886959216223,14.748928672062931,13.983446117442583,10.708866401629287,13.625090539099398,14.764835790266142,1.8427739056910308,18.454224141058422,15.312359116659465,15.504133611226901,9.324989944189909,18.274079833021162,5.938919896713268,17.960156147223664,14.509977404323742,5.353611049338891,0.5312739708731229,1.951003971632277,19.153412847091257,18.403569576802123,11.723361332127729,14.704350480093709,4.270005184585539,1.597675274104735,0.5681476061577762,19.597265585308445,12.16498068832574,8.390792662346662,6.673220251873673,14.294162342385736,3.8030829003809696,6.595953453346599,11.746172871063614,12.208565286432925,17.34110419742805,1.1098275492619525,17.706903587165193,12.884864932158049,2.4446647461692317,7.316317453207404,19.24274108342964,18.114847013076222,19.437410224781697,0.7539539676886253,0.3216393292948494,4.19381504257927,19.448758504399102,1.2229786962193367,6.592809949828213,1.2237970369620577,8.447897767442928,12.69884476807675,14.09501700078938,13.339135620023349,12.478670532718885,7.960287052048174,17.568826500746052,3.990277365493129,19.18936730090618,11.995266156750933,19.409790757718824,12.954293927855787,15.401179398111697,19.56610823951422,8.311632038967725,6.414413164724402,9.474805802634343,11.80702095124949,4.181463659943816,18.67043830528461,19.08199691014982,17.47339591647906,19.499934223289536,17.35512665244062,16.21629860088842,9.012627239248413,7.2694601885267485,10.767933656531309,7.450815565764057,3.665301574938682,10.683114652435899,12.046319200726128,5.207874270165096,0.6296574969695934,18.199615936755848,7.096355484241439,2.4930339948563818,13.236383476592346,13.341753620862074,7.404885381388833,0.7672744927732777,4.468609504910246,10.992429424000898,1.0667326715172143,7.683010529208816,7.748444463098738,14.422611284020359,5.380018285879888,2.4746037284894085,1.471787960605524,3.375384885484354,7.279321780288948,5.228374610017066,2.685493467647664,6.434429090253988,3.368739934417908,3.9604970990528487,9.865456529897077,0.6516651617038605,4.301664972151711,17.698337783407943,18.677523745250962,12.425161961900093,18.909755974390684,9.281692169982133,10.93271091267027,17.27865397766788,9.292773110699951,15.293950114816361,13.588053757212041,10.229341027465138,6.875824967156059,8.68760828469664,3.9091609173675,1.2896213028015602,8.413156724883205,2.8983245845237127,5.372164093022818,8.466788560989968,1.0862778944041684,11.254148802062147,19.155327438860574,2.096816557658152,9.08710189349431,2.0319668598589002,12.359034359237446,1.2800398836074356,18.883835914786168,16.256579422316804,1.8072261667068323,2.6396878197090423,14.868157733586411,0.18001246381387226,14.840437333796865,3.998835115106125,13.75004317421402,2.6467120837590707,14.64680957319577,2.2428490113894606,0.9155460574733887,2.777080823088718,8.471868615809356,2.261968523170661,1.1751777363610794,9.6650980430984,5.627093506103131,3.4368321901091026,7.671711959493437,14.631026504181035,14.49837053339329,13.169564721899158,19.95547787279954,6.481047279550833,5.769482183545991,7.8138302937980475,8.75937790255258,13.754827076943691,6.540018319097873,5.220179504388298,9.578960325761422,5.904237591828956,10.908309330396303,18.60363340263088,6.195786939076129,8.709260119216555,18.363987366847585,5.633215283893351,13.98121944766634,5.640052235962485,8.240502769912714,17.64733989741302,13.984488813621274,11.822355004208145,11.472639503156019,8.750393540921838,9.282407451368456,16.260635097606855,13.054248140112747,7.190263798141787,16.04447107773899,9.377262843505063,6.191153025822653,13.579189745371307,7.281102744570425,4.539277629383669,15.696632325298424,8.003388107634933,9.229133275274526,16.888307245782542,10.313208148679367,5.484580819621492,0.3737954212910788,19.604614001314257,10.59658493783683,10.373404348297623,19.61374543896927,5.928295978967748,5.2894460525792475,18.153491918486676,13.19009505953034,10.896377435968105,16.1332855490268,16.95818524012324,6.249092577119981,1.4166404778174124,10.064140138979791,13.517637368844365,6.093897196170399,17.18637680384108,10.702965865970842,8.955638016451726,1.6155994222875147,15.286349775004751,16.29789281127507,6.0283099567037235,7.056953544162732,1.0356775689878317,8.361000906245906,10.494482889238066,7.695610336102305,0.5773618939365033,18.664812054517004,3.4461495740280723,13.224295011944172,5.9222172488501235,0.9643098315999632,0.017648829402112653,1.4640815339537383,17.497268806731082,3.4825240281792436,10.882772463013826,0.5797349277391595,18.325410397753316,19.670864207190846,13.41235183952437,9.854955197339388,15.319098268536084,14.880786533803171,9.166464566388427,0.05567323573994365,2.6839423864905987,6.066259232335138,10.359964732292347,16.2893318194195,7.562766212499423,13.745994677530714,19.67689335369012,11.67115410621538,16.10718321631674,4.784636007177925,3.193348934821776,1.4597442952210526,9.740827272119024,15.024942978960691,15.579560518065536,7.062549007042511,5.294903350659452,13.38226281775086,19.35387156561294,9.097776916920036,18.467510365881857,3.0099220420570694,16.85321726016663,11.251602772782586,18.497989277504693,3.794931361524023,19.093438091101284,18.80286808473363,6.469099079574705,9.414552112982841,10.367897495133992,4.390633844666092,8.701022085227885,16.843820718134722,1.5766489684437746,18.36362114198442,3.3024024322746426,16.681879915697944,13.053010294412895,16.85560791545015,4.252467369098909,4.952573897908508,16.075169222783675,7.959510508933634,15.03820376784105,2.6805689318257064,1.3509308393066721,0.7277928193788696,1.9961322634340783,4.892637339636989,4.6627426971029,19.147864948859755,11.85164656689912,1.4800551780744131,8.677714999045879,4.903974086192884,11.825338167880254,6.0545887374790475,7.331303774600677,6.868612061767947,9.756340022306453,12.548398722227576,17.301972220992845,13.150574896614753,6.878299308178377,7.827631433354649,5.612899136687859,6.479567138794189,7.095730379630223,8.522475532598307,0.008834311613652446,10.341452920704054,14.392734123214371,2.366255115983238,6.1850320896338,18.617379309157087,6.334781205582152,6.410390086685096,4.217167135439461,5.830047346781564,7.964972960580745,4.444651522870258,5.497081498137284,7.309592423408655,7.721265837227085,8.29792938514693,3.219939999460082,6.542653733358326,7.686423517308634,16.336527305012154,12.58668132965694,17.565843190826833,4.261343610312531,13.515739742494608,9.292543166735921,5.543453683571924,9.614786611820364,19.804171243822772,5.228597237505941,13.412611825677324,14.847573029922998,17.77728303510052,12.012681203886931,15.292350616970317,11.191480957607553,7.4186448092751744,1.3461154007592713,3.299668799364346,10.76530382891458,11.16323960363523,5.353705994074942,5.817268645354319,13.143749444966076,0.05394591903828516,9.005637107250756,13.497503726975687,11.40274536803961,17.52775929879052,15.81275764257807,3.190010200081992,11.054836347672765,19.228129210479082,5.10071418632696,5.288569324347705,8.827389804135596,8.360604163038733,6.2215640414500495,0.7105541485035216,8.49166639843351,2.525160280683334,1.6728949974032359,12.360031097647246,15.432673587658519,3.901209711970557,5.521358015563007,0.468566278302438,10.306151362340046,3.9454527001728845,5.966334927887256,6.393169850501188,1.1395075637579977,16.97704442652328,10.329028008144729,2.771124409056731,2.525861631366859,16.2677135216262,8.98355283053196,19.413979830602898,16.678490502892185,17.36855988495264,3.286728762924427,1.34833286439473,18.798463093505504,13.723952289797978,10.531380288436335,10.294424601650034,1.9382824240786567,1.2454183886547376,15.562119175485659,1.9697715867946242,13.931357323975671,14.30534021301825,15.496947198249877,4.964015206020158,0.9374125762308294,2.9422921905729904,15.831633436887742,8.924767911490141,7.974158830424614,7.315554740565116,15.358921646361047,10.046198451222894,4.951181469475996,15.24178162213814,6.994664920992046,18.489513256698913,5.1898164946291425,6.353671492380855,17.359478238959902,13.505570444649141,2.865883128808444,10.383313201095623,18.150320307653853,2.1972703856731624,1.1363946365184363,6.691905372672715,4.167003418037356,1.499190456567887,6.339567164330848,17.82247957038063,15.3971421245063,17.14275630136386,12.136394423548387,17.876192979792826,11.305827469660755,8.667556659497247,5.050558354880499,16.10294571524417,3.65703790094698,0.9945924353894764,1.5972970372765705,4.706113822361986,7.533763578166104,4.27420646326095,6.438707125205401,2.860928884103111,16.65431713581759,11.279687069132276,10.205305469583097,9.24841565683041,15.169179635090462,19.06971940645041,14.829030231674372,0.9755375691245138,0.10572906562153594,4.057997868037688,17.093277570784643,14.930611020261484,11.2786890978767,8.998039625319564,11.970760863276766,13.265520627362752,13.659268486840874,18.950631441137553,16.908691625270798,4.2723283144156055,14.573798686984292,15.578304166508673,14.525197325794462,15.722091412489029,9.770289137927591,8.517249557319344,1.6295908365502276,6.706137923055899,17.881598597100655,4.014455192948385,10.547284426692967,11.98599883151334,14.926473583262378,14.959714848939182,9.536036437677943,7.483334708471956,2.160017799352305,9.871309879293268,17.01568919659072,3.6588573952813697,18.23357729703372,15.91736144793157,4.8547517926918715,5.117853957361342,11.852730847618105,6.40400147575809,15.76970975133798,1.6804493636562556,10.630127752008068,14.1351829664407,9.98154343184867,13.378637432956442,3.011399600744875,10.77609782118136,16.533734364305698,19.197218370315014,9.466175387027857,15.439926833798232,7.712879011129856,7.207658090764397,2.914396208963046,14.634853992668276,6.023567804739622,14.06425927410127,15.8902470785642,1.5715766910016749,14.701371630396615,6.564288364891868,3.7808230618730754,9.068803565435136,5.072654053581149,11.54688592000058,6.171044841461293,16.709242281176873,0.30657730804632966,9.895051524048304,5.447889284016423,14.68239138559467,19.70392629810037,17.928935510753405,17.374069177770867,19.413507518014143,12.464515319322889,9.126328320933448,19.98228332083755,5.717123674479723,10.729539468100677,5.479884463883669,12.842025910998437,1.4121159824479257,6.8865855696023415,3.2999715216063397,12.514871753910018,5.9074554030345805,6.0243036389251525,2.6875388457732097,6.797286444087587,3.475561476995055,7.6913304892264245,15.293848321565932,17.759834864722357,12.190053978918915,1.7169724498800543,8.67132123879422,13.181699834000487,16.054551259593318,17.96982167349865,9.94042873236976,5.978477896530494,15.347766235028741,11.901068091509446,14.507698237181499,1.5731965070163056,12.39816755296886,1.85088733289283,0.4813804414107725,12.020762192078944,6.573235610609238,5.066563270382067,10.071659785243705,15.298418602138607,14.56451225623713,12.107302173920926,8.867586480598519,15.122844111783355,3.958706631149256,12.976446880125284,14.727905575148643,7.9526891284124,13.500238240493893,11.923988624762805,8.897612127713664,2.1206999856841025,17.647787033542667,15.278940892542554,16.593899386962082,3.89032510495698,16.450325907532566,18.156942213955276,4.7563684763315806,16.65128308229668,15.16251164941194,19.61565345159586,4.236901135552835,14.58929221846267,19.361902163811152,7.516187744041778,6.756825147121424,11.12275205349389,2.2190692871409112,1.3519483764711904,11.64964850139604,2.944331825952271,3.500320912008843,5.6539690978263035,14.140305650939574,7.905554314809371,16.123368631226754,3.061139012485765,1.3606504733155411,9.548997668457876,2.27353437418786,12.347179761408388,4.306996736027919,11.988096301936322,0.7394949674217477,19.27525704183134,11.03889615986574,15.955965401970742,4.519171480565181,13.383210190283808,18.926299343818563,0.5435418566986217,14.390661958087643,4.659518947290553,15.997908310425979,8.796211006865008,15.406998845543294,4.1477241504398465,13.017280688925151,18.082873520650132,10.109493934058907,11.493134490330426,0.33187341409855353,15.319373198579559,10.81950851461344,13.690714501307099,2.286667073989812,15.921195169522854,2.968256863357861,2.5365774614982417,5.530451438779291,17.35562103475392,1.9476083687435564,6.819453563715796,14.805874746382317,8.72053105267824,5.218907256713048,10.6278708000862,15.173253565958067,19.99364945289773,14.136711408443183,14.554879636554707,10.12238633954805,17.06774636285005,12.599517333129562,3.4467200023306344,14.51961734825832,19.06316306659626,3.2848685074540462,8.96988848017855,4.606891707939305,4.4233943641466,2.2184260143884194,2.589485350313443,6.825472565978958,11.708441585242406,16.28243521800291,7.358041377727167,17.13985594109149,2.948490688620762,18.20099195116768,15.679219602252177,18.177956215384622,2.062787313867025,4.455546492739302,4.667297820430916,10.316345867760862,2.4808434080082575,4.421768211708219,12.688139847972423,19.231265696678967,12.654620057579397,8.084545817406749,11.447452228263387,1.6456101015311786,9.792217090364312,3.404677383458674,15.266005282711742,3.7028946590013367,4.5219669132145945,12.013452549450063,6.902734523501213,10.18704722983561,11.13619248875045,11.773266041433196,1.9808310507993632,14.068572141595062,1.2926160210062987,11.24451636737605,11.251030246046557,16.342309509001495,12.19330686475804,19.583392645673538,6.0310630455395176,10.107064611340038,0.6741206762677798,0.9215704005633185,10.896531472457745,12.064703735043224,16.843609029064844,14.646462357457919,15.06911570080559,17.656067176899697,16.824472582608394,8.463350419278468,9.613798562888967,0.1895299936331707,0.7145721585950415,10.192055232791478,8.20114287567424,10.03029443320922,5.898915921382701,16.33142664134356,10.563300074363514,11.422251341767398,6.057101147723931,6.871192601631195,11.820317892330397,1.471387529587278,0.6916687729689919,0.490266247916753,11.842340191002517,12.931163666707848,17.52628528189369,19.663872990182824,0.5457970073460672,17.2458420958082,13.759823679478064,10.163245280298113,8.524863766661506,11.125250299590327,12.690119340639963,9.991097328070495,7.903412685095024,12.451731883596185,17.300539793411012,15.817202187538317,12.695768508031362,12.181936944154291,14.725589880465435,18.377158650054348,16.014519457147674,13.001519004877004,15.50846741223745,8.435495301022087,14.33287791063984,6.095977141909099,14.862211568228428,3.064146450995957,2.489602626684717,4.532886329909753,14.943722518620257,13.512554535553306,15.96736555796625,10.200522551095297,15.840894840964284,6.319928527112739,0.9688713276165517,17.653332446548646,3.3909447146979943,17.94101799049878,17.001636331734616,9.24911621288993,2.1011126679276693,4.179649102460314,7.386589074963186,19.002594745686817,18.37201411580816,15.441140633352749,18.057810302154348,1.7753310373374998,5.016539696555644,17.65441158210956,16.682903319600634,2.2611403572129385,15.246904154462978,0.9186959369963255,19.623460036807234,10.611717134189966,5.993708485311822,1.4723608352132267,10.379404636877743,3.589469594677177,11.754718122640305,17.753035664373357,18.138546796311637,17.412244089648272,17.84730791408565,1.408743338163192,12.242487682574712,14.731824322005274,0.36209512958645274,4.3956008234214305,15.750761439506423,0.47253704725597867,19.48916601621604,6.436762553493569,9.873272886400892,15.349827488186873,16.189725034138206,16.604481964704178,5.534395160025305,16.424285538020268,2.8818673343910017,7.9974094348085645,16.28968217507895,3.6411244235736895]}
 
-},{}],130:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 module.exports={"sigma":[19.753497848674037,17.490188995471584,11.297652274352892,12.51381437853549,9.329578165625957,2.3688226338006757,13.080801081771032,16.237277286747375,3.986883281560023,3.301773244692332,0.8240205358519237,11.339643173883744,11.841966771320841,6.445402696686258,11.07510176427029,17.683413364135777,5.106796784756322,7.72509249974449,8.21354410617861,2.4687989682288602,6.589008951985522,11.073094347714374,0.7946828574736209,8.590238291246198,12.73546316982696,3.0136562236183195,5.654988970242445,2.624639845240986,13.730155610623678,13.553756143340001,5.344076627036469,5.70748506284894,19.346874449472182,19.839804127508888,16.5229976097068,3.18765975876953,2.3832454249965407,1.4256570771503174,1.2115286255686986,15.163329230469792,1.6092627151417105,10.06055185483229,15.80176885667786,2.716569358796508,7.293326814371537,5.5435832354763415,9.11522005780732,0.6429310995731452,12.413096150931606,4.559832779080937,5.403924866420802,5.0560855608677935,0.842135892028204,8.05081536937724,15.361199329491,7.830604163716215,11.816926795810732,14.112403967475316,10.684134796162912,15.805249437875197,7.661478147203886,11.082890293365937,17.170107650461297,12.220262049622361,10.378308598822326,1.0463691967453137,12.09354818508273,18.490361834603153,14.591123127752898,3.6280041249590633,12.225331970977408,10.462918056398616,16.381161281158548,9.093180137313261,2.225597908242114,14.956024744411259,9.641921832935555,3.1730105598341174,0.8979981234949985,18.004868059272773,10.653147285459244,8.008578389188678,18.27005849557778,0.7349482337305524,7.449261422179907,13.512078918498243,17.67622188517191,2.119048731873008,13.411892960020486,2.038833523306298,12.130696386626791,9.505294900106232,0.8255400713639549,0.9849501844804198,7.330335410500424,14.947980604939657,14.474282393072064,16.359386892243712,17.768556725928967,12.323062459207348,0.4332103716867808,11.622871418457068,14.301958505089605,11.193342670370324,6.138603612564721,2.736377586463261,15.675017306818347,18.155316478284146,6.920034424002428,2.023106910391994,19.22158095143594,10.93854373435397,17.45606424792757,9.005455487878912,17.564097936431043,19.032497799558566,18.362996111467844,19.470367422381514,4.610152930727769,12.186311376550032,10.770596556952196,10.236097478423805,1.2371482901722919,15.256177135645874,8.733026643033828,15.385283452538125,13.517871996382734,14.27269064126472,15.654548168577737,11.29605361724793,6.971756133633713,4.958928954682156,1.6857858771530632,9.227784544054284,18.561227080837988,12.032964036595715,10.128776809009366,12.896729971292098,16.500818009155132,7.966332193947836,4.190752388292296,4.75448591155343,12.638168593538017,18.214461627728813,10.866791508557432,3.5407481230364057,0.09664720457853715,14.139377903137177,19.450203783711434,13.390706946588843,1.107128670856583,4.8009812990153655,5.232829600859175,19.390672500203188,11.03862351247237,1.6938972013490528,18.66124256465978,16.69595003729754,15.81465227574828,7.100150103995313,1.656758926389048,9.382524403827514,19.144881910087513,10.780002719493233,14.02553447654197,7.966622813059168,2.9957843862200306,11.258813282294899,14.623489013566813,4.125193885829845,17.978169539598177,0.4586108229543706,14.058204561472936,9.309792947156446,17.316715555240062,11.620350986281798,4.176098456734514,8.245568007297145,5.520875785952022,14.546945836900885,7.692263873244429,0.9839265235248229,9.922784830832327,4.90199223133168,0.20409148166474544,7.841953219321449,2.187489094463344,10.905898363837245,13.83582540525611,18.754514813340144,0.4804467674076651,13.332387279279452,2.565875386846863,6.556476546382957,2.6198651207768098,6.053372602220506,14.204943213643077,19.549050146166465,6.434826552194659,1.3554008575366883,18.91609564000774,4.14036156524594,9.664530832717473,8.715852782891801,13.798351178044616,8.399980948536442,8.642181755407137,9.596817620203005,7.971332270333331,10.668847153046022,4.08390362490612,13.654530694477236,6.9759011865517895,10.100191332592985,2.711043960130457,2.5427045314636176,10.875185303652488,12.925830545815993,10.065498086033106,5.132488547127028,9.32342426315123,5.083739782467234,7.06773971992773,8.628570599619678,6.724524888438279,18.54139074119719,17.819418915741146,8.207564155340211,9.481177224257369,18.060912683578863,4.07838301829885,5.938074274934371,4.684670914156066,13.84967198485722,3.378700823724614,4.11304312846509,12.202051915458174,12.269385389094843,12.67336203765877,18.171205346706184,10.96667540336648,3.365982788006665,11.712152405264362,4.031489296812163,0.14396237495861275,14.098297698254472,15.948679062421029,2.3640684900650655,9.632531960666055,3.4005360904179627,2.6846190929392932,18.513811018915863,7.048585179230287,2.307380558492955,11.596544176147198,4.212336982694036,19.519332137537113,18.699055846249955,4.1749297351442705,10.246142975138518,15.37474076302821,6.509401973874649,13.815406422234648,5.132313222882825,18.218816750592268,14.261980889481709,9.264923127483593,7.062631643590542,14.146171843012848,8.258840000111825,13.346776197431854,12.769356780449733,18.613584518413195,11.584034548148704,9.650375075065849,9.008637065889094,18.97582158306389,10.985274698612528,14.642734379165336,17.450418261710112,16.528768475519577,9.47126696995272,5.2116351170760655,1.3417008894376092,17.759634985829734,14.034119555878103,1.7396638629488592,3.42530586302928,16.522332702271104,18.451901984843957,2.7001621397360687,7.580472004163457,17.292384631087522,8.37683051159365,17.883634655216014,14.500699735728308,10.51211142872107,3.3373504971968115,10.917882861932195,4.5656978987958174,2.935037912432197,10.584769465254569,17.787157060981627,9.421454969847417,6.707059819277883,12.024544722184402,16.87464153121263,14.599570830891345,5.56810536731247,1.9856341400487576,12.758676260302014,17.568917751846726,9.62624646001796,14.233903165497637,6.970130935793941,0.4287042045127487,7.268169062260044,5.853555913504094,5.27996269271108,1.014674962942519,3.610558658105205,6.530757770492079,14.86934034233907,19.987603855331614,14.669014809283137,1.9598154992319694,14.231823580482686,5.512961597460171,13.204427730214658,13.085182650766129,11.812696561872693,3.343593212694125,11.095546255256053,15.347014241783207,17.869980783852945,0.3114766140257652,9.981269748798582,8.217174551548755,4.224148623883903,16.631469234317365,12.647617057058458,4.369601849144886,9.502984566114097,3.0368718008100615,12.040392540894018,11.143956192141967,10.918128008860322,17.892730498210767,5.9068152767555215,13.660842974488485,2.269499195783249,13.128355051147004,7.984026148712737,12.55631812285932,2.02487466787332,1.2298896533361514,16.99020017232759,6.014049007254414,3.5985897359909114,3.4466506425223598,12.418507424358157,18.41707702995311,9.484971136686315,10.12458249144235,13.312542765130777,6.11351884555003,13.202028895010374,9.264745529044731,17.30970866288868,5.863044870768879,7.954003555568621,3.3087793944140387,10.217522499072373,9.067739808421166,5.401593880182096,16.225959777545988,4.048015918893406,6.946956643181137,7.346141170577591,8.52623240754868,6.998786547997202,9.556788669175624,8.737879350387473,4.895590493650892,4.867275824728665,9.001853648196727,10.704695796361431,4.415155001538462,12.369303991826213,18.746326621532667,9.11044090611712,7.9699127800151714,11.343779460715249,1.7285166372062033,9.955487490826211,2.1549542768592422,9.240785015828248,11.371573197219229,4.289207892339788,3.4025716242668036,9.878712856130448,3.3348910028424905,13.244283962328725,18.95457959305469,9.921034915985398,9.539220194740263,7.420346057593639,12.096144492127326,18.764949698905035,9.0791949596023,19.302668505302393,16.11007683765795,10.947562853150998,1.4290909169247579,17.084920000768314,13.24909854153029,18.351114417993728,8.290882676898708,0.21748043671211192,18.551774777690767,15.050264623350706,4.252084899330191,3.9538037727548625,8.730243045271479,14.83582938840479,12.772985479194627,4.140283468978718,2.365785878433413,5.5661167586066895,16.02292312720998,11.39464347422129,9.622719857422792,10.574181742829873,14.774425181304354,15.101585031060099,8.763815262568926,2.6997972028709682,13.960684877205836,0.9642143021858107,9.051938151048198,15.677139979449827,8.978701485034609,10.499868049624235,2.553986695228465,3.1195482865939983,4.958020717268021,7.634680331046719,7.465527264099308,16.650037280437303,12.429450295839363,11.497842191412836,1.842633720914515,13.34201807741258,17.014150068051,12.00448638802361,3.1242381617552883,7.987529648027074,13.253525154894973,16.01177228243317,17.788193894362486,7.750301199012015,11.370208008925943,15.977478462122829,12.657165785954652,4.037918778116909,3.3361973096289477,9.376530980524077,12.273478122622867,15.64943629276813,12.395269001106035,5.130352581445274,7.2750698383685375,0.16814496872493478,13.706071153846544,0.14625795955458987,2.8376658360439055,4.726196585838327,2.117992214816282,12.564400305727034,13.365238129190233,7.315675781006532,15.026511665991737,11.94193544949854,10.99078575417777,3.3528476827290055,0.4254986354878243,13.192505269597333,2.022072975990903,10.745071468200603,17.267219764946525,0.20539668395767485,16.841376084831925,5.024775548786082,10.73593614377376,16.67181010748619,3.758795161155528,2.574978003435957,18.623379875062138,17.13722434785248,12.976971855233653,7.691475807737795,0.06753653203758869,16.859977965511725,16.32165869183723,9.049482614945843,14.592288825560594,18.08188055486265,16.646835243184555,4.044744376098275,16.059574379605476,1.0787782503371712,2.550496792615329,18.61924322762292,9.207872459936821,16.658102708092095,8.549603521683938,14.752689408376561,14.753346355104956,19.964898154988507,12.514627591367748,10.481130682492212,5.80811125497438,17.320019802617963,7.047361909877741,15.813403504696684,8.963325044615758,4.486751429573679,5.771542616692895,6.009024173693747,1.5792024044800534,9.997637632573483,4.770278251767066,6.439900118474711,18.859427672249378,2.475085149249985,7.884300187658466,12.762821420472159,18.142580572978588,15.019492735629832,14.00255256063768,18.295082219038434,16.29493337076019,3.8111914362243704,2.202570580119616,0.711924544191529,0.5154998086573581,19.614881929847666,8.966285490918903,6.208857805367245,17.92784993135845,8.909552562287901,2.902708796986757,18.022727281235497,1.7270936278433346,2.430674278029641,14.825194692569479,8.284784412005015,1.12584868193371,8.466479360666778,15.071804911800637,13.514637445147738,9.507607631636358,19.68515925014198,12.839588948427402,5.083914497357811,6.622121724532146,14.545924058333677,2.9773294170028697,0.5902523119639058,2.9694469093219578,8.773415146512388,2.5501176218627686,8.07904693804212,18.63395005468153,18.195067066948866,3.107744299142583,19.256930538735816,1.4931106997412025,7.870472341118777,16.332217121380506,15.145541911353732,9.657899334262794,15.4805355985068,14.922056329196574,10.873042482457604,17.89441342402723,9.420995841011193,18.756831563243065,2.457796501504168,5.198025007625593,2.64707976082871,6.231733518986888,17.700810869730415,18.69039508640163,5.57843334821531,13.283456352714214,7.622547129645789,15.133212883612508,10.879751471279402,4.217731234475637,0.1140667530602757,7.298988501848913,4.808143589575895,11.041647456280845,0.27821544589908154,5.063923596166671,0.40353150996679243,5.9222704627835165,13.812102116722937,3.6520968029499556,9.332772394187963,15.185988543860569,13.530755164098514,13.59757782980401,7.1682140496262825,13.522735395022579,12.027858292544625,18.9898329461546,11.107486668457899,14.961088610624067,16.055414213545127,1.809227840841694,2.8168851182688925,1.4842094475717804,18.05275062046029,1.927160338492393,5.230467737343538,15.256420291206712,4.071557401609671,5.409706560150513,0.10849484633856488,3.137562943070611,15.287261182536923,7.612872293972508,14.342155949103566,1.1508809897886652,8.573747187344054,7.700268682909752,19.19908003170503,14.085641981751609,15.130774653522074,2.828455959117151,12.118837404342496,2.660844560014999,6.6298880177516395,0.18377681073129093,8.37815000963512,10.794587535279101,10.08727720062598,13.22169606407666,12.324425373326244,6.677788002703933,5.280024074719858,18.361056161720892,11.928324237836843,4.421711307171181,3.3611264904781546,12.585543467280802,13.259553964481604,2.1561542376789777,16.934613426572348,8.747449237442218,3.7613613105932275,17.719202702311314,5.63976812221989,9.99125114052934,4.089789174904395,13.831440364610415,13.409351458812475,18.579192385832236,15.7222717967838,0.3126007819708354,0.23748851186670805,2.1596530577654693,5.189249974927579,14.142023332950684,8.06647446112397,16.92230624820976,10.519848590414004,1.133965772274057,10.81482382774485,12.4206945046428,9.82845345429074,4.159268735785351,18.42201528596457,13.206822727814199,0.4446635738654514,8.43360051989186,7.449276308899164,6.791303832813296,0.2886269341468761,11.807455618920946,13.64156162740727,10.425567309080431,4.787239768462412,19.73293637958453,18.3057003470452,0.4066458003845286,2.322519517631272,14.845282251203194,12.343263171762086,16.751440137801698,7.409066157707884,18.123498075074412,8.56208221010684,18.181839071684234,18.974980570931113,15.37188372546932,11.478871645993651,11.14466341277296,14.406374201990975,0.7950843321368284,0.6315994893886279,16.269835364199174,8.941017204329862,2.8188092768833517,6.97573411804596,8.612081209534823,8.957503965890524,17.048672095614062,5.007989603988445,19.555004470577614,17.065629905212447,8.088593785810442,11.16232022380711,6.557764997839222,5.526673623178948,4.3250285604130045,1.0138057171298342,19.589451794125576,7.522734249117207,17.503834640130123,6.059678940293063,11.074039215243392,1.830681916818846,19.538334478236425,1.5981766465453973,11.560419110918572,6.565255736034898,14.23154309021375,4.764300039297571,9.83797803141099,16.209016301776884,10.600164867382516,2.6943836561980294,1.9492171586978646,10.483674514829179,16.762834785460015,12.039562137826048,17.68831678655795,12.146223584140262,9.112435290072781,6.004155834643852,8.111622855963919,18.32412523741691,0.4710771581867812,1.35223680196352,1.3388395188298707,16.394730929815662,10.185138872070155,8.572935407384783,14.642412999775395,18.34412555382912,0.5818026330531634,15.18611992012016,15.9002095604031,18.860697242125184,11.164681571783408,1.8587770570575302,3.572983624784447,18.095432036999604,19.662221975359778,19.922342124734186,10.398715367172716,3.7095749016119095,10.934284994600159,16.576982124565397,11.312184802491728,0.3627731257399036,6.72680086836011,19.20254430240407,19.529284512366164,19.61531790833352,14.7421090816822,13.023309153722916,19.438557774676806,19.584079882721564,15.264900985453638,2.0908474682611766,9.48628217551343,16.386060419960202,1.542487977465572,2.390627686442528,15.083086722198935,14.439187528312921,0.6377061521478167,12.836260616417459,2.7920783836172802,8.008301682201777,18.614255362771942,9.318305866938434,13.885793748898227,17.407634245772662,6.594845095250976,15.2720017557973,15.076631267286569,19.21797350351821,13.23635570404257,14.93931121250129,19.443230914986415,19.879584203289742,1.398093947303014,17.52077807276644,15.017585068634634,1.2896264182090222,14.665019897159826,5.7442841761192565,5.150360261403666,12.26230935151797,12.511396497455856,5.667248778237695,18.389493863315106,11.37829582278632,9.355358585951068,6.451641656650566,16.379980072157416,16.98424033720713,9.034221547653832,3.4595022851397816,16.603944888844797,3.3336730701413897,11.303744743121067,17.4071678602667,10.029682054545228,17.19773363535974,6.033038808231925,13.869961689320117,10.252522420375865,13.335370678112879,8.699437721819452,2.304019163841642,15.155917677752427,3.5216587013242195,8.490398920639723,4.14492773740053,16.802092658762284,18.638446713633215,1.5968575253852668,18.385229129528685,15.356050785051982,9.518678996973824,0.2060034540622535,3.938653460957564,17.19828488502131,4.50697634359984,9.188893429154831,15.536141496032823,18.017391266709872,9.026954235380993,8.871420474410726,16.784165772960087,17.1810088082907,10.7192079512724,1.4636072859456073,16.965860741469996,5.987711315450612,12.638670347937602,12.231616688535723,1.1665062171291796,9.998246145412937,3.8182697154980527,2.7606307796347984,7.40619173935698,6.47583632020559,17.590521878093263,5.345105435604123,10.695308084257512,13.605489426428395,4.819478989277348,6.0252676636228575,18.733272763803498,2.3550518098760387,18.14459488451838,6.114940512800762,4.332432088889062,10.024519979071279,11.200699028612329,6.687892105159681,3.4320832515796784,0.9193795101968227,16.096299279253806,3.6676418631551,11.159405862782531,13.363122999038985,10.801570302011303,14.457361015014545,17.817577803058057,18.589301081236982,11.58744970318413,7.468842644700859,17.070344415443074,14.0729628424025,11.70536854537184,12.341502388563562,0.9822757502892188,2.3399758137631377,16.542817356138272,7.542762785272004,12.962641051429333,7.486663502508488,14.69849290778891,8.371984574254485,12.747312428601454,1.662542613633189,12.566078816195748,13.884669650303852,15.211150312534913,7.718872038915268,7.52504907639489,4.9309062625317335,6.413742240848719,7.674251745595462,12.849122247587674,13.217837929429939,14.674932806670927,1.887649288284594,5.524843339907117,13.843240899547848,15.568997551287044,12.590983625535465,6.5586542262307646,11.748493486311776,7.667987943666077,1.283173684369765,3.523169610086918,13.949022920579072,15.155124353717081,15.287413298223997,12.835984583509168,14.413246746075806,4.360084064210934,15.311843365574349,9.490417566375925,16.51710106785069,5.9760822567618455,2.090379406066445,11.825389089194918,6.341021420753408,4.7234218947629625,6.345581617481417,14.311281307863574,3.2043122911802424,18.68976901963211,12.373816497031761,6.462929944503224,19.061910925220364,6.929857807617639,16.68147240511763,9.530311666305389,15.439268314295816,0.6434103725744533,18.79659959846499,10.779561108334379,3.4136785550730897,4.42351614850256,14.864953715578203,16.204272682615514,4.71938374472558,8.944278391941465,17.904367666531368,6.391563057632883,1.0073453088560758,4.521932768269448,19.169189740159904,16.256626693119212,17.007219838112313,18.541014614485395,19.873952262690725,1.7464606670065708,3.8389858389678544,14.267029630337262,17.641211642484677,9.806730180666335,5.923264111455118,17.391245269920447,6.653370578186779,7.251280056083442,16.86009747798725,14.92832909984445,5.571609320110502,14.58887751928222,3.6527335368950586,11.185141043360183,0.4151026125288615,7.340179167779199,9.219456585275108,4.493284053952751,17.005019912149706,11.532894770108344,19.21193554410815],"expected":[0.030299736285720438,0.00010490384534418741,0.04314980291414849,0.03302018205711898,0.00014658604960991812,0.00041586070866816326,0.03474870908138286,0.035914969158053874,0.14404268417725405,1.3007289405814704e-6,0.12755319248475824,0.04787871452898203,0.0410198140251437,0.08136923027599592,0.00734149382968579,9.426521597458642e-5,0.09856723239756224,0.07086741549439789,0.05682841177793401,0.23579670767267577,0.009721631617464518,0.053933705570834246,4.567846478410728e-86,0.057039553183272425,0.047623443808186984,0.01800695920522981,0.10679999923099986,5.754711522288165e-7,0.020860196515407044,0.010772420024006038,0.010780486537257229,0.007435339197411907,0.03134923399842766,0.030545786740364067,0.03606256360079641,1.3494763302739606e-5,1.0187661603732998e-5,0.3971882750681274,2.6787222222596033e-21,0.032185640235550435,3.892379653826347e-21,0.03584122382100624,0.0343713185978526,4.208473617970434e-8,0.03658868629957331,0.036160683113311734,0.03201395717612844,5.477450641948541e-142,0.04852881861405658,0.11495298265956246,0.07838881943548395,0.033982390287321376,1.0370443287853204e-24,0.06858533460387459,0.02875594480695214,0.055301218649828926,0.04315797395308689,0.03845035292966583,0.056667453198171895,0.03731719189562043,0.048545963082951844,0.046502194994354776,0.03496092772035633,0.04020483511496825,0.03564545442097087,0.5124548566493953,0.04246066754322775,0.0013351042256473438,0.020201487030716874,0.009686384330994585,0.02312758317893036,0.056256258970373965,0.03309873866224612,0.013198031656218048,1.878536139652404e-17,0.026242941441207458,0.05760314965275438,0.022486703589701576,1.6381857227633273e-13,0.03175274792070367,0.03989061484104437,0.07161225657346156,0.03314672933670829,0.25623722405750843,0.01009628862968307,0.04421482825843013,0.000857801114068413,0.25182376713813637,0.04388421149340274,4.142562304505857e-16,0.04762122033259631,0.02644984480115543,2.6542256775759555e-44,2.3840275539857122e-42,0.058135970059530855,0.04056397463415626,0.04182293627947655,0.03165324038565241,0.03344238423994865,0.04365541053626778,7.413388308049806e-175,0.023421510387939548,0.0248486217510116,0.05340946171308231,0.010410390204315967,0.18502095532814625,0.004324213416613287,0.030454890439400258,0.01951415393517467,0.14155206777921578,0.024535002064824864,0.055378522654263115,0.033980577429810165,0.06474664216619518,0.02864086948095552,0.021839362663753862,0.028036128389848296,0.030575917216690295,0.1310615338220345,0.0496703893715126,0.030078208496049468,0.03969304933076618,5.116474908795266e-24,0.03490766985158906,0.062263224791624494,0.039191083551735235,0.044211812878803804,0.02263142309747852,0.03874413159286518,0.03633680593993582,0.07975483221895759,0.10264673202296296,3.5038211695731506e-6,0.02957448947012065,0.0033689433974508176,0.0496471062183551,0.04404225118743107,0.008876617095604323,0.03382287928686353,0.07305776815047488,0.011967488955684943,0.12751235472757153,0.008791761417726985,0.03166702423029589,0.055652776380361514,0.05360295548248069,0.0,0.015564994341541573,0.022427020183118172,0.037785421260023426,0.07533538289417126,0.003484065956208361,0.03986479417770679,0.013164607641127526,0.03480024690943682,0.2099728664329023,0.014571152794698485,0.0016987909062298478,0.021329813193386313,0.07483884134162787,4.802928677520479e-15,0.05800081274289123,0.02333459781519007,0.0394778694001878,0.03484793278793644,0.06239213707504123,0.1956193414466395,0.04066604769368924,0.03417738135973872,0.009919530092443167,0.028606887060993003,0.0,0.039526882469112685,0.04429491812338643,0.029791908497790124,0.04992897408948191,0.00028101774283759335,0.045841484384164195,0.0025460734060548415,0.029022214679914136,0.018004422572839514,3.299963607839488e-8,0.060355157518019675,0.11915076305677035,0.0,0.07704049855422536,0.0017866927930770791,0.05546652985218016,0.04295330857011274,0.031693794389727636,5.540186111812641e-178,0.024045651787137228,0.00020317426366648063,0.08853312923212303,0.011541692402920653,0.09716742997291211,0.0426811346655554,0.02965674938335007,0.08529839756543163,3.8358253763847634e-35,0.026925761396345515,4.8819349294485555e-5,0.06241407803232016,0.05070105961717828,0.04357618932859732,0.0711613467385202,0.03899713261080524,0.009862808825988147,0.0704210313907079,0.048461977064644286,0.04758800274148464,0.027265210507617255,0.07787135556454777,0.06004551628296396,0.2071169033742045,3.598933054226765e-11,0.03785752847915537,0.04415971450639618,0.024367066826478108,0.10683247345448467,0.019610773288680924,0.09554151136822729,0.04539335987251334,0.06677771601885171,0.04599475683432261,0.03061664332570628,0.03378407000390994,0.07115561860096335,0.05514100352536157,0.02572825566692111,0.0026582654649867973,0.060556694374399735,0.005634580703843531,0.04106022814096339,0.008461082244575794,0.05805677683218042,0.042976165346471876,0.027154244645668353,0.038560269731278435,0.03312692683110464,0.029054362031867415,2.7893264793043424e-5,0.02955021105259915,0.11047162966521078,0.0,0.022667649127507364,0.036772842539755005,8.892749340789113e-9,0.03506139005799846,4.304117774564364e-6,3.1179516602199534e-7,0.025392341173597,0.044462054193698405,0.1677118990601031,0.007811130471988501,0.004771227283482994,0.027093026003300096,0.03145786829168312,0.00012526129814414725,0.05003542889601161,0.03935270720542077,0.08717699060467338,0.03960083873591435,0.08212488014000971,0.0012620963525241044,0.03549719263444353,0.04120269397973503,0.06472019477597614,0.0410393248539971,0.048318598396362704,0.03810578124337073,0.045316646761001465,0.014014398141441767,0.035206372254938105,0.03019411136887492,0.03264681768501083,0.03190807121467859,0.03622750761156303,0.04107156629642996,0.03407346360411192,0.03309874313217207,0.005042913448484542,0.02265969972259521,2.1936841397647652e-36,0.033887351609353945,0.04293257544962679,5.619555210759399e-16,1.1318310471802142e-7,0.03638576992849445,0.015927731834431625,0.22458741458351794,0.022852558260327963,0.03506247936181445,0.06951218118140012,0.03374564267884318,0.04173586751471561,0.057507514666666544,0.14985202322768934,0.05555310020931047,0.07493837872664491,0.01643764688021149,0.0358813855981675,0.03203189307221425,0.06436110807993613,0.03165774752076091,0.03293514224710239,0.033634373295249195,0.03437741951678949,0.033961170768914396,3.3562696046817145e-7,0.04651587470453848,0.034514138111234056,0.038394001324526895,0.018172139781444937,0.05537683715362856,1.4074457674837873e-245,0.0710644573134268,0.02862281975417155,0.11108740742983696,1.6430547225594715e-51,0.044154770778445894,0.025762069566335415,0.036887989723247756,0.01451376366554257,0.04072225626500472,0.0005510623080986592,0.026917147884144062,0.05739732582115562,0.013647903519296184,0.03960838058429457,0.05093018829161516,0.18133457133453218,0.05242666791689524,0.03949012196692503,0.02965363851960329,0.0,0.057079242782736225,0.020103140441158976,0.1393486020738051,0.036299661526578736,0.04156480040328816,0.11887644816951552,0.04881652377290253,0.015209959058989576,0.04326926429779543,0.035126224940903436,0.03261237607282196,0.008496489818750952,0.014945688411049433,0.031381132412613574,0.00041169631075648274,0.04462712664257194,0.07117278234405318,0.04454164183283243,1.2235384634235571e-17,0.04588721656859961,0.03068593563881808,0.08852259398226818,1.931399672749526e-5,0.10700748809192918,0.046618909084219624,0.005497706577132321,0.03590667852137172,0.007052162351325948,0.00341799933104577,0.03183047705414615,0.04593469582256587,0.06537936059683033,0.004318827508187301,0.020638443998035754,0.0462335966673999,0.12338131483048988,0.03913136302075532,0.04749228155504513,0.003677916397172577,0.015561131027560725,8.221155385266469e-5,0.08726722845039175,0.009745665778717305,0.032871604959532,0.08626038074773033,0.051828675840058715,0.06412002116609344,0.0029920478101851675,0.1207589297436882,0.06413739625154234,0.04665805109953181,0.044476413809491896,0.04856607319989867,0.010441092493591667,0.05167953768671202,0.056362711113986906,0.01061254385993296,0.34145987608145606,0.05171712423442119,5.458339819012781e-6,0.007380603682579714,0.0509742683484547,0.1388836379479467,0.17799945294469469,0.06139771124946112,0.11691328964544098,0.0009624087870195375,0.00967692051571738,0.0026775769206545588,0.03636950585029261,0.033726363987005174,0.02087457524334208,0.032210792592049634,0.051454486417221765,0.03125178245310124,0.031014637401285235,0.005517333993750455,2.655084706676348e-16,0.03446180212650748,0.045584158751775274,0.03301596085241975,0.04342750893904363,1.948186056219409e-9,0.03223096665192559,0.015270365357064653,0.002278059249740125,0.10210767180966657,0.04392422305876273,0.0408761516171964,0.023531951112225717,0.00015949957063801176,8.95970603220503e-10,0.0569453988129477,0.029310912927956245,0.02774114462221704,0.05547672907273755,0.05714472189707765,0.01362914311938859,0.038064665570611965,0.06919572547888471,0.20541589240803196,0.032890487460797105,4.333296317379618e-21,0.04533763151281538,0.013092614891580267,0.05052835626095053,0.057399766539438214,0.06023616503120825,0.17853129425119046,0.0005117511065994595,0.021293243059010245,0.011233562486457882,0.035228829095194134,0.036737219949414895,0.034725453576547896,2.0294442931542507e-6,0.03139773115610484,0.035640424414741356,0.04381987823090958,1.2276309455020706e-5,0.04833516814549446,0.03776329754421403,0.017713015695352136,0.007205508075378026,0.02595981919400365,0.04028394887715983,0.028931820023722157,0.04791902379150145,1.585046825817352e-5,8.078650546216966e-8,0.03231693236165003,0.04863812411014762,0.017500837894478077,0.03310861061619702,0.013910089634520548,0.01897837029642658,0.0,0.02133132303617472,2.935583211363168e-108,1.250150434790035e-5,0.03898456042259663,6.221264307874829e-14,0.041701874553825596,0.04332762066500965,0.019664641967146807,0.036799740934054415,0.04105866878850399,0.045776855526521096,0.13400728793728153,0.0,0.04480124703647651,3.943946539844435e-14,0.051478239480840925,0.019096230961561426,0.02397757662039061,0.03572923116649781,0.0009052533392899213,0.03898566609135687,0.036072554056445286,0.1351416682257446,6.843330185569094e-9,0.018920965532659813,0.02575530328985627,0.027841579915131767,0.0649349010155361,0.0,0.00435156584334116,0.03698617494208163,0.032286984766114725,0.04028074775206508,0.028302940292896952,0.03643370987142115,0.03226030150784804,0.03572564048398072,1.5588596328479696e-16,0.22296079704461694,0.03257373984312059,0.039756610822258696,0.03602753888723601,0.00215194273307848,0.004247299978175026,0.0391880756978783,0.010523104511760445,0.04810932443498645,0.054001643660724095,0.06558534977423637,0.03372868455267309,0.012122625419187473,0.00423016333653692,0.06345459674805991,0.0695285595940643,0.0827366895640646,0.08100145740771414,5.8420328514723704e-5,0.05876507943858569,0.0027284051297266462,0.09308299254737087,0.008792110197227167,0.13541795365835343,0.06791679586786682,0.040185050040575675,0.004051004873549977,0.03952038646910754,0.03942326896138698,0.029768078274381576,0.037140680566902604,0.00010470944566666357,0.0014473982869054563,0.5100596120363992,1.6890548448435951e-230,0.016580632610833486,0.06753237728858127,0.08880848566078561,0.022073990504211688,0.021963042648278613,0.09857714468361937,0.012481025697377407,0.28626332338875676,0.1733626458507001,0.01053785355058465,0.07243169585166387,3.314277114199747e-29,0.051041053808469065,0.039744828643899506,0.04177081305289044,0.048400285332939115,0.008675137988459532,0.0026484101650565183,0.09194104887907409,0.08149609491589886,0.04117923718838408,0.00023650412453151982,3.780274491038345e-49,0.2042383331812651,0.0678592629994716,0.0014383588583806613,0.06804136501213118,0.03248246634827732,0.03282090549610075,0.04114386710207109,0.01098802772736158,2.981953812897101e-12,0.06059434793276114,0.029442487192592508,0.031540650653973344,0.055662032297583854,0.024972839854905313,0.02110431095433924,0.0379227898598942,0.03389299629364776,0.025912289577278404,0.01038456151887407,0.21387020536726015,0.05657731992153001,1.4770268112874403e-12,0.017770346203153268,0.03419468616746207,0.0018038765486685761,0.09854919052726974,0.02134190407177998,0.01025611205100485,0.014879609094222966,0.03316334423552524,0.06722149302310847,0.0,0.026418345941805345,0.0879475138500447,0.04118951177479226,1.2310082740143502e-54,0.00032156733846735167,9.309790746331862e-119,0.007674501392968904,0.039600191403013685,9.756959589854218e-7,0.04526871934823011,0.037821933640691474,0.04448767446263007,0.02961259034363689,0.008932563058728143,0.04478869472893741,0.03879538224810655,0.031858460043445086,0.05423425801999096,0.02461095594892642,0.037244256127018455,1.4133339832017536e-5,0.036189804502465776,8.606172380793621e-33,0.020151393814260943,2.245643004313491e-6,0.1030476963153273,0.03161984162860274,0.1482459850262969,0.11022020197536982,2.8290520701657135e-219,0.09840583878942105,0.029281557058056764,0.03317597756994335,0.029759454661988274,0.23864594416061424,0.05245835682534932,0.062095898237087804,0.03155910969769811,0.042167145406553246,0.036548450916923166,0.0020707845697226462,0.04722080081230536,0.1857134212423525,0.005766890871505324,0.0,0.023008194633416613,0.055863343417893674,0.03495360406668178,0.04308569629350169,0.04216618488046335,0.021120003931529657,0.08017856578138068,0.014124837685586247,0.04909292294218156,0.08432101639021197,5.877125507804082e-7,0.04194545936557281,0.042955730762069634,0.031173624976895055,0.0328334129706707,0.04106431310976491,0.0013217721210299594,0.028176993377668866,0.07202122667333757,0.05313378338485524,0.12955724977020952,0.01915700079523436,0.02221918397994829,0.00753862678610208,0.03856404172544694,2.033155994138696e-11,6.071726742693588e-26,0.014623899092418574,0.10720585487623716,0.03568486529428909,0.06120435810923721,0.0299818599777671,0.009284082010564002,2.0589617505800022e-48,0.05366010585715659,0.0002834270735926838,0.05678070556678808,0.10144114844668913,0.027307871221761617,0.035779689362788414,2.974963678316848e-127,0.059734256108230556,0.08107759135369925,0.055325042049015186,1.3503595066802427e-175,0.05084651392916613,0.02218994099894598,0.04597671193302548,0.01877133323732713,0.008254578513538174,0.02830756769623522,4.7375217895275506e-15,1.060522924097123e-9,0.0008861428088375472,0.03827631392224899,0.03614381066674109,0.07171812392268993,0.019336672407262705,0.06999110162104923,0.005148989348353447,0.020795632686354825,0.000575800050648519,0.021404750147534027,0.05120608954667574,0.024485409942881536,3.6536840278283024e-119,1.8921028048688807e-68,0.03643083997792492,0.05595235634274804,5.4775836140361503e-11,0.0152039356872284,0.038723235285930836,0.02966982342609641,0.03550189132085649,0.014023438812276546,0.030707713303805104,0.031253862887972265,0.014796820512482314,0.05287608960763603,0.07701911111256375,0.035726848793475596,0.09222210586076669,0.4992112058450052,0.01572658089205231,0.04595474174176908,0.02537392502567841,0.004002326096222693,0.0397838713123407,8.073576733926702e-5,0.0235667946285318,1.1984142493385104e-9,0.025724680503454715,0.034511490764033204,0.023596322574674276,0.001692974027983236,0.06164955446520922,0.02590920781231273,0.01673263155977001,7.17712589900891e-12,5.465256448658721e-8,0.035127826796644814,0.032254501616797965,0.04807358534321561,0.020529549668301037,0.04748565595941762,0.06554755777380111,0.07058189413190057,0.019193699873355136,0.0033734870018001903,1.1349663405470464e-25,1.2023681849929048e-21,0.013032721818542295,0.023994384183183264,0.05181495967408065,0.0166702669568038,0.041317516483691995,0.0281285323596145,7.899984106737687e-5,0.03406163325415297,0.012575283102284939,0.02937613640246002,0.05132695165777619,2.816635559948878e-21,1.5972219433310195e-5,0.03257584226002623,0.01303191206353483,0.024033469148573277,0.005966967644769464,0.0015529349921331395,0.033156658259935655,0.01052690122328724,0.0518278695066094,4.627882806e-315,0.04701226580029509,0.024989928289871732,0.03002275967065675,0.009118926406084986,0.0004044351151661775,0.04459813647681884,0.009220858050679537,0.023198028500848424,0.039166055800314584,0.2832263264783529,0.052559647960704656,0.021286790651403407,5.432857665491207e-31,0.19062189046695033,0.026364004970763254,0.030646433441227736,3.728132485386848e-6,0.04423417576665862,4.1763166566438037e-7,0.019911810601782095,0.03243838586737087,0.03129455497963334,0.04055522726982374,0.0057868460439457255,0.05900875417321252,0.03846758073443597,0.04018887189827922,0.030325475903332684,0.0017942778904886435,0.03994825183340167,0.0005193212012854826,0.03047386451797666,3.0894071320487277e-6,0.03401659685235937,0.03306168248537662,1.15715665928634e-46,0.040920468657778604,0.03743666520165209,0.11028912956416917,0.049340815242450105,0.036071621761115356,0.10166765725737172,0.018973268605297626,0.02045421797156183,0.0038058256811065974,0.017225489860139567,0.03580135352851933,0.03556440826674557,0.05728995911051116,2.0256735669710016e-5,0.007771474797282412,0.0037261936849140535,0.04111118432033744,0.031838097883711544,0.03505194417801482,0.027994458755872725,0.09249353760500902,0.018113680670100378,0.04305006172358906,0.04267903527847669,0.02641926137270744,0.26184251465610714,0.031508233195939414,0.13071314072290127,0.061620291951813774,0.13848032252320192,0.020375844037585383,0.02473413494560254,1.0337250171146635e-22,0.03299010505942879,0.03941361335316015,0.05448967139353589,0.0,0.12349528839271243,0.010186376099225838,0.0012553754136127196,0.04421239059934491,0.03244212207070115,0.033232136664778825,0.059272975688806705,0.014519446157780296,0.03212832388492895,0.00014883499706364874,0.04165794081363825,0.07420682943586691,0.029867703792709012,0.013533828059301036,0.04091848243103923,0.032384400779609045,8.445814981207581e-20,0.03788910001097689,0.0748303692561593,0.0038537941939738155,0.041276277773735735,0.006416115998149535,0.031038612275780746,0.10767680586261238,0.0441775553844771,0.013298942555546471,0.00703381181717628,0.0030691806985044447,0.03236962349978061,0.11759952348564812,0.031173790571054454,0.008138119935415926,0.0004746074214027858,0.031618439505863474,0.049821692902777506,0.02883150358749773,0.17150556820370477,4.3397216705093984e-33,0.02974550914679612,0.026343429609577456,0.04795821146684298,0.014417629274720838,0.014614565545298724,0.04135652484467588,0.02260479055273577,0.029326814128817713,0.046118736296699624,0.02789566739515373,0.033772218989870005,0.037793960589037695,0.00814944482627186,0.02412353980769213,1.63171556536169e-17,8.326449143996524e-12,0.03631177686820578,0.07721012645179108,0.039142980136019585,0.011644793998941125,0.04122126059927972,0.024596863926064524,0.039767953930611964,7.741269973072483e-21,0.04751409077574134,0.04035739285465494,0.03803710994042805,0.07681069379872743,0.07983239558224893,0.024205729695923554,0.0910137088089237,0.013826355044010075,0.04352221415066003,0.04579508506697292,0.036042753510945734,1.4318537796297454e-23,0.024030711726238316,0.04298274259904443,0.013329687213157141,0.0052108113080646355,0.07208705783384461,0.0403061118973084,0.012140061664509759,7.77166258529253e-6,0.13754286395583884,0.043365413967753744,0.037673885426354387,0.039663407588819234,0.03754658656517287,0.007350154318692944,0.00011248721893843715,0.011801088778899516,0.01366717888718342,0.03295269935006842,0.06461007705425834,5.465993840592084e-11,0.046591839493133266,0.009921182772854711,0.004817554081997049,0.08834504909599493,0.04218001338470136,6.279193466873192e-7,0.03144310908253824,0.04611734220208316,0.08337148496650854,0.026630571958632037,0.03490683903485999,0.03622653187689548,0.04227166039871878,0.0009569442386046753,2.2890069651337626e-28,0.030172337994434865,0.04466787992946884,0.11031243797199504,0.1326291947547087,0.03341906582505546,0.002891350006987706,0.0005636790742736278,0.03650162386678343,0.026145688058536527,0.07150734520868526,4.389078104508996e-6,7.244427605256743e-5,0.0005240189894226025,0.03187331700797474,0.026339557005433965,0.02664732605894185,0.027328139367654332,0.04420601855356914,0.14654216604695774,0.03855599275296379,0.029871378128891568,0.041104861642884585,0.0035522557846476223,0.014570482141478052,0.08681504246056888,0.03479518124456042,0.035927795292180306,0.02333587573107142,0.031367417293014115,0.038115763151321064,0.0005201319823004828,0.03270638497902623,1.0046193291209204e-197,0.019204337391853836,0.056884812764153,0.07564297290101858,0.03427296926596543,0.004257315407286313,0.00011917747197357691],"x":[17.52210119076191,0.03209084432690634,16.932195128394266,5.745605341421025,0.012759012489782506,9.66829436706682,6.808167083202554,19.555450740162378,4.952409679416583,17.487012052854297,2.077245907237044,15.301701151632763,6.77519558653366,9.041024978461447,0.9034934858827226,0.02947706698448016,7.449857923960366,5.399146047231276,12.721356069893371,1.986661233217859,18.05986674485399,9.725119102768716,15.8828513704099,4.978911773478223,12.815734465737778,8.467118148881916,5.290032809141709,14.427067973324705,4.112963795128937,2.000615903798022,14.883615070889515,16.59506512327838,19.23323902019709,19.26817732577493,18.770906106831124,15.371771647035239,11.784010152288662,1.0697810179122502,12.051435827641566,8.736440118824905,15.899976837536132,3.9126413550549977,10.876316111218332,16.194730661409285,14.65544439608359,1.1347940681580804,17.763365213362363,16.49096818430211,13.453896425292413,6.399785492629535,8.90856781639554,11.490154927901916,9.052260455070602,10.63186637363771,7.691685641963706,3.819285290273542,17.035335899854974,19.056095370148395,11.139989175179622,18.517732251902515,13.519807342532006,6.954932096035371,18.94591391823925,7.111915199434877,4.160604105182881,0.7032531324186753,7.543754021253468,0.45660262736536783,4.511493257202717,10.811554759452452,3.6107157593841155,12.324575497926386,11.238485439381831,1.0992952448238524,19.882259146622655,6.440379413980977,12.631529944172918,0.22697601998100225,7.141325759180508,13.81910900449192,17.529425319857268,6.194711895168474,18.993459078352796,1.6327946823646178,19.906072550664007,11.88654105989119,0.2680497645669666,2.9176083910472883,15.800632121034042,17.504968234460158,9.558774636050774,19.469084561496036,11.85989315242701,13.824191186977322,3.5013454430084545,15.207072690112057,13.84200307374826,10.347144640172342,15.288136051424166,16.811178513421538,12.331427677953553,3.293664367807061,5.46808559244504,9.875958625313,16.831429311365046,1.6683803015714505,1.0649407807475342,12.942453257783644,16.599926555211578,0.6059456352446757,10.53359380443531,11.330767879645611,14.918687058492601,7.280234928027176,10.600795357595558,8.80441698416639,11.503165222911749,16.87482634277886,4.327946758878594,12.739846217974375,3.7015034662601076,17.274150811701404,13.066300256498922,10.127509743692315,11.76263156549878,16.58124177553393,11.91071165775801,4.888777450211452,15.595006413610886,18.957192237455217,5.027744604269735,3.049610450261082,8.822474706809299,2.6220735034717,1.1629459077107551,10.582830794443163,16.177196947000517,1.486245572139988,11.993181332739331,9.6361642071173,11.907942500203443,4.856085828878465,1.4130540332642472,14.295393590893507,11.458357901001932,7.85068757484547,12.431053531621647,3.192103954166843,9.578058204992836,8.156321736171721,2.908088640090809,0.0803169428390671,11.317136990106672,5.125872578758597,19.17699188161731,0.6482457081245707,5.281649066992284,0.47373669555833775,5.691565420812754,9.82179716631582,13.778605940221137,6.48216517593859,9.732461293328587,17.72322484348507,8.098750486498174,11.749777439986051,3.5673935134948387,17.674359339842166,8.736746271144288,12.05279791427262,11.243119733181416,19.347535112879577,10.124766422939292,4.263613360720049,10.884980344826634,14.149017748685555,16.85288281505994,14.438524408100598,18.243902303276094,6.864883284862104,1.0758082541959713,6.0754467867942985,8.827401268242943,3.982792733723328,17.611281459312536,7.355215435931424,8.098789451939679,10.34712678843626,15.855853213341335,16.15522810636874,13.795408496899215,4.527914232750341,10.888861387574877,5.2338497972641385,7.954451950644832,5.025518484900804,13.918902661792849,15.553629745616604,8.565029008947302,17.303410961229787,11.64439147671883,18.520612371342928,10.39003877710666,4.366553254370351,15.10441503019111,9.433728600756757,15.932073978362634,0.9124691072506863,5.866407521664567,15.181037291453126,8.99996028887886,5.515613398922246,9.407029396371488,10.000353709695048,3.495825413079756,18.00551546061432,4.9703026231198155,16.23143268334568,2.5491873097152196,6.840640421994073,1.7344450124582211,7.641503490173651,13.2921750569645,10.651520927771205,12.82694350341702,13.993677115264141,16.301430318118236,6.666443782835696,6.0941307975382975,9.69225826676845,13.824612517306534,2.301889883601018,14.456410397247987,10.49558807257204,10.328188962092305,1.0123592052075425,7.88399082967266,4.353316441040342,18.956552376830935,19.774543864583094,3.698820443210491,15.651078084634786,4.341865989310403,6.4456830267007925,15.343072669826721,4.7709796263412185,18.957097554310735,14.767264787313588,17.74222349612868,17.172807844407686,15.051755153172625,10.099958476771329,13.377654083471251,3.993902701929901,1.0547938442294669,13.4067141203405,12.797694537320115,15.527532751322504,17.713973862144208,14.69870119904304,16.14422082856904,4.908699469204434,18.465669875866087,8.485403382252041,0.41903250928021496,8.694850822790174,3.8569216934048534,3.704328402850474,11.296995038579265,14.071769637937447,8.19681461606342,15.631847986914437,5.036549939565518,5.231542961576712,18.81615600088675,2.7785363676977415,18.191953610953775,18.743961384403317,13.3145232296677,15.051014050511395,11.536644260133503,0.4528915101496178,12.84757370925286,17.42949174780867,19.349019752205052,15.192198496620236,14.906292030141387,19.68384469869289,18.101599541712027,5.686712071816045,2.664172632581878,1.333671017546556,17.620355456907472,10.121803931187117,16.632118403494125,13.826340672555318,11.122737649344634,4.8963382882903606,10.958584635276857,1.670239549577226,0.1417665230669174,4.379276025196441,13.54039959411213,9.27105491331288,14.435410471353936,5.235561882795934,12.73015575173256,8.779807526631194,12.35738496299696,11.215833064614454,10.925632964646903,17.850177435029604,17.037579220502582,3.8165003376328688,12.08025810690518,14.451291654021269,10.352342750728173,13.382518231981702,6.274395414846121,15.696966806719544,8.350747322402508,1.114901213070838,10.431204538412562,6.072149237320228,12.896777965013722,7.951810602997731,5.949801044320884,1.8449329366616762,2.419904355494946,8.288388162654904,12.892970653677299,3.279879309409459,8.909948591370869,15.77865430568914,11.758118817394681,19.60564983763714,7.597154105865203,1.3765852601964523,4.9752112051586606,17.77821294846701,8.206747693924159,6.189243327651464,14.78280271500163,0.1404252661299621,17.00412697099535,19.17772198466163,4.1837307935597146,2.7525271609776336,15.365015102900212,6.57560099563868,9.294141173620062,15.643026797865907,10.102510889493125,9.167171389691667,18.208811873885868,3.4357565450992,10.869548655222768,8.301980815390673,16.97476104769216,1.376753616633981,9.842454367553772,1.87444334643597,17.409004639394308,0.7247517112954194,0.6063795309485265,13.468236139676858,13.371469742534497,8.928662947368707,1.2976745502135056,14.383877539664166,14.110875698008702,1.4961865940159713,4.501589893829245,14.803525237822118,17.213583103833155,4.239198496748942,17.62547825167929,7.099165627991222,19.787235524976722,2.494114574892863,7.481242583213792,14.136937452977808,11.304321759429099,16.110262857287584,5.754141592782065,11.06928450673838,15.722871033868845,9.703748644141296,11.17707481189611,3.7431378744903476,14.022449961150771,12.671812653649814,1.3757159210048853,2.0213499676737046,6.23726903788552,10.97920325818512,0.631719714576815,13.872424729393735,4.877253546025853,3.5326460411410787,9.885664227718207,1.4244392138536233,0.1688308599861621,3.5377740360735688,0.2636387557733011,17.37075621266677,15.22044302682862,3.1603438611765533,19.879829345992533,14.053424747278829,17.897484232666983,9.620580317461705,0.662459449348245,12.40412003306648,14.229813698623083,14.123624891065884,18.955727993016495,14.851925584351292,1.4912004545793778,16.382142828872624,3.5568532258826924,14.56720515201948,1.763055350531153,15.179986233874011,14.646640049290372,4.03571343451286,17.32404251415455,15.643168483294012,1.8662725317244444,8.728854790444625,3.8087983604135323,6.41540804281759,11.22844678614201,3.038608961378184,11.749081436239726,8.644935198308247,3.5442070097526734,7.368425303086257,9.566552650765207,15.192494196646944,3.289426086933913,4.661008691729989,9.674428144974998,0.39770407922392614,2.2573612509054053,18.96847958396404,17.578470492853263,0.6283137790161586,13.702365427170232,6.50993938761498,19.585047621657196,9.808850679469284,6.233665411154923,16.757100869264413,16.786278276440278,15.143387167721713,13.841862631844823,7.9356454865193715,4.745059646136989,2.2990889527195835,16.925327364049807,17.84429197783769,8.511777892170706,12.601778712221208,19.120840819203178,19.388131329212218,18.023554773296517,10.759458171208784,4.464008742240608,5.642147765374137,13.825973801399506,17.369859702372274,19.778395100229027,4.1998390761947135,3.287631806254563,13.801975884997857,10.558017651637343,16.873102130384282,17.64149066727587,16.337437328345462,17.313166210129445,10.714120103289982,6.928724850061423,6.634984393810814,5.330103378171347,19.915472384150807,15.36836519935498,16.237916319253817,7.666062796274864,6.05468166357559,0.7464607310168114,18.36441222500546,18.379663180495214,5.010515634628345,15.158779799755667,5.4385843960383,16.159212740351066,7.04980026217366,8.571874085385641,5.058693289646814,11.297399520716148,13.978330399162996,1.240322891992487,15.21368162288443,17.627349386084017,17.249576469335956,11.217263918106376,16.540728255988796,9.772273701637705,12.434453627518046,9.465428651117023,3.2233124247875544,18.483585924059796,3.645577017242756,14.975464740208917,0.15732443788552875,0.9262138189618474,18.092333933297567,4.29255832908487,13.604763400381717,7.856680594204977,10.132127889793704,14.079726357479835,18.435730870175824,1.0601904574740217,11.324380788779536,8.530516205644044,8.790527723030799,9.017074046959038,7.34917958416073,8.269523028694167,15.885271741004154,7.150158569236225,3.171697281497754,0.8842431365288661,10.813285248800874,7.945386921235054,1.3370271312911752,17.277857113250718,9.949457390003147,12.658131395583997,15.538726275316158,16.425550288988447,8.284174766855145,0.27917812411643705,16.83434948079765,6.770914457415658,9.335898435780488,8.214685687012597,7.798824892442844,19.59962437702924,5.696141491265707,4.163715879366285,1.0147511686538246,1.144283918535951,2.3452387958982657,7.443455502223304,13.121222759260668,4.118128991093273,13.42257936885369,10.070656659720951,14.873557222313792,3.412558460248505,0.43685656455089816,2.7509825093611395,4.503697305596455,16.202102172186308,12.409389619050138,8.941572299733394,2.9979676303070324,7.605557798817668,9.488385595252463,10.732451113376431,17.792755559832862,15.976077754874837,7.53983372613908,4.171413364855496,11.203899348487049,4.383083920945392,9.205594965218435,8.454975148577489,6.521169548935455,6.543998724718225,4.966920187714576,18.20141701416404,17.757932546022555,2.374042959174809,3.7262955744024184,3.43945528566707,10.101498264233339,19.909586716504283,15.55515349996563,18.513066249680943,0.630508420742073,3.9310646577667274,3.9346639883131873,0.5977482730403194,3.5000085036319195,19.470975616776126,1.2494600524434452,9.007034842081234,1.4349050753436376,7.934492884647204,5.751343409216441,4.454652927133891,19.99239654931666,9.478104695206868,0.269448731946067,9.636376162380206,19.47541338267328,4.408252286434036,11.790194158135305,12.370485473145303,6.043606405487316,19.648610736239,13.015135897439944,18.632984655676932,19.956437966225984,12.037280942378764,5.964390564371729,18.005963108501362,8.925982895960164,7.141366028526446,18.292489088439673,7.094616950657535,10.203831466865484,3.5488020297154543,8.639826705968545,3.791182636723822,6.1314564553037565,3.4613425428447497,5.988809832097148,7.792469421718327,1.9895344654226799,6.864279232058923,2.2905093530334053,13.620781197516356,4.304614138726954,18.586057060909983,16.171701349887954,19.940715462453774,10.132091062640551,9.323610462105961,3.9438247690091677,19.544425097595095,12.997264166103202,18.50245299908046,11.626999182135052,18.239790553351398,16.659813569486577,7.841641638284327,15.871472120217938,8.70745319019408,4.937185478376178,14.229524777104668,7.793737786852701,18.304806691385576,17.532994305661628,16.712112256790416,5.865920481511688,12.212087203361728,15.686437831324707,13.659104133561533,10.569203190865103,2.5341010778009743,6.595194936584776,2.690575285657788,3.806337961501889,4.195683500415144,2.6284023890899855,15.426271464059322,2.330526259038015,2.6426533470800617,6.5223188183392855,3.7463011942213242,8.578410000111973,4.729209354127497,10.35256013579641,1.0324031750875529,17.00069188851716,8.62740359371793,0.043725600659425545,7.142501759627864,6.872589337177257,11.119111578754506,7.257984176825345,10.807047514397933,12.294107931764078,7.9390090783343625,2.7736243607142796,8.237211679999387,13.020118904459306,4.3441549963834625,5.849048692961203,12.414313361587151,3.2583593314537485,11.591681777601291,3.451544275844234,15.303006136408603,0.19530718513377732,18.950141977392946,17.460124958019442,4.898737464011145,6.816908927754186,7.640274774190545,1.7096911711217588,8.224981803621368,0.13606389325312218,2.9126577244616003,8.516557541532626,5.460222941528503,18.68357332229074,11.272927437998671,13.866655883531728,5.349736039493207,19.747019635717436,0.7440572886784658,3.0590404170129837,18.023623891214065,17.835248637357928,13.530687662334856,17.632245985858063,11.359541325939304,0.9751480271924873,13.053317099537193,9.53766141141081,12.129257137518117,1.8998162510066408,0.6177639353220865,6.3618110484965795,13.719771568315885,8.82872256293988,18.884224677135286,5.525647949872363,8.3226312506571,10.352295618222804,10.59259497731659,3.609676320928563,13.87396963547224,5.095481156978781,16.597585781889435,9.899535937045748,7.597584690940042,1.9109376663479694,19.673448911008716,11.643925245430594,18.58626246949224,11.439830348755834,9.535372740740433,6.936604911182802,9.53167642292458,10.263389749063482,2.8472778433692847,18.862873578991955,1.1349023756119747,5.1856755230710805,13.545679592406493,4.326523644451288,7.079618227494384,14.193656027200387,1.238027153380954,13.909846037664849,11.534315257034336,2.797248616107235,9.587669148523554,3.246194136227367,13.501786449358528,8.618681996192002,18.39930526529094,17.009527129404777,15.130289303545123,5.218806822931903,11.158989902146494,0.6464758869312304,13.307055865219052,4.279748583848502,2.9385635412208444,13.456645790254322,13.846705750780085,12.722416444633694,10.79081748271976,16.05170916297825,3.567102392816537,0.08789735701029588,10.41347600637069,3.5425117677767837,10.185891989680425,13.471940563317437,1.7761300885736109,5.646492987493481,6.129811280825801,18.476064363879775,3.7648577572869657,6.600483590346893,7.247154800431028,3.4504393659142973,9.692875495981035,15.482732396449741,1.2937760427606415,17.38187116314252,18.163624810739826,10.290990107738356,1.7625752402280792,11.382988853153062,12.629818947991973,14.597901173147196,15.514910928915647,0.314448201758859,16.877877978985744,0.19633379561448283,19.197065281347175,7.403091443161998,15.255202875033063,8.881143145168915,18.97173218562836,16.204308802664205,12.319869064467742,3.892751807831547,11.657607942040734,19.831622719812042,6.996394538813755,6.881612630235727,2.7251697661081353,0.3333077391626338,16.093168924374588,19.473999173886014,18.086372705050163,5.709321355831531,16.31234833191643,2.1607443672294924,11.152501615921274,17.562483430790937,12.468484394230298,18.158924472314833,9.710599649329561,7.851230269233187,3.604300613243683,16.48633697190467,10.125524622702681,2.0560438109867807,2.474661319656075,8.456547477715874,1.8652087003585338,11.939441700832795,3.21282641426897,6.150973434600537,9.89190701957996,16.36018976940847,18.38849928399322,14.652151997362854,13.502471374009541,11.874058867822486,2.2579264824211442,3.0610394754576298,16.19201195360033,15.50772365881349,9.405458982794075,16.011216155730843,12.39149261255693,1.152392682959844,11.397998922669213,0.043934309397277715,17.109166096141042,3.6668722057324166,10.358611147659644,0.486830537457692,17.979825806678733,5.327107760762413,11.191797151040719,4.123854534962987,7.4966384246249,9.374593145015716,2.384513787492679,18.882404561748185,12.229976097184556,4.171543755694538,16.41912732698473,2.5037990498148943,14.427622866564164,19.35067628767632,18.44768246260593,4.673845954542757,13.581393917098584,17.39458168842591,16.8283979354535,18.942714628905772,8.138847574366421,14.768553694976404,2.856075605818793,11.418146785937484,9.01564521712903,9.389492385780557,15.314521554101672,2.6247458402942536,1.7270746326368824,16.22066925218912,7.921763422139652,12.886922734696284,7.7399371712164555,1.591870002713125,13.379686988350636,19.44713002711754,1.1217405229331678,3.858342089952278,8.881208998337783,17.08323388935252,14.94433325803454,9.111066642132988,18.77493441582668,19.516884753480873,14.223428571800788,1.7626335767226875,7.787929501011996,16.30350097916001,14.17360468387944,10.178754753094616,12.036315219069813,8.910778664349701,6.800613617909326,12.130040120716735,5.202236646725038,19.31149706935123,9.37890444906499,12.629558424161903,9.62428657752696,19.673086704659145,13.300307236739265,15.801618731653772,3.304642492655021,0.8278724703024753,10.06391902551346,6.476152274612366,19.761636522425043,6.580690458465099,5.305465581939539,13.232762339532522,11.594859493092482,15.024976194290133,19.412256327027162,1.5356244146852038,18.569244279947124,2.813913173658653,1.2415547076426803,11.414848947083737,2.5224354288405593,14.735456598135395,15.662020513489194,0.39970973088120587,14.827154918317369,4.656424417224656,15.309822167274106,17.43958663725563,15.471929369011747,15.545483552275975,4.3825464331427355,11.671333882459809,14.363702237056085,17.7013199262652,16.156734220041983,0.2281326641268855,7.4218797372228185,14.15517333338681,16.314012179083164,1.397927185843466,5.25337736848174,8.798132956589715,0.7600417855943675,17.992722674609766,16.704829761827504,9.708909517472524,10.045712901850038,5.329417723186434,19.70623757821445,0.192564599358227,10.292916259521387,8.67777621180939,10.88247600520976,13.678734893713482,4.6469837490899835,4.935972386542535,10.06581328563065,11.494991680223343,16.620013048628497,18.757159675065218,4.56111820954924,5.241161424062533,1.8929842626285653,16.25721157709303,5.576286375149633,12.609801645980575,10.522278694397848,14.267625228597387,4.424855453190557,12.561827775845117,17.447720529146533,12.932480487778747,8.25414956108467,13.729606042074876,0.566940176930304,0.043988337551006396]}
 
-},{}],131:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 module.exports={"sigma":[3.0275451116486964,1.272649984983285,2.6729726053874794,3.3194779327165436,2.7945642105361967,3.4281673244101896,3.3664158315211234,3.0819145579997698,0.08293719718374892,3.5065580048845444,0.29518382425923084,1.331934156908764,2.0667947538921014,1.4223527838241257,1.6975964755976936,1.5973615908180783,4.483270735099141,4.22453692699754,3.983211848690104,2.450293990195318,1.4380339902478645,1.8732924420957087,0.8656107010943193,2.538591463312713,3.728175887858222,0.4372236031275778,3.3060439100682193,0.7776867355176942,0.30876477919895784,4.167593660597601,2.610616961603016,2.6157773505426407,0.21904827042520947,3.9337574578786882,4.973736475810856,2.1289263861752494,0.8815634446898146,0.23079621387895877,4.663613700808287,1.5542643049128912,2.5409981355329583,4.540617139156932,0.8476210122673744,0.5945834927166005,4.90286982404745,0.655452207780739,1.3111956568357563,3.1201888347088778,3.60940841641326,0.6670703435220282,4.708886263694642,0.04690652218273361,0.3992092301860628,1.8238224952023552,4.756093127654793,1.5299397594949538,1.8129497563428532,2.941486982110495,4.107448546374334,4.7090090560603155,1.0996129660637688,4.827623645826316,3.276325070305873,0.17369602817477903,0.8790796110775401,1.7431450451818686,4.345842480512433,3.434354052079165,1.8856723636081685,2.4535214543106076,4.759817520728777,4.239318785021492,4.779685663518341,4.7013758310882325,2.384248595819707,1.2211423909622798,1.6768351941357085,1.8164639422035178,4.988785949117915,4.899972331543474,4.809872139334975,2.713521466169957,4.477993110740042,4.299249768758761,0.00843457524008051,3.4199807594930745,1.8840102342351195,3.4297453815026566,0.4868532798866587,3.630175173645501,0.5456034059846093,0.5438148866869441,4.7222683632754245,3.244591007168517,3.418834546837295,1.695321322940807,4.84709935946171,1.2482631107742492,1.7068067011789911,4.051448947726674,0.20573796618612472,2.142188309944808,1.081279724420946,2.1322161801648,0.9703394178471747,1.1151692141237224,1.713809765084393,0.16599637017034485,2.6098706985086126,4.878221391243937,2.973606257151211,1.5178025674353568,1.4563999322350274,0.6276538491784445,2.5623679411731803,2.434928840919791,3.6778733941436217,1.8876467367684013,0.5569700377039732,1.5802080034871435,3.049048804226083,3.64641483794368,2.1906169164166633,4.638856137725611,4.085332779485395,4.570918333969277,1.5346108154015603,1.1655513536292839,0.5488545722748939,1.4353722075811637,2.0387327096837526,3.2656708368562914,0.8993735521256552,3.9901364435517985,4.153735465809081,0.9915618534705251,2.910956936362007,4.9732583485385184,4.344617836708958,0.6067473766944043,2.3626682623300477,1.3921414750960182,2.973000141505011,4.540696306923775,2.0633308152453878,0.9858931550326766,0.9486811437772302,0.8320484778349346,4.631712952744352,0.2666471573000695,4.034691877269684,2.0071444401179637,1.344115551806776,4.150542270423989,4.151794906219809,3.3830503186724217,3.356518725349573,3.9918673306427923,1.6104445759667874,1.521562506923092,0.07613905883233296,0.6805245996087717,3.3270752965008423,2.2968364275206286,1.7180589702158688,0.8870275337975164,3.469689364703763,4.050205668212335,3.987470751181551,2.8911632811746903,2.647746921494117,0.31931862975350445,3.230601391898361,4.83575659782428,0.01469513057431926,2.022972267190392,3.10257572181051,2.3552779968685256,3.720095938465302,1.1971345095211905,4.39916421416237,4.079500020253395,3.6576341492770705,4.426432781630489,2.1321499525804946,0.7752172929801526,0.4203502914321089,2.402051058099064,0.25088716353289353,3.075861926167691,3.1688627945783185,4.286961222599633,1.5143952389893622,2.6136112362324706,3.7623957991506627,1.7367776313386252,3.9314044459459954,0.9689086635012389,0.08977421298590804,1.349401196383344,1.6302785857420354,2.301562813346009,3.3130247954958736,3.7616799478356864,3.1649404576424978,3.4211459238181963,3.929300476577675,2.9857557900056584,4.465286255035355,4.0448055500014855,4.772572869526331,4.876515618509155,0.464674891090896,2.356527235782828,0.5886061057862058,4.923822299448245,2.60353903522721,2.0491976555333933,0.052896891007143676,0.7256165847613572,3.8624523586353665,4.323912092082977,4.080547544666583,1.0419402477975948,1.0898274350973047,1.2244658575182255,0.09475566915958522,4.070993391950816,4.81185535216563,4.7762676930613335,0.9539928057906766,4.504858027602829,3.630120948815274,2.8543337893935448,3.9943984662644496,2.4083841202975966,1.6359082752985787,3.288178773716137,1.3546618277799427,4.853735896668921,0.423978680351379,2.903460673995566,0.7364257514639294,3.4011882617645517,3.300197754528964,0.21539567734372378,2.6512251176185075,4.610130021285544,0.613355224654617,2.5302966561497686,0.2944574708682368,0.24583033952000233,2.7510506697865846,4.827535336767964,3.486272551186854,2.7252916644611602,2.0180438343752893,1.132410440908037,0.6807963247348003,1.6963705216981928,0.7125621929405657,2.1848087917747803,2.7282603398307326,3.6494242403226207,4.949663908943601,2.4874452866983034,3.3183951128186226,3.739434301538196,4.428293360695905,3.970722918652684,2.691497407862248,1.1884366694728765,2.728772924834039,2.8182356272387876,1.4545591319014661,1.0328175202044154,3.333107400517219,4.54381715091528,4.411148722578666,2.5551765133593562,0.46865022819759794,0.6311321115633173,4.269669011761347,1.406411226442873,4.131165070978593,2.075917122494669,3.08555711896659,4.59480137782694,0.536747961030607,4.937233388138455,2.6547608915550533,1.8824955035468105,1.6260583951888063,4.466140405095109,1.6186031367763343,4.029122281264942,3.105354560755631,4.518982202140519,0.10050495219316113,1.784518723477182,4.157144340567424,3.460561035206573,2.0156038129741685,2.0396190268720793,0.028274221526028986,2.246172939381763,2.146774154513449,0.5207696333960043,1.2143248218037328,0.08154862265924656,3.8568184281546025,1.1374001967995295,1.017815023162395,4.642638881631735,3.589124490236707,3.4774283519461315,3.180117705338513,4.971884696111925,0.4660275391808766,3.9988054487807876,1.8835650691693306,1.6459720029780778,1.3377798503907634,1.2985546448473517,2.6895697696094634,3.2063534358017067,1.1863717452861366,2.3299465289323806,3.4730539641512905,2.473062010071303,4.83431288439895,3.989463854876539,4.732387174677497,1.883280268327161,3.7029842297448945,3.933757781669599,1.0389502070336154,0.4943491740669481,0.5262328808013272,4.37572260311697,1.0401901470912633,0.11345774571765999,0.6032218951775148,3.358784904053105,0.3181281214771059,1.6881358578009842,0.5695826229282785,3.973847014896499,2.8261093618979705,1.009939364827449,1.2096924568637568,0.6438753356255245,2.861745458511865,0.9955723624957913,3.920485338044055,1.2702201589709061,1.4470552350547883,4.533799687428036,1.6377010397462177,3.41793264738383,2.1522972131837124,2.9568621757943934,2.617716190987762,1.3988286844094522,0.37157064295557873,0.9027987629431733,1.4544241936277835,0.39694432655532963,2.8207690202372273,2.9263140874652205,1.781498185790683,1.462737390783172,2.033017077574566,4.722628686788858,0.8456808813349537,4.0042271409615005,1.3592194178464112,3.906787018253881,2.901786433270871,3.1876378362271374,4.629154231098385,1.6370580040099603,2.153877639143432,1.910846670418327,4.860013928851633,0.616504257944056,1.7446201432274466,4.54926684190001,1.8373363794683684,0.05562385083303312,4.093772049797954,4.0269252701151235,3.552932559780931,4.37134036938021,1.730969589877519,0.41475149834266145,1.105802620775912,1.6817236637570854,1.3822578160288035,2.7505934966968617,1.4870298303636997,1.8268120266879606,1.6369673583622812,3.26538972001155,4.207591670479652,3.04392503806676,0.9299595470112842,4.3854966592071225,0.7385949530984548,3.0637359087197504,4.274037430916678,0.48297425232070257,0.9112321263565648,1.7720638136752698,1.1526389972190676,2.5864914325608734,0.2472175967920176,4.376651789709736,4.434159489673849,2.3821039863116003,4.059943105210923,0.953737817484831,3.5824066659984313,3.945838604041069,2.3424020576796423,1.919706170160509,4.336671723576807,1.4116196108612078,0.487491181871188,2.676691963741585,4.105622883386469,2.2341861435220522,3.768169814738539,2.013995560348829,4.613177667953858,1.2036071501592582,0.0830134017720896,0.5366777467577166,3.971621067300063,4.416167592451857,0.2341755947427393,2.192778222907843,2.0669588303195496,4.716998807169165,2.105554045082485,4.165208226099276,4.3873052266843215,2.7964235667405934,0.5772377372102977,4.4080771444192655,4.634839153024054,2.068888752070529,3.347103973929766,3.527099704127945,0.3570207015197069,4.51563273176871,2.793999470122812,4.099203218169323,3.0371726641268837,4.49949428479043,1.9355344339957037,0.4562842143594603,1.1869764420682027,1.6972297604398234,1.1385553772691348,3.1448939081246263,4.7457357936838545,1.825712968477915,2.7352098601374477,4.930977166235413,3.7022437962957877,2.4560766460693086,4.348191812343254,0.4451115431901942,3.7578630057119145,4.046552543687955,1.64570066593546,4.9860458348064345,3.9378354472825237,4.384664304908554,4.003571653145352,1.5671709638798792,3.8680863057331774,4.4942408798781655,0.8285967700856589,3.4670606278535354,0.9527369056974755,3.038419035820583,2.992824968561272,2.535131341700785,0.047209773873706506,0.49306485729167626,1.4743468939561832,1.4616319564046254,1.5394725912737706,0.6729087371968223,0.3423756678916179,3.4191013552228133,0.2875992551992046,4.701191228859577,3.9595003424392394,3.667490181958535,1.9849481126671087,1.6193470476326977,3.775349904368024,2.892644657803726,2.3053330445973796,0.738917049310388,4.220762322061461,0.051231340475744735,0.7294541768384177,2.598034580442825,0.6185506377155281,1.6643470958497086,3.5402303422665726,3.522190805994371,3.7719735994537116,2.6488569671728666,1.805594618188081,1.8846746911473466,4.186680247185447,4.669322929311458,0.05475828425816731,4.526876287669959,2.913077992155441,1.1728729527905268,0.2574445355418542,1.6822125624322193,3.1107178684164696,3.8326095153495765,2.4199656029105663,1.3996406960702112,4.774555717403709,1.614159083372001,0.06554719853528734,0.12470742212000951,2.285091723035789,0.7218732483873036,0.5023656944983745,0.3011430655437197,1.4395378828543537,1.4104918119888765,0.6494576100431937,3.7975259502978487,4.722980795811606,2.991589885168705,2.1933575983330114,4.008629043446197,2.9739434775019022,2.85189092058987,4.748820953409416,4.8228418352127775,2.5390648665550875,2.5680025755063216,2.201021673700352,3.8175483658213913,4.774314419249692,3.153707302942906,1.233173673936242,3.112906891848307,3.7094537358278767,0.43656855152529705,0.31288337721159576,2.1016838068538957,3.8940956136696867,0.6202347819021259,1.0306649298158532,0.33280838629098475,3.872587826754239,1.8471426500048926,3.27088461067596,0.6119131878945439,3.6132558646452226,2.0359648584159618,0.11579898984408699,3.0246770867736306,1.056972974027176,4.868997605705443,4.92810844226813,2.6552885468339205,0.7020239959350627,3.849536888294549,2.7451393905257158,3.4731901399519547,4.895177115070938,4.018644023387853,4.497157720682447,3.9046165206020444,1.4113984683433012,1.375245614456514,0.011968324110687156,0.8244400183784473,3.774593876623056,4.288634138902246,4.223797699595547,0.23442456313473303,4.100184971480748,4.548834895529531,2.7207579374709443,1.5731086109126624,3.0558761053512864,0.12429516728571843,4.449760956261038,1.32791172773704,3.401216400540792,3.9313832600125753,3.3607391364640202,2.567656208810148,2.6173086898130284,2.43558602745317,0.7447428049656357,2.061902481872729,2.6908399515906845,4.113199513379884,3.0263492752643084,0.36043497620866893,3.5616445254141293,4.5342706510437205,3.5156620666037997,4.565207827178673,2.7573285212796597,0.7293997232529059,1.043693095059226,0.07733385539028692,2.961091080589451,1.8473412866449657,3.0519353200469315,2.094093858150581,1.2829042057045525,1.4607227054586014,0.7940076032509813,4.203037843239393,3.8083087946110084,2.4926838403675955,1.8401743304652418,1.562669065015897,2.1515067837433612,2.902666845470492,3.3127794598942852,4.541468880314236,4.84063361664628,4.072533721814997,3.955253034834546,3.6309674720120535,2.4395463981999352,4.954591032664663,3.5037203314299834,0.15951025457628387,1.2968514642137452,0.3121673106686573,2.9742036076536795,4.269290170196445,0.9348759407998453,2.073883352659683,3.6155458967296616,1.30206865067091,2.9378698919440382,0.3956145317812476,4.267853925229378,3.617942357428049,4.34193202978882,1.9098714194740662,3.545572569216019,4.333710438339601,1.7159773535410439,3.304738788661693,1.1219370506808368,1.883739326870102,0.8214929174013885,3.4423894987976764,2.7722447079410273,3.9912510224106414,2.238003653481855,0.17027981959013117,4.7339505949131855,2.805662248363366,0.3747110544252241,2.7621597854567623,2.9625391312004123,4.043022915992114,1.3223032141971602,3.6719823560223794,0.5869021375684791,3.091970475801802,3.1828741214750087,4.539358432509573,0.010265478896486213,4.641145325681365,4.816024915194285,4.970264984014879,4.632126642431396,2.299373319549889,1.369250381381708,3.7948897096544387,3.5884931277158385,3.5952171160521385,3.498370919329561,1.6657315403543071,1.2463925903215545,1.3456719930378291,4.525501387230349,4.913233096470825,2.242589322653722,4.589355650340053,2.241304345673587,0.0004080301847453338,2.5644814058427645,3.753915890728611,3.766467743718561,2.841639141449248,2.956742315920887,2.344117916039087,1.862485886821601,0.5151855442891284,0.6573330803006372,2.7040136306678955,2.583191979792092,2.328765312746511,3.886957412766181,2.3912274724813045,0.4464488483655682,4.726071094512876,3.583004773048307,3.393402977937358,3.7100768625636507,2.321349108715536,3.9326648750327466,2.258935366742998,1.148990076593025,4.625745593079521,0.4982093056054626,1.8222945829968507,2.3717553692165803,2.9856855097550614,1.7060756314027137,0.27593408663287855,0.6481648854519939,0.1501913141479383,2.9088966935250973,4.474497862783087,4.690207728368208,1.1433237238600602,1.6608651489105675,4.360122746212624,3.001904647775744,2.0333607744361517,2.6650105989385664,3.10679461794378,4.054939636847799,2.023086654572035,4.586486606050071,4.986114904757213,4.011048621886857,4.646869385071986,2.6486405065314966,3.6282366595643865,0.7408486112433221,1.8023854255954685,4.300398770304813,0.6474591213346559,2.1512631059266374,4.720970112437763,1.5422406754025542,1.2741091861928366,1.1981624512642164,0.5830013515165466,4.536961111958336,2.0455195242277915,1.9255071047856265,4.523043640126375,3.7608297345392017,3.485683009576345,0.9649659986383408,2.2631830529933317,0.006937617781677119,1.0337900622011964,2.9355330962036117,3.7162875326219744,2.1136263482884377,0.3586571288427953,4.56898879606316,0.9694560469201796,4.065212608620575,4.804301410746325,2.6999742398271795,3.0656004287865066,2.2440170416904492,3.9150383924848575,1.1946759157841236,0.7178709386328652,3.056601771892754,1.1642465784223377,0.0304966646020155,4.225097666993988,2.608399064446129,2.6740467489018016,1.244620432925252,3.903324914924702,3.094152040154776,1.3222804885286643,3.4997197968596048,2.582700862657342,2.5409182189080615,3.3276339702701287,1.4754406191166303,3.554999645740243,1.3614083429506552,0.07243587248546457,0.22499454021380427,2.621056092171142,0.2242251556796493,3.556774155378062,2.5822274067244178,0.16461862981472675,1.898426900620288,1.361479016379451,0.4403836451324683,1.3217893121520985,3.959555141748857,3.6599033314808684,4.673716145185689,1.7873992687772478,3.476073562931128,2.205469101140811,4.179215977143165,4.3604858323779085,2.9449360344046296,1.9735795925570965,3.3761762730347398,1.2294752278299281,2.946305789414687,1.9514253223225597,3.438358432734052,3.7254626338120223,4.194826459253134,4.507497154184686,4.255497783517215,4.728047934552261,1.9269510842795723,1.2137184101509146,2.01430493969918,1.7201278627314254,1.799982198967437,0.5400474194144789,2.3087625211308973,2.2593090626741907,1.8593464473062327,4.180349327219142,4.766723694250226,1.7416718583919333,3.367189427345143,2.772179665564092,0.022418481988075722,2.2024029621264054,2.780678302978832,4.3188778622115365,2.767642100718687,2.4406476868945015,2.8573317612986706,1.3659418602216322,4.448750725777218,4.76888933996111,1.514192788671247,3.1393318023306325,2.988397363623412,4.966375647326063,3.249946782215752,2.283041499928747,2.8543730679693358,3.523950017908861,2.337721181430863,4.566081742869873,4.990211676262457,3.0003288339044323,3.511198867343076,1.510606530613532,4.763386662945615,0.9224778427470115,0.20368354679237588,0.3139526731351461,0.9674466522611835,2.8333635283952594,3.0037657549673256,0.6733773218256334,3.452352554136197,1.8849146957360385,0.3880530482718225,4.969951517555669,4.174860807579636,2.9971969231957907,1.9547306628659045,0.2567677052465256,2.0209723926340004,1.8845823525044803,3.159778518817342,4.0657199517847715,4.752464466356204,2.089436995337989,3.3929106878738082,4.990385831616475,0.6364965143566081,1.3758029203760591,0.459912795920443,1.2551639342506427,0.8149296920533633,1.9166825982165658,3.8374661519293687,3.389614351985508,0.08605890348374667,1.3112305914144862,2.166591558363394,2.7023609724078677,1.467595172782875,1.2767179040574639,1.5419946143046048,3.7694539093202373,4.563617633128047,2.202836251873136,4.5666142558895295,4.309719975331352,1.8829228353602878,2.039500184059838,3.1301043792250294,4.419801640758853,1.7083289901028165,4.912498543908999,2.072917204574268,2.0491972625469357,1.830014625475056,4.134802632997396,1.4173722970948066,0.4608703304192219,2.1298208428161267,4.949636736733847,1.9053166172866476,2.5717900419996953,2.5374383310485493,3.6270857737268516,1.3418464954831766,0.29227482734509147,2.4736857380911648,3.2863380292684408,4.17141563167144,4.088790327144159,2.1800706025667216,3.3054434480485195,4.18873195558789,1.8962732106449487,2.9966543662517156,3.896894337154375,4.564399418596978,0.9927433421470988,0.05665079173391541,0.6069665836733362,1.8771551700601763,4.879910321683621,1.9739416675220256,4.8037829454907985,4.507849844423575,1.7030848639487195,4.717426664051834,0.9633599669547477,4.768452403121816,2.778271658736353,1.782716451791615,1.1236142778385194,1.207530161866599,1.4090246185230737,2.5940255515864576,1.5107757889407403,1.1256679633624689,0.15639791320835483,3.9473194756682837,2.488510721058365,3.1336248014983314,2.2384494263937027,4.960639501190677,0.19968710586108163,4.893656211184244,1.09714111466229,3.010099024134049,0.17263131616654492,3.2873665795154006,3.262654981023921,4.591426320496208,2.6411866858240227,2.8469701465159702,4.36424594165447,3.344830875170995,0.5698180371992234,3.843728727310528,0.6194465577011643,3.031939307099302,1.1595959087859453,2.3213534173607098,2.206450221595504,3.878047156790647,1.1907765439043594,3.6518652728387426,2.1875165715028033],"expected":[7.917662997399605e-7,5.032939374528924e-35,0.00026987117109502127,0.003964290307528563,0.01670005183589938,0.09795242507635138,9.680529034001793e-5,0.05410327727030753,0.0,2.175976265986131e-6,0.0,3.8835140341226795e-14,0.263956637680773,0.02719466404109929,9.209103879772524e-14,0.046743669257991075,0.13507260791383352,0.00010502068964427346,0.11712876181266246,0.10484093702351813,1.94550720508983e-12,0.322632545279537,0.004266558041443403,0.00023828461297059343,0.008594547174539528,1.1331447626933405e-211,1.0403811600848353e-7,1.2076340427545488e-21,2.433813228042207e-16,0.0005806763391807157,0.0003639637597157759,2.6999394072202454e-7,0.0,0.12487069722215821,0.010157204575441494,4.8969494401111797e-14,8.890276746506488e-71,0.0,0.04703536474652191,0.059950564844505214,0.21082481067303507,0.038227607879557333,3.160087735949082e-5,5.159077815565525e-63,0.010129492904903468,3.567676533781958e-95,9.689567459034551e-36,6.276965467107434e-6,0.16632649580474423,2.8129527898458897e-19,0.10978393884873365,0.0,1.5327544537179187e-165,2.6287833681664096e-5,0.0005762942194382853,5.267952525412347e-23,0.0014260013911760628,0.03642852887292176,0.02503448968075573,0.0019612867948274842,2.4898628010996495e-27,0.0013537126681544566,0.00018198524305938348,2.0019275518907213e-36,0.6888969857689416,0.32402571833605776,0.12922128092998794,1.0309864003020561e-5,0.04113444933104875,0.001774773168169067,0.04072796687083849,0.0038112198743317695,0.02676728759527868,0.0001604190458514727,0.007576331479455499,0.10964797902820385,1.1739851460845403e-9,3.4294945301543336e-12,0.1151671571172096,0.033926845862139,0.0659354724682174,0.00811459201316511,0.0018569720056043838,0.13920334336619913,0.0,0.04328238856171769,0.013189557816144731,0.16533031955846106,1.016020192228966e-147,0.00027244718651339115,4.0011342310361676e-86,1.4240149164371723e-9,0.12158296050775809,0.14304988604288024,1.7143535574456476e-6,0.2962174183330994,0.038962460046498705,0.08416144748819385,4.366144185106578e-5,0.13955978650239198,0.06143893659906581,2.641140313798359e-12,1.449321092417898e-5,0.011249485139254316,1.3791884665106045e-20,9.874507146752361e-14,9.33307461108014e-29,0.0,0.0698872445170775,0.0028162503676493725,1.572843435800945e-5,0.0036037861992769473,8.15091995988582e-5,3.1236122330088495e-52,0.057218531628635855,1.1075883695852167e-11,0.16472279891801686,2.9775576243726134e-19,1.4508356939344446e-6,0.0001037171307484028,0.12226128722940814,0.017711765660359802,0.2647648131245267,0.014545048138538349,0.14555765489247083,0.0006492389478547832,1.8397939731314662e-5,3.223525836635458e-22,3.327438642554457e-210,0.3178611666973137,6.575398832341265e-12,8.761322923113573e-5,1.8269217622758017e-41,2.439490979603814e-5,0.0017192552056114533,6.344951347194306e-40,0.006784291780909424,0.05221435948737488,0.004246575112976133,1.1709860540824647e-150,1.3510728641707263e-8,3.7607123407329094e-20,2.3696291948478033e-7,0.00020634904719612864,0.0006333668295926625,2.8550221217298954e-45,3.3818735283368847e-90,1.1972280831103057e-5,0.04162617619789257,2.3650439529295787e-24,0.0006673514741410961,3.3831306536375663e-6,0.0002503456916892782,0.006402011104713799,0.024120086694597975,0.004332526855376285,0.16606518425572572,0.06461552803501501,0.00126816563882077,0.000373333479051,0.0,0.0056617473876681874,7.550709770124282e-6,2.1350234203983985e-11,0.3324525158455297,4.926649866809375e-11,0.05908195581497643,0.14950506208201503,0.0018071348236272336,1.4889296967071942e-8,6.035336285268479e-12,0.0,0.1715812470435142,0.012050734246497793,0.0,0.2496759304885469,0.1686038231539413,4.219946735530955e-9,0.08809176488368746,2.426232580896481e-6,0.00012984040845863938,0.0003500128808780218,0.015285251053258621,0.046058694549093525,0.0011313448509004185,2.0383676574867338e-114,1.862587771378545e-31,0.08254940448236561,6.142277136e-314,0.13488050311240216,6.656726727818387e-5,3.144531994990172e-5,0.17073663791269494,6.282270190931952e-5,0.0038478630435557284,1.3124741752169597e-11,0.13958506049533712,2.5811832038796874e-28,0.0,0.4358952718049525,0.3402117695110959,2.774426272303177e-8,0.004427176044149937,0.08427474836676523,9.603995288004766e-8,0.08744793010576059,0.030149833965856344,0.03599045979943732,0.05761461789529627,0.11789828184087042,0.01677586952150885,0.0746896691942486,0.0,0.03075047978883387,3.971499888218686e-238,0.021010727381630134,3.9283519052541416e-5,0.15124458467945545,0.0,0.29891191160232944,0.015996706890039642,6.783054383922849e-5,0.11255212695492564,2.8612911135411e-20,1.8719409331573612e-5,2.4973740588325873e-33,0.0,0.03503929938506172,0.009644913233863605,0.00026971328124978267,0.11538614766169712,0.06830824670402742,8.90850964896389e-7,0.021500159947404934,0.0012240181701223373,1.670631823374267e-13,5.809573839116327e-6,0.08924425106734557,6.9636568891779785e-46,0.003943723265258774,7.939042049062129e-28,1.2755717868191483e-7,2.0228208689141329e-53,0.15185528499481737,0.0014280986463478568,0.0661259167731588,0.22774518934592816,0.103306529784839,2.738685508909941e-218,1.481148312717649e-11,0.0,3.427232583088277e-86,6.852519894631046e-11,0.0002021540705665403,1.3639569204254402e-5,3.841087843844762e-10,1.7221189667408995e-6,2.430050260686762e-53,6.695503374707016e-48,4.589203884807049e-16,0.09387704771132521,0.005234228321685154,0.00036620176803618546,0.02853907201921726,0.0911082539283649,0.0015900656862850864,1.3197877473341482e-5,0.00245349563562643,0.0017815674200399082,0.0016817605763441426,3.970573132042958e-5,1.5085165943375307e-40,2.5488138125087722e-8,0.05791750148750039,0.005983294552997977,2.7490210988315127e-37,0.17951245739845634,0.024210860906768078,0.059510525908579644,0.2298383067761702,1.503701121571747e-35,2.700036522872556e-38,0.08623960321154647,2.4957389860685737e-7,0.11379414377145324,0.02679860304165759,0.19636401160726338,0.12208008543917673,8.406566206996669e-57,0.00025124392974224647,0.08445833103149089,2.632141385827177e-13,0.000943444060352391,0.09091594813937016,5.112270163560783e-12,9.377634568291777e-5,0.0007923615396111293,0.014056083225281743,3.947215828325981e-180,0.06855904517516283,2.2558340202577623e-5,0.008387395588514417,9.029822033250819e-21,0.0007771016958118544,0.0,6.145476571651998e-6,0.011062653091755538,6.243417516127926e-257,1.4133496082566253e-18,0.0,0.08650934094278188,6.293544988155981e-38,6.619972539153981e-10,0.07239089004814096,0.11081162667173065,0.013440221136617877,0.1354984165588529,0.0005477571039565441,5.4153307842184916e-33,0.04163016572058777,0.017401839373271874,0.26774909330661895,0.33847162629536937,1.7048849172102725e-5,0.22550665529892414,0.0006751683160031838,1.9400282413101503e-24,4.108203446613683e-16,0.15607084072182079,0.05293748600333852,0.09274111722811225,0.00011105423158173363,0.0017766232116164914,0.01454991841210475,0.05321109289744284,0.0009112427204274216,0.2168571475995653,6.375135796427797e-115,2.5286609361107912e-77,0.11670518267137793,0.3966851239800449,0.0,3.990006739914166e-222,0.09723374179559945,4.013018123241415e-307,0.09319899186569018,0.011933571350053438,9.724042100038323e-5,0.19622909584722767,1.0816598949571213e-25,0.16429686174591931,1.2733783969072804e-27,0.2029220468430722,8.291128993259686e-65,0.0035208914852522216,7.046953334595903e-46,1.3024107754200376e-21,0.07340907723795614,0.3216376610047666,0.0007381486371542884,1.705631091852732e-16,0.08314311094950341,2.2493919618858067e-8,3.088224283840413e-5,9.213773963665019e-195,0.2639818912064087,1.135171922823161e-19,9.26208593463428e-308,0.2032880359954817,9.43315754403899e-6,6.895613716976448e-10,0.15313693270168754,1.743935213051232e-8,0.04046355634129947,1.5758667835725128e-7,0.055576705086015,0.0017561535906157435,0.0037537628615885864,0.20749434905994255,0.00352534652615624,0.032334614036610386,0.1691916366485907,0.041061232290778474,2.8000571472214117e-5,0.12047240452653607,3.5360480079529153e-14,4.612763429721477e-23,0.015021955538941822,0.22985150419740968,0.0,0.0012945362621323818,0.06731068695301123,0.15161435305779808,0.021668547444093328,0.04817862859749136,0.11636991760548737,1.272458365359592e-19,0.33817277849306815,0.36048737569038347,3.872484203498571e-9,1.2910954263404244e-36,0.2542170829486619,1.108168345481947e-13,0.002556116052248202,5.138316872173049e-5,0.0990798295127261,3.9788994721264845e-42,0.0003149335996958939,3.518853833757931e-42,2.0837170380758073e-5,0.08787601627179298,1.6586281106257738e-247,3.683220310793238e-48,2.0857474673241667e-23,0.07576875576826472,4.052749690266132e-12,0.0,0.000287160337832111,0.0009644528886868878,0.0004024653845506893,0.005309222905981048,3.572625675604687e-15,0.0592327847038422,0.07406783942168557,8.473775802003093e-14,4.266357885074556e-5,0.015744506132406008,2.2759787030956266e-28,6.274126558161838e-6,2.7828868669809663e-5,0.0673189487057499,4.833745716511176e-13,0.1609607683902309,1.3547169607679212e-11,0.08804037444234317,0.026995847316183024,0.0,0.006595169777813237,0.14099158922277988,0.010879561084814004,0.0,0.016811854181201763,0.07114356585661782,0.12833165424039367,2.742165022789289e-17,0.0641944575707963,0.030839858065908138,0.11160080744703726,2.7804299174699835e-26,0.10724048346888267,0.0008643718380915375,4.124976801834104e-6,0.0024529939924748372,1.989126348230858e-5,1.879683837657031e-168,0.01761107382839751,0.1342684381750864,0.07186667201574738,0.08718897747278592,0.05630483982504449,3.026369761865691e-12,1.7658032406901098e-222,5.306631304370911e-55,1.6523598804011612e-12,0.00015117261114975085,4.339319240761765e-6,0.0005507966769201621,0.32587720136594145,0.015134585620215397,0.08883771531220888,0.1269034882593438,0.04593298457580152,5.4153838413846055e-5,3.175326543251084e-77,0.000451531200256789,5.693340813796361e-5,6.354207593654119e-14,0.0972271409783705,0.12117758597180682,0.011045506518446331,0.0032278527272066363,0.00034231113171620477,0.00969811551736374,0.014705732119590927,4.8811191811326904e-61,0.00018185994686043046,5.533226680259244e-84,0.02988161787947125,1.4306960720410352e-6,0.08721807452082371,0.0,0.000141855437448659,0.0011280359140090018,0.40501516989376296,0.36293418192105814,2.8520450155123862e-11,1.5863296098179133e-19,0.0017365991651909964,2.321766277660282e-287,0.024954422348138064,0.07453948023808632,0.01378360641358947,1.4453477799485822e-6,8.633273207072192e-18,0.15220873745034344,0.06589558823841245,1.069592765402918e-13,8.183652624268846e-117,5.969686061386749e-5,0.0,2.9104452148576823e-65,1.2848827468296518e-12,4.260483427221314e-9,1.1846500740384706e-22,0.02312800863337601,7.371132114729717e-6,0.0004051899896134353,0.09518874241147186,0.05761358288692095,1.56495689077917e-19,0.0025476967463676377,0.08712791196439207,0.0,0.004278141453125788,9.76108136160193e-7,8.942352642938588e-9,0.0,3.3207476445973668e-21,0.1886543244150639,0.09043699815927946,0.24881559560772284,0.0010577511961755346,0.022715820831078887,0.027725826269335997,0.0,1.2921474981063779e-247,1.6990983610787996e-9,0.7788767394142749,3.429725590061111e-299,0.0,4.1339350990710617e-22,1.0149704813562747e-35,5.738164935089665e-37,8.615622691371669e-5,0.010219243093248762,5.398270037220591e-7,0.17215463149589152,0.011358773131882221,0.04499167513006055,3.6294077454577567e-7,0.002076478221601839,0.02857581103178348,0.015087324489708136,3.5641687585298955e-7,0.2710442705507378,0.07893890735453572,0.0030070056129800006,0.0006961155942382221,1.3940142990213576e-10,0.10682473766341442,1.5792279729194728e-6,4.205467431937814e-304,0.0,1.4380713718603936e-15,0.009299744224023703,1.100939598448671e-34,5.164317405679333e-64,1.6093723939346287e-80,0.0025504081466271476,1.6572656968502073e-24,0.0038717006895481855,6.840640203084611e-191,0.02255370125246402,1.8334008722310878e-6,0.0,0.014444071576316862,0.5693093378494191,0.0014328355990659348,0.04984651819687731,4.947330483907112e-6,7.639516138789004e-83,0.043660451979957424,3.203799662148441e-8,0.1716625394361198,0.03379568789903705,0.0005572828930207587,0.010616292181540041,7.28402494817544e-6,9.896665963522142e-17,4.6298939444788975e-30,0.0,1.187968577827456e-27,0.03250201400038273,0.04551040315409042,0.0018852962512156321,0.0,0.035124041361663805,0.05454220685949786,0.21656184382175497,0.020377173604197572,0.06764394720932093,0.0,0.008592397775235986,5.393431045660544e-21,7.179432969679725e-7,0.00010415844135747693,0.05366865117580965,0.1188674036448147,0.1200828503582843,0.032685107627114386,2.780466084197686e-15,2.445076606315719e-6,0.07336411055696601,0.0684741905925146,1.919249182369565e-8,1.28516803144553e-120,1.769894267259562e-6,0.12376028982081674,0.003354693800762024,0.0044647005104274376,1.278950176866035e-10,2.608625949716285e-27,4.1920347126039344e-5,0.0,0.0709195008799244,0.0007229877164957742,0.1573905902850904,6.889654582742392e-11,1.7962779756345713e-20,1.1797099306298281e-17,2.576499927356416e-8,0.0006256768405083093,0.1386152389963211,7.507576685557531e-7,9.827971295771164e-16,0.3880975160817343,1.6451380610597337e-8,4.011694470362601e-6,0.008109265543093453,0.04866838958643718,0.07504361865535111,0.148536674894875,0.0014800456636450317,0.014414947752654964,0.07799768527605874,0.0007746168411529372,1.6581622096695792e-6,0.0,1.081429161844374e-13,0.0,1.8117058213281743e-9,0.00011511858896578144,1.5918010658897977e-69,2.3639941012015686e-18,0.007167629533026982,1.4572815152702278e-5,9.06795405247659e-6,0.0,3.982713473341201e-5,0.09837004461633476,0.04061545392056705,0.29620467145868173,0.05758001028765561,0.0029277591532050847,6.3373832000585285e-9,0.12005407325847785,0.05749557167240558,0.14948520818113226,1.4717290996932574e-49,0.002724467705081264,9.101374870858225e-5,6.796807362141435e-5,5.1457329184893696e-15,0.0,0.12775210865795963,0.19724392821593112,9.316157715087506e-94,0.2001890085496021,0.18456425342476926,0.0022162381026976613,0.4578604590881504,1.4345236342905024e-5,2.0360664311279072e-169,0.0013994476087784641,0.12654229504797798,0.07224100934850385,0.0,0.1296449687827863,0.03908532158692923,0.0018128392037029466,0.05495183451576827,4.843836958377364e-6,9.06200699940461e-25,0.050550006405089054,8.983513191199111e-7,0.09774272972653592,0.02885554453689431,0.0003428920830156514,0.0003774477891273696,1.953829106730529e-39,0.00016977485447463477,0.09697523524702946,1.2484035312633281e-16,0.0007364524989311234,8.591525249673725e-9,0.0,6.28833661718828e-13,2.058771993061439e-5,0.001029777073862192,0.0006614206953871408,5.3038035830975e-10,0.15680448179076084,0.015817021446746522,6.615623017151758e-68,6.704558098009587e-126,0.009189213704842656,0.11712017054460294,0.00221278461026306,0.018356790017120327,0.010811963016718223,9.309537958063333e-50,0.0003312299290557299,0.16848380779679892,0.00043763201588116246,1.649581713924889e-5,4.746531516328856e-5,0.00935876317017866,1.0655543572976228e-12,2.164935583058071e-17,0.09865102582388167,2.678502424101375e-153,0.17208483632505614,0.07863857981656788,0.1193515867921963,1.4897800119544047e-13,1.1520013108408162e-50,0.02636501342682582,0.0,9.122080628536227e-5,0.0007378632131003718,0.003928982643956177,0.07649927804853464,0.21564364245511816,0.10142926885717575,1.400118175677841e-7,1.6839078776237384e-11,0.06651250559085642,0.19493459378979944,0.011168759152331353,6.31352629532602e-10,0.11420546349118693,0.11868934773367203,0.0006975605716472392,0.08149169098828747,0.020282471054402004,0.030109734104678165,1.215257310189681e-59,5.944214781046579e-6,0.0004282545642124827,1.364144114398332e-10,5.185969420692973e-15,0.09798529985424902,2.760246125316495e-11,2.3202912270920656e-10,1.1716659131298817e-20,2.9307194750580896e-23,0.12613479945660366,0.001300676440419897,2.1984742216799269e-16,0.0035854218649434806,0.0508904989026386,1.7142525696675572e-5,1.6112819881449723e-5,3.6051567957171204e-9,0.0,1.520401892896409e-15,0.1554733394673681,0.01423634971972679,2.8410989541010275e-13,2.4357244732179686e-63,0.10722059934643009,4.471344924434937e-65,0.001186254671751154,0.11884639071898266,5.709247757707884e-10,4.665230907977637e-9,6.605747405540008e-16,0.0015519747889535759,0.4809513493408809,6.91713385278216e-43,0.016657502240261697,7.082068477617336e-7,0.0,0.060618915613065844,3.146104948537805e-11,6.899082304668988e-8,3.337214315007619e-12,0.034918690355700166,0.19553937728134835,2.8680616516001747e-25,0.1193658019461526,8.735868647333903e-8,0.0041009832950767685,0.01530224011223875,0.0002707591561995239,0.029021273180015447,1.3728620516070544e-42,0.0,7.635474297258952e-259,6.143410449472544e-7,6.309276547382968e-72,0.12372997060415039,1.641578886753863e-7,0.0,8.244017872867226e-10,3.951595000812657e-13,0.0,1.5681909852380304e-22,0.026750808996769578,0.038960388716460785,0.0005378313324705501,2.492598506498529e-22,0.16991727941900883,0.245384912705954,0.00029692014026332596,0.0005349293459159254,0.19804879628449643,8.311681874857622e-12,0.001366982346429045,5.5535751142895574e-43,0.006283269327721659,7.174152854094731e-22,0.021715148506379435,1.694938279275237e-6,0.0007483126710866152,0.00025200631097934946,0.014405563074979894,0.0661762482435165,1.717449511139693e-14,2.1842434883110545e-33,1.354232491214591e-13,9.708748551899814e-18,2.4151557897452396e-21,1.1128896443990076e-95,9.394667244841163e-13,3.091814530469531e-11,0.006545618630761982,0.020719318454325203,0.0006733680325787463,2.6613329406898194e-8,0.013541553461620759,1.129052533509071e-7,0.0,0.19448678942713737,8.069580724123374e-11,0.1248913573595868,1.2891413512175341e-8,0.00287182779816598,4.4993481553566316e-7,0.0002563876218637615,0.09240648803887389,0.060687917766406085,0.0005049984016494484,0.01487822592772691,0.0002082902654174035,0.1200676997906766,1.4161180243556082e-5,1.7906374992541415e-6,0.18325331332518124,0.03590735062454779,0.00022971088540057178,0.132198840618508,0.017601010971166533,0.05703716966877167,0.16419555605924335,0.016621139528994352,0.0005823264668838526,1.1763341306159234e-43,0.0,9.713335184075798e-154,1.8626944772202093e-42,0.11124478919692589,0.01299266887851333,1.7501722105592923e-9,1.6293548876783196e-6,8.178020811096009e-10,2.15938205204643e-64,0.0013393116597854306,0.1257804590142102,1.5244342247750434e-5,3.975919181450779e-5,4.946633093842265e-150,9.401115463110212e-5,1.0969909263193335e-18,0.001408116043832362,0.00015736231911145352,0.01666918996444249,1.2054986564705535e-16,0.0003338502234203466,0.025803845220406272,1.1844867874222682e-25,0.0021979876426915226,0.0,0.48273638605560576,1.4933984523688765e-7,3.71002881810386e-21,0.0007755522931715915,0.16351362513970605,0.0,4.1771917757242705e-32,0.05233388353134128,0.024972356424736965,7.039607960283922e-11,3.846143896264212e-51,0.0002979824717764757,0.017108386332819962,0.005267512850907553,3.163476205859218e-6,0.013140052855017549,0.022838739033173478,0.00017288959311318527,0.000248759686905931,0.08119142693732388,0.07584496028354626,0.00027830012451614863,0.0004504014467849439,0.23919633961592712,4.591709808225491e-16,1.4532575955249263e-15,0.004721581296399021,8.131498964244555e-20,6.549315493210206e-163,0.02345536923892113,0.03436527964713961,0.014264611628780188,0.020438565690802723,0.14539677039458643,0.01023129783571697,0.4403693629383887,9.295320957198108e-244,0.003208973426599344,0.03066909774782195,0.005477622356431322,0.1453133057743438,0.11961442514643397,0.0019366483274813712,0.08540710100755655,1.5406545509894242e-16,0.027393793338288275,0.030613971895360772,0.06264198059663935,2.6314971057659657e-6,0.0,3.5872943208421004e-56,1.0447528711367642e-6,0.03638574375503783,0.08117648940854888,0.004873901649531312,6.638056670772517e-5,0.22869939893938201,0.016518089115507315,2.774296715346743e-27,0.022310752488008997,0.11439267542113996,1.2496050807148018e-5,1.5603874153352356e-35,1.846443568739683e-17,5.300512227632627e-29,0.04954395895427129,0.0004190595233070584,4.362900335019159e-20,0.0,0.0074886048682352045,0.006793037791648733,0.0005212765794582162,0.03638450213219327,0.005944692077999565,1.760973663765129e-186,0.06400288675289283,1.1326113156146845e-7,0.0016372839449588597,0.0,0.0001126905340155473,1.8160972904798984e-8,0.09862139827652683,0.22804857685991528,0.0009333065164382906,0.02501148703486563,0.002758369094983313,2.3063631950744993e-227,0.13297785834370165,1.0699027944649619e-89,0.0400178844630355,3.159229742652769e-56,1.7822819762306688e-5,0.1476999265711005,0.026013598339937806,1.2369123593382286e-58,5.033532543168955e-5,0.19499289912835988],"x":[16.37638048607134,16.226051691359146,11.124399692565685,11.041958641482633,8.02098587062774,6.329476194128136,14.674828147024597,7.053943365201603,5.542874066440349,18.17240840911387,17.754619486208426,10.768556616621074,2.7724273596337934,4.186654631291069,13.48692974852835,4.27353921802907,4.663210062778003,18.096876013128828,6.171326292862402,4.984738657789767,10.880882443811002,1.7629060772715466,3.219016058519628,10.678421997988995,11.239332582952581,13.687145558576322,19.06936150895713,7.833190079889301,2.737731580833369,15.999659500778618,10.679707276026647,14.747423317907678,17.462921047790864,2.288634898429285,14.118221595617428,17.023678257594792,15.981465386423196,12.380738059895666,1.0492053007925684,4.004908855929248,3.4832754928511855,0.8004898712909458,4.173484865334505,10.187457203732029,13.950697324264985,13.778273379358229,16.884056710537827,15.56851508553573,3.9809556717252104,6.354613252821508,6.701349411623987,11.854576156021022,11.059454616750282,8.751998445373182,18.09259570914161,15.782312854710622,6.926474872253423,7.388312647684323,10.396592149762158,16.203997052309354,12.400336635647133,17.132520206495457,13.793555529626932,2.2849605032250153,0.844773673512913,2.227372571618589,5.602769313293479,16.70557815157055,0.14670758164914144,9.00608450455049,0.9409339115575399,13.810601426352225,11.594819059225415,19.51278334292571,7.676480206558005,2.9345323157241365,11.106829142593986,13.547218287627118,6.1917147066014655,11.22310676317925,9.086893007673545,8.549505046134843,15.557393787229575,3.8119315267843135,4.335181759843034,8.04324193994377,5.854878069932679,2.581827514880577,12.741212496273548,14.812706683473644,10.918556955682588,3.6795718168104052,5.868405630886242,1.7383606419485487,17.897550802973704,2.4782822067146615,10.760789019557029,3.146989058001015,8.024647321580298,5.168247343243082,0.6870994560994959,16.004607344914234,5.44524625195641,6.653202980592843,9.511597124185073,8.909545430517696,19.756809641506507,10.117877938331056,0.48429854438045705,16.157396063217835,14.285531743244873,5.468400279122325,6.694414159189379,9.796588963905503,0.3798316752985409,17.665583859528063,3.5535145243031163,17.760809023084366,3.1263563935480487,7.146067685474149,5.374701749898065,9.981866406257227,1.7448460907004737,12.612695743538076,4.672753020053078,17.285246386553634,7.5389222531925215,11.846502553547552,17.118292078947867,0.7509290621272369,14.989999709449947,14.338172052676024,12.497148778723313,18.520747572211977,14.627715545200468,13.514113361895932,9.282545991297745,1.3391079022616115,13.956599597624887,16.030161781246054,14.595442373475782,13.449025335567374,16.76275365699222,18.591928828855142,8.267853090949044,14.304370590844924,19.399768793800245,4.267301976762732,10.22828519403836,2.874370705675018,15.36858499097018,10.448629422553498,5.848813197139013,12.798171969746646,10.560118387928057,11.132120746097893,4.375017981089853,8.110307548325997,6.258434321594999,6.424406356812922,18.430150943409632,2.5223507508060328,16.42685904398485,16.46958515124108,1.315676736042679,6.374997084346075,7.53945033827812,4.21619627760101,14.031110634149012,17.715904987619304,19.403275238234098,19.31721335096785,2.314883289179406,13.445087556799304,12.02939147899594,2.9421512300511177,4.363568152082942,14.99930444521977,1.295297760986669,6.431294759467048,18.56825543273734,16.25024115338136,10.231891856407245,9.632549615277988,8.187390147430715,17.85269815758909,5.118074507008861,0.4861532747423114,9.561531823137717,5.1313844530931485,14.143054390006062,19.580320898479833,0.40588566372275814,11.81824776749291,12.395930817733438,12.641411832416951,2.7606052545968796,11.13166834822759,13.639177756034279,1.592320879505431,1.16960283054377,13.950030897775093,10.900926972002182,1.2614836006743113,18.3252585682456,6.607185769929749,9.680369136935717,7.495492924731337,9.079704747268824,6.166845882119341,0.3833461927692605,8.68977855162457,18.569513129150717,0.1712155149244854,19.53371188258548,12.448977767063937,12.055530347751562,3.90576696743274,9.77689173492097,1.5525356227676301,10.645051758274992,18.958705285918587,2.1543599200820873,10.127044880305629,5.428517190086923,15.233512422804862,18.54984630483507,0.5867692806245373,13.821666581982806,19.156938973116276,2.3840099630661626,1.461093809997207,19.426538483080144,7.874730828541403,14.525248354126447,18.840429643616492,8.405610125016523,1.011689033969816,19.757139793179824,15.53032781712805,4.859978239553526,16.708820150323284,11.615783957718456,2.141978072379822,0.015554030989610723,0.7108341650287642,2.8311408833917717,7.035643770109874,19.490874178458416,18.240111061226045,18.154089270431385,4.931241205516477,19.19214452710673,19.715268614018594,16.735868322883924,18.315373343530894,10.771360171033928,17.817432266572247,10.176102702109837,14.580971286160572,1.9400125581178385,7.3681140304248505,11.125295128293304,9.215379573124078,2.548430672372275,0.009838424027814874,15.989301693376209,12.875495991049966,15.457645326107263,14.065245128971418,12.436008842782202,16.30703110338756,16.499803464179617,6.482748360220918,5.032568021106889,13.602648802297995,2.9521822683171806,11.356247386359431,8.9115745450029,3.0270460239516916,6.056275380433549,8.446765852175918,7.570116060982097,8.107121135128335,6.365642822462401,5.811396687655401,3.186214677876311,5.933925578816517,8.738630807046999,19.852080476564172,5.627059719182723,14.675447103387377,6.445879549391442,7.539528366849928,12.008656166825356,17.4187173040511,11.907229027916536,12.402103625171641,2.9085899481978794,4.368353558022928,19.330903540841465,10.559141763029674,19.693638013617914,8.067323702349917,7.978707665776472,11.370314923035503,6.7062470817321485,17.951457389922346,11.27886484167879,19.00583053222562,7.139811814530885,15.099249043784809,6.908129159433494,8.568727201799495,1.5709537685120667,9.978940145366945,5.189862769188607,18.92248855123213,5.805058150953748,9.15604825758265,5.662423102746308,0.8216417760889039,2.1158485534212135,6.445954334250152,2.676305269088064,12.408782006611077,12.644155642317116,19.969942560030375,4.695818111153458,5.970928321808313,2.4694710261009023,17.091251408217584,16.424827143134255,5.786048340061143,8.131282922729435,14.662758893275312,2.199117145812517,11.419127714417483,9.983354928837862,2.7050551256029776,1.740589046838159,4.708696430670507,19.33630626626887,6.2722300486796945,11.990339494878043,3.916261307680604,2.014499190512331,17.15792364259452,3.7101769081441827,11.051237430574705,0.2454240846036715,7.330039552382015,2.287124260258584,17.26740062359817,12.979053029183817,18.530186533306434,14.473931982030845,8.401644328109592,2.286806779554982,13.081814401887474,18.68965599602911,6.0985826111728825,15.902221946170428,6.74425481449382,11.161674267114453,0.2217463450791568,13.874808489340268,14.974058707430057,2.1810988357624916,14.389797667649757,11.929133102279543,3.1012954355509947,12.523484315281145,10.452926924951829,5.019065862902385,8.505592792876783,5.223346512212954,12.854792935902918,2.6570853847817055,10.768190408462619,10.860228639569547,3.2488183404472837,5.600988402695535,9.123799253964178,3.977436458293897,5.050830499967658,17.997136263192953,12.344386199508385,3.03429559826502,3.0146755532460157,14.788086172739119,1.1358114065077718,2.408033555691076,0.41593456097269943,4.546822518741891,0.0200411978214321,10.567774726032301,1.2746710857799037,2.0343522792095925,17.486137318181612,19.366536394630515,2.8396051822089152,12.974070790368382,11.340741038836306,18.75458882555695,0.9653710699074614,13.022053313266827,17.5081992252947,10.36112153261417,14.509502505406505,7.50715419618925,16.342551056451367,13.639240353194818,18.414665677085694,3.0038880389296896,19.105399373972688,14.224754484120794,17.582841472488944,16.29990345345155,9.739343304723501,12.822154413315312,8.029926888028589,7.711654758381998,1.2085940381642235,18.53806270392702,8.985123545304399,11.769139426365015,16.186876299672846,2.6140571707018267,12.584875982891738,8.153713381756479,17.188567004196067,3.776761676780014,14.608396751994398,2.0725886909693347,3.6222458495782828,6.134448356936,2.0023866723120953,2.907264604537372,12.62428927223743,15.95330003989259,6.49471198407606,4.868229006146794,4.927594219489073,18.73264210731772,1.1575565414734346,10.520016399240344,5.315930532897322,6.4176093669630685,6.764705404466125,17.126236964457007,10.675288953857095,11.641821276118872,16.630189287138535,9.978246681072598,11.956469968273232,4.91028800316184,7.961188064588627,6.118416789902894,9.193928083659513,14.451506582977682,14.641796344477847,18.959899152073273,12.84153848780778,5.135833876362872,15.927113732625692,18.116634127422387,2.084711732500253,0.11332470449720411,2.4418142539165633,2.01798878868765,6.108850707876967,19.293356133597594,8.442953721383777,14.794145614308212,17.975924150396736,13.1589893390327,7.5060305324766174,2.19479849140626,12.52027827295434,13.341501070897749,6.639433301948046,0.14520637126295366,12.258952776446325,13.958076848204474,14.547690228990273,18.802363234887043,7.865067545060378,15.852506302925335,5.394895290732089,11.014816943035965,2.325124132678842,5.812302509142526,1.2401245489708312,1.121577208828537,4.914057753101493,3.3062644507672356,12.233763164765868,10.487259649738249,11.604327424759205,1.2259856430435523,10.409436817581078,10.668336322045565,14.666027709268956,2.934706931319546,6.406637888751803,18.180359718613932,17.194714323232443,18.659950766184537,17.83294896238001,12.70896551250198,19.596201384560892,4.069109868846006,17.02247035844173,9.328176996944233,17.365700856145523,14.956331958568999,5.420571676306847,0.18886048974641856,17.862993894187184,14.213710179167682,7.874292845603148,4.060205038004607,14.466163828828993,15.66168322820686,7.459139033403588,11.593028163854267,16.640426294310096,3.691789788968176,6.981956906081348,2.6294427164953937,5.561732072534551,11.96517842652896,4.659702540036608,5.399664111408788,4.225675479127378,14.89392895933554,0.9289625518152267,18.682937994617234,19.503333292525518,14.565341159553014,18.149515180673678,8.540134016052914,16.550473286904772,13.492784177519122,16.40639743031613,3.8426411791276394,0.1827150422864232,7.147736744043378,15.877617879139422,16.24191837372433,11.519433057307165,7.483098990822734,14.355592686161653,1.924193992100176,7.353086410041159,15.74325651750729,12.192808133200238,8.619614330464005,1.1021046027778825,19.419316960019746,16.369895037967886,15.255744674815318,17.725304962653393,11.560166718129125,7.904746026245544,17.764577994459838,6.449881507403723,13.24303619175559,19.636610106236315,10.921711638531226,18.18842316025531,9.528162486287561,10.83872569642355,11.100254759967658,8.760163681704851,1.1524057002319665,17.18165112786807,10.166775561621089,13.46830561525655,13.77153541488656,8.794343688480994,16.488836033828775,3.028706065223963,11.224926114472943,15.514599665837935,12.86713925097159,19.175724753712803,12.414117426183239,16.23663972416186,17.683021252934775,9.372650286510789,9.234799044200344,0.8537980953785373,14.73154046937227,17.343153605886002,0.5967762242857289,9.35560210418046,3.196254138240655,4.742203416821078,0.6459561611271791,10.672777307959823,13.117557642869073,13.101940560021683,18.38556448312587,16.918687121745815,7.5475820712978425,4.922325988878624,4.961968174151883,6.447823409933093,6.3148297794553665,10.855418315376916,5.905831438382574,8.116150297703415,18.391603797050987,8.533166478961647,18.59367248696403,5.852171737917575,11.821010563868537,14.507431942593584,18.98145811570859,8.249130258747194,5.029140500935814,4.506410140303965,6.3923961225955095,7.391662944421973,4.627432651041068,14.690748615291799,12.503378305418824,13.195213533276382,4.963361352073035,16.037779729536815,2.4890592283157487,13.600825637018081,15.632991286337393,1.546810370597802,13.25398658472443,14.794664619552513,10.201785573261745,9.66552096234694,8.636363568280858,3.864404921824902,14.169149812924093,10.254817576847813,5.405536817900085,18.369732950788173,18.34803877871874,8.033026516052093,10.321118667938215,13.237787033971244,19.231671939675113,18.18035417213425,16.794976309842156,19.023973631000402,11.181257347054178,6.5054140911029545,14.468754668931428,19.525223393150895,19.264035355495565,6.514912250359255,9.80524184896499,1.4299990572195131,7.712852843240028,14.467841785799887,10.903110647201455,1.4421219403137053,3.0718146460947304,3.717246845717659,12.477904409399493,11.828681165093219,12.255160682871903,17.574863483150196,18.51136826680806,6.8779338661398,4.481199557065958,3.69398211282546,7.828362369817992,3.6406937491991043,2.0655465168451803,13.95108429267912,1.3790430740641257,17.54532725735221,16.43936531187032,11.355364880447905,5.396596567201852,8.46286304633098,14.055892256234692,5.062119834015917,10.700731980114412,17.141927426526916,1.2207436405982985,11.740583823528787,14.673104052100996,8.39119430775539,19.205956040871936,1.3566023058959775,8.885079370615795,7.030836239091891,5.32116627410355,18.197798663503136,18.76133217633599,2.7324993548769827,19.54450439821531,17.184280217529064,14.032700335970173,3.2827285493530756,19.593235907973664,17.61877273050121,13.953059034715185,11.107874454867908,19.68811459238028,4.15952105670673,5.67280837459319,9.164748960947309,15.880469412999275,8.403234978387184,0.822128872306922,8.431829128782962,10.475374903834073,7.397026757823566,6.812694265769421,18.7089272664295,3.8317566143581683,13.481493843408296,17.605075696162093,10.709627772038433,11.650452629077193,17.137871180630782,10.331845029746166,7.278020777288772,13.280619917129846,3.4577445711376686,5.282103842891122,5.373367487433818,13.447816460693671,4.257109997425275,2.0991918656321795,17.40972706329401,12.824255091717314,16.78432936703721,15.06869743972799,2.978849618034962,2.982301678455377,7.002454622808854,17.20715756117397,14.683817340831258,6.0107678864261205,2.987268933676499,11.686690260622946,13.534788739929073,6.441807187698809,5.78737887889579,15.235030559729367,1.9157639372340896,7.452477926108738,0.3987688058908878,12.342213593087186,9.217203000715028,16.834049069073803,4.5881233967057256,17.802280195021826,7.358590515818024,11.089699284429027,8.80425090324958,11.738886666528149,6.101879283148546,3.4906163269517654,7.798500563670241,16.688254511886228,14.72921627414208,8.32080246420933,16.558667299425988,4.861068973416538,14.484526063866824,1.1323275607721817,8.799741068573264,1.5364392466904997,10.479581778589484,16.42421276346503,6.1714738006756775,2.647429103452459,16.850516184383064,14.799393379913685,3.6760009120031345,17.985494832083244,19.3424290139373,19.116987447973145,13.980872302692626,0.9284160108910422,10.155175544267102,8.666722216455334,6.530770855278654,19.88425836968618,1.120894469304683,18.51162137087328,15.718737294422343,9.351019574135751,9.345057404456384,3.249485180911025,14.316541672220788,5.815805833104375,15.090414924090982,8.645482673017057,9.43508081957468,6.358502153680656,8.992717615980158,19.13017595987563,6.760235425487244,7.7899655884330565,14.375772410455824,4.114379507864205,5.729942873064102,14.797580772133028,11.631463571110011,12.641673243327745,10.599114426712557,19.05501509559121,13.512356915078678,9.967100784796227,0.5273151096817674,17.893031415637193,18.136590651992776,2.926020767329023,2.987609400379312,16.803778579898392,16.78497417897325,3.5456720938079567,14.455644334919931,12.334920282576878,17.364610934597057,9.461232736968807,19.577306965348825,9.198935358004693,19.44763402639072,15.795886565224247,18.229007869125923,0.26136661149990914,8.979073499143864,15.686920523262774,15.113818015177923,15.859005528571707,15.544554310416071,17.851441565705294,11.387276461987813,17.5481100374977,16.08638623502617,6.232736001156898,0.36344777149449836,17.919031086776616,10.65065714770392,0.1536936752134821,16.036683358667332,13.154717867887605,1.058978974128526,19.327810495509283,5.873674902503683,17.045899650396322,8.609011853214499,15.792502336329797,5.930530520568449,7.459635817638386,9.320782631323997,6.279223161133487,9.009519393368794,12.548949436384707,5.62757141020481,15.62448415640668,12.113573082231849,1.8363056497425445,8.567861628716415,9.90333724851348,4.885751953263506,12.992176135028455,6.824927066987603,4.329685345792971,4.688842456901829,18.104264880435778,13.148883895175514,12.827512089756436,8.386336272115425,13.596847681546734,0.9440404330567986,8.83120169004223,4.513283608327883,18.10112166323975,12.55609053495462,6.730129768897748,17.60966412837073,2.703819963931422,14.414088867662489,9.171964620099882,6.77810251508014,9.069580837078806,17.466085015326726,11.578460975671714,17.044644407542506,0.37767970809539086,18.23542173208513,13.723965464074727,12.089868854009179,6.986566822418974,5.195326788222436,19.53334005982378,1.2954293978989062,4.849372289767651,18.91249653734414,14.508511040058272,2.428261283722577,13.485083260677326,16.00388853468402,5.383580706269031,7.347309899135306,10.36671532223933,19.66102641797155,6.592168430864067,10.32102230759449,14.236390966978107,11.455959001910777,12.641396152813527,10.996309327918667,8.208496939651102,8.668885357476892,6.389508862232645,8.166173767812936,7.288830282639958,18.9819536533917,3.0636720129871264,17.567795785692404,15.462209267546697,13.201718853776118,13.575229601575503,12.663959388347914,6.055211724040466,11.275407635296798,5.859415159566699,7.258980973583693,1.0139572527192442,10.73377169165199,1.1312470752570336,9.819266068462827,0.01963671580379245,8.348967208333447,13.088263262833536,3.516480072447865,4.413762596603061,11.75142534207129,1.6139811446280206,16.51691149995996,7.8924803298258395,0.46826576104724627,8.959357342920118,5.353506069362282,18.524614911015234,9.822761051150604,10.225624992503604,11.001742964518492,4.56011519039575,15.030779915980471,19.743442710108127,0.7265330536119041,12.532979899986106,10.865887760838447,11.993389762808748,5.244426199044714,8.84697981277045,14.440298484431665,10.8731133432791,16.336762355087263,6.286905565146643,6.3376109382282175,10.882239652997473,18.75843497106375,12.017879503360751,8.068668735093603,12.368918197063575,5.903372440724373,15.10735711882393,5.874383107363759,1.6189455595518831,6.524763588090514,10.938789053869012,8.315532178318401,14.227796265680306,19.816664592381493,7.261722540297222,2.8646468897646926,10.855058849948286,10.923624947822068,11.510859503363262,18.479906234570414,5.529666539503437,12.645137389169104,7.434283115560936,18.728701764666194,11.213782370443116,0.7634204217159057,9.850543736573405,19.636297722694444,16.416859601656135,1.0461228069686257]}
 
-},{}],132:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -8383,7 +9818,7 @@ tape( 'the created function evaluates the pdf for `x` given large scale paramete
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/dists/rayleigh/pdf/test/test.factory.js")
-},{"./../lib/factory.js":126,"./fixtures/julia/large_scale.json":129,"./fixtures/julia/medium_scale.json":130,"./fixtures/julia/small_scale.json":131,"@stdlib/constants/float64/eps":42,"@stdlib/constants/float64/ninf":52,"@stdlib/constants/float64/pinf":54,"@stdlib/math/base/assert/is-nan":65,"@stdlib/math/base/special/abs":69,"tape":287}],133:[function(require,module,exports){
+},{"./../lib/factory.js":151,"./fixtures/julia/large_scale.json":154,"./fixtures/julia/medium_scale.json":155,"./fixtures/julia/small_scale.json":156,"@stdlib/constants/float64/eps":62,"@stdlib/constants/float64/ninf":72,"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/assert/is-nan":85,"@stdlib/math/base/special/abs":89,"tape":335}],158:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -8425,7 +9860,202 @@ tape( 'attached to the main export is a factory method for generating `pdf` func
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/dists/rayleigh/pdf/test/test.js")
-},{"./../lib":127,"tape":287}],134:[function(require,module,exports){
+},{"./../lib":152,"tape":335}],159:[function(require,module,exports){
+(function (__filename,__dirname){(function (){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var resolve = require( 'path' ).resolve;
+var tape = require( 'tape' );
+var tryRequire = require( '@stdlib/utils/try-require' );
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var abs = require( '@stdlib/math/base/special/abs' );
+var PINF = require( '@stdlib/constants/float64/pinf' );
+var NINF = require( '@stdlib/constants/float64/ninf' );
+var EPS = require( '@stdlib/constants/float64/eps' );
+
+
+// FIXTURES //
+
+var smallScale = require( './fixtures/julia/small_scale.json' );
+var mediumScale = require( './fixtures/julia/medium_scale.json' );
+var largeScale = require( './fixtures/julia/large_scale.json' );
+
+
+// VARIABLES //
+
+var pdf = tryRequire( resolve( __dirname, './../lib/native.js' ) );
+var opts = {
+	'skip': ( pdf instanceof Error )
+};
+
+
+// TESTS //
+
+tape( 'main export is a function', opts, function test( t ) {
+	t.ok( true, __filename );
+	t.strictEqual( typeof pdf, 'function', 'main export is a function' );
+	t.end();
+});
+
+tape( 'if provided `NaN` for any parameter, the function returns `NaN`', opts, function test( t ) {
+	var y = pdf( NaN, 1.0 );
+	t.equal( isnan( y ), true, 'returns NaN' );
+	y = pdf( 0.0, NaN );
+	t.equal( isnan( y ), true, 'returns NaN' );
+	t.end();
+});
+
+tape( 'if provided `+infinity` for `x` and a valid `sigma`, the function returns `0`', opts, function test( t ) {
+	var y = pdf( PINF, 1.0 );
+	t.equal( y, 0.0, 'returns 0' );
+	t.end();
+});
+
+tape( 'if provided `-infinity` for `x` and a valid `sigma`, the function returns `0`', opts, function test( t ) {
+	var y = pdf( NINF, 1.0 );
+	t.equal( y, 0.0, 'returns 0' );
+	t.end();
+});
+
+tape( 'if provided a negative `sigma`, the function returns `NaN`', opts, function test( t ) {
+	var y;
+
+	y = pdf( 2.0, -1.0 );
+	t.equal( isnan( y ), true, 'returns NaN' );
+
+	y = pdf( 0.0, -1.0 );
+	t.equal( isnan( y ), true, 'returns NaN' );
+
+	y = pdf( 2.0, NINF );
+	t.equal( isnan( y ), true, 'returns NaN' );
+
+	t.end();
+});
+
+tape( 'if provided `sigma` equal to `0`, the function evaluates a degenerate distribution centered at `0`', opts, function test( t ) {
+	var y;
+
+	y = pdf( 0.0, 0.0 );
+	t.equal( y, PINF, 'returns +infinity for x equal to 0' );
+
+	y = pdf( 1.0, 0.0 );
+	t.equal( y, 0.0, 'returns 0' );
+
+	y = pdf( PINF, 0.0 );
+	t.equal( y, 0.0, 'returns 0' );
+
+	y = pdf( NINF, 0.0 );
+	t.equal( y, 0.0, 'returns 0' );
+
+	y = pdf( NaN, 0.0 );
+	t.equal( isnan( y ), true, 'returns NaN' );
+
+	t.end();
+});
+
+tape( 'the function evaluates the pdf for `x` given small scale parameter `sigma`', opts, function test( t ) {
+	var expected;
+	var delta;
+	var sigma;
+	var tol;
+	var i;
+	var x;
+	var y;
+
+	expected = smallScale.expected;
+	x = smallScale.x;
+	sigma = smallScale.sigma;
+	for ( i = 0; i < x.length; i++ ) {
+		y = pdf( x[i], sigma[i] );
+		if ( expected[i] !== null ) {
+			if ( y === expected[i] ) {
+				t.equal( y, expected[i], 'x: '+x[i]+', sigma: '+sigma[i]+', y: '+y+', expected: '+expected[i] );
+			} else {
+				delta = abs( y - expected[ i ] );
+				tol = 3.0 * EPS * abs( expected[ i ] );
+				t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. sigma: '+sigma[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
+			}
+		}
+	}
+	t.end();
+});
+
+tape( 'the function evaluates the pdf for `x` given medium scale parameter `sigma`', opts, function test( t ) {
+	var expected;
+	var delta;
+	var sigma;
+	var tol;
+	var i;
+	var x;
+	var y;
+
+	expected = mediumScale.expected;
+	x = mediumScale.x;
+	sigma = mediumScale.sigma;
+	for ( i = 0; i < x.length; i++ ) {
+		y = pdf( x[i], sigma[i] );
+		if ( expected[i] !== null ) {
+			if ( y === expected[i] ) {
+				t.equal( y, expected[i], 'x: '+x[i]+', sigma: '+sigma[i]+', y: '+y+', expected: '+expected[i] );
+			} else {
+				delta = abs( y - expected[ i ] );
+				tol = 3.0 * EPS * abs( expected[ i ] );
+				t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. sigma: '+sigma[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
+			}
+		}
+	}
+	t.end();
+});
+
+tape( 'the function evaluates the pdf for `x` given large scale parameter `sigma`', opts, function test( t ) {
+	var expected;
+	var delta;
+	var sigma;
+	var tol;
+	var i;
+	var x;
+	var y;
+
+	expected = largeScale.expected;
+	x = largeScale.x;
+	sigma = largeScale.sigma;
+	for ( i = 0; i < x.length; i++ ) {
+		y = pdf( x[i], sigma[i] );
+		if ( expected[i] !== null ) {
+			if ( y === expected[i] ) {
+				t.equal( y, expected[i], 'x: '+x[i]+', sigma: '+sigma[i]+', y: '+y+', expected: '+expected[i] );
+			} else {
+				delta = abs( y - expected[ i ] );
+				tol = 3.0 * EPS * abs( expected[ i ] );
+				t.ok( delta <= tol, 'within tolerance. x: '+x[ i ]+'. sigma: '+sigma[i]+'. y: '+y+'. E: '+expected[ i ]+'. Δ: '+delta+'. tol: '+tol+'.' );
+			}
+		}
+	}
+	t.end();
+});
+
+}).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/dists/rayleigh/pdf/test/test.native.js","/lib/node_modules/@stdlib/stats/base/dists/rayleigh/pdf/test")
+},{"./fixtures/julia/large_scale.json":154,"./fixtures/julia/medium_scale.json":155,"./fixtures/julia/small_scale.json":156,"@stdlib/constants/float64/eps":62,"@stdlib/constants/float64/ninf":72,"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/assert/is-nan":85,"@stdlib/math/base/special/abs":89,"@stdlib/utils/try-require":203,"path":217,"tape":335}],160:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -8543,7 +10173,7 @@ tape( 'the function evaluates the pdf for `x` given small scale parameter `sigma
 	sigma = smallScale.sigma;
 	for ( i = 0; i < x.length; i++ ) {
 		y = pdf( x[i], sigma[i] );
-		if ( expected[i] !== null) {
+		if ( expected[i] !== null ) {
 			if ( y === expected[i] ) {
 				t.equal( y, expected[i], 'x: '+x[i]+', sigma: '+sigma[i]+', y: '+y+', expected: '+expected[i] );
 			} else {
@@ -8611,7 +10241,7 @@ tape( 'the function evaluates the pdf for `x` given large scale parameter `sigma
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/dists/rayleigh/pdf/test/test.pdf.js")
-},{"./../lib":127,"./fixtures/julia/large_scale.json":129,"./fixtures/julia/medium_scale.json":130,"./fixtures/julia/small_scale.json":131,"@stdlib/constants/float64/eps":42,"@stdlib/constants/float64/ninf":52,"@stdlib/constants/float64/pinf":54,"@stdlib/math/base/assert/is-nan":65,"@stdlib/math/base/special/abs":69,"tape":287}],135:[function(require,module,exports){
+},{"./../lib":152,"./fixtures/julia/large_scale.json":154,"./fixtures/julia/medium_scale.json":155,"./fixtures/julia/small_scale.json":156,"@stdlib/constants/float64/eps":62,"@stdlib/constants/float64/ninf":72,"@stdlib/constants/float64/pinf":74,"@stdlib/math/base/assert/is-nan":85,"@stdlib/math/base/special/abs":89,"tape":335}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8724,7 +10354,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":138}],136:[function(require,module,exports){
+},{"./is_number.js":164}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8841,7 +10471,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":138,"./zero_pad.js":142}],137:[function(require,module,exports){
+},{"./is_number.js":164,"./zero_pad.js":168}],163:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8884,7 +10514,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":140}],138:[function(require,module,exports){
+},{"./main.js":166}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8932,7 +10562,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],139:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8976,7 +10606,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],140:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9210,7 +10840,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":135,"./format_integer.js":136,"./is_string.js":139,"./space_pad.js":141,"./zero_pad.js":142}],141:[function(require,module,exports){
+},{"./format_double.js":161,"./format_integer.js":162,"./is_string.js":165,"./space_pad.js":167,"./zero_pad.js":168}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9277,7 +10907,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],142:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9363,7 +10993,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],143:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9406,7 +11036,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":144}],144:[function(require,module,exports){
+},{"./main.js":170}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9498,7 +11128,7 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],145:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9543,9 +11173,9 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":147}],146:[function(require,module,exports){
-arguments[4][139][0].apply(exports,arguments)
-},{"dup":139}],147:[function(require,module,exports){
+},{"./main.js":173}],172:[function(require,module,exports){
+arguments[4][165][0].apply(exports,arguments)
+},{"dup":165}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9611,7 +11241,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":146,"@stdlib/string/base/format-interpolate":137,"@stdlib/string/base/format-tokenize":143}],148:[function(require,module,exports){
+},{"./is_string.js":172,"@stdlib/string/base/format-interpolate":163,"@stdlib/string/base/format-tokenize":169}],174:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9653,7 +11283,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":149}],149:[function(require,module,exports){
+},{"./main.js":175}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9683,7 +11313,7 @@ var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-
 
 module.exports = Sym;
 
-},{}],150:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9733,7 +11363,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":151}],151:[function(require,module,exports){
+},{"./main.js":177}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9791,7 +11421,137 @@ function wrap( value ) {
 
 module.exports = wrap;
 
-},{}],152:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Determine the name of a value's constructor.
+*
+* @module @stdlib/utils/constructor-name
+*
+* @example
+* var constructorName = require( '@stdlib/utils/constructor-name' );
+*
+* var v = constructorName( 'a' );
+* // returns 'String'
+*
+* v = constructorName( {} );
+* // returns 'Object'
+*
+* v = constructorName( true );
+* // returns 'Boolean'
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":179}],179:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+var RE = require( '@stdlib/regexp/function-name' ).REGEXP;
+var isBuffer = require( '@stdlib/assert/is-buffer' );
+
+
+// MAIN //
+
+/**
+* Determines the name of a value's constructor.
+*
+* @param {*} v - input value
+* @returns {string} name of a value's constructor
+*
+* @example
+* var v = constructorName( 'a' );
+* // returns 'String'
+*
+* @example
+* var v = constructorName( 5 );
+* // returns 'Number'
+*
+* @example
+* var v = constructorName( null );
+* // returns 'Null'
+*
+* @example
+* var v = constructorName( undefined );
+* // returns 'Undefined'
+*
+* @example
+* var v = constructorName( function noop() {} );
+* // returns 'Function'
+*/
+function constructorName( v ) {
+	var match;
+	var name;
+	var ctor;
+	name = nativeClass( v ).slice( 8, -1 );
+	if ( (name === 'Object' || name === 'Error') && v.constructor ) {
+		ctor = v.constructor;
+		if ( typeof ctor.name === 'string' ) {
+			return ctor.name;
+		}
+		match = RE.exec( ctor.toString() );
+		if ( match ) {
+			return match[ 1 ];
+		}
+	}
+	if ( isBuffer( v ) ) {
+		return 'Buffer';
+	}
+	return name;
+}
+
+
+// EXPORTS //
+
+module.exports = constructorName;
+
+},{"@stdlib/assert/is-buffer":39,"@stdlib/regexp/function-name":145,"@stdlib/utils/native-class":198}],180:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9840,7 +11600,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":153}],153:[function(require,module,exports){
+},{"./main.js":181}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9900,7 +11660,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":157}],154:[function(require,module,exports){
+},{"@stdlib/utils/define-property":185}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9963,7 +11723,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],155:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9993,7 +11753,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],156:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10046,7 +11806,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":155}],157:[function(require,module,exports){
+},{"./define_property.js":183}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10106,7 +11866,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":154,"./has_define_property_support.js":156,"./polyfill.js":158}],158:[function(require,module,exports){
+},{"./builtin.js":182,"./has_define_property_support.js":184,"./polyfill.js":186}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10230,7 +11990,482 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":145}],159:[function(require,module,exports){
+},{"@stdlib/string/format":171}],187:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isFunction = require( '@stdlib/assert/is-function' );
+var builtin = require( './native.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var getProto;
+if ( isFunction( Object.getPrototypeOf ) ) {
+	getProto = builtin;
+} else {
+	getProto = polyfill;
+}
+
+
+// EXPORTS //
+
+module.exports = getProto;
+
+},{"./native.js":190,"./polyfill.js":191,"@stdlib/assert/is-function":45}],188:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return the prototype of a provided object.
+*
+* @module @stdlib/utils/get-prototype-of
+*
+* @example
+* var getPrototype = require( '@stdlib/utils/get-prototype-of' );
+*
+* var proto = getPrototype( {} );
+* // returns {}
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":189}],189:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Object = require( '@stdlib/object/ctor' );
+var getProto = require( './detect.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @param {*} value - input value
+* @returns {(Object|null)} prototype
+*
+* @example
+* var proto = getPrototypeOf( {} );
+* // returns {}
+*/
+function getPrototypeOf( value ) {
+	if (
+		value === null ||
+		value === void 0
+	) {
+		return null;
+	}
+	// In order to ensure consistent ES5/ES6 behavior, cast input value to an object (strings, numbers, booleans); ES5 `Object.getPrototypeOf` throws when provided primitives and ES6 `Object.getPrototypeOf` casts:
+	value = Object( value );
+
+	return getProto( value );
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./detect.js":187,"@stdlib/object/ctor":143}],190:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var getProto = Object.getPrototypeOf;
+
+
+// EXPORTS //
+
+module.exports = getProto;
+
+},{}],191:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var nativeClass = require( '@stdlib/utils/native-class' );
+var getProto = require( './proto.js' );
+
+
+// MAIN //
+
+/**
+* Returns the prototype of a provided object.
+*
+* @private
+* @param {Object} obj - input object
+* @returns {(Object|null)} prototype
+*/
+function getPrototypeOf( obj ) {
+	var proto = getProto( obj );
+	if ( proto || proto === null ) {
+		return proto;
+	}
+	if ( nativeClass( obj.constructor ) === '[object Function]' ) {
+		// May break if the constructor has been tampered with...
+		return obj.constructor.prototype;
+	}
+	if ( obj instanceof Object ) {
+		return Object.prototype;
+	}
+	// Return `null` for objects created via `Object.create( null )`. Also return `null` for cross-realm objects on browsers that lack `__proto__` support, such as IE < 11.
+	return null;
+}
+
+
+// EXPORTS //
+
+module.exports = getPrototypeOf;
+
+},{"./proto.js":192,"@stdlib/utils/native-class":198}],192:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns the value of the `__proto__` property.
+*
+* @private
+* @param {Object} obj - input object
+* @returns {*} value of `__proto__` property
+*/
+function getProto( obj ) {
+	// eslint-disable-next-line no-proto
+	return obj.__proto__;
+}
+
+
+// EXPORTS //
+
+module.exports = getProto;
+
+},{}],193:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var getThis = require( './codegen.js' );
+var Self = require( './self.js' );
+var Win = require( './window.js' );
+var GlobalThis = require( './global_this.js' );
+
+
+// MAIN //
+
+/**
+* Returns the global object.
+*
+* ## Notes
+*
+* -   Using code generation is the **most** reliable way to resolve the global object; however, doing so is likely to violate content security policies (CSPs) in, e.g., Chrome Apps and elsewhere.
+*
+* @private
+* @param {boolean} [codegen=false] - boolean indicating whether to use code generation to resolve the global object
+* @throws {TypeError} must provide a boolean
+* @throws {Error} unable to resolve global object
+* @returns {Object} global object
+*
+* @example
+* var g = getGlobal();
+* // returns {...}
+*/
+function getGlobal( codegen ) {
+	if ( arguments.length ) {
+		if ( !isBoolean( codegen ) ) {
+			throw new TypeError( format( 'invalid argument. Must provide a boolean. Value: `%s`.', codegen ) );
+		}
+		if ( codegen ) {
+			return getThis();
+		}
+		// Fall through...
+	}
+	// Case: 2020 revision of ECMAScript standard
+	if ( GlobalThis ) {
+		return GlobalThis;
+	}
+	// Case: browsers and web workers
+	if ( Self ) {
+		return Self;
+	}
+	// Case: browsers
+	if ( Win ) {
+		return Win;
+	}
+	// Case: unknown
+	throw new Error( 'unexpected error. Unable to resolve global object.' );
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{"./codegen.js":194,"./global_this.js":195,"./self.js":196,"./window.js":197,"@stdlib/assert/is-boolean":33,"@stdlib/string/format":171}],194:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns the global object using code generation.
+*
+* @private
+* @returns {Object} global object
+*/
+function getGlobal() {
+	return new Function( 'return this;' )(); // eslint-disable-line no-new-func, stdlib/require-globals
+}
+
+
+// EXPORTS //
+
+module.exports = getGlobal;
+
+},{}],195:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2022 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disable-line no-undef
+
+
+// EXPORTS //
+
+module.exports = obj;
+
+},{}],196:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var obj = ( typeof self === 'object' ) ? self : null;
+
+
+// EXPORTS //
+
+module.exports = obj;
+
+},{}],197:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+var obj = ( typeof window === 'object' ) ? window : null;
+
+
+// EXPORTS //
+
+module.exports = obj;
+
+},{}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10293,7 +12528,7 @@ if ( hasToStringTag() ) {
 
 module.exports = main;
 
-},{"./main.js":160,"./polyfill.js":161,"@stdlib/assert/has-tostringtag-support":20}],160:[function(require,module,exports){
+},{"./main.js":199,"./polyfill.js":200,"@stdlib/assert/has-tostringtag-support":20}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10351,7 +12586,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":162}],161:[function(require,module,exports){
+},{"./tostring.js":201}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10434,7 +12669,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":162,"./tostringtag.js":163,"@stdlib/assert/has-own-property":16}],162:[function(require,module,exports){
+},{"./tostring.js":201,"./tostringtag.js":202,"@stdlib/assert/has-own-property":16}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10464,7 +12699,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],163:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10499,7 +12734,435 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{"@stdlib/symbol/ctor":148}],164:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":174}],203:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Wrap `require` in a try/catch block.
+*
+* @module @stdlib/utils/try-require
+*
+* @example
+* var tryRequire = require( '@stdlib/utils/try-require' );
+*
+* var out = tryRequire( 'beepboop' );
+*
+* if ( out instanceof Error ) {
+*     console.log( out.message );
+* }
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":204}],204:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isError = require( '@stdlib/assert/is-error' );
+
+
+// MAIN //
+
+/**
+* Wraps `require` in a try/catch block.
+*
+* @param {string} id - module id
+* @returns {*|Error} `module.exports` of the resolved module or an error
+*
+* @example
+* var out = tryRequire( 'beepboop' );
+*
+* if ( out instanceof Error ) {
+*     console.error( out.message );
+* }
+*/
+function tryRequire( id ) {
+	try {
+		return require( id ); // eslint-disable-line stdlib/no-dynamic-require
+	} catch ( error ) {
+		if ( isError( error ) ) {
+			return error;
+		}
+		// Handle case where a literal is thrown...
+		if ( typeof error === 'object' ) {
+			return new Error( JSON.stringify( error ) );
+		}
+		return new Error( error.toString() );
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = tryRequire;
+
+},{"@stdlib/assert/is-error":41}],205:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var RE = require( './fixtures/re.js' );
+var nodeList = require( './fixtures/nodelist.js' );
+var typedarray = require( './fixtures/typedarray.js' );
+
+
+// MAIN //
+
+/**
+* Checks whether a polyfill is needed when using the `typeof` operator.
+*
+* @private
+* @returns {boolean} boolean indicating whether a polyfill is needed
+*/
+function check() {
+	if (
+		// Chrome 1-12 returns 'function' for regular expression instances (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof):
+		typeof RE === 'function' ||
+
+		// Safari 8 returns 'object' for typed array and weak map constructors (underscore #1929):
+		typeof typedarray === 'object' ||
+
+		// PhantomJS 1.9 returns 'function' for `NodeList` instances (underscore #2236):
+		typeof nodeList === 'function'
+	) {
+		return true;
+	}
+	return false;
+}
+
+
+// EXPORTS //
+
+module.exports = check;
+
+},{"./fixtures/nodelist.js":206,"./fixtures/re.js":207,"./fixtures/typedarray.js":208}],206:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var getGlobal = require( '@stdlib/utils/global' );
+
+
+// MAIN //
+
+var root = getGlobal();
+var nodeList = root.document && root.document.childNodes;
+
+
+// EXPORTS //
+
+module.exports = nodeList;
+
+},{"@stdlib/utils/global":193}],207:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+var RE = /./;
+
+
+// EXPORTS //
+
+module.exports = RE;
+
+},{}],208:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
+
+
+// EXPORTS //
+
+module.exports = typedarray;
+
+},{}],209:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Determine a value's type.
+*
+* @module @stdlib/utils/type-of
+*
+* @example
+* var typeOf = require( '@stdlib/utils/type-of' );
+*
+* var str = typeOf( 'a' );
+* // returns 'string'
+*
+* str = typeOf( 5 );
+* // returns 'number'
+*/
+
+// MODULES //
+
+var usePolyfill = require( './check.js' );
+var builtin = require( './main.js' );
+var polyfill = require( './polyfill.js' );
+
+
+// MAIN //
+
+var main = ( usePolyfill() ) ? polyfill : builtin;
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./check.js":205,"./main.js":210,"./polyfill.js":211}],210:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// NOTES //
+
+/*
+* Built-in `typeof` operator behavior:
+*
+* ```text
+* typeof null => 'object'
+* typeof undefined => 'undefined'
+* typeof 'a' => 'string'
+* typeof 5 => 'number'
+* typeof NaN => 'number'
+* typeof true => 'boolean'
+* typeof false => 'boolean'
+* typeof {} => 'object'
+* typeof [] => 'object'
+* typeof function foo(){} => 'function'
+* typeof function* foo(){} => 'object'
+* typeof Symbol() => 'symbol'
+* ```
+*
+*/
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	var type;
+
+	// Address `typeof null` => `object` (see http://wiki.ecmascript.org/doku.php?id=harmony:typeof_null):
+	if ( v === null ) {
+		return 'null';
+	}
+	type = typeof v;
+
+	// If the `typeof` operator returned something other than `object`, we are done. Otherwise, we need to check for an internal class name or search for a constructor.
+	if ( type === 'object' ) {
+		return ctorName( v ).toLowerCase();
+	}
+	return type;
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":178}],211:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var ctorName = require( '@stdlib/utils/constructor-name' );
+
+
+// MAIN //
+
+/**
+* Determines a value's type.
+*
+* @param {*} v - input value
+* @returns {string} string indicating the value's type
+*/
+function typeOf( v ) {
+	return ctorName( v ).toLowerCase();
+}
+
+
+// EXPORTS //
+
+module.exports = typeOf;
+
+},{"@stdlib/utils/constructor-name":178}],212:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -10651,11 +13314,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],165:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 
-},{}],166:[function(require,module,exports){
-arguments[4][165][0].apply(exports,arguments)
-},{"dup":165}],167:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
+arguments[4][213][0].apply(exports,arguments)
+},{"dup":213}],215:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -12436,7 +15099,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":164,"buffer":167,"ieee754":270}],168:[function(require,module,exports){
+},{"base64-js":212,"buffer":215,"ieee754":318}],216:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -12935,7 +15598,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],169:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -13468,7 +16131,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":277}],170:[function(require,module,exports){
+},{"_process":325}],218:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13599,7 +16262,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":168,"inherits":271,"readable-stream/lib/_stream_duplex.js":172,"readable-stream/lib/_stream_passthrough.js":173,"readable-stream/lib/_stream_readable.js":174,"readable-stream/lib/_stream_transform.js":175,"readable-stream/lib/_stream_writable.js":176,"readable-stream/lib/internal/streams/end-of-stream.js":180,"readable-stream/lib/internal/streams/pipeline.js":182}],171:[function(require,module,exports){
+},{"events":216,"inherits":319,"readable-stream/lib/_stream_duplex.js":220,"readable-stream/lib/_stream_passthrough.js":221,"readable-stream/lib/_stream_readable.js":222,"readable-stream/lib/_stream_transform.js":223,"readable-stream/lib/_stream_writable.js":224,"readable-stream/lib/internal/streams/end-of-stream.js":228,"readable-stream/lib/internal/streams/pipeline.js":230}],219:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -13728,7 +16391,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],172:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -13870,7 +16533,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":174,"./_stream_writable":176,"_process":277,"inherits":271}],173:[function(require,module,exports){
+},{"./_stream_readable":222,"./_stream_writable":224,"_process":325,"inherits":319}],221:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -13910,7 +16573,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":175,"inherits":271}],174:[function(require,module,exports){
+},{"./_stream_transform":223,"inherits":319}],222:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -15037,7 +17700,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":171,"./_stream_duplex":172,"./internal/streams/async_iterator":177,"./internal/streams/buffer_list":178,"./internal/streams/destroy":179,"./internal/streams/from":181,"./internal/streams/state":183,"./internal/streams/stream":184,"_process":277,"buffer":167,"events":168,"inherits":271,"string_decoder/":286,"util":165}],175:[function(require,module,exports){
+},{"../errors":219,"./_stream_duplex":220,"./internal/streams/async_iterator":225,"./internal/streams/buffer_list":226,"./internal/streams/destroy":227,"./internal/streams/from":229,"./internal/streams/state":231,"./internal/streams/stream":232,"_process":325,"buffer":215,"events":216,"inherits":319,"string_decoder/":334,"util":213}],223:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -15239,7 +17902,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":171,"./_stream_duplex":172,"inherits":271}],176:[function(require,module,exports){
+},{"../errors":219,"./_stream_duplex":220,"inherits":319}],224:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -15939,7 +18602,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":171,"./_stream_duplex":172,"./internal/streams/destroy":179,"./internal/streams/state":183,"./internal/streams/stream":184,"_process":277,"buffer":167,"inherits":271,"util-deprecate":295}],177:[function(require,module,exports){
+},{"../errors":219,"./_stream_duplex":220,"./internal/streams/destroy":227,"./internal/streams/state":231,"./internal/streams/stream":232,"_process":325,"buffer":215,"inherits":319,"util-deprecate":343}],225:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -16149,7 +18812,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":180,"_process":277}],178:[function(require,module,exports){
+},{"./end-of-stream":228,"_process":325}],226:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -16360,7 +19023,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":167,"util":165}],179:[function(require,module,exports){
+},{"buffer":215,"util":213}],227:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -16468,7 +19131,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":277}],180:[function(require,module,exports){
+},{"_process":325}],228:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -16573,12 +19236,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":171}],181:[function(require,module,exports){
+},{"../../../errors":219}],229:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],182:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -16676,7 +19339,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":171,"./end-of-stream":180}],183:[function(require,module,exports){
+},{"../../../errors":219,"./end-of-stream":228}],231:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -16704,10 +19367,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":171}],184:[function(require,module,exports){
+},{"../../../errors":219}],232:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":168}],185:[function(require,module,exports){
+},{"events":216}],233:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -16724,7 +19387,7 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":186,"get-intrinsic":261}],186:[function(require,module,exports){
+},{"./":234,"get-intrinsic":309}],234:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -16761,7 +19424,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"es-define-property":246,"es-errors/type":252,"function-bind":260,"get-intrinsic":261,"set-function-length":281}],187:[function(require,module,exports){
+},{"es-define-property":294,"es-errors/type":300,"function-bind":308,"get-intrinsic":309,"set-function-length":329}],235:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -16857,7 +19520,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":188,"./lib/keys.js":189}],188:[function(require,module,exports){
+},{"./lib/is_arguments.js":236,"./lib/keys.js":237}],236:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -16879,7 +19542,7 @@ function unsupported(object){
     false;
 };
 
-},{}],189:[function(require,module,exports){
+},{}],237:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -16890,7 +19553,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],190:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 'use strict';
 
 var $defineProperty = require('es-define-property');
@@ -16948,7 +19611,7 @@ module.exports = function defineDataProperty(
 	}
 };
 
-},{"es-define-property":246,"es-errors/syntax":251,"es-errors/type":252,"gopd":262}],191:[function(require,module,exports){
+},{"es-define-property":294,"es-errors/syntax":299,"es-errors/type":300,"gopd":310}],239:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -16997,14 +19660,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"define-data-property":190,"has-property-descriptors":263,"object-keys":275}],192:[function(require,module,exports){
+},{"define-data-property":238,"has-property-descriptors":311,"object-keys":323}],240:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],193:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -17043,7 +19706,7 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":224,"./ToPrimitive":226,"./Type":231}],194:[function(require,module,exports){
+},{"./ToNumber":272,"./ToPrimitive":274,"./Type":279}],242:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -17107,7 +19770,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":239,"../helpers/isNaN":240,"../helpers/isPrefixOf":241,"./ToNumber":224,"./ToPrimitive":226,"es-errors/type":252,"get-intrinsic":261}],195:[function(require,module,exports){
+},{"../helpers/isFinite":287,"../helpers/isNaN":288,"../helpers/isPrefixOf":289,"./ToNumber":272,"./ToPrimitive":274,"es-errors/type":300,"get-intrinsic":309}],243:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -17147,7 +19810,7 @@ module.exports = function Canonicalize(ch, IgnoreCase) {
 	return cu;
 };
 
-},{"call-bind/callBound":185,"es-errors/type":252}],196:[function(require,module,exports){
+},{"call-bind/callBound":233,"es-errors/type":300}],244:[function(require,module,exports){
 'use strict';
 
 var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
@@ -17158,7 +19821,7 @@ module.exports = function CheckObjectCoercible(value) {
 	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"es-object-atoms/RequireObjectCoercible":254}],197:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":302}],245:[function(require,module,exports){
 'use strict';
 
 var $EvalError = require('es-errors/eval');
@@ -17212,7 +19875,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":200,"./InLeapYear":204,"./MonthFromTime":214,"es-errors/eval":247}],198:[function(require,module,exports){
+},{"./DayWithinYear":248,"./InLeapYear":252,"./MonthFromTime":262,"es-errors/eval":295}],246:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17225,7 +19888,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":245,"./floor":235}],199:[function(require,module,exports){
+},{"../helpers/timeConstants":293,"./floor":283}],247:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17237,7 +19900,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":235}],200:[function(require,module,exports){
+},{"./floor":283}],248:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -17250,7 +19913,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":198,"./DayFromYear":199,"./YearFromTime":233}],201:[function(require,module,exports){
+},{"./Day":246,"./DayFromYear":247,"./YearFromTime":281}],249:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -17270,7 +19933,7 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":236}],202:[function(require,module,exports){
+},{"./modulo":284}],250:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -17310,7 +19973,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/records/property-descriptor":243,"./IsAccessorDescriptor":205,"./IsDataDescriptor":207,"es-errors/type":252}],203:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":291,"./IsAccessorDescriptor":253,"./IsDataDescriptor":255,"es-errors/type":300}],251:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17326,7 +19989,7 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":245,"./floor":235,"./modulo":236}],204:[function(require,module,exports){
+},{"../helpers/timeConstants":293,"./floor":283,"./modulo":284}],252:[function(require,module,exports){
 'use strict';
 
 var $EvalError = require('es-errors/eval');
@@ -17347,7 +20010,7 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":201,"./YearFromTime":233,"es-errors/eval":247}],205:[function(require,module,exports){
+},{"./DaysInYear":249,"./YearFromTime":281,"es-errors/eval":295}],253:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -17374,14 +20037,14 @@ module.exports = function IsAccessorDescriptor(Desc) {
 	return true;
 };
 
-},{"../helpers/records/property-descriptor":243,"es-errors/type":252,"hasown":269}],206:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":291,"es-errors/type":300,"hasown":317}],254:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":272}],207:[function(require,module,exports){
+},{"is-callable":320}],255:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -17408,7 +20071,7 @@ module.exports = function IsDataDescriptor(Desc) {
 	return true;
 };
 
-},{"../helpers/records/property-descriptor":243,"es-errors/type":252,"hasown":269}],208:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":291,"es-errors/type":300,"hasown":317}],256:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -17436,7 +20099,7 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"./IsAccessorDescriptor":205,"./IsDataDescriptor":207,"./IsPropertyDescriptor":209,"es-errors/type":252}],209:[function(require,module,exports){
+},{"./IsAccessorDescriptor":253,"./IsDataDescriptor":255,"./IsPropertyDescriptor":257,"es-errors/type":300}],257:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
@@ -17449,7 +20112,7 @@ module.exports = function IsPropertyDescriptor(Desc) {
 	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/records/property-descriptor":243}],210:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":291}],258:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -17464,7 +20127,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":239,"../helpers/timeConstants":245}],211:[function(require,module,exports){
+},{"../helpers/isFinite":287,"../helpers/timeConstants":293}],259:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -17499,7 +20162,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":239,"./DateFromTime":197,"./Day":198,"./MonthFromTime":214,"./ToInteger":223,"./YearFromTime":233,"./floor":235,"./modulo":236,"get-intrinsic":261}],212:[function(require,module,exports){
+},{"../helpers/isFinite":287,"./DateFromTime":245,"./Day":246,"./MonthFromTime":262,"./ToInteger":271,"./YearFromTime":281,"./floor":283,"./modulo":284,"get-intrinsic":309}],260:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -17524,7 +20187,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":239,"../helpers/timeConstants":245,"./ToInteger":223}],213:[function(require,module,exports){
+},{"../helpers/isFinite":287,"../helpers/timeConstants":293,"./ToInteger":271}],261:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17540,7 +20203,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":245,"./floor":235,"./modulo":236}],214:[function(require,module,exports){
+},{"../helpers/timeConstants":293,"./floor":283,"./modulo":284}],262:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -17589,7 +20252,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":200,"./InLeapYear":204}],215:[function(require,module,exports){
+},{"./DayWithinYear":248,"./InLeapYear":252}],263:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -17604,7 +20267,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":240}],216:[function(require,module,exports){
+},{"../helpers/isNaN":288}],264:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -17620,7 +20283,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":245,"./floor":235,"./modulo":236}],217:[function(require,module,exports){
+},{"../helpers/timeConstants":293,"./floor":283,"./modulo":284}],265:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -17639,7 +20302,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":231}],218:[function(require,module,exports){
+},{"./Type":279}],266:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -17662,7 +20325,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":239,"./ToNumber":224,"./abs":234,"get-intrinsic":261}],219:[function(require,module,exports){
+},{"../helpers/isFinite":287,"./ToNumber":272,"./abs":282,"get-intrinsic":309}],267:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -17675,7 +20338,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":245,"./DayFromYear":199}],220:[function(require,module,exports){
+},{"../helpers/timeConstants":293,"./DayFromYear":247}],268:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -17689,14 +20352,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":245,"./modulo":236}],221:[function(require,module,exports){
+},{"../helpers/timeConstants":293,"./modulo":284}],269:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],222:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -17707,7 +20370,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":224}],223:[function(require,module,exports){
+},{"./ToNumber":272}],271:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -17727,7 +20390,7 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":239,"../helpers/isNaN":240,"../helpers/sign":244,"./ToNumber":224,"./abs":234,"./floor":235}],224:[function(require,module,exports){
+},{"../helpers/isFinite":287,"../helpers/isNaN":288,"../helpers/sign":292,"./ToNumber":272,"./abs":282,"./floor":283}],272:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
@@ -17761,21 +20424,21 @@ module.exports = function ToNumber(value) {
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":226,"call-bind/callBound":185,"safe-regex-test":280}],225:[function(require,module,exports){
+},{"./ToPrimitive":274,"call-bind/callBound":233,"safe-regex-test":328}],273:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
 module.exports = require('es-object-atoms/ToObject');
 
-},{"es-object-atoms/ToObject":255}],226:[function(require,module,exports){
+},{"es-object-atoms/ToObject":303}],274:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":257}],227:[function(require,module,exports){
+},{"es-to-primitive/es5":305}],275:[function(require,module,exports){
 'use strict';
 
 var hasOwn = require('hasown');
@@ -17827,7 +20490,7 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	return desc;
 };
 
-},{"./IsCallable":206,"./ToBoolean":221,"./Type":231,"es-errors/type":252,"hasown":269}],228:[function(require,module,exports){
+},{"./IsCallable":254,"./ToBoolean":269,"./Type":279,"es-errors/type":300,"hasown":317}],276:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -17841,7 +20504,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":261}],229:[function(require,module,exports){
+},{"get-intrinsic":309}],277:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -17862,7 +20525,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":239,"../helpers/isNaN":240,"../helpers/sign":244,"./ToNumber":224,"./abs":234,"./floor":235,"./modulo":236}],230:[function(require,module,exports){
+},{"../helpers/isFinite":287,"../helpers/isNaN":288,"../helpers/sign":292,"./ToNumber":272,"./abs":282,"./floor":283,"./modulo":284}],278:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -17873,7 +20536,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":224}],231:[function(require,module,exports){
+},{"./ToNumber":272}],279:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -17899,7 +20562,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],232:[function(require,module,exports){
+},{}],280:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -17911,7 +20574,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":198,"./modulo":236}],233:[function(require,module,exports){
+},{"./Day":246,"./modulo":284}],281:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -17929,7 +20592,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":185,"get-intrinsic":261}],234:[function(require,module,exports){
+},{"call-bind/callBound":233,"get-intrinsic":309}],282:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -17942,7 +20605,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":261}],235:[function(require,module,exports){
+},{"get-intrinsic":309}],283:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -17955,7 +20618,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],236:[function(require,module,exports){
+},{}],284:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -17966,7 +20629,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":242}],237:[function(require,module,exports){
+},{"../helpers/mod":290}],285:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -17979,7 +20642,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":245,"./modulo":236}],238:[function(require,module,exports){
+},{"../helpers/timeConstants":293,"./modulo":284}],286:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -18033,21 +20696,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":193,"./5/AbstractRelationalComparison":194,"./5/Canonicalize":195,"./5/CheckObjectCoercible":196,"./5/DateFromTime":197,"./5/Day":198,"./5/DayFromYear":199,"./5/DayWithinYear":200,"./5/DaysInYear":201,"./5/FromPropertyDescriptor":202,"./5/HourFromTime":203,"./5/InLeapYear":204,"./5/IsAccessorDescriptor":205,"./5/IsCallable":206,"./5/IsDataDescriptor":207,"./5/IsGenericDescriptor":208,"./5/IsPropertyDescriptor":209,"./5/MakeDate":210,"./5/MakeDay":211,"./5/MakeTime":212,"./5/MinFromTime":213,"./5/MonthFromTime":214,"./5/SameValue":215,"./5/SecFromTime":216,"./5/StrictEqualityComparison":217,"./5/TimeClip":218,"./5/TimeFromYear":219,"./5/TimeWithinDay":220,"./5/ToBoolean":221,"./5/ToInt32":222,"./5/ToInteger":223,"./5/ToNumber":224,"./5/ToObject":225,"./5/ToPrimitive":226,"./5/ToPropertyDescriptor":227,"./5/ToString":228,"./5/ToUint16":229,"./5/ToUint32":230,"./5/Type":231,"./5/WeekDay":232,"./5/YearFromTime":233,"./5/abs":234,"./5/floor":235,"./5/modulo":236,"./5/msFromTime":237}],239:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":241,"./5/AbstractRelationalComparison":242,"./5/Canonicalize":243,"./5/CheckObjectCoercible":244,"./5/DateFromTime":245,"./5/Day":246,"./5/DayFromYear":247,"./5/DayWithinYear":248,"./5/DaysInYear":249,"./5/FromPropertyDescriptor":250,"./5/HourFromTime":251,"./5/InLeapYear":252,"./5/IsAccessorDescriptor":253,"./5/IsCallable":254,"./5/IsDataDescriptor":255,"./5/IsGenericDescriptor":256,"./5/IsPropertyDescriptor":257,"./5/MakeDate":258,"./5/MakeDay":259,"./5/MakeTime":260,"./5/MinFromTime":261,"./5/MonthFromTime":262,"./5/SameValue":263,"./5/SecFromTime":264,"./5/StrictEqualityComparison":265,"./5/TimeClip":266,"./5/TimeFromYear":267,"./5/TimeWithinDay":268,"./5/ToBoolean":269,"./5/ToInt32":270,"./5/ToInteger":271,"./5/ToNumber":272,"./5/ToObject":273,"./5/ToPrimitive":274,"./5/ToPropertyDescriptor":275,"./5/ToString":276,"./5/ToUint16":277,"./5/ToUint32":278,"./5/Type":279,"./5/WeekDay":280,"./5/YearFromTime":281,"./5/abs":282,"./5/floor":283,"./5/modulo":284,"./5/msFromTime":285}],287:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./isNaN');
 
 module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{"./isNaN":240}],240:[function(require,module,exports){
+},{"./isNaN":288}],288:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],241:[function(require,module,exports){
+},{}],289:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -18062,7 +20725,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":185}],242:[function(require,module,exports){
+},{"call-bind/callBound":233}],290:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -18072,7 +20735,7 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],243:[function(require,module,exports){
+},{}],291:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -18110,14 +20773,14 @@ module.exports = function isPropertyDescriptor(Desc) {
 	return true;
 };
 
-},{"es-errors/type":252,"hasown":269}],244:[function(require,module,exports){
+},{"es-errors/type":300,"hasown":317}],292:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],245:[function(require,module,exports){
+},{}],293:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -18138,7 +20801,7 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],246:[function(require,module,exports){
+},{}],294:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -18156,49 +20819,49 @@ if ($defineProperty) {
 
 module.exports = $defineProperty;
 
-},{"get-intrinsic":261}],247:[function(require,module,exports){
+},{"get-intrinsic":309}],295:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./eval')} */
 module.exports = EvalError;
 
-},{}],248:[function(require,module,exports){
+},{}],296:[function(require,module,exports){
 'use strict';
 
 /** @type {import('.')} */
 module.exports = Error;
 
-},{}],249:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./range')} */
 module.exports = RangeError;
 
-},{}],250:[function(require,module,exports){
+},{}],298:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./ref')} */
 module.exports = ReferenceError;
 
-},{}],251:[function(require,module,exports){
+},{}],299:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./syntax')} */
 module.exports = SyntaxError;
 
-},{}],252:[function(require,module,exports){
+},{}],300:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./type')} */
 module.exports = TypeError;
 
-},{}],253:[function(require,module,exports){
+},{}],301:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./uri')} */
 module.exports = URIError;
 
-},{}],254:[function(require,module,exports){
+},{}],302:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -18211,7 +20874,7 @@ module.exports = function RequireObjectCoercible(value) {
 	return value;
 };
 
-},{"es-errors/type":252}],255:[function(require,module,exports){
+},{"es-errors/type":300}],303:[function(require,module,exports){
 'use strict';
 
 var $Object = require('./');
@@ -18223,13 +20886,13 @@ module.exports = function ToObject(value) {
 	return $Object(value);
 };
 
-},{"./":256,"./RequireObjectCoercible":254}],256:[function(require,module,exports){
+},{"./":304,"./RequireObjectCoercible":302}],304:[function(require,module,exports){
 'use strict';
 
 /** @type {import('.')} */
 module.exports = Object;
 
-},{}],257:[function(require,module,exports){
+},{}],305:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -18276,14 +20939,14 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":258,"is-callable":272}],258:[function(require,module,exports){
+},{"./helpers/isPrimitive":306,"is-callable":320}],306:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],259:[function(require,module,exports){
+},{}],307:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -18369,14 +21032,14 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],260:[function(require,module,exports){
+},{}],308:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":259}],261:[function(require,module,exports){
+},{"./implementation":307}],309:[function(require,module,exports){
 'use strict';
 
 var undefined;
@@ -18737,7 +21400,7 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"es-errors":248,"es-errors/eval":247,"es-errors/range":249,"es-errors/ref":250,"es-errors/syntax":251,"es-errors/type":252,"es-errors/uri":253,"function-bind":260,"has-proto":264,"has-symbols":265,"hasown":269}],262:[function(require,module,exports){
+},{"es-errors":296,"es-errors/eval":295,"es-errors/range":297,"es-errors/ref":298,"es-errors/syntax":299,"es-errors/type":300,"es-errors/uri":301,"function-bind":308,"has-proto":312,"has-symbols":313,"hasown":317}],310:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -18755,7 +21418,7 @@ if ($gOPD) {
 
 module.exports = $gOPD;
 
-},{"get-intrinsic":261}],263:[function(require,module,exports){
+},{"get-intrinsic":309}],311:[function(require,module,exports){
 'use strict';
 
 var $defineProperty = require('es-define-property');
@@ -18779,7 +21442,7 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"es-define-property":246}],264:[function(require,module,exports){
+},{"es-define-property":294}],312:[function(require,module,exports){
 'use strict';
 
 var test = {
@@ -18796,7 +21459,7 @@ module.exports = function hasProto() {
 		&& !(test instanceof $Object);
 };
 
-},{}],265:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -18811,7 +21474,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":266}],266:[function(require,module,exports){
+},{"./shams":314}],314:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -18855,7 +21518,7 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],267:[function(require,module,exports){
+},{}],315:[function(require,module,exports){
 'use strict';
 
 var hasSymbols = require('has-symbols/shams');
@@ -18865,14 +21528,14 @@ module.exports = function hasToStringTagShams() {
 	return hasSymbols() && !!Symbol.toStringTag;
 };
 
-},{"has-symbols/shams":266}],268:[function(require,module,exports){
+},{"has-symbols/shams":314}],316:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":260}],269:[function(require,module,exports){
+},{"function-bind":308}],317:[function(require,module,exports){
 'use strict';
 
 var call = Function.prototype.call;
@@ -18882,7 +21545,7 @@ var bind = require('function-bind');
 /** @type {import('.')} */
 module.exports = bind.call(call, $hasOwn);
 
-},{"function-bind":260}],270:[function(require,module,exports){
+},{"function-bind":308}],318:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -18969,7 +21632,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],271:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -18998,7 +21661,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],272:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -19101,7 +21764,7 @@ module.exports = reflectApply
 		return tryFunctionObject(value);
 	};
 
-},{}],273:[function(require,module,exports){
+},{}],321:[function(require,module,exports){
 'use strict';
 
 var callBound = require('call-bind/callBound');
@@ -19161,7 +21824,7 @@ module.exports = hasToStringTag
 		return $toString(value) === regexClass;
 	};
 
-},{"call-bind/callBound":185,"has-tostringtag/shams":267}],274:[function(require,module,exports){
+},{"call-bind/callBound":233,"has-tostringtag/shams":315}],322:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -19285,7 +21948,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":276}],275:[function(require,module,exports){
+},{"./isArguments":324}],323:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -19319,7 +21982,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":274,"./isArguments":276}],276:[function(require,module,exports){
+},{"./implementation":322,"./isArguments":324}],324:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -19338,7 +22001,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],277:[function(require,module,exports){
+},{}],325:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -19524,7 +22187,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],278:[function(require,module,exports){
+},{}],326:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -19557,7 +22220,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":277,"through":293,"timers":294}],279:[function(require,module,exports){
+},{"_process":325,"through":341,"timers":342}],327:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -19624,7 +22287,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":167}],280:[function(require,module,exports){
+},{"buffer":215}],328:[function(require,module,exports){
 'use strict';
 
 var callBound = require('call-bind/callBound');
@@ -19642,7 +22305,7 @@ module.exports = function regexTester(regex) {
 	};
 };
 
-},{"call-bind/callBound":185,"es-errors/type":252,"is-regex":273}],281:[function(require,module,exports){
+},{"call-bind/callBound":233,"es-errors/type":300,"is-regex":321}],329:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -19686,7 +22349,7 @@ module.exports = function setFunctionLength(fn, length) {
 	return fn;
 };
 
-},{"define-data-property":190,"es-errors/type":252,"get-intrinsic":261,"gopd":262,"has-property-descriptors":263}],282:[function(require,module,exports){
+},{"define-data-property":238,"es-errors/type":300,"get-intrinsic":309,"gopd":310,"has-property-descriptors":311}],330:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -19701,7 +22364,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":238,"function-bind":260}],283:[function(require,module,exports){
+},{"es-abstract/es5":286,"function-bind":308}],331:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -19721,7 +22384,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":282,"./polyfill":284,"./shim":285,"define-properties":191,"function-bind":260}],284:[function(require,module,exports){
+},{"./implementation":330,"./polyfill":332,"./shim":333,"define-properties":239,"function-bind":308}],332:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -19735,7 +22398,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":282}],285:[function(require,module,exports){
+},{"./implementation":330}],333:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -19747,7 +22410,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":284,"define-properties":191}],286:[function(require,module,exports){
+},{"./polyfill":332,"define-properties":239}],334:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -20044,7 +22707,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":279}],287:[function(require,module,exports){
+},{"safe-buffer":327}],335:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -20198,7 +22861,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":288,"./lib/results":290,"./lib/test":291,"_process":277,"defined":192,"through":293,"timers":294}],288:[function(require,module,exports){
+},{"./lib/default_stream":336,"./lib/results":338,"./lib/test":339,"_process":325,"defined":240,"through":341,"timers":342}],336:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -20233,7 +22896,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":277,"fs":166,"through":293}],289:[function(require,module,exports){
+},{"_process":325,"fs":214,"through":341}],337:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -20241,7 +22904,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":277,"timers":294}],290:[function(require,module,exports){
+},{"_process":325,"timers":342}],338:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -20432,7 +23095,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":277,"events":168,"function-bind":260,"has":268,"inherits":271,"object-inspect":292,"resumer":278,"through":293,"timers":294}],291:[function(require,module,exports){
+},{"_process":325,"events":216,"function-bind":308,"has":316,"inherits":319,"object-inspect":340,"resumer":326,"through":341,"timers":342}],339:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -20933,7 +23596,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":289,"deep-equal":187,"defined":192,"events":168,"has":268,"inherits":271,"path":169,"string.prototype.trim":283}],292:[function(require,module,exports){
+},{"./next_tick":337,"deep-equal":235,"defined":240,"events":216,"has":316,"inherits":319,"path":217,"string.prototype.trim":331}],340:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -21127,7 +23790,7 @@ function inspectString (str) {
     }
 }
 
-},{}],293:[function(require,module,exports){
+},{}],341:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -21239,7 +23902,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":277,"stream":170}],294:[function(require,module,exports){
+},{"_process":325,"stream":218}],342:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -21318,7 +23981,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":277,"timers":294}],295:[function(require,module,exports){
+},{"process/browser.js":325,"timers":342}],343:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -21389,4 +24052,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[132,133,134]);
+},{}]},{},[157,158,159,160]);

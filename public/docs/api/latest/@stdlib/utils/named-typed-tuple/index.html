@@ -213,7 +213,7 @@ x = tuple[ <span class="hljs-number">0</span> ];
 
 y = tuple[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns -2.0</span>
-</code></pre><p>A callback function is provided three arguments:</p><ul><li><code>value</code>: source value</li><li><code>index</code>: source index</li><li><code>field</code>: tuple field</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
+</code></pre><p>A callback function is provided three arguments:</p><ul><li><code>value</code>: source value.</li><li><code>index</code>: source index.</li><li><code>field</code>: tuple field.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapFcn</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
@@ -272,7 +272,7 @@ x = tuple[ <span class="hljs-number">0</span> ];
 
 y = tuple[ <span class="hljs-number">1</span> ];
 <span class="hljs-comment">// returns -2.0</span>
-</code></pre><p>A callback function is provided two arguments:</p><ul><li><code>value</code>: source object tuple field value</li><li><code>field</code>: source object tuple field name</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
+</code></pre><p>A callback function is provided two arguments:</p><ul><li><code>value</code>: source object tuple field value.</li><li><code>field</code>: source object tuple field name.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapFcn</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
@@ -463,7 +463,7 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = tuple.every( predicate );
 <span class="hljs-comment">// returns false</span>
-</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element</li><li><code>index</code>: tuple index</li><li><code>field</code>: tuple field name</li><li><code>tuple</code>: tuple on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
+</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element.</li><li><code>index</code>: tuple index.</li><li><code>field</code>: tuple field name.</li><li><code>tuple</code>: tuple on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ] );
 
@@ -566,7 +566,7 @@ tuple.fill( <span class="hljs-number">2.0</span>, -tuple.length, -<span class="h
 
 <span class="hljs-keyword">var</span> p2 = p1.filter( predicate );
 <span class="hljs-comment">// returns null</span>
-</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element</li><li><code>index</code>: tuple index</li><li><code>field</code>: tuple field name</li><li><code>tuple</code>: tuple on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
+</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element.</li><li><code>index</code>: tuple index.</li><li><code>field</code>: tuple field name.</li><li><code>tuple</code>: tuple on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> p1 = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span> ] );
 
@@ -603,7 +603,7 @@ tuple.fill( <span class="hljs-number">2.0</span>, -tuple.length, -<span class="h
 
 <span class="hljs-keyword">var</span> v = tuple.find( predicate );
 <span class="hljs-comment">// returns undefined</span>
-</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element</li><li><code>index</code>: tuple index</li><li><code>field</code>: tuple field name</li><li><code>tuple</code>: tuple on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
+</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element.</li><li><code>index</code>: tuple index.</li><li><code>field</code>: tuple field name.</li><li><code>tuple</code>: tuple on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span> ] );
 
@@ -641,7 +641,7 @@ tuple.fill( <span class="hljs-number">2.0</span>, -tuple.length, -<span class="h
 
 <span class="hljs-keyword">var</span> field = tuple.findField( predicate );
 <span class="hljs-comment">// returns undefined</span>
-</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element</li><li><code>index</code>: tuple index</li><li><code>field</code>: tuple field name</li><li><code>tuple</code>: tuple on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
+</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element.</li><li><code>index</code>: tuple index.</li><li><code>field</code>: tuple field name.</li><li><code>tuple</code>: tuple on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span> ] );
 
@@ -679,7 +679,7 @@ tuple.fill( <span class="hljs-number">2.0</span>, -tuple.length, -<span class="h
 
 <span class="hljs-keyword">var</span> idx = tuple.findIndex( predicate );
 <span class="hljs-comment">// returns -1</span>
-</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element</li><li><code>index</code>: tuple index</li><li><code>field</code>: tuple field name</li><li><code>tuple</code>: tuple on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
+</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element.</li><li><code>index</code>: tuple index.</li><li><code>field</code>: tuple field name.</li><li><code>tuple</code>: tuple on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span> ] );
 
@@ -714,7 +714,7 @@ tuple.forEach( fcn );
 
 <span class="hljs-built_in">console</span>.log( str );
 <span class="hljs-comment">// => 'x=1 y=0 z=-1'</span>
-</code></pre><p>The callback is provided four arguments:</p><ul><li><code>value</code>: tuple element</li><li><code>index</code>: tuple index</li><li><code>field</code>: tuple field name</li><li><code>tuple</code>: tuple on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
+</code></pre><p>The callback is provided four arguments:</p><ul><li><code>value</code>: tuple element.</li><li><code>index</code>: tuple index.</li><li><code>field</code>: tuple field name.</li><li><code>tuple</code>: tuple on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span> ], <span class="hljs-string">'int32'</span> );
 
@@ -884,7 +884,7 @@ idx = tuple.lastIndexOf( <span class="hljs-number">2.0</span> );
 
 <span class="hljs-keyword">var</span> z = p2.z;
 <span class="hljs-comment">// returns -2.0</span>
-</code></pre><p>A callback is provided four arguments:</p><ul><li><code>value</code>: tuple element</li><li><code>index</code>: tuple index</li><li><code>field</code>: tuple field name</li><li><code>tuple</code>: tuple on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
+</code></pre><p>A callback is provided four arguments:</p><ul><li><code>value</code>: tuple element.</li><li><code>index</code>: tuple index.</li><li><code>field</code>: tuple field name.</li><li><code>tuple</code>: tuple on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> p1 = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">1.0</span> ] );
 
@@ -921,7 +921,7 @@ idx = tuple.lastIndexOf( <span class="hljs-number">2.0</span> );
 
 <span class="hljs-keyword">var</span> v = tuple.reduce( fcn, <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns 13.0</span>
-</code></pre><p>A callback is provided five arguments:</p><ul><li><code>acc</code>: accumulated result</li><li><code>value</code>: tuple element</li><li><code>index</code>: tuple index</li><li><code>field</code>: tuple field name</li><li><code>tuple</code>: tuple on which the method is invoked</li></ul><p><a name="method-reduce-right"></a></p><h4 id="tuplereduceright-fcn-initialvalue-">tuple.reduceRight( fcn[, initialValue] )</h4><p>Applies a function against an accumulator and each element in a tuple and returns the accumulated result, iterating from right to left.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
+</code></pre><p>A callback is provided five arguments:</p><ul><li><code>acc</code>: accumulated result.</li><li><code>value</code>: tuple element.</li><li><code>index</code>: tuple index.</li><li><code>field</code>: tuple field name.</li><li><code>tuple</code>: tuple on which the method is invoked.</li></ul><p><a name="method-reduce-right"></a></p><h4 id="tuplereduceright-fcn-initialvalue-">tuple.reduceRight( fcn[, initialValue] )</h4><p>Applies a function against an accumulator and each element in a tuple and returns the accumulated result, iterating from right to left.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">3.0</span> ] );
 
@@ -941,7 +941,7 @@ idx = tuple.lastIndexOf( <span class="hljs-number">2.0</span> );
 
 <span class="hljs-keyword">var</span> v = tuple.reduceRight( fcn, <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns 13.0</span>
-</code></pre><p>A callback is provided five arguments:</p><ul><li><code>acc</code>: accumulated result</li><li><code>value</code>: tuple element</li><li><code>index</code>: tuple index</li><li><code>field</code>: tuple field name</li><li><code>tuple</code>: tuple on which the method is invoked</li></ul><p><a name="method-reverse"></a></p><h4 id="tuplereverse">tuple.reverse()</h4><p>Reverses a tuple <strong>in-place</strong> (thus mutating the tuple on which the method is invoked).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
+</code></pre><p>A callback is provided five arguments:</p><ul><li><code>acc</code>: accumulated result.</li><li><code>value</code>: tuple element.</li><li><code>index</code>: tuple index.</li><li><code>field</code>: tuple field name.</li><li><code>tuple</code>: tuple on which the method is invoked.</li></ul><p><a name="method-reverse"></a></p><h4 id="tuplereverse">tuple.reverse()</h4><p>Reverses a tuple <strong>in-place</strong> (thus mutating the tuple on which the method is invoked).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span>, <span class="hljs-string">'z'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">0.0</span>, -<span class="hljs-number">3.0</span> ] );
 
@@ -1089,7 +1089,7 @@ bool = ( p1.buffer === p2.buffer );
 
 <span class="hljs-keyword">var</span> bool = tuple.some( predicate );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element</li><li><code>index</code>: tuple index</li><li><code>field</code>: tuple field name</li><li><code>tuple</code>: tuple on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
+</code></pre><p>A <code>predicate</code> function is provided four arguments:</p><ul><li><code>value</code>: tuple element.</li><li><code>index</code>: tuple index.</li><li><code>field</code>: tuple field name.</li><li><code>tuple</code>: tuple on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> factory = namedtypedtuple( [ <span class="hljs-string">'x'</span>, <span class="hljs-string">'y'</span> ] );
 
 <span class="hljs-keyword">var</span> tuple = factory( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> ] );
 

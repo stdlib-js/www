@@ -7,17 +7,20 @@ bool = isProbability( <span class="hljs-number">3.14</span> );
 
 bool = isProbability( <span class="hljs-literal">NaN</span> );
 <span class="hljs-comment">// returns false</span>
-</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
+</code></pre></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> uniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/uniform'</span> );
 <span class="hljs-keyword">var</span> isProbability = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/is-probability'</span> );
 
 <span class="hljs-keyword">var</span> bool;
+<span class="hljs-keyword">var</span> len;
 <span class="hljs-keyword">var</span> x;
 <span class="hljs-keyword">var</span> i;
 
+len = <span class="hljs-number">100</span>;
+x = uniform( len, -<span class="hljs-number">1.0</span>, <span class="hljs-number">1.0</span> );
+
 <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
-    x = ( randu()*<span class="hljs-number">2.0</span> ) - <span class="hljs-number">1.0</span>;
-    bool = isProbability( x );
-    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d is %s'</span>, x, ( bool ) ? <span class="hljs-string">'a probability'</span> : <span class="hljs-string">'not a probability'</span> );
+    bool = isProbability( x[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d is %s'</span>, x[ i ], ( bool ) ? <span class="hljs-string">'a probability'</span> : <span class="hljs-string">'not a probability'</span> );
 }
 </code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/assert/is_probability.h"</span></span>
 </code></pre><h4 id="stdlib_base_is_probability-x-">stdlib_base_is_probability( x )</h4><p>Tests if a double-precision floating-point number is a probability.</p><pre><code class="hljs language-c"><span class="hljs-keyword">bool</span> out = stdlib_base_is_probability( <span class="hljs-number">0.5</span> );
@@ -35,7 +38,7 @@ out = stdlib_base_is_probability( <span class="hljs-number">3.14</span> );
     <span class="hljs-keyword">double</span> x;
     <span class="hljs-keyword">bool</span> v;
     <span class="hljs-keyword">int</span> i;
-    
+
     <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
         x = ( ( (<span class="hljs-keyword">double</span>)rand() / (<span class="hljs-keyword">double</span>)RAND_MAX ) * <span class="hljs-number">2.0</span> ) - <span class="hljs-number">1.0</span>;
         v = stdlib_base_is_probability( x );

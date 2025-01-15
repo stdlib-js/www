@@ -1,0 +1,34 @@
+<h1 id="scalar2ndarraylike">scalar2ndarrayLike</h1><blockquote><p>Convert a scalar value to a zero-dimensional ndarray having the same <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> as a provided ndarray.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> scalar2ndarrayLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/from-scalar-like'</span> );
+</code></pre><h4 id="scalar2ndarraylike-x-value-">scalar2ndarrayLike( x, value )</h4><p>Returns a zero-dimensional ndarray containing a provided scalar <code>value</code> and having the same <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> as a provided ndarray.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeros = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/zeros'</span> );
+
+<span class="hljs-keyword">var</span> x = zeros( <span class="hljs-string">'float32'</span>, [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> y = scalar2ndarrayLike( x, <span class="hljs-number">1.0</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = y.shape;
+<span class="hljs-comment">// returns []</span>
+
+<span class="hljs-keyword">var</span> dt = y.dtype;
+<span class="hljs-comment">// returns 'float32'</span>
+
+<span class="hljs-keyword">var</span> v = y.get();
+<span class="hljs-comment">// returns 1.0</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Along with data type and order, the function infers the "class" of the returned ndarray from the provided ndarray. For example, if provided a "base" <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>, the function returns a base <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a>. If provided a non-base <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>, the function returns a non-base <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</li><li>If <code>value</code> is a number and a provided ndarray has a complex <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a>, the function returns a zero-dimensional ndarray containing a complex number whose real component equals the provided scalar <code>value</code> and whose imaginary component is zero.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dtypes = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/dtypes'</span> );
+<span class="hljs-keyword">var</span> empty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/empty'</span> );
+<span class="hljs-keyword">var</span> scalar2ndarrayLike = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/from-scalar-like'</span> );
+
+<span class="hljs-comment">// Get a list of data types:</span>
+<span class="hljs-keyword">var</span> dt = dtypes();
+
+<span class="hljs-comment">// Generate zero-dimensional arrays...</span>
+<span class="hljs-keyword">var</span> x;
+<span class="hljs-keyword">var</span> y;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; dt.length; i++ ) {
+    x = empty( dt[ i ], [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ], <span class="hljs-string">'row-major'</span> );
+    y = scalar2ndarrayLike( x, i );
+    <span class="hljs-built_in">console</span>.log( y.get() );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

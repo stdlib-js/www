@@ -55,15 +55,15 @@ im = imag( v );
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/real.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/imag.h"</span></span>
 
-<span class="hljs-keyword">stdlib_complex64_t</span> z = stdlib_complex64( <span class="hljs-number">-4.2</span>, <span class="hljs-number">5.5</span> );
+<span class="hljs-keyword">stdlib_complex64_t</span> z = stdlib_complex64( <span class="hljs-number">-4.2f</span>, <span class="hljs-number">5.5f</span> );
 
 <span class="hljs-keyword">stdlib_complex64_t</span> out = stdlib_base_croundf( z );
 
 <span class="hljs-keyword">float</span> re = stdlib_complex64_real( out );
-<span class="hljs-comment">// returns -4.0</span>
+<span class="hljs-comment">// returns -4.0f</span>
 
 <span class="hljs-keyword">float</span> im = stdlib_complex64_imag( out );
-<span class="hljs-comment">// returns 6.0</span>
+<span class="hljs-comment">// returns 6.0f</span>
 </code></pre><p>The function accepts the following arguments:</p><ul><li><strong>z</strong>: <code>[in] stdlib_complex64_t</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">stdlib_complex64_t</span> <span class="hljs-title">stdlib_base_croundf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> z )</span></span>;
 </code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/croundf.h"</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
@@ -72,10 +72,10 @@ im = imag( v );
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
     <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> x[] = {
-        stdlib_complex64( <span class="hljs-number">3.14</span>, <span class="hljs-number">1.5</span> ),
-        stdlib_complex64( <span class="hljs-number">-3.14</span>, <span class="hljs-number">-1.5</span> ),
-        stdlib_complex64( <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ),
-        stdlib_complex64( <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>/<span class="hljs-number">0.0</span> )
+        stdlib_complex64( <span class="hljs-number">3.14f</span>, <span class="hljs-number">1.5f</span> ),
+        stdlib_complex64( <span class="hljs-number">-3.14f</span>, <span class="hljs-number">-1.5f</span> ),
+        stdlib_complex64( <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span> ),
+        stdlib_complex64( <span class="hljs-number">0.0f</span> / <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span> / <span class="hljs-number">0.0f</span> )
     };
 
     <span class="hljs-keyword">stdlib_complex64_t</span> v;
@@ -93,4 +93,4 @@ im = imag( v );
         <span class="hljs-built_in">printf</span>( <span class="hljs-string">"croundf(%f + %fi) = %f + %fi\n"</span>, re1, im1, re2, im2 );
     }
 }
-</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/cceilf"><code>@stdlib/math/base/special/cceilf</code></a></span><span class="delimiter">: </span><span class="description">round a single-precision complex floating-point number toward positive infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/cfloor"><code>@stdlib/math/base/special/cfloor</code></a></span><span class="delimiter">: </span><span class="description">round a double-precision complex floating-point number toward negative infinity.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/croundn"><code>@stdlib/math/base/special/croundn</code></a></span><span class="delimiter">: </span><span class="description">round each component of a double-precision complex floating-point number to the nearest multiple of 10^n.</span></li></ul></section><section class="links"></section>
+</code></pre></section></section><section class="related"></section><section class="links"></section>

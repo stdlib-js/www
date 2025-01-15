@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -24820,7 +24822,7 @@ module.exports = sscal;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2019 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -24858,15 +24860,14 @@ var M = 5;
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 3.0, -4.0, 5.0, -6.0 ] );
-* var alpha = 5.0;
 *
-* sscal( 3, alpha, x, 1, x.length-3 );
+* sscal( 3, 5.0, x, 1, x.length-3 );
 * // x => <Float32Array>[ 1.0, -2.0, 3.0, -20.0, 25.0, -30.0 ]
 */
 function sscal( N, alpha, x, stride, offset ) {
 	var ix;
-	var i;
 	var m;
+	var i;
 
 	if ( N <= 0 || alpha === 1.0 ) {
 		return x;
@@ -24888,11 +24889,11 @@ function sscal( N, alpha, x, stride, offset ) {
 			return x;
 		}
 		for ( i = m; i < N; i += M ) {
-			x[ i ] *= alpha;
-			x[ i+1 ] *= alpha;
-			x[ i+2 ] *= alpha;
-			x[ i+3 ] *= alpha;
-			x[ i+4 ] *= alpha;
+			x[ ix ] *= alpha;
+			x[ ix+1 ] *= alpha;
+			x[ ix+2 ] *= alpha;
+			x[ ix+3 ] *= alpha;
+			x[ ix+4 ] *= alpha;
 			ix += M;
 		}
 		return x;
@@ -24913,7 +24914,7 @@ module.exports = sscal;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2019 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -24930,9 +24931,10 @@ module.exports = sscal;
 
 'use strict';
 
-// VARIABLES //
+// MODULES //
 
-var M = 5;
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -24943,7 +24945,7 @@ var M = 5;
 * @param {PositiveInteger} N - number of indexed elements
 * @param {number} alpha - scalar
 * @param {Float32Array} x - input array
-* @param {PositiveInteger} stride - index increment
+* @param {integer} stride - index increment
 * @returns {Float32Array} input array
 *
 * @example
@@ -24955,39 +24957,8 @@ var M = 5;
 * // x => <Float32Array>[ -10.0, 5.0, 15.0, -25.0, 20.0, 0.0, -5.0, -15.0 ]
 */
 function sscal( N, alpha, x, stride ) {
-	var i;
-	var m;
-
-	if ( N <= 0 || stride <= 0|| alpha === 1.0 ) {
-		return x;
-	}
-	// Use loop unrolling if the stride is equal to `1`...
-	if ( stride === 1 ) {
-		m = N % M;
-
-		// If we have a remainder, run a clean-up loop...
-		if ( m > 0 ) {
-			for ( i = 0; i < m; i++ ) {
-				x[ i ] *= alpha;
-			}
-		}
-		if ( N < M ) {
-			return x;
-		}
-		for ( i = m; i < N; i += M ) {
-			x[ i ] *= alpha;
-			x[ i+1 ] *= alpha;
-			x[ i+2 ] *= alpha;
-			x[ i+3 ] *= alpha;
-			x[ i+4 ] *= alpha;
-		}
-		return x;
-	}
-	N *= stride;
-	for ( i = 0; i < N; i += stride ) {
-		x[ i ] *= alpha;
-	}
-	return x;
+	var ox = stride2offset( N, stride );
+	return ndarray( N, alpha, x, stride, ox );
 }
 
 
@@ -24995,7 +24966,7 @@ function sscal( N, alpha, x, stride ) {
 
 module.exports = sscal;
 
-},{}],272:[function(require,module,exports){
+},{"./ndarray.js":270,"@stdlib/strided/base/stride2offset":347}],272:[function(require,module,exports){
 module.exports=[
   "no-transpose",
   "transpose",

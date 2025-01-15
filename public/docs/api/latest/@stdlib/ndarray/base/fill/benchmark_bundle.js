@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -46724,7 +46726,7 @@ var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Array<Function>} x.accessors - data buffer accessors
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @returns {void}
 *
 * @example
@@ -50044,7 +50046,7 @@ function toJSON() {
 	out.strides = this._strides.slice();
 
 	// Flip the signs of negative strides:
-	for ( i = 0; i < len; i++ ) {
+	for ( i = 0; i < out.strides.length; i++ ) {
 		if ( out.strides[ i ] < 0 ) {
 			out.strides[ i ] *= -1;
 		}
@@ -50114,7 +50116,8 @@ var CTORS = {
 	'generic': '[ {{data}} ]',
 	'binary': 'new Buffer( [ {{data}} ] )',
 	'complex64': 'new Complex64Array( [ {{data}} ] )',
-	'complex128': 'new Complex128Array( [ {{data}} ] )'
+	'complex128': 'new Complex128Array( [ {{data}} ] )',
+	'bool': 'new BooleanArray( [ {{data}} ] )'
 };
 
 
@@ -51146,8 +51149,8 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var pow = require( '@stdlib/math/base/special/pow' );
 var discreteUniform = require( '@stdlib/random/array/discrete-uniform' );
 var shape2strides = require( '@stdlib/ndarray/base/shape2strides' );
-var pkg = require( '@stdlib/ndarray/base/fill/package.json' ).name;
-var fill = require( '@stdlib/ndarray/base/fill/lib' );
+var pkg = require( './../package.json' ).name;
+var fill = require( './../lib' );
 
 
 // VARIABLES //
@@ -51241,7 +51244,7 @@ function main() {
 
 main();
 
-},{"@stdlib/bench":328,"@stdlib/math/base/assert/is-nan":412,"@stdlib/math/base/special/pow":436,"@stdlib/ndarray/base/fill/lib":566,"@stdlib/ndarray/base/fill/package.json":568,"@stdlib/ndarray/base/shape2strides":585,"@stdlib/random/array/discrete-uniform":652}],534:[function(require,module,exports){
+},{"./../lib":566,"./../package.json":568,"@stdlib/bench":328,"@stdlib/math/base/assert/is-nan":412,"@stdlib/math/base/special/pow":436,"@stdlib/ndarray/base/shape2strides":585,"@stdlib/random/array/discrete-uniform":652}],534:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52935,8 +52938,8 @@ var pow = require( '@stdlib/math/base/special/pow' );
 var floor = require( '@stdlib/math/base/special/floor' );
 var filledarrayBy = require( '@stdlib/array/filled-by' );
 var shape2strides = require( '@stdlib/ndarray/base/shape2strides' );
-var pkg = require( '@stdlib/ndarray/base/fill/package.json' ).name;
-var fill = require( '@stdlib/ndarray/base/fill/lib' );
+var pkg = require( './../package.json' ).name;
+var fill = require( './../lib' );
 
 
 // VARIABLES //
@@ -53040,7 +53043,7 @@ function main() {
 
 main();
 
-},{"@stdlib/array/filled-by":72,"@stdlib/bench":328,"@stdlib/math/base/assert/is-nan":412,"@stdlib/math/base/special/floor":427,"@stdlib/math/base/special/pow":436,"@stdlib/ndarray/base/fill/lib":566,"@stdlib/ndarray/base/fill/package.json":568,"@stdlib/ndarray/base/shape2strides":585,"@stdlib/random/base/discrete-uniform":664}],547:[function(require,module,exports){
+},{"./../lib":566,"./../package.json":568,"@stdlib/array/filled-by":72,"@stdlib/bench":328,"@stdlib/math/base/assert/is-nan":412,"@stdlib/math/base/special/floor":427,"@stdlib/math/base/special/pow":436,"@stdlib/ndarray/base/shape2strides":585,"@stdlib/random/base/discrete-uniform":664}],547:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *

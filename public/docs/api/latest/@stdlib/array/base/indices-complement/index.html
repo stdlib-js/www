@@ -1,0 +1,20 @@
+<h1 id="indicescomplement">indicesComplement</h1><blockquote><p>Return the complement of a list of array indices.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indicesComplement = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/indices-complement'</span> );
+</code></pre><h4 id="indicescomplement-n-indices-">indicesComplement( N, indices )</h4><p>Returns the complement of a list of array indices.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = indicesComplement( <span class="hljs-number">5</span>, [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns [ 0, 3, 4 ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: array length.</li><li><strong>indices</strong>: list of indices from which to derive the complement.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function <strong>always</strong> returns a new "generic" array.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> indicesComplement = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/indices-complement'</span> );
+
+<span class="hljs-keyword">var</span> out = indicesComplement( <span class="hljs-number">5</span>, [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-comment">// returns [ 0, 2 ]</span>
+
+out = indicesComplement( <span class="hljs-number">5</span>, [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ 2, 3, 4 ]</span>
+
+out = indicesComplement( <span class="hljs-number">5</span>, [ <span class="hljs-number">0</span> ] );
+<span class="hljs-comment">// returns [ 1, 2, 3, 4 ]</span>
+
+out = indicesComplement( <span class="hljs-number">5</span>, [] );
+<span class="hljs-comment">// returns [ 0, 1, 2, 3, 4 ]</span>
+
+out = indicesComplement( <span class="hljs-number">5</span>, [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-comment">// returns []</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

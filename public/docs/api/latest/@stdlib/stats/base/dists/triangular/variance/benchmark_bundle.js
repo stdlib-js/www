@@ -4398,7 +4398,7 @@ setReadOnly( BooleanArray.prototype, 'with', function copyWith( index, value ) {
 
 module.exports = BooleanArray;
 
-},{"./from_array.js":17,"./from_iterator.js":18,"./from_iterator_map.js":19,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":13,"@stdlib/array/uint8":62,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-function":152,"@stdlib/assert/is-integer":160,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/boolean/ctor":275,"@stdlib/math/base/special/floor":330,"@stdlib/string/format":423,"@stdlib/symbol/iterator":430,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446}],22:[function(require,module,exports){
+},{"./from_array.js":17,"./from_iterator.js":18,"./from_iterator_map.js":19,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":13,"@stdlib/array/uint8":62,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-function":152,"@stdlib/assert/is-integer":160,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/boolean/ctor":275,"@stdlib/math/base/special/floor":329,"@stdlib/string/format":423,"@stdlib/symbol/iterator":430,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7735,7 +7735,7 @@ setReadOnly( Complex128Array.prototype, 'with', function copyWith( index, value 
 
 module.exports = Complex128Array;
 
-},{"./from_array.js":22,"./from_iterator.js":23,"./from_iterator_map.js":24,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float64":40,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-array":119,"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-complex-like":136,"@stdlib/assert/is-function":152,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/complex/float64/ctor":292,"@stdlib/complex/float64/imag":296,"@stdlib/complex/float64/real":298,"@stdlib/math/base/assert/is-even":320,"@stdlib/math/base/assert/is-integer":322,"@stdlib/math/base/special/floor":330,"@stdlib/strided/base/reinterpret-complex128":401,"@stdlib/strided/base/reinterpret-complex64":403,"@stdlib/string/format":423,"@stdlib/symbol/iterator":430,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446}],27:[function(require,module,exports){
+},{"./from_array.js":22,"./from_iterator.js":23,"./from_iterator_map.js":24,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float64":40,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-array":119,"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-complex-like":136,"@stdlib/assert/is-function":152,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/complex/float64/ctor":292,"@stdlib/complex/float64/imag":296,"@stdlib/complex/float64/real":298,"@stdlib/math/base/assert/is-even":319,"@stdlib/math/base/assert/is-integer":321,"@stdlib/math/base/special/floor":329,"@stdlib/strided/base/reinterpret-complex128":401,"@stdlib/strided/base/reinterpret-complex64":403,"@stdlib/string/format":423,"@stdlib/symbol/iterator":430,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11070,7 +11070,7 @@ setReadOnly( Complex64Array.prototype, 'with', function copyWith( index, value )
 
 module.exports = Complex64Array;
 
-},{"./from_array.js":27,"./from_iterator.js":28,"./from_iterator_map.js":29,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float32":37,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-array":119,"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-complex-like":136,"@stdlib/assert/is-function":152,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/complex/float32/ctor":284,"@stdlib/complex/float32/imag":288,"@stdlib/complex/float32/real":290,"@stdlib/math/base/assert/is-even":320,"@stdlib/math/base/assert/is-integer":322,"@stdlib/math/base/special/floor":330,"@stdlib/strided/base/reinterpret-complex128":401,"@stdlib/strided/base/reinterpret-complex64":403,"@stdlib/string/format":423,"@stdlib/symbol/iterator":430,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446}],32:[function(require,module,exports){
+},{"./from_array.js":27,"./from_iterator.js":28,"./from_iterator_map.js":29,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float32":37,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-array":119,"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-complex-like":136,"@stdlib/assert/is-function":152,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/complex/float32/ctor":284,"@stdlib/complex/float32/imag":288,"@stdlib/complex/float32/real":290,"@stdlib/math/base/assert/is-even":319,"@stdlib/math/base/assert/is-integer":321,"@stdlib/math/base/special/floor":329,"@stdlib/strided/base/reinterpret-complex128":401,"@stdlib/strided/base/reinterpret-complex64":403,"@stdlib/string/format":423,"@stdlib/symbol/iterator":430,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446}],32:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12852,7 +12852,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":68,"@stdlib/assert/is-float32array":148,"@stdlib/constants/float64/pinf":308}],71:[function(require,module,exports){
+},{"./float32array.js":68,"@stdlib/assert/is-float32array":148,"@stdlib/constants/float64/pinf":307}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13253,7 +13253,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":78,"@stdlib/assert/is-int16array":154,"@stdlib/constants/int16/max":309,"@stdlib/constants/int16/min":310}],80:[function(require,module,exports){
+},{"./int16array.js":78,"@stdlib/assert/is-int16array":154,"@stdlib/constants/int16/max":308,"@stdlib/constants/int16/min":309}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13393,7 +13393,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":81,"@stdlib/assert/is-int32array":156,"@stdlib/constants/int32/max":311,"@stdlib/constants/int32/min":312}],83:[function(require,module,exports){
+},{"./int32array.js":81,"@stdlib/assert/is-int32array":156,"@stdlib/constants/int32/max":310,"@stdlib/constants/int32/min":311}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13533,7 +13533,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":84,"@stdlib/assert/is-int8array":158,"@stdlib/constants/int8/max":313,"@stdlib/constants/int8/min":314}],86:[function(require,module,exports){
+},{"./int8array.js":84,"@stdlib/assert/is-int8array":158,"@stdlib/constants/int8/max":312,"@stdlib/constants/int8/min":313}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14176,7 +14176,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":99,"@stdlib/assert/is-uint16array":214,"@stdlib/constants/uint16/max":315}],99:[function(require,module,exports){
+},{"./uint16array.js":99,"@stdlib/assert/is-uint16array":214,"@stdlib/constants/uint16/max":314}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14317,7 +14317,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":102,"@stdlib/assert/is-uint32array":216,"@stdlib/constants/uint32/max":316}],102:[function(require,module,exports){
+},{"./uint32array.js":102,"@stdlib/assert/is-uint32array":216,"@stdlib/constants/uint32/max":315}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14458,7 +14458,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":105,"@stdlib/assert/is-uint8array":218,"@stdlib/constants/uint8/max":317}],105:[function(require,module,exports){
+},{"./uint8array.js":105,"@stdlib/assert/is-uint8array":218,"@stdlib/constants/uint8/max":316}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14996,7 +14996,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-array":119,"@stdlib/assert/is-enumerable-property":143,"@stdlib/constants/uint32/max":316,"@stdlib/math/base/assert/is-integer":322}],115:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-array":119,"@stdlib/assert/is-enumerable-property":143,"@stdlib/constants/uint32/max":315,"@stdlib/math/base/assert/is-integer":321}],115:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15107,7 +15107,7 @@ function isArrayLikeObject( value ) {
 
 module.exports = isArrayLikeObject;
 
-},{"@stdlib/constants/array/max-array-length":300,"@stdlib/math/base/assert/is-integer":322}],117:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":300,"@stdlib/math/base/assert/is-integer":321}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15215,7 +15215,7 @@ function isArrayLike( value ) {
 
 module.exports = isArrayLike;
 
-},{"@stdlib/constants/array/max-array-length":300,"@stdlib/math/base/assert/is-integer":322}],119:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":300,"@stdlib/math/base/assert/is-integer":321}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16118,7 +16118,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":301,"@stdlib/math/base/assert/is-integer":322}],136:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":301,"@stdlib/math/base/assert/is-integer":321}],136:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17493,7 +17493,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":307,"@stdlib/constants/float64/pinf":308,"@stdlib/math/base/assert/is-integer":322}],162:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":306,"@stdlib/constants/float64/pinf":307,"@stdlib/math/base/assert/is-integer":321}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18013,7 +18013,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":187,"@stdlib/math/base/assert/is-nan":324}],171:[function(require,module,exports){
+},{"@stdlib/assert/is-number":187,"@stdlib/math/base/assert/is-nan":323}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18072,7 +18072,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":187,"@stdlib/math/base/assert/is-nan":324}],172:[function(require,module,exports){
+},{"@stdlib/assert/is-number":187,"@stdlib/math/base/assert/is-nan":323}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19177,7 +19177,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":192,"@stdlib/assert/has-tostringtag-support":95,"@stdlib/number/ctor":339,"@stdlib/utils/native-class":494}],190:[function(require,module,exports){
+},{"./try2serialize.js":192,"@stdlib/assert/has-tostringtag-support":95,"@stdlib/number/ctor":338,"@stdlib/utils/native-class":494}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19261,7 +19261,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":339}],192:[function(require,module,exports){
+},{"@stdlib/number/ctor":338}],192:[function(require,module,exports){
 arguments[4][128][0].apply(exports,arguments)
 },{"./tostring.js":191,"dup":128}],193:[function(require,module,exports){
 /**
@@ -21349,7 +21349,7 @@ function comment( msg ) {
 
 module.exports = comment;
 
-},{"@stdlib/regexp/eol":375,"@stdlib/string/base/replace":415,"@stdlib/string/base/trim":420}],229:[function(require,module,exports){
+},{"@stdlib/regexp/eol":374,"@stdlib/string/base/replace":415,"@stdlib/string/base/trim":420}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24247,7 +24247,7 @@ function encodeAssertion( result, count ) {
 
 module.exports = encodeAssertion;
 
-},{"@stdlib/assert/has-own-property":91,"@stdlib/regexp/eol":375,"@stdlib/string/base/replace":415}],261:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":91,"@stdlib/regexp/eol":374,"@stdlib/string/base/replace":415}],261:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25959,7 +25959,7 @@ setReadOnly( Complex64.prototype, 'toJSON', toJSON );
 
 module.exports = Complex64;
 
-},{"./tojson.js":286,"./tostring.js":287,"@stdlib/assert/is-number":187,"@stdlib/number/float64/base/to-float32":344,"@stdlib/string/format":423,"@stdlib/utils/define-nonenumerable-read-only-property":446,"@stdlib/utils/define-property":453}],286:[function(require,module,exports){
+},{"./tojson.js":286,"./tostring.js":287,"@stdlib/assert/is-number":187,"@stdlib/number/float64/base/to-float32":343,"@stdlib/string/format":423,"@stdlib/utils/define-nonenumerable-read-only-property":446,"@stdlib/utils/define-property":453}],286:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26769,65 +26769,6 @@ module.exports = MAX_TYPED_ARRAY_LENGTH;
 'use strict';
 
 /**
-* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.
-*
-* @module @stdlib/constants/float64/eps
-* @type {number}
-*
-* @example
-* var FLOAT64_EPSILON = require( '@stdlib/constants/float64/eps' );
-* // returns 2.220446049250313e-16
-*/
-
-
-// MAIN //
-
-/**
-* Difference between one and the smallest value greater than one that can be represented as a double-precision floating-point number.
-*
-* ## Notes
-*
-* The difference is
-*
-* ```tex
-* \frac{1}{2^{52}}
-* ```
-*
-* @constant
-* @type {number}
-* @default 2.220446049250313e-16
-* @see [IEEE 754]{@link https://en.wikipedia.org/wiki/IEEE_754-1985}
-* @see [Machine Epsilon]{@link https://en.wikipedia.org/wiki/Machine_epsilon}
-*/
-var FLOAT64_EPSILON = 2.2204460492503130808472633361816E-16;
-
-
-// EXPORTS //
-
-module.exports = FLOAT64_EPSILON;
-
-},{}],303:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
 * The bias of a double-precision floating-point number's exponent.
 *
 * @module @stdlib/constants/float64/exponent-bias
@@ -26866,7 +26807,7 @@ var FLOAT64_EXPONENT_BIAS = 1023|0; // asm type annotation
 
 module.exports = FLOAT64_EXPONENT_BIAS;
 
-},{}],304:[function(require,module,exports){
+},{}],303:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26924,7 +26865,7 @@ var FLOAT64_HIGH_WORD_EXPONENT_MASK = 0x7ff00000;
 
 module.exports = FLOAT64_HIGH_WORD_EXPONENT_MASK;
 
-},{}],305:[function(require,module,exports){
+},{}],304:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26982,7 +26923,7 @@ var FLOAT64_HIGH_WORD_SIGNIFICAND_MASK = 0x000fffff;
 
 module.exports = FLOAT64_HIGH_WORD_SIGNIFICAND_MASK;
 
-},{}],306:[function(require,module,exports){
+},{}],305:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27041,7 +26982,7 @@ var FLOAT64_MAX_SAFE_INTEGER = 9007199254740991;
 
 module.exports = FLOAT64_MAX_SAFE_INTEGER;
 
-},{}],307:[function(require,module,exports){
+},{}],306:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27103,7 +27044,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":339}],308:[function(require,module,exports){
+},{"@stdlib/number/ctor":338}],307:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27161,7 +27102,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],309:[function(require,module,exports){
+},{}],308:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27224,7 +27165,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],310:[function(require,module,exports){
+},{}],309:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27287,7 +27228,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],311:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27350,7 +27291,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],312:[function(require,module,exports){
+},{}],311:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27413,7 +27354,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],313:[function(require,module,exports){
+},{}],312:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27476,7 +27417,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],314:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27539,7 +27480,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],315:[function(require,module,exports){
+},{}],314:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27602,7 +27543,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],316:[function(require,module,exports){
+},{}],315:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27665,7 +27606,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],317:[function(require,module,exports){
+},{}],316:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27728,7 +27669,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],318:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27778,7 +27719,7 @@ var UNICODE_MAX_BMP = 0xFFFF|0; // asm type annotation
 
 module.exports = UNICODE_MAX_BMP;
 
-},{}],319:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27828,7 +27769,7 @@ var UNICODE_MAX = 0x10FFFF|0; // asm type annotation
 
 module.exports = UNICODE_MAX;
 
-},{}],320:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27879,7 +27820,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":321}],321:[function(require,module,exports){
+},{"./main.js":320}],320:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27938,7 +27879,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":322}],322:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":321}],321:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27983,7 +27924,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":323}],323:[function(require,module,exports){
+},{"./main.js":322}],322:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28034,7 +27975,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":330}],324:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":329}],323:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28079,7 +28020,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":325}],325:[function(require,module,exports){
+},{"./main.js":324}],324:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28125,7 +28066,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],326:[function(require,module,exports){
+},{}],325:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28170,7 +28111,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":327}],327:[function(require,module,exports){
+},{"./main.js":326}],326:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28221,7 +28162,7 @@ function isPositiveZero( x ) {
 
 module.exports = isPositiveZero;
 
-},{"@stdlib/constants/float64/pinf":308}],328:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":307}],327:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28263,7 +28204,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":329}],329:[function(require,module,exports){
+},{"./main.js":328}],328:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28397,7 +28338,7 @@ function umul( a, b ) {
 
 module.exports = umul;
 
-},{}],330:[function(require,module,exports){
+},{}],329:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28448,7 +28389,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":331}],331:[function(require,module,exports){
+},{"./main.js":330}],330:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28500,7 +28441,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],332:[function(require,module,exports){
+},{}],331:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28548,7 +28489,7 @@ var max = require( './main.js' );
 
 module.exports = max;
 
-},{"./main.js":333}],333:[function(require,module,exports){
+},{"./main.js":332}],332:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28621,7 +28562,7 @@ function max( x, y ) {
 
 module.exports = max;
 
-},{"@stdlib/constants/float64/pinf":308,"@stdlib/math/base/assert/is-nan":324,"@stdlib/math/base/assert/is-positive-zero":326}],334:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":307,"@stdlib/math/base/assert/is-nan":323,"@stdlib/math/base/assert/is-positive-zero":325}],333:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28775,7 +28716,7 @@ function modf( x, out, stride, offset ) {
 
 module.exports = modf;
 
-},{"@stdlib/constants/float64/exponent-bias":303,"@stdlib/constants/float64/high-word-exponent-mask":304,"@stdlib/constants/float64/high-word-significand-mask":305,"@stdlib/constants/float64/pinf":308,"@stdlib/math/base/assert/is-nan":324,"@stdlib/number/float64/base/from-words":341,"@stdlib/number/float64/base/to-words":348}],335:[function(require,module,exports){
+},{"@stdlib/constants/float64/exponent-bias":302,"@stdlib/constants/float64/high-word-exponent-mask":303,"@stdlib/constants/float64/high-word-significand-mask":304,"@stdlib/constants/float64/pinf":307,"@stdlib/math/base/assert/is-nan":323,"@stdlib/number/float64/base/from-words":340,"@stdlib/number/float64/base/to-words":347}],334:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28836,7 +28777,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":334,"./main.js":336,"@stdlib/utils/define-nonenumerable-read-only-property":446}],336:[function(require,module,exports){
+},{"./assign.js":333,"./main.js":335,"@stdlib/utils/define-nonenumerable-read-only-property":446}],335:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28884,7 +28825,7 @@ function modf( x ) {
 
 module.exports = modf;
 
-},{"./assign.js":334}],337:[function(require,module,exports){
+},{"./assign.js":333}],336:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28958,7 +28899,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":338}],338:[function(require,module,exports){
+},{"./main.js":337}],337:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29038,7 +28979,7 @@ var round = Math.round; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = round;
 
-},{}],339:[function(require,module,exports){
+},{}],338:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29080,7 +29021,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":340}],340:[function(require,module,exports){
+},{"./main.js":339}],339:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29105,7 +29046,7 @@ module.exports = main;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],341:[function(require,module,exports){
+},{}],340:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29165,7 +29106,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":343}],342:[function(require,module,exports){
+},{"./main.js":342}],341:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29214,7 +29155,7 @@ indices = {
 
 module.exports = indices;
 
-},{"@stdlib/assert/is-little-endian":166}],343:[function(require,module,exports){
+},{"@stdlib/assert/is-little-endian":166}],342:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29336,7 +29277,7 @@ function fromWords( high, low ) {
 
 module.exports = fromWords;
 
-},{"./indices.js":342,"@stdlib/array/float64":40,"@stdlib/array/uint32":59}],344:[function(require,module,exports){
+},{"./indices.js":341,"@stdlib/array/float64":40,"@stdlib/array/uint32":59}],343:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29389,7 +29330,7 @@ if ( typeof builtin === 'function' ) {
 
 module.exports = float64ToFloat32;
 
-},{"./main.js":345,"./polyfill.js":346}],345:[function(require,module,exports){
+},{"./main.js":344,"./polyfill.js":345}],344:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29419,7 +29360,7 @@ var fround = ( typeof Math.fround === 'function' ) ? Math.fround : null; // esli
 
 module.exports = fround;
 
-},{}],346:[function(require,module,exports){
+},{}],345:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29472,7 +29413,7 @@ function float64ToFloat32( x ) {
 
 module.exports = float64ToFloat32;
 
-},{"@stdlib/array/float32":37}],347:[function(require,module,exports){
+},{"@stdlib/array/float32":37}],346:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29581,7 +29522,7 @@ function toWords( x, out, stride, offset ) {
 
 module.exports = toWords;
 
-},{"./indices.js":349,"@stdlib/array/float64":40,"@stdlib/array/uint32":59}],348:[function(require,module,exports){
+},{"./indices.js":348,"@stdlib/array/float64":40,"@stdlib/array/uint32":59}],347:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29642,9 +29583,9 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":347,"./main.js":350,"@stdlib/utils/define-nonenumerable-read-only-property":446}],349:[function(require,module,exports){
-arguments[4][342][0].apply(exports,arguments)
-},{"@stdlib/assert/is-little-endian":166,"dup":342}],350:[function(require,module,exports){
+},{"./assign.js":346,"./main.js":349,"@stdlib/utils/define-nonenumerable-read-only-property":446}],348:[function(require,module,exports){
+arguments[4][341][0].apply(exports,arguments)
+},{"@stdlib/assert/is-little-endian":166,"dup":341}],349:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29691,7 +29632,7 @@ function toWords( x ) {
 
 module.exports = toWords;
 
-},{"./assign.js":347}],351:[function(require,module,exports){
+},{"./assign.js":346}],350:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29747,7 +29688,7 @@ var assign = Object.assign; // eslint-disable-line node/no-unsupported-features/
 
 module.exports = assign;
 
-},{}],352:[function(require,module,exports){
+},{}],351:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29782,7 +29723,7 @@ var bool = isFunction( Object.assign ); // eslint-disable-line node/no-unsupport
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":152}],353:[function(require,module,exports){
+},{"@stdlib/assert/is-function":152}],352:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29836,7 +29777,7 @@ if ( hasObjectAssign ) {
 
 module.exports = assign;
 
-},{"./builtin.js":351,"./has_object_assign.js":352,"./polyfill.js":354}],354:[function(require,module,exports){
+},{"./builtin.js":350,"./has_object_assign.js":351,"./polyfill.js":353}],353:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29923,7 +29864,7 @@ function assign( target ) {
 
 module.exports = assign;
 
-},{"@stdlib/object/ctor":355,"@stdlib/string/format":423,"@stdlib/utils/enumerable-properties":455}],355:[function(require,module,exports){
+},{"@stdlib/object/ctor":354,"@stdlib/string/format":423,"@stdlib/utils/enumerable-properties":455}],354:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29979,7 +29920,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":356}],356:[function(require,module,exports){
+},{"./main.js":355}],355:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30039,7 +29980,7 @@ var Obj = Object; // eslint-disable-line stdlib/require-globals
 
 module.exports = Obj;
 
-},{}],357:[function(require,module,exports){
+},{}],356:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30107,7 +30048,7 @@ function createTable( rand, table, N ) {
 
 module.exports = createTable;
 
-},{"@stdlib/math/base/assert/is-nan":324}],358:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":323}],357:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30581,7 +30522,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./create_table.js":357,"./rand_int32.js":361,"@stdlib/array/int32":46,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-int32array":156,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/blas/base/gcopy":272,"@stdlib/constants/int32/max":311,"@stdlib/math/base/special/floor":330,"@stdlib/string/format":423,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446,"@stdlib/utils/define-nonenumerable-read-write-accessor":448}],359:[function(require,module,exports){
+},{"./create_table.js":356,"./rand_int32.js":360,"@stdlib/array/int32":46,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-int32array":156,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/blas/base/gcopy":272,"@stdlib/constants/int32/max":310,"@stdlib/math/base/special/floor":329,"@stdlib/string/format":423,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446,"@stdlib/utils/define-nonenumerable-read-write-accessor":448}],358:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30640,7 +30581,7 @@ setReadOnly( main, 'factory', factory );
 
 module.exports = main;
 
-},{"./factory.js":358,"./main.js":360,"@stdlib/utils/define-nonenumerable-read-only-property":446}],360:[function(require,module,exports){
+},{"./factory.js":357,"./main.js":359,"@stdlib/utils/define-nonenumerable-read-only-property":446}],359:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30747,7 +30688,7 @@ var minstd = factory({
 
 module.exports = minstd;
 
-},{"./factory.js":358,"./rand_int32.js":361}],361:[function(require,module,exports){
+},{"./factory.js":357,"./rand_int32.js":360}],360:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30801,7 +30742,7 @@ function randint32() {
 
 module.exports = randint32;
 
-},{"@stdlib/constants/int32/max":311,"@stdlib/math/base/special/floor":330}],362:[function(require,module,exports){
+},{"@stdlib/constants/int32/max":310,"@stdlib/math/base/special/floor":329}],361:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31219,7 +31160,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./rand_int32.js":365,"@stdlib/array/int32":46,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-int32array":156,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/blas/base/gcopy":272,"@stdlib/constants/int32/max":311,"@stdlib/string/format":423,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446,"@stdlib/utils/define-nonenumerable-read-write-accessor":448}],363:[function(require,module,exports){
+},{"./rand_int32.js":364,"@stdlib/array/int32":46,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-int32array":156,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/blas/base/gcopy":272,"@stdlib/constants/int32/max":310,"@stdlib/string/format":423,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446,"@stdlib/utils/define-nonenumerable-read-write-accessor":448}],362:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31278,7 +31219,7 @@ setReadOnly( main, 'factory', factory );
 
 module.exports = main;
 
-},{"./factory.js":362,"./main.js":364,"@stdlib/utils/define-nonenumerable-read-only-property":446}],364:[function(require,module,exports){
+},{"./factory.js":361,"./main.js":363,"@stdlib/utils/define-nonenumerable-read-only-property":446}],363:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31385,9 +31326,9 @@ var minstd = factory({
 
 module.exports = minstd;
 
-},{"./factory.js":362,"./rand_int32.js":365}],365:[function(require,module,exports){
-arguments[4][361][0].apply(exports,arguments)
-},{"@stdlib/constants/int32/max":311,"@stdlib/math/base/special/floor":330,"dup":361}],366:[function(require,module,exports){
+},{"./factory.js":361,"./rand_int32.js":364}],364:[function(require,module,exports){
+arguments[4][360][0].apply(exports,arguments)
+},{"@stdlib/constants/int32/max":310,"@stdlib/math/base/special/floor":329,"dup":360}],365:[function(require,module,exports){
 /* eslint-disable max-lines, max-len */
 
 /**
@@ -32089,7 +32030,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./rand_uint32.js":369,"@stdlib/array/to-json":53,"@stdlib/array/uint32":59,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/assert/is-uint32array":216,"@stdlib/blas/base/gcopy":272,"@stdlib/constants/float64/max-safe-integer":306,"@stdlib/constants/uint32/max":316,"@stdlib/math/base/ops/umul":328,"@stdlib/math/base/special/max":332,"@stdlib/string/format":423,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446,"@stdlib/utils/define-nonenumerable-read-write-accessor":448}],367:[function(require,module,exports){
+},{"./rand_uint32.js":368,"@stdlib/array/to-json":53,"@stdlib/array/uint32":59,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/assert/is-uint32array":216,"@stdlib/blas/base/gcopy":272,"@stdlib/constants/float64/max-safe-integer":305,"@stdlib/constants/uint32/max":315,"@stdlib/math/base/ops/umul":327,"@stdlib/math/base/special/max":331,"@stdlib/string/format":423,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446,"@stdlib/utils/define-nonenumerable-read-write-accessor":448}],366:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32148,7 +32089,7 @@ setReadOnly( main, 'factory', factory );
 
 module.exports = main;
 
-},{"./factory.js":366,"./main.js":368,"@stdlib/utils/define-nonenumerable-read-only-property":446}],368:[function(require,module,exports){
+},{"./factory.js":365,"./main.js":367,"@stdlib/utils/define-nonenumerable-read-only-property":446}],367:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32254,7 +32195,7 @@ var mt19937 = factory({
 
 module.exports = mt19937;
 
-},{"./factory.js":366,"./rand_uint32.js":369}],369:[function(require,module,exports){
+},{"./factory.js":365,"./rand_uint32.js":368}],368:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32308,13 +32249,13 @@ function randuint32() {
 
 module.exports = randuint32;
 
-},{"@stdlib/constants/uint32/max":316,"@stdlib/math/base/special/floor":330}],370:[function(require,module,exports){
+},{"@stdlib/constants/uint32/max":315,"@stdlib/math/base/special/floor":329}],369:[function(require,module,exports){
 module.exports={
 	"name": "mt19937",
 	"copy": true
 }
 
-},{}],371:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32556,7 +32497,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./defaults.json":370,"./prngs.js":374,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-plain-object":197,"@stdlib/string/format":423,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446,"@stdlib/utils/define-nonenumerable-read-write-accessor":448}],372:[function(require,module,exports){
+},{"./defaults.json":369,"./prngs.js":373,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-plain-object":197,"@stdlib/string/format":423,"@stdlib/utils/define-nonenumerable-read-only-accessor":444,"@stdlib/utils/define-nonenumerable-read-only-property":446,"@stdlib/utils/define-nonenumerable-read-write-accessor":448}],371:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32616,7 +32557,7 @@ setReadOnly( main, 'factory', factory );
 
 module.exports = main;
 
-},{"./factory.js":371,"./main.js":373,"@stdlib/utils/define-nonenumerable-read-only-property":446}],373:[function(require,module,exports){
+},{"./factory.js":370,"./main.js":372,"@stdlib/utils/define-nonenumerable-read-only-property":446}],372:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32662,7 +32603,7 @@ var randu = factory();
 
 module.exports = randu;
 
-},{"./factory.js":371}],374:[function(require,module,exports){
+},{"./factory.js":370}],373:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32703,7 +32644,7 @@ prngs[ 'mt19937' ] = mt19937;
 
 module.exports = prngs;
 
-},{"@stdlib/random/base/minstd":363,"@stdlib/random/base/minstd-shuffle":359,"@stdlib/random/base/mt19937":367}],375:[function(require,module,exports){
+},{"@stdlib/random/base/minstd":362,"@stdlib/random/base/minstd-shuffle":358,"@stdlib/random/base/mt19937":366}],374:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32773,7 +32714,7 @@ setReadOnly( main, 'REGEXP_CAPTURE', REGEXP_CAPTURE );
 
 module.exports = main;
 
-},{"./main.js":376,"./regexp.js":377,"./regexp_capture.js":378,"@stdlib/utils/define-nonenumerable-read-only-property":446}],376:[function(require,module,exports){
+},{"./main.js":375,"./regexp.js":376,"./regexp_capture.js":377,"@stdlib/utils/define-nonenumerable-read-only-property":446}],375:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32852,7 +32793,7 @@ function reEOL( options ) {
 
 module.exports = reEOL;
 
-},{"./validate.js":379}],377:[function(require,module,exports){
+},{"./validate.js":378}],376:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32902,7 +32843,7 @@ var REGEXP = reEOL();
 
 module.exports = REGEXP;
 
-},{"./main.js":376}],378:[function(require,module,exports){
+},{"./main.js":375}],377:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32957,7 +32898,7 @@ var REGEXP_CAPTURE = reEOL({
 
 module.exports = REGEXP_CAPTURE;
 
-},{"./main.js":376}],379:[function(require,module,exports){
+},{"./main.js":375}],378:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33033,7 +32974,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-string":204,"@stdlib/string/format":423}],380:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-string":204,"@stdlib/string/format":423}],379:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33096,7 +33037,7 @@ setReadOnly( main, 'REGEXP', REGEXP );
 
 module.exports = main;
 
-},{"./main.js":381,"./regexp.js":382,"@stdlib/utils/define-nonenumerable-read-only-property":446}],381:[function(require,module,exports){
+},{"./main.js":380,"./regexp.js":381,"@stdlib/utils/define-nonenumerable-read-only-property":446}],380:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33152,7 +33093,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],382:[function(require,module,exports){
+},{}],381:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33214,7 +33155,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":381}],383:[function(require,module,exports){
+},{"./main.js":380}],382:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33276,7 +33217,7 @@ setReadOnly( main, 'REGEXP', REGEXP );
 
 module.exports = main;
 
-},{"./main.js":384,"./regexp.js":385,"@stdlib/utils/define-nonenumerable-read-only-property":446}],384:[function(require,module,exports){
+},{"./main.js":383,"./regexp.js":384,"@stdlib/utils/define-nonenumerable-read-only-property":446}],383:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33322,7 +33263,7 @@ function reRegExp() {
 
 module.exports = reRegExp;
 
-},{}],385:[function(require,module,exports){
+},{}],384:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33393,7 +33334,7 @@ var RE_REGEXP = reRegExp();
 
 module.exports = RE_REGEXP;
 
-},{"./main.js":384}],386:[function(require,module,exports){
+},{"./main.js":383}],385:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33417,9 +33358,9 @@ module.exports = RE_REGEXP;
 // MODULES //
 
 var bench = require( '@stdlib/bench' );
+var Float64Array = require( '@stdlib/array/float64' );
 var randu = require( '@stdlib/random/base/randu' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var EPS = require( '@stdlib/constants/float64/eps' );
 var pkg = require( './../package.json' ).name;
 var variance = require( './../lib' );
 
@@ -33430,15 +33371,23 @@ bench( pkg, function benchmark( b ) {
 	var mode;
 	var min;
 	var max;
+	var len;
 	var y;
 	var i;
 
+	len = 100;
+	min = new Float64Array( len );
+	max = new Float64Array( len );
+	mode = new Float64Array( len );
+	for ( i = 0; i < len; i++ ) {
+		min[ i ] = ( randu() * 10.0 );
+		max[ i ] = ( randu() * 10.0 ) + min[ i ];
+		mode[ i ] = min[ i ] + ( randu() * ( max[ i ] - min[ i ] ) );
+	}
+
 	b.tic();
 	for ( i = 0; i < b.iterations; i++ ) {
-		min = ( randu()*10.0 );
-		max = ( randu()*10.0 ) + min + EPS;
-		mode = ( ( max - min ) * randu() ) + min;
-		y = variance( min, max, mode );
+		y = variance( min[ i % len ], max[ i % len ], mode[ i % len ] );
 		if ( isnan( y ) ) {
 			b.fail( 'should not return NaN' );
 		}
@@ -33451,7 +33400,73 @@ bench( pkg, function benchmark( b ) {
 	b.end();
 });
 
-},{"./../lib":387,"./../package.json":389,"@stdlib/bench":270,"@stdlib/constants/float64/eps":302,"@stdlib/math/base/assert/is-nan":324,"@stdlib/random/base/randu":372}],387:[function(require,module,exports){
+},{"./../lib":387,"./../package.json":389,"@stdlib/array/float64":40,"@stdlib/bench":270,"@stdlib/math/base/assert/is-nan":323,"@stdlib/random/base/randu":371}],386:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var bench = require( '@stdlib/bench' );
+var Float64Array = require( '@stdlib/array/float64' );
+var randu = require( '@stdlib/random/base/randu' );
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var pkg = require( './../package.json' ).name;
+var variance = require( './../lib' );
+
+
+// MAIN //
+
+bench( pkg+'::native', function benchmark( b ) {
+	var mode;
+	var min;
+	var max;
+	var len;
+	var y;
+	var i;
+
+	len = 100;
+	min = new Float64Array( len );
+	max = new Float64Array( len );
+	mode = new Float64Array( len );
+	for ( i = 0; i < len; i++ ) {
+		min[ i ] = ( randu() * 10.0 );
+		max[ i ] = ( randu() * 10.0 ) + min[ i ];
+		mode[ i ] = min[ i ] + ( randu() * ( max[ i ] - min[ i ] ) );
+	}
+
+	b.tic();
+	for ( i = 0; i < b.iterations; i++ ) {
+		y = variance( min[ i % len ], max[ i % len ], mode[ i % len ] );
+		if ( isnan( y ) ) {
+			b.fail( 'should not return NaN' );
+		}
+	}
+	b.toc();
+	if ( isnan( y ) ) {
+		b.fail( 'should not return NaN' );
+	}
+	b.pass( 'benchmark finished' );
+	b.end();
+});
+
+},{"./../lib":387,"./../package.json":389,"@stdlib/array/float64":40,"@stdlib/bench":270,"@stdlib/math/base/assert/is-nan":323,"@stdlib/random/base/randu":371}],387:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33584,7 +33599,7 @@ function variance( a, b, c ) {
 
 module.exports = variance;
 
-},{"@stdlib/math/base/assert/is-nan":324}],389:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":323}],389:[function(require,module,exports){
 module.exports={
   "name": "@stdlib/stats/base/dists/triangular/variance",
   "version": "0.0.0",
@@ -33601,11 +33616,14 @@ module.exports={
     }
   ],
   "main": "./lib",
+  "gypfile": true,
   "directories": {
     "benchmark": "./benchmark",
     "doc": "./docs",
     "example": "./examples",
+    "include": "./include",
     "lib": "./lib",
+    "src": "./src",
     "test": "./test"
   },
   "types": "./docs/types",
@@ -33904,7 +33922,7 @@ function ctor( options ) {
 
 module.exports = ctor;
 
-},{"./_transform.js":390,"./defaults.json":392,"./destroy.js":393,"./validate.js":398,"@stdlib/object/assign":353,"@stdlib/utils/inherit":473,"debug":534,"readable-stream":551}],392:[function(require,module,exports){
+},{"./_transform.js":390,"./defaults.json":392,"./destroy.js":393,"./validate.js":398,"@stdlib/object/assign":352,"@stdlib/utils/inherit":473,"debug":534,"readable-stream":551}],392:[function(require,module,exports){
 module.exports={
 	"objectMode": false,
 	"encoding": null,
@@ -34090,7 +34108,7 @@ function streamFactory( options ) {
 
 module.exports = streamFactory;
 
-},{"./main.js":396,"@stdlib/assert/is-plain-object":197,"@stdlib/object/assign":353,"@stdlib/string/format":423}],395:[function(require,module,exports){
+},{"./main.js":396,"@stdlib/assert/is-plain-object":197,"@stdlib/object/assign":352,"@stdlib/string/format":423}],395:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34364,7 +34382,7 @@ TransformStream.prototype.destroy = destroy;
 
 module.exports = TransformStream;
 
-},{"./_transform.js":390,"./defaults.json":392,"./destroy.js":393,"./validate.js":398,"@stdlib/object/assign":353,"@stdlib/utils/inherit":473,"debug":534,"readable-stream":551}],397:[function(require,module,exports){
+},{"./_transform.js":390,"./defaults.json":392,"./destroy.js":393,"./validate.js":398,"@stdlib/object/assign":352,"@stdlib/utils/inherit":473,"debug":534,"readable-stream":551}],397:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34457,7 +34475,7 @@ function objectMode( options ) {
 
 module.exports = objectMode;
 
-},{"./main.js":396,"@stdlib/assert/is-plain-object":197,"@stdlib/object/assign":353,"@stdlib/string/format":423}],398:[function(require,module,exports){
+},{"./main.js":396,"@stdlib/assert/is-plain-object":197,"@stdlib/object/assign":352,"@stdlib/string/format":423}],398:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36422,7 +36440,7 @@ function fromCodePoint( args ) {
 
 module.exports = fromCodePoint;
 
-},{"@stdlib/assert/is-collection":134,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/constants/unicode/max":319,"@stdlib/constants/unicode/max-bmp":318,"@stdlib/string/format":423}],428:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":134,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/constants/unicode/max":318,"@stdlib/constants/unicode/max-bmp":317,"@stdlib/string/format":423}],428:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36746,7 +36764,7 @@ function tic() {
 
 module.exports = tic;
 
-},{"./now.js":434,"@stdlib/assert/is-object":195,"@stdlib/math/base/special/modf":335,"@stdlib/math/base/special/round":337,"@stdlib/utils/global":465}],433:[function(require,module,exports){
+},{"./now.js":434,"@stdlib/assert/is-object":195,"@stdlib/math/base/special/modf":334,"@stdlib/math/base/special/round":336,"@stdlib/utils/global":465}],433:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37116,7 +37134,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":132,"@stdlib/regexp/function-name":380,"@stdlib/utils/native-class":494}],440:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":132,"@stdlib/regexp/function-name":379,"@stdlib/utils/native-class":494}],440:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37560,7 +37578,7 @@ function copy( value, level ) {
 
 module.exports = copy;
 
-},{"./deep_copy.js":440,"@stdlib/assert/is-array":119,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/constants/float64/pinf":308,"@stdlib/string/format":423}],443:[function(require,module,exports){
+},{"./deep_copy.js":440,"@stdlib/assert/is-array":119,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/constants/float64/pinf":307,"@stdlib/string/format":423}],443:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38651,7 +38669,7 @@ function functionName( fcn ) {
 
 module.exports = functionName;
 
-},{"@stdlib/assert/has-function-name-support":75,"@stdlib/assert/is-function":152,"@stdlib/regexp/function-name":380,"@stdlib/string/format":423}],459:[function(require,module,exports){
+},{"@stdlib/assert/has-function-name-support":75,"@stdlib/assert/is-function":152,"@stdlib/regexp/function-name":379,"@stdlib/string/format":423}],459:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38792,7 +38810,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":459,"@stdlib/object/ctor":355}],462:[function(require,module,exports){
+},{"./detect.js":459,"@stdlib/object/ctor":354}],462:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41444,7 +41462,7 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{"@stdlib/object/ctor":355}],512:[function(require,module,exports){
+},{"@stdlib/object/ctor":354}],512:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41590,7 +41608,7 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{"@stdlib/object/ctor":355,"@stdlib/utils/keys":487}],515:[function(require,module,exports){
+},{"@stdlib/object/ctor":354,"@stdlib/utils/keys":487}],515:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41646,7 +41664,7 @@ function getOwnPropertySymbols( value ) {
 
 module.exports = getOwnPropertySymbols;
 
-},{"@stdlib/object/ctor":355}],516:[function(require,module,exports){
+},{"@stdlib/object/ctor":354}],516:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41875,7 +41893,7 @@ function reFromString( str ) {
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":204,"@stdlib/regexp/regexp":383,"@stdlib/string/format":423}],521:[function(require,module,exports){
+},{"@stdlib/assert/is-string":204,"@stdlib/regexp/regexp":382,"@stdlib/string/format":423}],521:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48437,4 +48455,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[386]);
+},{}]},{},[385,386]);

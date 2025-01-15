@@ -2303,7 +2303,7 @@ tape( 'the function computes a Givens plane rotation', function test( t ) {
 	t.end();
 });
 
-tape( 'the function returns an array of NaNs if provided a rotation elimination parameter equal to NaN', function test(t) {
+tape( 'the function returns an array of NaNs if provided a rotation elimination parameter equal to NaN', function test( t ) {
 	var actual;
 	var i;
 
@@ -2324,7 +2324,7 @@ tape( 'the function returns an array of NaNs if provided a rotation elimination 
 	t.end();
 });
 
-tape( 'the function supports providing a positive stride', function test(t) {
+tape( 'the function supports providing a positive stride', function test( t ) {
 	var expected;
 	var actual;
 	var delta;
@@ -2349,7 +2349,7 @@ tape( 'the function supports providing a positive stride', function test(t) {
 	t.end();
 });
 
-tape( 'the function supports providing a negative stride', function test(t) {
+tape( 'the function supports providing a negative stride', function test( t ) {
 	var expected;
 	var actual;
 	var delta;
@@ -2374,7 +2374,7 @@ tape( 'the function supports providing a negative stride', function test(t) {
 	t.end();
 });
 
-tape( 'the function supports providing a positive offset', function test(t) {
+tape( 'the function supports providing a positive offset', function test( t ) {
 	var expected;
 	var actual;
 	var delta;
@@ -2399,7 +2399,7 @@ tape( 'the function supports providing a positive offset', function test(t) {
 	t.end();
 });
 
-tape( 'the function supports providing both a stride and offset', function test(t) {
+tape( 'the function supports providing both a stride and offset', function test( t ) {
 	var expected;
 	var actual;
 	var delta;

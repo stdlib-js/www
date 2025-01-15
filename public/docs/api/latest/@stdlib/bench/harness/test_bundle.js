@@ -26193,7 +26193,7 @@ tape( 'the function runs benchmarks (sync)', function test( t ) {
 	function beep( b ) {
 		var i;
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			b.ok( true, 'is okay' );
 		}
 		b.toc();
@@ -26203,7 +26203,7 @@ tape( 'the function runs benchmarks (sync)', function test( t ) {
 	function boop( b ) {
 		var i;
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			b.equal( true, true, 'is equal' );
 		}
 		b.toc();
@@ -26328,7 +26328,7 @@ tape( 'the function runs benchmarks (sync and async)', function test( t ) {
 	function beep( b ) {
 		var i;
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			b.ok( true, 'is okay' );
 		}
 		b.toc();
@@ -26399,7 +26399,7 @@ tape( 'if the `iterations` option is `null`, the function supports automatically
 		t.strictEqual( b.iterations >= 1, true, 'iteration number is >= 1' );
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 || y > 1.0 ) {
@@ -26482,7 +26482,7 @@ tape( 'by default, the `iterations` option is `null` and the number of repeats i
 		t.strictEqual( b.iterations >= 1, true, 'iteration number is >= 1' );
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 || y > 1.0 ) {
@@ -26584,7 +26584,7 @@ tape( 'if the `skip` option is `true`, the function skips a benchmark', function
 		t.strictEqual( b.iterations >= 1, true, 'iteration number is >= 1' );
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 || y > 1.0 ) {
@@ -26731,7 +26731,7 @@ tape( 'if `createStream` is called before providing adding one or more benchmark
 	function beep( b ) {
 		var i;
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			b.ok( true, 'is okay' );
 		}
 		b.toc();
@@ -26741,7 +26741,7 @@ tape( 'if `createStream` is called before providing adding one or more benchmark
 	function boop( b ) {
 		var i;
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			b.equal( true, true, 'is equal' );
 		}
 		b.toc();
@@ -30551,7 +30551,7 @@ tape( 'the function returns a function (no arguments)', function test( t ) {
 });
 
 tape( 'the function returns a function (options)', function test( t ) {
-	var harness = createHarness( {} );
+	var harness = createHarness({} );
 	t.strictEqual( typeof harness, 'function', 'returns a function' );
 	t.end();
 });
@@ -30563,7 +30563,7 @@ tape( 'the function returns a function (callback)', function test( t ) {
 });
 
 tape( 'the function returns a function (more than 1 argument)', function test( t ) {
-	var harness = createHarness( {}, noop );
+	var harness = createHarness({}, noop );
 	t.strictEqual( typeof harness, 'function', 'returns a function' );
 	t.end();
 });
@@ -30769,7 +30769,7 @@ tape( 'the returned function runs benchmarks (sync)', function test( t ) {
 	function beep( b ) {
 		var i;
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			b.ok( true, 'is okay' );
 		}
 		b.toc();
@@ -30779,7 +30779,7 @@ tape( 'the returned function runs benchmarks (sync)', function test( t ) {
 	function boop( b ) {
 		var i;
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			b.equal( true, true, 'is equal' );
 		}
 		b.toc();
@@ -30895,7 +30895,7 @@ tape( 'the returned function runs benchmarks (sync and async)', function test( t
 	function beep( b ) {
 		var i;
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			b.ok( true, 'is okay' );
 		}
 		b.toc();
@@ -30961,7 +30961,7 @@ tape( 'if the `iterations` option is `null`, the returned function supports auto
 		t.strictEqual( b.iterations >= 1, true, 'iteration number is >= 1' );
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 || y > 1.0 ) {
@@ -31036,7 +31036,7 @@ tape( 'by default, the `iterations` option is `null` and the number of repeats i
 		t.strictEqual( b.iterations >= 1, true, 'iteration number is >= 1' );
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 || y > 1.0 ) {
@@ -31125,7 +31125,7 @@ tape( 'if the `skip` option is `true`, the returned function skips a benchmark',
 		t.strictEqual( b.iterations >= 1, true, 'iteration number is >= 1' );
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 || y > 1.0 ) {
@@ -31242,7 +31242,7 @@ tape( 'the `createStream` method supports returning an object mode stream', func
 	function beep( b ) {
 		var i;
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			b.ok( true, 'is okay' );
 		}
 		b.toc();
@@ -31307,7 +31307,7 @@ tape( 'if all benchmarks succeed, the harness exit code is `0`', function test( 
 		var i;
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 && y > 1.0 ) {
@@ -31374,7 +31374,7 @@ tape( 'if a benchmark fails, the harness exit code is `1`', function test( t ) {
 		var i;
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y >= -1.0 && y <= 1.0 ) {
@@ -31447,7 +31447,7 @@ tape( 'the function supports automatically closing a benchmark harness', functio
 		var i;
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 && y > 1.0 ) {
@@ -31535,7 +31535,7 @@ tape( 'the function supports manually closing a benchmark harness', function tes
 		var i;
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 && y > 1.0 ) {
@@ -31644,7 +31644,7 @@ tape( 'the function supports forcefully exiting a benchmark harness (while runni
 			harness.exit();
 		}
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 && y > 1.0 ) {
@@ -31699,7 +31699,7 @@ tape( 'the function supports forcefully exiting a benchmark harness (after runni
 		var i;
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 && y > 1.0 ) {
@@ -31776,7 +31776,7 @@ tape( 'attempting to exit a harness after the harness has closed is a no-op', fu
 		var i;
 
 		b.tic();
-		for ( i = 0; i < b.iterations; i++) {
+		for ( i = 0; i < b.iterations; i++ ) {
 			x = (randu()*100.0) - 50.0;
 			y = cos( x );
 			if ( y < -1.0 && y > 1.0 ) {

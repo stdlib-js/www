@@ -2583,109 +2583,6 @@ module.exports = isPositiveZero;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Round a double-precision floating-point number toward negative infinity.
-*
-* @module @stdlib/math/base/special/floor
-*
-* @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* v = floor( 9.99999 );
-* // returns 9.0
-*
-* v = floor( 0.0 );
-* // returns 0.0
-*
-* v = floor( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":51}],51:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// TODO: implementation (?)
-
-/**
-* Rounds a double-precision floating-point number toward negative infinity.
-*
-* @param {number} x - input value
-* @returns {number} rounded value
-*
-* @example
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* @example
-* var v = floor( 9.99999 );
-* // returns 9.0
-*
-* @example
-* var v = floor( 0.0 );
-* // returns 0.0
-*
-* @example
-* var v = floor( NaN );
-* // returns NaN
-*/
-var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
-
-
-// EXPORTS //
-
-module.exports = floor;
-
-},{}],52:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
 * Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -2738,7 +2635,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":53}],53:[function(require,module,exports){
+},{"./main.js":51}],51:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2798,7 +2695,7 @@ var Obj = Object; // eslint-disable-line stdlib/require-globals
 
 module.exports = Obj;
 
-},{}],54:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2861,7 +2758,7 @@ setReadOnly( main, 'REGEXP', REGEXP );
 
 module.exports = main;
 
-},{"./main.js":55,"./regexp.js":56,"@stdlib/utils/define-nonenumerable-read-only-property":82}],55:[function(require,module,exports){
+},{"./main.js":53,"./regexp.js":54,"@stdlib/utils/define-nonenumerable-read-only-property":82}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2917,7 +2814,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],56:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2979,7 +2876,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":55}],57:[function(require,module,exports){
+},{"./main.js":53}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3002,7 +2899,8 @@ module.exports = RE_FUNCTION_NAME;
 
 // MODULES //
 
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -3028,59 +2926,9 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 * // returns 4.0
 */
 function dmskrange( N, x, strideX, mask, strideMask ) {
-	var max;
-	var min;
-	var ix;
-	var im;
-	var v;
-	var i;
-
-	if ( N <= 0 ) {
-		return NaN;
-	}
-	if ( strideX < 0 ) {
-		ix = (1-N) * strideX;
-	} else {
-		ix = 0;
-	}
-	if ( strideMask < 0 ) {
-		im = (1-N) * strideMask;
-	} else {
-		im = 0;
-	}
-	for ( i = 0; i < N; i++ ) {
-		if ( mask[ im ] === 0 ) {
-			break;
-		}
-		ix += strideX;
-		im += strideMask;
-	}
-	if ( i === N ) {
-		return NaN;
-	}
-	min = x[ ix ];
-	if ( isnan( min ) ) {
-		return min;
-	}
-	max = min;
-	i += 1;
-	for ( i; i < N; i++ ) {
-		ix += strideX;
-		im += strideMask;
-		if ( mask[ im ] ) {
-			continue;
-		}
-		v = x[ ix ];
-		if ( isnan( v ) ) {
-			return v;
-		}
-		if ( v < min ) {
-			min = v;
-		} else if ( v > max ) {
-			max = v;
-		}
-	}
-	return max - min;
+	var ox = stride2offset( N, strideX );
+	var om = stride2offset( N, strideMask );
+	return ndarray( N, x, strideX, ox, mask, strideMask, om );
 }
 
 
@@ -3088,7 +2936,7 @@ function dmskrange( N, x, strideX, mask, strideMask ) {
 
 module.exports = dmskrange;
 
-},{"@stdlib/math/base/assert/is-nan":46}],58:[function(require,module,exports){
+},{"./ndarray.js":57,"@stdlib/strided/base/stride2offset":63}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3125,7 +2973,7 @@ setReadOnly( dmskrange, 'ndarray', ndarray );
 
 module.exports = dmskrange;
 
-},{"./dmskrange.js":57,"./ndarray.js":59,"@stdlib/utils/define-nonenumerable-read-only-property":82}],59:[function(require,module,exports){
+},{"./dmskrange.js":55,"./ndarray.js":57,"@stdlib/utils/define-nonenumerable-read-only-property":82}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3168,13 +3016,11 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
 * var Uint8Array = require( '@stdlib/array/uint8' );
-* var floor = require( '@stdlib/math/base/special/floor' );
 *
 * var x = new Float64Array( [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
 * var mask = new Uint8Array( [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1 ] );
-* var N = floor( x.length / 2 );
 *
-* var v = dmskrange( N, x, 2, 1, mask, 2, 1 );
+* var v = dmskrange( 5, x, 2, 1, mask, 2, 1 );
 * // returns 6.0
 */
 function dmskrange( N, x, strideX, offsetX, mask, strideMask, offsetMask ) {
@@ -3230,7 +3076,7 @@ function dmskrange( N, x, strideX, offsetX, mask, strideMask, offsetMask ) {
 
 module.exports = dmskrange;
 
-},{"@stdlib/math/base/assert/is-nan":46}],60:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":46}],58:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -3255,7 +3101,6 @@ module.exports = dmskrange;
 // MODULES //
 
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var isPositiveZero = require( '@stdlib/math/base/assert/is-positive-zero' );
 var Float64Array = require( '@stdlib/array/float64' );
@@ -3367,7 +3212,6 @@ tape( 'if provided an `N` parameter equal to `1`, the function returns `0`', fun
 
 tape( 'the function supports `stride` parameters', function test( t ) {
 	var mask;
-	var N;
 	var x;
 	var v;
 
@@ -3396,8 +3240,7 @@ tape( 'the function supports `stride` parameters', function test( t ) {
 		1
 	]);
 
-	N = floor( x.length / 2 );
-	v = dmskrange( N, x, 2, mask, 2 );
+	v = dmskrange( 5, x, 2, mask, 2 );
 
 	t.strictEqual( v, 6.0, 'returns expected value' );
 	t.end();
@@ -3405,7 +3248,6 @@ tape( 'the function supports `stride` parameters', function test( t ) {
 
 tape( 'the function supports negative `stride` parameters', function test( t ) {
 	var mask;
-	var N;
 	var x;
 	var v;
 
@@ -3434,8 +3276,7 @@ tape( 'the function supports negative `stride` parameters', function test( t ) {
 		0
 	]);
 
-	N = floor( x.length / 2 );
-	v = dmskrange( N, x, -2, mask, -2 );
+	v = dmskrange( 5, x, -2, mask, -2 );
 
 	t.strictEqual( v, 6.0, 'returns expected value' );
 	t.end();
@@ -3446,7 +3287,6 @@ tape( 'the function supports view offsets', function test( t ) {
 	var mask1;
 	var x0;
 	var x1;
-	var N;
 	var v;
 
 	x0 = new Float64Array([
@@ -3478,16 +3318,15 @@ tape( 'the function supports view offsets', function test( t ) {
 
 	x1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
 	mask1 = new Uint8Array( mask0.buffer, mask0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
-	N = floor( x1.length/2 );
 
-	v = dmskrange( N, x1, 2, mask1, 2 );
+	v = dmskrange( 5, x1, 2, mask1, 2 );
 	t.strictEqual( v, 6.0, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/dmskrange/test/test.dmskrange.js")
-},{"./../lib/dmskrange.js":57,"@stdlib/array/float64":1,"@stdlib/array/uint8":4,"@stdlib/math/base/assert/is-nan":46,"@stdlib/math/base/assert/is-positive-zero":48,"@stdlib/math/base/special/floor":50,"tape":242}],61:[function(require,module,exports){
+},{"./../lib/dmskrange.js":55,"@stdlib/array/float64":1,"@stdlib/array/uint8":4,"@stdlib/math/base/assert/is-nan":46,"@stdlib/math/base/assert/is-positive-zero":48,"tape":242}],59:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -3513,7 +3352,6 @@ tape( 'the function supports view offsets', function test( t ) {
 
 var resolve = require( 'path' ).resolve;
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var isPositiveZero = require( '@stdlib/math/base/assert/is-positive-zero' );
 var Float64Array = require( '@stdlib/array/float64' );
@@ -3633,7 +3471,6 @@ tape( 'if provided an `N` parameter equal to `1`, the function returns `0`', opt
 
 tape( 'the function supports `stride` parameters', opts, function test( t ) {
 	var mask;
-	var N;
 	var x;
 	var v;
 
@@ -3662,8 +3499,7 @@ tape( 'the function supports `stride` parameters', opts, function test( t ) {
 		1
 	]);
 
-	N = floor( x.length / 2 );
-	v = dmskrange( N, x, 2, mask, 2 );
+	v = dmskrange( 5, x, 2, mask, 2 );
 
 	t.strictEqual( v, 6.0, 'returns expected value' );
 	t.end();
@@ -3671,7 +3507,6 @@ tape( 'the function supports `stride` parameters', opts, function test( t ) {
 
 tape( 'the function supports negative `stride` parameters', opts, function test( t ) {
 	var mask;
-	var N;
 	var x;
 	var v;
 
@@ -3700,8 +3535,7 @@ tape( 'the function supports negative `stride` parameters', opts, function test(
 		0
 	]);
 
-	N = floor( x.length / 2 );
-	v = dmskrange( N, x, -2, mask, -2 );
+	v = dmskrange( 5, x, -2, mask, -2 );
 
 	t.strictEqual( v, 6.0, 'returns expected value' );
 	t.end();
@@ -3712,7 +3546,6 @@ tape( 'the function supports view offsets', opts, function test( t ) {
 	var mask1;
 	var x0;
 	var x1;
-	var N;
 	var v;
 
 	x0 = new Float64Array([
@@ -3744,16 +3577,15 @@ tape( 'the function supports view offsets', opts, function test( t ) {
 
 	x1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
 	mask1 = new Uint8Array( mask0.buffer, mask0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
-	N = floor( x1.length/2 );
 
-	v = dmskrange( N, x1, 2, mask1, 2 );
+	v = dmskrange( 5, x1, 2, mask1, 2 );
 	t.strictEqual( v, 6.0, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/dmskrange/test/test.dmskrange.native.js","/lib/node_modules/@stdlib/stats/base/dmskrange/test")
-},{"@stdlib/array/float64":1,"@stdlib/array/uint8":4,"@stdlib/math/base/assert/is-nan":46,"@stdlib/math/base/assert/is-positive-zero":48,"@stdlib/math/base/special/floor":50,"@stdlib/utils/try-require":105,"path":119,"tape":242}],62:[function(require,module,exports){
+},{"@stdlib/array/float64":1,"@stdlib/array/uint8":4,"@stdlib/math/base/assert/is-nan":46,"@stdlib/math/base/assert/is-positive-zero":48,"@stdlib/utils/try-require":105,"path":119,"tape":242}],60:[function(require,module,exports){
 (function (__filename){(function (){
 /* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib');});/**
 * @license Apache-2.0
@@ -3839,7 +3671,7 @@ tape( 'if a native implementation is not available, the main export is a JavaScr
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/dmskrange/test/test.js")
-},{"./../lib":58,"./../lib/dmskrange.js":57,"@stdlib/assert/is-browser":27,"proxyquireify":232,"tape":242}],63:[function(require,module,exports){
+},{"./../lib":56,"./../lib/dmskrange.js":55,"@stdlib/assert/is-browser":27,"proxyquireify":232,"tape":242}],61:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -3864,7 +3696,6 @@ tape( 'if a native implementation is not available, the main export is a JavaScr
 // MODULES //
 
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var isPositiveZero = require( '@stdlib/math/base/assert/is-positive-zero' );
 var Float64Array = require( '@stdlib/array/float64' );
@@ -3976,7 +3807,6 @@ tape( 'if provided an `N` parameter equal to `1`, the function returns `0`', fun
 
 tape( 'the function supports `stride` parameters', function test( t ) {
 	var mask;
-	var N;
 	var x;
 	var v;
 
@@ -4005,8 +3835,7 @@ tape( 'the function supports `stride` parameters', function test( t ) {
 		1
 	]);
 
-	N = floor( x.length / 2 );
-	v = dmskrange( N, x, 2, 0, mask, 2, 0 );
+	v = dmskrange( 5, x, 2, 0, mask, 2, 0 );
 
 	t.strictEqual( v, 6.0, 'returns expected value' );
 	t.end();
@@ -4014,7 +3843,6 @@ tape( 'the function supports `stride` parameters', function test( t ) {
 
 tape( 'the function supports negative `stride` parameters', function test( t ) {
 	var mask;
-	var N;
 	var x;
 	var v;
 
@@ -4043,8 +3871,7 @@ tape( 'the function supports negative `stride` parameters', function test( t ) {
 		0
 	]);
 
-	N = floor( x.length / 2 );
-	v = dmskrange( N, x, -2, 8, mask, -2, 8 );
+	v = dmskrange( 5, x, -2, 8, mask, -2, 8 );
 
 	t.strictEqual( v, 6.0, 'returns expected value' );
 	t.end();
@@ -4052,7 +3879,6 @@ tape( 'the function supports negative `stride` parameters', function test( t ) {
 
 tape( 'the function supports `offset` parameters', function test( t ) {
 	var mask;
-	var N;
 	var x;
 	var v;
 
@@ -4080,16 +3906,15 @@ tape( 'the function supports `offset` parameters', function test( t ) {
 		1,
 		1  // 4
 	]);
-	N = floor( x.length / 2 );
 
-	v = dmskrange( N, x, 2, 1, mask, 2, 1 );
+	v = dmskrange( 5, x, 2, 1, mask, 2, 1 );
 	t.strictEqual( v, 6.0, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/dmskrange/test/test.ndarray.js")
-},{"./../lib/ndarray.js":59,"@stdlib/array/float64":1,"@stdlib/array/uint8":4,"@stdlib/math/base/assert/is-nan":46,"@stdlib/math/base/assert/is-positive-zero":48,"@stdlib/math/base/special/floor":50,"tape":242}],64:[function(require,module,exports){
+},{"./../lib/ndarray.js":57,"@stdlib/array/float64":1,"@stdlib/array/uint8":4,"@stdlib/math/base/assert/is-nan":46,"@stdlib/math/base/assert/is-positive-zero":48,"tape":242}],62:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -4115,7 +3940,6 @@ tape( 'the function supports `offset` parameters', function test( t ) {
 
 var resolve = require( 'path' ).resolve;
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var isPositiveZero = require( '@stdlib/math/base/assert/is-positive-zero' );
 var Float64Array = require( '@stdlib/array/float64' );
@@ -4213,7 +4037,7 @@ tape( 'if provided an `N` parameter less than or equal to `0`, the function retu
 	v = dmskrange( 0, x, 1, 0, mask, 1, 0 );
 	t.strictEqual( isnan( v ), true, 'returns expected value' );
 
-	v = dmskrange( -1, x, 1, 0, mask, 1 );
+	v = dmskrange( -1, x, 1, 0, mask, 1, 0 );
 	t.strictEqual( isnan( v ), true, 'returns expected value' );
 
 	t.end();
@@ -4235,7 +4059,6 @@ tape( 'if provided an `N` parameter equal to `1`, the function returns `0`', opt
 
 tape( 'the function supports `stride` parameters', opts, function test( t ) {
 	var mask;
-	var N;
 	var x;
 	var v;
 
@@ -4264,8 +4087,7 @@ tape( 'the function supports `stride` parameters', opts, function test( t ) {
 		1
 	]);
 
-	N = floor( x.length / 2 );
-	v = dmskrange( N, x, 2, 0, mask, 2, 0 );
+	v = dmskrange( 5, x, 2, 0, mask, 2, 0 );
 
 	t.strictEqual( v, 6.0, 'returns expected value' );
 	t.end();
@@ -4273,7 +4095,6 @@ tape( 'the function supports `stride` parameters', opts, function test( t ) {
 
 tape( 'the function supports negative `stride` parameters', opts, function test( t ) {
 	var mask;
-	var N;
 	var x;
 	var v;
 
@@ -4302,8 +4123,7 @@ tape( 'the function supports negative `stride` parameters', opts, function test(
 		0
 	]);
 
-	N = floor( x.length / 2 );
-	v = dmskrange( N, x, -2, 8, mask, -2, 8 );
+	v = dmskrange( 5, x, -2, 8, mask, -2, 8 );
 
 	t.strictEqual( v, 6.0, 'returns expected value' );
 	t.end();
@@ -4311,7 +4131,6 @@ tape( 'the function supports negative `stride` parameters', opts, function test(
 
 tape( 'the function supports `offset` parameters', opts, function test( t ) {
 	var mask;
-	var N;
 	var x;
 	var v;
 
@@ -4339,16 +4158,103 @@ tape( 'the function supports `offset` parameters', opts, function test( t ) {
 		1,
 		1  // 4
 	]);
-	N = floor( x.length / 2 );
 
-	v = dmskrange( N, x, 2, 1, mask, 2, 1 );
+	v = dmskrange( 5, x, 2, 1, mask, 2, 1 );
 	t.strictEqual( v, 6.0, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/dmskrange/test/test.ndarray.native.js","/lib/node_modules/@stdlib/stats/base/dmskrange/test")
-},{"@stdlib/array/float64":1,"@stdlib/array/uint8":4,"@stdlib/math/base/assert/is-nan":46,"@stdlib/math/base/assert/is-positive-zero":48,"@stdlib/math/base/special/floor":50,"@stdlib/utils/try-require":105,"path":119,"tape":242}],65:[function(require,module,exports){
+},{"@stdlib/array/float64":1,"@stdlib/array/uint8":4,"@stdlib/math/base/assert/is-nan":46,"@stdlib/math/base/assert/is-positive-zero":48,"@stdlib/utils/try-require":105,"path":119,"tape":242}],63:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Determine the index offset which specifies the location of the first indexed value in a strided array.
+*
+* @module @stdlib/strided/base/stride2offset
+*
+* @example
+* var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+*
+* var offset = stride2offset( 10, -10 );
+* // returns 90
+*/
+
+// MODULES //
+
+var stride2offset = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = stride2offset;
+
+},{"./main.js":64}],64:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns the index offset which specifies the location of the first indexed value in a strided array.
+*
+* @param {NonNegativeInteger} N - number of indexed elements
+* @param {integer} stride - index increment
+* @returns {NonNegativeInteger} offset - offset
+*
+* @example
+* var offset = stride2offset( 10, -10 );
+* // returns 90
+*/
+function stride2offset( N, stride ) {
+	if ( stride > 0 ) {
+		return 0;
+	}
+	return ( 1 - N ) * stride;
+}
+
+
+// EXPORTS //
+
+module.exports = stride2offset;
+
+},{}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5550,7 +5456,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":28,"@stdlib/regexp/function-name":54,"@stdlib/utils/native-class":100}],82:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":28,"@stdlib/regexp/function-name":52,"@stdlib/utils/native-class":100}],82:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6130,7 +6036,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":89,"@stdlib/object/ctor":52}],92:[function(require,module,exports){
+},{"./detect.js":89,"@stdlib/object/ctor":50}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18262,4 +18168,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[60,61,62,63,64]);
+},{}]},{},[58,59,60,61,62]);

@@ -3985,7 +3985,7 @@ tape( 'the function throws an error if not provided an object', function test( t
 		new Date()
 	];
 
-	for (i = 0; i < values.length; i++) {
+	for ( i = 0; i < values.length; i++ ) {
 		t.throws( badValue( values ), TypeError, 'throws a type error when provided '+values[i] );
 	}
 	t.end();
@@ -4030,7 +4030,7 @@ tape( 'if provided an empty object, the function returns `true`', function test(
 	t.end();
 });
 
-tape('the function returns `true` if every property fails a test ', function test(t) {
+tape('the function returns `true` if every property fails a test ', function test( t ) {
 	var bool;
 
 	var obj = {

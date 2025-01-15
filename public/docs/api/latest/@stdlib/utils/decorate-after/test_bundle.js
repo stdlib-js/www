@@ -5451,7 +5451,7 @@ tape( 'the function returns a function (thisArg)', function test( t ) {
 	t.end();
 });
 
-tape( 'the function decorates a function (nullary, transform)', function test( t) {
+tape( 'the function decorates a function (nullary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5475,7 +5475,7 @@ tape( 'the function decorates a function (nullary, transform)', function test( t
 	}
 });
 
-tape( 'the function decorates a function (nullary, pass through)', function test( t) {
+tape( 'the function decorates a function (nullary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5495,7 +5495,7 @@ tape( 'the function decorates a function (nullary, pass through)', function test
 	}
 });
 
-tape( 'the function decorates a function (unary, transform)', function test( t) {
+tape( 'the function decorates a function (unary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5519,7 +5519,7 @@ tape( 'the function decorates a function (unary, transform)', function test( t) 
 	}
 });
 
-tape( 'the function decorates a function (unary, pass through)', function test( t) {
+tape( 'the function decorates a function (unary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5539,7 +5539,7 @@ tape( 'the function decorates a function (unary, pass through)', function test( 
 	}
 });
 
-tape( 'the function decorates a function (binary, transform)', function test( t) {
+tape( 'the function decorates a function (binary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5559,7 +5559,7 @@ tape( 'the function decorates a function (binary, transform)', function test( t)
 	}
 });
 
-tape( 'the function decorates a function (binary, pass through)', function test( t) {
+tape( 'the function decorates a function (binary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5575,7 +5575,7 @@ tape( 'the function decorates a function (binary, pass through)', function test(
 	t.end();
 });
 
-tape( 'the function decorates a function (ternary, transform)', function test( t) {
+tape( 'the function decorates a function (ternary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5596,7 +5596,7 @@ tape( 'the function decorates a function (ternary, transform)', function test( t
 	}
 });
 
-tape( 'the function decorates a function (ternary, pass through)', function test( t) {
+tape( 'the function decorates a function (ternary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5613,7 +5613,7 @@ tape( 'the function decorates a function (ternary, pass through)', function test
 	}
 });
 
-tape( 'the function decorates a function (quaternary, transform)', function test( t) {
+tape( 'the function decorates a function (quaternary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5634,7 +5634,7 @@ tape( 'the function decorates a function (quaternary, transform)', function test
 	}
 });
 
-tape( 'the function decorates a function (quaternary, pass through)', function test( t) {
+tape( 'the function decorates a function (quaternary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5651,7 +5651,7 @@ tape( 'the function decorates a function (quaternary, pass through)', function t
 	}
 });
 
-tape( 'the function decorates a function (quinary, transform)', function test( t) {
+tape( 'the function decorates a function (quinary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5672,7 +5672,7 @@ tape( 'the function decorates a function (quinary, transform)', function test( t
 	}
 });
 
-tape( 'the function decorates a function (quinary, pass through)', function test( t) {
+tape( 'the function decorates a function (quinary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5689,7 +5689,7 @@ tape( 'the function decorates a function (quinary, pass through)', function test
 	}
 });
 
-tape( 'the function decorates a function (senary, transform)', function test( t) {
+tape( 'the function decorates a function (senary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5710,7 +5710,7 @@ tape( 'the function decorates a function (senary, transform)', function test( t)
 	}
 });
 
-tape( 'the function decorates a function (senary, pass through)', function test( t) {
+tape( 'the function decorates a function (senary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5727,7 +5727,7 @@ tape( 'the function decorates a function (senary, pass through)', function test(
 	}
 });
 
-tape( 'the function decorates a function (septenary, transform)', function test( t) {
+tape( 'the function decorates a function (septenary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5748,7 +5748,7 @@ tape( 'the function decorates a function (septenary, transform)', function test(
 	}
 });
 
-tape( 'the function decorates a function (septenary, pass through)', function test( t) {
+tape( 'the function decorates a function (septenary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5765,7 +5765,7 @@ tape( 'the function decorates a function (septenary, pass through)', function te
 	}
 });
 
-tape( 'the function decorates a function (octonary, transform)', function test( t) {
+tape( 'the function decorates a function (octonary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5786,7 +5786,7 @@ tape( 'the function decorates a function (octonary, transform)', function test( 
 	}
 });
 
-tape( 'the function decorates a function (octonary, pass through)', function test( t) {
+tape( 'the function decorates a function (octonary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5803,7 +5803,7 @@ tape( 'the function decorates a function (octonary, pass through)', function tes
 	}
 });
 
-tape( 'the function decorates a function (novenary, transform)', function test( t) {
+tape( 'the function decorates a function (novenary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5824,7 +5824,7 @@ tape( 'the function decorates a function (novenary, transform)', function test( 
 	}
 });
 
-tape( 'the function decorates a function (novenary, pass through)', function test( t) {
+tape( 'the function decorates a function (novenary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5841,7 +5841,7 @@ tape( 'the function decorates a function (novenary, pass through)', function tes
 	}
 });
 
-tape( 'the function decorates a function (denary, transform)', function test( t) {
+tape( 'the function decorates a function (denary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5862,7 +5862,7 @@ tape( 'the function decorates a function (denary, transform)', function test( t)
 	}
 });
 
-tape( 'the function decorates a function (denary, pass through)', function test( t) {
+tape( 'the function decorates a function (denary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5879,7 +5879,7 @@ tape( 'the function decorates a function (denary, pass through)', function test(
 	}
 });
 
-tape( 'the function decorates a function (multary, transform)', function test( t) {
+tape( 'the function decorates a function (multary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -5900,7 +5900,7 @@ tape( 'the function decorates a function (multary, transform)', function test( t
 	}
 });
 
-tape( 'the function decorates a function (multary, pass through)', function test( t) {
+tape( 'the function decorates a function (multary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6304,7 +6304,7 @@ tape( 'the function returns a function (thisArg)', function test( t ) {
 	t.end();
 });
 
-tape( 'the function decorates a function (nullary, transform)', function test( t) {
+tape( 'the function decorates a function (nullary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6328,7 +6328,7 @@ tape( 'the function decorates a function (nullary, transform)', function test( t
 	}
 });
 
-tape( 'the function decorates a function (nullary, pass through)', function test( t) {
+tape( 'the function decorates a function (nullary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6348,7 +6348,7 @@ tape( 'the function decorates a function (nullary, pass through)', function test
 	}
 });
 
-tape( 'the function decorates a function (unary, transform)', function test( t) {
+tape( 'the function decorates a function (unary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6372,7 +6372,7 @@ tape( 'the function decorates a function (unary, transform)', function test( t) 
 	}
 });
 
-tape( 'the function decorates a function (unary, pass through)', function test( t) {
+tape( 'the function decorates a function (unary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6392,7 +6392,7 @@ tape( 'the function decorates a function (unary, pass through)', function test( 
 	}
 });
 
-tape( 'the function decorates a function (binary, transform)', function test( t) {
+tape( 'the function decorates a function (binary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6412,7 +6412,7 @@ tape( 'the function decorates a function (binary, transform)', function test( t)
 	}
 });
 
-tape( 'the function decorates a function (binary, pass through)', function test( t) {
+tape( 'the function decorates a function (binary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6428,7 +6428,7 @@ tape( 'the function decorates a function (binary, pass through)', function test(
 	t.end();
 });
 
-tape( 'the function decorates a function (ternary, transform)', function test( t) {
+tape( 'the function decorates a function (ternary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6449,7 +6449,7 @@ tape( 'the function decorates a function (ternary, transform)', function test( t
 	}
 });
 
-tape( 'the function decorates a function (ternary, pass through)', function test( t) {
+tape( 'the function decorates a function (ternary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6466,7 +6466,7 @@ tape( 'the function decorates a function (ternary, pass through)', function test
 	}
 });
 
-tape( 'the function decorates a function (quaternary, transform)', function test( t) {
+tape( 'the function decorates a function (quaternary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6487,7 +6487,7 @@ tape( 'the function decorates a function (quaternary, transform)', function test
 	}
 });
 
-tape( 'the function decorates a function (quaternary, pass through)', function test( t) {
+tape( 'the function decorates a function (quaternary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6504,7 +6504,7 @@ tape( 'the function decorates a function (quaternary, pass through)', function t
 	}
 });
 
-tape( 'the function decorates a function (quinary, transform)', function test( t) {
+tape( 'the function decorates a function (quinary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6525,7 +6525,7 @@ tape( 'the function decorates a function (quinary, transform)', function test( t
 	}
 });
 
-tape( 'the function decorates a function (quinary, pass through)', function test( t) {
+tape( 'the function decorates a function (quinary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6542,7 +6542,7 @@ tape( 'the function decorates a function (quinary, pass through)', function test
 	}
 });
 
-tape( 'the function decorates a function (senary, transform)', function test( t) {
+tape( 'the function decorates a function (senary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6563,7 +6563,7 @@ tape( 'the function decorates a function (senary, transform)', function test( t)
 	}
 });
 
-tape( 'the function decorates a function (senary, pass through)', function test( t) {
+tape( 'the function decorates a function (senary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6580,7 +6580,7 @@ tape( 'the function decorates a function (senary, pass through)', function test(
 	}
 });
 
-tape( 'the function decorates a function (septenary, transform)', function test( t) {
+tape( 'the function decorates a function (septenary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6601,7 +6601,7 @@ tape( 'the function decorates a function (septenary, transform)', function test(
 	}
 });
 
-tape( 'the function decorates a function (septenary, pass through)', function test( t) {
+tape( 'the function decorates a function (septenary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6618,7 +6618,7 @@ tape( 'the function decorates a function (septenary, pass through)', function te
 	}
 });
 
-tape( 'the function decorates a function (octonary, transform)', function test( t) {
+tape( 'the function decorates a function (octonary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6639,7 +6639,7 @@ tape( 'the function decorates a function (octonary, transform)', function test( 
 	}
 });
 
-tape( 'the function decorates a function (octonary, pass through)', function test( t) {
+tape( 'the function decorates a function (octonary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6656,7 +6656,7 @@ tape( 'the function decorates a function (octonary, pass through)', function tes
 	}
 });
 
-tape( 'the function decorates a function (novenary, transform)', function test( t) {
+tape( 'the function decorates a function (novenary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6677,7 +6677,7 @@ tape( 'the function decorates a function (novenary, transform)', function test( 
 	}
 });
 
-tape( 'the function decorates a function (novenary, pass through)', function test( t) {
+tape( 'the function decorates a function (novenary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6694,7 +6694,7 @@ tape( 'the function decorates a function (novenary, pass through)', function tes
 	}
 });
 
-tape( 'the function decorates a function (denary, transform)', function test( t) {
+tape( 'the function decorates a function (denary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6715,7 +6715,7 @@ tape( 'the function decorates a function (denary, transform)', function test( t)
 	}
 });
 
-tape( 'the function decorates a function (denary, pass through)', function test( t) {
+tape( 'the function decorates a function (denary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6732,7 +6732,7 @@ tape( 'the function decorates a function (denary, pass through)', function test(
 	}
 });
 
-tape( 'the function decorates a function (multary, transform)', function test( t) {
+tape( 'the function decorates a function (multary, transform)', function test( t ) {
 	var fcn;
 	var v;
 
@@ -6753,7 +6753,7 @@ tape( 'the function decorates a function (multary, transform)', function test( t
 	}
 });
 
-tape( 'the function decorates a function (multary, pass through)', function test( t) {
+tape( 'the function decorates a function (multary, pass through)', function test( t ) {
 	var fcn;
 	var v;
 

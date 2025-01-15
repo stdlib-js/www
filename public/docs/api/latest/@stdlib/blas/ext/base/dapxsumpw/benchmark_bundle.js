@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -26744,7 +26746,7 @@ var ndarray = require( './ndarray.js' );
 * -   Higham, Nicholas J. 1993. "The Accuracy of Floating Point Summation." _SIAM Journal on Scientific Computing_ 14 (4): 783–99. doi:[10.1137/0914050](https://doi.org/10.1137/0914050).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @returns {number} sum
@@ -26753,9 +26755,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dapxsumpw( N, 5.0, x, 1 );
+* var v = dapxsumpw( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
 function dapxsumpw( N, alpha, x, strideX ) {
@@ -26813,7 +26814,7 @@ var BLOCKSIZE = 128;
 * -   Higham, Nicholas J. 1993. "The Accuracy of Floating Point Summation." _SIAM Journal on Scientific Computing_ 14 (4): 783–99. doi:[10.1137/0914050](https://doi.org/10.1137/0914050).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @param {NonNegativeInteger} offsetX - starting index
@@ -26845,10 +26846,10 @@ function dapxsumpw( N, alpha, x, strideX, offsetX ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || strideX === 0 ) {
-		return alpha + x[ offsetX ];
-	}
 	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * ( alpha + x[ ix ] );
+	}
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;

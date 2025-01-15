@@ -3328,7 +3328,7 @@ var format = require( '@stdlib/string/format' );
 */
 function everyInBy( obj, predicate, thisArg ) {
 	var key;
-	if (typeof obj !== 'object' || obj === null) {
+	if ( typeof obj !== 'object' || obj === null ) {
 		throw new TypeError( format( 'invalid argument. First argument must be an object. Value: `%s`.', obj ) );
 	}
 	if ( !isFunction( predicate ) ) {

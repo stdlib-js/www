@@ -22342,7 +22342,7 @@ function compute( a, p, q ) {
 	}
 	if ( ( a < 1.0 ) && ( k === 0 ) ) {
 		m = 0;
-		if (pcase) {
+		if ( pcase ) {
 			x0 = exp( (1.0/a) * ( ln(porq) + gammaln(a+1.0) ) );
 		} else {
 			x0 = exp( (1.0/a) * ( ln(1.0-porq) + gammaln(a+1.0) ) );
@@ -25432,7 +25432,7 @@ function ibetaImp( x, a, b, regularized, upper, out, stride, offset ) {
 			upper = !upper;
 
 			if ( y >= 0.3 ) {
-				if (upper) {
+				if ( upper ) {
 					fract = -(( regularized ) ? 1.0 : beta( a, b ));
 					upper = false;
 					fract = -ibetaSeries( a, b, x, fract, regularized, out, y );
@@ -26364,7 +26364,7 @@ function ibetaPowerTerms( a, b, x, y, normalized ) {
 					result *= pow( p1 * b2, b );
 				} else {
 					l2 += l1 + ln( result );
-					if (l2 >= MAX_LN) {
+					if ( l2 >= MAX_LN ) {
 						return NaN;
 					}
 					result = exp( l2 );
@@ -30490,7 +30490,7 @@ var polyvalQ = require( './polyval_q.js' );
 *     We use a special Reme algorithm on \\(\[0,0.1716]\\) to generate a polynomial of degree \\(14\\) to approximate \\(R\\). The maximum error of this polynomial approximation is bounded by \\(2^{-58.45}\\). In other words,
 *
 *     ```tex
-*     R(z) ~ L_{g1} s^2 + L_{g2} s^4 + L_{g3} s^6 + L_{g4} s^8 + L_{g5} s^{10}  + L_{g6} s^{12}  + L_{g7} s^{14}
+*     R(z) ~ L_{g1} s^2 + L_{g2} s^4 + L_{g3} s^6 + L_{g4} s^8 + L_{g5} s^{10} + L_{g6} s^{12} + L_{g7} s^{14}
 *     ```
 *
 *     where the values of \\(L_{g1}\\) to \\(L_{g7}\\) are the polynomial coefficients used in the program below and
@@ -35729,7 +35729,7 @@ module.exports = main;
 *
 * ## Notice
 *
-* The original C++ code and copyright notice are from the [Boost library]{@link http://www.boost.org/doc/libs/1_60_0/boost/math/special_functions/zeta.hpp}. The implementation follows the original, but has been modified for JavaScript.
+* The original C++ code and copyright notice are from the [Boost library]{@link http://www.boost.org/doc/libs/1_85_0/boost/math/special_functions/zeta.hpp}. The implementation follows the original, but has been modified for JavaScript.
 *
 * ```text
 * (C) Copyright John Maddock 2006.
@@ -35759,6 +35759,8 @@ var NINF = require( '@stdlib/constants/float64/ninf' );
 var TWO_PI = require( '@stdlib/constants/float64/two-pi' );
 var SQRT_EPSILON = require( '@stdlib/constants/float64/sqrt-eps' );
 var LN_SQRT_TWO_PI = require( '@stdlib/constants/float64/ln-sqrt-two-pi' );
+var MAX_SAFE_NTH_FACTORIAL = require( '@stdlib/constants/float64/max-safe-nth-factorial' );
+var FLOAT64_MAX_LN = require( '@stdlib/constants/float64/max-ln' );
 var ODD_POSITIVE_INTEGERS = require( './odd_positive_integers.json' );
 var EVEN_NONNEGATIVE_INTEGERS = require( './even_nonnegative_integers.json' );
 var BERNOULLI = require( './bernoulli.json' );
@@ -35773,8 +35775,7 @@ var rateval6 = require( './rational_p6q6.js' );
 // VARIABLES //
 
 var MAX_BERNOULLI_2N = 129;
-var MAX_FACTORIAL = 170; // TODO: consider making external constant
-var MAX_LN = 709; // TODO: consider making external constant
+var MAX_LN = floor( FLOAT64_MAX_LN );
 var Y1 = 1.2433929443359375;
 var Y3 = 0.6986598968505859375;
 
@@ -35972,7 +35973,7 @@ function zeta( s ) {
 		sc = tmp;
 
 		// Determine if computation will overflow:
-		if ( s > MAX_FACTORIAL ) {
+		if ( s > MAX_SAFE_NTH_FACTORIAL ) {
 			tmp = sinpi( 0.5*sc ) * 2.0 * zeta( s );
 			r = gammaln( s );
 			r -= s * ln( TWO_PI );
@@ -36020,7 +36021,7 @@ function zeta( s ) {
 
 module.exports = zeta;
 
-},{"./bernoulli.json":465,"./even_nonnegative_integers.json":466,"./odd_positive_integers.json":469,"./rational_p1q1.js":470,"./rational_p2q2.js":471,"./rational_p3q3.js":472,"./rational_p4q4.js":473,"./rational_p5q5.js":474,"./rational_p6q6.js":475,"@stdlib/constants/float64/ln-sqrt-two-pi":130,"@stdlib/constants/float64/ninf":141,"@stdlib/constants/float64/pinf":145,"@stdlib/constants/float64/sqrt-eps":148,"@stdlib/constants/float64/two-pi":154,"@stdlib/math/base/assert/is-integer":167,"@stdlib/math/base/assert/is-nan":169,"@stdlib/math/base/special/abs":185,"@stdlib/math/base/special/exp":268,"@stdlib/math/base/special/floor":279,"@stdlib/math/base/special/gamma":290,"@stdlib/math/base/special/gammaln":348,"@stdlib/math/base/special/ln":428,"@stdlib/math/base/special/pow":448,"@stdlib/math/base/special/sinpi":487}],469:[function(require,module,exports){
+},{"./bernoulli.json":465,"./even_nonnegative_integers.json":466,"./odd_positive_integers.json":469,"./rational_p1q1.js":470,"./rational_p2q2.js":471,"./rational_p3q3.js":472,"./rational_p4q4.js":473,"./rational_p5q5.js":474,"./rational_p6q6.js":475,"@stdlib/constants/float64/ln-sqrt-two-pi":130,"@stdlib/constants/float64/max-ln":135,"@stdlib/constants/float64/max-safe-nth-factorial":137,"@stdlib/constants/float64/ninf":141,"@stdlib/constants/float64/pinf":145,"@stdlib/constants/float64/sqrt-eps":148,"@stdlib/constants/float64/two-pi":154,"@stdlib/math/base/assert/is-integer":167,"@stdlib/math/base/assert/is-nan":169,"@stdlib/math/base/special/abs":185,"@stdlib/math/base/special/exp":268,"@stdlib/math/base/special/floor":279,"@stdlib/math/base/special/gamma":290,"@stdlib/math/base/special/gammaln":348,"@stdlib/math/base/special/ln":428,"@stdlib/math/base/special/pow":448,"@stdlib/math/base/special/sinpi":487}],469:[function(require,module,exports){
 module.exports=[
 	1.202056903159594285399738161511449990764986292340498881792,
 	1.036927755143369926331365486457034168057080919501912811974,
@@ -36084,7 +36085,7 @@ module.exports=[
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36105,7 +36106,7 @@ module.exports=[
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -36150,7 +36151,7 @@ module.exports = evalrational;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36171,7 +36172,7 @@ module.exports = evalrational;
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -36216,7 +36217,7 @@ module.exports = evalrational;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36237,7 +36238,7 @@ module.exports = evalrational;
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -36282,7 +36283,7 @@ module.exports = evalrational;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36303,7 +36304,7 @@ module.exports = evalrational;
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -36348,7 +36349,7 @@ module.exports = evalrational;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36369,7 +36370,7 @@ module.exports = evalrational;
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -36414,7 +36415,7 @@ module.exports = evalrational;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -36435,7 +36436,7 @@ module.exports = evalrational;
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -77671,7 +77672,7 @@ function ibetaPowerTerms( a, b, x, y, normalized ) {
 					result *= pow( p1 * b2, b );
 				} else {
 					l2 += l1 + ln( result );
-					if (l2 >= MAX_LN) {
+					if ( l2 >= MAX_LN ) {
 						return NaN;
 					}
 					result = exp( l2 );
@@ -86905,7 +86906,7 @@ function factory( p ) {
 		if ( r === 1.0 ) {
 			return PINF;
 		}
-		return max( 0.0, ceil( (ln(1.0-r) / log1p(-p)) - (1.0 + 1e-12) ) );
+		return max( 0.0, ceil( ( ln(1.0-r)/log1p(-p) ) - ( 1.0+1.0e-12 ) ) );
 	}
 }
 
@@ -87062,7 +87063,7 @@ function quantile( r, p ) {
 	if ( r === 1.0 ) {
 		return PINF;
 	}
-	return max( 0.0, ceil( (ln(1.0-r) / log1p(-p))- ( 1 + 1e-12 ) ) );
+	return max( 0.0, ceil( ( ln(1.0-r)/log1p(-p) )- ( 1.0+1.0e-12 ) ) );
 }
 
 
@@ -123044,7 +123045,7 @@ function logpdf( x, sigma ) {
 	}
 	s2 = pow( sigma, 2.0 );
 	s2i = 1.0 / s2;
-	return ln( s2i * x ) - (pow( x, 2.0 ) / ( 2.0 * s2 ));
+	return ln( s2i * x ) - ( pow( x, 2.0 ) / ( 2.0 * s2 ) );
 }
 
 
@@ -124821,6 +124822,7 @@ module.exports = signrank;
 
 var isPositiveInteger = require( '@stdlib/math/base/assert/is-positive-integer' );
 var constantFunction = require( '@stdlib/utils/constant-function' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
 var isfinite = require( '@stdlib/math/base/assert/is-finite' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var exp = require( '@stdlib/math/base/special/exp' );
@@ -124868,6 +124870,9 @@ function factory( n ) {
 		if ( isnan( x ) ) {
 			return NaN;
 		}
+		if ( !isInteger( x ) ) {
+			return 0.0;
+		}
 		if ( x < 0.0 || x > mlim ) {
 			return 0.0;
 		}
@@ -124880,7 +124885,7 @@ function factory( n ) {
 
 module.exports = factory;
 
-},{"./weights.js":1562,"@stdlib/constants/float64/ln-two":132,"@stdlib/math/base/assert/is-finite":163,"@stdlib/math/base/assert/is-nan":169,"@stdlib/math/base/assert/is-positive-integer":179,"@stdlib/math/base/special/exp":268,"@stdlib/math/base/special/ln":428,"@stdlib/utils/constant-function":1745}],1560:[function(require,module,exports){
+},{"./weights.js":1562,"@stdlib/constants/float64/ln-two":132,"@stdlib/math/base/assert/is-finite":163,"@stdlib/math/base/assert/is-integer":167,"@stdlib/math/base/assert/is-nan":169,"@stdlib/math/base/assert/is-positive-integer":179,"@stdlib/math/base/special/exp":268,"@stdlib/math/base/special/ln":428,"@stdlib/utils/constant-function":1745}],1560:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -124957,6 +124962,7 @@ module.exports = main;
 // MODULES //
 
 var isPositiveInteger = require( '@stdlib/math/base/assert/is-positive-integer' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
 var isfinite = require( '@stdlib/math/base/assert/is-finite' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var exp = require( '@stdlib/math/base/special/exp' );
@@ -125011,6 +125017,9 @@ function pdf( x, n ) {
 	) {
 		return NaN;
 	}
+	if ( !isInteger( x ) ) {
+		return 0.0;
+	}
 	mlim = ( n * ( n + 1 ) ) / 2;
 	if ( x < 0.0 || x > mlim ) {
 		return 0.0;
@@ -125023,7 +125032,7 @@ function pdf( x, n ) {
 
 module.exports = pdf;
 
-},{"./weights.js":1562,"@stdlib/constants/float64/ln-two":132,"@stdlib/math/base/assert/is-finite":163,"@stdlib/math/base/assert/is-nan":169,"@stdlib/math/base/assert/is-positive-integer":179,"@stdlib/math/base/special/exp":268,"@stdlib/math/base/special/ln":428}],1562:[function(require,module,exports){
+},{"./weights.js":1562,"@stdlib/constants/float64/ln-two":132,"@stdlib/math/base/assert/is-finite":163,"@stdlib/math/base/assert/is-integer":167,"@stdlib/math/base/assert/is-nan":169,"@stdlib/math/base/assert/is-positive-integer":179,"@stdlib/math/base/special/exp":268,"@stdlib/math/base/special/ln":428}],1562:[function(require,module,exports){
 arguments[4][1557][0].apply(exports,arguments)
 },{"@stdlib/utils/memoize":1786,"dup":1557}],1563:[function(require,module,exports){
 /**
@@ -131583,8 +131592,8 @@ function factory( a, b, c ) {
 		if ( t === 0.0 ) {
 			return 1.0;
 		}
-		ret = (bmc * exp( a * t )) - (bma * exp( c * t ));
-		ret += cma * exp( b * t );
+		ret = ( bmc * exp( a*t ) ) - ( bma * exp( c*t ) );
+		ret += cma * exp( b*t );
 		ret *= 2.0;
 		ret /= bma * cma * bmc * pow( t, 2.0 );
 		return ret;
@@ -131758,8 +131767,8 @@ function mgf( t, a, b, c ) {
 	bmc = b - c;
 	bma = b - a;
 	cma = c - a;
-	ret = (bmc * exp( a * t )) - (bma * exp( c * t ));
-	ret += cma * exp( b * t );
+	ret = ( bmc * exp( a*t ) ) - ( bma * exp( c*t ) );
+	ret += cma * exp( b*t );
 	ret *= 2.0;
 	ret /= bma * cma * bmc * pow( t, 2.0 );
 	return ret;
@@ -136037,9 +136046,7 @@ var pow = require( '@stdlib/math/base/special/pow' );
 * // returns NaN
 */
 function variance( a, b ) {
-	if (
-		a >= b
-	) {
+	if ( a >= b ) {
 		return NaN;
 	}
 	return (1.0/12.0) * pow( b-a, 2.0 );
@@ -136084,8 +136091,8 @@ var pow = require( '@stdlib/math/base/special/pow' );
 /**
 * Returns a function for evaluating the cumulative distribution function (CDF) for a Weibull distribution.
 *
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {Function} CDF
 *
 * @example
@@ -136218,11 +136225,11 @@ var pow = require( '@stdlib/math/base/special/pow' );
 // MAIN //
 
 /**
-* Evaluates the cumulative distribution function (CDF) for a Weibull distribution with scale parameter `k` and shape parameter `lambda` at a value `x`.
+* Evaluates the cumulative distribution function (CDF) for a Weibull distribution with shape parameter `k` and scale parameter `lambda` at a value `x`.
 *
 * @param {number} x - input value
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {Probability} evaluated CDF
 *
 * @example
@@ -137258,8 +137265,8 @@ var NINF = require( '@stdlib/constants/float64/ninf' );
 /**
 * Returns a function for evaluating the natural logarithm of the cumulative distribution function (CDF) for a Weibull distribution.
 *
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {Function} logCDF
 *
 * @example
@@ -137399,11 +137406,11 @@ var NINF = require( '@stdlib/constants/float64/ninf' );
 // MAIN //
 
 /**
-* Evaluates the natural logarithm of the cumulative distribution function (CDF) for a Weibull distribution with scale parameter `k` and shape parameter `lambda` at a value `x`.
+* Evaluates the natural logarithm of the cumulative distribution function (CDF) for a Weibull distribution with shape parameter `k` and scale parameter `lambda` at a value `x`.
 *
 * @param {number} x - input value
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {number} natural logarithm of CDF
 *
 * @example
@@ -138641,8 +138648,8 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 /**
 * Returns a function for evaluating the quantile function for a Weibull distribution.
 *
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {Function} quantile function
 *
 * @example
@@ -138772,11 +138779,11 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 // MAIN //
 
 /**
-* Evaluates the quantile function for a Weibull distribution with scale parameter `k` and shape parameter `lambda` at a probability `p`.
+* Evaluates the quantile function for a Weibull distribution with shape parameter `k` and scale parameter `lambda` at a probability `p`.
 *
 * @param {Probability} p - input value
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {number} evaluated quantile function
 *
 * @example

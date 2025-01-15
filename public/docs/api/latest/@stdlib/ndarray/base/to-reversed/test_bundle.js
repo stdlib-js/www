@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -26549,13 +26551,8 @@ module.exports = main;
 
 // MODULES //
 
+var contains = require( '@stdlib/array/base/assert/contains' ).factory;
 var orders = require( '@stdlib/ndarray/orders' );
-
-
-// VARIABLES //
-
-var ORDERS = orders();
-var len = ORDERS.length;
 
 
 // MAIN //
@@ -26563,6 +26560,8 @@ var len = ORDERS.length;
 /**
 * Tests whether an input value is an ndarray order.
 *
+* @name isOrder
+* @type {Function}
 * @param {*} v - value to test
 * @returns {boolean} boolean indicating whether an input value is an ndarray order
 *
@@ -26576,22 +26575,14 @@ var len = ORDERS.length;
 * bool = isOrder( 'foo' );
 * // returns false
 */
-function isOrder( v ) {
-	var i;
-	for ( i = 0; i < len; i++ ) {
-		if ( v === ORDERS[ i ] ) {
-			return true;
-		}
-	}
-	return false;
-}
+var isOrder = contains( orders() );
 
 
 // EXPORTS //
 
 module.exports = isOrder;
 
-},{"@stdlib/ndarray/orders":486}],318:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/orders":486}],318:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36313,7 +36304,7 @@ var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Array<Function>} x.accessors - data buffer accessors
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @returns {void}
 *
 * @example
@@ -39603,7 +39594,7 @@ function toJSON() {
 	out.strides = this._strides.slice();
 
 	// Flip the signs of negative strides:
-	for ( i = 0; i < len; i++ ) {
+	for ( i = 0; i < out.strides.length; i++ ) {
 		if ( out.strides[ i ] < 0 ) {
 			out.strides[ i ] *= -1;
 		}
@@ -39673,7 +39664,8 @@ var CTORS = {
 	'generic': '[ {{data}} ]',
 	'binary': 'new Buffer( [ {{data}} ] )',
 	'complex64': 'new Complex64Array( [ {{data}} ] )',
-	'complex128': 'new Complex128Array( [ {{data}} ] )'
+	'complex128': 'new Complex128Array( [ {{data}} ] )',
+	'bool': 'new BooleanArray( [ {{data}} ] )'
 };
 
 
@@ -40413,6 +40405,7 @@ module.exports = main;
 
 // MODULES //
 
+var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
 var accessorSetter = require( '@stdlib/array/base/accessor-setter' );
 var setter = require( '@stdlib/array/base/setter' );
@@ -40453,7 +40446,7 @@ function scalar2ndarray( value, dtype, order ) {
 	if ( buf === null ) {
 		throw new TypeError( format( 'invalid argument. Second argument must be a recognized data type. Value: `%s`.', dtype ) );
 	}
-	if ( /^complex/.test( dtype ) && typeof value === 'number' ) {
+	if ( /^complex/.test( dtype ) && isNumber( value ) ) {
 		value = [ value, 0.0 ]; // note: we're assuming that the ComplexXXArray setter accepts an array of interleaved real and imaginary components
 	}
 	if ( isAccessorArray( buf ) ) {
@@ -40470,7 +40463,7 @@ function scalar2ndarray( value, dtype, order ) {
 
 module.exports = scalar2ndarray;
 
-},{"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":10,"@stdlib/array/base/setter":22,"@stdlib/ndarray/base/buffer":369,"@stdlib/ndarray/base/ctor":380,"@stdlib/string/format":550}],403:[function(require,module,exports){
+},{"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":10,"@stdlib/array/base/setter":22,"@stdlib/assert/is-number":208,"@stdlib/ndarray/base/buffer":369,"@stdlib/ndarray/base/ctor":380,"@stdlib/string/format":550}],403:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *

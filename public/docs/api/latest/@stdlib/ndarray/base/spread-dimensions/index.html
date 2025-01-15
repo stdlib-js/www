@@ -1,0 +1,65 @@
+<h1 id="spreaddimensions">spreadDimensions</h1><blockquote><p>Expand the shape of an array to a specified dimensionality by spreading its dimensions to specified dimension indices and inserting dimensions of size one for the remaining dimensions.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> spreadDimensions = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/spread-dimensions'</span> );
+</code></pre><h4 id="spreaddimensions-ndims-x-dims-">spreadDimensions( ndims, x, dims )</h4><p>Expands the shape of an array to a specified dimensionality by spreading its dimensions to specified dimension indices and inserting dimensions of size one for the remaining dimensions.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+
+<span class="hljs-comment">// Create a 2x2 ndarray:</span>
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Prepend a singleton dimension:</span>
+<span class="hljs-keyword">var</span> y = spreadDimensions( <span class="hljs-number">3</span>, x, [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> sh = y.shape;
+<span class="hljs-comment">// returns [ 1, 2, 2 ]</span>
+
+<span class="hljs-keyword">var</span> a = ndarray2array( y );
+<span class="hljs-comment">// returns [ [ [ 1, 2 ], [ 3, 4 ] ] ]</span>
+
+<span class="hljs-comment">// Append a singleton dimension:</span>
+y = spreadDimensions( <span class="hljs-number">3</span>, x, [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+sh = y.shape;
+<span class="hljs-comment">// returns [ 2, 2, 1 ]</span>
+
+a = ndarray2array( y );
+<span class="hljs-comment">// returns [ [ [ 1 ], [ 2 ] ], [ [ 3 ], [ 4 ] ] ]</span>
+
+<span class="hljs-comment">// Insert a singleton dimension:</span>
+y = spreadDimensions( <span class="hljs-number">3</span>, x, [ <span class="hljs-number">0</span>, <span class="hljs-number">2</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+sh = y.shape;
+<span class="hljs-comment">// returns [ 2, 1, 2 ]</span>
+
+a = ndarray2array( y );
+<span class="hljs-comment">// returns [ [ [ 1, 2 ] ], [ [ 3, 4 ] ] ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Each provided dimension index must reside on the interval <code>[-ndims, ndims-1]</code>. If provided a negative dimension index, the position at which to place a respective dimension is computed as <code>ndims + index</code>.</li><li>Provided dimension indices must resolve to normalized dimension indices arranged in ascending order.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> numel = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/numel'</span> );
+<span class="hljs-keyword">var</span> ind2sub = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ind2sub'</span> );
+<span class="hljs-keyword">var</span> spreadDimensions = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/spread-dimensions'</span> );
+
+<span class="hljs-comment">// Create a 2-dimensional array:</span>
+<span class="hljs-keyword">var</span> x = array( [ [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ], [ <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ], {
+    <span class="hljs-string">'order'</span>: <span class="hljs-string">'column-major'</span>
+});
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Spread dimensions:</span>
+<span class="hljs-keyword">var</span> y = spreadDimensions( <span class="hljs-number">5</span>, x, [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Retrieve the shape:</span>
+<span class="hljs-keyword">var</span> sh = y.shape;
+<span class="hljs-comment">// returns [ 1, 2, 1, 2, 1 ]</span>
+
+<span class="hljs-comment">// Retrieve the number of elements:</span>
+<span class="hljs-keyword">var</span> N = numel( sh );
+
+<span class="hljs-comment">// Loop through the array elements...</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; N; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Y[%s] = %d'</span>, ind2sub( sh, i ).join( <span class="hljs-string">', '</span> ), y.iget( i ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

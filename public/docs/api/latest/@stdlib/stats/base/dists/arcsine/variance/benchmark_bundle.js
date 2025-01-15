@@ -4398,7 +4398,7 @@ setReadOnly( BooleanArray.prototype, 'with', function copyWith( index, value ) {
 
 module.exports = BooleanArray;
 
-},{"./from_array.js":17,"./from_iterator.js":18,"./from_iterator_map.js":19,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":13,"@stdlib/array/uint8":62,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-function":152,"@stdlib/assert/is-integer":160,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/boolean/ctor":275,"@stdlib/math/base/special/floor":345,"@stdlib/string/format":469,"@stdlib/symbol/iterator":476,"@stdlib/utils/define-nonenumerable-read-only-accessor":490,"@stdlib/utils/define-nonenumerable-read-only-property":492}],22:[function(require,module,exports){
+},{"./from_array.js":17,"./from_iterator.js":18,"./from_iterator_map.js":19,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":13,"@stdlib/array/uint8":62,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-function":152,"@stdlib/assert/is-integer":160,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/boolean/ctor":275,"@stdlib/math/base/special/floor":345,"@stdlib/string/format":461,"@stdlib/symbol/iterator":468,"@stdlib/utils/define-nonenumerable-read-only-accessor":484,"@stdlib/utils/define-nonenumerable-read-only-property":486}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4528,7 +4528,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-complex-like":136,"@stdlib/complex/float64/imag":296,"@stdlib/complex/float64/real":298,"@stdlib/string/format":469}],24:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-complex-like":136,"@stdlib/complex/float64/imag":296,"@stdlib/complex/float64/real":298,"@stdlib/string/format":461}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4600,7 +4600,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-complex-like":136,"@stdlib/complex/float64/imag":296,"@stdlib/complex/float64/real":298,"@stdlib/string/format":469}],25:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-complex-like":136,"@stdlib/complex/float64/imag":296,"@stdlib/complex/float64/real":298,"@stdlib/string/format":461}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7735,7 +7735,7 @@ setReadOnly( Complex128Array.prototype, 'with', function copyWith( index, value 
 
 module.exports = Complex128Array;
 
-},{"./from_array.js":22,"./from_iterator.js":23,"./from_iterator_map.js":24,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float64":40,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-array":119,"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-complex-like":136,"@stdlib/assert/is-function":152,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/complex/float64/ctor":292,"@stdlib/complex/float64/imag":296,"@stdlib/complex/float64/real":298,"@stdlib/math/base/assert/is-even":327,"@stdlib/math/base/assert/is-integer":331,"@stdlib/math/base/special/floor":345,"@stdlib/strided/base/reinterpret-complex128":447,"@stdlib/strided/base/reinterpret-complex64":449,"@stdlib/string/format":469,"@stdlib/symbol/iterator":476,"@stdlib/utils/define-nonenumerable-read-only-accessor":490,"@stdlib/utils/define-nonenumerable-read-only-property":492}],27:[function(require,module,exports){
+},{"./from_array.js":22,"./from_iterator.js":23,"./from_iterator_map.js":24,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float64":40,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-array":119,"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-complex-like":136,"@stdlib/assert/is-function":152,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/complex/float64/ctor":292,"@stdlib/complex/float64/imag":296,"@stdlib/complex/float64/real":298,"@stdlib/math/base/assert/is-even":327,"@stdlib/math/base/assert/is-integer":331,"@stdlib/math/base/special/floor":345,"@stdlib/strided/base/reinterpret-complex128":439,"@stdlib/strided/base/reinterpret-complex64":441,"@stdlib/string/format":461,"@stdlib/symbol/iterator":468,"@stdlib/utils/define-nonenumerable-read-only-accessor":484,"@stdlib/utils/define-nonenumerable-read-only-property":486}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7865,7 +7865,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-complex-like":136,"@stdlib/complex/float32/imag":288,"@stdlib/complex/float32/real":290,"@stdlib/string/format":469}],29:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-complex-like":136,"@stdlib/complex/float32/imag":288,"@stdlib/complex/float32/real":290,"@stdlib/string/format":461}],29:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7937,7 +7937,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-complex-like":136,"@stdlib/complex/float32/imag":288,"@stdlib/complex/float32/real":290,"@stdlib/string/format":469}],30:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-complex-like":136,"@stdlib/complex/float32/imag":288,"@stdlib/complex/float32/real":290,"@stdlib/string/format":461}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11070,7 +11070,7 @@ setReadOnly( Complex64Array.prototype, 'with', function copyWith( index, value )
 
 module.exports = Complex64Array;
 
-},{"./from_array.js":27,"./from_iterator.js":28,"./from_iterator_map.js":29,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float32":37,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-array":119,"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-complex-like":136,"@stdlib/assert/is-function":152,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/complex/float32/ctor":284,"@stdlib/complex/float32/imag":288,"@stdlib/complex/float32/real":290,"@stdlib/math/base/assert/is-even":327,"@stdlib/math/base/assert/is-integer":331,"@stdlib/math/base/special/floor":345,"@stdlib/strided/base/reinterpret-complex128":447,"@stdlib/strided/base/reinterpret-complex64":449,"@stdlib/string/format":469,"@stdlib/symbol/iterator":476,"@stdlib/utils/define-nonenumerable-read-only-accessor":490,"@stdlib/utils/define-nonenumerable-read-only-property":492}],32:[function(require,module,exports){
+},{"./from_array.js":27,"./from_iterator.js":28,"./from_iterator_map.js":29,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float32":37,"@stdlib/assert/has-iterator-symbol-support":86,"@stdlib/assert/is-array":119,"@stdlib/assert/is-array-like-object":115,"@stdlib/assert/is-arraybuffer":121,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-complex-like":136,"@stdlib/assert/is-function":152,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/is-object":195,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/complex/float32/ctor":284,"@stdlib/complex/float32/imag":288,"@stdlib/complex/float32/real":290,"@stdlib/math/base/assert/is-even":327,"@stdlib/math/base/assert/is-integer":331,"@stdlib/math/base/special/floor":345,"@stdlib/strided/base/reinterpret-complex128":439,"@stdlib/strided/base/reinterpret-complex64":441,"@stdlib/string/format":461,"@stdlib/symbol/iterator":468,"@stdlib/utils/define-nonenumerable-read-only-accessor":484,"@stdlib/utils/define-nonenumerable-read-only-property":486}],32:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11343,7 +11343,7 @@ function dtype( value ) {
 
 module.exports = dtype;
 
-},{"./ctor2dtype.js":32,"./ctors.js":33,"./dtypes.js":34,"@stdlib/assert/is-array":119,"@stdlib/assert/is-buffer":132,"@stdlib/utils/constructor-name":484}],37:[function(require,module,exports){
+},{"./ctor2dtype.js":32,"./ctors.js":33,"./dtypes.js":34,"@stdlib/assert/is-array":119,"@stdlib/assert/is-buffer":132,"@stdlib/utils/constructor-name":478}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12149,7 +12149,7 @@ function typedarray2json( arr ) {
 
 module.exports = typedarray2json;
 
-},{"./type.js":55,"@stdlib/assert/is-booleanarray":129,"@stdlib/assert/is-complex-typed-array":139,"@stdlib/assert/is-typed-array":211,"@stdlib/strided/base/reinterpret-boolean":445,"@stdlib/strided/base/reinterpret-complex128":447,"@stdlib/strided/base/reinterpret-complex64":449,"@stdlib/string/format":469}],55:[function(require,module,exports){
+},{"./type.js":55,"@stdlib/assert/is-booleanarray":129,"@stdlib/assert/is-complex-typed-array":139,"@stdlib/assert/is-typed-array":211,"@stdlib/strided/base/reinterpret-boolean":437,"@stdlib/strided/base/reinterpret-complex128":439,"@stdlib/strided/base/reinterpret-complex64":441,"@stdlib/string/format":461}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12221,7 +12221,7 @@ function typeName( arr ) {
 
 module.exports = typeName;
 
-},{"./ctors.js":52,"@stdlib/assert/instance-of":109,"@stdlib/utils/constructor-name":484,"@stdlib/utils/get-prototype-of":506}],56:[function(require,module,exports){
+},{"./ctors.js":52,"@stdlib/assert/instance-of":109,"@stdlib/utils/constructor-name":478,"@stdlib/utils/get-prototype-of":500}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13627,7 +13627,7 @@ function hasIteratorSymbolSupport() {
 
 module.exports = hasIteratorSymbolSupport;
 
-},{"@stdlib/assert/has-own-property":91,"@stdlib/symbol/ctor":474}],88:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":91,"@stdlib/symbol/ctor":466}],88:[function(require,module,exports){
 (function (Buffer){(function (){
 /**
 * @license Apache-2.0
@@ -13659,7 +13659,7 @@ var main = ( typeof Buffer === 'function' ) ? Buffer : null; // eslint-disable-l
 module.exports = main;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":576}],89:[function(require,module,exports){
+},{"buffer":572}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14752,7 +14752,7 @@ function instanceOf( value, constructor ) {
 
 module.exports = instanceOf;
 
-},{"@stdlib/string/format":469}],111:[function(require,module,exports){
+},{"@stdlib/string/format":461}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14926,7 +14926,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":540}],114:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15325,7 +15325,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":540}],121:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],121:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15432,7 +15432,7 @@ function isArrayBuffer( value ) {
 
 module.exports = isArrayBuffer;
 
-},{"@stdlib/utils/native-class":540}],123:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15507,7 +15507,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":124,"./object.js":125,"./primitive.js":126,"@stdlib/utils/define-nonenumerable-read-only-property":492}],124:[function(require,module,exports){
+},{"./main.js":124,"./object.js":125,"./primitive.js":126,"@stdlib/utils/define-nonenumerable-read-only-property":486}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15641,7 +15641,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":128,"@stdlib/assert/has-tostringtag-support":95,"@stdlib/boolean/ctor":275,"@stdlib/utils/native-class":540}],126:[function(require,module,exports){
+},{"./try2serialize.js":128,"@stdlib/assert/has-tostringtag-support":95,"@stdlib/boolean/ctor":275,"@stdlib/utils/native-class":534}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15872,7 +15872,7 @@ function isBooleanArray( value ) {
 
 module.exports = isBooleanArray;
 
-},{"@stdlib/array/bool":20,"@stdlib/utils/constructor-name":484}],131:[function(require,module,exports){
+},{"@stdlib/array/bool":20,"@stdlib/utils/constructor-name":478}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16388,7 +16388,7 @@ function isComplexTypedArray( value ) {
 
 module.exports = isComplexTypedArray;
 
-},{"./ctors.js":138,"./names.json":141,"@stdlib/utils/constructor-name":484,"@stdlib/utils/get-prototype-of":506}],141:[function(require,module,exports){
+},{"./ctors.js":138,"./names.json":141,"@stdlib/utils/constructor-name":478,"@stdlib/utils/get-prototype-of":500}],141:[function(require,module,exports){
 module.exports=[
 	"Complex64Array",
 	"Complex128Array"
@@ -16745,7 +16745,7 @@ function isError( value ) {
 
 module.exports = isError;
 
-},{"@stdlib/utils/get-prototype-of":506,"@stdlib/utils/native-class":540}],148:[function(require,module,exports){
+},{"@stdlib/utils/get-prototype-of":500,"@stdlib/utils/native-class":534}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16849,7 +16849,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":540}],150:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16953,7 +16953,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":540}],152:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17051,7 +17051,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":571}],154:[function(require,module,exports){
+},{"@stdlib/utils/type-of":567}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17155,7 +17155,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":540}],156:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17259,7 +17259,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":540}],158:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17363,7 +17363,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":540}],160:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17443,7 +17443,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":162,"./object.js":163,"./primitive.js":164,"@stdlib/utils/define-nonenumerable-read-only-property":492}],161:[function(require,module,exports){
+},{"./main.js":162,"./object.js":163,"./primitive.js":164,"@stdlib/utils/define-nonenumerable-read-only-property":486}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17898,7 +17898,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":169,"./object.js":170,"./primitive.js":171,"@stdlib/utils/define-nonenumerable-read-only-property":492}],169:[function(require,module,exports){
+},{"./main.js":169,"./object.js":170,"./primitive.js":171,"@stdlib/utils/define-nonenumerable-read-only-property":486}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18375,7 +18375,7 @@ setReadOnly( isNonNegativeIntegerArray, 'objects', isObjectArray );
 
 module.exports = isNonNegativeIntegerArray;
 
-},{"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/tools/array-like-function":224,"@stdlib/utils/define-nonenumerable-read-only-property":492}],177:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/assert/tools/array-like-function":224,"@stdlib/utils/define-nonenumerable-read-only-property":486}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18456,7 +18456,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":178,"./object.js":179,"./primitive.js":180,"@stdlib/utils/define-nonenumerable-read-only-property":492}],178:[function(require,module,exports){
+},{"./main.js":178,"./object.js":179,"./primitive.js":180,"@stdlib/utils/define-nonenumerable-read-only-property":486}],178:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18709,7 +18709,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":182,"./object.js":183,"./primitive.js":184,"@stdlib/utils/define-nonenumerable-read-only-property":492}],182:[function(require,module,exports){
+},{"./main.js":182,"./object.js":183,"./primitive.js":184,"@stdlib/utils/define-nonenumerable-read-only-property":486}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19049,7 +19049,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":188,"./object.js":189,"./primitive.js":190,"@stdlib/utils/define-nonenumerable-read-only-property":492}],188:[function(require,module,exports){
+},{"./main.js":188,"./object.js":189,"./primitive.js":190,"@stdlib/utils/define-nonenumerable-read-only-property":486}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19177,7 +19177,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":192,"@stdlib/assert/has-tostringtag-support":95,"@stdlib/number/ctor":369,"@stdlib/utils/native-class":540}],190:[function(require,module,exports){
+},{"./try2serialize.js":192,"@stdlib/assert/has-tostringtag-support":95,"@stdlib/number/ctor":369,"@stdlib/utils/native-class":534}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19332,7 +19332,7 @@ setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 module.exports = main;
 
-},{"./main.js":194,"@stdlib/assert/tools/array-function":222,"@stdlib/utils/define-nonenumerable-read-only-property":492}],194:[function(require,module,exports){
+},{"./main.js":194,"@stdlib/assert/tools/array-function":222,"@stdlib/utils/define-nonenumerable-read-only-property":486}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19642,7 +19642,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-function":152,"@stdlib/assert/is-object":195,"@stdlib/utils/get-prototype-of":506,"@stdlib/utils/native-class":540}],199:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-function":152,"@stdlib/assert/is-object":195,"@stdlib/utils/get-prototype-of":500,"@stdlib/utils/native-class":534}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19723,7 +19723,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":200,"./object.js":201,"./primitive.js":202,"@stdlib/utils/define-nonenumerable-read-only-property":492}],200:[function(require,module,exports){
+},{"./main.js":200,"./object.js":201,"./primitive.js":202,"@stdlib/utils/define-nonenumerable-read-only-property":486}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19977,7 +19977,7 @@ setReadOnly( isStringArray, 'objects', isObjectArray );
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":204,"@stdlib/assert/tools/array-function":222,"@stdlib/utils/define-nonenumerable-read-only-property":492}],204:[function(require,module,exports){
+},{"@stdlib/assert/is-string":204,"@stdlib/assert/tools/array-function":222,"@stdlib/utils/define-nonenumerable-read-only-property":486}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20052,7 +20052,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":205,"./object.js":206,"./primitive.js":207,"@stdlib/utils/define-nonenumerable-read-only-property":492}],205:[function(require,module,exports){
+},{"./main.js":205,"./object.js":206,"./primitive.js":207,"@stdlib/utils/define-nonenumerable-read-only-property":486}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20171,7 +20171,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":208,"@stdlib/assert/has-tostringtag-support":95,"@stdlib/utils/native-class":540}],207:[function(require,module,exports){
+},{"./try2valueof.js":208,"@stdlib/assert/has-tostringtag-support":95,"@stdlib/utils/native-class":534}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20490,7 +20490,7 @@ function isTypedArray( value ) {
 
 module.exports = isTypedArray;
 
-},{"./ctors.js":210,"./names.json":213,"@stdlib/array/float64":40,"@stdlib/assert/has-float64array-support":72,"@stdlib/utils/constructor-name":484,"@stdlib/utils/function-name":503,"@stdlib/utils/get-prototype-of":506}],213:[function(require,module,exports){
+},{"./ctors.js":210,"./names.json":213,"@stdlib/array/float64":40,"@stdlib/assert/has-float64array-support":72,"@stdlib/utils/constructor-name":478,"@stdlib/utils/function-name":497,"@stdlib/utils/get-prototype-of":500}],213:[function(require,module,exports){
 module.exports=[
 	"Int8Array",
 	"Uint8Array",
@@ -20607,7 +20607,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":540}],216:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20711,7 +20711,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":540}],218:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20815,7 +20815,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":540}],220:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20919,7 +20919,7 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":540}],222:[function(require,module,exports){
+},{"@stdlib/utils/native-class":534}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21057,7 +21057,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":119,"@stdlib/string/format":469}],224:[function(require,module,exports){
+},{"@stdlib/assert/is-array":119,"@stdlib/string/format":461}],224:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21195,7 +21195,7 @@ function arraylikefcn( predicate ) {
 
 module.exports = arraylikefcn;
 
-},{"@stdlib/assert/is-array-like":117,"@stdlib/string/format":469}],226:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like":117,"@stdlib/string/format":461}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21349,7 +21349,7 @@ function comment( msg ) {
 
 module.exports = comment;
 
-},{"@stdlib/regexp/eol":421,"@stdlib/string/base/replace":461,"@stdlib/string/base/trim":466}],229:[function(require,module,exports){
+},{"@stdlib/regexp/eol":412,"@stdlib/string/base/replace":453,"@stdlib/string/base/trim":458}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22008,7 +22008,7 @@ setReadOnly( Benchmark.prototype, 'end', end );
 
 module.exports = Benchmark;
 
-},{"./assert.js":226,"./comment.js":228,"./deep_equal.js":229,"./end.js":230,"./ended.js":231,"./equal.js":232,"./exit.js":233,"./fail.js":234,"./not_deep_equal.js":236,"./not_equal.js":237,"./not_ok.js":238,"./ok.js":239,"./pass.js":240,"./run.js":241,"./skip.js":243,"./todo.js":244,"@stdlib/time/tic":478,"@stdlib/time/toc":482,"@stdlib/utils/define-nonenumerable-read-only-property":492,"@stdlib/utils/define-property":499,"@stdlib/utils/inherit":519,"events":577}],236:[function(require,module,exports){
+},{"./assert.js":226,"./comment.js":228,"./deep_equal.js":229,"./end.js":230,"./ended.js":231,"./equal.js":232,"./exit.js":233,"./fail.js":234,"./not_deep_equal.js":236,"./not_equal.js":237,"./not_ok.js":238,"./ok.js":239,"./pass.js":240,"./run.js":241,"./skip.js":243,"./todo.js":244,"@stdlib/time/tic":470,"@stdlib/time/toc":474,"@stdlib/utils/define-nonenumerable-read-only-property":486,"@stdlib/utils/define-property":493,"@stdlib/utils/inherit":513,"events":573}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22622,7 +22622,7 @@ function createExitHarness() {
 
 module.exports = createExitHarness;
 
-},{"./harness":248,"./log":254,"./utils/can_emit_exit.js":266,"./utils/process.js":269,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-function":152,"@stdlib/assert/is-node-writable-stream-like":174,"@stdlib/assert/is-plain-object":197,"@stdlib/string/format":469,"@stdlib/utils/noop":547,"@stdlib/utils/omit":549,"@stdlib/utils/pick":551}],247:[function(require,module,exports){
+},{"./harness":248,"./log":254,"./utils/can_emit_exit.js":266,"./utils/process.js":269,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-function":152,"@stdlib/assert/is-node-writable-stream-like":174,"@stdlib/assert/is-plain-object":197,"@stdlib/string/format":461,"@stdlib/utils/noop":541,"@stdlib/utils/omit":543,"@stdlib/utils/pick":545}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22996,7 +22996,7 @@ function createHarness( options, clbk ) {
 
 module.exports = createHarness;
 
-},{"./../benchmark-class":235,"./../defaults.json":245,"./../runner":263,"./../utils/next_tick.js":268,"./init.js":249,"./validate.js":252,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-function":152,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-string":204,"@stdlib/string/format":469,"@stdlib/utils/copy":487,"@stdlib/utils/define-nonenumerable-read-only-accessor":490,"@stdlib/utils/define-nonenumerable-read-only-property":492}],249:[function(require,module,exports){
+},{"./../benchmark-class":235,"./../defaults.json":245,"./../runner":263,"./../utils/next_tick.js":268,"./init.js":249,"./validate.js":252,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-function":152,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-string":204,"@stdlib/string/format":461,"@stdlib/utils/copy":481,"@stdlib/utils/define-nonenumerable-read-only-accessor":484,"@stdlib/utils/define-nonenumerable-read-only-property":486}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23204,7 +23204,7 @@ function iterations( name, options, benchmark, clbk ) {
 
 module.exports = iterations;
 
-},{"./../benchmark-class":235,"@stdlib/assert/is-string":204,"@stdlib/utils/copy":487}],251:[function(require,module,exports){
+},{"./../benchmark-class":235,"@stdlib/assert/is-string":204,"@stdlib/utils/copy":481}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23327,7 +23327,7 @@ function pretest( name, options, benchmark, clbk ) {
 
 module.exports = pretest;
 
-},{"./../benchmark-class":235,"@stdlib/assert/is-string":204,"@stdlib/utils/copy":487}],252:[function(require,module,exports){
+},{"./../benchmark-class":235,"@stdlib/assert/is-string":204,"@stdlib/utils/copy":481}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23425,7 +23425,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-null":185,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/string/format":469}],253:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-null":185,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/string/format":461}],253:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23577,7 +23577,7 @@ function createStream() {
 
 module.exports = createStream;
 
-},{"./log.js":255,"@stdlib/streams/node/transform":441,"@stdlib/string/from-code-point":472}],255:[function(require,module,exports){
+},{"./log.js":255,"@stdlib/streams/node/transform":433,"@stdlib/string/from-code-point":464}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23820,7 +23820,7 @@ setReadOnly( bench, 'onFinish', onFinish );
 
 module.exports = bench;
 
-},{"./get_harness.js":247,"./harness":248,"@stdlib/assert/is-function":152,"@stdlib/streams/node/transform":441,"@stdlib/string/format":469,"@stdlib/utils/define-nonenumerable-read-only-property":492}],257:[function(require,module,exports){
+},{"./get_harness.js":247,"./harness":248,"@stdlib/assert/is-function":152,"@stdlib/streams/node/transform":433,"@stdlib/string/format":461,"@stdlib/utils/define-nonenumerable-read-only-property":486}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24124,7 +24124,7 @@ function createStream( options ) {
 
 module.exports = createStream;
 
-},{"./../utils/next_tick.js":268,"@stdlib/assert/is-string":204,"@stdlib/streams/node/transform":441}],260:[function(require,module,exports){
+},{"./../utils/next_tick.js":268,"@stdlib/assert/is-string":204,"@stdlib/streams/node/transform":433}],260:[function(require,module,exports){
 /* eslint-disable stdlib/jsdoc-require-throws-tags */
 
 /**
@@ -24247,7 +24247,7 @@ function encodeAssertion( result, count ) {
 
 module.exports = encodeAssertion;
 
-},{"@stdlib/assert/has-own-property":91,"@stdlib/regexp/eol":421,"@stdlib/string/base/replace":461}],261:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":91,"@stdlib/regexp/eol":412,"@stdlib/string/base/replace":453}],261:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24571,7 +24571,7 @@ defineProperty( Runner.prototype, 'exit', {
 
 module.exports = Runner;
 
-},{"./clear.js":257,"./close.js":258,"./create_stream.js":259,"./exit.js":262,"./push.js":264,"./run.js":265,"@stdlib/streams/node/transform":441,"@stdlib/utils/define-property":499,"@stdlib/utils/inherit":519,"events":577}],264:[function(require,module,exports){
+},{"./clear.js":257,"./close.js":258,"./create_stream.js":259,"./exit.js":262,"./push.js":264,"./run.js":265,"@stdlib/streams/node/transform":433,"@stdlib/utils/define-property":493,"@stdlib/utils/inherit":513,"events":573}],264:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24858,7 +24858,7 @@ var proc = require( 'process' );
 
 module.exports = proc;
 
-},{"process":586}],270:[function(require,module,exports){
+},{"process":583}],270:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25075,7 +25075,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":273,"./ndarray.js":274,"@stdlib/utils/define-nonenumerable-read-only-property":492}],273:[function(require,module,exports){
+},{"./main.js":273,"./ndarray.js":274,"@stdlib/utils/define-nonenumerable-read-only-property":486}],273:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25507,7 +25507,7 @@ var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-glo
 
 module.exports = ctor;
 
-},{"buffer":576}],279:[function(require,module,exports){
+},{"buffer":572}],279:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25698,7 +25698,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":132,"@stdlib/buffer/ctor":277,"@stdlib/string/format":469}],283:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":132,"@stdlib/buffer/ctor":277,"@stdlib/string/format":461}],283:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25756,7 +25756,7 @@ function fromBuffer( buffer ) {
 
 module.exports = fromBuffer;
 
-},{"@stdlib/assert/is-buffer":132,"@stdlib/buffer/ctor":277,"@stdlib/string/format":469}],284:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":132,"@stdlib/buffer/ctor":277,"@stdlib/string/format":461}],284:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25959,7 +25959,7 @@ setReadOnly( Complex64.prototype, 'toJSON', toJSON );
 
 module.exports = Complex64;
 
-},{"./tojson.js":286,"./tostring.js":287,"@stdlib/assert/is-number":187,"@stdlib/number/float64/base/to-float32":388,"@stdlib/string/format":469,"@stdlib/utils/define-nonenumerable-read-only-property":492,"@stdlib/utils/define-property":499}],286:[function(require,module,exports){
+},{"./tojson.js":286,"./tostring.js":287,"@stdlib/assert/is-number":187,"@stdlib/number/float64/base/to-float32":388,"@stdlib/string/format":461,"@stdlib/utils/define-nonenumerable-read-only-property":486,"@stdlib/utils/define-property":493}],286:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26424,7 +26424,7 @@ setReadOnly( Complex128.prototype, 'toJSON', toJSON );
 
 module.exports = Complex128;
 
-},{"./tojson.js":294,"./tostring.js":295,"@stdlib/assert/is-number":187,"@stdlib/string/format":469,"@stdlib/utils/define-nonenumerable-read-only-property":492,"@stdlib/utils/define-property":499}],294:[function(require,module,exports){
+},{"./tojson.js":294,"./tostring.js":295,"@stdlib/assert/is-number":187,"@stdlib/string/format":461,"@stdlib/utils/define-nonenumerable-read-only-property":486,"@stdlib/utils/define-property":493}],294:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29924,7 +29924,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":351,"./main.js":353,"@stdlib/utils/define-nonenumerable-read-only-property":492}],353:[function(require,module,exports){
+},{"./assign.js":351,"./main.js":353,"@stdlib/utils/define-nonenumerable-read-only-property":486}],353:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32322,7 +32322,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":379,"./main.js":381,"@stdlib/utils/define-nonenumerable-read-only-property":492}],381:[function(require,module,exports){
+},{"./assign.js":379,"./main.js":381,"@stdlib/utils/define-nonenumerable-read-only-property":486}],381:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33081,7 +33081,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":391,"./main.js":394,"@stdlib/utils/define-nonenumerable-read-only-property":492}],393:[function(require,module,exports){
+},{"./assign.js":391,"./main.js":394,"@stdlib/utils/define-nonenumerable-read-only-property":486}],393:[function(require,module,exports){
 arguments[4][374][0].apply(exports,arguments)
 },{"@stdlib/assert/is-little-endian":166,"dup":374}],394:[function(require,module,exports){
 /**
@@ -33457,7 +33457,7 @@ function assign( target ) {
 
 module.exports = assign;
 
-},{"@stdlib/object/ctor":401,"@stdlib/string/format":469,"@stdlib/utils/enumerable-properties":501}],401:[function(require,module,exports){
+},{"@stdlib/object/ctor":401,"@stdlib/string/format":461,"@stdlib/utils/enumerable-properties":495}],401:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33574,1354 +33574,6 @@ var Obj = Object; // eslint-disable-line stdlib/require-globals
 module.exports = Obj;
 
 },{}],403:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
-
-
-// VARIABLES //
-
-var NUM_WARMUPS = 8;
-
-
-// MAIN //
-
-/**
-* Initializes a shuffle table.
-*
-* @private
-* @param {PRNG} rand - pseudorandom number generator
-* @param {Int32Array} table - table
-* @param {PositiveInteger} N - table size
-* @throws {Error} PRNG returned `NaN`
-* @returns {NumberArray} shuffle table
-*/
-function createTable( rand, table, N ) {
-	var v;
-	var i;
-
-	// "warm-up" the PRNG...
-	for ( i = 0; i < NUM_WARMUPS; i++ ) {
-		v = rand();
-
-		// Prevent the above loop from being discarded by the compiler...
-		if ( isnan( v ) ) {
-			throw new Error( 'unexpected error. PRNG returned NaN.' );
-		}
-	}
-	// Initialize the shuffle table...
-	for ( i = N-1; i >= 0; i-- ) {
-		table[ i ] = rand();
-	}
-	return table;
-}
-
-
-// EXPORTS //
-
-module.exports = createTable;
-
-},{"@stdlib/math/base/assert/is-nan":333}],404:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* eslint-disable max-len */
-
-'use strict';
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
-var setReadWriteAccessor = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' );
-var hasOwnProp = require( '@stdlib/assert/has-own-property' );
-var isObject = require( '@stdlib/assert/is-plain-object' );
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var isCollection = require( '@stdlib/assert/is-collection' );
-var isPositiveInteger = require( '@stdlib/assert/is-positive-integer' ).isPrimitive;
-var isInt32Array = require( '@stdlib/assert/is-int32array' );
-var gcopy = require( '@stdlib/blas/base/gcopy' );
-var floor = require( '@stdlib/math/base/special/floor' );
-var Int32Array = require( '@stdlib/array/int32' );
-var INT32_MAX = require( '@stdlib/constants/int32/max' );
-var typedarray2json = require( '@stdlib/array/to-json' );
-var format = require( '@stdlib/string/format' );
-var createTable = require( './create_table.js' );
-var randint32 = require( './rand_int32.js' );
-
-
-// VARIABLES //
-
-var NORMALIZATION_CONSTANT = (INT32_MAX - 1)|0; // asm type annotation
-var MAX_SEED = (INT32_MAX - 1)|0; // asm type annotation
-var A = 16807|0; // asm type annotation
-
-// Define the number of elements in the shuffle table:
-var TABLE_LENGTH = 32;
-
-// Define the state array schema version:
-var STATE_ARRAY_VERSION = 1; // NOTE: anytime the state array schema changes, this value should be incremented!!!
-
-// Define the number of sections in the state array:
-var NUM_STATE_SECTIONS = 3; // table, other, seed
-
-// Define the index offset of the "table" section in the state array:
-var TABLE_SECTION_OFFSET = 2; // | version | num_sections | table_length | ...table | other_length | shuffle_state | prng_state | seed_length | ...seed |
-
-// Define the index offset of the "state" section in the state array:
-var STATE_SECTION_OFFSET = TABLE_LENGTH + 3; // | version | num_sections | table_length | ...table | state_length | shuffle_state | prng_state | seed_length | ...seed |
-
-// Define the index offset of the seed section in the state array:
-var SEED_SECTION_OFFSET = TABLE_LENGTH + 6; // | version | num_sections | table_length | ...table | state_length | shuffle_state | prng_state | seed_length | ...seed |
-
-// Define the length of the "fixed" length portion of the state array:
-var STATE_FIXED_LENGTH = TABLE_LENGTH + 7; // 1 (version) + 1 (num_sections) + 1 (table_length) + TABLE_LENGTH (table) + 1 (state_length) + 1 (shuffle_state) + 1 (prng_state) + 1 (seed_length)
-
-// Define the indices for the shuffle table and PRNG states:
-var SHUFFLE_STATE = STATE_SECTION_OFFSET + 1;
-var PRNG_STATE = STATE_SECTION_OFFSET + 2;
-
-
-// FUNCTIONS //
-
-/**
-* Verifies state array integrity.
-*
-* @private
-* @param {Int32Array} state - state array
-* @param {boolean} FLG - flag indicating whether the state array was provided as an option (true) or an argument (false)
-* @returns {(Error|null)} an error or `null`
-*/
-function verifyState( state, FLG ) {
-	var s1;
-	if ( FLG ) {
-		s1 = 'option';
-	} else {
-		s1 = 'argument';
-	}
-	// The state array must have a minimum length...
-	if ( state.length < STATE_FIXED_LENGTH+1 ) {
-		return new RangeError( format( 'invalid %s. State array has insufficient length.', s1 ) );
-	}
-	// The first element of the state array must equal the supported state array schema version...
-	if ( state[ 0 ] !== STATE_ARRAY_VERSION ) {
-		return new RangeError( format( 'invalid %s. State array has an incompatible schema version. Expected: `%s`. Actual: `%s`.', s1, STATE_ARRAY_VERSION, state[ 0 ] ) );
-	}
-	// The second element of the state array must contain the number of sections...
-	if ( state[ 1 ] !== NUM_STATE_SECTIONS ) {
-		return new RangeError( format( 'invalid %s. State array has an incompatible number of sections. Expected: `%s`. Actual: `%s`.', s1, NUM_STATE_SECTIONS, state[ 1 ] ) );
-	}
-	// The length of the "table" section must equal `TABLE_LENGTH`...
-	if ( state[ TABLE_SECTION_OFFSET ] !== TABLE_LENGTH ) {
-		return new RangeError( format( 'invalid %s. State array has an incompatible table length. Expected: `%s`. Actual: `%s`.', s1, TABLE_LENGTH, state[ TABLE_SECTION_OFFSET ] ) );
-	}
-	// The length of the "state" section must equal `2`...
-	if ( state[ STATE_SECTION_OFFSET ] !== 2 ) {
-		return new RangeError( format( 'invalid %s. State array has an incompatible state length. Expected: `%u`. Actual: `%u`.', s1, 2, state[ STATE_SECTION_OFFSET ] ) );
-	}
-	// The length of the "seed" section much match the empirical length...
-	if ( state[ SEED_SECTION_OFFSET ] !== state.length-STATE_FIXED_LENGTH ) {
-		return new RangeError( format( 'invalid %s. State array length is incompatible with seed section length. Expected: `%u`. Actual: `%u`.', s1, state.length-STATE_FIXED_LENGTH, state[ SEED_SECTION_OFFSET ] ) );
-	}
-	return null;
-}
-
-
-// MAIN //
-
-/**
-* Returns a linear congruential pseudorandom number generator (LCG) whose output is shuffled.
-*
-* @param {Options} [options] - options
-* @param {PRNGSeedMINSTD} [options.seed] - pseudorandom number generator seed
-* @param {PRNGStateMINSTD} [options.state] - pseudorandom number generator state
-* @param {boolean} [options.copy=true] - boolean indicating whether to copy a provided pseudorandom number generator state
-* @throws {TypeError} options argument must be an object
-* @throws {TypeError} a seed must be either a positive integer less than the maximum signed 32-bit integer or an array-like object containing integers less than the maximum signed 32-bit integer
-* @throws {RangeError} a numeric seed must be a positive integer less than the maximum signed 32-bit integer
-* @throws {TypeError} state must be an `Int32Array`
-* @throws {Error} must provide a valid state
-* @throws {TypeError} `copy` option must be a boolean
-* @returns {PRNG} shuffled LCG PRNG
-*
-* @example
-* var minstd = factory();
-*
-* var v = minstd();
-* // returns <number>
-*
-* @example
-* // Return a seeded LCG:
-* var minstd = factory({
-*     'seed': 1234
-* });
-*
-* var v = minstd();
-* // returns 1421600654
-*/
-function factory( options ) {
-	var STATE;
-	var state;
-	var opts;
-	var seed;
-	var slen;
-	var err;
-
-	opts = {};
-	if ( arguments.length ) {
-		if ( !isObject( options ) ) {
-			throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
-		}
-		if ( hasOwnProp( options, 'copy' ) ) {
-			opts.copy = options.copy;
-			if ( !isBoolean( options.copy ) ) {
-				throw new TypeError( format( 'invalid option. `%s` option must be a boolean. Option: `%s`.', 'copy', options.copy ) );
-			}
-		}
-		if ( hasOwnProp( options, 'state' ) ) {
-			state = options.state;
-			opts.state = true;
-			if ( !isInt32Array( state ) ) {
-				throw new TypeError( format( 'invalid option. `%s` option must be an Int32Array. Option: `%s`.', 'state', state ) );
-			}
-			err = verifyState( state, true );
-			if ( err ) {
-				throw err;
-			}
-			if ( opts.copy === false ) {
-				STATE = state;
-			} else {
-				STATE = new Int32Array( state.length );
-				gcopy( state.length, state, 1, STATE, 1 );
-			}
-			// Create a state (table) "view":
-			state = new Int32Array( STATE.buffer, STATE.byteOffset+((TABLE_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), TABLE_LENGTH );
-
-			// Create a seed "view":
-			seed = new Int32Array( STATE.buffer, STATE.byteOffset+((SEED_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), state[ SEED_SECTION_OFFSET ] );
-		}
-		// If provided a PRNG state, we ignore the `seed` option...
-		if ( seed === void 0 ) {
-			if ( hasOwnProp( options, 'seed' ) ) {
-				seed = options.seed;
-				opts.seed = true;
-				if ( isPositiveInteger( seed ) ) {
-					if ( seed > MAX_SEED ) {
-						throw new RangeError( format( 'invalid option. `%s` option must be a positive integer less than the maximum signed 32-bit integer. Option: `%u`.', 'seed', seed ) );
-					}
-					seed |= 0; // asm type annotation
-				} else if ( isCollection( seed ) && seed.length > 0 ) {
-					slen = seed.length;
-					STATE = new Int32Array( STATE_FIXED_LENGTH+slen );
-
-					// Initialize sections:
-					STATE[ 0 ] = STATE_ARRAY_VERSION;
-					STATE[ 1 ] = NUM_STATE_SECTIONS;
-					STATE[ TABLE_SECTION_OFFSET ] = TABLE_LENGTH;
-					STATE[ STATE_SECTION_OFFSET ] = 2;
-					STATE[ PRNG_STATE ] = seed[ 0 ];
-					STATE[ SEED_SECTION_OFFSET ] = slen;
-
-					// Copy the provided seed array to prevent external mutation, as mutation would lead to an inability to reproduce PRNG values according to the PRNG's stated seed:
-					gcopy.ndarray( slen, seed, 1, 0, STATE, 1, SEED_SECTION_OFFSET+1 );
-
-					// Create a state (table) "view":
-					state = new Int32Array( STATE.buffer, STATE.byteOffset+((TABLE_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), TABLE_LENGTH );
-
-					// Create a seed "view":
-					seed = new Int32Array( STATE.buffer, STATE.byteOffset+((SEED_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), slen );
-
-					// Initialize the internal PRNG state:
-					state = createTable( minstd, state, TABLE_LENGTH );
-					STATE[ SHUFFLE_STATE ] = state[ 0 ];
-				} else {
-					throw new TypeError( format( 'invalid option. `%s` option must be either a positive integer less than the maximum signed 32-bit integer or an array-like object containing integer values less than the maximum signed 32-bit integer. Option: `%s`.', 'seed', seed ) );
-				}
-			} else {
-				seed = randint32()|0; // asm type annotation
-			}
-		}
-	} else {
-		seed = randint32()|0; // asm type annotation
-	}
-	if ( state === void 0 ) {
-		STATE = new Int32Array( STATE_FIXED_LENGTH+1 );
-
-		// Initialize sections:
-		STATE[ 0 ] = STATE_ARRAY_VERSION;
-		STATE[ 1 ] = NUM_STATE_SECTIONS;
-		STATE[ TABLE_SECTION_OFFSET ] = TABLE_LENGTH;
-		STATE[ STATE_SECTION_OFFSET ] = 2;
-		STATE[ PRNG_STATE ] = seed;
-		STATE[ SEED_SECTION_OFFSET ] = 1;
-		STATE[ SEED_SECTION_OFFSET+1 ] = seed;
-
-		// Create a state (table) "view":
-		state = new Int32Array( STATE.buffer, STATE.byteOffset+((TABLE_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), TABLE_LENGTH );
-
-		// Create a seed "view":
-		seed = new Int32Array( STATE.buffer, STATE.byteOffset+((SEED_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), 1 );
-
-		// Initialize the internal PRNG state:
-		state = createTable( minstd, state, TABLE_LENGTH );
-		STATE[ SHUFFLE_STATE ] = state[ 0 ];
-	}
-	setReadOnly( minstdShuffle, 'NAME', 'minstd-shuffle' );
-	setReadOnlyAccessor( minstdShuffle, 'seed', getSeed );
-	setReadOnlyAccessor( minstdShuffle, 'seedLength', getSeedLength );
-	setReadWriteAccessor( minstdShuffle, 'state', getState, setState );
-	setReadOnlyAccessor( minstdShuffle, 'stateLength', getStateLength );
-	setReadOnlyAccessor( minstdShuffle, 'byteLength', getStateSize );
-	setReadOnly( minstdShuffle, 'toJSON', toJSON );
-	setReadOnly( minstdShuffle, 'MIN', 1 );
-	setReadOnly( minstdShuffle, 'MAX', INT32_MAX-1 );
-	setReadOnly( minstdShuffle, 'normalized', normalized );
-
-	setReadOnly( normalized, 'NAME', minstdShuffle.NAME );
-	setReadOnlyAccessor( normalized, 'seed', getSeed );
-	setReadOnlyAccessor( normalized, 'seedLength', getSeedLength );
-	setReadWriteAccessor( normalized, 'state', getState, setState );
-	setReadOnlyAccessor( normalized, 'stateLength', getStateLength );
-	setReadOnlyAccessor( normalized, 'byteLength', getStateSize );
-	setReadOnly( normalized, 'toJSON', toJSON );
-	setReadOnly( normalized, 'MIN', (minstdShuffle.MIN-1.0) / NORMALIZATION_CONSTANT );
-	setReadOnly( normalized, 'MAX', (minstdShuffle.MAX-1.0) / NORMALIZATION_CONSTANT );
-
-	return minstdShuffle;
-
-	/**
-	* Returns the PRNG seed.
-	*
-	* @private
-	* @returns {PRNGSeedMINSTD} seed
-	*/
-	function getSeed() {
-		var len = STATE[ SEED_SECTION_OFFSET ];
-		return gcopy( len, seed, 1, new Int32Array( len ), 1 );
-	}
-
-	/**
-	* Returns the PRNG seed length.
-	*
-	* @private
-	* @returns {PositiveInteger} seed length
-	*/
-	function getSeedLength() {
-		return STATE[ SEED_SECTION_OFFSET ];
-	}
-
-	/**
-	* Returns the PRNG state length.
-	*
-	* @private
-	* @returns {PositiveInteger} state length
-	*/
-	function getStateLength() {
-		return STATE.length;
-	}
-
-	/**
-	* Returns the PRNG state size (in bytes).
-	*
-	* @private
-	* @returns {PositiveInteger} state size (in bytes)
-	*/
-	function getStateSize() {
-		return STATE.byteLength;
-	}
-
-	/**
-	* Returns the current PRNG state.
-	*
-	* ## Notes
-	*
-	* -   The PRNG state array is comprised of a preamble followed by `3` sections:
-	*
-	*     0.  preamble (version + number of sections)
-	*     1.  shuffle table
-	*     2.  internal PRNG state
-	*     3.  PRNG seed
-	*
-	* -   The first element of the PRNG state array preamble is the state array schema version.
-	*
-	* -   The second element of the PRNG state array preamble is the number of state array sections (i.e., `3`).
-	*
-	* -   The first element of each section following the preamble specifies the section length. The remaining section elements comprise the section contents.
-	*
-	* @private
-	* @returns {PRNGStateMINSTD} current state
-	*/
-	function getState() {
-		var len = STATE.length;
-		return gcopy( len, STATE, 1, new Int32Array( len ), 1 );
-	}
-
-	/**
-	* Sets the PRNG state.
-	*
-	* ## Notes
-	*
-	* -   If PRNG state is "shared" (meaning a state array was provided during PRNG creation and **not** copied) and one sets the generator state to a state array having a different length, the PRNG does **not** update the existing shared state and, instead, points to the newly provided state array. In order to synchronize PRNG output according to the new shared state array, the state array for **each** relevant PRNG must be **explicitly** set.
-	* -   If PRNG state is "shared" and one sets the generator state to a state array of the same length, the PRNG state is updated (along with the state of all other PRNGs sharing the PRNG's state array).
-	*
-	* @private
-	* @param {PRNGStateMINSTD} s - generator state
-	* @throws {TypeError} must provide an `Int32Array`
-	* @throws {Error} must provide a valid state
-	*/
-	function setState( s ) {
-		var err;
-		if ( !isInt32Array( s ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide an Int32Array. Value: `%s`.', s ) );
-		}
-		err = verifyState( s, false );
-		if ( err ) {
-			throw err;
-		}
-		if ( opts.copy === false ) {
-			if ( opts.state && s.length === STATE.length ) {
-				gcopy( s.length, s, 1, STATE, 1 ); // update current shared state
-			} else {
-				STATE = s; // point to new shared state
-				opts.state = true; // setting this flag allows updating a shared state even if a state array was not provided at PRNG creation
-			}
-		} else {
-			// Check if we can reuse allocated memory...
-			if ( s.length !== STATE.length ) {
-				STATE = new Int32Array( s.length ); // reallocate
-			}
-			gcopy( s.length, s, 1, STATE, 1 );
-		}
-		// Create a new state (table) "view":
-		state = new Int32Array( STATE.buffer, STATE.byteOffset+((TABLE_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), TABLE_LENGTH );
-
-		// Create a new seed "view":
-		seed = new Int32Array( STATE.buffer, STATE.byteOffset+((SEED_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), STATE[ SEED_SECTION_OFFSET ] );
-	}
-
-	/**
-	* Serializes the pseudorandom number generator as a JSON object.
-	*
-	* ## Notes
-	*
-	* -   `JSON.stringify()` implicitly calls this method when stringifying a PRNG.
-	*
-	* @private
-	* @returns {Object} JSON representation
-	*/
-	function toJSON() {
-		var out = {};
-		out.type = 'PRNG';
-		out.name = minstdShuffle.NAME;
-		out.state = typedarray2json( STATE );
-		out.params = [];
-		return out;
-	}
-
-	/**
-	* Generates a pseudorandom integer on the interval \\( [1,2^{31}-1) \\).
-	*
-	* @private
-	* @returns {integer32} pseudorandom integer
-	*/
-	function minstd() {
-		var s = STATE[ PRNG_STATE ]|0; // asm type annotation
-		s = ( (A*s)%INT32_MAX )|0; // asm type annotation
-		STATE[ PRNG_STATE ] = s;
-		return s|0; // asm type annotation
-	}
-
-	/**
-	* Generates a pseudorandom integer on the interval \\( [1,2^{31}-1) \\).
-	*
-	* @private
-	* @returns {integer32} pseudorandom integer
-	*
-	* @example
-	* var v = minstd();
-	* // returns <number>
-	*/
-	function minstdShuffle() {
-		var s;
-		var i;
-
-		s = STATE[ SHUFFLE_STATE ];
-		i = floor( TABLE_LENGTH * (s/INT32_MAX) );
-
-		// Pull a state from the table:
-		s = state[ i ];
-
-		// Update the PRNG state:
-		STATE[ SHUFFLE_STATE ] = s;
-
-		// Replace the pulled state:
-		state[ i ] = minstd();
-
-		return s;
-	}
-
-	/**
-	* Generates a pseudorandom number on the interval \\( [0,1) \\).
-	*
-	* @private
-	* @returns {number} pseudorandom number
-	*
-	* @example
-	* var v = normalized();
-	* // returns <number>
-	*/
-	function normalized() {
-		return (minstdShuffle()-1) / NORMALIZATION_CONSTANT;
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = factory;
-
-},{"./create_table.js":403,"./rand_int32.js":407,"@stdlib/array/int32":46,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-int32array":156,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/blas/base/gcopy":272,"@stdlib/constants/int32/max":318,"@stdlib/math/base/special/floor":345,"@stdlib/string/format":469,"@stdlib/utils/define-nonenumerable-read-only-accessor":490,"@stdlib/utils/define-nonenumerable-read-only-property":492,"@stdlib/utils/define-nonenumerable-read-write-accessor":494}],405:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* A linear congruential pseudorandom number generator (LCG) whose output is shuffled.
-*
-* @module @stdlib/random/base/minstd-shuffle
-*
-* @example
-* var minstd = require( '@stdlib/random/base/minstd-shuffle' );
-*
-* var v = minstd();
-* // returns <number>
-*
-* @example
-* var factory = require( '@stdlib/random/base/minstd-shuffle' ).factory;
-*
-* var minstd = factory({
-*     'seed': 1234
-* });
-*
-* var v = minstd();
-* // returns 1421600654
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var main = require( './main.js' );
-var factory = require( './factory.js' );
-
-
-// MAIN //
-
-setReadOnly( main, 'factory', factory );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./factory.js":404,"./main.js":406,"@stdlib/utils/define-nonenumerable-read-only-property":492}],406:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var factory = require( './factory.js' );
-var randint32 = require( './rand_int32.js' );
-
-
-// MAIN //
-
-/**
-* Generates a pseudorandom integer on the interval \\( [1,2^{31}-1) \\).
-*
-* ## Method
-*
-* Linear congruential generators (LCGs) use the recurrence relation
-*
-* ```tex
-* X_{n+1} = ( a \cdot X_n + c ) \operatorname{mod}(m)
-* ```
-*
-* where the modulus \\( m \\) is a prime number or power of a prime number and \\( a \\) is a primitive root modulo \\( m \\).
-*
-* <!-- <note> -->
-*
-* For an LCG to be a Lehmer RNG, the seed \\( X_0 \\) must be coprime to \\( m \\).
-*
-* <!-- </note> -->
-*
-* In this implementation, the constants \\( a \\), \\( c \\), and \\( m \\) have the values
-*
-* ```tex
-* \begin{align*}
-* a &= 7^5 = 16807 \\
-* c &= 0 \\
-* m &= 2^{31} - 1 = 2147483647
-* \end{align*}
-* ```
-*
-* <!-- <note> -->
-*
-* The constant \\( m \\) is a Mersenne prime (modulo \\(31\\)).
-*
-* <!-- </note> -->
-*
-* <!-- <note> -->
-*
-* The constant \\( a \\) is a primitive root (modulo \\(31\\)).
-*
-* <!-- </note> -->
-*
-* Accordingly, the maximum possible product is
-*
-* ```tex
-* 16807 \cdot (m - 1) \approx 2^{46}
-* ```
-*
-* The values for \\( a \\), \\( c \\), and \\( m \\) are taken from Park and Miller, "Random Number Generators: Good Ones Are Hard To Find". Park's and Miller's article is also the basis for a recipe in the second edition of _Numerical Recipes in C_.
-*
-* This implementation subsequently shuffles the output of a linear congruential pseudorandom number generator (LCG) using a shuffle table in accordance with the Bays-Durham algorithm.
-*
-* ## Notes
-*
-* -   The generator has a period of approximately \\(2.1\mbox{e}9\\) (see [Numerical Recipes in C, 2nd Edition](#references), p. 279).
-*
-* ## References
-*
-* -   Bays, Carter, and S. D. Durham. 1976. "Improving a Poor Random Number Generator." _ACM Transactions on Mathematical Software_ 2 (1). New York, NY, USA: ACM: 59–64. doi:[10.1145/355666.355670](http://dx.doi.org/10.1145/355666.355670).
-* -   Herzog, T.N., and G. Lord. 2002. _Applications of Monte Carlo Methods to Finance and Insurance_. ACTEX Publications. [https://books.google.com/books?id=vC7I\\\_gdX-A0C](https://books.google.com/books?id=vC7I\_gdX-A0C).
-* -   Press, William H., Brian P. Flannery, Saul A. Teukolsky, and William T. Vetterling. 1992. _Numerical Recipes in C: The Art of Scientific Computing, Second Edition_. Cambridge University Press.
-*
-* @function minstd
-* @type {PRNG}
-* @returns {PositiveInteger} pseudorandom integer
-*
-* @example
-* var v = minstd();
-* // returns <number>
-*/
-var minstd = factory({
-	'seed': randint32()
-});
-
-
-// EXPORTS //
-
-module.exports = minstd;
-
-},{"./factory.js":404,"./rand_int32.js":407}],407:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var INT32_MAX = require( '@stdlib/constants/int32/max' );
-var floor = require( '@stdlib/math/base/special/floor' );
-
-
-// VARIABLES //
-
-var MAX = INT32_MAX - 1;
-
-
-// MAIN //
-
-/**
-* Returns a pseudorandom integer on the interval \\([1, 2^{31}-1)\\).
-*
-* @private
-* @returns {PositiveInteger} pseudorandom integer
-*
-* @example
-* var v = randint32();
-* // returns <number>
-*/
-function randint32() {
-	var v = floor( 1.0 + (MAX*Math.random()) ); // eslint-disable-line stdlib/no-builtin-math
-	return v|0; // asm type annotation
-}
-
-
-// EXPORTS //
-
-module.exports = randint32;
-
-},{"@stdlib/constants/int32/max":318,"@stdlib/math/base/special/floor":345}],408:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-/* eslint-disable max-len */
-
-'use strict';
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
-var setReadWriteAccessor = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' );
-var hasOwnProp = require( '@stdlib/assert/has-own-property' );
-var isObject = require( '@stdlib/assert/is-plain-object' );
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
-var isCollection = require( '@stdlib/assert/is-collection' );
-var isPositiveInteger = require( '@stdlib/assert/is-positive-integer' ).isPrimitive;
-var isInt32Array = require( '@stdlib/assert/is-int32array' );
-var format = require( '@stdlib/string/format' );
-var INT32_MAX = require( '@stdlib/constants/int32/max' );
-var Int32Array = require( '@stdlib/array/int32' );
-var gcopy = require( '@stdlib/blas/base/gcopy' );
-var typedarray2json = require( '@stdlib/array/to-json' );
-var randint32 = require( './rand_int32.js' );
-
-
-// VARIABLES //
-
-var NORMALIZATION_CONSTANT = (INT32_MAX - 1)|0; // asm type annotation
-var MAX_SEED = (INT32_MAX - 1)|0; // asm type annotation
-var A = 16807|0; // asm type annotation
-
-// Define the state array schema version:
-var STATE_ARRAY_VERSION = 1; // NOTE: anytime the state array schema changes, this value should be incremented!!!
-
-// Define the number of sections in the state array:
-var NUM_STATE_SECTIONS = 2; // state, seed
-
-// Define the index offset of the "state" section in the state array:
-var STATE_SECTION_OFFSET = 2; // | version | num_sections | state_length | ...state | seed_length | ...seed |
-
-// Define the index offset of the seed section in the state array:
-var SEED_SECTION_OFFSET = 4; // | version | num_sections | state_length | ...state | seed_length | ...seed |
-
-// Define the length of the "fixed" length portion of the state array:
-var STATE_FIXED_LENGTH = 5; // 1 (version) + 1 (num_sections) + 1 (state_length) + 1 (state) + 1 (seed_length)
-
-
-// FUNCTIONS //
-
-/**
-* Verifies state array integrity.
-*
-* @private
-* @param {Int32Array} state - state array
-* @param {boolean} FLG - flag indicating whether the state array was provided as an option (true) or an argument (false)
-* @returns {(Error|null)} an error or `null`
-*/
-function verifyState( state, FLG ) {
-	var s1;
-	if ( FLG ) {
-		s1 = 'option';
-	} else {
-		s1 = 'argument';
-	}
-	// The state array must have a minimum length...
-	if ( state.length < STATE_FIXED_LENGTH+1 ) {
-		return new RangeError( format( 'invalid %s. State array has insufficient length.', s1 ) );
-	}
-	// The first element of the state array must equal the supported state array schema version...
-	if ( state[ 0 ] !== STATE_ARRAY_VERSION ) {
-		return new RangeError( format( 'invalid %s. State array has an incompatible schema version. Expected: `%s`. Actual: `%s`.', s1, STATE_ARRAY_VERSION, state[ 0 ] ) );
-	}
-	// The second element of the state array must contain the number of sections...
-	if ( state[ 1 ] !== NUM_STATE_SECTIONS ) {
-		return new RangeError( format( 'invalid %s. State array has an incompatible number of sections. Expected: `%s`. Actual: `%s`.', s1, NUM_STATE_SECTIONS, state[ 1 ] ) );
-	}
-	// The length of the "state" section must equal `1`...
-	if ( state[ STATE_SECTION_OFFSET ] !== 1 ) {
-		return new RangeError( format( 'invalid %s. State array has an incompatible state length. Expected: `%u`. Actual: `%u`.', s1, 1, state[ STATE_SECTION_OFFSET ] ) );
-	}
-	// The length of the "seed" section much match the empirical length...
-	if ( state[ SEED_SECTION_OFFSET ] !== state.length-STATE_FIXED_LENGTH ) {
-		return new RangeError( format( 'invalid %s. State array length is incompatible with seed section length. Expected: `%u`. Actual: `%u`.', s1, state.length-STATE_FIXED_LENGTH, state[ SEED_SECTION_OFFSET ] ) );
-	}
-	return null;
-}
-
-
-// MAIN //
-
-/**
-* Returns a linear congruential pseudorandom number generator (LCG) based on Park and Miller.
-*
-* @param {Options} [options] - options
-* @param {PRNGSeedMINSTD} [options.seed] - pseudorandom number generator seed
-* @param {PRNGStateMINSTD} [options.state] - pseudorandom number generator state
-* @param {boolean} [options.copy=true] - boolean indicating whether to copy a provided pseudorandom number generator state
-* @throws {TypeError} options argument must be an object
-* @throws {TypeError} a seed must be either a positive integer less than the maximum signed 32-bit integer or an array-like object containing integers less than the maximum signed 32-bit integer
-* @throws {RangeError} a numeric seed must be a positive integer less than the maximum signed 32-bit integer
-* @throws {TypeError} state must be an `Int32Array`
-* @throws {Error} must provide a valid state
-* @throws {TypeError} `copy` option must be a boolean
-* @returns {PRNG} LCG PRNG
-*
-* @example
-* var minstd = factory();
-*
-* var v = minstd();
-* // returns <number>
-*
-* @example
-* // Return a seeded LCG:
-* var minstd = factory({
-*     'seed': 1234
-* });
-*
-* var v = minstd();
-* // returns 20739838
-*/
-function factory( options ) {
-	var STATE;
-	var state;
-	var opts;
-	var seed;
-	var slen;
-	var err;
-
-	opts = {};
-	if ( arguments.length ) {
-		if ( !isObject( options ) ) {
-			throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
-		}
-		if ( hasOwnProp( options, 'copy' ) ) {
-			opts.copy = options.copy;
-			if ( !isBoolean( options.copy ) ) {
-				throw new TypeError( format( 'invalid option. `%s` option must be a boolean. Option: `%s`.', 'copy', options.copy ) );
-			}
-		}
-		if ( hasOwnProp( options, 'state' ) ) {
-			state = options.state;
-			opts.state = true;
-			if ( !isInt32Array( state ) ) {
-				throw new TypeError( format( 'invalid option. `%s` option must be an Int32Array. Option: `%s`.', 'state', state ) );
-			}
-			err = verifyState( state, true );
-			if ( err ) {
-				throw err;
-			}
-			if ( opts.copy === false ) {
-				STATE = state;
-			} else {
-				STATE = new Int32Array( state.length );
-				gcopy( state.length, state, 1, STATE, 1 );
-			}
-			// Create a state "view":
-			state = new Int32Array( STATE.buffer, STATE.byteOffset+((STATE_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), 1 );
-
-			// Create a seed "view":
-			seed = new Int32Array( STATE.buffer, STATE.byteOffset+((SEED_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), state[ SEED_SECTION_OFFSET ] );
-		}
-		// If provided a PRNG state, we ignore the `seed` option...
-		if ( seed === void 0 ) {
-			if ( hasOwnProp( options, 'seed' ) ) {
-				seed = options.seed;
-				opts.seed = true;
-				if ( isPositiveInteger( seed ) ) {
-					if ( seed > MAX_SEED ) {
-						throw new RangeError( format( 'invalid option. `%s` option must be a positive integer less than the maximum signed 32-bit integer. Option: `%u`.', 'seed', seed ) );
-					}
-					seed |= 0; // asm type annotation
-				} else if ( isCollection( seed ) && seed.length > 0 ) {
-					slen = seed.length;
-					STATE = new Int32Array( STATE_FIXED_LENGTH+slen );
-
-					// Initialize sections:
-					STATE[ 0 ] = STATE_ARRAY_VERSION;
-					STATE[ 1 ] = NUM_STATE_SECTIONS;
-					STATE[ STATE_SECTION_OFFSET ] = 1;
-					STATE[ SEED_SECTION_OFFSET ] = slen;
-
-					// Copy the provided seed array to prevent external mutation, as mutation would lead to an inability to reproduce PRNG values according to the PRNG's stated seed:
-					gcopy.ndarray( slen, seed, 1, 0, STATE, 1, SEED_SECTION_OFFSET+1 );
-
-					// Create a state "view":
-					state = new Int32Array( STATE.buffer, STATE.byteOffset+((STATE_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), 1 );
-
-					// Create a seed "view":
-					seed = new Int32Array( STATE.buffer, STATE.byteOffset+((SEED_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), slen );
-
-					// Initialize the internal PRNG state:
-					state[ 0 ] = seed[ 0 ];
-				} else {
-					throw new TypeError( format( 'invalid option. `%s` option must be either a positive integer less than the maximum signed 32-bit integer or an array-like object containing integer values less than the maximum signed 32-bit integer. Option: `%s`.', 'seed', seed ) );
-				}
-			} else {
-				seed = randint32()|0; // asm type annotation
-			}
-		}
-	} else {
-		seed = randint32()|0; // asm type annotation
-	}
-	if ( state === void 0 ) {
-		STATE = new Int32Array( STATE_FIXED_LENGTH+1 );
-
-		// Initialize sections:
-		STATE[ 0 ] = STATE_ARRAY_VERSION;
-		STATE[ 1 ] = NUM_STATE_SECTIONS;
-		STATE[ STATE_SECTION_OFFSET ] = 1;
-		STATE[ SEED_SECTION_OFFSET ] = 1;
-		STATE[ SEED_SECTION_OFFSET+1 ] = seed;
-
-		// Create a state "view":
-		state = new Int32Array( STATE.buffer, STATE.byteOffset+((STATE_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), 1 );
-
-		// Create a seed "view":
-		seed = new Int32Array( STATE.buffer, STATE.byteOffset+((SEED_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), 1 );
-
-		// Initialize the internal PRNG state:
-		state[ 0 ] = seed[ 0 ];
-	}
-	setReadOnly( minstd, 'NAME', 'minstd' );
-	setReadOnlyAccessor( minstd, 'seed', getSeed );
-	setReadOnlyAccessor( minstd, 'seedLength', getSeedLength );
-	setReadWriteAccessor( minstd, 'state', getState, setState );
-	setReadOnlyAccessor( minstd, 'stateLength', getStateLength );
-	setReadOnlyAccessor( minstd, 'byteLength', getStateSize );
-	setReadOnly( minstd, 'toJSON', toJSON );
-	setReadOnly( minstd, 'MIN', 1 );
-	setReadOnly( minstd, 'MAX', INT32_MAX-1 );
-	setReadOnly( minstd, 'normalized', normalized );
-
-	setReadOnly( normalized, 'NAME', minstd.NAME );
-	setReadOnlyAccessor( normalized, 'seed', getSeed );
-	setReadOnlyAccessor( normalized, 'seedLength', getSeedLength );
-	setReadWriteAccessor( normalized, 'state', getState, setState );
-	setReadOnlyAccessor( normalized, 'stateLength', getStateLength );
-	setReadOnlyAccessor( normalized, 'byteLength', getStateSize );
-	setReadOnly( normalized, 'toJSON', toJSON );
-	setReadOnly( normalized, 'MIN', (minstd.MIN-1.0) / NORMALIZATION_CONSTANT );
-	setReadOnly( normalized, 'MAX', (minstd.MAX-1.0) / NORMALIZATION_CONSTANT );
-
-	return minstd;
-
-	/**
-	* Returns the PRNG seed.
-	*
-	* @private
-	* @returns {PRNGSeedMINSTD} seed
-	*/
-	function getSeed() {
-		var len = STATE[ SEED_SECTION_OFFSET ];
-		return gcopy( len, seed, 1, new Int32Array( len ), 1 );
-	}
-
-	/**
-	* Returns the PRNG seed length.
-	*
-	* @private
-	* @returns {PositiveInteger} seed length
-	*/
-	function getSeedLength() {
-		return STATE[ SEED_SECTION_OFFSET ];
-	}
-
-	/**
-	* Returns the PRNG state length.
-	*
-	* @private
-	* @returns {PositiveInteger} state length
-	*/
-	function getStateLength() {
-		return STATE.length;
-	}
-
-	/**
-	* Returns the PRNG state size (in bytes).
-	*
-	* @private
-	* @returns {PositiveInteger} state size (in bytes)
-	*/
-	function getStateSize() {
-		return STATE.byteLength;
-	}
-
-	/**
-	* Returns the current PRNG state.
-	*
-	* ## Notes
-	*
-	* -   The PRNG state array is comprised of a preamble followed by `2` sections:
-	*
-	*     0.  preamble (version + number of sections)
-	*     1.  internal PRNG state
-	*     2.  PRNG seed
-	*
-	* -   The first element of the PRNG state array preamble is the state array schema version.
-	*
-	* -   The second element of the PRNG state array preamble is the number of state array sections (i.e., `2`).
-	*
-	* -   The first element of each section following the preamble specifies the section length. The remaining section elements comprise the section contents.
-	*
-	* @private
-	* @returns {PRNGStateMINSTD} current state
-	*/
-	function getState() {
-		var len = STATE.length;
-		return gcopy( len, STATE, 1, new Int32Array( len ), 1 );
-	}
-
-	/**
-	* Sets the PRNG state.
-	*
-	* ## Notes
-	*
-	* -   If PRNG state is "shared" (meaning a state array was provided during PRNG creation and **not** copied) and one sets the generator state to a state array having a different length, the PRNG does **not** update the existing shared state and, instead, points to the newly provided state array. In order to synchronize PRNG output according to the new shared state array, the state array for **each** relevant PRNG must be **explicitly** set.
-	* -   If PRNG state is "shared" and one sets the generator state to a state array of the same length, the PRNG state is updated (along with the state of all other PRNGs sharing the PRNG's state array).
-	*
-	* @private
-	* @param {PRNGStateMINSTD} s - generator state
-	* @throws {TypeError} must provide an `Int32Array`
-	* @throws {Error} must provide a valid state
-	*/
-	function setState( s ) {
-		var err;
-		if ( !isInt32Array( s ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide an Int32Array. Value: `%s`.', s ) );
-		}
-		err = verifyState( s, false );
-		if ( err ) {
-			throw err;
-		}
-		if ( opts.copy === false ) {
-			if ( opts.state && s.length === STATE.length ) {
-				gcopy( s.length, s, 1, STATE, 1 ); // update current shared state
-			} else {
-				STATE = s; // point to new shared state
-				opts.state = true; // setting this flag allows updating a shared state even if a state array was not provided at PRNG creation
-			}
-		} else {
-			// Check if we can reuse allocated memory...
-			if ( s.length !== STATE.length ) {
-				STATE = new Int32Array( s.length ); // reallocate
-			}
-			gcopy( s.length, s, 1, STATE, 1 );
-		}
-		// Create a new state "view":
-		state = new Int32Array( STATE.buffer, STATE.byteOffset+((STATE_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), 1 );
-
-		// Create a new seed "view":
-		seed = new Int32Array( STATE.buffer, STATE.byteOffset+((SEED_SECTION_OFFSET+1)*STATE.BYTES_PER_ELEMENT), STATE[ SEED_SECTION_OFFSET ] );
-	}
-
-	/**
-	* Serializes the pseudorandom number generator as a JSON object.
-	*
-	* ## Notes
-	*
-	* -   `JSON.stringify()` implicitly calls this method when stringifying a PRNG.
-	*
-	* @private
-	* @returns {Object} JSON representation
-	*/
-	function toJSON() {
-		var out = {};
-		out.type = 'PRNG';
-		out.name = minstd.NAME;
-		out.state = typedarray2json( STATE );
-		out.params = [];
-		return out;
-	}
-
-	/**
-	* Generates a pseudorandom integer on the interval \\( [1,2^{31}-1) \\).
-	*
-	* @private
-	* @returns {integer32} pseudorandom integer
-	*/
-	function minstd() {
-		var s = state[ 0 ]|0; // asm type annotation
-		s = ( (A*s)%INT32_MAX )|0; // asm type annotation
-		state[ 0 ] = s;
-		return s|0; // asm type annotation
-	}
-
-	/**
-	* Generates a pseudorandom number on the interval \\( [0,1) \\).
-	*
-	* @private
-	* @returns {number} pseudorandom number
-	*/
-	function normalized() {
-		return (minstd()-1) / NORMALIZATION_CONSTANT;
-	}
-}
-
-
-// EXPORTS //
-
-module.exports = factory;
-
-},{"./rand_int32.js":411,"@stdlib/array/int32":46,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-int32array":156,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/blas/base/gcopy":272,"@stdlib/constants/int32/max":318,"@stdlib/string/format":469,"@stdlib/utils/define-nonenumerable-read-only-accessor":490,"@stdlib/utils/define-nonenumerable-read-only-property":492,"@stdlib/utils/define-nonenumerable-read-write-accessor":494}],409:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* A linear congruential pseudorandom number generator (LCG) based on Park and Miller.
-*
-* @module @stdlib/random/base/minstd
-*
-* @example
-* var minstd = require( '@stdlib/random/base/minstd' );
-*
-* var v = minstd();
-* // returns <number>
-*
-* @example
-* var factory = require( '@stdlib/random/base/minstd' ).factory;
-*
-* var minstd = factory({
-*     'seed': 1234
-* });
-*
-* var v = minstd();
-* // returns 20739838
-*/
-
-// MODULES //
-
-var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
-var main = require( './main.js' );
-var factory = require( './factory.js' );
-
-
-// MAIN //
-
-setReadOnly( main, 'factory', factory );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./factory.js":408,"./main.js":410,"@stdlib/utils/define-nonenumerable-read-only-property":492}],410:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// MODULES //
-
-var factory = require( './factory.js' );
-var randint32 = require( './rand_int32.js' );
-
-
-// MAIN //
-
-/**
-* Generates a pseudorandom integer on the interval \\( [1,2^{31}-1) \\).
-*
-* ## Method
-*
-* Linear congruential generators (LCGs) use the recurrence relation
-*
-* ```tex
-* X_{n+1} = ( a \cdot X_n + c ) \operatorname{mod}(m)
-* ```
-*
-* where the modulus \\( m \\) is a prime number or power of a prime number and \\( a \\) is a primitive root modulo \\( m \\).
-*
-* <!-- <note> -->
-*
-* For an LCG to be a Lehmer RNG, the seed \\( X_0 \\) must be coprime to \\( m \\).
-*
-* <!-- </note> -->
-*
-* In this implementation, the constants \\( a \\), \\( c \\), and \\( m \\) have the values
-*
-* ```tex
-* \begin{align*}
-* a &= 7^5 = 16807 \\
-* c &= 0 \\
-* m &= 2^{31} - 1 = 2147483647
-* \end{align*}
-* ```
-*
-* <!-- <note> -->
-*
-* The constant \\( m \\) is a Mersenne prime (modulo \\(31\\)).
-*
-* <!-- </note> -->
-*
-* <!-- <note> -->
-*
-* The constant \\( a \\) is a primitive root (modulo \\(31\\)).
-*
-* <!-- </note> -->
-*
-* Accordingly, the maximum possible product is
-*
-* ```tex
-* 16807 \cdot (m - 1) \approx 2^{46}
-* ```
-*
-* The values for \\( a \\), \\( c \\), and \\( m \\) are taken from Park and Miller, "Random Number Generators: Good Ones Are Hard To Find". Park's and Miller's article is also the basis for a recipe in the second edition of _Numerical Recipes in C_.
-*
-*
-* ## Notes
-*
-* -   The generator has a period of approximately \\(2.1\mbox{e}9\\) (see [Numerical Recipes in C, 2nd Edition](#references), p. 279).
-*
-*
-* ## References
-*
-* -   Park, S. K., and K. W. Miller. 1988. "Random Number Generators: Good Ones Are Hard to Find." _Communications of the ACM_ 31 (10). New York, NY, USA: ACM: 1192–1201. doi:[10.1145/63039.63042](http://dx.doi.org/10.1145/63039.63042).
-* -   Press, William H., Brian P. Flannery, Saul A. Teukolsky, and William T. Vetterling. 1992. _Numerical Recipes in C: The Art of Scientific Computing, Second Edition_. Cambridge University Press.
-*
-*
-* @function minstd
-* @type {PRNG}
-* @returns {PositiveInteger} pseudorandom integer
-*
-* @example
-* var v = minstd();
-* // returns <number>
-*/
-var minstd = factory({
-	'seed': randint32()
-});
-
-
-// EXPORTS //
-
-module.exports = minstd;
-
-},{"./factory.js":408,"./rand_int32.js":411}],411:[function(require,module,exports){
-arguments[4][407][0].apply(exports,arguments)
-},{"@stdlib/constants/int32/max":318,"@stdlib/math/base/special/floor":345,"dup":407}],412:[function(require,module,exports){
 /* eslint-disable max-lines, max-len */
 
 /**
@@ -35623,7 +34275,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./rand_uint32.js":415,"@stdlib/array/to-json":53,"@stdlib/array/uint32":59,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/assert/is-uint32array":216,"@stdlib/blas/base/gcopy":272,"@stdlib/constants/float64/max-safe-integer":310,"@stdlib/constants/uint32/max":323,"@stdlib/math/base/ops/umul":339,"@stdlib/math/base/special/max":349,"@stdlib/string/format":469,"@stdlib/utils/define-nonenumerable-read-only-accessor":490,"@stdlib/utils/define-nonenumerable-read-only-property":492,"@stdlib/utils/define-nonenumerable-read-write-accessor":494}],413:[function(require,module,exports){
+},{"./rand_uint32.js":406,"@stdlib/array/to-json":53,"@stdlib/array/uint32":59,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-collection":134,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-positive-integer":199,"@stdlib/assert/is-uint32array":216,"@stdlib/blas/base/gcopy":272,"@stdlib/constants/float64/max-safe-integer":310,"@stdlib/constants/uint32/max":323,"@stdlib/math/base/ops/umul":339,"@stdlib/math/base/special/max":349,"@stdlib/string/format":461,"@stdlib/utils/define-nonenumerable-read-only-accessor":484,"@stdlib/utils/define-nonenumerable-read-only-property":486,"@stdlib/utils/define-nonenumerable-read-write-accessor":488}],404:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35682,7 +34334,7 @@ setReadOnly( main, 'factory', factory );
 
 module.exports = main;
 
-},{"./factory.js":412,"./main.js":414,"@stdlib/utils/define-nonenumerable-read-only-property":492}],414:[function(require,module,exports){
+},{"./factory.js":403,"./main.js":405,"@stdlib/utils/define-nonenumerable-read-only-property":486}],405:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35788,7 +34440,7 @@ var mt19937 = factory({
 
 module.exports = mt19937;
 
-},{"./factory.js":412,"./rand_uint32.js":415}],415:[function(require,module,exports){
+},{"./factory.js":403,"./rand_uint32.js":406}],406:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35842,13 +34494,7 @@ function randuint32() {
 
 module.exports = randuint32;
 
-},{"@stdlib/constants/uint32/max":323,"@stdlib/math/base/special/floor":345}],416:[function(require,module,exports){
-module.exports={
-	"name": "mt19937",
-	"copy": true
-}
-
-},{}],417:[function(require,module,exports){
+},{"@stdlib/constants/uint32/max":323,"@stdlib/math/base/special/floor":345}],407:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35875,126 +34521,131 @@ var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-propert
 var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
 var setReadWriteAccessor = require( '@stdlib/utils/define-nonenumerable-read-write-accessor' );
 var isObject = require( '@stdlib/assert/is-plain-object' );
-var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var isFunction = require( '@stdlib/assert/is-function' );
 var hasOwnProp = require( '@stdlib/assert/has-own-property' );
+var constantFunction = require( '@stdlib/utils/constant-function' );
+var noop = require( '@stdlib/utils/noop' );
+var randu = require( '@stdlib/random/base/mt19937' ).factory;
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var typedarray2json = require( '@stdlib/array/to-json' );
 var format = require( '@stdlib/string/format' );
-var defaults = require( './defaults.json' );
-var PRNGS = require( './prngs.js' );
+var validate = require( './validate.js' );
+var uniform0 = require( './uniform.js' );
 
 
 // MAIN //
 
 /**
-* Returns a pseudorandom number generator for generating uniformly distributed random numbers on the interval \\( [0,1) \\).
+* Returns a pseudorandom number generator for generating uniformly distributed random numbers.
 *
+* @param {number} [a] - minimum support (inclusive)
+* @param {number} [b] - maximum support (exclusive)
 * @param {Options} [options] - function options
-* @param {string} [options.name='mt19937'] - name of pseudorandom number generator
-* @param {*} [options.seed] - pseudorandom number generator seed
-* @param {*} [options.state] - pseudorandom number generator state
+* @param {PRNG} [options.prng] - pseudorandom number generator which generates uniformly distributed pseudorandom numbers
+* @param {PRNGSeedMT19937} [options.seed] - pseudorandom number generator seed
+* @param {PRNGStateMT19937} [options.state] - pseudorandom number generator state
 * @param {boolean} [options.copy=true] - boolean indicating whether to copy a provided pseudorandom number generator state
-* @throws {TypeError} must provide an object
+* @throws {TypeError} `a` must be a number
+* @throws {TypeError} `b` must be a number
+* @throws {RangeError} `a` must be less than `b`
+* @throws {TypeError} options argument must be an object
 * @throws {TypeError} must provide valid options
-* @throws {Error} must provide the name of a supported pseudorandom number generator
+* @throws {Error} must provide a valid state
 * @returns {PRNG} pseudorandom number generator
 *
 * @example
-* var uniform = factory();
+* var uniform = factory( 0.0, 1.0 );
+*
 * var v = uniform();
 * // returns <number>
 *
 * @example
-* var uniform = factory({
-*     'name': 'minstd'
-* });
-* var v = uniform();
-* // returns <number>
-*
-* @example
-* var uniform = factory({
-*     'seed': 12345
-* });
-* var v = uniform();
-* // returns <number>
-*
-* @example
-* var uniform = factory({
-*     'name': 'minstd',
-*     'seed': 12345
+* var uniform = factory( -3.0, -1.0, {
+*     'seed': 297
 * });
 * var v = uniform();
 * // returns <number>
 */
-function factory( options ) {
+function factory() {
 	var opts;
 	var rand;
 	var prng;
+	var err;
+	var a;
+	var b;
 
-	opts = {
-		'name': defaults.name,
-		'copy': defaults.copy
-	};
-	if ( arguments.length ) {
-		if ( !isObject( options ) ) {
-			throw new TypeError( format( 'invalid argument. Must provide an object. Value: `%s`.', options ) );
+	if ( arguments.length === 0 ) {
+		rand = randu();
+	} else if ( arguments.length === 1 ) {
+		opts = arguments[ 0 ];
+		if ( !isObject( opts ) ) {
+			throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', opts ) );
 		}
-		if ( hasOwnProp( options, 'name' ) ) {
-			opts.name = options.name;
-		}
-		if ( hasOwnProp( options, 'state' ) ) {
-			opts.state = options.state;
-			if ( opts.state === void 0 ) {
-				throw new TypeError( format( 'invalid option. `%s` option cannot be undefined. Option: `%s`.', 'state', opts.state ) );
+		if ( hasOwnProp( opts, 'prng' ) ) {
+			if ( !isFunction( opts.prng ) ) {
+				throw new TypeError( format( 'invalid option. `%s` option must be a pseudorandom number generator function. Option: `%s`.', 'prng', opts.prng ) );
 			}
-		} else if ( hasOwnProp( options, 'seed' ) ) {
-			opts.seed = options.seed;
-			if ( opts.seed === void 0 ) {
-				throw new TypeError( format( 'invalid option. `%s` option cannot be undefined. Option: `%s`.', 'seed', opts.seed ) );
-			}
-		}
-		if ( hasOwnProp( options, 'copy' ) ) {
-			opts.copy = options.copy;
-			if ( !isBoolean( opts.copy ) ) {
-				throw new TypeError( format( 'invalid option. `%s` option must be a boolean. Option: `%s`.', 'copy', opts.copy ) );
-			}
-		}
-	}
-	prng = PRNGS[ opts.name ];
-	if ( prng === void 0 ) {
-		throw new Error( format( 'invalid option. Unrecognized/unsupported PRNG. Option: `%s`.', opts.name ) );
-	}
-	if ( opts.state === void 0 ) {
-		if ( opts.seed === void 0 ) {
-			rand = prng.factory();
+			rand = opts.prng;
 		} else {
-			rand = prng.factory({
-				'seed': opts.seed
-			});
+			rand = randu( opts );
 		}
 	} else {
-		rand = prng.factory({
-			'state': opts.state,
-			'copy': opts.copy
-		});
+		a = arguments[ 0 ];
+		b = arguments[ 1 ];
+		err = validate( a, b );
+		if ( err ) {
+			throw err;
+		}
+		if ( arguments.length > 2 ) {
+			opts = arguments[ 2 ];
+			if ( !isObject( opts ) ) {
+				throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', opts ) );
+			}
+			if ( hasOwnProp( opts, 'prng' ) ) {
+				if ( !isFunction( opts.prng ) ) {
+					throw new TypeError( format( 'invalid option. `%s` option must be a pseudorandom number generator function. Option: `%s`.', 'prng', opts.prng ) );
+				}
+				rand = opts.prng;
+			} else {
+				rand = randu( opts );
+			}
+		} else {
+			rand = randu();
+		}
 	}
-	setReadOnly( uniform, 'NAME', 'randu' );
-	setReadOnlyAccessor( uniform, 'seed', getSeed );
-	setReadOnlyAccessor( uniform, 'seedLength', getSeedLength );
-	setReadWriteAccessor( uniform, 'state', getState, setState );
-	setReadOnlyAccessor( uniform, 'stateLength', getStateLength );
-	setReadOnlyAccessor( uniform, 'byteLength', getStateSize );
-	setReadOnly( uniform, 'toJSON', toJSON );
-	setReadOnly( uniform, 'PRNG', rand );
-	setReadOnly( uniform, 'MIN', rand.normalized.MIN );
-	setReadOnly( uniform, 'MAX', rand.normalized.MAX );
+	if ( a === void 0 ) {
+		prng = uniform2;
+	} else {
+		prng = uniform1;
+	}
+	setReadOnly( prng, 'NAME', 'uniform' );
 
-	return uniform;
+	// If we are provided an "external" PRNG, we don't support getting or setting PRNG state, as we'd need to check for compatible state value types, etc, entailing considerable complexity.
+	if ( opts && opts.prng ) {
+		setReadOnly( prng, 'seed', null );
+		setReadOnly( prng, 'seedLength', null );
+		setReadWriteAccessor( prng, 'state', constantFunction( null ), noop );
+		setReadOnly( prng, 'stateLength', null );
+		setReadOnly( prng, 'byteLength', null );
+		setReadOnly( prng, 'toJSON', constantFunction( null ) );
+		setReadOnly( prng, 'PRNG', rand );
+	} else {
+		setReadOnlyAccessor( prng, 'seed', getSeed );
+		setReadOnlyAccessor( prng, 'seedLength', getSeedLength );
+		setReadWriteAccessor( prng, 'state', getState, setState );
+		setReadOnlyAccessor( prng, 'stateLength', getStateLength );
+		setReadOnlyAccessor( prng, 'byteLength', getStateSize );
+		setReadOnly( prng, 'toJSON', toJSON );
+		setReadOnly( prng, 'PRNG', rand );
+		rand = rand.normalized;
+	}
+	return prng;
 
 	/**
 	* Returns the PRNG seed.
 	*
 	* @private
-	* @returns {*} seed
+	* @returns {PRNGSeedMT19937} seed
 	*/
 	function getSeed() {
 		return rand.seed;
@@ -36034,7 +34685,7 @@ function factory( options ) {
 	* Returns the current pseudorandom number generator state.
 	*
 	* @private
-	* @returns {*} current state
+	* @returns {PRNGStateMT19937} current state
 	*/
 	function getState() {
 		return rand.state;
@@ -36044,7 +34695,7 @@ function factory( options ) {
 	* Sets the pseudorandom number generator state.
 	*
 	* @private
-	* @param {*} s - generator state
+	* @param {PRNGStateMT19937} s - generator state
 	* @throws {Error} must provide a valid state
 	*/
 	function setState( s ) {
@@ -36064,24 +34715,55 @@ function factory( options ) {
 	function toJSON() {
 		var out = {};
 		out.type = 'PRNG';
-		out.name = uniform.NAME + '-' + rand.NAME;
+		out.name = prng.NAME;
 		out.state = typedarray2json( rand.state );
-		out.params = [];
+		if ( a === void 0 ) {
+			out.params = [];
+		} else {
+			out.params = [ a, b ];
+		}
 		return out;
 	}
 
 	/**
-	* Returns a uniformly distributed pseudorandom number on the interval \\( [0,1) \\).
+	* Returns a uniformly distributed pseudorandom number with minimum support `a` and maximum support `b`.
 	*
 	* @private
 	* @returns {number} pseudorandom number
 	*
 	* @example
-	* var v = uniform();
+	* var v = uniform1();
 	* // returns <number>
 	*/
-	function uniform() {
-		return rand.normalized();
+	function uniform1() {
+		return uniform0( rand, a, b );
+	}
+
+	/**
+	* Returns a uniformly distributed pseudorandom number with minimum support `a` and maximum support `b`.
+	*
+	* @private
+	* @param {number} a - minimum support (inclusive)
+	* @param {number} b - maximum support (exclusive)
+	* @returns {number} pseudorandom number
+	*
+	* @example
+	* var v = uniform2( 0.0, 1.0 );
+	* // returns <number>
+	*
+	* @example
+	* var v = uniform2( 1.0, 0.0 );
+	* // returns NaN
+	*/
+	function uniform2( a, b ) {
+		if (
+			isnan( a ) ||
+			isnan( b ) ||
+			a >= b
+		) {
+			return NaN;
+		}
+		return uniform0( rand, a, b );
 	}
 }
 
@@ -36090,7 +34772,7 @@ function factory( options ) {
 
 module.exports = factory;
 
-},{"./defaults.json":416,"./prngs.js":420,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-plain-object":197,"@stdlib/string/format":469,"@stdlib/utils/define-nonenumerable-read-only-accessor":490,"@stdlib/utils/define-nonenumerable-read-only-property":492,"@stdlib/utils/define-nonenumerable-read-write-accessor":494}],418:[function(require,module,exports){
+},{"./uniform.js":410,"./validate.js":411,"@stdlib/array/to-json":53,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-function":152,"@stdlib/assert/is-plain-object":197,"@stdlib/math/base/assert/is-nan":333,"@stdlib/random/base/mt19937":404,"@stdlib/string/format":461,"@stdlib/utils/constant-function":476,"@stdlib/utils/define-nonenumerable-read-only-accessor":484,"@stdlib/utils/define-nonenumerable-read-only-property":486,"@stdlib/utils/define-nonenumerable-read-write-accessor":488,"@stdlib/utils/noop":541}],408:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36112,25 +34794,32 @@ module.exports = factory;
 'use strict';
 
 /**
-* Uniformly distributed pseudorandom numbers on the interval \\( [0,1) \\).
+* Uniform distribution pseudorandom numbers.
 *
-* @module @stdlib/random/base/randu
+* @module @stdlib/random/base/uniform
 *
 * @example
-* var randu = require( '@stdlib/random/base/randu' );
+* var uniform = require( '@stdlib/random/base/uniform' );
 *
-* var v = randu();
+* var v = uniform( 0.0, 1.0 );
 * // returns <number>
 *
 * @example
-* var factory = require( '@stdlib/random/base/randu' ).factory;
-*
-* var randu = factory({
-*     'name': 'minstd',
-*     'seed': 12345
+* var factory = require( '@stdlib/random/base/uniform' ).factory;
+* var uniform = factory( -5.0, 5.0, {
+*     'seed': 297
 * });
 *
-* var v = randu();
+* var v = uniform();
+* // returns <number>
+*
+* @example
+* var factory = require( '@stdlib/random/base/uniform' ).factory;
+* var uniform = factory({
+*     'seed': 297
+* });
+*
+* var v = uniform( -5.0, 5.0 );
 * // returns <number>
 */
 
@@ -36150,7 +34839,7 @@ setReadOnly( main, 'factory', factory );
 
 module.exports = main;
 
-},{"./factory.js":417,"./main.js":419,"@stdlib/utils/define-nonenumerable-read-only-property":492}],419:[function(require,module,exports){
+},{"./factory.js":407,"./main.js":409,"@stdlib/utils/define-nonenumerable-read-only-property":486}],409:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36179,24 +34868,66 @@ var factory = require( './factory.js' );
 // MAIN //
 
 /**
-* Returns a uniformly distributed random number on the interval \\( [0,1) \\).
+* Returns a uniformly distributed pseudorandom number with minimum support `a` and maximum support `b`.
 *
-* @name randu
+* @name uniform
 * @type {PRNG}
+* @param {number} a - minimum support (inclusive)
+* @param {number} b - maximum support (exclusive)
 * @returns {number} pseudorandom number
 *
 * @example
-* var v = randu();
+* var v = uniform( 0.0, 1.0 );
 * // returns <number>
 */
-var randu = factory();
+var uniform = factory();
 
 
 // EXPORTS //
 
-module.exports = randu;
+module.exports = uniform;
 
-},{"./factory.js":417}],420:[function(require,module,exports){
+},{"./factory.js":407}],410:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Returns a uniformly distributed pseudorandom number with minimum support `a` and maximum support `b`.
+*
+* @private
+* @param {PRNG} rand - pseudorandom number generator
+* @param {number} a - minimum support (inclusive)
+* @param {number} b - maximum support (exclusive)
+* @returns {number} pseudorandom number
+*/
+function uniform( rand, a, b ) {
+	var r = rand();
+	return ( b*r ) + ( (1.0-r)*a ); // equivalent to (b-a)*r + a
+}
+
+
+// EXPORTS //
+
+module.exports = uniform;
+
+},{}],411:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36219,25 +34950,46 @@ module.exports = randu;
 
 // MODULES //
 
-var minstd = require( '@stdlib/random/base/minstd' );
-var minstdShuffle = require( '@stdlib/random/base/minstd-shuffle' );
-var mt19937 = require( '@stdlib/random/base/mt19937' );
+var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+var format = require( '@stdlib/string/format' );
+var isnan = require( '@stdlib/assert/is-nan' );
 
 
 // MAIN //
 
-var prngs = {};
-
-prngs[ 'minstd' ] = minstd;
-prngs[ 'minstd-shuffle' ] = minstdShuffle;
-prngs[ 'mt19937' ] = mt19937;
+/**
+* Validates values provided for minimum and maximum support.
+*
+* @private
+* @param {number} a - minimum support
+* @param {number} b - maximum support
+* @returns {(Error|null)} error or null
+*
+* @example
+* var err = validate( 1.0, 2.0 );
+* if ( err ) {
+*     throw err;
+* }
+*/
+function validate( a, b ) {
+	if ( !isNumber( a ) || isnan( a ) ) {
+		return new TypeError( format( 'invalid argument. First argument must be a number and not NaN. Value: `%s`.', a ) );
+	}
+	if ( !isNumber( b ) || isnan( b ) ) {
+		return new TypeError( format( 'invalid argument. Second argument must be a number and not NaN. Value: `%s`.', b ) );
+	}
+	if ( a >= b ) {
+		return new RangeError( format( 'invalid argument. Minimum support must be less than maximum support. Value: `[%f, %f]`.', a, b ) );
+	}
+	return null;
+}
 
 
 // EXPORTS //
 
-module.exports = prngs;
+module.exports = validate;
 
-},{"@stdlib/random/base/minstd":409,"@stdlib/random/base/minstd-shuffle":405,"@stdlib/random/base/mt19937":413}],421:[function(require,module,exports){
+},{"@stdlib/assert/is-nan":168,"@stdlib/assert/is-number":187,"@stdlib/string/format":461}],412:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36307,7 +35059,7 @@ setReadOnly( main, 'REGEXP_CAPTURE', REGEXP_CAPTURE );
 
 module.exports = main;
 
-},{"./main.js":422,"./regexp.js":423,"./regexp_capture.js":424,"@stdlib/utils/define-nonenumerable-read-only-property":492}],422:[function(require,module,exports){
+},{"./main.js":413,"./regexp.js":414,"./regexp_capture.js":415,"@stdlib/utils/define-nonenumerable-read-only-property":486}],413:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36386,7 +35138,7 @@ function reEOL( options ) {
 
 module.exports = reEOL;
 
-},{"./validate.js":425}],423:[function(require,module,exports){
+},{"./validate.js":416}],414:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36436,7 +35188,7 @@ var REGEXP = reEOL();
 
 module.exports = REGEXP;
 
-},{"./main.js":422}],424:[function(require,module,exports){
+},{"./main.js":413}],415:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36491,7 +35243,7 @@ var REGEXP_CAPTURE = reEOL({
 
 module.exports = REGEXP_CAPTURE;
 
-},{"./main.js":422}],425:[function(require,module,exports){
+},{"./main.js":413}],416:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36567,7 +35319,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-string":204,"@stdlib/string/format":469}],426:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-string":204,"@stdlib/string/format":461}],417:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36630,7 +35382,7 @@ setReadOnly( main, 'REGEXP', REGEXP );
 
 module.exports = main;
 
-},{"./main.js":427,"./regexp.js":428,"@stdlib/utils/define-nonenumerable-read-only-property":492}],427:[function(require,module,exports){
+},{"./main.js":418,"./regexp.js":419,"@stdlib/utils/define-nonenumerable-read-only-property":486}],418:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36686,7 +35438,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],428:[function(require,module,exports){
+},{}],419:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36748,7 +35500,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":427}],429:[function(require,module,exports){
+},{"./main.js":418}],420:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36810,7 +35562,7 @@ setReadOnly( main, 'REGEXP', REGEXP );
 
 module.exports = main;
 
-},{"./main.js":430,"./regexp.js":431,"@stdlib/utils/define-nonenumerable-read-only-property":492}],430:[function(require,module,exports){
+},{"./main.js":421,"./regexp.js":422,"@stdlib/utils/define-nonenumerable-read-only-property":486}],421:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36856,7 +35608,7 @@ function reRegExp() {
 
 module.exports = reRegExp;
 
-},{}],431:[function(require,module,exports){
+},{}],422:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36927,7 +35679,7 @@ var RE_REGEXP = reRegExp();
 
 module.exports = RE_REGEXP;
 
-},{"./main.js":430}],432:[function(require,module,exports){
+},{"./main.js":421}],423:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36951,7 +35703,8 @@ module.exports = RE_REGEXP;
 // MODULES //
 
 var bench = require( '@stdlib/bench' );
-var randu = require( '@stdlib/random/base/randu' );
+var Float64Array = require( '@stdlib/array/float64' );
+var uniform = require( '@stdlib/random/base/uniform' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var pkg = require( './../package.json' ).name;
 var variance = require( './../lib' );
@@ -36962,14 +35715,21 @@ var variance = require( './../lib' );
 bench( pkg, function benchmark( b ) {
 	var min;
 	var max;
+	var len;
 	var y;
 	var i;
 
+	len = 100;
+	min = new Float64Array( len );
+	max = new Float64Array( len );
+	for ( i = 0; i < len; i++ ) {
+		min[ i ] = uniform( 0.0, 10.0 );
+		max[ i ] = uniform( min[ i ], min[ i ] + 10.0 );
+	}
+
 	b.tic();
 	for ( i = 0; i < b.iterations; i++ ) {
-		min = ( randu()*10.0 );
-		max = ( randu()*10.0 ) + min;
-		y = variance( min, max );
+		y = variance( min[ i % len ], max[ i % len ] );
 		if ( isnan( y ) ) {
 			b.fail( 'should not return NaN' );
 		}
@@ -36982,7 +35742,81 @@ bench( pkg, function benchmark( b ) {
 	b.end();
 });
 
-},{"./../lib":433,"./../package.json":435,"@stdlib/bench":270,"@stdlib/math/base/assert/is-nan":333,"@stdlib/random/base/randu":418}],433:[function(require,module,exports){
+},{"./../lib":425,"./../package.json":427,"@stdlib/array/float64":40,"@stdlib/bench":270,"@stdlib/math/base/assert/is-nan":333,"@stdlib/random/base/uniform":408}],424:[function(require,module,exports){
+(function (__dirname){(function (){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var resolve = require( 'path' ).resolve;
+var bench = require( '@stdlib/bench' );
+var tryRequire = require( '@stdlib/utils/try-require' );
+var Float64Array = require( '@stdlib/array/float64' );
+var uniform = require( '@stdlib/random/base/uniform' );
+var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var pkg = require( './../package.json' ).name;
+
+
+// VARIABLES //
+
+var variance = tryRequire( resolve( __dirname, './../lib/native.js' ) );
+var opts = {
+	'skip': ( variance instanceof Error )
+};
+
+
+// MAIN //
+
+bench( pkg+'::native', opts, function benchmark( b ) {
+	var min;
+	var max;
+	var len;
+	var y;
+	var i;
+
+	len = 100;
+	min = new Float64Array( len );
+	max = new Float64Array( len );
+	for ( i = 0; i < len; i++ ) {
+		min[ i ] = uniform( 0.0, 10.0 );
+		max[ i ] = uniform( min[ i ], min[ i ] + 10.0 );
+	}
+
+	b.tic();
+	for ( i = 0; i < b.iterations; i++ ) {
+		y = variance( min[ i % len ], max[ i % len ] );
+		if ( isnan( y ) ) {
+			b.fail( 'should not return NaN' );
+		}
+	}
+	b.toc();
+	if ( isnan( y ) ) {
+		b.fail( 'should not return NaN' );
+	}
+	b.pass( 'benchmark finished' );
+	b.end();
+});
+
+}).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/dists/arcsine/variance/benchmark")
+},{"./../package.json":427,"@stdlib/array/float64":40,"@stdlib/bench":270,"@stdlib/math/base/assert/is-nan":333,"@stdlib/random/base/uniform":408,"@stdlib/utils/try-require":561,"path":574}],425:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37030,7 +35864,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":434}],434:[function(require,module,exports){
+},{"./main.js":426}],426:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37101,7 +35935,7 @@ function variance( a, b ) {
 
 module.exports = variance;
 
-},{"@stdlib/math/base/special/pow":354}],435:[function(require,module,exports){
+},{"@stdlib/math/base/special/pow":354}],427:[function(require,module,exports){
 module.exports={
   "name": "@stdlib/stats/base/dists/arcsine/variance",
   "version": "0.0.0",
@@ -37118,11 +35952,14 @@ module.exports={
     }
   ],
   "main": "./lib",
+  "gypfile": true,
   "directories": {
     "benchmark": "./benchmark",
     "doc": "./docs",
     "example": "./examples",
+    "include": "./include",
     "lib": "./lib",
+    "src": "./src",
     "test": "./test"
   },
   "types": "./docs/types",
@@ -37171,7 +36008,7 @@ module.exports={
   ]
 }
 
-},{}],436:[function(require,module,exports){
+},{}],428:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37222,7 +36059,7 @@ function transform( chunk, encoding, clbk ) {
 
 module.exports = transform;
 
-},{"debug":580}],437:[function(require,module,exports){
+},{"debug":577}],429:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37422,7 +36259,7 @@ function ctor( options ) {
 
 module.exports = ctor;
 
-},{"./_transform.js":436,"./defaults.json":438,"./destroy.js":439,"./validate.js":444,"@stdlib/object/assign":399,"@stdlib/utils/inherit":519,"debug":580,"readable-stream":597}],438:[function(require,module,exports){
+},{"./_transform.js":428,"./defaults.json":430,"./destroy.js":431,"./validate.js":436,"@stdlib/object/assign":399,"@stdlib/utils/inherit":513,"debug":577,"readable-stream":594}],430:[function(require,module,exports){
 module.exports={
 	"objectMode": false,
 	"encoding": null,
@@ -37430,7 +36267,7 @@ module.exports={
 	"decodeStrings": true
 }
 
-},{}],439:[function(require,module,exports){
+},{}],431:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37505,7 +36342,7 @@ function destroy( error ) {
 
 module.exports = destroy;
 
-},{"@stdlib/utils/next-tick":545,"debug":580}],440:[function(require,module,exports){
+},{"@stdlib/utils/next-tick":539,"debug":577}],432:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37608,7 +36445,7 @@ function streamFactory( options ) {
 
 module.exports = streamFactory;
 
-},{"./main.js":442,"@stdlib/assert/is-plain-object":197,"@stdlib/object/assign":399,"@stdlib/string/format":469}],441:[function(require,module,exports){
+},{"./main.js":434,"@stdlib/assert/is-plain-object":197,"@stdlib/object/assign":399,"@stdlib/string/format":461}],433:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37754,7 +36591,7 @@ setReadOnly( main, 'ctor', ctor );
 
 module.exports = main;
 
-},{"./ctor.js":437,"./factory.js":440,"./main.js":442,"./object_mode.js":443,"@stdlib/utils/define-nonenumerable-read-only-property":492}],442:[function(require,module,exports){
+},{"./ctor.js":429,"./factory.js":432,"./main.js":434,"./object_mode.js":435,"@stdlib/utils/define-nonenumerable-read-only-property":486}],434:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37882,7 +36719,7 @@ TransformStream.prototype.destroy = destroy;
 
 module.exports = TransformStream;
 
-},{"./_transform.js":436,"./defaults.json":438,"./destroy.js":439,"./validate.js":444,"@stdlib/object/assign":399,"@stdlib/utils/inherit":519,"debug":580,"readable-stream":597}],443:[function(require,module,exports){
+},{"./_transform.js":428,"./defaults.json":430,"./destroy.js":431,"./validate.js":436,"@stdlib/object/assign":399,"@stdlib/utils/inherit":513,"debug":577,"readable-stream":594}],435:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37975,7 +36812,7 @@ function objectMode( options ) {
 
 module.exports = objectMode;
 
-},{"./main.js":442,"@stdlib/assert/is-plain-object":197,"@stdlib/object/assign":399,"@stdlib/string/format":469}],444:[function(require,module,exports){
+},{"./main.js":434,"@stdlib/assert/is-plain-object":197,"@stdlib/object/assign":399,"@stdlib/string/format":461}],436:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38078,7 +36915,7 @@ function validate( opts, options ) {
 
 module.exports = validate;
 
-},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-function":152,"@stdlib/assert/is-nonnegative-number":181,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-string":204,"@stdlib/string/format":469}],445:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-boolean":123,"@stdlib/assert/is-function":152,"@stdlib/assert/is-nonnegative-number":181,"@stdlib/assert/is-plain-object":197,"@stdlib/assert/is-string":204,"@stdlib/string/format":461}],437:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38126,7 +36963,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":446}],446:[function(require,module,exports){
+},{"./main.js":438}],438:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38181,7 +37018,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/uint8":62}],447:[function(require,module,exports){
+},{"@stdlib/array/uint8":62}],439:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38229,7 +37066,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":448}],448:[function(require,module,exports){
+},{"./main.js":440}],440:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38284,7 +37121,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float64":40}],449:[function(require,module,exports){
+},{"@stdlib/array/float64":40}],441:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38332,7 +37169,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":450}],450:[function(require,module,exports){
+},{"./main.js":442}],442:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38387,7 +37224,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float32":37}],451:[function(require,module,exports){
+},{"@stdlib/array/float32":37}],443:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38500,7 +37337,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":454}],452:[function(require,module,exports){
+},{"./is_number.js":446}],444:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38617,7 +37454,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":454,"./zero_pad.js":458}],453:[function(require,module,exports){
+},{"./is_number.js":446,"./zero_pad.js":450}],445:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38660,7 +37497,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":456}],454:[function(require,module,exports){
+},{"./main.js":448}],446:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38708,7 +37545,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],455:[function(require,module,exports){
+},{}],447:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38752,7 +37589,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],456:[function(require,module,exports){
+},{}],448:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38986,7 +37823,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":451,"./format_integer.js":452,"./is_string.js":455,"./space_pad.js":457,"./zero_pad.js":458}],457:[function(require,module,exports){
+},{"./format_double.js":443,"./format_integer.js":444,"./is_string.js":447,"./space_pad.js":449,"./zero_pad.js":450}],449:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39053,7 +37890,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],458:[function(require,module,exports){
+},{}],450:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39139,7 +37976,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],459:[function(require,module,exports){
+},{}],451:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39182,7 +38019,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":460}],460:[function(require,module,exports){
+},{"./main.js":452}],452:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39274,7 +38111,7 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],461:[function(require,module,exports){
+},{}],453:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39317,7 +38154,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":462}],462:[function(require,module,exports){
+},{"./main.js":454}],454:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39374,7 +38211,7 @@ function replace( str, search, newval ) {
 
 module.exports = replace;
 
-},{}],463:[function(require,module,exports){
+},{}],455:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39404,7 +38241,7 @@ var trim = String.prototype.trim;
 
 module.exports = trim;
 
-},{}],464:[function(require,module,exports){
+},{}],456:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39461,7 +38298,7 @@ function test() {
 
 module.exports = test;
 
-},{"./builtin.js":463}],465:[function(require,module,exports){
+},{"./builtin.js":455}],457:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39491,7 +38328,7 @@ var bool = ( typeof String.prototype.trim !== 'undefined' );
 
 module.exports = bool;
 
-},{}],466:[function(require,module,exports){
+},{}],458:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39552,7 +38389,7 @@ if ( HAS_BUILTIN && check() ) {
 
 module.exports = trim;
 
-},{"./check.js":464,"./has_builtin.js":465,"./main.js":467,"./polyfill.js":468}],467:[function(require,module,exports){
+},{"./check.js":456,"./has_builtin.js":457,"./main.js":459,"./polyfill.js":460}],459:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39607,7 +38444,7 @@ function trim( str ) {
 
 module.exports = trim;
 
-},{"./builtin.js":463}],468:[function(require,module,exports){
+},{"./builtin.js":455}],460:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39669,7 +38506,7 @@ function trim( str ) {
 
 module.exports = trim;
 
-},{"@stdlib/string/base/replace":461}],469:[function(require,module,exports){
+},{"@stdlib/string/base/replace":453}],461:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39714,9 +38551,9 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":471}],470:[function(require,module,exports){
-arguments[4][455][0].apply(exports,arguments)
-},{"dup":455}],471:[function(require,module,exports){
+},{"./main.js":463}],462:[function(require,module,exports){
+arguments[4][447][0].apply(exports,arguments)
+},{"dup":447}],463:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39782,7 +38619,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":470,"@stdlib/string/base/format-interpolate":453,"@stdlib/string/base/format-tokenize":459}],472:[function(require,module,exports){
+},{"./is_string.js":462,"@stdlib/string/base/format-interpolate":445,"@stdlib/string/base/format-tokenize":451}],464:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39824,7 +38661,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":473}],473:[function(require,module,exports){
+},{"./main.js":465}],465:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39940,7 +38777,7 @@ function fromCodePoint( args ) {
 
 module.exports = fromCodePoint;
 
-},{"@stdlib/assert/is-collection":134,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/constants/unicode/max":326,"@stdlib/constants/unicode/max-bmp":325,"@stdlib/string/format":469}],474:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":134,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/constants/unicode/max":326,"@stdlib/constants/unicode/max-bmp":325,"@stdlib/string/format":461}],466:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39982,7 +38819,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":475}],475:[function(require,module,exports){
+},{"./main.js":467}],467:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40012,7 +38849,7 @@ var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-
 
 module.exports = Sym;
 
-},{}],476:[function(require,module,exports){
+},{}],468:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40089,7 +38926,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":477}],477:[function(require,module,exports){
+},{"./main.js":469}],469:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40170,7 +39007,7 @@ var IteratorSymbol = ( hasIteratorSymbolSupport() ) ? Symbol.iterator : null;
 
 module.exports = IteratorSymbol;
 
-},{"@stdlib/assert/has-iterator-symbol-support":86}],478:[function(require,module,exports){
+},{"@stdlib/assert/has-iterator-symbol-support":86}],470:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40264,7 +39101,7 @@ function tic() {
 
 module.exports = tic;
 
-},{"./now.js":480,"@stdlib/assert/is-object":195,"@stdlib/math/base/special/modf":352,"@stdlib/math/base/special/round":365,"@stdlib/utils/global":511}],479:[function(require,module,exports){
+},{"./now.js":472,"@stdlib/assert/is-object":195,"@stdlib/math/base/special/modf":352,"@stdlib/math/base/special/round":365,"@stdlib/utils/global":505}],471:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40299,7 +39136,7 @@ var bool = isFunction( Date.now );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":152}],480:[function(require,module,exports){
+},{"@stdlib/assert/is-function":152}],472:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40340,7 +39177,7 @@ if ( bool ) {
 
 module.exports = now;
 
-},{"./detect.js":479,"./polyfill.js":481}],481:[function(require,module,exports){
+},{"./detect.js":471,"./polyfill.js":473}],473:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40383,7 +39220,7 @@ function now() {
 
 module.exports = now;
 
-},{}],482:[function(require,module,exports){
+},{}],474:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40427,7 +39264,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":483}],483:[function(require,module,exports){
+},{"./main.js":475}],475:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40504,7 +39341,115 @@ function toc( time ) {
 
 module.exports = toc;
 
-},{"@stdlib/assert/is-nonnegative-integer-array":176,"@stdlib/string/format":469,"@stdlib/time/tic":478}],484:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer-array":176,"@stdlib/string/format":461,"@stdlib/time/tic":470}],476:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a constant function.
+*
+* @module @stdlib/utils/constant-function
+*
+* @example
+* var constantFunction = require( '@stdlib/utils/constant-function' );
+*
+* var fcn = constantFunction( 3.14 );
+*
+* var v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":477}],477:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Creates a function which always returns the same value.
+*
+* @param {*} [value] - value to always return
+* @returns {Function} constant function
+*
+* @example
+* var fcn = wrap( 3.14 );
+*
+* var v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*
+* v = fcn();
+* // returns 3.14
+*/
+function wrap( value ) {
+	return constantFunction;
+
+	/**
+	* Constant function.
+	*
+	* @private
+	* @returns {*} constant value
+	*/
+	function constantFunction() {
+		return value;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = wrap;
+
+},{}],478:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40552,7 +39497,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":485}],485:[function(require,module,exports){
+},{"./main.js":479}],479:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40634,7 +39579,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":132,"@stdlib/regexp/function-name":426,"@stdlib/utils/native-class":540}],486:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":132,"@stdlib/regexp/function-name":417,"@stdlib/utils/native-class":534}],480:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40941,7 +39886,7 @@ function deepCopy( val, copy, cache, refs, level ) {
 
 module.exports = deepCopy;
 
-},{"./typed_arrays.js":489,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-array":119,"@stdlib/assert/is-buffer":132,"@stdlib/assert/is-error":146,"@stdlib/buffer/from-buffer":281,"@stdlib/utils/define-property":499,"@stdlib/utils/get-prototype-of":506,"@stdlib/utils/index-of":516,"@stdlib/utils/keys":533,"@stdlib/utils/property-descriptor":555,"@stdlib/utils/property-names":559,"@stdlib/utils/regexp-from-string":565,"@stdlib/utils/type-of":571}],487:[function(require,module,exports){
+},{"./typed_arrays.js":483,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-array":119,"@stdlib/assert/is-buffer":132,"@stdlib/assert/is-error":146,"@stdlib/buffer/from-buffer":281,"@stdlib/utils/define-property":493,"@stdlib/utils/get-prototype-of":500,"@stdlib/utils/index-of":510,"@stdlib/utils/keys":527,"@stdlib/utils/property-descriptor":549,"@stdlib/utils/property-names":553,"@stdlib/utils/regexp-from-string":559,"@stdlib/utils/type-of":567}],481:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40999,7 +39944,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":488}],488:[function(require,module,exports){
+},{"./main.js":482}],482:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41078,7 +40023,7 @@ function copy( value, level ) {
 
 module.exports = copy;
 
-},{"./deep_copy.js":486,"@stdlib/assert/is-array":119,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/constants/float64/pinf":314,"@stdlib/string/format":469}],489:[function(require,module,exports){
+},{"./deep_copy.js":480,"@stdlib/assert/is-array":119,"@stdlib/assert/is-nonnegative-integer":177,"@stdlib/constants/float64/pinf":314,"@stdlib/string/format":461}],483:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41249,7 +40194,7 @@ hash = typedarrays();
 
 module.exports = hash;
 
-},{"@stdlib/array/float32":37,"@stdlib/array/float64":40,"@stdlib/array/int16":43,"@stdlib/array/int32":46,"@stdlib/array/int8":49,"@stdlib/array/uint16":56,"@stdlib/array/uint32":59,"@stdlib/array/uint8":62,"@stdlib/array/uint8c":65}],490:[function(require,module,exports){
+},{"@stdlib/array/float32":37,"@stdlib/array/float64":40,"@stdlib/array/int16":43,"@stdlib/array/int32":46,"@stdlib/array/int8":49,"@stdlib/array/uint16":56,"@stdlib/array/uint32":59,"@stdlib/array/uint8":62,"@stdlib/array/uint8c":65}],484:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41302,7 +40247,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":491}],491:[function(require,module,exports){
+},{"./main.js":485}],485:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41365,7 +40310,7 @@ function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disab
 
 module.exports = setNonEnumerableReadOnlyAccessor;
 
-},{"@stdlib/utils/define-property":499}],492:[function(require,module,exports){
+},{"@stdlib/utils/define-property":493}],486:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41414,7 +40359,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":493}],493:[function(require,module,exports){
+},{"./main.js":487}],487:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41474,7 +40419,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":499}],494:[function(require,module,exports){
+},{"@stdlib/utils/define-property":493}],488:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41534,7 +40479,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":495}],495:[function(require,module,exports){
+},{"./main.js":489}],489:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41606,7 +40551,7 @@ function setNonEnumerableReadWriteAccessor( obj, prop, getter, setter ) { // esl
 
 module.exports = setNonEnumerableReadWriteAccessor;
 
-},{"@stdlib/utils/define-property":499}],496:[function(require,module,exports){
+},{"@stdlib/utils/define-property":493}],490:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41669,7 +40614,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],497:[function(require,module,exports){
+},{}],491:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41699,7 +40644,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],498:[function(require,module,exports){
+},{}],492:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41752,7 +40697,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":497}],499:[function(require,module,exports){
+},{"./define_property.js":491}],493:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41812,7 +40757,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":496,"./has_define_property_support.js":498,"./polyfill.js":500}],500:[function(require,module,exports){
+},{"./builtin.js":490,"./has_define_property_support.js":492,"./polyfill.js":494}],494:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41936,7 +40881,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":469}],501:[function(require,module,exports){
+},{"@stdlib/string/format":461}],495:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41981,7 +40926,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":502}],502:[function(require,module,exports){
+},{"./main.js":496}],496:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42046,7 +40991,7 @@ function enumerableProperties( value ) {
 
 module.exports = enumerableProperties;
 
-},{"@stdlib/assert/is-enumerable-property":143,"@stdlib/utils/keys":533,"@stdlib/utils/property-symbols":563}],503:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":143,"@stdlib/utils/keys":527,"@stdlib/utils/property-symbols":557}],497:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42094,7 +41039,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":504}],504:[function(require,module,exports){
+},{"./main.js":498}],498:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42169,7 +41114,7 @@ function functionName( fcn ) {
 
 module.exports = functionName;
 
-},{"@stdlib/assert/has-function-name-support":75,"@stdlib/assert/is-function":152,"@stdlib/regexp/function-name":426,"@stdlib/string/format":469}],505:[function(require,module,exports){
+},{"@stdlib/assert/has-function-name-support":75,"@stdlib/assert/is-function":152,"@stdlib/regexp/function-name":417,"@stdlib/string/format":461}],499:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42211,7 +41156,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":508,"./polyfill.js":509,"@stdlib/assert/is-function":152}],506:[function(require,module,exports){
+},{"./native.js":502,"./polyfill.js":503,"@stdlib/assert/is-function":152}],500:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42253,7 +41198,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":507}],507:[function(require,module,exports){
+},{"./main.js":501}],501:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42310,7 +41255,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":505,"@stdlib/object/ctor":401}],508:[function(require,module,exports){
+},{"./detect.js":499,"@stdlib/object/ctor":401}],502:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42340,7 +41285,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],509:[function(require,module,exports){
+},{}],503:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42397,7 +41342,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":510,"@stdlib/utils/native-class":540}],510:[function(require,module,exports){
+},{"./proto.js":504,"@stdlib/utils/native-class":534}],504:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42435,7 +41380,7 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],511:[function(require,module,exports){
+},{}],505:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42516,7 +41461,7 @@ function getGlobal( codegen ) {
 
 module.exports = getGlobal;
 
-},{"./codegen.js":512,"./global_this.js":513,"./self.js":514,"./window.js":515,"@stdlib/assert/is-boolean":123,"@stdlib/string/format":469}],512:[function(require,module,exports){
+},{"./codegen.js":506,"./global_this.js":507,"./self.js":508,"./window.js":509,"@stdlib/assert/is-boolean":123,"@stdlib/string/format":461}],506:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42554,7 +41499,7 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],513:[function(require,module,exports){
+},{}],507:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42584,7 +41529,7 @@ var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disa
 
 module.exports = obj;
 
-},{}],514:[function(require,module,exports){
+},{}],508:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42614,7 +41559,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],515:[function(require,module,exports){
+},{}],509:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42644,7 +41589,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],516:[function(require,module,exports){
+},{}],510:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42719,7 +41664,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":517}],517:[function(require,module,exports){
+},{"./main.js":511}],511:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42854,7 +41799,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":134,"@stdlib/assert/is-integer":160,"@stdlib/assert/is-nan":168,"@stdlib/assert/is-string":204,"@stdlib/string/format":469}],518:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":134,"@stdlib/assert/is-integer":160,"@stdlib/assert/is-nan":168,"@stdlib/assert/is-string":204,"@stdlib/string/format":461}],512:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42895,7 +41840,7 @@ if ( typeof builtin === 'function' ) {
 
 module.exports = createObject;
 
-},{"./native.js":521,"./polyfill.js":522}],519:[function(require,module,exports){
+},{"./native.js":515,"./polyfill.js":516}],513:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42951,7 +41896,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":520}],520:[function(require,module,exports){
+},{"./main.js":514}],514:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43046,7 +41991,7 @@ function inherit( ctor, superCtor ) {
 
 module.exports = inherit;
 
-},{"./detect.js":518,"./validate.js":523,"@stdlib/string/format":469,"@stdlib/utils/define-property":499}],521:[function(require,module,exports){
+},{"./detect.js":512,"./validate.js":517,"@stdlib/string/format":461,"@stdlib/utils/define-property":493}],515:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43071,7 +42016,7 @@ module.exports = inherit;
 
 module.exports = Object.create;
 
-},{}],522:[function(require,module,exports){
+},{}],516:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43127,7 +42072,7 @@ function createObject( proto ) {
 
 module.exports = createObject;
 
-},{}],523:[function(require,module,exports){
+},{}],517:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43187,7 +42132,7 @@ function validate( value ) {
 
 module.exports = validate;
 
-},{"@stdlib/string/format":469}],524:[function(require,module,exports){
+},{"@stdlib/string/format":461}],518:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43239,7 +42184,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],525:[function(require,module,exports){
+},{}],519:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43301,7 +42246,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":524,"@stdlib/assert/is-arguments":112}],526:[function(require,module,exports){
+},{"./builtin.js":518,"@stdlib/assert/is-arguments":112}],520:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -43325,7 +42270,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],527:[function(require,module,exports){
+},{}],521:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43385,7 +42330,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":524}],528:[function(require,module,exports){
+},{"./builtin.js":518}],522:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43463,7 +42408,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":526,"./is_constructor_prototype.js":534,"./window.js":539,"@stdlib/assert/has-own-property":91,"@stdlib/utils/index-of":516,"@stdlib/utils/type-of":571}],529:[function(require,module,exports){
+},{"./excluded_keys.json":520,"./is_constructor_prototype.js":528,"./window.js":533,"@stdlib/assert/has-own-property":91,"@stdlib/utils/index-of":510,"@stdlib/utils/type-of":567}],523:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43493,7 +42438,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],530:[function(require,module,exports){
+},{}],524:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43530,7 +42475,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":143,"@stdlib/utils/noop":547}],531:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":143,"@stdlib/utils/noop":541}],525:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43573,7 +42518,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":143}],532:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":143}],526:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43603,7 +42548,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],533:[function(require,module,exports){
+},{}],527:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43650,7 +42595,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":536}],534:[function(require,module,exports){
+},{"./main.js":530}],528:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43689,7 +42634,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],535:[function(require,module,exports){
+},{}],529:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43742,7 +42687,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":528,"./has_window.js":532,"./is_constructor_prototype.js":534}],536:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":522,"./has_window.js":526,"./is_constructor_prototype.js":528}],530:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43807,7 +42752,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":524,"./builtin_wrapper.js":525,"./has_arguments_bug.js":527,"./has_builtin.js":529,"./polyfill.js":538}],537:[function(require,module,exports){
+},{"./builtin.js":518,"./builtin_wrapper.js":519,"./has_arguments_bug.js":521,"./has_builtin.js":523,"./polyfill.js":532}],531:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -43818,7 +42763,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],538:[function(require,module,exports){
+},{}],532:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43922,7 +42867,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":530,"./has_non_enumerable_properties_bug.js":531,"./is_constructor_prototype_wrapper.js":535,"./non_enumerable.json":537,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-arguments":112,"@stdlib/assert/is-object-like":193}],539:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":524,"./has_non_enumerable_properties_bug.js":525,"./is_constructor_prototype_wrapper.js":529,"./non_enumerable.json":531,"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-arguments":112,"@stdlib/assert/is-object-like":193}],533:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43952,7 +42897,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],540:[function(require,module,exports){
+},{}],534:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44015,7 +42960,7 @@ if ( hasToStringTag() ) {
 
 module.exports = main;
 
-},{"./main.js":541,"./polyfill.js":542,"@stdlib/assert/has-tostringtag-support":95}],541:[function(require,module,exports){
+},{"./main.js":535,"./polyfill.js":536,"@stdlib/assert/has-tostringtag-support":95}],535:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44073,7 +43018,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":543}],542:[function(require,module,exports){
+},{"./tostring.js":537}],536:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44156,7 +43101,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":543,"./tostringtag.js":544,"@stdlib/assert/has-own-property":91}],543:[function(require,module,exports){
+},{"./tostring.js":537,"./tostringtag.js":538,"@stdlib/assert/has-own-property":91}],537:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44186,7 +43131,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],544:[function(require,module,exports){
+},{}],538:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44221,7 +43166,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{"@stdlib/symbol/ctor":474}],545:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":466}],539:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44266,7 +43211,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":546}],546:[function(require,module,exports){
+},{"./main.js":540}],540:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44340,7 +43285,7 @@ function nextTick( clbk ) {
 
 module.exports = nextTick;
 
-},{"process":586}],547:[function(require,module,exports){
+},{"process":583}],541:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44382,7 +43327,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":548}],548:[function(require,module,exports){
+},{"./main.js":542}],542:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44419,7 +43364,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],549:[function(require,module,exports){
+},{}],543:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44466,7 +43411,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":550}],550:[function(require,module,exports){
+},{"./main.js":544}],544:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44552,7 +43497,7 @@ function omit( obj, keys ) {
 
 module.exports = omit;
 
-},{"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/string/format":469,"@stdlib/utils/index-of":516,"@stdlib/utils/keys":533}],551:[function(require,module,exports){
+},{"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/string/format":461,"@stdlib/utils/index-of":510,"@stdlib/utils/keys":527}],545:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44599,7 +43544,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":552}],552:[function(require,module,exports){
+},{"./main.js":546}],546:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44679,7 +43624,7 @@ function pick( obj, keys ) {
 
 module.exports = pick;
 
-},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/string/format":469}],553:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":91,"@stdlib/assert/is-string":204,"@stdlib/assert/is-string-array":203,"@stdlib/string/format":461}],547:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44743,7 +43688,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{}],554:[function(require,module,exports){
+},{}],548:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44773,7 +43718,7 @@ var bool = ( typeof Object.getOwnPropertyDescriptor !== 'undefined' );
 
 module.exports = bool;
 
-},{}],555:[function(require,module,exports){
+},{}],549:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44832,7 +43777,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":553,"./has_builtin.js":554,"./polyfill.js":556}],556:[function(require,module,exports){
+},{"./builtin.js":547,"./has_builtin.js":548,"./polyfill.js":550}],550:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44900,7 +43845,7 @@ function getOwnPropertyDescriptor( value, property ) {
 
 module.exports = getOwnPropertyDescriptor;
 
-},{"@stdlib/assert/has-own-property":91}],557:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":91}],551:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44962,7 +43907,7 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{"@stdlib/object/ctor":401}],558:[function(require,module,exports){
+},{"@stdlib/object/ctor":401}],552:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44992,7 +43937,7 @@ var bool = ( typeof Object.getOwnPropertyNames !== 'undefined' );
 
 module.exports = bool;
 
-},{}],559:[function(require,module,exports){
+},{}],553:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45049,7 +43994,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":557,"./has_builtin.js":558,"./polyfill.js":560}],560:[function(require,module,exports){
+},{"./builtin.js":551,"./has_builtin.js":552,"./polyfill.js":554}],554:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45108,7 +44053,7 @@ function getOwnPropertyNames( value ) {
 
 module.exports = getOwnPropertyNames;
 
-},{"@stdlib/object/ctor":401,"@stdlib/utils/keys":533}],561:[function(require,module,exports){
+},{"@stdlib/object/ctor":401,"@stdlib/utils/keys":527}],555:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45164,7 +44109,7 @@ function getOwnPropertySymbols( value ) {
 
 module.exports = getOwnPropertySymbols;
 
-},{"@stdlib/object/ctor":401}],562:[function(require,module,exports){
+},{"@stdlib/object/ctor":401}],556:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45194,7 +44139,7 @@ var bool = ( typeof Object.getOwnPropertySymbols !== 'undefined' );
 
 module.exports = bool;
 
-},{}],563:[function(require,module,exports){
+},{}],557:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45247,7 +44192,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":561,"./has_builtin.js":562,"./polyfill.js":564}],564:[function(require,module,exports){
+},{"./builtin.js":555,"./has_builtin.js":556,"./polyfill.js":558}],558:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45294,7 +44239,7 @@ function getOwnPropertySymbols() {
 
 module.exports = getOwnPropertySymbols;
 
-},{}],565:[function(require,module,exports){
+},{}],559:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45336,7 +44281,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":566}],566:[function(require,module,exports){
+},{"./main.js":560}],560:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45393,7 +44338,113 @@ function reFromString( str ) {
 
 module.exports = reFromString;
 
-},{"@stdlib/assert/is-string":204,"@stdlib/regexp/regexp":429,"@stdlib/string/format":469}],567:[function(require,module,exports){
+},{"@stdlib/assert/is-string":204,"@stdlib/regexp/regexp":420,"@stdlib/string/format":461}],561:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Wrap `require` in a try/catch block.
+*
+* @module @stdlib/utils/try-require
+*
+* @example
+* var tryRequire = require( '@stdlib/utils/try-require' );
+*
+* var out = tryRequire( 'beepboop' );
+*
+* if ( out instanceof Error ) {
+*     console.log( out.message );
+* }
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":562}],562:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2018 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isError = require( '@stdlib/assert/is-error' );
+
+
+// MAIN //
+
+/**
+* Wraps `require` in a try/catch block.
+*
+* @param {string} id - module id
+* @returns {*|Error} `module.exports` of the resolved module or an error
+*
+* @example
+* var out = tryRequire( 'beepboop' );
+*
+* if ( out instanceof Error ) {
+*     console.error( out.message );
+* }
+*/
+function tryRequire( id ) {
+	try {
+		return require( id ); // eslint-disable-line stdlib/no-dynamic-require
+	} catch ( error ) {
+		if ( isError( error ) ) {
+			return error;
+		}
+		// Handle case where a literal is thrown...
+		if ( typeof error === 'object' ) {
+			return new Error( JSON.stringify( error ) );
+		}
+		return new Error( error.toString() );
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = tryRequire;
+
+},{"@stdlib/assert/is-error":146}],563:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45450,7 +44501,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":568,"./fixtures/re.js":569,"./fixtures/typedarray.js":570}],568:[function(require,module,exports){
+},{"./fixtures/nodelist.js":564,"./fixtures/re.js":565,"./fixtures/typedarray.js":566}],564:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45486,7 +44537,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":511}],569:[function(require,module,exports){
+},{"@stdlib/utils/global":505}],565:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45514,7 +44565,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],570:[function(require,module,exports){
+},{}],566:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45542,7 +44593,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],571:[function(require,module,exports){
+},{}],567:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45594,7 +44645,7 @@ var main = ( usePolyfill() ) ? polyfill : builtin;
 
 module.exports = main;
 
-},{"./check.js":567,"./main.js":572,"./polyfill.js":573}],572:[function(require,module,exports){
+},{"./check.js":563,"./main.js":568,"./polyfill.js":569}],568:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45672,7 +44723,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":484}],573:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":478}],569:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45715,7 +44766,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":484}],574:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":478}],570:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -45867,9 +44918,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],575:[function(require,module,exports){
+},{}],571:[function(require,module,exports){
 
-},{}],576:[function(require,module,exports){
+},{}],572:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -47650,7 +46701,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":574,"buffer":576,"ieee754":582}],577:[function(require,module,exports){
+},{"base64-js":570,"buffer":572,"ieee754":579}],573:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -48149,7 +47200,540 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],578:[function(require,module,exports){
+},{}],574:[function(require,module,exports){
+(function (process){(function (){
+// 'path' module extracted from Node.js v8.11.1 (only the posix part)
+// transplited with Babel
+
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+'use strict';
+
+function assertPath(path) {
+  if (typeof path !== 'string') {
+    throw new TypeError('Path must be a string. Received ' + JSON.stringify(path));
+  }
+}
+
+// Resolves . and .. elements in a path with directory names
+function normalizeStringPosix(path, allowAboveRoot) {
+  var res = '';
+  var lastSegmentLength = 0;
+  var lastSlash = -1;
+  var dots = 0;
+  var code;
+  for (var i = 0; i <= path.length; ++i) {
+    if (i < path.length)
+      code = path.charCodeAt(i);
+    else if (code === 47 /*/*/)
+      break;
+    else
+      code = 47 /*/*/;
+    if (code === 47 /*/*/) {
+      if (lastSlash === i - 1 || dots === 1) {
+        // NOOP
+      } else if (lastSlash !== i - 1 && dots === 2) {
+        if (res.length < 2 || lastSegmentLength !== 2 || res.charCodeAt(res.length - 1) !== 46 /*.*/ || res.charCodeAt(res.length - 2) !== 46 /*.*/) {
+          if (res.length > 2) {
+            var lastSlashIndex = res.lastIndexOf('/');
+            if (lastSlashIndex !== res.length - 1) {
+              if (lastSlashIndex === -1) {
+                res = '';
+                lastSegmentLength = 0;
+              } else {
+                res = res.slice(0, lastSlashIndex);
+                lastSegmentLength = res.length - 1 - res.lastIndexOf('/');
+              }
+              lastSlash = i;
+              dots = 0;
+              continue;
+            }
+          } else if (res.length === 2 || res.length === 1) {
+            res = '';
+            lastSegmentLength = 0;
+            lastSlash = i;
+            dots = 0;
+            continue;
+          }
+        }
+        if (allowAboveRoot) {
+          if (res.length > 0)
+            res += '/..';
+          else
+            res = '..';
+          lastSegmentLength = 2;
+        }
+      } else {
+        if (res.length > 0)
+          res += '/' + path.slice(lastSlash + 1, i);
+        else
+          res = path.slice(lastSlash + 1, i);
+        lastSegmentLength = i - lastSlash - 1;
+      }
+      lastSlash = i;
+      dots = 0;
+    } else if (code === 46 /*.*/ && dots !== -1) {
+      ++dots;
+    } else {
+      dots = -1;
+    }
+  }
+  return res;
+}
+
+function _format(sep, pathObject) {
+  var dir = pathObject.dir || pathObject.root;
+  var base = pathObject.base || (pathObject.name || '') + (pathObject.ext || '');
+  if (!dir) {
+    return base;
+  }
+  if (dir === pathObject.root) {
+    return dir + base;
+  }
+  return dir + sep + base;
+}
+
+var posix = {
+  // path.resolve([from ...], to)
+  resolve: function resolve() {
+    var resolvedPath = '';
+    var resolvedAbsolute = false;
+    var cwd;
+
+    for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
+      var path;
+      if (i >= 0)
+        path = arguments[i];
+      else {
+        if (cwd === undefined)
+          cwd = process.cwd();
+        path = cwd;
+      }
+
+      assertPath(path);
+
+      // Skip empty entries
+      if (path.length === 0) {
+        continue;
+      }
+
+      resolvedPath = path + '/' + resolvedPath;
+      resolvedAbsolute = path.charCodeAt(0) === 47 /*/*/;
+    }
+
+    // At this point the path should be resolved to a full absolute path, but
+    // handle relative paths to be safe (might happen when process.cwd() fails)
+
+    // Normalize the path
+    resolvedPath = normalizeStringPosix(resolvedPath, !resolvedAbsolute);
+
+    if (resolvedAbsolute) {
+      if (resolvedPath.length > 0)
+        return '/' + resolvedPath;
+      else
+        return '/';
+    } else if (resolvedPath.length > 0) {
+      return resolvedPath;
+    } else {
+      return '.';
+    }
+  },
+
+  normalize: function normalize(path) {
+    assertPath(path);
+
+    if (path.length === 0) return '.';
+
+    var isAbsolute = path.charCodeAt(0) === 47 /*/*/;
+    var trailingSeparator = path.charCodeAt(path.length - 1) === 47 /*/*/;
+
+    // Normalize the path
+    path = normalizeStringPosix(path, !isAbsolute);
+
+    if (path.length === 0 && !isAbsolute) path = '.';
+    if (path.length > 0 && trailingSeparator) path += '/';
+
+    if (isAbsolute) return '/' + path;
+    return path;
+  },
+
+  isAbsolute: function isAbsolute(path) {
+    assertPath(path);
+    return path.length > 0 && path.charCodeAt(0) === 47 /*/*/;
+  },
+
+  join: function join() {
+    if (arguments.length === 0)
+      return '.';
+    var joined;
+    for (var i = 0; i < arguments.length; ++i) {
+      var arg = arguments[i];
+      assertPath(arg);
+      if (arg.length > 0) {
+        if (joined === undefined)
+          joined = arg;
+        else
+          joined += '/' + arg;
+      }
+    }
+    if (joined === undefined)
+      return '.';
+    return posix.normalize(joined);
+  },
+
+  relative: function relative(from, to) {
+    assertPath(from);
+    assertPath(to);
+
+    if (from === to) return '';
+
+    from = posix.resolve(from);
+    to = posix.resolve(to);
+
+    if (from === to) return '';
+
+    // Trim any leading backslashes
+    var fromStart = 1;
+    for (; fromStart < from.length; ++fromStart) {
+      if (from.charCodeAt(fromStart) !== 47 /*/*/)
+        break;
+    }
+    var fromEnd = from.length;
+    var fromLen = fromEnd - fromStart;
+
+    // Trim any leading backslashes
+    var toStart = 1;
+    for (; toStart < to.length; ++toStart) {
+      if (to.charCodeAt(toStart) !== 47 /*/*/)
+        break;
+    }
+    var toEnd = to.length;
+    var toLen = toEnd - toStart;
+
+    // Compare paths to find the longest common path from root
+    var length = fromLen < toLen ? fromLen : toLen;
+    var lastCommonSep = -1;
+    var i = 0;
+    for (; i <= length; ++i) {
+      if (i === length) {
+        if (toLen > length) {
+          if (to.charCodeAt(toStart + i) === 47 /*/*/) {
+            // We get here if `from` is the exact base path for `to`.
+            // For example: from='/foo/bar'; to='/foo/bar/baz'
+            return to.slice(toStart + i + 1);
+          } else if (i === 0) {
+            // We get here if `from` is the root
+            // For example: from='/'; to='/foo'
+            return to.slice(toStart + i);
+          }
+        } else if (fromLen > length) {
+          if (from.charCodeAt(fromStart + i) === 47 /*/*/) {
+            // We get here if `to` is the exact base path for `from`.
+            // For example: from='/foo/bar/baz'; to='/foo/bar'
+            lastCommonSep = i;
+          } else if (i === 0) {
+            // We get here if `to` is the root.
+            // For example: from='/foo'; to='/'
+            lastCommonSep = 0;
+          }
+        }
+        break;
+      }
+      var fromCode = from.charCodeAt(fromStart + i);
+      var toCode = to.charCodeAt(toStart + i);
+      if (fromCode !== toCode)
+        break;
+      else if (fromCode === 47 /*/*/)
+        lastCommonSep = i;
+    }
+
+    var out = '';
+    // Generate the relative path based on the path difference between `to`
+    // and `from`
+    for (i = fromStart + lastCommonSep + 1; i <= fromEnd; ++i) {
+      if (i === fromEnd || from.charCodeAt(i) === 47 /*/*/) {
+        if (out.length === 0)
+          out += '..';
+        else
+          out += '/..';
+      }
+    }
+
+    // Lastly, append the rest of the destination (`to`) path that comes after
+    // the common path parts
+    if (out.length > 0)
+      return out + to.slice(toStart + lastCommonSep);
+    else {
+      toStart += lastCommonSep;
+      if (to.charCodeAt(toStart) === 47 /*/*/)
+        ++toStart;
+      return to.slice(toStart);
+    }
+  },
+
+  _makeLong: function _makeLong(path) {
+    return path;
+  },
+
+  dirname: function dirname(path) {
+    assertPath(path);
+    if (path.length === 0) return '.';
+    var code = path.charCodeAt(0);
+    var hasRoot = code === 47 /*/*/;
+    var end = -1;
+    var matchedSlash = true;
+    for (var i = path.length - 1; i >= 1; --i) {
+      code = path.charCodeAt(i);
+      if (code === 47 /*/*/) {
+          if (!matchedSlash) {
+            end = i;
+            break;
+          }
+        } else {
+        // We saw the first non-path separator
+        matchedSlash = false;
+      }
+    }
+
+    if (end === -1) return hasRoot ? '/' : '.';
+    if (hasRoot && end === 1) return '//';
+    return path.slice(0, end);
+  },
+
+  basename: function basename(path, ext) {
+    if (ext !== undefined && typeof ext !== 'string') throw new TypeError('"ext" argument must be a string');
+    assertPath(path);
+
+    var start = 0;
+    var end = -1;
+    var matchedSlash = true;
+    var i;
+
+    if (ext !== undefined && ext.length > 0 && ext.length <= path.length) {
+      if (ext.length === path.length && ext === path) return '';
+      var extIdx = ext.length - 1;
+      var firstNonSlashEnd = -1;
+      for (i = path.length - 1; i >= 0; --i) {
+        var code = path.charCodeAt(i);
+        if (code === 47 /*/*/) {
+            // If we reached a path separator that was not part of a set of path
+            // separators at the end of the string, stop now
+            if (!matchedSlash) {
+              start = i + 1;
+              break;
+            }
+          } else {
+          if (firstNonSlashEnd === -1) {
+            // We saw the first non-path separator, remember this index in case
+            // we need it if the extension ends up not matching
+            matchedSlash = false;
+            firstNonSlashEnd = i + 1;
+          }
+          if (extIdx >= 0) {
+            // Try to match the explicit extension
+            if (code === ext.charCodeAt(extIdx)) {
+              if (--extIdx === -1) {
+                // We matched the extension, so mark this as the end of our path
+                // component
+                end = i;
+              }
+            } else {
+              // Extension does not match, so our result is the entire path
+              // component
+              extIdx = -1;
+              end = firstNonSlashEnd;
+            }
+          }
+        }
+      }
+
+      if (start === end) end = firstNonSlashEnd;else if (end === -1) end = path.length;
+      return path.slice(start, end);
+    } else {
+      for (i = path.length - 1; i >= 0; --i) {
+        if (path.charCodeAt(i) === 47 /*/*/) {
+            // If we reached a path separator that was not part of a set of path
+            // separators at the end of the string, stop now
+            if (!matchedSlash) {
+              start = i + 1;
+              break;
+            }
+          } else if (end === -1) {
+          // We saw the first non-path separator, mark this as the end of our
+          // path component
+          matchedSlash = false;
+          end = i + 1;
+        }
+      }
+
+      if (end === -1) return '';
+      return path.slice(start, end);
+    }
+  },
+
+  extname: function extname(path) {
+    assertPath(path);
+    var startDot = -1;
+    var startPart = 0;
+    var end = -1;
+    var matchedSlash = true;
+    // Track the state of characters (if any) we see before our first dot and
+    // after any path separator we find
+    var preDotState = 0;
+    for (var i = path.length - 1; i >= 0; --i) {
+      var code = path.charCodeAt(i);
+      if (code === 47 /*/*/) {
+          // If we reached a path separator that was not part of a set of path
+          // separators at the end of the string, stop now
+          if (!matchedSlash) {
+            startPart = i + 1;
+            break;
+          }
+          continue;
+        }
+      if (end === -1) {
+        // We saw the first non-path separator, mark this as the end of our
+        // extension
+        matchedSlash = false;
+        end = i + 1;
+      }
+      if (code === 46 /*.*/) {
+          // If this is our first dot, mark it as the start of our extension
+          if (startDot === -1)
+            startDot = i;
+          else if (preDotState !== 1)
+            preDotState = 1;
+      } else if (startDot !== -1) {
+        // We saw a non-dot and non-path separator before our dot, so we should
+        // have a good chance at having a non-empty extension
+        preDotState = -1;
+      }
+    }
+
+    if (startDot === -1 || end === -1 ||
+        // We saw a non-dot character immediately before the dot
+        preDotState === 0 ||
+        // The (right-most) trimmed path component is exactly '..'
+        preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
+      return '';
+    }
+    return path.slice(startDot, end);
+  },
+
+  format: function format(pathObject) {
+    if (pathObject === null || typeof pathObject !== 'object') {
+      throw new TypeError('The "pathObject" argument must be of type Object. Received type ' + typeof pathObject);
+    }
+    return _format('/', pathObject);
+  },
+
+  parse: function parse(path) {
+    assertPath(path);
+
+    var ret = { root: '', dir: '', base: '', ext: '', name: '' };
+    if (path.length === 0) return ret;
+    var code = path.charCodeAt(0);
+    var isAbsolute = code === 47 /*/*/;
+    var start;
+    if (isAbsolute) {
+      ret.root = '/';
+      start = 1;
+    } else {
+      start = 0;
+    }
+    var startDot = -1;
+    var startPart = 0;
+    var end = -1;
+    var matchedSlash = true;
+    var i = path.length - 1;
+
+    // Track the state of characters (if any) we see before our first dot and
+    // after any path separator we find
+    var preDotState = 0;
+
+    // Get non-dir info
+    for (; i >= start; --i) {
+      code = path.charCodeAt(i);
+      if (code === 47 /*/*/) {
+          // If we reached a path separator that was not part of a set of path
+          // separators at the end of the string, stop now
+          if (!matchedSlash) {
+            startPart = i + 1;
+            break;
+          }
+          continue;
+        }
+      if (end === -1) {
+        // We saw the first non-path separator, mark this as the end of our
+        // extension
+        matchedSlash = false;
+        end = i + 1;
+      }
+      if (code === 46 /*.*/) {
+          // If this is our first dot, mark it as the start of our extension
+          if (startDot === -1) startDot = i;else if (preDotState !== 1) preDotState = 1;
+        } else if (startDot !== -1) {
+        // We saw a non-dot and non-path separator before our dot, so we should
+        // have a good chance at having a non-empty extension
+        preDotState = -1;
+      }
+    }
+
+    if (startDot === -1 || end === -1 ||
+    // We saw a non-dot character immediately before the dot
+    preDotState === 0 ||
+    // The (right-most) trimmed path component is exactly '..'
+    preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
+      if (end !== -1) {
+        if (startPart === 0 && isAbsolute) ret.base = ret.name = path.slice(1, end);else ret.base = ret.name = path.slice(startPart, end);
+      }
+    } else {
+      if (startPart === 0 && isAbsolute) {
+        ret.name = path.slice(1, startDot);
+        ret.base = path.slice(1, end);
+      } else {
+        ret.name = path.slice(startPart, startDot);
+        ret.base = path.slice(startPart, end);
+      }
+      ret.ext = path.slice(startDot, end);
+    }
+
+    if (startPart > 0) ret.dir = path.slice(0, startPart - 1);else if (isAbsolute) ret.dir = '/';
+
+    return ret;
+  },
+
+  sep: '/',
+  delimiter: ':',
+  win32: null,
+  posix: null
+};
+
+posix.posix = posix;
+
+module.exports = posix;
+
+}).call(this)}).call(this,require('_process'))
+},{"_process":583}],575:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -48258,7 +47842,7 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-},{"buffer":576}],579:[function(require,module,exports){
+},{"buffer":572}],576:[function(require,module,exports){
 /**
  * Helpers.
  */
@@ -48412,7 +47996,7 @@ function plural(ms, n, name) {
   return Math.ceil(ms / n) + ' ' + name + 's';
 }
 
-},{}],580:[function(require,module,exports){
+},{}],577:[function(require,module,exports){
 (function (process){(function (){
 /**
  * This is the web browser implementation of `debug()`.
@@ -48601,7 +48185,7 @@ function localstorage() {
 }
 
 }).call(this)}).call(this,require('_process'))
-},{"./debug":581,"_process":586}],581:[function(require,module,exports){
+},{"./debug":578,"_process":583}],578:[function(require,module,exports){
 
 /**
  * This is the common logic for both the Node.js and web browser
@@ -48805,7 +48389,7 @@ function coerce(val) {
   return val;
 }
 
-},{"ms":579}],582:[function(require,module,exports){
+},{"ms":576}],579:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -48892,7 +48476,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],583:[function(require,module,exports){
+},{}],580:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -48921,14 +48505,14 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],584:[function(require,module,exports){
+},{}],581:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],585:[function(require,module,exports){
+},{}],582:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -48977,7 +48561,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":586}],586:[function(require,module,exports){
+},{"_process":583}],583:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -49163,7 +48747,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],587:[function(require,module,exports){
+},{}],584:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -49295,7 +48879,7 @@ Duplex.prototype._destroy = function (err, cb) {
 
   pna.nextTick(cb, err);
 };
-},{"./_stream_readable":589,"./_stream_writable":591,"core-util-is":578,"inherits":583,"process-nextick-args":585}],588:[function(require,module,exports){
+},{"./_stream_readable":586,"./_stream_writable":588,"core-util-is":575,"inherits":580,"process-nextick-args":582}],585:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -49343,7 +48927,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":590,"core-util-is":578,"inherits":583}],589:[function(require,module,exports){
+},{"./_stream_transform":587,"core-util-is":575,"inherits":580}],586:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -50365,7 +49949,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":587,"./internal/streams/BufferList":592,"./internal/streams/destroy":593,"./internal/streams/stream":594,"_process":586,"core-util-is":578,"events":577,"inherits":583,"isarray":584,"process-nextick-args":585,"safe-buffer":595,"string_decoder/":596,"util":575}],590:[function(require,module,exports){
+},{"./_stream_duplex":584,"./internal/streams/BufferList":589,"./internal/streams/destroy":590,"./internal/streams/stream":591,"_process":583,"core-util-is":575,"events":573,"inherits":580,"isarray":581,"process-nextick-args":582,"safe-buffer":592,"string_decoder/":593,"util":571}],587:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -50580,7 +50164,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":587,"core-util-is":578,"inherits":583}],591:[function(require,module,exports){
+},{"./_stream_duplex":584,"core-util-is":575,"inherits":580}],588:[function(require,module,exports){
 (function (process,global,setImmediate){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -51268,7 +50852,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("timers").setImmediate)
-},{"./_stream_duplex":587,"./internal/streams/destroy":593,"./internal/streams/stream":594,"_process":586,"core-util-is":578,"inherits":583,"process-nextick-args":585,"safe-buffer":595,"timers":598,"util-deprecate":599}],592:[function(require,module,exports){
+},{"./_stream_duplex":584,"./internal/streams/destroy":590,"./internal/streams/stream":591,"_process":583,"core-util-is":575,"inherits":580,"process-nextick-args":582,"safe-buffer":592,"timers":595,"util-deprecate":596}],589:[function(require,module,exports){
 'use strict';
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -51347,7 +50931,7 @@ if (util && util.inspect && util.inspect.custom) {
     return this.constructor.name + ' ' + obj;
   };
 }
-},{"safe-buffer":595,"util":575}],593:[function(require,module,exports){
+},{"safe-buffer":592,"util":571}],590:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -51432,10 +51016,10 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":585}],594:[function(require,module,exports){
+},{"process-nextick-args":582}],591:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":577}],595:[function(require,module,exports){
+},{"events":573}],592:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -51499,7 +51083,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":576}],596:[function(require,module,exports){
+},{"buffer":572}],593:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -51796,7 +51380,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":595}],597:[function(require,module,exports){
+},{"safe-buffer":592}],594:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -51805,7 +51389,7 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":587,"./lib/_stream_passthrough.js":588,"./lib/_stream_readable.js":589,"./lib/_stream_transform.js":590,"./lib/_stream_writable.js":591}],598:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":584,"./lib/_stream_passthrough.js":585,"./lib/_stream_readable.js":586,"./lib/_stream_transform.js":587,"./lib/_stream_writable.js":588}],595:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -51884,7 +51468,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":586,"timers":598}],599:[function(require,module,exports){
+},{"process/browser.js":583,"timers":595}],596:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -51955,4 +51539,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[432]);
+},{}]},{},[423,424]);

@@ -117,7 +117,7 @@
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/lapack/base/slacpy/docs/types/index.d.ts#L28">lib/node_modules/@stdlib/lapack/base/slacpy/docs/types/index.d.ts:28</a></li>
+								<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a3930905a5/lib/node_modules/@stdlib/lapack/base/slacpy/docs/types/index.d.ts#L28">lib/node_modules/@stdlib/lapack/base/slacpy/docs/types/index.d.ts:28</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -219,7 +219,7 @@ slacpy( <span class="hljs-string">'row-major'</span>, <span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/de6ab3443f/lib/node_modules/@stdlib/lapack/base/slacpy/docs/types/index.d.ts#L78">lib/node_modules/@stdlib/lapack/base/slacpy/docs/types/index.d.ts:78</a></li>
+									<li>Defined in <a href="https://github.com/stdlib-js/stdlib/blob/a3930905a5/lib/node_modules/@stdlib/lapack/base/slacpy/docs/types/index.d.ts#L78">lib/node_modules/@stdlib/lapack/base/slacpy/docs/types/index.d.ts:78</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -305,11 +305,11 @@ slacpy( <span class="hljs-string">'row-major'</span>, <span class="hljs-string">
 							<h4 class="tsd-example-title">Example</h4>
 							<div><pre><code class="language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float32'</span> );
 
-<span class="hljs-keyword">var</span> A = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
-<span class="hljs-keyword">var</span> B = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">11.0</span>, <span class="hljs-number">312.0</span>, <span class="hljs-number">53.0</span>, <span class="hljs-number">412.0</span> ] );
+<span class="hljs-keyword">var</span> A = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span> ] );
+<span class="hljs-keyword">var</span> B = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( <span class="hljs-number">6</span> );
 
 slacpy.ndarray( <span class="hljs-string">'all'</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, A, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, B, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span> );
-<span class="hljs-comment">// B =&gt; &lt;Float32Array&gt;[ 0.0, 0.0, 1.0, 2.0, 3.0, 4.0 ]</span></code></pre>
+<span class="hljs-comment">// B =&gt; &lt;Float32Array&gt;[ 0.0, 0.0, 2.0, 3.0, 4.0, 5.0 ]</span></code></pre>
 							</div>
 						</li>
 					</ul>

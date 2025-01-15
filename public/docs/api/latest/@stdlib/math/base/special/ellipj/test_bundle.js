@@ -5006,7 +5006,7 @@ var ca = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
 * v = assign( NaN, NaN, [ 0.0, 0.0, 0.0, 0.0 ], 1, 0 );
 * // returns [ NaN, NaN, NaN, NaN ]
 */
-function assign(u, m, out, stride, offset) {
+function assign( u, m, out, stride, offset ) {
 	var dnDenom;
 	var NANFLG;
 	var uK2cen;
@@ -5103,7 +5103,7 @@ function assign(u, m, out, stride, offset) {
 		dn = sechu + ( a * ( sinhu + ( uK2 * sechu ) ) * tanhu );
 		am = gdu + b;
 
-		if (FLG) {
+		if ( FLG ) {
 			sn = -sn;
 			cn = -cn;
 		}
@@ -6067,7 +6067,7 @@ tape( 'the function evaluates the Jacobi elliptic functions sn, cn dn (spot chec
 			t.equal( delta <= tol, true, 'within tolerance. u: '+u[i]+'. m: '+m[i]+', dn: '+dn+'. E: '+dnExpected[i]+'. Δ: '+delta+'. tol: '+tol+'.' );
 		}
 
-		if ( amExpected[i] === null) {
+		if ( amExpected[i] === null ) {
 			t.equal( isnan(am), true, 'is NaN. u: '+u[i]+'. m: '+m[i]+', am: '+am+'.' );
 		} else if ( am === amExpected[i] ) {
 			t.equal( am, amExpected[i], 'u: '+u[i]+', m: '+m[i]+', am: '+am+', amExpected: '+amExpected[i] );

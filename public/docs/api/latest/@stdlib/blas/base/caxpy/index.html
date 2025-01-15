@@ -125,4 +125,56 @@ caxpy( cx.length, ca, cx, <span class="hljs-number">1</span>, cy, <span class="h
 
 <span class="hljs-comment">// Print the results:</span>
 logEach( <span class="hljs-string">'(%s)*(%s) + (%s) = %s'</span>, ca, cx, cyc, cy );
-</code></pre></section><section class="related"></section><section class="links"></section>
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/caxpy.h"</span></span>
+</code></pre><h4 id="c_caxpy-n-ca-cx-stridex-cy-stridey-">c_caxpy( N, ca, *CX, strideX, *CY, strideY )</h4><p>Scales values from <code>cx</code> by <code>ca</code> and adds the result to <code>cy</code>.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
+
+<span class="hljs-keyword">float</span> cx[] = { <span class="hljs-number">1.0f</span>, <span class="hljs-number">2.0f</span>, <span class="hljs-number">3.0f</span>, <span class="hljs-number">4.0f</span>, <span class="hljs-number">5.0f</span>, <span class="hljs-number">6.0f</span>, <span class="hljs-number">7.0f</span>, <span class="hljs-number">8.0f</span> };
+<span class="hljs-keyword">float</span> cy[] = { <span class="hljs-number">-1.0f</span>, <span class="hljs-number">-2.0f</span>, <span class="hljs-number">-3.0f</span>, <span class="hljs-number">-4.0f</span>, <span class="hljs-number">-5.0f</span>, <span class="hljs-number">-6.0f</span>, <span class="hljs-number">-7.0f</span>, <span class="hljs-number">-8.0f</span> };
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> ca = stdlib_complex64( <span class="hljs-number">2.0f</span>, <span class="hljs-number">2.0f</span> );
+
+c_caxpy( <span class="hljs-number">4</span>, ca, (<span class="hljs-keyword">void</span> *)cx, <span class="hljs-number">1</span>, (<span class="hljs-keyword">void</span> *)cy, <span class="hljs-number">1</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] CBLAS_INT</code> number of indexed elements.</li><li><strong>ca</strong>: <code>[in] stdlib_complex64_t</code> scalar constant.</li><li><strong>CX</strong>: <code>[in] void*</code> input array.</li><li><strong>strideX</strong>: <code>[in] CBLAS_INT</code> index increment for <code>CX</code>.</li><li><strong>CY</strong>: <code>[inout] void*</code> output array.</li><li><strong>strideY</strong>: <code>[in] CBLAS_INT</code> index increment for <code>CY</code>.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">c_caxpy</span><span class="hljs-params">( <span class="hljs-keyword">const</span> CBLAS_INT N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> ca, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *CX, <span class="hljs-keyword">const</span> CBLAS_INT strideX, <span class="hljs-keyword">void</span> *CY, <span class="hljs-keyword">const</span> CBLAS_INT strideY )</span></span>;
+</code></pre><h4 id="c_caxpy_ndarray-n-ca-cx-stridex-offsetx-cy-stridey-offsety-">c_caxpy_ndarray( N, ca, *CX, strideX, offsetX, *CY, strideY, offsetY )</h4><p>Scales values from <code>cx</code> by <code>ca</code> and adds the result to <code>cy</code> using alternative indexing semantics.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
+
+<span class="hljs-keyword">float</span> cx[] = { <span class="hljs-number">1.0f</span>, <span class="hljs-number">2.0f</span>, <span class="hljs-number">3.0f</span>, <span class="hljs-number">4.0f</span>, <span class="hljs-number">5.0f</span>, <span class="hljs-number">6.0f</span>, <span class="hljs-number">7.0f</span>, <span class="hljs-number">8.0f</span> };
+<span class="hljs-keyword">float</span> cy[] = { <span class="hljs-number">-1.0f</span>, <span class="hljs-number">-2.0f</span>, <span class="hljs-number">-3.0f</span>, <span class="hljs-number">-4.0f</span>, <span class="hljs-number">-5.0f</span>, <span class="hljs-number">-6.0f</span>, <span class="hljs-number">-7.0f</span>, <span class="hljs-number">-8.0f</span> }
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> ca = stdlib_complex64( <span class="hljs-number">2.0f</span>, <span class="hljs-number">2.0f</span> );
+
+c_caxpy_ndarray( <span class="hljs-number">4</span>, ca, (<span class="hljs-keyword">void</span> *)cx, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, (<span class="hljs-keyword">void</span> *)cy, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] CBLAS_INT</code> number of indexed elements.</li><li><strong>ca</strong>: <code>[in] stdlib_complex64_t</code> scalar constant.</li><li><strong>CX</strong>: <code>[in] void*</code> input array.</li><li><strong>strideX</strong>: <code>[in] CBLAS_INT</code> index increment for <code>CX</code>.</li><li><strong>offsetX</strong>: <code>[in] CBLAS_INT</code> starting index for <code>CX</code>.</li><li><strong>CY</strong>: <code>[inout] void*</code> output array.</li><li><strong>strideY</strong>: <code>[in] CBLAS_INT</code> index increment for <code>CY</code>.</li><li><strong>offsetY</strong>: <code>[in] CBLAS_INT</code> starting index for <code>CY</code>.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">c_caxpy_ndarray</span><span class="hljs-params">( <span class="hljs-keyword">const</span> CBLAS_INT N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> ca, <span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *CX, <span class="hljs-keyword">const</span> CBLAS_INT strideX, <span class="hljs-keyword">const</span> CBLAS_INT offsetX, <span class="hljs-keyword">void</span> *CY, <span class="hljs-keyword">const</span> CBLAS_INT strideY, <span class="hljs-keyword">const</span> CBLAS_INT offsetY )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/blas/base/caxpy.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/complex/float32/ctor.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-comment">// Create strided arrays of interleaved real and imaginary components...</span>
+    <span class="hljs-keyword">float</span> cx[] = { <span class="hljs-number">1.0f</span>, <span class="hljs-number">2.0f</span>, <span class="hljs-number">3.0f</span>, <span class="hljs-number">4.0f</span>, <span class="hljs-number">5.0f</span>, <span class="hljs-number">6.0f</span>, <span class="hljs-number">7.0f</span>, <span class="hljs-number">8.0f</span> };
+    <span class="hljs-keyword">float</span> cy[] = { <span class="hljs-number">-1.0f</span>, <span class="hljs-number">-2.0f</span>, <span class="hljs-number">-3.0f</span>, <span class="hljs-number">-4.0f</span>, <span class="hljs-number">-5.0f</span>, <span class="hljs-number">-6.0f</span>, <span class="hljs-number">-7.0f</span>, <span class="hljs-number">-8.0f</span> };
+
+    <span class="hljs-comment">// Create a complex scalar:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">stdlib_complex64_t</span> ca = stdlib_complex64( <span class="hljs-number">2.0f</span>, <span class="hljs-number">2.0f</span> );
+
+    <span class="hljs-comment">// Specify the number of elements:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">4</span>;
+
+    <span class="hljs-comment">// Specify strides...</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> strideX = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> strideY = <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// Scale values from `cx` by `ca` and adds the result to `cy`:</span>
+    c_caxpy( N, ca, (<span class="hljs-keyword">void</span> *)cx, strideX, (<span class="hljs-keyword">void</span> *)cy, strideY );
+
+    <span class="hljs-comment">// Print the result:</span>
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &#x3C; N; i++ ) {
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"cy[ %i ] = %f + %fj\n"</span>, i, cy[ i*<span class="hljs-number">2</span> ], cy[ (i*<span class="hljs-number">2</span>)+<span class="hljs-number">1</span> ] );
+    }
+
+    <span class="hljs-comment">// Scales values from `cx` by `ca` and adds the result to `cy` using alternative indexing semantics:</span>
+    c_caxpy_ndarray( N, ca, (<span class="hljs-keyword">void</span> *)cx, -strideX, <span class="hljs-number">3</span>, (<span class="hljs-keyword">void</span> *)cy, -strideY, <span class="hljs-number">3</span> );
+
+    <span class="hljs-comment">// Print the result:</span>
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &#x3C; N; i++ ) {
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"cy[ %i ] = %f + %fj\n"</span>, i, cy[ i*<span class="hljs-number">2</span> ], cy[ (i*<span class="hljs-number">2</span>)+<span class="hljs-number">1</span> ] );
+    }
+}
+</code></pre></section></section><section class="related"></section><section class="links"></section>

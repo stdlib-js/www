@@ -838,6 +838,2763 @@ module.exports = getter;
 /**
 * @license Apache-2.0
 *
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
+// MAIN //
+
+/**
+* Fills an output array with "boolean" values.
+*
+* @private
+* @param {Uint8Array} buf - output array
+* @param {Array} arr - input array
+* @returns {Uint8Array} output array
+*/
+function fromArray( buf, arr ) {
+	var len;
+	var i;
+
+	len = arr.length;
+	for ( i = 0; i < len; i++ ) {
+		buf[ i ] = Boolean( arr[ i ] );
+	}
+	return buf;
+}
+
+
+// EXPORTS //
+
+module.exports = fromArray;
+
+},{"@stdlib/boolean/ctor":163}],10:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
+// MAIN //
+
+/**
+* Returns an array of iterated values.
+*
+* @private
+* @param {Object} it - iterator
+* @returns {Array} output array
+*/
+function fromIterator( it ) {
+	var out;
+	var v;
+
+	out = [];
+	while ( true ) {
+		v = it.next();
+		if ( v.done ) {
+			break;
+		}
+		out.push( Boolean( v.value ) );
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = fromIterator;
+
+},{"@stdlib/boolean/ctor":163}],11:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var Boolean = require( '@stdlib/boolean/ctor' );
+
+
+// MAIN //
+
+/**
+* Returns an array of iterated values.
+*
+* @private
+* @param {Object} it - iterator
+* @param {Function} clbk - callback to invoke for each iterated value
+* @param {*} thisArg - invocation context
+* @returns {Array} output array
+*/
+function fromIteratorMap( it, clbk, thisArg ) {
+	var out;
+	var v;
+	var i;
+
+	out = [];
+	i = -1;
+	while ( true ) {
+		v = it.next();
+		if ( v.done ) {
+			break;
+		}
+		i += 1;
+		out.push( Boolean( clbk.call( thisArg, v.value, i ) ) );
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = fromIteratorMap;
+
+},{"@stdlib/boolean/ctor":163}],12:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Boolean array.
+*
+* @module @stdlib/array/bool
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray();
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 0
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray( 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var arr = new BooleanArray( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 16
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf, 8 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 8
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+* var BooleanArray = require( '@stdlib/array/bool' );
+*
+* var buf = new ArrayBuffer( 32 );
+* var arr = new BooleanArray( buf, 8, 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":13}],13:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable no-restricted-syntax, no-invalid-this */
+
+'use strict';
+
+// MODULES //
+
+var isNonNegativeInteger = require( '@stdlib/assert/is-nonnegative-integer' ).isPrimitive;
+var isCollection = require( '@stdlib/assert/is-collection' );
+var isArrayBuffer = require( '@stdlib/assert/is-arraybuffer' );
+var isObject = require( '@stdlib/assert/is-object' );
+var isFunction = require( '@stdlib/assert/is-function' );
+var isBoolean = require( '@stdlib/assert/is-boolean' ).isPrimitive;
+var isInteger = require( '@stdlib/assert/is-integer' ).isPrimitive;
+var isString = require( '@stdlib/assert/is-string' ).isPrimitive;
+var isStringArray = require( '@stdlib/assert/is-string-array' ).primitives;
+var hasIteratorSymbolSupport = require( '@stdlib/assert/has-iterator-symbol-support' );
+var ITERATOR_SYMBOL = require( '@stdlib/symbol/iterator' );
+var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
+var setReadOnlyAccessor = require( '@stdlib/utils/define-nonenumerable-read-only-accessor' );
+var Uint8Array = require( '@stdlib/array/uint8' );
+var Boolean = require( '@stdlib/boolean/ctor' );
+var getter = require( '@stdlib/array/base/getter' );
+var floor = require( '@stdlib/math/base/special/floor' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
+var format = require( '@stdlib/string/format' );
+var fromIterator = require( './from_iterator.js' );
+var fromIteratorMap = require( './from_iterator_map.js' );
+var fromArray = require( './from_array.js' );
+
+
+// VARIABLES //
+
+var BYTES_PER_ELEMENT = Uint8Array.BYTES_PER_ELEMENT;
+var HAS_ITERATOR_SYMBOL = hasIteratorSymbolSupport();
+
+
+// FUNCTIONS //
+
+/**
+* Returns a boolean indicating if a value is a `BooleanArray`.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a `BooleanArray`
+*/
+function isBooleanArray( value ) {
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		value.constructor.name === 'BooleanArray' &&
+		value.BYTES_PER_ELEMENT === BYTES_PER_ELEMENT
+	);
+}
+
+/**
+* Returns a boolean indicating if a value is a boolean typed array constructor.
+*
+* @private
+* @param {*} value - value to test
+* @returns {boolean} boolean indicating if a value is a boolean typed array constructor
+*/
+function isBooleanArrayConstructor( value ) {
+	return ( value === BooleanArray );
+}
+
+
+// MAIN //
+
+/**
+* Boolean array constructor.
+*
+* @constructor
+* @param {(NonNegativeInteger|Collection|ArrayBuffer|Iterable)} [arg] - length, typed array, array-like object, buffer, or an iterable
+* @param {NonNegativeInteger} [byteOffset=0] - byte offset
+* @param {NonNegativeInteger} [length] - view length
+* @throws {TypeError} if provided only a single argument, must provide a valid argument
+* @throws {TypeError} byte offset must be a nonnegative integer
+* @throws {RangeError} must provide sufficient memory to accommodate byte offset and view length requirements
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = new BooleanArray();
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 0
+*
+* @example
+* var arr = new BooleanArray( 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var arr = new BooleanArray( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 16
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 16 );
+* var arr = new BooleanArray( buf, 8 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 8
+*
+* @example
+* var ArrayBuffer = require( '@stdlib/array/buffer' );
+*
+* var buf = new ArrayBuffer( 32 );
+* var arr = new BooleanArray( buf, 8, 2 );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+function BooleanArray() {
+	var byteOffset;
+	var nargs;
+	var buf;
+	var len;
+	var arg;
+
+	nargs = arguments.length;
+	if ( !(this instanceof BooleanArray) ) {
+		if ( nargs === 0 ) {
+			return new BooleanArray();
+		}
+		if ( nargs === 1 ) {
+			return new BooleanArray( arguments[0] );
+		}
+		if ( nargs === 2 ) {
+			return new BooleanArray( arguments[0], arguments[1] );
+		}
+		return new BooleanArray( arguments[0], arguments[1], arguments[2] );
+	}
+	// Create the underlying data buffer...
+	if ( nargs === 0 ) {
+		buf = new Uint8Array( 0 ); // backward-compatibility
+	} else if ( nargs === 1 ) {
+		arg = arguments[ 0 ];
+		if ( isNonNegativeInteger( arg ) ) {
+			buf = new Uint8Array( arg );
+		} else if ( isCollection( arg ) ) {
+			buf = fromArray( new Uint8Array( arg.length ), arg );
+		} else if ( isArrayBuffer( arg ) ) {
+			buf = new Uint8Array( arg );
+		} else if ( isObject( arg ) ) {
+			if ( HAS_ITERATOR_SYMBOL === false ) {
+				throw new TypeError( format( 'invalid argument. Environment lacks Symbol.iterator support. Must provide a length, ArrayBuffer, typed array, or array-like object. Value: `%s`.', arg ) );
+			}
+			if ( !isFunction( arg[ ITERATOR_SYMBOL ] ) ) {
+				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+			}
+			buf = arg[ ITERATOR_SYMBOL ]();
+			if ( !isFunction( buf.next ) ) {
+				throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+			}
+			buf = new Uint8Array( fromIterator( buf ) );
+		} else {
+			throw new TypeError( format( 'invalid argument. Must provide a length, ArrayBuffer, typed array, array-like object, or an iterable. Value: `%s`.', arg ) );
+		}
+	} else {
+		buf = arguments[ 0 ];
+		if ( !isArrayBuffer( buf ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an ArrayBuffer. Value: `%s`.', buf ) );
+		}
+		byteOffset = arguments[ 1 ];
+		if ( !isNonNegativeInteger( byteOffset ) ) {
+			throw new TypeError( format( 'invalid argument. Byte offset must be a nonnegative integer. Value: `%s`.', byteOffset ) );
+		}
+		if ( nargs === 2 ) {
+			buf = new Uint8Array( buf, byteOffset );
+		} else {
+			len = arguments[ 2 ];
+			if ( !isNonNegativeInteger( len ) ) {
+				throw new TypeError( format( 'invalid argument. Length must be a nonnegative integer. Value: `%s`.', len ) );
+			}
+			if ( (len*BYTES_PER_ELEMENT) > (buf.byteLength-byteOffset) ) {
+				throw new RangeError( format( 'invalid arguments. ArrayBuffer has insufficient capacity. Either decrease the array length or provide a bigger buffer. Minimum capacity: `%u`.', len*BYTES_PER_ELEMENT ) );
+			}
+			buf = new Uint8Array( buf, byteOffset, len );
+		}
+	}
+	setReadOnly( this, '_buffer', buf );
+	setReadOnly( this, '_length', buf.length );
+
+	return this;
+}
+
+/**
+* Size (in bytes) of each array element.
+*
+* @name BYTES_PER_ELEMENT
+* @memberof BooleanArray
+* @readonly
+* @type {PositiveInteger}
+* @default 1
+*
+* @example
+* var nbytes = BooleanArray.BYTES_PER_ELEMENT;
+* // returns 1
+*/
+setReadOnly( BooleanArray, 'BYTES_PER_ELEMENT', BYTES_PER_ELEMENT );
+
+/**
+* Constructor name.
+*
+* @name name
+* @memberof BooleanArray
+* @readonly
+* @type {string}
+* @default 'BooleanArray'
+*
+* @example
+* var str = BooleanArray.name;
+* // returns 'BooleanArray'
+*/
+setReadOnly( BooleanArray, 'name', 'BooleanArray' );
+
+/**
+* Creates a new boolean array from an array-like object or an iterable.
+*
+* @name from
+* @memberof BooleanArray
+* @type {Function}
+* @param {(Collection|Iterable)} src - array-like object or iterable
+* @param {Function} [clbk] - callback to invoke for each source element
+* @param {*} [thisArg] - context
+* @throws {TypeError} `this` context must be a constructor
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an array-like object or an iterable
+* @throws {TypeError} second argument must be a function
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = BooleanArray.from( [ true, false ] );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*
+* @example
+* function clbk( v ) {
+*     return !v;
+* }
+*
+* var arr = BooleanArray.from( [ true, false ], clbk );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 2
+*/
+setReadOnly( BooleanArray, 'from', function from( src ) {
+	var thisArg;
+	var nargs;
+	var clbk;
+	var out;
+	var buf;
+	var tmp;
+	var get;
+	var len;
+	var i;
+	if ( !isFunction( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` context must be a constructor.' );
+	}
+	if ( !isBooleanArrayConstructor( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	nargs = arguments.length;
+	if ( nargs > 1 ) {
+		clbk = arguments[ 1 ];
+		if ( !isFunction( clbk ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be a function. Value: `%s`.', clbk ) );
+		}
+		if ( nargs > 2 ) {
+			thisArg = arguments[ 2 ];
+		}
+	}
+	if ( isCollection( src ) ) {
+		if ( clbk ) {
+			len = src.length;
+			if ( src.get && src.set ) {
+				get = accessorGetter( 'default' );
+			} else {
+				get = getter( 'default' );
+			}
+			out = new this( len );
+			buf = out._buffer; // eslint-disable-line no-underscore-dangle
+			for ( i = 0; i < len; i++ ) {
+				buf[ i ] = Boolean( clbk.call( thisArg, get( src, i ), i ) );
+			}
+			return out;
+		}
+		return new this( src );
+	}
+	if ( isObject( src ) && HAS_ITERATOR_SYMBOL && isFunction( src[ ITERATOR_SYMBOL ] ) ) { // eslint-disable-line max-len
+		buf = src[ ITERATOR_SYMBOL ]();
+		if ( !isFunction( buf.next ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an array-like object or an iterable. Value: `%s`.', src ) );
+		}
+		if ( clbk ) {
+			tmp = fromIteratorMap( buf, clbk, thisArg );
+		} else {
+			tmp = fromIterator( buf );
+		}
+		len = tmp.length;
+		out = new this( len );
+		buf = out._buffer; // eslint-disable-line no-underscore-dangle
+		for ( i = 0; i < len; i++ ) {
+			buf[ i ] = tmp[ i ];
+		}
+		return out;
+	}
+	throw new TypeError( format( 'invalid argument. First argument must be an array-like object or an iterable. Value: `%s`.', src ) );
+});
+
+/**
+* Creates a new boolean array from a variable number of arguments.
+*
+* @name of
+* @memberof BooleanArray
+* @type {Function}
+* @param {...*} element - array elements
+* @throws {TypeError} `this` context must be a constructor
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = BooleanArray.of( true, true, true, true );
+* // returns <BooleanArray>
+*
+* var len = arr.length;
+* // returns 4
+*/
+setReadOnly( BooleanArray, 'of', function of() {
+	var args;
+	var i;
+	if ( !isFunction( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` context must be a constructor.' );
+	}
+	if ( !isBooleanArrayConstructor( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	args = [];
+	for ( i = 0; i < arguments.length; i++ ) {
+		args.push( arguments[ i ] );
+	}
+	return new this( args );
+});
+
+/**
+* Returns an array element located at integer position (index) `i`, with support for both nonnegative and negative integer indices.
+*
+* @name at
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} idx - element index
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} must provide an integer
+* @returns {(boolean|void)} array element
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.at( 0 );
+* // returns true
+*
+* v = arr.at( -1 );
+* // returns true
+*
+* v = arr.at( 100 );
+* // returns undefined
+*/
+setReadOnly( BooleanArray.prototype, 'at', function at( idx ) {
+	var buf;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide an integer. Value: `%s`.', idx ) );
+	}
+	len = this._length;
+	buf = this._buffer;
+	if ( idx < 0 ) {
+		idx += len;
+	}
+	if ( idx < 0 || idx >= len ) {
+		return;
+	}
+	return Boolean( buf[ idx ] );
+});
+
+/**
+* Pointer to the underlying data buffer.
+*
+* @name buffer
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {ArrayBuffer}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var buf = arr.buffer;
+* // returns <ArrayBuffer>
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'buffer', function get() {
+	return this._buffer.buffer;
+});
+
+/**
+* Size (in bytes) of the array.
+*
+* @name byteLength
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var byteLength = arr.byteLength;
+* // returns 10
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'byteLength', function get() {
+	return this._buffer.byteLength;
+});
+
+/**
+* Offset (in bytes) of the array from the start of its underlying `ArrayBuffer`.
+*
+* @name byteOffset
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var byteOffset = arr.byteOffset;
+* // returns 0
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'byteOffset', function get() {
+	return this._buffer.byteOffset;
+});
+
+/**
+* Size (in bytes) of each array element.
+*
+* @name BYTES_PER_ELEMENT
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {PositiveInteger}
+* @default 1
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var nbytes = arr.BYTES_PER_ELEMENT;
+* // returns 1
+*/
+setReadOnly( BooleanArray.prototype, 'BYTES_PER_ELEMENT', BooleanArray.BYTES_PER_ELEMENT );
+
+/**
+* Copies a sequence of elements within the array to the position starting at `target`.
+*
+* @name copyWithin
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} target - index at which to start copying elements
+* @param {integer} start - source index at which to copy elements from
+* @param {integer} [end] - source index at which to stop copying elements from
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} modified array
+*
+* @example
+* var arr = new BooleanArray( 4 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+* arr.set( true, 3 );
+*
+* // Copy the first two elements to the last two elements:
+* arr.copyWithin( 2, 0, 2 );
+*
+* var v = arr.get( 2 );
+* // returns true
+*
+* v = arr.get( 3 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'copyWithin', function copyWithin( target, start ) {
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	// FIXME: prefer a functional `copyWithin` implementation which addresses lack of universal browser support (e.g., IE11 and Safari) or ensure that typed arrays are polyfilled
+	if ( arguments.length === 2 ) {
+		this._buffer.copyWithin( target, start );
+	} else {
+		this._buffer.copyWithin( target, start, arguments[2] );
+	}
+	return this;
+});
+
+/**
+* Returns an iterator for iterating over array key-value pairs.
+*
+* @name entries
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var it = arr.entries();
+*
+* var v = it.next().value;
+* // returns [ 0, true ]
+*
+* v = it.next().value;
+* // returns [ 1, false ]
+*
+* v = it.next().value;
+* // returns [ 2, true ]
+*
+* var bool = it.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'entries', function entries() {
+	var self;
+	var iter;
+	var len;
+	var buf;
+	var FLG;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': [ i, Boolean( buf[ i ] ) ],
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.entries();
+	}
+});
+
+/**
+* Tests whether all elements in an array pass a test implemented by a predicate function.
+*
+* @name every
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether all elements pass a test
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( true, 1 );
+* arr.set( true, 2 );
+*
+* var bool = arr.every( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'every', function every( predicate, thisArg ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( !predicate.call( thisArg, Boolean( buf[ i ] ), i, this ) ) {
+			return false;
+		}
+	}
+	return true;
+});
+
+/**
+* Returns a modified typed array filled with a fill value.
+*
+* @name fill
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} value - fill value
+* @param {integer} [start=0] - starting index (inclusive)
+* @param {integer} [end] - ending index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean
+* @throws {TypeError} second argument must be an integer
+* @throws {TypeError} third argument must be an integer
+* @returns {BooleanArray} modified array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.fill( true, 1 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* v = arr.get( 1 );
+* // returns true
+*
+* v = arr.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'fill', function fill( value, start, end ) {
+	var buf;
+	var len;
+	var val;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( value ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', value ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( start ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', start ) );
+		}
+		if ( start < 0 ) {
+			start += len;
+			if ( start < 0 ) {
+				start = 0;
+			}
+		}
+		if ( arguments.length > 2 ) {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Third argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			}
+			if ( end > len ) {
+				end = len;
+			}
+		} else {
+			end = len;
+		}
+	} else {
+		start = 0;
+		end = len;
+	}
+	if ( value ) {
+		val = 1;
+	} else {
+		val = 0;
+	}
+	for ( i = start; i < end; i++ ) {
+		buf[ i ] = val;
+	}
+	return this;
+});
+
+/**
+* Returns a new array containing the elements of an array which pass a test implemented by a predicate function.
+*
+* @name filter
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - test function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} boolean array
+*
+* @example
+* function predicate( v ) {
+*     return ( v === true );
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.filter( predicate );
+* // returns <BooleanArray>
+*
+* var len = out.length;
+* // returns 2
+*
+* var v = out.get( 0 );
+* // returns true
+*
+* v = out.get( 1 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'filter', function filter( predicate, thisArg ) {
+	var buf;
+	var out;
+	var i;
+	var v;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			out.push( v );
+		}
+	}
+	return new this.constructor( out );
+});
+
+/**
+* Returns the first element in an array for which a predicate function returns a truthy value.
+*
+* @name find
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {(boolean|void)} array element or undefined
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.find( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'find', function find( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return v;
+		}
+	}
+});
+
+/**
+* Returns the index of the first element in an array for which a predicate function returns a truthy value.
+*
+* @name findIndex
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findIndex( predicate );
+* // returns 0
+*/
+setReadOnly( BooleanArray.prototype, 'findIndex', function findIndex( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLast
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {(boolean|void)} array element or undefined
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findLast( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'findLast', function findLast( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return v;
+		}
+	}
+});
+
+/**
+* Returns the index of the last element in an array for which a predicate function returns a truthy value.
+*
+* @name findLastIndex
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {integer} index or -1
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var v = arr.findLastIndex( predicate );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'findLastIndex', function findLastIndex( predicate, thisArg ) {
+	var buf;
+	var v;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = this._length-1; i >= 0; i-- ) {
+		v = Boolean( buf[ i ] );
+		if ( predicate.call( thisArg, v, i, this ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Invokes a function once for each array element.
+*
+* @name forEach
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} fcn - function to invoke
+* @param {*} [thisArg] - function invocation context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+*
+* @example
+* function log( v, i ) {
+*     console.log( '%s: %s', i, v.toString() );
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* arr.forEach( log );
+*/
+setReadOnly( BooleanArray.prototype, 'forEach', function forEach( fcn, thisArg ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', fcn ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		fcn.call( thisArg, Boolean( buf[ i ] ), i, this );
+	}
+});
+
+/**
+* Returns an array element.
+*
+* @name get
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {NonNegativeInteger} idx - element index
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} must provide a nonnegative integer
+* @returns {(boolean|void)} array element
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* arr.set( [ true, false ], 0 );
+*
+* v = arr.get( 0 );
+* // returns true
+*
+* v = arr.get( 100 );
+* // returns undefined
+*/
+setReadOnly( BooleanArray.prototype, 'get', function get( idx ) {
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isNonNegativeInteger( idx ) ) {
+		throw new TypeError( format( 'invalid argument. Must provide a nonnegative integer. Value: `%s`.', idx ) );
+	}
+	if ( idx >= this._length ) {
+		return;
+	}
+	return Boolean( this._buffer[ idx ] );
+});
+
+/**
+* Returns a boolean indicating whether an array includes a provided value.
+*
+* @name includes
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - search element
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {boolean} boolean indicating whether an array includes a value
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( true, 3 );
+* arr.set( true, 4 );
+*
+* var bool = arr.includes( true );
+* // returns true
+*
+* bool = arr.includes( false, 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'includes', function includes( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Returns the first index at which a given element can be found.
+*
+* @name indexOf
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - element to find
+* @param {integer} [fromIndex=0] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( true, 3 );
+* arr.set( true, 4 );
+*
+* var idx = arr.indexOf( true );
+* // returns 0
+*
+* idx = arr.indexOf( false, 2 );
+* // returns -1
+*
+* idx = arr.indexOf( false, -3 );
+* // returns -1
+*/
+setReadOnly( BooleanArray.prototype, 'indexOf', function indexOf( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+			if ( fromIndex < 0 ) {
+				fromIndex = 0;
+			}
+		}
+	} else {
+		fromIndex = 0;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i < this._length; i++ ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Returns a new string by concatenating all array elements.
+*
+* @name join
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {string} [separator=','] - element separator
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a string
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.join();
+* // returns 'true,false,true'
+*
+* str = arr.join( '|' );
+* // returns 'true|false|true'
+*/
+setReadOnly( BooleanArray.prototype, 'join', function join( separator ) {
+	var buf;
+	var out;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( arguments.length > 0 ) {
+		if ( !isString( separator ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be a string. Value: `%s`.', separator ) );
+		}
+	} else {
+		separator = ',';
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		if ( buf[i] ) {
+			out.push( 'true' );
+		} else {
+			out.push( 'false' );
+		}
+	}
+	return out.join( separator );
+});
+
+/**
+* Returns an iterator for iterating over each index key in a typed array.
+*
+* @name keys
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 2 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+*
+* var iter = arr.keys();
+*
+* var v = iter.next().value;
+* // returns 0
+*
+* v = iter.next().value;
+* // returns 1
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'keys', function keys() {
+	var self;
+	var iter;
+	var len;
+	var FLG;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': i,
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.keys();
+	}
+});
+
+/**
+* Returns the last index at which a given element can be found.
+*
+* @name lastIndexOf
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {boolean} searchElement - element to find
+* @param {integer} [fromIndex] - starting index (inclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a boolean value
+* @throws {TypeError} second argument must be an integer
+* @returns {integer} index or -1
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( true, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
+*
+* var idx = arr.lastIndexOf( true );
+* // returns 4
+*
+* idx = arr.lastIndexOf( false, 2 );
+* // returns -1
+*
+* idx = arr.lastIndexOf( false, -3 );
+* // returns -1
+*/
+setReadOnly( BooleanArray.prototype, 'lastIndexOf', function lastIndexOf( searchElement, fromIndex ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isBoolean( searchElement ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a boolean. Value: `%s`.', searchElement ) );
+	}
+	if ( arguments.length > 1 ) {
+		if ( !isInteger( fromIndex ) ) {
+			throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', fromIndex ) );
+		}
+		if ( fromIndex >= this._length ) {
+			fromIndex = this._length - 1;
+		} else if ( fromIndex < 0 ) {
+			fromIndex += this._length;
+		}
+	} else {
+		fromIndex = this._length - 1;
+	}
+	buf = this._buffer;
+	for ( i = fromIndex; i >= 0; i-- ) {
+		if ( searchElement === Boolean( buf[ i ] ) ) {
+			return i;
+		}
+	}
+	return -1;
+});
+
+/**
+* Number of array elements.
+*
+* @name length
+* @memberof BooleanArray.prototype
+* @readonly
+* @type {NonNegativeInteger}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var len = arr.length;
+* // returns 10
+*/
+setReadOnlyAccessor( BooleanArray.prototype, 'length', function get() {
+	return this._length;
+});
+
+/**
+* Returns a new array with each element being the result of a provided callback function.
+*
+* @name map
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} fcn - callback function
+* @param {*} [thisArg] - callback function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} new boolean array
+*
+* @example
+* function invert( v ) {
+*     return !v;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.map( invert );
+* // returns <BooleanArray>
+*
+* var z = out.get( 0 );
+* // returns false
+*
+* z = out.get( 1 );
+* // returns true
+*
+* z = out.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'map', function map( fcn, thisArg ) {
+	var outbuf;
+	var out;
+	var buf;
+	var i;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( fcn ) ) {
+		throw new TypeError( 'invalid argument. First argument must be a function. Value: `%s`.', fcn );
+	}
+	buf = this._buffer;
+	out = new this.constructor( this._length );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < this._length; i++ ) {
+		outbuf[ i ] = Boolean( fcn.call( thisArg, Boolean( buf[ i ] ), i, this ) );
+	}
+	return out;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduce
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* function reducer( acc, v ) {
+*     if ( v ) {
+*          return acc + 1;
+*     }
+*     return acc;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.reduce( reducer, 0 );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'reduce', function reduce( reducer, initialValue ) {
+	var buf;
+	var len;
+	var acc;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = 0;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = Boolean( buf[ 0 ] );
+		i = 1;
+	}
+	for ( ; i < len; i++ ) {
+		acc = reducer( acc, Boolean( buf[ i ] ), i, this );
+	}
+	return acc;
+});
+
+/**
+* Applies a provided callback function to each element of the array, in reverse order, passing in the return value from the calculation on the preceding element and returning the accumulated result upon completion.
+*
+* @name reduceRight
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} reducer - callback function
+* @param {*} [initialValue] - initial value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {Error} if not provided an initial value, the array must have at least one element
+* @returns {*} accumulated result
+*
+* @example
+* function reducer( acc, v ) {
+*     if ( v ) {
+*          return acc + 1;
+*     }
+*     return acc;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.reduceRight( reducer, 0 );
+* // returns 2
+*/
+setReadOnly( BooleanArray.prototype, 'reduceRight', function reduceRight( reducer, initialValue ) {
+	var buf;
+	var len;
+	var acc;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( reducer ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', reducer ) );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length > 1 ) {
+		acc = initialValue;
+		i = len - 1;
+	} else {
+		if ( len === 0 ) {
+			throw new Error( 'invalid operation. If not provided an initial value, an array must contain at least one element.' );
+		}
+		acc = Boolean( buf[ len-1 ] );
+		i = len - 2;
+	}
+	for ( ; i >= 0; i-- ) {
+		acc = reducer( acc, Boolean( buf[ i ] ), i, this );
+	}
+	return acc;
+});
+
+/**
+* Reverses an array in-place.
+*
+* @name reverse
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} reversed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+*
+* var out = arr.reverse();
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*
+* v = out.get( 1 );
+* // returns false
+*
+* v = out.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'reverse', function reverse() {
+	var buf;
+	var tmp;
+	var len;
+	var N;
+	var i;
+	var j;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	N = floor( len / 2 );
+	for ( i = 0; i < N; i++ ) {
+		j = len - i - 1;
+		tmp = buf[ i ];
+		buf[ i ] = buf[ j ];
+		buf[ j ] = tmp;
+	}
+	return this;
+});
+
+/**
+* Sets an array element.
+*
+* ## Notes
+*
+* -   When provided a typed array, we must check whether the source array shares the same buffer as the target array and whether the underlying memory overlaps. In particular, we are concerned with the following scenario:
+*
+*     ```text
+*     buf:                ---------------------
+*     src: ---------------------
+*     ```
+*
+*     In the above, as we copy values from `src`, we will overwrite values in the `src` view, resulting in duplicated values copied into the end of `buf`, which is not intended. Hence, to avoid overwriting source values, we must **copy** source values to a temporary array.
+*
+*     In the other overlapping scenario,
+*
+*     ```text
+*     buf: ---------------------
+*     src:                ---------------------
+*     ```
+*
+*     by the time we begin copying into the overlapping region, we are copying from the end of `src`, a non-overlapping region, which means we don't run the risk of copying copied values, rather than the original `src` values, as intended.
+*
+* @name set
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {(Collection|BooleanArray|*)} value - value(s)
+* @param {NonNegativeInteger} [i=0] - element index at which to start writing values
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} index argument must be a nonnegative integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {RangeError} target array lacks sufficient storage to accommodate source values
+* @returns {void}
+*
+* @example
+* var arr = new BooleanArray( 10 );
+*
+* var v = arr.get( 0 );
+* // returns false
+*
+* arr.set( [ true, false ], 0 );
+*
+* v = arr.get( 0 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'set', function set( value ) {
+	var sbuf;
+	var idx;
+	var buf;
+	var tmp;
+	var N;
+	var i;
+	var j;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	if ( arguments.length > 1 ) {
+		idx = arguments[ 1 ];
+		if ( !isNonNegativeInteger( idx ) ) {
+			throw new TypeError( format( 'invalid argument. Index argument must be a nonnegative integer. Value: `%s`.', idx ) );
+		}
+	} else {
+		idx = 0;
+	}
+	if ( isCollection( value ) ) {
+		N = value.length;
+		if ( idx+N > this._length ) {
+			throw new RangeError( 'invalid arguments. Target array lacks sufficient storage to accommodate source values.' );
+		}
+		if ( isBooleanArray( value ) ) {
+			sbuf = value._buffer; // eslint-disable-line no-underscore-dangle
+		} else {
+			sbuf = value;
+		}
+		// Check for overlapping memory...
+		j = buf.byteOffset + (idx*BYTES_PER_ELEMENT);
+		if (
+			sbuf.buffer === buf.buffer &&
+			(
+				sbuf.byteOffset < j &&
+				sbuf.byteOffset+sbuf.byteLength > j
+			)
+		) {
+			// We need to copy source values...
+			tmp = new Uint8Array( sbuf.length );
+			for ( i = 0; i < sbuf.length; i++ ) {
+				tmp[ i ] = sbuf[ i ]; // TODO: handle accessor arrays
+			}
+			sbuf = tmp;
+		}
+		for ( i = 0; i < N; idx++, i++ ) {
+			buf[ idx ] = ( sbuf[ i ] ) ? 1 : 0;
+		}
+		return;
+	}
+	if ( idx >= this._length ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%u`.', idx ) );
+	}
+	buf[ idx ] = ( value ) ? 1 : 0;
+});
+
+/**
+* Copies a portion of a typed array to a new typed array.
+*
+* @name slice
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} [begin] - start index (inclusive)
+* @param {integer} [end] - end index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be integer
+* @throws {TypeError} second argument must be integer
+* @returns {BooleanArray} boolean array
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
+*
+* var out = arr.slice();
+* // returns <BooleanArray>
+*
+* var len = out.length;
+* // returns 5
+*
+* var bool = out.get( 0 );
+* // returns true
+*
+* bool = out.get( len-1 );
+* // returns true
+*
+* out = arr.slice( 1, -2 );
+* // returns <BooleanArray>
+*
+* len = out.length;
+* // returns 2
+*
+* bool = out.get( 0 );
+* // returns false
+*
+* bool = out.get( len-1 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'slice', function slice( begin, end ) {
+	var outlen;
+	var outbuf;
+	var out;
+	var buf;
+	var len;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin < end ) {
+		outlen = end - begin;
+	} else {
+		outlen = 0;
+	}
+	out = new this.constructor( outlen );
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < outlen; i++ ) {
+		outbuf[ i ] = buf[ i+begin ];
+	}
+	return out;
+});
+
+/**
+* Tests whether at least one element in an array passes a test implemented by a predicate function.
+*
+* @name some
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} predicate - predicate function
+* @param {*} [thisArg] - predicate function execution context
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {boolean} boolean indicating whether at least one element passes a test
+*
+* @example
+* function predicate( v ) {
+*     return v === true;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( false, 0 );
+* arr.set( true, 1 );
+* arr.set( false, 2 );
+*
+* var bool = arr.some( predicate );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'some', function some( predicate, thisArg ) {
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isFunction( predicate ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', predicate ) );
+	}
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( predicate.call( thisArg, Boolean( buf[ i ] ), i, this ) ) {
+			return true;
+		}
+	}
+	return false;
+});
+
+/**
+* Sorts an array in-place.
+*
+* @name sort
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} [compareFcn] - comparison function
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} sorted array
+*
+* @example
+* function compare( a, b ) {
+*    if ( a === false ) {
+*        if ( b === false ) {
+*            return 0;
+*        }
+*        return 1;
+*    }
+*    if ( b === true ) {
+*        return 0;
+*    }
+*    return -1;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* arr.sort( compare );
+*
+* var v = arr.get( 0 );
+* // returns true
+*
+* v = arr.get( 1 );
+* // returns true
+*
+* v = arr.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'sort', function sort( compareFcn ) {
+	var buf;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	if ( arguments.length === 0 ) {
+		buf.sort();
+		return this;
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	buf.sort( compare );
+	return this;
+
+	/**
+	* Comparison function for sorting.
+	*
+	* @private
+	* @param {boolean} a - first boolean value for comparison
+	* @param {boolean} b - second boolean value for comparison
+	* @returns {number} comparison result
+	*/
+	function compare( a, b ) {
+		return compareFcn( Boolean( a ), Boolean( b ) );
+	}
+});
+
+/**
+* Creates a new typed array view over the same underlying `ArrayBuffer` and with the same underlying data type as the host array.
+*
+* @name subarray
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} [begin] - start index (inclusive)
+* @param {integer} [end] - end index (exclusive)
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an integer
+* @throws {TypeError} second argument must be an integer
+* @returns {BooleanArray} subarray
+*
+* @example
+* var arr = new BooleanArray( 5 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+* arr.set( false, 3 );
+* arr.set( true, 4 );
+*
+* var subarr = arr.subarray();
+* // returns <BooleanArray>
+*
+* var len = subarr.length;
+* // returns 5
+*
+* var bool = subarr.get( 0 );
+* // returns true
+*
+* bool = subarr.get( len-1 );
+* // returns true
+*
+* subarr = arr.subarray( 1, -2 );
+* // returns <BooleanArray>
+*
+* len = subarr.length;
+* // returns 2
+*
+* bool = subarr.get( 0 );
+* // returns false
+*
+* bool = subarr.get( len-1 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'subarray', function subarray( begin, end ) {
+	var offset;
+	var buf;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	buf = this._buffer;
+	len = this._length;
+	if ( arguments.length === 0 ) {
+		begin = 0;
+		end = len;
+	} else {
+		if ( !isInteger( begin ) ) {
+			throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', begin ) );
+		}
+		if ( begin < 0 ) {
+			begin += len;
+			if ( begin < 0 ) {
+				begin = 0;
+			}
+		}
+		if ( arguments.length === 1 ) {
+			end = len;
+		} else {
+			if ( !isInteger( end ) ) {
+				throw new TypeError( format( 'invalid argument. Second argument must be an integer. Value: `%s`.', end ) );
+			}
+			if ( end < 0 ) {
+				end += len;
+				if ( end < 0 ) {
+					end = 0;
+				}
+			} else if ( end > len ) {
+				end = len;
+			}
+		}
+	}
+	if ( begin >= len ) {
+		len = 0;
+		offset = buf.byteLength;
+	} else if ( begin >= end ) {
+		len = 0;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	} else {
+		len = end - begin;
+		offset = buf.byteOffset + ( begin*BYTES_PER_ELEMENT );
+	}
+	return new this.constructor( buf.buffer, offset, ( len < 0 ) ? 0 : len );
+});
+
+/**
+* Serializes an array as a locale-specific string.
+*
+* @name toLocaleString
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {(string|Array<string>)} [locales] - locale identifier(s)
+* @param {Object} [options] - configuration options
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a string or an array of strings
+* @throws {TypeError} options argument must be an object
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.toLocaleString();
+* // returns 'true,false,true'
+*/
+setReadOnly( BooleanArray.prototype, 'toLocaleString', function toLocaleString( locales, options ) {
+	var opts;
+	var loc;
+	var out;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( arguments.length === 0 ) {
+		loc = [];
+	} else if ( isString( locales ) || isStringArray( locales ) ) {
+		loc = locales;
+	} else {
+		throw new TypeError( format( 'invalid argument. First argument must be a string or an array of strings. Value: `%s`.', locales ) );
+	}
+	if ( arguments.length < 2 ) {
+		opts = {};
+	} else if ( isObject( options ) ) {
+		opts = options;
+	} else {
+		throw new TypeError( format( 'invalid argument. Options argument must be an object. Value: `%s`.', options ) );
+	}
+	buf = this._buffer;
+	out = [];
+	for ( i = 0; i < this._length; i++ ) {
+		out.push( Boolean( buf[ i ] ).toLocaleString( loc, opts ) );
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns a new typed array containing the elements in reversed order.
+*
+* @name toReversed
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {BooleanArray} reversed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( false, 2 );
+*
+* var out = arr.toReversed();
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*
+* v = out.get( 1 );
+* // returns false
+*
+* v = out.get( 2 );
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'toReversed', function toReversed() {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		outbuf[ i ] = buf[ len - i - 1 ];
+	}
+	return out;
+});
+
+/**
+* Returns a new typed array containing the elements in sorted order.
+*
+* @name toSorted
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {Function} [compareFcn] - comparison function
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be a function
+* @returns {BooleanArray} sorted array
+*
+* @example
+* function compare( a, b ) {
+*    if ( a === false ) {
+*        if ( b === false ) {
+*            return 0;
+*        }
+*        return 1;
+*    }
+*    if ( b === true ) {
+*        return 0;
+*    }
+*    return -1;
+* }
+*
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.sort( compare );
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns true
+*
+* v = out.get( 1 );
+* // returns true
+*
+* v = out.get( 2 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'toSorted', function toSorted( compareFcn ) {
+	var outbuf;
+	var out;
+	var len;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	len = this._length;
+	out = new this.constructor( len );
+	buf = this._buffer;
+	outbuf = out._buffer; // eslint-disable-line no-underscore-dangle
+	for ( i = 0; i < len; i++ ) {
+		outbuf[ i ] = buf[ i ];
+	}
+	if ( arguments.length === 0 ) {
+		outbuf.sort();
+		return out;
+	}
+	if ( !isFunction( compareFcn ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be a function. Value: `%s`.', compareFcn ) );
+	}
+	outbuf.sort( compare );
+	return out;
+
+	/**
+	* Comparison function for sorting.
+	*
+	* @private
+	* @param {boolean} a - first boolean value for comparison
+	* @param {boolean} b - second boolean value for comparison
+	* @returns {number} comparison result
+	*/
+	function compare( a, b ) {
+		return compareFcn( Boolean( a ), Boolean( b ) );
+	}
+});
+
+/**
+* Serializes an array as a string.
+*
+* @name toString
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {string} string representation
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var str = arr.toString();
+* // returns 'true,false,true'
+*/
+setReadOnly( BooleanArray.prototype, 'toString', function toString() {
+	var out;
+	var buf;
+	var i;
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	out = [];
+	buf = this._buffer;
+	for ( i = 0; i < this._length; i++ ) {
+		if ( buf[i] ) {
+			out.push( 'true' );
+		} else {
+			out.push( 'false' );
+		}
+	}
+	return out.join( ',' );
+});
+
+/**
+* Returns an iterator for iterating over each value in a typed array.
+*
+* @name values
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @throws {TypeError} `this` must be a boolean array
+* @returns {Iterator} iterator
+*
+* @example
+* var arr = new BooleanArray( 2 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+*
+* var iter = arr.values();
+*
+* var v = iter.next().value;
+* // returns true
+*
+* v = iter.next().value;
+* // returns false
+*
+* var bool = iter.next().done;
+* // returns true
+*/
+setReadOnly( BooleanArray.prototype, 'values', function values() {
+	var iter;
+	var self;
+	var len;
+	var FLG;
+	var buf;
+	var i;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	self = this;
+	buf = this._buffer;
+	len = this._length;
+
+	// Initialize an iteration index:
+	i = -1;
+
+	// Create an iterator protocol-compliant object:
+	iter = {};
+	setReadOnly( iter, 'next', next );
+	setReadOnly( iter, 'return', end );
+
+	if ( ITERATOR_SYMBOL ) {
+		setReadOnly( iter, ITERATOR_SYMBOL, factory );
+	}
+	return iter;
+
+	/**
+	* Returns an iterator protocol-compliant object containing the next iterated value.
+	*
+	* @private
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function next() {
+		i += 1;
+		if ( FLG || i >= len ) {
+			return {
+				'done': true
+			};
+		}
+		return {
+			'value': Boolean( buf[ i ] ),
+			'done': false
+		};
+	}
+
+	/**
+	* Finishes an iterator.
+	*
+	* @private
+	* @param {*} [value] - value to return
+	* @returns {Object} iterator protocol-compliant object
+	*/
+	function end( value ) {
+		FLG = true;
+		if ( arguments.length ) {
+			return {
+				'value': value,
+				'done': true
+			};
+		}
+		return {
+			'done': true
+		};
+	}
+
+	/**
+	* Returns a new iterator.
+	*
+	* @private
+	* @returns {Iterator} iterator
+	*/
+	function factory() {
+		return self.values();
+	}
+});
+
+/**
+* Returns a new typed array with the element at a provided index replaced with a provided value.
+*
+* @name with
+* @memberof BooleanArray.prototype
+* @type {Function}
+* @param {integer} index - element index
+* @param {boolean} value - new value
+* @throws {TypeError} `this` must be a boolean array
+* @throws {TypeError} first argument must be an integer
+* @throws {RangeError} index argument is out-of-bounds
+* @throws {TypeError} second argument must be a boolean
+* @returns {BooleanArray} new typed array
+*
+* @example
+* var arr = new BooleanArray( 3 );
+*
+* arr.set( true, 0 );
+* arr.set( false, 1 );
+* arr.set( true, 2 );
+*
+* var out = arr.with( 0, false );
+* // returns <BooleanArray>
+*
+* var v = out.get( 0 );
+* // returns false
+*/
+setReadOnly( BooleanArray.prototype, 'with', function copyWith( index, value ) {
+	var buf;
+	var out;
+	var len;
+
+	if ( !isBooleanArray( this ) ) {
+		throw new TypeError( 'invalid invocation. `this` is not a boolean array.' );
+	}
+	if ( !isInteger( index ) ) {
+		throw new TypeError( format( 'invalid argument. First argument must be an integer. Value: `%s`.', index ) );
+	}
+	len = this._length;
+	if ( index < 0 ) {
+		index += len;
+	}
+	if ( index < 0 || index >= len ) {
+		throw new RangeError( format( 'invalid argument. Index argument is out-of-bounds. Value: `%s`.', index ) );
+	}
+	if ( !isBoolean( value ) ) {
+		throw new TypeError( format( 'invalid argument. Second argument must be a boolean. Value: `%s`.', value ) );
+	}
+	out = new this.constructor( this._buffer );
+	buf = out._buffer; // eslint-disable-line no-underscore-dangle
+	if ( value ) {
+		buf[ index ] = 1;
+	} else {
+		buf[ index ] = 0;
+	}
+	return out;
+});
+
+
+// EXPORTS //
+
+module.exports = BooleanArray;
+
+},{"./from_array.js":9,"./from_iterator.js":10,"./from_iterator_map.js":11,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":7,"@stdlib/array/uint8":39,"@stdlib/assert/has-iterator-symbol-support":56,"@stdlib/assert/is-arraybuffer":82,"@stdlib/assert/is-boolean":84,"@stdlib/assert/is-collection":92,"@stdlib/assert/is-function":106,"@stdlib/assert/is-integer":108,"@stdlib/assert/is-nonnegative-integer":120,"@stdlib/assert/is-object":132,"@stdlib/assert/is-string":145,"@stdlib/assert/is-string-array":144,"@stdlib/boolean/ctor":163,"@stdlib/math/base/special/floor":196,"@stdlib/string/format":265,"@stdlib/symbol/iterator":272,"@stdlib/utils/define-nonenumerable-read-only-accessor":276,"@stdlib/utils/define-nonenumerable-read-only-property":278}],14:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
 * Copyright (c) 2018 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -888,7 +3645,7 @@ if ( hasArrayBufferSupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":10,"./polyfill.js":11,"@stdlib/assert/has-arraybuffer-support":38}],10:[function(require,module,exports){
+},{"./main.js":15,"./polyfill.js":16,"@stdlib/assert/has-arraybuffer-support":43}],15:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -918,7 +3675,7 @@ var ctor = ( typeof ArrayBuffer === 'function' ) ? ArrayBuffer : void 0; // esli
 
 module.exports = ctor;
 
-},{}],11:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -957,7 +3714,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],12:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1020,7 +3777,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":89,"@stdlib/complex/float64/imag":172,"@stdlib/complex/float64/real":174}],13:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":94,"@stdlib/complex/float64/imag":177,"@stdlib/complex/float64/real":179}],18:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1087,7 +3844,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":73,"@stdlib/assert/is-complex-like":89,"@stdlib/complex/float64/imag":172,"@stdlib/complex/float64/real":174,"@stdlib/string/format":260}],14:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":78,"@stdlib/assert/is-complex-like":94,"@stdlib/complex/float64/imag":177,"@stdlib/complex/float64/real":179,"@stdlib/string/format":265}],19:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1159,7 +3916,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":73,"@stdlib/assert/is-complex-like":89,"@stdlib/complex/float64/imag":172,"@stdlib/complex/float64/real":174,"@stdlib/string/format":260}],15:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":78,"@stdlib/assert/is-complex-like":94,"@stdlib/complex/float64/imag":177,"@stdlib/complex/float64/real":179,"@stdlib/string/format":265}],20:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1255,7 +4012,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":16}],16:[function(require,module,exports){
+},{"./main.js":21}],21:[function(require,module,exports){
 /* eslint-disable no-restricted-syntax, max-lines, no-invalid-this */
 
 /**
@@ -4294,7 +7051,7 @@ setReadOnly( Complex128Array.prototype, 'with', function copyWith( index, value 
 
 module.exports = Complex128Array;
 
-},{"./from_array.js":12,"./from_iterator.js":13,"./from_iterator_map.js":14,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":3,"@stdlib/array/base/assert/is-complex64array":5,"@stdlib/array/base/getter":7,"@stdlib/array/float64":28,"@stdlib/assert/has-iterator-symbol-support":51,"@stdlib/assert/is-array":75,"@stdlib/assert/is-array-like-object":73,"@stdlib/assert/is-arraybuffer":77,"@stdlib/assert/is-collection":87,"@stdlib/assert/is-complex-like":89,"@stdlib/assert/is-function":101,"@stdlib/assert/is-nonnegative-integer":115,"@stdlib/assert/is-object":127,"@stdlib/assert/is-string":140,"@stdlib/assert/is-string-array":139,"@stdlib/complex/float64/ctor":168,"@stdlib/complex/float64/imag":172,"@stdlib/complex/float64/real":174,"@stdlib/math/base/assert/is-even":183,"@stdlib/math/base/assert/is-integer":185,"@stdlib/math/base/special/floor":191,"@stdlib/strided/base/reinterpret-complex128":244,"@stdlib/strided/base/reinterpret-complex64":246,"@stdlib/string/format":260,"@stdlib/symbol/iterator":267,"@stdlib/utils/define-nonenumerable-read-only-accessor":271,"@stdlib/utils/define-nonenumerable-read-only-property":273}],17:[function(require,module,exports){
+},{"./from_array.js":17,"./from_iterator.js":18,"./from_iterator_map.js":19,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":3,"@stdlib/array/base/assert/is-complex64array":5,"@stdlib/array/base/getter":7,"@stdlib/array/float64":33,"@stdlib/assert/has-iterator-symbol-support":56,"@stdlib/assert/is-array":80,"@stdlib/assert/is-array-like-object":78,"@stdlib/assert/is-arraybuffer":82,"@stdlib/assert/is-collection":92,"@stdlib/assert/is-complex-like":94,"@stdlib/assert/is-function":106,"@stdlib/assert/is-nonnegative-integer":120,"@stdlib/assert/is-object":132,"@stdlib/assert/is-string":145,"@stdlib/assert/is-string-array":144,"@stdlib/complex/float64/ctor":173,"@stdlib/complex/float64/imag":177,"@stdlib/complex/float64/real":179,"@stdlib/math/base/assert/is-even":188,"@stdlib/math/base/assert/is-integer":190,"@stdlib/math/base/special/floor":196,"@stdlib/strided/base/reinterpret-complex128":249,"@stdlib/strided/base/reinterpret-complex64":251,"@stdlib/string/format":265,"@stdlib/symbol/iterator":272,"@stdlib/utils/define-nonenumerable-read-only-accessor":276,"@stdlib/utils/define-nonenumerable-read-only-property":278}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4357,7 +7114,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":89,"@stdlib/complex/float32/imag":164,"@stdlib/complex/float32/real":166}],18:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":94,"@stdlib/complex/float32/imag":169,"@stdlib/complex/float32/real":171}],23:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4424,7 +7181,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":73,"@stdlib/assert/is-complex-like":89,"@stdlib/complex/float32/imag":164,"@stdlib/complex/float32/real":166,"@stdlib/string/format":260}],19:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":78,"@stdlib/assert/is-complex-like":94,"@stdlib/complex/float32/imag":169,"@stdlib/complex/float32/real":171,"@stdlib/string/format":265}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4496,7 +7253,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":73,"@stdlib/assert/is-complex-like":89,"@stdlib/complex/float32/imag":164,"@stdlib/complex/float32/real":166,"@stdlib/string/format":260}],20:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":78,"@stdlib/assert/is-complex-like":94,"@stdlib/complex/float32/imag":169,"@stdlib/complex/float32/real":171,"@stdlib/string/format":265}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4592,7 +7349,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":21}],21:[function(require,module,exports){
+},{"./main.js":26}],26:[function(require,module,exports){
 /* eslint-disable no-restricted-syntax, max-lines, no-invalid-this */
 
 /**
@@ -7629,7 +10386,7 @@ setReadOnly( Complex64Array.prototype, 'with', function copyWith( index, value )
 
 module.exports = Complex64Array;
 
-},{"./from_array.js":17,"./from_iterator.js":18,"./from_iterator_map.js":19,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":3,"@stdlib/array/base/assert/is-complex64array":5,"@stdlib/array/base/getter":7,"@stdlib/array/float32":25,"@stdlib/assert/has-iterator-symbol-support":51,"@stdlib/assert/is-array":75,"@stdlib/assert/is-array-like-object":73,"@stdlib/assert/is-arraybuffer":77,"@stdlib/assert/is-collection":87,"@stdlib/assert/is-complex-like":89,"@stdlib/assert/is-function":101,"@stdlib/assert/is-nonnegative-integer":115,"@stdlib/assert/is-object":127,"@stdlib/assert/is-string":140,"@stdlib/assert/is-string-array":139,"@stdlib/complex/float32/ctor":160,"@stdlib/complex/float32/imag":164,"@stdlib/complex/float32/real":166,"@stdlib/math/base/assert/is-even":183,"@stdlib/math/base/assert/is-integer":185,"@stdlib/math/base/special/floor":191,"@stdlib/strided/base/reinterpret-complex128":244,"@stdlib/strided/base/reinterpret-complex64":246,"@stdlib/string/format":260,"@stdlib/symbol/iterator":267,"@stdlib/utils/define-nonenumerable-read-only-accessor":271,"@stdlib/utils/define-nonenumerable-read-only-property":273}],22:[function(require,module,exports){
+},{"./from_array.js":22,"./from_iterator.js":23,"./from_iterator_map.js":24,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":3,"@stdlib/array/base/assert/is-complex64array":5,"@stdlib/array/base/getter":7,"@stdlib/array/float32":30,"@stdlib/assert/has-iterator-symbol-support":56,"@stdlib/assert/is-array":80,"@stdlib/assert/is-array-like-object":78,"@stdlib/assert/is-arraybuffer":82,"@stdlib/assert/is-collection":92,"@stdlib/assert/is-complex-like":94,"@stdlib/assert/is-function":106,"@stdlib/assert/is-nonnegative-integer":120,"@stdlib/assert/is-object":132,"@stdlib/assert/is-string":145,"@stdlib/assert/is-string-array":144,"@stdlib/complex/float32/ctor":165,"@stdlib/complex/float32/imag":169,"@stdlib/complex/float32/real":171,"@stdlib/math/base/assert/is-even":188,"@stdlib/math/base/assert/is-integer":190,"@stdlib/math/base/special/floor":196,"@stdlib/strided/base/reinterpret-complex128":249,"@stdlib/strided/base/reinterpret-complex64":251,"@stdlib/string/format":265,"@stdlib/symbol/iterator":272,"@stdlib/utils/define-nonenumerable-read-only-accessor":276,"@stdlib/utils/define-nonenumerable-read-only-property":278}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7687,7 +10444,7 @@ if ( hasDataViewSupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":23,"./polyfill.js":24,"@stdlib/assert/has-dataview-support":43}],23:[function(require,module,exports){
+},{"./main.js":28,"./polyfill.js":29,"@stdlib/assert/has-dataview-support":48}],28:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7717,7 +10474,7 @@ var ctor = ( typeof DataView === 'function' ) ? DataView : void 0; // eslint-dis
 
 module.exports = ctor;
 
-},{}],24:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7756,7 +10513,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],25:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7810,7 +10567,7 @@ if ( hasFloat32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":26,"./polyfill.js":27,"@stdlib/assert/has-float32array-support":46}],26:[function(require,module,exports){
+},{"./main.js":31,"./polyfill.js":32,"@stdlib/assert/has-float32array-support":51}],31:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7840,7 +10597,7 @@ var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // es
 
 module.exports = ctor;
 
-},{}],27:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7879,7 +10636,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],28:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7933,7 +10690,7 @@ if ( hasFloat64ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":29,"./polyfill.js":30,"@stdlib/assert/has-float64array-support":49}],29:[function(require,module,exports){
+},{"./main.js":34,"./polyfill.js":35,"@stdlib/assert/has-float64array-support":54}],34:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7963,7 +10720,7 @@ var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // es
 
 module.exports = ctor;
 
-},{}],30:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8002,7 +10759,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],31:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8056,7 +10813,7 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":32,"./polyfill.js":33,"@stdlib/assert/has-uint16array-support":61}],32:[function(require,module,exports){
+},{"./main.js":37,"./polyfill.js":38,"@stdlib/assert/has-uint16array-support":66}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8086,7 +10843,7 @@ var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // esli
 
 module.exports = ctor;
 
-},{}],33:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8125,7 +10882,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],34:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8179,7 +10936,7 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":35,"./polyfill.js":36,"@stdlib/assert/has-uint8array-support":64}],35:[function(require,module,exports){
+},{"./main.js":40,"./polyfill.js":41,"@stdlib/assert/has-uint8array-support":69}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8209,7 +10966,7 @@ var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint
 
 module.exports = ctor;
 
-},{}],36:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8248,7 +11005,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],37:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8278,7 +11035,7 @@ var main = ( typeof ArrayBuffer === 'function' ) ? ArrayBuffer : null; // eslint
 
 module.exports = main;
 
-},{}],38:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8320,7 +11077,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":39}],39:[function(require,module,exports){
+},{"./main.js":44}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8394,7 +11151,7 @@ function hasArrayBufferSupport() {
 
 module.exports = hasArrayBufferSupport;
 
-},{"./arraybuffer.js":37,"@stdlib/array/float64":28,"@stdlib/assert/is-arraybuffer":77}],40:[function(require,module,exports){
+},{"./arraybuffer.js":42,"@stdlib/array/float64":33,"@stdlib/assert/is-arraybuffer":82}],45:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8436,7 +11193,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":41}],41:[function(require,module,exports){
+},{"./main.js":46}],46:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8492,7 +11249,7 @@ function hasBigIntSupport() {
 
 module.exports = hasBigIntSupport;
 
-},{"@stdlib/utils/global":290}],42:[function(require,module,exports){
+},{"@stdlib/utils/global":295}],47:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8522,7 +11279,7 @@ var main = ( typeof DataView === 'function' ) ? DataView : null; // eslint-disab
 
 module.exports = main;
 
-},{}],43:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8564,7 +11321,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":44}],44:[function(require,module,exports){
+},{"./main.js":49}],49:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8639,7 +11396,7 @@ function hasDataViewSupport() {
 
 module.exports = hasDataViewSupport;
 
-},{"./dataview.js":42,"@stdlib/array/buffer":9,"@stdlib/assert/is-dataview":91}],45:[function(require,module,exports){
+},{"./dataview.js":47,"@stdlib/array/buffer":14,"@stdlib/assert/is-dataview":96}],50:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8669,7 +11426,7 @@ var main = ( typeof Float32Array === 'function' ) ? Float32Array : null; // esli
 
 module.exports = main;
 
-},{}],46:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8711,7 +11468,7 @@ var hasFloat32ArraySupport = require( './main.js' );
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./main.js":47}],47:[function(require,module,exports){
+},{"./main.js":52}],52:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8778,7 +11535,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":45,"@stdlib/assert/is-float32array":97,"@stdlib/constants/float64/pinf":179}],48:[function(require,module,exports){
+},{"./float32array.js":50,"@stdlib/assert/is-float32array":102,"@stdlib/constants/float64/pinf":184}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8808,7 +11565,7 @@ var main = ( typeof Float64Array === 'function' ) ? Float64Array : null; // esli
 
 module.exports = main;
 
-},{}],49:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8850,7 +11607,7 @@ var hasFloat64ArraySupport = require( './main.js' );
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./main.js":50}],50:[function(require,module,exports){
+},{"./main.js":55}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8916,7 +11673,7 @@ function hasFloat64ArraySupport() {
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./float64array.js":48,"@stdlib/assert/is-float64array":99}],51:[function(require,module,exports){
+},{"./float64array.js":53,"@stdlib/assert/is-float64array":104}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -8958,7 +11715,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":52}],52:[function(require,module,exports){
+},{"./main.js":57}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9010,7 +11767,7 @@ function hasIteratorSymbolSupport() {
 
 module.exports = hasIteratorSymbolSupport;
 
-},{"@stdlib/assert/has-own-property":53,"@stdlib/symbol/ctor":265}],53:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":58,"@stdlib/symbol/ctor":270}],58:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9059,7 +11816,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":54}],54:[function(require,module,exports){
+},{"./main.js":59}],59:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9125,7 +11882,7 @@ function hasOwnProp( value, property ) {
 
 module.exports = hasOwnProp;
 
-},{}],55:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9174,7 +11931,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":56}],56:[function(require,module,exports){
+},{"./main.js":61}],61:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9235,7 +11992,7 @@ function hasProp( value, property ) {
 
 module.exports = hasProp;
 
-},{}],57:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9277,7 +12034,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":58}],58:[function(require,module,exports){
+},{"./main.js":63}],63:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9321,7 +12078,7 @@ function hasSymbolSupport() {
 
 module.exports = hasSymbolSupport;
 
-},{}],59:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9363,7 +12120,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":60}],60:[function(require,module,exports){
+},{"./main.js":65}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9414,7 +12171,7 @@ function hasToStringTagSupport() {
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/assert/has-symbol-support":57}],61:[function(require,module,exports){
+},{"@stdlib/assert/has-symbol-support":62}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9456,7 +12213,7 @@ var hasUint16ArraySupport = require( './main.js' );
 
 module.exports = hasUint16ArraySupport;
 
-},{"./main.js":62}],62:[function(require,module,exports){
+},{"./main.js":67}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9525,7 +12282,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":63,"@stdlib/assert/is-uint16array":146,"@stdlib/constants/uint16/max":180}],63:[function(require,module,exports){
+},{"./uint16array.js":68,"@stdlib/assert/is-uint16array":151,"@stdlib/constants/uint16/max":185}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9555,7 +12312,7 @@ var main = ( typeof Uint16Array === 'function' ) ? Uint16Array : null; // eslint
 
 module.exports = main;
 
-},{}],64:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9597,7 +12354,7 @@ var hasUint8ArraySupport = require( './main.js' );
 
 module.exports = hasUint8ArraySupport;
 
-},{"./main.js":65}],65:[function(require,module,exports){
+},{"./main.js":70}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9666,7 +12423,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":66,"@stdlib/assert/is-uint8array":148,"@stdlib/constants/uint8/max":182}],66:[function(require,module,exports){
+},{"./uint8array.js":71,"@stdlib/assert/is-uint8array":153,"@stdlib/constants/uint8/max":187}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9696,7 +12453,7 @@ var main = ( typeof Uint8Array === 'function' ) ? Uint8Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],67:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9750,7 +12507,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":68}],68:[function(require,module,exports){
+},{"./main.js":73}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9819,7 +12576,7 @@ function instanceOf( value, constructor ) {
 
 module.exports = instanceOf;
 
-},{"@stdlib/string/format":260}],69:[function(require,module,exports){
+},{"@stdlib/string/format":265}],74:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9876,7 +12633,7 @@ bool = detect();
 
 module.exports = bool;
 
-},{"./main.js":71}],70:[function(require,module,exports){
+},{"./main.js":76}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9937,7 +12694,7 @@ if ( hasArgumentsClass ) {
 
 module.exports = isArguments;
 
-},{"./detect.js":69,"./main.js":71,"./polyfill.js":72}],71:[function(require,module,exports){
+},{"./detect.js":74,"./main.js":76,"./polyfill.js":77}],76:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9993,7 +12750,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":313}],72:[function(require,module,exports){
+},{"@stdlib/utils/native-class":318}],77:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10063,7 +12820,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":53,"@stdlib/assert/is-array":75,"@stdlib/assert/is-enumerable-property":94,"@stdlib/constants/uint32/max":181,"@stdlib/math/base/assert/is-integer":185}],73:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":58,"@stdlib/assert/is-array":80,"@stdlib/assert/is-enumerable-property":99,"@stdlib/constants/uint32/max":186,"@stdlib/math/base/assert/is-integer":190}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10111,7 +12868,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":74}],74:[function(require,module,exports){
+},{"./main.js":79}],79:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10174,7 +12931,7 @@ function isArrayLikeObject( value ) {
 
 module.exports = isArrayLikeObject;
 
-},{"@stdlib/constants/array/max-array-length":176,"@stdlib/math/base/assert/is-integer":185}],75:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":181,"@stdlib/math/base/assert/is-integer":190}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10219,7 +12976,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":76}],76:[function(require,module,exports){
+},{"./main.js":81}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10284,7 +13041,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":313}],77:[function(require,module,exports){
+},{"@stdlib/utils/native-class":318}],82:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10330,7 +13087,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":78}],78:[function(require,module,exports){
+},{"./main.js":83}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10391,7 +13148,7 @@ function isArrayBuffer( value ) {
 
 module.exports = isArrayBuffer;
 
-},{"@stdlib/utils/native-class":313}],79:[function(require,module,exports){
+},{"@stdlib/utils/native-class":318}],84:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10466,7 +13223,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":80,"./object.js":81,"./primitive.js":82,"@stdlib/utils/define-nonenumerable-read-only-property":273}],80:[function(require,module,exports){
+},{"./main.js":85,"./object.js":86,"./primitive.js":87,"@stdlib/utils/define-nonenumerable-read-only-property":278}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10530,7 +13287,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./object.js":81,"./primitive.js":82}],81:[function(require,module,exports){
+},{"./object.js":86,"./primitive.js":87}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10600,7 +13357,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":84,"@stdlib/assert/has-tostringtag-support":59,"@stdlib/boolean/ctor":158,"@stdlib/utils/native-class":313}],82:[function(require,module,exports){
+},{"./try2serialize.js":89,"@stdlib/assert/has-tostringtag-support":64,"@stdlib/boolean/ctor":163,"@stdlib/utils/native-class":318}],87:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10650,7 +13407,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{}],83:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10679,7 +13436,7 @@ var toString = Boolean.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],84:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10728,7 +13485,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./tostring.js":83}],85:[function(require,module,exports){
+},{"./tostring.js":88}],90:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10773,7 +13530,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":86}],86:[function(require,module,exports){
+},{"./main.js":91}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10845,7 +13602,7 @@ function isBuffer( value ) {
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":125}],87:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":130}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10890,7 +13647,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":88}],88:[function(require,module,exports){
+},{"./main.js":93}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10949,7 +13706,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":177,"@stdlib/math/base/assert/is-integer":185}],89:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":182,"@stdlib/math/base/assert/is-integer":190}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -10998,7 +13755,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":90}],90:[function(require,module,exports){
+},{"./main.js":95}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11062,7 +13819,7 @@ function isComplexLike( value ) {
 
 module.exports = isComplexLike;
 
-},{"@stdlib/complex/float32/ctor":160,"@stdlib/complex/float64/ctor":168}],91:[function(require,module,exports){
+},{"@stdlib/complex/float32/ctor":165,"@stdlib/complex/float64/ctor":173}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11109,7 +13866,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":92}],92:[function(require,module,exports){
+},{"./main.js":97}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11171,7 +13928,7 @@ function isDataView( value ) {
 
 module.exports = isDataView;
 
-},{"@stdlib/utils/native-class":313}],93:[function(require,module,exports){
+},{"@stdlib/utils/native-class":318}],98:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11224,7 +13981,7 @@ bool = detect();
 
 module.exports = bool;
 
-},{"./native.js":96}],94:[function(require,module,exports){
+},{"./native.js":101}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11273,7 +14030,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":95}],95:[function(require,module,exports){
+},{"./main.js":100}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11355,7 +14112,7 @@ function isEnumerableProperty( value, property ) {
 
 module.exports = isEnumerableProperty;
 
-},{"./has_string_enumerability_bug.js":93,"./native.js":96,"@stdlib/assert/is-integer":103,"@stdlib/assert/is-nan":111,"@stdlib/assert/is-string":140}],96:[function(require,module,exports){
+},{"./has_string_enumerability_bug.js":98,"./native.js":101,"@stdlib/assert/is-integer":108,"@stdlib/assert/is-nan":116,"@stdlib/assert/is-string":145}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11411,7 +14168,7 @@ var isEnumerableProperty = Object.prototype.propertyIsEnumerable;
 
 module.exports = isEnumerableProperty;
 
-},{}],97:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11456,7 +14213,7 @@ var isFloat32Array = require( './main.js' );
 
 module.exports = isFloat32Array;
 
-},{"./main.js":98}],98:[function(require,module,exports){
+},{"./main.js":103}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11515,7 +14272,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":313}],99:[function(require,module,exports){
+},{"@stdlib/utils/native-class":318}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11560,7 +14317,7 @@ var isFloat64Array = require( './main.js' );
 
 module.exports = isFloat64Array;
 
-},{"./main.js":100}],100:[function(require,module,exports){
+},{"./main.js":105}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11619,7 +14376,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":313}],101:[function(require,module,exports){
+},{"@stdlib/utils/native-class":318}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11665,7 +14422,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":102}],102:[function(require,module,exports){
+},{"./main.js":107}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11717,7 +14474,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":324}],103:[function(require,module,exports){
+},{"@stdlib/utils/type-of":329}],108:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11797,7 +14554,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":105,"./object.js":106,"./primitive.js":107,"@stdlib/utils/define-nonenumerable-read-only-property":273}],104:[function(require,module,exports){
+},{"./main.js":110,"./object.js":111,"./primitive.js":112,"@stdlib/utils/define-nonenumerable-read-only-property":278}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11847,7 +14604,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":178,"@stdlib/constants/float64/pinf":179,"@stdlib/math/base/assert/is-integer":185}],105:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":183,"@stdlib/constants/float64/pinf":184,"@stdlib/math/base/assert/is-integer":190}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11907,7 +14664,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./object.js":106,"./primitive.js":107}],106:[function(require,module,exports){
+},{"./object.js":111,"./primitive.js":112}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11962,7 +14719,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":104,"@stdlib/assert/is-number":119}],107:[function(require,module,exports){
+},{"./integer.js":109,"@stdlib/assert/is-number":124}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12017,7 +14774,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":104,"@stdlib/assert/is-number":119}],108:[function(require,module,exports){
+},{"./integer.js":109,"@stdlib/assert/is-number":124}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12056,7 +14813,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{"@stdlib/array/uint16":31,"@stdlib/array/uint8":34}],109:[function(require,module,exports){
+},{"@stdlib/array/uint16":36,"@stdlib/array/uint8":39}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12098,7 +14855,7 @@ var IS_LITTLE_ENDIAN = require( './main.js' );
 
 module.exports = IS_LITTLE_ENDIAN;
 
-},{"./main.js":110}],110:[function(require,module,exports){
+},{"./main.js":115}],115:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12171,7 +14928,7 @@ bool = isLittleEndian();
 
 module.exports = bool;
 
-},{"./ctors.js":108}],111:[function(require,module,exports){
+},{"./ctors.js":113}],116:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12252,7 +15009,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":112,"./object.js":113,"./primitive.js":114,"@stdlib/utils/define-nonenumerable-read-only-property":273}],112:[function(require,module,exports){
+},{"./main.js":117,"./object.js":118,"./primitive.js":119,"@stdlib/utils/define-nonenumerable-read-only-property":278}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12312,7 +15069,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"./object.js":113,"./primitive.js":114}],113:[function(require,module,exports){
+},{"./object.js":118,"./primitive.js":119}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12367,7 +15124,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":119,"@stdlib/math/base/assert/is-nan":187}],114:[function(require,module,exports){
+},{"@stdlib/assert/is-number":124,"@stdlib/math/base/assert/is-nan":192}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12426,7 +15183,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":119,"@stdlib/math/base/assert/is-nan":187}],115:[function(require,module,exports){
+},{"@stdlib/assert/is-number":124,"@stdlib/math/base/assert/is-nan":192}],120:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12507,7 +15264,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":116,"./object.js":117,"./primitive.js":118,"@stdlib/utils/define-nonenumerable-read-only-property":273}],116:[function(require,module,exports){
+},{"./main.js":121,"./object.js":122,"./primitive.js":123,"@stdlib/utils/define-nonenumerable-read-only-property":278}],121:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12571,7 +15328,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"./object.js":117,"./primitive.js":118}],117:[function(require,module,exports){
+},{"./object.js":122,"./primitive.js":123}],122:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12625,7 +15382,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":103}],118:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":108}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12679,7 +15436,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":103}],119:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":108}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12760,7 +15517,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":120,"./object.js":121,"./primitive.js":122,"@stdlib/utils/define-nonenumerable-read-only-property":273}],120:[function(require,module,exports){
+},{"./main.js":125,"./object.js":126,"./primitive.js":127,"@stdlib/utils/define-nonenumerable-read-only-property":278}],125:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12820,7 +15577,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./object.js":121,"./primitive.js":122}],121:[function(require,module,exports){
+},{"./object.js":126,"./primitive.js":127}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12888,7 +15645,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":124,"@stdlib/assert/has-tostringtag-support":59,"@stdlib/number/ctor":231,"@stdlib/utils/native-class":313}],122:[function(require,module,exports){
+},{"./try2serialize.js":129,"@stdlib/assert/has-tostringtag-support":64,"@stdlib/number/ctor":236,"@stdlib/utils/native-class":318}],127:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12936,7 +15693,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],123:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12972,9 +15729,9 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":231}],124:[function(require,module,exports){
-arguments[4][84][0].apply(exports,arguments)
-},{"./tostring.js":123,"dup":84}],125:[function(require,module,exports){
+},{"@stdlib/number/ctor":236}],129:[function(require,module,exports){
+arguments[4][89][0].apply(exports,arguments)
+},{"./tostring.js":128,"dup":89}],130:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13043,7 +15800,7 @@ setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 module.exports = main;
 
-},{"./main.js":126,"@stdlib/assert/tools/array-function":150,"@stdlib/utils/define-nonenumerable-read-only-property":273}],126:[function(require,module,exports){
+},{"./main.js":131,"@stdlib/assert/tools/array-function":155,"@stdlib/utils/define-nonenumerable-read-only-property":278}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13094,7 +15851,7 @@ function isObjectLike( value ) {
 
 module.exports = isObjectLike;
 
-},{}],127:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13139,7 +15896,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":128}],128:[function(require,module,exports){
+},{"./main.js":133}],133:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13194,7 +15951,7 @@ function isObject( value ) {
 
 module.exports = isObject;
 
-},{"@stdlib/assert/is-array":75}],129:[function(require,module,exports){
+},{"@stdlib/assert/is-array":80}],134:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13239,7 +15996,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":130}],130:[function(require,module,exports){
+},{"./main.js":135}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13353,7 +16110,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":53,"@stdlib/assert/is-function":101,"@stdlib/assert/is-object":127,"@stdlib/utils/get-prototype-of":285,"@stdlib/utils/native-class":313}],131:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":58,"@stdlib/assert/is-function":106,"@stdlib/assert/is-object":132,"@stdlib/utils/get-prototype-of":290,"@stdlib/utils/native-class":318}],136:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13434,7 +16191,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":132,"./object.js":133,"./primitive.js":134,"@stdlib/utils/define-nonenumerable-read-only-property":273}],132:[function(require,module,exports){
+},{"./main.js":137,"./object.js":138,"./primitive.js":139,"@stdlib/utils/define-nonenumerable-read-only-property":278}],137:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13502,7 +16259,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"./object.js":133,"./primitive.js":134}],133:[function(require,module,exports){
+},{"./object.js":138,"./primitive.js":139}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13556,7 +16313,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":103}],134:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":108}],139:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13610,7 +16367,7 @@ function isPositiveInteger( value ) {
 
 module.exports = isPositiveInteger;
 
-},{"@stdlib/assert/is-integer":103}],135:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":108}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13638,7 +16395,7 @@ var exec = RegExp.prototype.exec; // non-generic
 
 module.exports = exec;
 
-},{}],136:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13683,7 +16440,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":137}],137:[function(require,module,exports){
+},{"./main.js":142}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13750,7 +16507,7 @@ function isRegExp( value ) {
 
 module.exports = isRegExp;
 
-},{"./try2exec.js":138,"@stdlib/assert/has-tostringtag-support":59,"@stdlib/utils/native-class":313}],138:[function(require,module,exports){
+},{"./try2exec.js":143,"@stdlib/assert/has-tostringtag-support":64,"@stdlib/utils/native-class":318}],143:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13799,7 +16556,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./exec.js":135}],139:[function(require,module,exports){
+},{"./exec.js":140}],144:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13877,7 +16634,7 @@ setReadOnly( isStringArray, 'objects', isObjectArray );
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":140,"@stdlib/assert/tools/array-function":150,"@stdlib/utils/define-nonenumerable-read-only-property":273}],140:[function(require,module,exports){
+},{"@stdlib/assert/is-string":145,"@stdlib/assert/tools/array-function":155,"@stdlib/utils/define-nonenumerable-read-only-property":278}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13952,7 +16709,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":141,"./object.js":142,"./primitive.js":143,"@stdlib/utils/define-nonenumerable-read-only-property":273}],141:[function(require,module,exports){
+},{"./main.js":146,"./object.js":147,"./primitive.js":148,"@stdlib/utils/define-nonenumerable-read-only-property":278}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14004,7 +16761,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":142,"./primitive.js":143}],142:[function(require,module,exports){
+},{"./object.js":147,"./primitive.js":148}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14071,7 +16828,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":144,"@stdlib/assert/has-tostringtag-support":59,"@stdlib/utils/native-class":313}],143:[function(require,module,exports){
+},{"./try2valueof.js":149,"@stdlib/assert/has-tostringtag-support":64,"@stdlib/utils/native-class":318}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14115,7 +16872,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],144:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14164,7 +16921,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":145}],145:[function(require,module,exports){
+},{"./valueof.js":150}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14193,7 +16950,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],146:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14238,7 +16995,7 @@ var isUint16Array = require( './main.js' );
 
 module.exports = isUint16Array;
 
-},{"./main.js":147}],147:[function(require,module,exports){
+},{"./main.js":152}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14297,7 +17054,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":313}],148:[function(require,module,exports){
+},{"@stdlib/utils/native-class":318}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14342,7 +17099,7 @@ var isUint8Array = require( './main.js' );
 
 module.exports = isUint8Array;
 
-},{"./main.js":149}],149:[function(require,module,exports){
+},{"./main.js":154}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14401,7 +17158,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":313}],150:[function(require,module,exports){
+},{"@stdlib/utils/native-class":318}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14452,7 +17209,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":151}],151:[function(require,module,exports){
+},{"./main.js":156}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14539,7 +17296,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":75,"@stdlib/string/format":260}],152:[function(require,module,exports){
+},{"@stdlib/assert/is-array":80,"@stdlib/string/format":265}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14581,7 +17338,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":153}],153:[function(require,module,exports){
+},{"./main.js":158}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14613,13 +17370,13 @@ var BigInteger = ( typeof BigInt === 'function' ) ? BigInt : void 0; // eslint-d
 
 module.exports = BigInteger;
 
-},{}],154:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 module.exports=[
   "row-major",
   "column-major"
 ]
 
-},{}],155:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14672,7 +17429,7 @@ function enumerated() {
 
 module.exports = enumerated;
 
-},{}],156:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14721,7 +17478,7 @@ setReadOnly( main, 'enum', enumeration );
 
 module.exports = main;
 
-},{"./enum.js":155,"./main.js":157,"@stdlib/utils/define-nonenumerable-read-only-property":273}],157:[function(require,module,exports){
+},{"./enum.js":160,"./main.js":162,"@stdlib/utils/define-nonenumerable-read-only-property":278}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14767,7 +17524,7 @@ function layouts() {
 
 module.exports = layouts;
 
-},{"./data.json":154}],158:[function(require,module,exports){
+},{"./data.json":159}],163:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14821,7 +17578,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":159}],159:[function(require,module,exports){
+},{"./main.js":164}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14874,7 +17631,7 @@ var Bool = Boolean; // eslint-disable-line stdlib/require-globals
 
 module.exports = Bool;
 
-},{}],160:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14916,7 +17673,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":161}],161:[function(require,module,exports){
+},{"./main.js":166}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15077,7 +17834,7 @@ setReadOnly( Complex64.prototype, 'toJSON', toJSON );
 
 module.exports = Complex64;
 
-},{"./tojson.js":162,"./tostring.js":163,"@stdlib/assert/is-number":119,"@stdlib/number/float64/base/to-float32":233,"@stdlib/string/format":260,"@stdlib/utils/define-nonenumerable-read-only-property":273,"@stdlib/utils/define-property":278}],162:[function(require,module,exports){
+},{"./tojson.js":167,"./tostring.js":168,"@stdlib/assert/is-number":124,"@stdlib/number/float64/base/to-float32":238,"@stdlib/string/format":265,"@stdlib/utils/define-nonenumerable-read-only-property":278,"@stdlib/utils/define-property":283}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15118,7 +17875,7 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],163:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15162,7 +17919,7 @@ function toString() { // eslint-disable-line stdlib/no-redeclare
 
 module.exports = toString;
 
-},{}],164:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15207,7 +17964,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":165}],165:[function(require,module,exports){
+},{"./main.js":170}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15251,7 +18008,7 @@ function imag( z ) {
 
 module.exports = imag;
 
-},{}],166:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15296,7 +18053,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":167}],167:[function(require,module,exports){
+},{"./main.js":172}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15340,7 +18097,7 @@ function real( z ) {
 
 module.exports = real;
 
-},{}],168:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15382,7 +18139,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":169}],169:[function(require,module,exports){
+},{"./main.js":174}],174:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15542,7 +18299,7 @@ setReadOnly( Complex128.prototype, 'toJSON', toJSON );
 
 module.exports = Complex128;
 
-},{"./tojson.js":170,"./tostring.js":171,"@stdlib/assert/is-number":119,"@stdlib/string/format":260,"@stdlib/utils/define-nonenumerable-read-only-property":273,"@stdlib/utils/define-property":278}],170:[function(require,module,exports){
+},{"./tojson.js":175,"./tostring.js":176,"@stdlib/assert/is-number":124,"@stdlib/string/format":265,"@stdlib/utils/define-nonenumerable-read-only-property":278,"@stdlib/utils/define-property":283}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15583,9 +18340,9 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],171:[function(require,module,exports){
-arguments[4][163][0].apply(exports,arguments)
-},{"dup":163}],172:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
+arguments[4][168][0].apply(exports,arguments)
+},{"dup":168}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15630,7 +18387,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":173}],173:[function(require,module,exports){
+},{"./main.js":178}],178:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15674,7 +18431,7 @@ function imag( z ) {
 
 module.exports = imag;
 
-},{}],174:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15719,7 +18476,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":175}],175:[function(require,module,exports){
+},{"./main.js":180}],180:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15763,7 +18520,7 @@ function real( z ) {
 
 module.exports = real;
 
-},{}],176:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15814,7 +18571,7 @@ var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
 
 module.exports = MAX_ARRAY_LENGTH;
 
-},{}],177:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15865,7 +18622,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],178:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15927,7 +18684,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":231}],179:[function(require,module,exports){
+},{"@stdlib/number/ctor":236}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15985,7 +18742,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],180:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16048,7 +18805,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],181:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16111,7 +18868,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],182:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16174,7 +18931,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],183:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16225,7 +18982,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":184}],184:[function(require,module,exports){
+},{"./main.js":189}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16284,7 +19041,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":185}],185:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":190}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16329,7 +19086,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":186}],186:[function(require,module,exports){
+},{"./main.js":191}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16380,7 +19137,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":191}],187:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":196}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16425,7 +19182,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":188}],188:[function(require,module,exports){
+},{"./main.js":193}],193:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16471,7 +19228,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],189:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16525,7 +19282,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":190}],190:[function(require,module,exports){
+},{"./main.js":195}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16583,7 +19340,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],191:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16634,7 +19391,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":192}],192:[function(require,module,exports){
+},{"./main.js":197}],197:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16686,7 +19443,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],193:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 module.exports={
 	"binary": 1,
 	"bool": 1,
@@ -16713,7 +19470,7 @@ module.exports={
 	"uint256": 32
 }
 
-},{}],194:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16758,7 +19515,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":195}],195:[function(require,module,exports){
+},{"./main.js":200}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16808,7 +19565,7 @@ function bytesPerElement( dtype ) {
 
 module.exports = bytesPerElement;
 
-},{"./bytes_per_element.json":193}],196:[function(require,module,exports){
+},{"./bytes_per_element.json":198}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16851,7 +19608,7 @@ function copyFlags( flags ) {
 
 module.exports = copyFlags;
 
-},{}],197:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16905,7 +19662,7 @@ function get() {
 
 module.exports = get;
 
-},{}],198:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17005,7 +19762,7 @@ function iget( idx ) {
 
 module.exports = iget;
 
-},{}],199:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17051,7 +19808,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":204}],200:[function(require,module,exports){
+},{"./main.js":209}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17091,7 +19848,7 @@ function isColumnMajorContiguous( order, contiguous ) {
 
 module.exports = isColumnMajorContiguous;
 
-},{}],201:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17147,7 +19904,7 @@ function isContiguous( len, shape, strides, offset, iterationOrder ) {
 
 module.exports = isContiguous;
 
-},{"@stdlib/ndarray/base/minmax-view-buffer-index":214}],202:[function(require,module,exports){
+},{"@stdlib/ndarray/base/minmax-view-buffer-index":219}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17187,7 +19944,7 @@ function isRowMajorContiguous( order, contiguous ) {
 
 module.exports = isRowMajorContiguous;
 
-},{}],203:[function(require,module,exports){
+},{}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17298,7 +20055,7 @@ function iset( idx, v ) {
 
 module.exports = iset;
 
-},{}],204:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17912,7 +20669,7 @@ setReadOnly( ndarray.prototype, '__array_meta_dataview__', ( hasBigIntSupport() 
 
 module.exports = ndarray;
 
-},{"./copy_flags.js":196,"./get.js":197,"./iget.js":198,"./is_column_major_contiguous.js":200,"./is_contiguous.js":201,"./is_row_major_contiguous.js":202,"./iset.js":203,"./meta2dataview.js":205,"./meta2dataview.polyfill.js":206,"./set.js":207,"./tojson.js":208,"./tostring.js":209,"@stdlib/assert/has-bigint-support":40,"@stdlib/boolean/ctor":158,"@stdlib/ndarray/base/bytes-per-element":194,"@stdlib/ndarray/base/iteration-order":211,"@stdlib/ndarray/base/strides2order":216,"@stdlib/utils/define-nonenumerable-read-only-accessor":271,"@stdlib/utils/define-nonenumerable-read-only-property":273}],205:[function(require,module,exports){
+},{"./copy_flags.js":201,"./get.js":202,"./iget.js":203,"./is_column_major_contiguous.js":205,"./is_contiguous.js":206,"./is_row_major_contiguous.js":207,"./iset.js":208,"./meta2dataview.js":210,"./meta2dataview.polyfill.js":211,"./set.js":212,"./tojson.js":213,"./tostring.js":214,"@stdlib/assert/has-bigint-support":45,"@stdlib/boolean/ctor":163,"@stdlib/ndarray/base/bytes-per-element":199,"@stdlib/ndarray/base/iteration-order":216,"@stdlib/ndarray/base/strides2order":221,"@stdlib/utils/define-nonenumerable-read-only-accessor":276,"@stdlib/utils/define-nonenumerable-read-only-property":278}],210:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18120,7 +20877,7 @@ function meta2dataview() {
 
 module.exports = meta2dataview;
 
-},{"@stdlib/array/buffer":9,"@stdlib/array/dataview":22,"@stdlib/assert/is-little-endian":109,"@stdlib/bigint/ctor":152,"@stdlib/ndarray/dtypes":221,"@stdlib/ndarray/index-modes":224,"@stdlib/ndarray/orders":228}],206:[function(require,module,exports){
+},{"@stdlib/array/buffer":14,"@stdlib/array/dataview":27,"@stdlib/assert/is-little-endian":114,"@stdlib/bigint/ctor":157,"@stdlib/ndarray/dtypes":226,"@stdlib/ndarray/index-modes":229,"@stdlib/ndarray/orders":233}],211:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18331,7 +21088,7 @@ function meta2dataview() {
 
 module.exports = meta2dataview;
 
-},{"@stdlib/array/buffer":9,"@stdlib/array/dataview":22,"@stdlib/array/uint8":34,"@stdlib/assert/is-little-endian":109,"@stdlib/ndarray/dtypes":221,"@stdlib/ndarray/index-modes":224,"@stdlib/ndarray/orders":228,"@stdlib/number/float64/base/to-int64-bytes":237}],207:[function(require,module,exports){
+},{"@stdlib/array/buffer":14,"@stdlib/array/dataview":27,"@stdlib/array/uint8":39,"@stdlib/assert/is-little-endian":114,"@stdlib/ndarray/dtypes":226,"@stdlib/ndarray/index-modes":229,"@stdlib/ndarray/orders":233,"@stdlib/number/float64/base/to-int64-bytes":242}],212:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18388,7 +21145,7 @@ function set() {
 
 module.exports = set;
 
-},{}],208:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18448,7 +21205,7 @@ function toJSON() {
 	out.strides = this._strides.slice();
 
 	// Flip the signs of negative strides:
-	for ( i = 0; i < len; i++ ) {
+	for ( i = 0; i < out.strides.length; i++ ) {
 		if ( out.strides[ i ] < 0 ) {
 			out.strides[ i ] *= -1;
 		}
@@ -18475,7 +21232,7 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{"@stdlib/complex/float64/imag":172,"@stdlib/complex/float64/real":174}],209:[function(require,module,exports){
+},{"@stdlib/complex/float64/imag":177,"@stdlib/complex/float64/real":179}],214:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18518,7 +21275,8 @@ var CTORS = {
 	'generic': '[ {{data}} ]',
 	'binary': 'new Buffer( [ {{data}} ] )',
 	'complex64': 'new Complex64Array( [ {{data}} ] )',
-	'complex128': 'new Complex128Array( [ {{data}} ] )'
+	'complex128': 'new Complex128Array( [ {{data}} ] )',
+	'bool': 'new BooleanArray( [ {{data}} ] )'
 };
 
 
@@ -18657,7 +21415,7 @@ function toString() { // eslint-disable-line stdlib/no-redeclare
 
 module.exports = toString;
 
-},{"@stdlib/complex/float64/imag":172,"@stdlib/complex/float64/real":174,"@stdlib/string/replace":263}],210:[function(require,module,exports){
+},{"@stdlib/complex/float64/imag":177,"@stdlib/complex/float64/real":179,"@stdlib/string/replace":268}],215:[function(require,module,exports){
 (function (__filename){(function (){
 /* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib/main.js');});/**
 * @license Apache-2.0
@@ -18687,6 +21445,7 @@ var Float64Array = require( '@stdlib/array/float64' );
 var Uint8Array = require( '@stdlib/array/uint8' );
 var Complex64Array = require( '@stdlib/array/complex64' );
 var Complex128Array = require( '@stdlib/array/complex128' );
+var BooleanArray = require( '@stdlib/array/bool' );
 var Complex64 = require( '@stdlib/complex/float32/ctor' );
 var Complex128 = require( '@stdlib/complex/float64/ctor' );
 var hasOwnProp = require( '@stdlib/assert/has-own-property' );
@@ -22106,6 +24865,37 @@ tape( 'an ndarray has a custom `toString()` method (complex type)', function tes
 	t.end();
 });
 
+tape( 'an ndarray has a custom `toString()` method (boolean type)', function test( t ) {
+	var expected;
+	var strides;
+	var actual;
+	var buffer;
+	var offset;
+	var dtype;
+	var order;
+	var shape;
+	var arr;
+
+	dtype = 'bool';
+	buffer = new BooleanArray( [ true, false, true, false ] );
+	shape = [ 2, 2 ];
+	order = 'row-major';
+	strides = [ 2, 1 ];
+	offset = 0;
+
+	arr = ndarray( dtype, buffer, shape, strides, offset, order );
+
+	t.strictEqual( hasOwnProp( arr, 'toString' ), false, 'does not have own property' );
+	t.strictEqual( hasProp( arr, 'toString' ), true, 'has property' );
+	t.strictEqual( isFunction( arr.toString ), true, 'has method' );
+
+	expected = 'ndarray( \'bool\', new BooleanArray( [ true, false, true, false ] ), [ 2, 2 ], [ 2, 1 ], 0, \'row-major\' )';
+	actual = arr.toString();
+	t.strictEqual( actual, expected, 'returns expected value' );
+
+	t.end();
+});
+
 tape( 'an ndarray has a custom `toString()` method (complex type)', function test( t ) {
 	var expected;
 	var strides;
@@ -22693,7 +25483,7 @@ tape( 'an ndarray has a protocol method for serializing meta data to a DataView 
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/ndarray/base/ctor/test/test.js")
-},{"./../lib":199,"./../lib/main.js":204,"@stdlib/array/complex128":15,"@stdlib/array/complex64":20,"@stdlib/array/float64":28,"@stdlib/array/uint8":34,"@stdlib/assert/has-own-property":53,"@stdlib/assert/has-property":55,"@stdlib/assert/instance-of":67,"@stdlib/assert/is-dataview":91,"@stdlib/assert/is-function":101,"@stdlib/assert/is-little-endian":109,"@stdlib/assert/is-nonnegative-integer":115,"@stdlib/assert/is-plain-object":129,"@stdlib/assert/is-positive-integer":131,"@stdlib/complex/float32/ctor":160,"@stdlib/complex/float64/ctor":168,"@stdlib/complex/float64/imag":172,"@stdlib/complex/float64/real":174,"@stdlib/ndarray/dtypes":221,"@stdlib/ndarray/index-modes":224,"@stdlib/ndarray/orders":228,"proxyquireify":445,"tape":455}],211:[function(require,module,exports){
+},{"./../lib":204,"./../lib/main.js":209,"@stdlib/array/bool":12,"@stdlib/array/complex128":20,"@stdlib/array/complex64":25,"@stdlib/array/float64":33,"@stdlib/array/uint8":39,"@stdlib/assert/has-own-property":58,"@stdlib/assert/has-property":60,"@stdlib/assert/instance-of":72,"@stdlib/assert/is-dataview":96,"@stdlib/assert/is-function":106,"@stdlib/assert/is-little-endian":114,"@stdlib/assert/is-nonnegative-integer":120,"@stdlib/assert/is-plain-object":134,"@stdlib/assert/is-positive-integer":136,"@stdlib/complex/float32/ctor":165,"@stdlib/complex/float64/ctor":173,"@stdlib/complex/float64/imag":177,"@stdlib/complex/float64/real":179,"@stdlib/ndarray/dtypes":226,"@stdlib/ndarray/index-modes":229,"@stdlib/ndarray/orders":233,"proxyquireify":450,"tape":460}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22741,7 +25531,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":212}],212:[function(require,module,exports){
+},{"./main.js":217}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22815,7 +25605,7 @@ function iterationOrder( strides ) {
 
 module.exports = iterationOrder;
 
-},{}],213:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22928,7 +25718,7 @@ function minmaxViewBufferIndex( shape, strides, offset, out ) {
 
 module.exports = minmaxViewBufferIndex;
 
-},{}],214:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23011,7 +25801,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":213,"./main.js":215,"@stdlib/utils/define-nonenumerable-read-only-property":273}],215:[function(require,module,exports){
+},{"./assign.js":218,"./main.js":220,"@stdlib/utils/define-nonenumerable-read-only-property":278}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23103,7 +25893,7 @@ function minmaxViewBufferIndex( shape, strides, offset ) {
 
 module.exports = minmaxViewBufferIndex;
 
-},{}],216:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23154,7 +25944,7 @@ var strides2order = require( './main.js' );
 
 module.exports = strides2order;
 
-},{"./main.js":217}],217:[function(require,module,exports){
+},{"./main.js":222}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23246,7 +26036,7 @@ function strides2order( strides ) {
 
 module.exports = strides2order;
 
-},{"@stdlib/math/base/special/abs":189}],218:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":194}],223:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23316,7 +26106,7 @@ function assign( target, source ) {
 
 module.exports = assign;
 
-},{"@stdlib/utils/define-read-only-property":280,"@stdlib/utils/keys":306}],219:[function(require,module,exports){
+},{"@stdlib/utils/define-read-only-property":285,"@stdlib/utils/keys":311}],224:[function(require,module,exports){
 module.exports={
   "all": [
     "binary",
@@ -23412,7 +26202,7 @@ module.exports={
   ]
 }
 
-},{}],220:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23503,7 +26293,7 @@ function enumeration() {
 
 module.exports = enumeration;
 
-},{}],221:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23554,7 +26344,7 @@ assign( main, enumeration() );
 
 module.exports = main;
 
-},{"./assign.js":218,"./enum.js":220,"./main.js":222,"@stdlib/utils/define-nonenumerable-read-only-property":273}],222:[function(require,module,exports){
+},{"./assign.js":223,"./enum.js":225,"./main.js":227,"@stdlib/utils/define-nonenumerable-read-only-property":278}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23630,7 +26420,7 @@ function dtypes() {
 
 module.exports = dtypes;
 
-},{"./dtypes.json":219,"@stdlib/string/base/replace":258}],223:[function(require,module,exports){
+},{"./dtypes.json":224,"@stdlib/string/base/replace":263}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23682,7 +26472,7 @@ function enumerated() {
 
 module.exports = enumerated;
 
-},{}],224:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23731,7 +26521,7 @@ setReadOnly( modes, 'enum', enumeration );
 
 module.exports = modes;
 
-},{"./enum.js":223,"./main.js":225,"@stdlib/utils/define-nonenumerable-read-only-property":273}],225:[function(require,module,exports){
+},{"./enum.js":228,"./main.js":230,"@stdlib/utils/define-nonenumerable-read-only-property":278}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23777,7 +26567,7 @@ function modes() {
 
 module.exports = modes;
 
-},{"./modes.json":226}],226:[function(require,module,exports){
+},{"./modes.json":231}],231:[function(require,module,exports){
 module.exports=[
 	"throw",
   "normalize",
@@ -23785,7 +26575,7 @@ module.exports=[
 	"wrap"
 ]
 
-},{}],227:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23848,7 +26638,7 @@ function enumerated() {
 
 module.exports = enumerated;
 
-},{"@stdlib/blas/base/layouts":156}],228:[function(require,module,exports){
+},{"@stdlib/blas/base/layouts":161}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23897,7 +26687,7 @@ setReadOnly( main, 'enum', enumeration );
 
 module.exports = main;
 
-},{"./enum.js":227,"./main.js":229,"@stdlib/utils/define-nonenumerable-read-only-property":273}],229:[function(require,module,exports){
+},{"./enum.js":232,"./main.js":234,"@stdlib/utils/define-nonenumerable-read-only-property":278}],234:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23943,13 +26733,13 @@ function orders() {
 
 module.exports = orders;
 
-},{"./orders.json":230}],230:[function(require,module,exports){
+},{"./orders.json":235}],235:[function(require,module,exports){
 module.exports=[
 	"row-major",
 	"column-major"
 ]
 
-},{}],231:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23991,7 +26781,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":232}],232:[function(require,module,exports){
+},{"./main.js":237}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24016,7 +26806,7 @@ module.exports = main;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],233:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24069,7 +26859,7 @@ if ( typeof builtin === 'function' ) {
 
 module.exports = float64ToFloat32;
 
-},{"./main.js":234,"./polyfill.js":235}],234:[function(require,module,exports){
+},{"./main.js":239,"./polyfill.js":240}],239:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24099,7 +26889,7 @@ var fround = ( typeof Math.fround === 'function' ) ? Math.fround : null; // esli
 
 module.exports = fround;
 
-},{}],235:[function(require,module,exports){
+},{}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24152,7 +26942,7 @@ function float64ToFloat32( x ) {
 
 module.exports = float64ToFloat32;
 
-},{"@stdlib/array/float32":25}],236:[function(require,module,exports){
+},{"@stdlib/array/float32":30}],241:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24254,7 +27044,7 @@ function float64ToInt64Bytes( x, out, stride, offset ) {
 
 module.exports = float64ToInt64Bytes;
 
-},{"@stdlib/array/dataview":22,"@stdlib/array/uint8":34,"@stdlib/assert/is-little-endian":109,"@stdlib/math/base/special/floor":191}],237:[function(require,module,exports){
+},{"@stdlib/array/dataview":27,"@stdlib/array/uint8":39,"@stdlib/assert/is-little-endian":114,"@stdlib/math/base/special/floor":196}],242:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24311,7 +27101,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":236,"./main.js":238,"@stdlib/utils/define-nonenumerable-read-only-property":273}],238:[function(require,module,exports){
+},{"./assign.js":241,"./main.js":243,"@stdlib/utils/define-nonenumerable-read-only-property":278}],243:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24398,7 +27188,7 @@ function float64ToInt64Bytes( x ) {
 
 module.exports = float64ToInt64Bytes;
 
-},{"@stdlib/array/dataview":22,"@stdlib/array/uint8":34,"@stdlib/assert/is-little-endian":109,"@stdlib/math/base/special/floor":191}],239:[function(require,module,exports){
+},{"@stdlib/array/dataview":27,"@stdlib/array/uint8":39,"@stdlib/assert/is-little-endian":114,"@stdlib/math/base/special/floor":196}],244:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24454,7 +27244,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":240}],240:[function(require,module,exports){
+},{"./main.js":245}],245:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24514,7 +27304,7 @@ var Obj = Object; // eslint-disable-line stdlib/require-globals
 
 module.exports = Obj;
 
-},{}],241:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24577,7 +27367,7 @@ setReadOnly( main, 'REGEXP', REGEXP );
 
 module.exports = main;
 
-},{"./main.js":242,"./regexp.js":243,"@stdlib/utils/define-nonenumerable-read-only-property":273}],242:[function(require,module,exports){
+},{"./main.js":247,"./regexp.js":248,"@stdlib/utils/define-nonenumerable-read-only-property":278}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24633,7 +27423,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],243:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24695,7 +27485,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":242}],244:[function(require,module,exports){
+},{"./main.js":247}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24743,7 +27533,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":245}],245:[function(require,module,exports){
+},{"./main.js":250}],250:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24798,7 +27588,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float64":28}],246:[function(require,module,exports){
+},{"@stdlib/array/float64":33}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24846,7 +27636,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":247}],247:[function(require,module,exports){
+},{"./main.js":252}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24901,7 +27691,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float32":25}],248:[function(require,module,exports){
+},{"@stdlib/array/float32":30}],253:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25014,7 +27804,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":251}],249:[function(require,module,exports){
+},{"./is_number.js":256}],254:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25131,7 +27921,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":251,"./zero_pad.js":255}],250:[function(require,module,exports){
+},{"./is_number.js":256,"./zero_pad.js":260}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25174,7 +27964,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":253}],251:[function(require,module,exports){
+},{"./main.js":258}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25222,7 +28012,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],252:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25266,7 +28056,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],253:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25500,7 +28290,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":248,"./format_integer.js":249,"./is_string.js":252,"./space_pad.js":254,"./zero_pad.js":255}],254:[function(require,module,exports){
+},{"./format_double.js":253,"./format_integer.js":254,"./is_string.js":257,"./space_pad.js":259,"./zero_pad.js":260}],259:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25567,7 +28357,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],255:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25653,7 +28443,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],256:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25696,7 +28486,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":257}],257:[function(require,module,exports){
+},{"./main.js":262}],262:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25788,7 +28578,7 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],258:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25831,7 +28621,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":259}],259:[function(require,module,exports){
+},{"./main.js":264}],264:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25888,7 +28678,7 @@ function replace( str, search, newval ) {
 
 module.exports = replace;
 
-},{}],260:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25933,9 +28723,9 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":262}],261:[function(require,module,exports){
-arguments[4][252][0].apply(exports,arguments)
-},{"dup":252}],262:[function(require,module,exports){
+},{"./main.js":267}],266:[function(require,module,exports){
+arguments[4][257][0].apply(exports,arguments)
+},{"dup":257}],267:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26001,7 +28791,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":261,"@stdlib/string/base/format-interpolate":250,"@stdlib/string/base/format-tokenize":256}],263:[function(require,module,exports){
+},{"./is_string.js":266,"@stdlib/string/base/format-interpolate":255,"@stdlib/string/base/format-tokenize":261}],268:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26048,7 +28838,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":264}],264:[function(require,module,exports){
+},{"./main.js":269}],269:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26134,7 +28924,7 @@ function replace( str, search, newval ) {
 
 module.exports = replace;
 
-},{"@stdlib/assert/is-function":101,"@stdlib/assert/is-regexp":136,"@stdlib/assert/is-string":140,"@stdlib/string/base/replace":258,"@stdlib/string/format":260,"@stdlib/utils/escape-regexp-string":282}],265:[function(require,module,exports){
+},{"@stdlib/assert/is-function":106,"@stdlib/assert/is-regexp":141,"@stdlib/assert/is-string":145,"@stdlib/string/base/replace":263,"@stdlib/string/format":265,"@stdlib/utils/escape-regexp-string":287}],270:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26176,7 +28966,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":266}],266:[function(require,module,exports){
+},{"./main.js":271}],271:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26206,7 +28996,7 @@ var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-
 
 module.exports = Sym;
 
-},{}],267:[function(require,module,exports){
+},{}],272:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26283,7 +29073,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":268}],268:[function(require,module,exports){
+},{"./main.js":273}],273:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26364,7 +29154,7 @@ var IteratorSymbol = ( hasIteratorSymbolSupport() ) ? Symbol.iterator : null;
 
 module.exports = IteratorSymbol;
 
-},{"@stdlib/assert/has-iterator-symbol-support":51}],269:[function(require,module,exports){
+},{"@stdlib/assert/has-iterator-symbol-support":56}],274:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26412,7 +29202,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":270}],270:[function(require,module,exports){
+},{"./main.js":275}],275:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26494,7 +29284,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":85,"@stdlib/regexp/function-name":241,"@stdlib/utils/native-class":313}],271:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":90,"@stdlib/regexp/function-name":246,"@stdlib/utils/native-class":318}],276:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26547,7 +29337,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":272}],272:[function(require,module,exports){
+},{"./main.js":277}],277:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26610,7 +29400,7 @@ function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disab
 
 module.exports = setNonEnumerableReadOnlyAccessor;
 
-},{"@stdlib/utils/define-property":278}],273:[function(require,module,exports){
+},{"@stdlib/utils/define-property":283}],278:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26659,7 +29449,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":274}],274:[function(require,module,exports){
+},{"./main.js":279}],279:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26719,7 +29509,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":278}],275:[function(require,module,exports){
+},{"@stdlib/utils/define-property":283}],280:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26782,7 +29572,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],276:[function(require,module,exports){
+},{}],281:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26812,7 +29602,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],277:[function(require,module,exports){
+},{}],282:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26865,7 +29655,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":276}],278:[function(require,module,exports){
+},{"./define_property.js":281}],283:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26925,7 +29715,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":275,"./has_define_property_support.js":277,"./polyfill.js":279}],279:[function(require,module,exports){
+},{"./builtin.js":280,"./has_define_property_support.js":282,"./polyfill.js":284}],284:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27049,7 +29839,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":260}],280:[function(require,module,exports){
+},{"@stdlib/string/format":265}],285:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27098,7 +29888,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":281}],281:[function(require,module,exports){
+},{"./main.js":286}],286:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27158,7 +29948,7 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{"@stdlib/utils/define-property":278}],282:[function(require,module,exports){
+},{"@stdlib/utils/define-property":283}],287:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27200,7 +29990,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":283}],283:[function(require,module,exports){
+},{"./main.js":288}],288:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27284,7 +30074,7 @@ function rescape( str ) {
 
 module.exports = rescape;
 
-},{"@stdlib/assert/is-string":140,"@stdlib/string/format":260}],284:[function(require,module,exports){
+},{"@stdlib/assert/is-string":145,"@stdlib/string/format":265}],289:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27326,7 +30116,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":287,"./polyfill.js":288,"@stdlib/assert/is-function":101}],285:[function(require,module,exports){
+},{"./native.js":292,"./polyfill.js":293,"@stdlib/assert/is-function":106}],290:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27368,7 +30158,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":286}],286:[function(require,module,exports){
+},{"./main.js":291}],291:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27425,7 +30215,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":284,"@stdlib/object/ctor":239}],287:[function(require,module,exports){
+},{"./detect.js":289,"@stdlib/object/ctor":244}],292:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27455,7 +30245,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],288:[function(require,module,exports){
+},{}],293:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27512,7 +30302,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":289,"@stdlib/utils/native-class":313}],289:[function(require,module,exports){
+},{"./proto.js":294,"@stdlib/utils/native-class":318}],294:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27550,7 +30340,7 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],290:[function(require,module,exports){
+},{}],295:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27631,7 +30421,7 @@ function getGlobal( codegen ) {
 
 module.exports = getGlobal;
 
-},{"./codegen.js":291,"./global_this.js":292,"./self.js":293,"./window.js":294,"@stdlib/assert/is-boolean":79,"@stdlib/string/format":260}],291:[function(require,module,exports){
+},{"./codegen.js":296,"./global_this.js":297,"./self.js":298,"./window.js":299,"@stdlib/assert/is-boolean":84,"@stdlib/string/format":265}],296:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27669,7 +30459,7 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],292:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27699,7 +30489,7 @@ var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disa
 
 module.exports = obj;
 
-},{}],293:[function(require,module,exports){
+},{}],298:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27729,7 +30519,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],294:[function(require,module,exports){
+},{}],299:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27759,7 +30549,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],295:[function(require,module,exports){
+},{}],300:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27834,7 +30624,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":296}],296:[function(require,module,exports){
+},{"./main.js":301}],301:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27969,7 +30759,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":87,"@stdlib/assert/is-integer":103,"@stdlib/assert/is-nan":111,"@stdlib/assert/is-string":140,"@stdlib/string/format":260}],297:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":92,"@stdlib/assert/is-integer":108,"@stdlib/assert/is-nan":116,"@stdlib/assert/is-string":145,"@stdlib/string/format":265}],302:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28021,7 +30811,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],298:[function(require,module,exports){
+},{}],303:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28083,7 +30873,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":297,"@stdlib/assert/is-arguments":70}],299:[function(require,module,exports){
+},{"./builtin.js":302,"@stdlib/assert/is-arguments":75}],304:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -28107,7 +30897,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],300:[function(require,module,exports){
+},{}],305:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28167,7 +30957,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":297}],301:[function(require,module,exports){
+},{"./builtin.js":302}],306:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28245,7 +31035,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":299,"./is_constructor_prototype.js":307,"./window.js":312,"@stdlib/assert/has-own-property":53,"@stdlib/utils/index-of":295,"@stdlib/utils/type-of":324}],302:[function(require,module,exports){
+},{"./excluded_keys.json":304,"./is_constructor_prototype.js":312,"./window.js":317,"@stdlib/assert/has-own-property":58,"@stdlib/utils/index-of":300,"@stdlib/utils/type-of":329}],307:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28275,7 +31065,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],303:[function(require,module,exports){
+},{}],308:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28312,7 +31102,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":94,"@stdlib/utils/noop":318}],304:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":99,"@stdlib/utils/noop":323}],309:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28355,7 +31145,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":94}],305:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":99}],310:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28385,7 +31175,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],306:[function(require,module,exports){
+},{}],311:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28432,7 +31222,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":309}],307:[function(require,module,exports){
+},{"./main.js":314}],312:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28471,7 +31261,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],308:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28524,7 +31314,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":301,"./has_window.js":305,"./is_constructor_prototype.js":307}],309:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":306,"./has_window.js":310,"./is_constructor_prototype.js":312}],314:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28589,7 +31379,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":297,"./builtin_wrapper.js":298,"./has_arguments_bug.js":300,"./has_builtin.js":302,"./polyfill.js":311}],310:[function(require,module,exports){
+},{"./builtin.js":302,"./builtin_wrapper.js":303,"./has_arguments_bug.js":305,"./has_builtin.js":307,"./polyfill.js":316}],315:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -28600,7 +31390,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],311:[function(require,module,exports){
+},{}],316:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28704,7 +31494,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":303,"./has_non_enumerable_properties_bug.js":304,"./is_constructor_prototype_wrapper.js":308,"./non_enumerable.json":310,"@stdlib/assert/has-own-property":53,"@stdlib/assert/is-arguments":70,"@stdlib/assert/is-object-like":125}],312:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":308,"./has_non_enumerable_properties_bug.js":309,"./is_constructor_prototype_wrapper.js":313,"./non_enumerable.json":315,"@stdlib/assert/has-own-property":58,"@stdlib/assert/is-arguments":75,"@stdlib/assert/is-object-like":130}],317:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28734,7 +31524,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],313:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28797,7 +31587,7 @@ if ( hasToStringTag() ) {
 
 module.exports = main;
 
-},{"./main.js":314,"./polyfill.js":315,"@stdlib/assert/has-tostringtag-support":59}],314:[function(require,module,exports){
+},{"./main.js":319,"./polyfill.js":320,"@stdlib/assert/has-tostringtag-support":64}],319:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28855,7 +31645,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":316}],315:[function(require,module,exports){
+},{"./tostring.js":321}],320:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28938,7 +31728,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":316,"./tostringtag.js":317,"@stdlib/assert/has-own-property":53}],316:[function(require,module,exports){
+},{"./tostring.js":321,"./tostringtag.js":322,"@stdlib/assert/has-own-property":58}],321:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28968,7 +31758,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],317:[function(require,module,exports){
+},{}],322:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29003,7 +31793,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{"@stdlib/symbol/ctor":265}],318:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":270}],323:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29045,7 +31835,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":319}],319:[function(require,module,exports){
+},{"./main.js":324}],324:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29082,7 +31872,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],320:[function(require,module,exports){
+},{}],325:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29139,7 +31929,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":321,"./fixtures/re.js":322,"./fixtures/typedarray.js":323}],321:[function(require,module,exports){
+},{"./fixtures/nodelist.js":326,"./fixtures/re.js":327,"./fixtures/typedarray.js":328}],326:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29175,7 +31965,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":290}],322:[function(require,module,exports){
+},{"@stdlib/utils/global":295}],327:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29203,7 +31993,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],323:[function(require,module,exports){
+},{}],328:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29231,7 +32021,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],324:[function(require,module,exports){
+},{}],329:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29283,7 +32073,7 @@ var main = ( usePolyfill() ) ? polyfill : builtin;
 
 module.exports = main;
 
-},{"./check.js":320,"./main.js":325,"./polyfill.js":326}],325:[function(require,module,exports){
+},{"./check.js":325,"./main.js":330,"./polyfill.js":331}],330:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29361,7 +32151,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":269}],326:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":274}],331:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29404,7 +32194,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":269}],327:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":274}],332:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -29556,11 +32346,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],328:[function(require,module,exports){
+},{}],333:[function(require,module,exports){
 
-},{}],329:[function(require,module,exports){
-arguments[4][328][0].apply(exports,arguments)
-},{"dup":328}],330:[function(require,module,exports){
+},{}],334:[function(require,module,exports){
+arguments[4][333][0].apply(exports,arguments)
+},{"dup":333}],335:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -31341,7 +34131,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":327,"buffer":330,"ieee754":434}],331:[function(require,module,exports){
+},{"base64-js":332,"buffer":335,"ieee754":439}],336:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -31840,7 +34630,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],332:[function(require,module,exports){
+},{}],337:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -32373,7 +35163,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":444}],333:[function(require,module,exports){
+},{"_process":449}],338:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -32504,7 +35294,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":331,"inherits":435,"readable-stream/lib/_stream_duplex.js":335,"readable-stream/lib/_stream_passthrough.js":336,"readable-stream/lib/_stream_readable.js":337,"readable-stream/lib/_stream_transform.js":338,"readable-stream/lib/_stream_writable.js":339,"readable-stream/lib/internal/streams/end-of-stream.js":343,"readable-stream/lib/internal/streams/pipeline.js":345}],334:[function(require,module,exports){
+},{"events":336,"inherits":440,"readable-stream/lib/_stream_duplex.js":340,"readable-stream/lib/_stream_passthrough.js":341,"readable-stream/lib/_stream_readable.js":342,"readable-stream/lib/_stream_transform.js":343,"readable-stream/lib/_stream_writable.js":344,"readable-stream/lib/internal/streams/end-of-stream.js":348,"readable-stream/lib/internal/streams/pipeline.js":350}],339:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -32633,7 +35423,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],335:[function(require,module,exports){
+},{}],340:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -32775,7 +35565,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":337,"./_stream_writable":339,"_process":444,"inherits":435}],336:[function(require,module,exports){
+},{"./_stream_readable":342,"./_stream_writable":344,"_process":449,"inherits":440}],341:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -32815,7 +35605,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":338,"inherits":435}],337:[function(require,module,exports){
+},{"./_stream_transform":343,"inherits":440}],342:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -33942,7 +36732,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":334,"./_stream_duplex":335,"./internal/streams/async_iterator":340,"./internal/streams/buffer_list":341,"./internal/streams/destroy":342,"./internal/streams/from":344,"./internal/streams/state":346,"./internal/streams/stream":347,"_process":444,"buffer":330,"events":331,"inherits":435,"string_decoder/":454,"util":328}],338:[function(require,module,exports){
+},{"../errors":339,"./_stream_duplex":340,"./internal/streams/async_iterator":345,"./internal/streams/buffer_list":346,"./internal/streams/destroy":347,"./internal/streams/from":349,"./internal/streams/state":351,"./internal/streams/stream":352,"_process":449,"buffer":335,"events":336,"inherits":440,"string_decoder/":459,"util":333}],343:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -34144,7 +36934,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":334,"./_stream_duplex":335,"inherits":435}],339:[function(require,module,exports){
+},{"../errors":339,"./_stream_duplex":340,"inherits":440}],344:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -34844,7 +37634,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":334,"./_stream_duplex":335,"./internal/streams/destroy":342,"./internal/streams/state":346,"./internal/streams/stream":347,"_process":444,"buffer":330,"inherits":435,"util-deprecate":463}],340:[function(require,module,exports){
+},{"../errors":339,"./_stream_duplex":340,"./internal/streams/destroy":347,"./internal/streams/state":351,"./internal/streams/stream":352,"_process":449,"buffer":335,"inherits":440,"util-deprecate":468}],345:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -35054,7 +37844,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":343,"_process":444}],341:[function(require,module,exports){
+},{"./end-of-stream":348,"_process":449}],346:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -35265,7 +38055,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":330,"util":328}],342:[function(require,module,exports){
+},{"buffer":335,"util":333}],347:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -35373,7 +38163,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":444}],343:[function(require,module,exports){
+},{"_process":449}],348:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -35478,12 +38268,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":334}],344:[function(require,module,exports){
+},{"../../../errors":339}],349:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],345:[function(require,module,exports){
+},{}],350:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -35581,7 +38371,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":334,"./end-of-stream":343}],346:[function(require,module,exports){
+},{"../../../errors":339,"./end-of-stream":348}],351:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -35609,10 +38399,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":334}],347:[function(require,module,exports){
+},{"../../../errors":339}],352:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":331}],348:[function(require,module,exports){
+},{"events":336}],353:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -35629,7 +38419,7 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":349,"get-intrinsic":425}],349:[function(require,module,exports){
+},{"./":354,"get-intrinsic":430}],354:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -35666,7 +38456,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"es-define-property":409,"es-errors/type":415,"function-bind":424,"get-intrinsic":425,"set-function-length":449}],350:[function(require,module,exports){
+},{"es-define-property":414,"es-errors/type":420,"function-bind":429,"get-intrinsic":430,"set-function-length":454}],355:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -35762,7 +38552,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":351,"./lib/keys.js":352}],351:[function(require,module,exports){
+},{"./lib/is_arguments.js":356,"./lib/keys.js":357}],356:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -35784,7 +38574,7 @@ function unsupported(object){
     false;
 };
 
-},{}],352:[function(require,module,exports){
+},{}],357:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -35795,7 +38585,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],353:[function(require,module,exports){
+},{}],358:[function(require,module,exports){
 'use strict';
 
 var $defineProperty = require('es-define-property');
@@ -35853,7 +38643,7 @@ module.exports = function defineDataProperty(
 	}
 };
 
-},{"es-define-property":409,"es-errors/syntax":414,"es-errors/type":415,"gopd":426}],354:[function(require,module,exports){
+},{"es-define-property":414,"es-errors/syntax":419,"es-errors/type":420,"gopd":431}],359:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -35902,14 +38692,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"define-data-property":353,"has-property-descriptors":427,"object-keys":442}],355:[function(require,module,exports){
+},{"define-data-property":358,"has-property-descriptors":432,"object-keys":447}],360:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],356:[function(require,module,exports){
+},{}],361:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -35948,7 +38738,7 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":387,"./ToPrimitive":389,"./Type":394}],357:[function(require,module,exports){
+},{"./ToNumber":392,"./ToPrimitive":394,"./Type":399}],362:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -36012,7 +38802,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":402,"../helpers/isNaN":403,"../helpers/isPrefixOf":404,"./ToNumber":387,"./ToPrimitive":389,"es-errors/type":415,"get-intrinsic":425}],358:[function(require,module,exports){
+},{"../helpers/isFinite":407,"../helpers/isNaN":408,"../helpers/isPrefixOf":409,"./ToNumber":392,"./ToPrimitive":394,"es-errors/type":420,"get-intrinsic":430}],363:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -36052,7 +38842,7 @@ module.exports = function Canonicalize(ch, IgnoreCase) {
 	return cu;
 };
 
-},{"call-bind/callBound":348,"es-errors/type":415}],359:[function(require,module,exports){
+},{"call-bind/callBound":353,"es-errors/type":420}],364:[function(require,module,exports){
 'use strict';
 
 var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
@@ -36063,7 +38853,7 @@ module.exports = function CheckObjectCoercible(value) {
 	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"es-object-atoms/RequireObjectCoercible":417}],360:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":422}],365:[function(require,module,exports){
 'use strict';
 
 var $EvalError = require('es-errors/eval');
@@ -36117,7 +38907,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":363,"./InLeapYear":367,"./MonthFromTime":377,"es-errors/eval":410}],361:[function(require,module,exports){
+},{"./DayWithinYear":368,"./InLeapYear":372,"./MonthFromTime":382,"es-errors/eval":415}],366:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -36130,7 +38920,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":408,"./floor":398}],362:[function(require,module,exports){
+},{"../helpers/timeConstants":413,"./floor":403}],367:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -36142,7 +38932,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":398}],363:[function(require,module,exports){
+},{"./floor":403}],368:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -36155,7 +38945,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":361,"./DayFromYear":362,"./YearFromTime":396}],364:[function(require,module,exports){
+},{"./Day":366,"./DayFromYear":367,"./YearFromTime":401}],369:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -36175,7 +38965,7 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":399}],365:[function(require,module,exports){
+},{"./modulo":404}],370:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -36215,7 +39005,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/records/property-descriptor":406,"./IsAccessorDescriptor":368,"./IsDataDescriptor":370,"es-errors/type":415}],366:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":411,"./IsAccessorDescriptor":373,"./IsDataDescriptor":375,"es-errors/type":420}],371:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -36231,7 +39021,7 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":408,"./floor":398,"./modulo":399}],367:[function(require,module,exports){
+},{"../helpers/timeConstants":413,"./floor":403,"./modulo":404}],372:[function(require,module,exports){
 'use strict';
 
 var $EvalError = require('es-errors/eval');
@@ -36252,7 +39042,7 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":364,"./YearFromTime":396,"es-errors/eval":410}],368:[function(require,module,exports){
+},{"./DaysInYear":369,"./YearFromTime":401,"es-errors/eval":415}],373:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -36279,14 +39069,14 @@ module.exports = function IsAccessorDescriptor(Desc) {
 	return true;
 };
 
-},{"../helpers/records/property-descriptor":406,"es-errors/type":415,"hasown":433}],369:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":411,"es-errors/type":420,"hasown":438}],374:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":436}],370:[function(require,module,exports){
+},{"is-callable":441}],375:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -36313,7 +39103,7 @@ module.exports = function IsDataDescriptor(Desc) {
 	return true;
 };
 
-},{"../helpers/records/property-descriptor":406,"es-errors/type":415,"hasown":433}],371:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":411,"es-errors/type":420,"hasown":438}],376:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -36341,7 +39131,7 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"./IsAccessorDescriptor":368,"./IsDataDescriptor":370,"./IsPropertyDescriptor":372,"es-errors/type":415}],372:[function(require,module,exports){
+},{"./IsAccessorDescriptor":373,"./IsDataDescriptor":375,"./IsPropertyDescriptor":377,"es-errors/type":420}],377:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
@@ -36354,7 +39144,7 @@ module.exports = function IsPropertyDescriptor(Desc) {
 	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/records/property-descriptor":406}],373:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":411}],378:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -36369,7 +39159,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":402,"../helpers/timeConstants":408}],374:[function(require,module,exports){
+},{"../helpers/isFinite":407,"../helpers/timeConstants":413}],379:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -36404,7 +39194,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":402,"./DateFromTime":360,"./Day":361,"./MonthFromTime":377,"./ToInteger":386,"./YearFromTime":396,"./floor":398,"./modulo":399,"get-intrinsic":425}],375:[function(require,module,exports){
+},{"../helpers/isFinite":407,"./DateFromTime":365,"./Day":366,"./MonthFromTime":382,"./ToInteger":391,"./YearFromTime":401,"./floor":403,"./modulo":404,"get-intrinsic":430}],380:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -36429,7 +39219,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":402,"../helpers/timeConstants":408,"./ToInteger":386}],376:[function(require,module,exports){
+},{"../helpers/isFinite":407,"../helpers/timeConstants":413,"./ToInteger":391}],381:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -36445,7 +39235,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":408,"./floor":398,"./modulo":399}],377:[function(require,module,exports){
+},{"../helpers/timeConstants":413,"./floor":403,"./modulo":404}],382:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -36494,7 +39284,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":363,"./InLeapYear":367}],378:[function(require,module,exports){
+},{"./DayWithinYear":368,"./InLeapYear":372}],383:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -36509,7 +39299,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":403}],379:[function(require,module,exports){
+},{"../helpers/isNaN":408}],384:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -36525,7 +39315,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":408,"./floor":398,"./modulo":399}],380:[function(require,module,exports){
+},{"../helpers/timeConstants":413,"./floor":403,"./modulo":404}],385:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -36544,7 +39334,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":394}],381:[function(require,module,exports){
+},{"./Type":399}],386:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -36567,7 +39357,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":402,"./ToNumber":387,"./abs":397,"get-intrinsic":425}],382:[function(require,module,exports){
+},{"../helpers/isFinite":407,"./ToNumber":392,"./abs":402,"get-intrinsic":430}],387:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -36580,7 +39370,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":408,"./DayFromYear":362}],383:[function(require,module,exports){
+},{"../helpers/timeConstants":413,"./DayFromYear":367}],388:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -36594,14 +39384,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":408,"./modulo":399}],384:[function(require,module,exports){
+},{"../helpers/timeConstants":413,"./modulo":404}],389:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],385:[function(require,module,exports){
+},{}],390:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -36612,7 +39402,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":387}],386:[function(require,module,exports){
+},{"./ToNumber":392}],391:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -36632,7 +39422,7 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":402,"../helpers/isNaN":403,"../helpers/sign":407,"./ToNumber":387,"./abs":397,"./floor":398}],387:[function(require,module,exports){
+},{"../helpers/isFinite":407,"../helpers/isNaN":408,"../helpers/sign":412,"./ToNumber":392,"./abs":402,"./floor":403}],392:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
@@ -36666,21 +39456,21 @@ module.exports = function ToNumber(value) {
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":389,"call-bind/callBound":348,"safe-regex-test":448}],388:[function(require,module,exports){
+},{"./ToPrimitive":394,"call-bind/callBound":353,"safe-regex-test":453}],393:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
 module.exports = require('es-object-atoms/ToObject');
 
-},{"es-object-atoms/ToObject":418}],389:[function(require,module,exports){
+},{"es-object-atoms/ToObject":423}],394:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":420}],390:[function(require,module,exports){
+},{"es-to-primitive/es5":425}],395:[function(require,module,exports){
 'use strict';
 
 var hasOwn = require('hasown');
@@ -36732,7 +39522,7 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	return desc;
 };
 
-},{"./IsCallable":369,"./ToBoolean":384,"./Type":394,"es-errors/type":415,"hasown":433}],391:[function(require,module,exports){
+},{"./IsCallable":374,"./ToBoolean":389,"./Type":399,"es-errors/type":420,"hasown":438}],396:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -36746,7 +39536,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":425}],392:[function(require,module,exports){
+},{"get-intrinsic":430}],397:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -36767,7 +39557,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":402,"../helpers/isNaN":403,"../helpers/sign":407,"./ToNumber":387,"./abs":397,"./floor":398,"./modulo":399}],393:[function(require,module,exports){
+},{"../helpers/isFinite":407,"../helpers/isNaN":408,"../helpers/sign":412,"./ToNumber":392,"./abs":402,"./floor":403,"./modulo":404}],398:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -36778,7 +39568,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":387}],394:[function(require,module,exports){
+},{"./ToNumber":392}],399:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -36804,7 +39594,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],395:[function(require,module,exports){
+},{}],400:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -36816,7 +39606,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":361,"./modulo":399}],396:[function(require,module,exports){
+},{"./Day":366,"./modulo":404}],401:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -36834,7 +39624,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":348,"get-intrinsic":425}],397:[function(require,module,exports){
+},{"call-bind/callBound":353,"get-intrinsic":430}],402:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -36847,7 +39637,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":425}],398:[function(require,module,exports){
+},{"get-intrinsic":430}],403:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -36860,7 +39650,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],399:[function(require,module,exports){
+},{}],404:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -36871,7 +39661,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":405}],400:[function(require,module,exports){
+},{"../helpers/mod":410}],405:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -36884,7 +39674,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":408,"./modulo":399}],401:[function(require,module,exports){
+},{"../helpers/timeConstants":413,"./modulo":404}],406:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -36938,21 +39728,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":356,"./5/AbstractRelationalComparison":357,"./5/Canonicalize":358,"./5/CheckObjectCoercible":359,"./5/DateFromTime":360,"./5/Day":361,"./5/DayFromYear":362,"./5/DayWithinYear":363,"./5/DaysInYear":364,"./5/FromPropertyDescriptor":365,"./5/HourFromTime":366,"./5/InLeapYear":367,"./5/IsAccessorDescriptor":368,"./5/IsCallable":369,"./5/IsDataDescriptor":370,"./5/IsGenericDescriptor":371,"./5/IsPropertyDescriptor":372,"./5/MakeDate":373,"./5/MakeDay":374,"./5/MakeTime":375,"./5/MinFromTime":376,"./5/MonthFromTime":377,"./5/SameValue":378,"./5/SecFromTime":379,"./5/StrictEqualityComparison":380,"./5/TimeClip":381,"./5/TimeFromYear":382,"./5/TimeWithinDay":383,"./5/ToBoolean":384,"./5/ToInt32":385,"./5/ToInteger":386,"./5/ToNumber":387,"./5/ToObject":388,"./5/ToPrimitive":389,"./5/ToPropertyDescriptor":390,"./5/ToString":391,"./5/ToUint16":392,"./5/ToUint32":393,"./5/Type":394,"./5/WeekDay":395,"./5/YearFromTime":396,"./5/abs":397,"./5/floor":398,"./5/modulo":399,"./5/msFromTime":400}],402:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":361,"./5/AbstractRelationalComparison":362,"./5/Canonicalize":363,"./5/CheckObjectCoercible":364,"./5/DateFromTime":365,"./5/Day":366,"./5/DayFromYear":367,"./5/DayWithinYear":368,"./5/DaysInYear":369,"./5/FromPropertyDescriptor":370,"./5/HourFromTime":371,"./5/InLeapYear":372,"./5/IsAccessorDescriptor":373,"./5/IsCallable":374,"./5/IsDataDescriptor":375,"./5/IsGenericDescriptor":376,"./5/IsPropertyDescriptor":377,"./5/MakeDate":378,"./5/MakeDay":379,"./5/MakeTime":380,"./5/MinFromTime":381,"./5/MonthFromTime":382,"./5/SameValue":383,"./5/SecFromTime":384,"./5/StrictEqualityComparison":385,"./5/TimeClip":386,"./5/TimeFromYear":387,"./5/TimeWithinDay":388,"./5/ToBoolean":389,"./5/ToInt32":390,"./5/ToInteger":391,"./5/ToNumber":392,"./5/ToObject":393,"./5/ToPrimitive":394,"./5/ToPropertyDescriptor":395,"./5/ToString":396,"./5/ToUint16":397,"./5/ToUint32":398,"./5/Type":399,"./5/WeekDay":400,"./5/YearFromTime":401,"./5/abs":402,"./5/floor":403,"./5/modulo":404,"./5/msFromTime":405}],407:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./isNaN');
 
 module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{"./isNaN":403}],403:[function(require,module,exports){
+},{"./isNaN":408}],408:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],404:[function(require,module,exports){
+},{}],409:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -36967,7 +39757,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":348}],405:[function(require,module,exports){
+},{"call-bind/callBound":353}],410:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -36977,7 +39767,7 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],406:[function(require,module,exports){
+},{}],411:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -37015,14 +39805,14 @@ module.exports = function isPropertyDescriptor(Desc) {
 	return true;
 };
 
-},{"es-errors/type":415,"hasown":433}],407:[function(require,module,exports){
+},{"es-errors/type":420,"hasown":438}],412:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],408:[function(require,module,exports){
+},{}],413:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -37043,7 +39833,7 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],409:[function(require,module,exports){
+},{}],414:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -37061,49 +39851,49 @@ if ($defineProperty) {
 
 module.exports = $defineProperty;
 
-},{"get-intrinsic":425}],410:[function(require,module,exports){
+},{"get-intrinsic":430}],415:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./eval')} */
 module.exports = EvalError;
 
-},{}],411:[function(require,module,exports){
+},{}],416:[function(require,module,exports){
 'use strict';
 
 /** @type {import('.')} */
 module.exports = Error;
 
-},{}],412:[function(require,module,exports){
+},{}],417:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./range')} */
 module.exports = RangeError;
 
-},{}],413:[function(require,module,exports){
+},{}],418:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./ref')} */
 module.exports = ReferenceError;
 
-},{}],414:[function(require,module,exports){
+},{}],419:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./syntax')} */
 module.exports = SyntaxError;
 
-},{}],415:[function(require,module,exports){
+},{}],420:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./type')} */
 module.exports = TypeError;
 
-},{}],416:[function(require,module,exports){
+},{}],421:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./uri')} */
 module.exports = URIError;
 
-},{}],417:[function(require,module,exports){
+},{}],422:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -37116,7 +39906,7 @@ module.exports = function RequireObjectCoercible(value) {
 	return value;
 };
 
-},{"es-errors/type":415}],418:[function(require,module,exports){
+},{"es-errors/type":420}],423:[function(require,module,exports){
 'use strict';
 
 var $Object = require('./');
@@ -37128,13 +39918,13 @@ module.exports = function ToObject(value) {
 	return $Object(value);
 };
 
-},{"./":419,"./RequireObjectCoercible":417}],419:[function(require,module,exports){
+},{"./":424,"./RequireObjectCoercible":422}],424:[function(require,module,exports){
 'use strict';
 
 /** @type {import('.')} */
 module.exports = Object;
 
-},{}],420:[function(require,module,exports){
+},{}],425:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -37181,14 +39971,14 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":421,"is-callable":436}],421:[function(require,module,exports){
+},{"./helpers/isPrimitive":426,"is-callable":441}],426:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],422:[function(require,module,exports){
+},{}],427:[function(require,module,exports){
 'use strict'
 
 var mergeDescriptors = require('merge-descriptors')
@@ -37226,7 +40016,7 @@ function isFunction (value) {
   return typeof value === 'function'
 }
 
-},{"is-object":437,"merge-descriptors":439}],423:[function(require,module,exports){
+},{"is-object":442,"merge-descriptors":444}],428:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -37312,14 +40102,14 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],424:[function(require,module,exports){
+},{}],429:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":423}],425:[function(require,module,exports){
+},{"./implementation":428}],430:[function(require,module,exports){
 'use strict';
 
 var undefined;
@@ -37680,7 +40470,7 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"es-errors":411,"es-errors/eval":410,"es-errors/range":412,"es-errors/ref":413,"es-errors/syntax":414,"es-errors/type":415,"es-errors/uri":416,"function-bind":424,"has-proto":428,"has-symbols":429,"hasown":433}],426:[function(require,module,exports){
+},{"es-errors":416,"es-errors/eval":415,"es-errors/range":417,"es-errors/ref":418,"es-errors/syntax":419,"es-errors/type":420,"es-errors/uri":421,"function-bind":429,"has-proto":433,"has-symbols":434,"hasown":438}],431:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -37698,7 +40488,7 @@ if ($gOPD) {
 
 module.exports = $gOPD;
 
-},{"get-intrinsic":425}],427:[function(require,module,exports){
+},{"get-intrinsic":430}],432:[function(require,module,exports){
 'use strict';
 
 var $defineProperty = require('es-define-property');
@@ -37722,7 +40512,7 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"es-define-property":409}],428:[function(require,module,exports){
+},{"es-define-property":414}],433:[function(require,module,exports){
 'use strict';
 
 var test = {
@@ -37739,7 +40529,7 @@ module.exports = function hasProto() {
 		&& !(test instanceof $Object);
 };
 
-},{}],429:[function(require,module,exports){
+},{}],434:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -37754,7 +40544,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":430}],430:[function(require,module,exports){
+},{"./shams":435}],435:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -37798,7 +40588,7 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],431:[function(require,module,exports){
+},{}],436:[function(require,module,exports){
 'use strict';
 
 var hasSymbols = require('has-symbols/shams');
@@ -37808,14 +40598,14 @@ module.exports = function hasToStringTagShams() {
 	return hasSymbols() && !!Symbol.toStringTag;
 };
 
-},{"has-symbols/shams":430}],432:[function(require,module,exports){
+},{"has-symbols/shams":435}],437:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":424}],433:[function(require,module,exports){
+},{"function-bind":429}],438:[function(require,module,exports){
 'use strict';
 
 var call = Function.prototype.call;
@@ -37825,7 +40615,7 @@ var bind = require('function-bind');
 /** @type {import('.')} */
 module.exports = bind.call(call, $hasOwn);
 
-},{"function-bind":424}],434:[function(require,module,exports){
+},{"function-bind":429}],439:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -37912,7 +40702,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],435:[function(require,module,exports){
+},{}],440:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -37941,7 +40731,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],436:[function(require,module,exports){
+},{}],441:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -38044,14 +40834,14 @@ module.exports = reflectApply
 		return tryFunctionObject(value);
 	};
 
-},{}],437:[function(require,module,exports){
+},{}],442:[function(require,module,exports){
 'use strict';
 
 module.exports = function isObject(x) {
 	return typeof x === 'object' && x !== null;
 };
 
-},{}],438:[function(require,module,exports){
+},{}],443:[function(require,module,exports){
 'use strict';
 
 var callBound = require('call-bind/callBound');
@@ -38111,7 +40901,7 @@ module.exports = hasToStringTag
 		return $toString(value) === regexClass;
 	};
 
-},{"call-bind/callBound":348,"has-tostringtag/shams":431}],439:[function(require,module,exports){
+},{"call-bind/callBound":353,"has-tostringtag/shams":436}],444:[function(require,module,exports){
 /*!
  * merge-descriptors
  * Copyright(c) 2014 Jonathan Ong
@@ -38173,7 +40963,7 @@ function merge(dest, src, redefine) {
   return dest
 }
 
-},{}],440:[function(require,module,exports){
+},{}],445:[function(require,module,exports){
 'use strict'
 
 module.exports = function createNotFoundError (path) {
@@ -38182,7 +40972,7 @@ module.exports = function createNotFoundError (path) {
   return err
 }
 
-},{}],441:[function(require,module,exports){
+},{}],446:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -38306,7 +41096,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":443}],442:[function(require,module,exports){
+},{"./isArguments":448}],447:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -38340,7 +41130,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":441,"./isArguments":443}],443:[function(require,module,exports){
+},{"./implementation":446,"./isArguments":448}],448:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -38359,7 +41149,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],444:[function(require,module,exports){
+},{}],449:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -38545,7 +41335,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],445:[function(require,module,exports){
+},{}],450:[function(require,module,exports){
 'use strict';
 
 var fillMissingKeys = require('fill-keys');
@@ -38640,7 +41430,7 @@ if (require.cache) {
   proxyquire.plugin = replacePrelude.plugin;
 }
 
-},{"fill-keys":422,"module-not-found-error":440}],446:[function(require,module,exports){
+},{"fill-keys":427,"module-not-found-error":445}],451:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -38673,7 +41463,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":444,"through":461,"timers":462}],447:[function(require,module,exports){
+},{"_process":449,"through":466,"timers":467}],452:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -38740,7 +41530,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":330}],448:[function(require,module,exports){
+},{"buffer":335}],453:[function(require,module,exports){
 'use strict';
 
 var callBound = require('call-bind/callBound');
@@ -38758,7 +41548,7 @@ module.exports = function regexTester(regex) {
 	};
 };
 
-},{"call-bind/callBound":348,"es-errors/type":415,"is-regex":438}],449:[function(require,module,exports){
+},{"call-bind/callBound":353,"es-errors/type":420,"is-regex":443}],454:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -38802,7 +41592,7 @@ module.exports = function setFunctionLength(fn, length) {
 	return fn;
 };
 
-},{"define-data-property":353,"es-errors/type":415,"get-intrinsic":425,"gopd":426,"has-property-descriptors":427}],450:[function(require,module,exports){
+},{"define-data-property":358,"es-errors/type":420,"get-intrinsic":430,"gopd":431,"has-property-descriptors":432}],455:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -38817,7 +41607,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":401,"function-bind":424}],451:[function(require,module,exports){
+},{"es-abstract/es5":406,"function-bind":429}],456:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -38837,7 +41627,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":450,"./polyfill":452,"./shim":453,"define-properties":354,"function-bind":424}],452:[function(require,module,exports){
+},{"./implementation":455,"./polyfill":457,"./shim":458,"define-properties":359,"function-bind":429}],457:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -38851,7 +41641,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":450}],453:[function(require,module,exports){
+},{"./implementation":455}],458:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -38863,7 +41653,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":452,"define-properties":354}],454:[function(require,module,exports){
+},{"./polyfill":457,"define-properties":359}],459:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -39160,7 +41950,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":447}],455:[function(require,module,exports){
+},{"safe-buffer":452}],460:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -39314,7 +42104,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":456,"./lib/results":458,"./lib/test":459,"_process":444,"defined":355,"through":461,"timers":462}],456:[function(require,module,exports){
+},{"./lib/default_stream":461,"./lib/results":463,"./lib/test":464,"_process":449,"defined":360,"through":466,"timers":467}],461:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -39349,7 +42139,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":444,"fs":329,"through":461}],457:[function(require,module,exports){
+},{"_process":449,"fs":334,"through":466}],462:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -39357,7 +42147,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":444,"timers":462}],458:[function(require,module,exports){
+},{"_process":449,"timers":467}],463:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -39548,7 +42338,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":444,"events":331,"function-bind":424,"has":432,"inherits":435,"object-inspect":460,"resumer":446,"through":461,"timers":462}],459:[function(require,module,exports){
+},{"_process":449,"events":336,"function-bind":429,"has":437,"inherits":440,"object-inspect":465,"resumer":451,"through":466,"timers":467}],464:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -40049,7 +42839,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":457,"deep-equal":350,"defined":355,"events":331,"has":432,"inherits":435,"path":332,"string.prototype.trim":451}],460:[function(require,module,exports){
+},{"./next_tick":462,"deep-equal":355,"defined":360,"events":336,"has":437,"inherits":440,"path":337,"string.prototype.trim":456}],465:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -40243,7 +43033,7 @@ function inspectString (str) {
     }
 }
 
-},{}],461:[function(require,module,exports){
+},{}],466:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -40355,7 +43145,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":444,"stream":333}],462:[function(require,module,exports){
+},{"_process":449,"stream":338}],467:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -40434,7 +43224,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":444,"timers":462}],463:[function(require,module,exports){
+},{"process/browser.js":449,"timers":467}],468:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -40505,4 +43295,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[210]);
+},{}]},{},[215]);

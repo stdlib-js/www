@@ -642,7 +642,7 @@ function arraylike2object( x ) {
 
 module.exports = arraylike2object;
 
-},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/getter":22,"@stdlib/array/base/setter":28,"@stdlib/array/dtype":67}],7:[function(require,module,exports){
+},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/getter":24,"@stdlib/array/base/setter":32,"@stdlib/array/dtype":71}],7:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -750,7 +750,7 @@ function factory( x ) {
 
 module.exports = factory;
 
-},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/dtype":67,"@stdlib/assert/is-collection":163,"@stdlib/string/format":892}],8:[function(require,module,exports){
+},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/dtype":71,"@stdlib/assert/is-collection":169,"@stdlib/string/format":964}],8:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -799,7 +801,7 @@ module.exports = main;
 
 // exports: { "factory": "main.factory" }
 
-},{"./factory.js":7,"./main.js":9,"@stdlib/utils/define-nonenumerable-read-only-property":905}],9:[function(require,module,exports){
+},{"./factory.js":7,"./main.js":9,"@stdlib/utils/define-nonenumerable-read-only-property":977}],9:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -873,7 +875,7 @@ function contains( x, value ) {
 
 module.exports = contains;
 
-},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/getter":22,"@stdlib/array/dtype":67}],10:[function(require,module,exports){
+},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/getter":24,"@stdlib/array/dtype":71}],10:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1291,6 +1293,150 @@ module.exports = isComplex64Array;
 /**
 * @license Apache-2.0
 *
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test if an array is sorted in ascending order.
+*
+* @module @stdlib/array/base/assert/is-sorted-ascending
+*
+* @example
+* var isSortedAscending = require( '@stdlib/array/base/assert/is-sorted-ascending' );
+*
+* var out = isSortedAscending( [ 1, 2, 3 ] );
+* // returns true
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":19}],19:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
+var accessorGetter = require( '@stdlib/array/base/accessor-getter' );
+var getter = require( '@stdlib/array/base/getter' );
+var dtype = require( '@stdlib/array/dtype' );
+
+
+// MAIN //
+
+/**
+* Tests if an array is sorted in ascending order.
+*
+* @param {Collection} x - input array
+* @returns {boolean} boolean indicating if an array is sorted in ascending order
+*
+* @example
+* var out = isSortedAscending( [ 1, 2, 3 ] );
+* // returns true
+*
+* @example
+* var out = isSortedAscending( [ 3, 2, 1 ] );
+* // returns false
+*
+* @example
+* var out = isSortedAscending( [ 3, 3, 3 ] );
+* // returns true
+*
+* @example
+* var out = isSortedAscending( [ 3 ] );
+* // returns true
+*
+* @example
+* var out = isSortedAscending( [] );
+* // returns false
+*
+* @example
+* var out = isSortedAscending( [ 1, 3, 2 ] );
+* // returns false
+*/
+function isSortedAscending( x ) {
+	var len;
+	var get;
+	var dt;
+	var v1;
+	var v2;
+	var i;
+
+	// Resolve the input array data type:
+	dt = dtype( x );
+
+	// Resolve an accessor for retrieving input array elements:
+	if ( isAccessorArray( x ) ) {
+		get = accessorGetter( dt );
+	} else {
+		get = getter( dt );
+	}
+	// Get the number of elements over which to iterate:
+	len = x.length;
+
+	// Check for an empty array:
+	if ( len === 0 ) {
+		return false;
+	}
+	// Loop over the elements...
+	v1 = get( x, 0 );
+	for ( i = 1; i < len; i++ ) {
+		v2 = get( x, i );
+		if ( v1 > v2 ) {
+			return false;
+		}
+		v1 = v2;
+	}
+	return true;
+}
+
+
+// EXPORTS //
+
+module.exports = isSortedAscending;
+
+},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/getter":24,"@stdlib/array/dtype":71}],20:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
 * Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -1329,7 +1475,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":19}],19:[function(require,module,exports){
+},{"./main.js":21}],21:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1380,7 +1526,7 @@ function copy( x ) {
 
 module.exports = copy;
 
-},{}],20:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1428,7 +1574,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":21}],21:[function(require,module,exports){
+},{"./main.js":23}],23:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1483,7 +1629,7 @@ function filled( value, len ) {
 
 module.exports = filled;
 
-},{}],22:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1529,7 +1675,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":23}],23:[function(require,module,exports){
+},{"./main.js":25}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1816,7 +1962,7 @@ function getter( dtype ) {
 
 module.exports = getter;
 
-},{}],24:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1858,7 +2004,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":25}],25:[function(require,module,exports){
+},{"./main.js":27}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1905,7 +2051,96 @@ function nulls( len ) {
 
 module.exports = nulls;
 
-},{"@stdlib/array/base/filled":20}],26:[function(require,module,exports){
+},{"@stdlib/array/base/filled":22}],28:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create a "generic" array filled with ones.
+*
+* @module @stdlib/array/base/ones
+*
+* @example
+* var ones = require( '@stdlib/array/base/ones' );
+*
+* var out = ones( 3 );
+* // returns [ 1.0, 1.0, 1.0 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":29}],29:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2021 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var filled = require( '@stdlib/array/base/filled' );
+
+
+// MAIN //
+
+/**
+* Returns a "generic" array filled with ones.
+*
+* @param {NonNegativeInteger} len - array length
+* @returns {Array} output array
+*
+* @example
+* var out = ones( 3 );
+* // returns [ 1.0, 1.0, 1.0 ]
+*/
+function ones( len ) {
+	return filled( 1.0, len );
+}
+
+
+// EXPORTS //
+
+module.exports = ones;
+
+},{"@stdlib/array/base/filled":22}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1952,7 +2187,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":27}],27:[function(require,module,exports){
+},{"./main.js":31}],31:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2124,7 +2359,7 @@ function reverse( x ) {
 
 module.exports = reverse;
 
-},{"@stdlib/array/base/arraylike2object":5,"@stdlib/math/base/special/floor":299}],28:[function(require,module,exports){
+},{"@stdlib/array/base/arraylike2object":5,"@stdlib/math/base/special/floor":305}],32:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2172,7 +2407,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":29}],29:[function(require,module,exports){
+},{"./main.js":33}],33:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2483,7 +2718,7 @@ function setter( dtype ) {
 
 module.exports = setter;
 
-},{}],30:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2528,7 +2763,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":31}],31:[function(require,module,exports){
+},{"./main.js":35}],35:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2581,7 +2816,7 @@ function take( x, indices ) {
 
 module.exports = take;
 
-},{}],32:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2779,7 +3014,7 @@ function assign( out, stride, offset ) {
 
 module.exports = assign;
 
-},{"@stdlib/array/base/arraylike2object":5,"@stdlib/strided/base/reinterpret-complex128":876,"@stdlib/strided/base/reinterpret-complex64":878}],33:[function(require,module,exports){
+},{"@stdlib/array/base/arraylike2object":5,"@stdlib/strided/base/reinterpret-complex128":948,"@stdlib/strided/base/reinterpret-complex64":950}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2838,7 +3073,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":32,"./main.js":34,"@stdlib/utils/define-nonenumerable-read-only-property":905}],34:[function(require,module,exports){
+},{"./assign.js":36,"./main.js":38,"@stdlib/utils/define-nonenumerable-read-only-property":977}],38:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2890,7 +3125,7 @@ function zeroTo( n ) {
 
 module.exports = zeroTo;
 
-},{}],35:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2932,7 +3167,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":36}],36:[function(require,module,exports){
+},{"./main.js":40}],40:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2979,7 +3214,7 @@ function zeros( len ) {
 
 module.exports = zeros;
 
-},{"@stdlib/array/base/filled":20}],37:[function(require,module,exports){
+},{"@stdlib/array/base/filled":22}],41:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3031,7 +3266,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/boolean/ctor":246}],38:[function(require,module,exports){
+},{"@stdlib/boolean/ctor":252}],42:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3086,7 +3321,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/boolean/ctor":246}],39:[function(require,module,exports){
+},{"@stdlib/boolean/ctor":252}],43:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3146,7 +3381,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/boolean/ctor":246}],40:[function(require,module,exports){
+},{"@stdlib/boolean/ctor":252}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3242,7 +3477,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":41}],41:[function(require,module,exports){
+},{"./main.js":45}],45:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5736,7 +5971,7 @@ setReadOnly( BooleanArray.prototype, 'with', function copyWith( index, value ) {
 
 module.exports = BooleanArray;
 
-},{"./from_array.js":37,"./from_iterator.js":38,"./from_iterator_map.js":39,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":22,"@stdlib/array/uint8":91,"@stdlib/assert/has-iterator-symbol-support":122,"@stdlib/assert/is-arraybuffer":153,"@stdlib/assert/is-boolean":155,"@stdlib/assert/is-collection":163,"@stdlib/assert/is-function":177,"@stdlib/assert/is-integer":185,"@stdlib/assert/is-nonnegative-integer":197,"@stdlib/assert/is-object":211,"@stdlib/assert/is-string":222,"@stdlib/assert/is-string-array":221,"@stdlib/boolean/ctor":246,"@stdlib/math/base/special/floor":299,"@stdlib/string/format":892,"@stdlib/symbol/iterator":899,"@stdlib/utils/define-nonenumerable-read-only-accessor":903,"@stdlib/utils/define-nonenumerable-read-only-property":905}],42:[function(require,module,exports){
+},{"./from_array.js":41,"./from_iterator.js":42,"./from_iterator_map.js":43,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":24,"@stdlib/array/uint8":97,"@stdlib/assert/has-iterator-symbol-support":128,"@stdlib/assert/is-arraybuffer":159,"@stdlib/assert/is-boolean":161,"@stdlib/assert/is-collection":169,"@stdlib/assert/is-function":183,"@stdlib/assert/is-integer":191,"@stdlib/assert/is-nonnegative-integer":203,"@stdlib/assert/is-object":217,"@stdlib/assert/is-string":228,"@stdlib/assert/is-string-array":227,"@stdlib/boolean/ctor":252,"@stdlib/math/base/special/floor":305,"@stdlib/string/format":964,"@stdlib/symbol/iterator":971,"@stdlib/utils/define-nonenumerable-read-only-accessor":975,"@stdlib/utils/define-nonenumerable-read-only-property":977}],46:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5790,7 +6025,7 @@ if ( hasArrayBufferSupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":43,"./polyfill.js":44,"@stdlib/assert/has-arraybuffer-support":100}],43:[function(require,module,exports){
+},{"./main.js":47,"./polyfill.js":48,"@stdlib/assert/has-arraybuffer-support":106}],47:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5820,7 +6055,7 @@ var ctor = ( typeof ArrayBuffer === 'function' ) ? ArrayBuffer : void 0; // esli
 
 module.exports = ctor;
 
-},{}],44:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5859,7 +6094,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],45:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5922,7 +6157,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":165,"@stdlib/complex/float64/imag":272,"@stdlib/complex/float64/real":274}],46:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":171,"@stdlib/complex/float64/imag":278,"@stdlib/complex/float64/real":280}],50:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5989,7 +6224,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":149,"@stdlib/assert/is-complex-like":165,"@stdlib/complex/float64/imag":272,"@stdlib/complex/float64/real":274,"@stdlib/string/format":892}],47:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":155,"@stdlib/assert/is-complex-like":171,"@stdlib/complex/float64/imag":278,"@stdlib/complex/float64/real":280,"@stdlib/string/format":964}],51:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6061,7 +6296,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":149,"@stdlib/assert/is-complex-like":165,"@stdlib/complex/float64/imag":272,"@stdlib/complex/float64/real":274,"@stdlib/string/format":892}],48:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":155,"@stdlib/assert/is-complex-like":171,"@stdlib/complex/float64/imag":278,"@stdlib/complex/float64/real":280,"@stdlib/string/format":964}],52:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6157,7 +6392,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":49}],49:[function(require,module,exports){
+},{"./main.js":53}],53:[function(require,module,exports){
 /* eslint-disable no-restricted-syntax, max-lines, no-invalid-this */
 
 /**
@@ -9196,7 +9431,7 @@ setReadOnly( Complex128Array.prototype, 'with', function copyWith( index, value 
 
 module.exports = Complex128Array;
 
-},{"./from_array.js":45,"./from_iterator.js":46,"./from_iterator_map.js":47,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":14,"@stdlib/array/base/assert/is-complex64array":16,"@stdlib/array/base/getter":22,"@stdlib/array/float64":73,"@stdlib/assert/has-iterator-symbol-support":122,"@stdlib/assert/is-array":151,"@stdlib/assert/is-array-like-object":149,"@stdlib/assert/is-arraybuffer":153,"@stdlib/assert/is-collection":163,"@stdlib/assert/is-complex-like":165,"@stdlib/assert/is-function":177,"@stdlib/assert/is-nonnegative-integer":197,"@stdlib/assert/is-object":211,"@stdlib/assert/is-string":222,"@stdlib/assert/is-string-array":221,"@stdlib/complex/float64/ctor":268,"@stdlib/complex/float64/imag":272,"@stdlib/complex/float64/real":274,"@stdlib/math/base/assert/is-even":289,"@stdlib/math/base/assert/is-integer":291,"@stdlib/math/base/special/floor":299,"@stdlib/strided/base/reinterpret-complex128":876,"@stdlib/strided/base/reinterpret-complex64":878,"@stdlib/string/format":892,"@stdlib/symbol/iterator":899,"@stdlib/utils/define-nonenumerable-read-only-accessor":903,"@stdlib/utils/define-nonenumerable-read-only-property":905}],50:[function(require,module,exports){
+},{"./from_array.js":49,"./from_iterator.js":50,"./from_iterator_map.js":51,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":14,"@stdlib/array/base/assert/is-complex64array":16,"@stdlib/array/base/getter":24,"@stdlib/array/float64":79,"@stdlib/assert/has-iterator-symbol-support":128,"@stdlib/assert/is-array":157,"@stdlib/assert/is-array-like-object":155,"@stdlib/assert/is-arraybuffer":159,"@stdlib/assert/is-collection":169,"@stdlib/assert/is-complex-like":171,"@stdlib/assert/is-function":183,"@stdlib/assert/is-nonnegative-integer":203,"@stdlib/assert/is-object":217,"@stdlib/assert/is-string":228,"@stdlib/assert/is-string-array":227,"@stdlib/complex/float64/ctor":274,"@stdlib/complex/float64/imag":278,"@stdlib/complex/float64/real":280,"@stdlib/math/base/assert/is-even":295,"@stdlib/math/base/assert/is-integer":297,"@stdlib/math/base/special/floor":305,"@stdlib/strided/base/reinterpret-complex128":948,"@stdlib/strided/base/reinterpret-complex64":950,"@stdlib/string/format":964,"@stdlib/symbol/iterator":971,"@stdlib/utils/define-nonenumerable-read-only-accessor":975,"@stdlib/utils/define-nonenumerable-read-only-property":977}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9259,7 +9494,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":165,"@stdlib/complex/float32/imag":264,"@stdlib/complex/float32/real":266}],51:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":171,"@stdlib/complex/float32/imag":270,"@stdlib/complex/float32/real":272}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9326,7 +9561,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":149,"@stdlib/assert/is-complex-like":165,"@stdlib/complex/float32/imag":264,"@stdlib/complex/float32/real":266,"@stdlib/string/format":892}],52:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":155,"@stdlib/assert/is-complex-like":171,"@stdlib/complex/float32/imag":270,"@stdlib/complex/float32/real":272,"@stdlib/string/format":964}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9398,7 +9633,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":149,"@stdlib/assert/is-complex-like":165,"@stdlib/complex/float32/imag":264,"@stdlib/complex/float32/real":266,"@stdlib/string/format":892}],53:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":155,"@stdlib/assert/is-complex-like":171,"@stdlib/complex/float32/imag":270,"@stdlib/complex/float32/real":272,"@stdlib/string/format":964}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9494,7 +9729,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":54}],54:[function(require,module,exports){
+},{"./main.js":58}],58:[function(require,module,exports){
 /* eslint-disable no-restricted-syntax, max-lines, no-invalid-this */
 
 /**
@@ -12531,7 +12766,7 @@ setReadOnly( Complex64Array.prototype, 'with', function copyWith( index, value )
 
 module.exports = Complex64Array;
 
-},{"./from_array.js":50,"./from_iterator.js":51,"./from_iterator_map.js":52,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":14,"@stdlib/array/base/assert/is-complex64array":16,"@stdlib/array/base/getter":22,"@stdlib/array/float32":70,"@stdlib/assert/has-iterator-symbol-support":122,"@stdlib/assert/is-array":151,"@stdlib/assert/is-array-like-object":149,"@stdlib/assert/is-arraybuffer":153,"@stdlib/assert/is-collection":163,"@stdlib/assert/is-complex-like":165,"@stdlib/assert/is-function":177,"@stdlib/assert/is-nonnegative-integer":197,"@stdlib/assert/is-object":211,"@stdlib/assert/is-string":222,"@stdlib/assert/is-string-array":221,"@stdlib/complex/float32/ctor":260,"@stdlib/complex/float32/imag":264,"@stdlib/complex/float32/real":266,"@stdlib/math/base/assert/is-even":289,"@stdlib/math/base/assert/is-integer":291,"@stdlib/math/base/special/floor":299,"@stdlib/strided/base/reinterpret-complex128":876,"@stdlib/strided/base/reinterpret-complex64":878,"@stdlib/string/format":892,"@stdlib/symbol/iterator":899,"@stdlib/utils/define-nonenumerable-read-only-accessor":903,"@stdlib/utils/define-nonenumerable-read-only-property":905}],55:[function(require,module,exports){
+},{"./from_array.js":54,"./from_iterator.js":55,"./from_iterator_map.js":56,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":14,"@stdlib/array/base/assert/is-complex64array":16,"@stdlib/array/base/getter":24,"@stdlib/array/float32":76,"@stdlib/assert/has-iterator-symbol-support":128,"@stdlib/assert/is-array":157,"@stdlib/assert/is-array-like-object":155,"@stdlib/assert/is-arraybuffer":159,"@stdlib/assert/is-collection":169,"@stdlib/assert/is-complex-like":171,"@stdlib/assert/is-function":183,"@stdlib/assert/is-nonnegative-integer":203,"@stdlib/assert/is-object":217,"@stdlib/assert/is-string":228,"@stdlib/assert/is-string-array":227,"@stdlib/complex/float32/ctor":266,"@stdlib/complex/float32/imag":270,"@stdlib/complex/float32/real":272,"@stdlib/math/base/assert/is-even":295,"@stdlib/math/base/assert/is-integer":297,"@stdlib/math/base/special/floor":305,"@stdlib/strided/base/reinterpret-complex128":948,"@stdlib/strided/base/reinterpret-complex64":950,"@stdlib/string/format":964,"@stdlib/symbol/iterator":971,"@stdlib/utils/define-nonenumerable-read-only-accessor":975,"@stdlib/utils/define-nonenumerable-read-only-property":977}],59:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12592,7 +12827,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{"@stdlib/array/bool":40,"@stdlib/array/complex128":48,"@stdlib/array/complex64":53,"@stdlib/array/float32":70,"@stdlib/array/float64":73,"@stdlib/array/int16":76,"@stdlib/array/int32":79,"@stdlib/array/int8":82,"@stdlib/array/uint16":85,"@stdlib/array/uint32":88,"@stdlib/array/uint8":91,"@stdlib/array/uint8c":94}],56:[function(require,module,exports){
+},{"@stdlib/array/bool":44,"@stdlib/array/complex128":52,"@stdlib/array/complex64":57,"@stdlib/array/float32":76,"@stdlib/array/float64":79,"@stdlib/array/int16":82,"@stdlib/array/int32":85,"@stdlib/array/int8":88,"@stdlib/array/uint16":91,"@stdlib/array/uint32":94,"@stdlib/array/uint8":97,"@stdlib/array/uint8c":100}],60:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12637,7 +12872,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":57}],57:[function(require,module,exports){
+},{"./main.js":61}],61:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12688,7 +12923,7 @@ function ctors( dtype ) {
 
 module.exports = ctors;
 
-},{"./ctors.js":55}],58:[function(require,module,exports){
+},{"./ctors.js":59}],62:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12746,7 +12981,7 @@ if ( hasDataViewSupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":59,"./polyfill.js":60,"@stdlib/assert/has-dataview-support":105}],59:[function(require,module,exports){
+},{"./main.js":63,"./polyfill.js":64,"@stdlib/assert/has-dataview-support":111}],63:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12776,7 +13011,7 @@ var ctor = ( typeof DataView === 'function' ) ? DataView : void 0; // eslint-dis
 
 module.exports = ctor;
 
-},{}],60:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12815,7 +13050,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],61:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12880,7 +13115,7 @@ function get( name ) {
 
 module.exports = get;
 
-},{"./main.js":63}],62:[function(require,module,exports){
+},{"./main.js":67}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12929,7 +13164,7 @@ setReadOnly( main, 'get', get );
 
 module.exports = main;
 
-},{"./get.js":61,"./main.js":63,"@stdlib/utils/define-nonenumerable-read-only-property":905}],63:[function(require,module,exports){
+},{"./get.js":65,"./main.js":67,"@stdlib/utils/define-nonenumerable-read-only-property":977}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12984,7 +13219,7 @@ function defaults() {
 
 module.exports = defaults;
 
-},{}],64:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13029,7 +13264,7 @@ var ctor2dtypes = {
 
 module.exports = ctor2dtypes;
 
-},{}],65:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13089,7 +13324,7 @@ var CTORS = [
 
 module.exports = CTORS;
 
-},{"@stdlib/array/bool":40,"@stdlib/array/complex128":48,"@stdlib/array/complex64":53,"@stdlib/array/float32":70,"@stdlib/array/float64":73,"@stdlib/array/int16":76,"@stdlib/array/int32":79,"@stdlib/array/int8":82,"@stdlib/array/uint16":85,"@stdlib/array/uint32":88,"@stdlib/array/uint8":91,"@stdlib/array/uint8c":94}],66:[function(require,module,exports){
+},{"@stdlib/array/bool":44,"@stdlib/array/complex128":52,"@stdlib/array/complex64":57,"@stdlib/array/float32":76,"@stdlib/array/float64":79,"@stdlib/array/int16":82,"@stdlib/array/int32":85,"@stdlib/array/int8":88,"@stdlib/array/uint16":91,"@stdlib/array/uint32":94,"@stdlib/array/uint8":97,"@stdlib/array/uint8c":100}],70:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13133,7 +13368,7 @@ var DTYPES = [
 
 module.exports = DTYPES;
 
-},{}],67:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13184,7 +13419,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":68}],68:[function(require,module,exports){
+},{"./main.js":72}],72:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13257,7 +13492,118 @@ function dtype( value ) {
 
 module.exports = dtype;
 
-},{"./ctor2dtype.js":64,"./ctors.js":65,"./dtypes.js":66,"@stdlib/assert/is-array":151,"@stdlib/assert/is-buffer":161,"@stdlib/utils/constructor-name":901}],69:[function(require,module,exports){
+},{"./ctor2dtype.js":68,"./ctors.js":69,"./dtypes.js":70,"@stdlib/assert/is-array":157,"@stdlib/assert/is-buffer":167,"@stdlib/utils/constructor-name":973}],73:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Create an uninitialized array having the same length and data type as a provided input array.
+*
+* @module @stdlib/array/empty-like
+*
+* @example
+* var emptyLike = require( '@stdlib/array/empty-like' );
+*
+* var arr = emptyLike( [ 0.0, 0.0 ] );
+* // returns [ 0.0, 0.0 ]
+*
+* @example
+* var emptyLike = require( '@stdlib/array/empty-like' );
+*
+* var arr = emptyLike( [ 0.0, 0.0 ], 'float32' );
+* // returns <Float32Array>
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":74}],74:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2023 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var dtype = require( '@stdlib/array/dtype' );
+var empty = require( '@stdlib/array/empty' );
+var format = require( '@stdlib/string/format' );
+
+
+// MAIN //
+
+/**
+* Creates an uninitialized array having the same length and data type as a provided input array.
+*
+* @param {(Array|TypedArray|ComplexArray)} x - input array
+* @param {string} [dtype] - data type
+* @throws {TypeError} first argument must be an array or typed array
+* @throws {TypeError} second argument must be a recognized data type
+* @returns {(TypedArray|Array|ComplexArray)} array or typed array
+*
+* @example
+* var arr = emptyLike( [ 0.0, 0.0 ] );
+* // returns [ 0.0, 0.0 ]
+*
+* @example
+* var arr = emptyLike( [ 0.0, 0.0 ], 'float32' );
+* // returns <Float32Array>
+*/
+function emptyLike( x ) {
+	var dt = dtype( x ); // delegate input argument validation to dtype resolution
+	if ( dt === null ) {
+		throw new TypeError( format( 'invalid argument. First argument must be either an array, typed array, or complex typed array. Value: `%s`.', x ) );
+	}
+	if ( arguments.length > 1 ) {
+		dt = arguments[ 1 ];
+	}
+	return empty( x.length, dt );
+}
+
+
+// EXPORTS //
+
+module.exports = emptyLike;
+
+},{"@stdlib/array/dtype":71,"@stdlib/array/empty":75,"@stdlib/string/format":964}],75:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13315,7 +13661,7 @@ function empty( length ) {
 
 module.exports = empty;
 
-},{"@stdlib/array/zeros":97}],70:[function(require,module,exports){
+},{"@stdlib/array/zeros":103}],76:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13369,7 +13715,7 @@ if ( hasFloat32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":71,"./polyfill.js":72,"@stdlib/assert/has-float32array-support":108}],71:[function(require,module,exports){
+},{"./main.js":77,"./polyfill.js":78,"@stdlib/assert/has-float32array-support":114}],77:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13399,7 +13745,7 @@ var ctor = ( typeof Float32Array === 'function' ) ? Float32Array : void 0; // es
 
 module.exports = ctor;
 
-},{}],72:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13438,7 +13784,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],73:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13492,7 +13838,7 @@ if ( hasFloat64ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":74,"./polyfill.js":75,"@stdlib/assert/has-float64array-support":111}],74:[function(require,module,exports){
+},{"./main.js":80,"./polyfill.js":81,"@stdlib/assert/has-float64array-support":117}],80:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13522,7 +13868,7 @@ var ctor = ( typeof Float64Array === 'function' ) ? Float64Array : void 0; // es
 
 module.exports = ctor;
 
-},{}],75:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13561,7 +13907,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],76:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13615,7 +13961,7 @@ if ( hasInt16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":77,"./polyfill.js":78,"@stdlib/assert/has-int16array-support":113}],77:[function(require,module,exports){
+},{"./main.js":83,"./polyfill.js":84,"@stdlib/assert/has-int16array-support":119}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13645,7 +13991,7 @@ var ctor = ( typeof Int16Array === 'function' ) ? Int16Array : void 0; // eslint
 
 module.exports = ctor;
 
-},{}],78:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13684,7 +14030,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],79:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13738,7 +14084,7 @@ if ( hasInt32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":80,"./polyfill.js":81,"@stdlib/assert/has-int32array-support":116}],80:[function(require,module,exports){
+},{"./main.js":86,"./polyfill.js":87,"@stdlib/assert/has-int32array-support":122}],86:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13768,7 +14114,7 @@ var ctor = ( typeof Int32Array === 'function' ) ? Int32Array : void 0; // eslint
 
 module.exports = ctor;
 
-},{}],81:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13807,7 +14153,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],82:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13861,7 +14207,7 @@ if ( hasInt8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":83,"./polyfill.js":84,"@stdlib/assert/has-int8array-support":119}],83:[function(require,module,exports){
+},{"./main.js":89,"./polyfill.js":90,"@stdlib/assert/has-int8array-support":125}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13891,7 +14237,7 @@ var ctor = ( typeof Int8Array === 'function' ) ? Int8Array : void 0; // eslint-d
 
 module.exports = ctor;
 
-},{}],84:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13930,7 +14276,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],85:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13984,7 +14330,7 @@ if ( hasUint16ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":86,"./polyfill.js":87,"@stdlib/assert/has-uint16array-support":133}],86:[function(require,module,exports){
+},{"./main.js":92,"./polyfill.js":93,"@stdlib/assert/has-uint16array-support":139}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14014,7 +14360,7 @@ var ctor = ( typeof Uint16Array === 'function' ) ? Uint16Array : void 0; // esli
 
 module.exports = ctor;
 
-},{}],87:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14053,7 +14399,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],88:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14107,7 +14453,7 @@ if ( hasUint32ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":89,"./polyfill.js":90,"@stdlib/assert/has-uint32array-support":136}],89:[function(require,module,exports){
+},{"./main.js":95,"./polyfill.js":96,"@stdlib/assert/has-uint32array-support":142}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14137,7 +14483,7 @@ var ctor = ( typeof Uint32Array === 'function' ) ? Uint32Array : void 0; // esli
 
 module.exports = ctor;
 
-},{}],90:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14176,7 +14522,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],91:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14230,7 +14576,7 @@ if ( hasUint8ArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":92,"./polyfill.js":93,"@stdlib/assert/has-uint8array-support":139}],92:[function(require,module,exports){
+},{"./main.js":98,"./polyfill.js":99,"@stdlib/assert/has-uint8array-support":145}],98:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14260,7 +14606,7 @@ var ctor = ( typeof Uint8Array === 'function' ) ? Uint8Array : void 0; // eslint
 
 module.exports = ctor;
 
-},{}],93:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14299,7 +14645,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],94:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14353,7 +14699,7 @@ if ( hasUint8ClampedArraySupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":95,"./polyfill.js":96,"@stdlib/assert/has-uint8clampedarray-support":142}],95:[function(require,module,exports){
+},{"./main.js":101,"./polyfill.js":102,"@stdlib/assert/has-uint8clampedarray-support":148}],101:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14383,7 +14729,7 @@ var ctor = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : voi
 
 module.exports = ctor;
 
-},{}],96:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14422,7 +14768,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],97:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14470,7 +14816,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":98}],98:[function(require,module,exports){
+},{"./main.js":104}],104:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14550,7 +14896,7 @@ function zeros( length ) {
 
 module.exports = zeros;
 
-},{"@stdlib/array/base/zeros":35,"@stdlib/array/ctors":56,"@stdlib/array/defaults":62,"@stdlib/assert/is-nonnegative-integer":197,"@stdlib/string/format":892}],99:[function(require,module,exports){
+},{"@stdlib/array/base/zeros":39,"@stdlib/array/ctors":60,"@stdlib/array/defaults":66,"@stdlib/assert/is-nonnegative-integer":203,"@stdlib/string/format":964}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14580,7 +14926,7 @@ var main = ( typeof ArrayBuffer === 'function' ) ? ArrayBuffer : null; // eslint
 
 module.exports = main;
 
-},{}],100:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14622,7 +14968,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":101}],101:[function(require,module,exports){
+},{"./main.js":107}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14696,7 +15042,7 @@ function hasArrayBufferSupport() {
 
 module.exports = hasArrayBufferSupport;
 
-},{"./arraybuffer.js":99,"@stdlib/array/float64":73,"@stdlib/assert/is-arraybuffer":153}],102:[function(require,module,exports){
+},{"./arraybuffer.js":105,"@stdlib/array/float64":79,"@stdlib/assert/is-arraybuffer":159}],108:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14738,7 +15084,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":103}],103:[function(require,module,exports){
+},{"./main.js":109}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14794,7 +15140,7 @@ function hasBigIntSupport() {
 
 module.exports = hasBigIntSupport;
 
-},{"@stdlib/utils/global":924}],104:[function(require,module,exports){
+},{"@stdlib/utils/global":996}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14824,7 +15170,7 @@ var main = ( typeof DataView === 'function' ) ? DataView : null; // eslint-disab
 
 module.exports = main;
 
-},{}],105:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14866,7 +15212,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":106}],106:[function(require,module,exports){
+},{"./main.js":112}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14941,7 +15287,7 @@ function hasDataViewSupport() {
 
 module.exports = hasDataViewSupport;
 
-},{"./dataview.js":104,"@stdlib/array/buffer":42,"@stdlib/assert/is-dataview":167}],107:[function(require,module,exports){
+},{"./dataview.js":110,"@stdlib/array/buffer":46,"@stdlib/assert/is-dataview":173}],113:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14971,7 +15317,7 @@ var main = ( typeof Float32Array === 'function' ) ? Float32Array : null; // esli
 
 module.exports = main;
 
-},{}],108:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15013,7 +15359,7 @@ var hasFloat32ArraySupport = require( './main.js' );
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./main.js":109}],109:[function(require,module,exports){
+},{"./main.js":115}],115:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15080,7 +15426,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":107,"@stdlib/assert/is-float32array":173,"@stdlib/constants/float64/pinf":279}],110:[function(require,module,exports){
+},{"./float32array.js":113,"@stdlib/assert/is-float32array":179,"@stdlib/constants/float64/pinf":285}],116:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15110,7 +15456,7 @@ var main = ( typeof Float64Array === 'function' ) ? Float64Array : null; // esli
 
 module.exports = main;
 
-},{}],111:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15152,7 +15498,7 @@ var hasFloat64ArraySupport = require( './main.js' );
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./main.js":112}],112:[function(require,module,exports){
+},{"./main.js":118}],118:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15218,7 +15564,7 @@ function hasFloat64ArraySupport() {
 
 module.exports = hasFloat64ArraySupport;
 
-},{"./float64array.js":110,"@stdlib/assert/is-float64array":175}],113:[function(require,module,exports){
+},{"./float64array.js":116,"@stdlib/assert/is-float64array":181}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15260,7 +15606,7 @@ var hasInt16ArraySupport = require( './main.js' );
 
 module.exports = hasInt16ArraySupport;
 
-},{"./main.js":115}],114:[function(require,module,exports){
+},{"./main.js":121}],120:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15290,7 +15636,7 @@ var main = ( typeof Int16Array === 'function' ) ? Int16Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],115:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15358,7 +15704,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":114,"@stdlib/assert/is-int16array":179,"@stdlib/constants/int16/max":280,"@stdlib/constants/int16/min":281}],116:[function(require,module,exports){
+},{"./int16array.js":120,"@stdlib/assert/is-int16array":185,"@stdlib/constants/int16/max":286,"@stdlib/constants/int16/min":287}],122:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15400,7 +15746,7 @@ var hasInt32ArraySupport = require( './main.js' );
 
 module.exports = hasInt32ArraySupport;
 
-},{"./main.js":118}],117:[function(require,module,exports){
+},{"./main.js":124}],123:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15430,7 +15776,7 @@ var main = ( typeof Int32Array === 'function' ) ? Int32Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],118:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15498,7 +15844,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":117,"@stdlib/assert/is-int32array":181,"@stdlib/constants/int32/max":282,"@stdlib/constants/int32/min":283}],119:[function(require,module,exports){
+},{"./int32array.js":123,"@stdlib/assert/is-int32array":187,"@stdlib/constants/int32/max":288,"@stdlib/constants/int32/min":289}],125:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15540,7 +15886,7 @@ var hasInt8ArraySupport = require( './main.js' );
 
 module.exports = hasInt8ArraySupport;
 
-},{"./main.js":121}],120:[function(require,module,exports){
+},{"./main.js":127}],126:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15570,7 +15916,7 @@ var main = ( typeof Int8Array === 'function' ) ? Int8Array : null; // eslint-dis
 
 module.exports = main;
 
-},{}],121:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15638,7 +15984,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":120,"@stdlib/assert/is-int8array":183,"@stdlib/constants/int8/max":284,"@stdlib/constants/int8/min":285}],122:[function(require,module,exports){
+},{"./int8array.js":126,"@stdlib/assert/is-int8array":189,"@stdlib/constants/int8/max":290,"@stdlib/constants/int8/min":291}],128:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15680,7 +16026,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":123}],123:[function(require,module,exports){
+},{"./main.js":129}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15732,7 +16078,7 @@ function hasIteratorSymbolSupport() {
 
 module.exports = hasIteratorSymbolSupport;
 
-},{"@stdlib/assert/has-own-property":127,"@stdlib/symbol/ctor":897}],124:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":133,"@stdlib/symbol/ctor":969}],130:[function(require,module,exports){
 (function (Buffer){(function (){
 /**
 * @license Apache-2.0
@@ -15764,7 +16110,7 @@ var main = ( typeof Buffer === 'function' ) ? Buffer : null; // eslint-disable-l
 module.exports = main;
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":970}],125:[function(require,module,exports){
+},{"buffer":1042}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15806,7 +16152,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":126}],126:[function(require,module,exports){
+},{"./main.js":132}],132:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15876,7 +16222,7 @@ function hasNodeBufferSupport() {
 
 module.exports = hasNodeBufferSupport;
 
-},{"./buffer.js":124,"@stdlib/assert/is-buffer":161}],127:[function(require,module,exports){
+},{"./buffer.js":130,"@stdlib/assert/is-buffer":167}],133:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15925,7 +16271,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":128}],128:[function(require,module,exports){
+},{"./main.js":134}],134:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15991,7 +16337,7 @@ function hasOwnProp( value, property ) {
 
 module.exports = hasOwnProp;
 
-},{}],129:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16033,7 +16379,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":130}],130:[function(require,module,exports){
+},{"./main.js":136}],136:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16077,7 +16423,7 @@ function hasSymbolSupport() {
 
 module.exports = hasSymbolSupport;
 
-},{}],131:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16119,7 +16465,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":132}],132:[function(require,module,exports){
+},{"./main.js":138}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16170,7 +16516,7 @@ function hasToStringTagSupport() {
 
 module.exports = hasToStringTagSupport;
 
-},{"@stdlib/assert/has-symbol-support":129}],133:[function(require,module,exports){
+},{"@stdlib/assert/has-symbol-support":135}],139:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16212,7 +16558,7 @@ var hasUint16ArraySupport = require( './main.js' );
 
 module.exports = hasUint16ArraySupport;
 
-},{"./main.js":134}],134:[function(require,module,exports){
+},{"./main.js":140}],140:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16281,7 +16627,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":135,"@stdlib/assert/is-uint16array":228,"@stdlib/constants/uint16/max":286}],135:[function(require,module,exports){
+},{"./uint16array.js":141,"@stdlib/assert/is-uint16array":234,"@stdlib/constants/uint16/max":292}],141:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16311,7 +16657,7 @@ var main = ( typeof Uint16Array === 'function' ) ? Uint16Array : null; // eslint
 
 module.exports = main;
 
-},{}],136:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16353,7 +16699,7 @@ var hasUint32ArraySupport = require( './main.js' );
 
 module.exports = hasUint32ArraySupport;
 
-},{"./main.js":137}],137:[function(require,module,exports){
+},{"./main.js":143}],143:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16422,7 +16768,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":138,"@stdlib/assert/is-uint32array":230,"@stdlib/constants/uint32/max":287}],138:[function(require,module,exports){
+},{"./uint32array.js":144,"@stdlib/assert/is-uint32array":236,"@stdlib/constants/uint32/max":293}],144:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16452,7 +16798,7 @@ var main = ( typeof Uint32Array === 'function' ) ? Uint32Array : null; // eslint
 
 module.exports = main;
 
-},{}],139:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16494,7 +16840,7 @@ var hasUint8ArraySupport = require( './main.js' );
 
 module.exports = hasUint8ArraySupport;
 
-},{"./main.js":140}],140:[function(require,module,exports){
+},{"./main.js":146}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16563,7 +16909,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":141,"@stdlib/assert/is-uint8array":232,"@stdlib/constants/uint8/max":288}],141:[function(require,module,exports){
+},{"./uint8array.js":147,"@stdlib/assert/is-uint8array":238,"@stdlib/constants/uint8/max":294}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16593,7 +16939,7 @@ var main = ( typeof Uint8Array === 'function' ) ? Uint8Array : null; // eslint-d
 
 module.exports = main;
 
-},{}],142:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16635,7 +16981,7 @@ var hasUint8ClampedArraySupport = require( './main.js' );
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./main.js":143}],143:[function(require,module,exports){
+},{"./main.js":149}],149:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16704,7 +17050,7 @@ function hasUint8ClampedArraySupport() { // eslint-disable-line id-length
 
 module.exports = hasUint8ClampedArraySupport;
 
-},{"./uint8clampedarray.js":144,"@stdlib/assert/is-uint8clampedarray":234}],144:[function(require,module,exports){
+},{"./uint8clampedarray.js":150,"@stdlib/assert/is-uint8clampedarray":240}],150:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16734,7 +17080,7 @@ var main = ( typeof Uint8ClampedArray === 'function' ) ? Uint8ClampedArray : nul
 
 module.exports = main;
 
-},{}],145:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16791,7 +17137,7 @@ bool = detect();
 
 module.exports = bool;
 
-},{"./main.js":147}],146:[function(require,module,exports){
+},{"./main.js":153}],152:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16852,7 +17198,7 @@ if ( hasArgumentsClass ) {
 
 module.exports = isArguments;
 
-},{"./detect.js":145,"./main.js":147,"./polyfill.js":148}],147:[function(require,module,exports){
+},{"./detect.js":151,"./main.js":153,"./polyfill.js":154}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16908,7 +17254,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":947}],148:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],154:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16978,7 +17324,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":127,"@stdlib/assert/is-array":151,"@stdlib/assert/is-enumerable-property":170,"@stdlib/constants/uint32/max":287,"@stdlib/math/base/assert/is-integer":291}],149:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":133,"@stdlib/assert/is-array":157,"@stdlib/assert/is-enumerable-property":176,"@stdlib/constants/uint32/max":293,"@stdlib/math/base/assert/is-integer":297}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17026,7 +17372,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":150}],150:[function(require,module,exports){
+},{"./main.js":156}],156:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17089,7 +17435,7 @@ function isArrayLikeObject( value ) {
 
 module.exports = isArrayLikeObject;
 
-},{"@stdlib/constants/array/max-array-length":276,"@stdlib/math/base/assert/is-integer":291}],151:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":282,"@stdlib/math/base/assert/is-integer":297}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17134,7 +17480,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":152}],152:[function(require,module,exports){
+},{"./main.js":158}],158:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17199,7 +17545,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":947}],153:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],159:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17245,7 +17591,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":154}],154:[function(require,module,exports){
+},{"./main.js":160}],160:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17306,7 +17652,7 @@ function isArrayBuffer( value ) {
 
 module.exports = isArrayBuffer;
 
-},{"@stdlib/utils/native-class":947}],155:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17381,7 +17727,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":156,"./object.js":157,"./primitive.js":158,"@stdlib/utils/define-nonenumerable-read-only-property":905}],156:[function(require,module,exports){
+},{"./main.js":162,"./object.js":163,"./primitive.js":164,"@stdlib/utils/define-nonenumerable-read-only-property":977}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17445,7 +17791,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./object.js":157,"./primitive.js":158}],157:[function(require,module,exports){
+},{"./object.js":163,"./primitive.js":164}],163:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17515,7 +17861,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":160,"@stdlib/assert/has-tostringtag-support":131,"@stdlib/boolean/ctor":246,"@stdlib/utils/native-class":947}],158:[function(require,module,exports){
+},{"./try2serialize.js":166,"@stdlib/assert/has-tostringtag-support":137,"@stdlib/boolean/ctor":252,"@stdlib/utils/native-class":1019}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17565,7 +17911,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{}],159:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17594,7 +17940,7 @@ var toString = Boolean.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{}],160:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17643,7 +17989,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./tostring.js":159}],161:[function(require,module,exports){
+},{"./tostring.js":165}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17688,7 +18034,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":162}],162:[function(require,module,exports){
+},{"./main.js":168}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17760,7 +18106,7 @@ function isBuffer( value ) {
 
 module.exports = isBuffer;
 
-},{"@stdlib/assert/is-object-like":209}],163:[function(require,module,exports){
+},{"@stdlib/assert/is-object-like":215}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17805,7 +18151,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":164}],164:[function(require,module,exports){
+},{"./main.js":170}],170:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17864,7 +18210,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":277,"@stdlib/math/base/assert/is-integer":291}],165:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":283,"@stdlib/math/base/assert/is-integer":297}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17913,7 +18259,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":166}],166:[function(require,module,exports){
+},{"./main.js":172}],172:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17977,7 +18323,7 @@ function isComplexLike( value ) {
 
 module.exports = isComplexLike;
 
-},{"@stdlib/complex/float32/ctor":260,"@stdlib/complex/float64/ctor":268}],167:[function(require,module,exports){
+},{"@stdlib/complex/float32/ctor":266,"@stdlib/complex/float64/ctor":274}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18024,7 +18370,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":168}],168:[function(require,module,exports){
+},{"./main.js":174}],174:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18086,7 +18432,7 @@ function isDataView( value ) {
 
 module.exports = isDataView;
 
-},{"@stdlib/utils/native-class":947}],169:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18139,7 +18485,7 @@ bool = detect();
 
 module.exports = bool;
 
-},{"./native.js":172}],170:[function(require,module,exports){
+},{"./native.js":178}],176:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18188,7 +18534,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":171}],171:[function(require,module,exports){
+},{"./main.js":177}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18270,7 +18616,7 @@ function isEnumerableProperty( value, property ) {
 
 module.exports = isEnumerableProperty;
 
-},{"./has_string_enumerability_bug.js":169,"./native.js":172,"@stdlib/assert/is-integer":185,"@stdlib/assert/is-nan":193,"@stdlib/assert/is-string":222}],172:[function(require,module,exports){
+},{"./has_string_enumerability_bug.js":175,"./native.js":178,"@stdlib/assert/is-integer":191,"@stdlib/assert/is-nan":199,"@stdlib/assert/is-string":228}],178:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18326,7 +18672,7 @@ var isEnumerableProperty = Object.prototype.propertyIsEnumerable;
 
 module.exports = isEnumerableProperty;
 
-},{}],173:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18371,7 +18717,7 @@ var isFloat32Array = require( './main.js' );
 
 module.exports = isFloat32Array;
 
-},{"./main.js":174}],174:[function(require,module,exports){
+},{"./main.js":180}],180:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18430,7 +18776,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":947}],175:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18475,7 +18821,7 @@ var isFloat64Array = require( './main.js' );
 
 module.exports = isFloat64Array;
 
-},{"./main.js":176}],176:[function(require,module,exports){
+},{"./main.js":182}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18534,7 +18880,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":947}],177:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],183:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18580,7 +18926,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":178}],178:[function(require,module,exports){
+},{"./main.js":184}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18632,7 +18978,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":964}],179:[function(require,module,exports){
+},{"@stdlib/utils/type-of":1036}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18677,7 +19023,7 @@ var isInt16Array = require( './main.js' );
 
 module.exports = isInt16Array;
 
-},{"./main.js":180}],180:[function(require,module,exports){
+},{"./main.js":186}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18736,7 +19082,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":947}],181:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18781,7 +19127,7 @@ var isInt32Array = require( './main.js' );
 
 module.exports = isInt32Array;
 
-},{"./main.js":182}],182:[function(require,module,exports){
+},{"./main.js":188}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18840,7 +19186,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":947}],183:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18885,7 +19231,7 @@ var isInt8Array = require( './main.js' );
 
 module.exports = isInt8Array;
 
-},{"./main.js":184}],184:[function(require,module,exports){
+},{"./main.js":190}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18944,7 +19290,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":947}],185:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19024,7 +19370,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":187,"./object.js":188,"./primitive.js":189,"@stdlib/utils/define-nonenumerable-read-only-property":905}],186:[function(require,module,exports){
+},{"./main.js":193,"./object.js":194,"./primitive.js":195,"@stdlib/utils/define-nonenumerable-read-only-property":977}],192:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19074,7 +19420,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":278,"@stdlib/constants/float64/pinf":279,"@stdlib/math/base/assert/is-integer":291}],187:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":284,"@stdlib/constants/float64/pinf":285,"@stdlib/math/base/assert/is-integer":297}],193:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19134,7 +19480,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./object.js":188,"./primitive.js":189}],188:[function(require,module,exports){
+},{"./object.js":194,"./primitive.js":195}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19189,7 +19535,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":186,"@stdlib/assert/is-number":203}],189:[function(require,module,exports){
+},{"./integer.js":192,"@stdlib/assert/is-number":209}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19244,7 +19590,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"./integer.js":186,"@stdlib/assert/is-number":203}],190:[function(require,module,exports){
+},{"./integer.js":192,"@stdlib/assert/is-number":209}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19283,7 +19629,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{"@stdlib/array/uint16":85,"@stdlib/array/uint8":91}],191:[function(require,module,exports){
+},{"@stdlib/array/uint16":91,"@stdlib/array/uint8":97}],197:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19325,7 +19671,7 @@ var IS_LITTLE_ENDIAN = require( './main.js' );
 
 module.exports = IS_LITTLE_ENDIAN;
 
-},{"./main.js":192}],192:[function(require,module,exports){
+},{"./main.js":198}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19398,7 +19744,7 @@ bool = isLittleEndian();
 
 module.exports = bool;
 
-},{"./ctors.js":190}],193:[function(require,module,exports){
+},{"./ctors.js":196}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19479,7 +19825,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":194,"./object.js":195,"./primitive.js":196,"@stdlib/utils/define-nonenumerable-read-only-property":905}],194:[function(require,module,exports){
+},{"./main.js":200,"./object.js":201,"./primitive.js":202,"@stdlib/utils/define-nonenumerable-read-only-property":977}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19539,7 +19885,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"./object.js":195,"./primitive.js":196}],195:[function(require,module,exports){
+},{"./object.js":201,"./primitive.js":202}],201:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19594,7 +19940,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":203,"@stdlib/math/base/assert/is-nan":293}],196:[function(require,module,exports){
+},{"@stdlib/assert/is-number":209,"@stdlib/math/base/assert/is-nan":299}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19653,7 +19999,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":203,"@stdlib/math/base/assert/is-nan":293}],197:[function(require,module,exports){
+},{"@stdlib/assert/is-number":209,"@stdlib/math/base/assert/is-nan":299}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19734,7 +20080,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":198,"./object.js":199,"./primitive.js":200,"@stdlib/utils/define-nonenumerable-read-only-property":905}],198:[function(require,module,exports){
+},{"./main.js":204,"./object.js":205,"./primitive.js":206,"@stdlib/utils/define-nonenumerable-read-only-property":977}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19798,7 +20144,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"./object.js":199,"./primitive.js":200}],199:[function(require,module,exports){
+},{"./object.js":205,"./primitive.js":206}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19852,7 +20198,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":185}],200:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":191}],206:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19906,7 +20252,7 @@ function isNonNegativeInteger( value ) {
 
 module.exports = isNonNegativeInteger;
 
-},{"@stdlib/assert/is-integer":185}],201:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":191}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19950,7 +20296,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":202}],202:[function(require,module,exports){
+},{"./main.js":208}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19993,7 +20339,7 @@ function isNull( value ) {
 
 module.exports = isNull;
 
-},{}],203:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20074,7 +20420,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":204,"./object.js":205,"./primitive.js":206,"@stdlib/utils/define-nonenumerable-read-only-property":905}],204:[function(require,module,exports){
+},{"./main.js":210,"./object.js":211,"./primitive.js":212,"@stdlib/utils/define-nonenumerable-read-only-property":977}],210:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20134,7 +20480,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./object.js":205,"./primitive.js":206}],205:[function(require,module,exports){
+},{"./object.js":211,"./primitive.js":212}],211:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20202,7 +20548,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":208,"@stdlib/assert/has-tostringtag-support":131,"@stdlib/number/ctor":839,"@stdlib/utils/native-class":947}],206:[function(require,module,exports){
+},{"./try2serialize.js":214,"@stdlib/assert/has-tostringtag-support":137,"@stdlib/number/ctor":911,"@stdlib/utils/native-class":1019}],212:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20250,7 +20596,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],207:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20286,9 +20632,9 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":839}],208:[function(require,module,exports){
-arguments[4][160][0].apply(exports,arguments)
-},{"./tostring.js":207,"dup":160}],209:[function(require,module,exports){
+},{"@stdlib/number/ctor":911}],214:[function(require,module,exports){
+arguments[4][166][0].apply(exports,arguments)
+},{"./tostring.js":213,"dup":166}],215:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20357,7 +20703,7 @@ setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 module.exports = main;
 
-},{"./main.js":210,"@stdlib/assert/tools/array-function":238,"@stdlib/utils/define-nonenumerable-read-only-property":905}],210:[function(require,module,exports){
+},{"./main.js":216,"@stdlib/assert/tools/array-function":244,"@stdlib/utils/define-nonenumerable-read-only-property":977}],216:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20408,7 +20754,7 @@ function isObjectLike( value ) {
 
 module.exports = isObjectLike;
 
-},{}],211:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20453,7 +20799,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":212}],212:[function(require,module,exports){
+},{"./main.js":218}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20508,7 +20854,7 @@ function isObject( value ) {
 
 module.exports = isObject;
 
-},{"@stdlib/assert/is-array":151}],213:[function(require,module,exports){
+},{"@stdlib/assert/is-array":157}],219:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20553,7 +20899,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":214}],214:[function(require,module,exports){
+},{"./main.js":220}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20667,7 +21013,7 @@ function isPlainObject( value ) {
 
 module.exports = isPlainObject;
 
-},{"@stdlib/assert/has-own-property":127,"@stdlib/assert/is-function":177,"@stdlib/assert/is-object":211,"@stdlib/utils/get-prototype-of":919,"@stdlib/utils/native-class":947}],215:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":133,"@stdlib/assert/is-function":183,"@stdlib/assert/is-object":217,"@stdlib/utils/get-prototype-of":991,"@stdlib/utils/native-class":1019}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20695,7 +21041,7 @@ var exec = RegExp.prototype.exec; // non-generic
 
 module.exports = exec;
 
-},{}],216:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20740,7 +21086,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":217}],217:[function(require,module,exports){
+},{"./main.js":223}],223:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20807,7 +21153,7 @@ function isRegExp( value ) {
 
 module.exports = isRegExp;
 
-},{"./try2exec.js":218,"@stdlib/assert/has-tostringtag-support":131,"@stdlib/utils/native-class":947}],218:[function(require,module,exports){
+},{"./try2exec.js":224,"@stdlib/assert/has-tostringtag-support":137,"@stdlib/utils/native-class":1019}],224:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20856,7 +21202,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./exec.js":215}],219:[function(require,module,exports){
+},{"./exec.js":221}],225:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20901,7 +21247,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":220}],220:[function(require,module,exports){
+},{"./main.js":226}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20956,7 +21302,7 @@ function isSlice( value ) {
 
 module.exports = isSlice;
 
-},{"@stdlib/slice/ctor":872,"@stdlib/utils/constructor-name":901}],221:[function(require,module,exports){
+},{"@stdlib/slice/ctor":944,"@stdlib/utils/constructor-name":973}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21034,7 +21380,7 @@ setReadOnly( isStringArray, 'objects', isObjectArray );
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":222,"@stdlib/assert/tools/array-function":238,"@stdlib/utils/define-nonenumerable-read-only-property":905}],222:[function(require,module,exports){
+},{"@stdlib/assert/is-string":228,"@stdlib/assert/tools/array-function":244,"@stdlib/utils/define-nonenumerable-read-only-property":977}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21109,7 +21455,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":223,"./object.js":224,"./primitive.js":225,"@stdlib/utils/define-nonenumerable-read-only-property":905}],223:[function(require,module,exports){
+},{"./main.js":229,"./object.js":230,"./primitive.js":231,"@stdlib/utils/define-nonenumerable-read-only-property":977}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21161,7 +21507,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./object.js":224,"./primitive.js":225}],224:[function(require,module,exports){
+},{"./object.js":230,"./primitive.js":231}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21228,7 +21574,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":226,"@stdlib/assert/has-tostringtag-support":131,"@stdlib/utils/native-class":947}],225:[function(require,module,exports){
+},{"./try2valueof.js":232,"@stdlib/assert/has-tostringtag-support":137,"@stdlib/utils/native-class":1019}],231:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21272,7 +21618,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],226:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21321,7 +21667,7 @@ function test( value ) {
 
 module.exports = test;
 
-},{"./valueof.js":227}],227:[function(require,module,exports){
+},{"./valueof.js":233}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21350,7 +21696,7 @@ var valueOf = String.prototype.valueOf; // non-generic
 
 module.exports = valueOf;
 
-},{}],228:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21395,7 +21741,7 @@ var isUint16Array = require( './main.js' );
 
 module.exports = isUint16Array;
 
-},{"./main.js":229}],229:[function(require,module,exports){
+},{"./main.js":235}],235:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21454,7 +21800,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":947}],230:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21499,7 +21845,7 @@ var isUint32Array = require( './main.js' );
 
 module.exports = isUint32Array;
 
-},{"./main.js":231}],231:[function(require,module,exports){
+},{"./main.js":237}],237:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21558,7 +21904,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":947}],232:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21603,7 +21949,7 @@ var isUint8Array = require( './main.js' );
 
 module.exports = isUint8Array;
 
-},{"./main.js":233}],233:[function(require,module,exports){
+},{"./main.js":239}],239:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21662,7 +22008,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":947}],234:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21707,7 +22053,7 @@ var isUint8ClampedArray = require( './main.js' );
 
 module.exports = isUint8ClampedArray;
 
-},{"./main.js":235}],235:[function(require,module,exports){
+},{"./main.js":241}],241:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21766,7 +22112,7 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":947}],236:[function(require,module,exports){
+},{"@stdlib/utils/native-class":1019}],242:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21811,7 +22157,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":237}],237:[function(require,module,exports){
+},{"./main.js":243}],243:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21860,7 +22206,7 @@ function isUndefined( value ) {
 
 module.exports = isUndefined;
 
-},{}],238:[function(require,module,exports){
+},{}],244:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21911,7 +22257,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":239}],239:[function(require,module,exports){
+},{"./main.js":245}],245:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21998,7 +22344,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":151,"@stdlib/string/format":892}],240:[function(require,module,exports){
+},{"@stdlib/assert/is-array":157,"@stdlib/string/format":964}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22040,7 +22386,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":241}],241:[function(require,module,exports){
+},{"./main.js":247}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22072,13 +22418,13 @@ var BigInteger = ( typeof BigInt === 'function' ) ? BigInt : void 0; // eslint-d
 
 module.exports = BigInteger;
 
-},{}],242:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 module.exports=[
   "row-major",
   "column-major"
 ]
 
-},{}],243:[function(require,module,exports){
+},{}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22131,7 +22477,7 @@ function enumerated() {
 
 module.exports = enumerated;
 
-},{}],244:[function(require,module,exports){
+},{}],250:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22180,7 +22526,7 @@ setReadOnly( main, 'enum', enumeration );
 
 module.exports = main;
 
-},{"./enum.js":243,"./main.js":245,"@stdlib/utils/define-nonenumerable-read-only-property":905}],245:[function(require,module,exports){
+},{"./enum.js":249,"./main.js":251,"@stdlib/utils/define-nonenumerable-read-only-property":977}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22226,7 +22572,7 @@ function layouts() {
 
 module.exports = layouts;
 
-},{"./data.json":242}],246:[function(require,module,exports){
+},{"./data.json":248}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22280,7 +22626,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":247}],247:[function(require,module,exports){
+},{"./main.js":253}],253:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22333,7 +22679,7 @@ var Bool = Boolean; // eslint-disable-line stdlib/require-globals
 
 module.exports = Bool;
 
-},{}],248:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22369,7 +22715,7 @@ var bool = isFunction( Buffer.allocUnsafe );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":177,"@stdlib/buffer/ctor":252}],249:[function(require,module,exports){
+},{"@stdlib/assert/is-function":183,"@stdlib/buffer/ctor":258}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22423,7 +22769,7 @@ if ( hasAllocUnsafe ) {
 
 module.exports = allocUnsafe;
 
-},{"./has_alloc_unsafe.js":248,"./main.js":250,"./polyfill.js":251}],250:[function(require,module,exports){
+},{"./has_alloc_unsafe.js":254,"./main.js":256,"./polyfill.js":257}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22481,7 +22827,7 @@ function allocUnsafe( size ) {
 
 module.exports = allocUnsafe;
 
-},{"@stdlib/assert/is-nonnegative-integer":197,"@stdlib/buffer/ctor":252,"@stdlib/string/format":892}],251:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":203,"@stdlib/buffer/ctor":258,"@stdlib/string/format":964}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22539,7 +22885,7 @@ function allocUnsafe( size ) {
 
 module.exports = allocUnsafe;
 
-},{"@stdlib/assert/is-nonnegative-integer":197,"@stdlib/buffer/ctor":252,"@stdlib/string/format":892}],252:[function(require,module,exports){
+},{"@stdlib/assert/is-nonnegative-integer":203,"@stdlib/buffer/ctor":258,"@stdlib/string/format":964}],258:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22593,7 +22939,7 @@ if ( hasNodeBufferSupport() ) {
 
 module.exports = ctor;
 
-},{"./main.js":253,"./polyfill.js":254,"@stdlib/assert/has-node-buffer-support":125}],253:[function(require,module,exports){
+},{"./main.js":259,"./polyfill.js":260,"@stdlib/assert/has-node-buffer-support":131}],259:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22623,7 +22969,7 @@ var ctor = require( 'buffer' ).Buffer; // eslint-disable-line stdlib/require-glo
 
 module.exports = ctor;
 
-},{"buffer":970}],254:[function(require,module,exports){
+},{"buffer":1042}],260:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22662,7 +23008,7 @@ function polyfill() {
 
 module.exports = polyfill;
 
-},{}],255:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22718,7 +23064,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":256}],256:[function(require,module,exports){
+},{"./main.js":262}],262:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22932,7 +23278,7 @@ function wrap( fcn, nargs, ctor ) {
 
 module.exports = wrap;
 
-},{"@stdlib/assert/is-function":177,"@stdlib/assert/is-nonnegative-integer":197,"@stdlib/string/format":892}],257:[function(require,module,exports){
+},{"@stdlib/assert/is-function":183,"@stdlib/assert/is-nonnegative-integer":203,"@stdlib/string/format":964}],263:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22972,7 +23318,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{"@stdlib/complex/float32/ctor":260,"@stdlib/complex/float64/ctor":268}],258:[function(require,module,exports){
+},{"@stdlib/complex/float32/ctor":266,"@stdlib/complex/float64/ctor":274}],264:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23017,7 +23363,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":259}],259:[function(require,module,exports){
+},{"./main.js":265}],265:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23068,7 +23414,7 @@ function ctors( dtype ) {
 
 module.exports = ctors;
 
-},{"./ctors.js":257}],260:[function(require,module,exports){
+},{"./ctors.js":263}],266:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23110,7 +23456,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":261}],261:[function(require,module,exports){
+},{"./main.js":267}],267:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23271,7 +23617,7 @@ setReadOnly( Complex64.prototype, 'toJSON', toJSON );
 
 module.exports = Complex64;
 
-},{"./tojson.js":262,"./tostring.js":263,"@stdlib/assert/is-number":203,"@stdlib/number/float64/base/to-float32":841,"@stdlib/string/format":892,"@stdlib/utils/define-nonenumerable-read-only-property":905,"@stdlib/utils/define-property":910}],262:[function(require,module,exports){
+},{"./tojson.js":268,"./tostring.js":269,"@stdlib/assert/is-number":209,"@stdlib/number/float64/base/to-float32":913,"@stdlib/string/format":964,"@stdlib/utils/define-nonenumerable-read-only-property":977,"@stdlib/utils/define-property":982}],268:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23312,7 +23658,7 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],263:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23356,7 +23702,7 @@ function toString() { // eslint-disable-line stdlib/no-redeclare
 
 module.exports = toString;
 
-},{}],264:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23401,7 +23747,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":265}],265:[function(require,module,exports){
+},{"./main.js":271}],271:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23445,7 +23791,7 @@ function imag( z ) {
 
 module.exports = imag;
 
-},{}],266:[function(require,module,exports){
+},{}],272:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23490,7 +23836,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":267}],267:[function(require,module,exports){
+},{"./main.js":273}],273:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23534,7 +23880,7 @@ function real( z ) {
 
 module.exports = real;
 
-},{}],268:[function(require,module,exports){
+},{}],274:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23576,7 +23922,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":269}],269:[function(require,module,exports){
+},{"./main.js":275}],275:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23736,7 +24082,7 @@ setReadOnly( Complex128.prototype, 'toJSON', toJSON );
 
 module.exports = Complex128;
 
-},{"./tojson.js":270,"./tostring.js":271,"@stdlib/assert/is-number":203,"@stdlib/string/format":892,"@stdlib/utils/define-nonenumerable-read-only-property":905,"@stdlib/utils/define-property":910}],270:[function(require,module,exports){
+},{"./tojson.js":276,"./tostring.js":277,"@stdlib/assert/is-number":209,"@stdlib/string/format":964,"@stdlib/utils/define-nonenumerable-read-only-property":977,"@stdlib/utils/define-property":982}],276:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23777,9 +24123,9 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],271:[function(require,module,exports){
-arguments[4][263][0].apply(exports,arguments)
-},{"dup":263}],272:[function(require,module,exports){
+},{}],277:[function(require,module,exports){
+arguments[4][269][0].apply(exports,arguments)
+},{"dup":269}],278:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23824,7 +24170,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":273}],273:[function(require,module,exports){
+},{"./main.js":279}],279:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23868,7 +24214,7 @@ function imag( z ) {
 
 module.exports = imag;
 
-},{}],274:[function(require,module,exports){
+},{}],280:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23913,7 +24259,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":275}],275:[function(require,module,exports){
+},{"./main.js":281}],281:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23957,7 +24303,7 @@ function real( z ) {
 
 module.exports = real;
 
-},{}],276:[function(require,module,exports){
+},{}],282:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24008,7 +24354,7 @@ var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
 
 module.exports = MAX_ARRAY_LENGTH;
 
-},{}],277:[function(require,module,exports){
+},{}],283:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24059,7 +24405,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],278:[function(require,module,exports){
+},{}],284:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24121,7 +24467,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":839}],279:[function(require,module,exports){
+},{"@stdlib/number/ctor":911}],285:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24179,7 +24525,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],280:[function(require,module,exports){
+},{}],286:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24242,7 +24588,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],281:[function(require,module,exports){
+},{}],287:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24305,7 +24651,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],282:[function(require,module,exports){
+},{}],288:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24368,7 +24714,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],283:[function(require,module,exports){
+},{}],289:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24431,7 +24777,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],284:[function(require,module,exports){
+},{}],290:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24494,7 +24840,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],285:[function(require,module,exports){
+},{}],291:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24557,7 +24903,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],286:[function(require,module,exports){
+},{}],292:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24620,7 +24966,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],287:[function(require,module,exports){
+},{}],293:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24683,7 +25029,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],288:[function(require,module,exports){
+},{}],294:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24746,7 +25092,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],289:[function(require,module,exports){
+},{}],295:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24797,7 +25143,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":290}],290:[function(require,module,exports){
+},{"./main.js":296}],296:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24856,7 +25202,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":291}],291:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":297}],297:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24901,7 +25247,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":292}],292:[function(require,module,exports){
+},{"./main.js":298}],298:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24952,7 +25298,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":299}],293:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":305}],299:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24997,7 +25343,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":294}],294:[function(require,module,exports){
+},{"./main.js":300}],300:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25043,7 +25389,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],295:[function(require,module,exports){
+},{}],301:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25097,7 +25443,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":296}],296:[function(require,module,exports){
+},{"./main.js":302}],302:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25155,7 +25501,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],297:[function(require,module,exports){
+},{}],303:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25206,7 +25552,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":298}],298:[function(require,module,exports){
+},{"./main.js":304}],304:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25258,7 +25604,7 @@ var ceil = Math.ceil; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = ceil;
 
-},{}],299:[function(require,module,exports){
+},{}],305:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25309,7 +25655,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":300}],300:[function(require,module,exports){
+},{"./main.js":306}],306:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25361,7 +25707,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],301:[function(require,module,exports){
+},{}],307:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25421,7 +25767,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":302}],302:[function(require,module,exports){
+},{"./main.js":308}],308:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25496,7 +25842,7 @@ function trunc( x ) {
 
 module.exports = trunc;
 
-},{"@stdlib/math/base/special/ceil":297,"@stdlib/math/base/special/floor":299}],303:[function(require,module,exports){
+},{"@stdlib/math/base/special/ceil":303,"@stdlib/math/base/special/floor":305}],309:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25542,7 +25888,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":304}],304:[function(require,module,exports){
+},{"./main.js":310}],310:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25596,7 +25942,7 @@ function hasEqualShape( x, y ) {
 
 module.exports = hasEqualShape;
 
-},{"@stdlib/array/base/assert/has-equal-values-indexed":10,"@stdlib/ndarray/base/shape":647}],305:[function(require,module,exports){
+},{"@stdlib/array/base/assert/has-equal-values-indexed":10,"@stdlib/ndarray/base/shape":711}],311:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25641,7 +25987,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":306}],306:[function(require,module,exports){
+},{"./main.js":312}],312:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25716,7 +26062,7 @@ function isAllowedCast( from, to, casting ) {
 
 module.exports = isAllowedCast;
 
-},{"@stdlib/ndarray/base/assert/is-mostly-safe-data-type-cast":331,"@stdlib/ndarray/base/assert/is-safe-data-type-cast":347,"@stdlib/ndarray/base/assert/is-same-kind-data-type-cast":349}],307:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-mostly-safe-data-type-cast":339,"@stdlib/ndarray/base/assert/is-safe-data-type-cast":357,"@stdlib/ndarray/base/assert/is-same-kind-data-type-cast":359}],313:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25794,7 +26140,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":308}],308:[function(require,module,exports){
+},{"./main.js":314}],314:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25878,7 +26224,7 @@ var isBooleanDataType = contains( dtypes( 'boolean' ) );
 
 module.exports = isBooleanDataType;
 
-},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":805}],309:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":877}],315:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25930,7 +26276,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":310}],310:[function(require,module,exports){
+},{"./main.js":316}],316:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25986,7 +26332,7 @@ function isBufferLengthCompatibleShape( len, shape ) { // eslint-disable-line id
 
 module.exports = isBufferLengthCompatibleShape;
 
-},{"@stdlib/ndarray/base/numel":622}],311:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":686}],317:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26042,7 +26388,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":312}],312:[function(require,module,exports){
+},{"./main.js":318}],318:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26108,7 +26454,7 @@ function isBufferLengthCompatible( len, shape, strides, offset ) {
 
 module.exports = isBufferLengthCompatible;
 
-},{"@stdlib/ndarray/base/minmax-view-buffer-index":555}],313:[function(require,module,exports){
+},{"@stdlib/ndarray/base/minmax-view-buffer-index":617}],319:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26168,7 +26514,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":314}],314:[function(require,module,exports){
+},{"./main.js":320}],320:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26245,7 +26591,7 @@ function isCastingMode( v ) {
 
 module.exports = isCastingMode;
 
-},{"@stdlib/ndarray/casting-modes":792}],315:[function(require,module,exports){
+},{"@stdlib/ndarray/casting-modes":864}],321:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26311,7 +26657,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":316}],316:[function(require,module,exports){
+},{"./main.js":322}],322:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26386,7 +26732,103 @@ function isColumnMajorContiguous( shape, strides, offset ) {
 
 module.exports = isColumnMajorContiguous;
 
-},{"@stdlib/ndarray/base/assert/is-column-major":317,"@stdlib/ndarray/base/assert/is-single-segment-compatible":353,"@stdlib/ndarray/base/iteration-order":541}],317:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-column-major":325,"@stdlib/ndarray/base/assert/is-single-segment-compatible":363,"@stdlib/ndarray/base/iteration-order":555}],323:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test whether an input value is the string representing column-major order.
+*
+* @module @stdlib/ndarray/base/assert/is-column-major-string
+*
+* @example
+* var isColumnMajorString = require( '@stdlib/ndarray/base/assert/is-column-major-string' );
+*
+* var bool = isColumnMajorString( 'column-major' );
+* // returns true
+*
+* bool = isColumnMajorString( 'row-major' );
+* // returns false
+*
+* bool = isColumnMajorString( 'foo' );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":324}],324:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Tests whether an input value is the string representing column-major order.
+*
+* @param {*} v - value to test
+* @returns {boolean} boolean result
+*
+* @example
+* var bool = isColumnMajorString( 'column-major' );
+* // returns true
+*
+* bool = isColumnMajorString( 'row-major' );
+* // returns false
+*
+* bool = isColumnMajorString( 'foo' );
+* // returns false
+*/
+function isColumnMajorString( v ) {
+	return ( v === 'column-major' );
+}
+
+
+// EXPORTS //
+
+module.exports = isColumnMajorString;
+
+},{}],325:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26431,7 +26873,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":318}],318:[function(require,module,exports){
+},{"./main.js":326}],326:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26498,7 +26940,7 @@ function isColumnMajor( strides ) {
 
 module.exports = isColumnMajor;
 
-},{"@stdlib/math/base/special/abs":295}],319:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":301}],327:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26579,7 +27021,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":320}],320:[function(require,module,exports){
+},{"./main.js":328}],328:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26666,7 +27108,7 @@ var isComplexFloatingPointDataType = contains( dtypes( 'complex_floating_point' 
 
 module.exports = isComplexFloatingPointDataType;
 
-},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":805}],321:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":877}],329:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26732,7 +27174,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":322}],322:[function(require,module,exports){
+},{"./main.js":330}],330:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26805,7 +27247,7 @@ function isContiguous( shape, strides, offset ) {
 
 module.exports = isContiguous;
 
-},{"@stdlib/ndarray/base/assert/is-single-segment-compatible":353,"@stdlib/ndarray/base/iteration-order":541}],323:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-single-segment-compatible":363,"@stdlib/ndarray/base/iteration-order":555}],331:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26880,7 +27322,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":324}],324:[function(require,module,exports){
+},{"./main.js":332}],332:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26961,7 +27403,7 @@ var isDataType = contains( dtypes() );
 
 module.exports = isDataType;
 
-},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":805}],325:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":877}],333:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27036,7 +27478,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":326}],326:[function(require,module,exports){
+},{"./main.js":334}],334:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27117,7 +27559,7 @@ var isFloatingPointDataType = contains( dtypes( 'floating_point' ) );
 
 module.exports = isFloatingPointDataType;
 
-},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":805}],327:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":877}],335:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27168,7 +27610,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":328}],328:[function(require,module,exports){
+},{"./main.js":336}],336:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27225,7 +27667,7 @@ var isIndexMode = contains( modes() );
 
 module.exports = isIndexMode;
 
-},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/index-modes":808}],329:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/index-modes":880}],337:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27300,7 +27742,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":330}],330:[function(require,module,exports){
+},{"./main.js":338}],338:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27381,7 +27823,7 @@ var isIntegerDataType = contains( dtypes( 'integer' ) );
 
 module.exports = isIntegerDataType;
 
-},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":805}],331:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":877}],339:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27426,7 +27868,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":332}],332:[function(require,module,exports){
+},{"./main.js":340}],340:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27485,7 +27927,7 @@ function isMostlySafeCast( from, to ) {
 
 module.exports = isMostlySafeCast;
 
-},{"@stdlib/ndarray/mostly-safe-casts":812}],333:[function(require,module,exports){
+},{"@stdlib/ndarray/mostly-safe-casts":884}],341:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27560,7 +28002,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":334}],334:[function(require,module,exports){
+},{"./main.js":342}],342:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27641,7 +28083,7 @@ var isNumericDataType = contains( dtypes( 'numeric' ) );
 
 module.exports = isNumericDataType;
 
-},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":805}],335:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":877}],343:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27689,7 +28131,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":336}],336:[function(require,module,exports){
+},{"./main.js":344}],344:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27712,13 +28154,8 @@ module.exports = main;
 
 // MODULES //
 
+var contains = require( '@stdlib/array/base/assert/contains' ).factory;
 var orders = require( '@stdlib/ndarray/orders' );
-
-
-// VARIABLES //
-
-var ORDERS = orders();
-var len = ORDERS.length;
 
 
 // MAIN //
@@ -27726,6 +28163,8 @@ var len = ORDERS.length;
 /**
 * Tests whether an input value is an ndarray order.
 *
+* @name isOrder
+* @type {Function}
 * @param {*} v - value to test
 * @returns {boolean} boolean indicating whether an input value is an ndarray order
 *
@@ -27739,22 +28178,14 @@ var len = ORDERS.length;
 * bool = isOrder( 'foo' );
 * // returns false
 */
-function isOrder( v ) {
-	var i;
-	for ( i = 0; i < len; i++ ) {
-		if ( v === ORDERS[ i ] ) {
-			return true;
-		}
-	}
-	return false;
-}
+var isOrder = contains( orders() );
 
 
 // EXPORTS //
 
 module.exports = isOrder;
 
-},{"@stdlib/ndarray/orders":821}],337:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/orders":893}],345:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27804,7 +28235,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":338}],338:[function(require,module,exports){
+},{"./main.js":346}],346:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27860,7 +28291,7 @@ function isReadOnly( arr ) {
 
 module.exports = isReadOnly;
 
-},{"@stdlib/ndarray/base/flag":481}],339:[function(require,module,exports){
+},{"@stdlib/ndarray/base/flag":493}],347:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27938,7 +28369,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":340}],340:[function(require,module,exports){
+},{"./main.js":348}],348:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28022,7 +28453,7 @@ var isRealDataType = contains( dtypes( 'real' ) );
 
 module.exports = isRealDataType;
 
-},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":805}],341:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":877}],349:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28097,7 +28528,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":342}],342:[function(require,module,exports){
+},{"./main.js":350}],350:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28178,7 +28609,7 @@ var isRealFloatingPointDataType = contains( dtypes( 'real_floating_point' ) ); /
 
 module.exports = isRealFloatingPointDataType;
 
-},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":805}],343:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":877}],351:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28244,7 +28675,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":344}],344:[function(require,module,exports){
+},{"./main.js":352}],352:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28319,7 +28750,103 @@ function isRowMajorContiguous( shape, strides, offset ) {
 
 module.exports = isRowMajorContiguous;
 
-},{"@stdlib/ndarray/base/assert/is-row-major":345,"@stdlib/ndarray/base/assert/is-single-segment-compatible":353,"@stdlib/ndarray/base/iteration-order":541}],345:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-row-major":355,"@stdlib/ndarray/base/assert/is-single-segment-compatible":363,"@stdlib/ndarray/base/iteration-order":555}],353:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Test whether an input value is the string representing row-major order.
+*
+* @module @stdlib/ndarray/base/assert/is-row-major-string
+*
+* @example
+* var isRowMajorString = require( '@stdlib/ndarray/base/assert/is-row-major-string' );
+*
+* var bool = isRowMajorString( 'row-major' );
+* // returns true
+*
+* bool = isRowMajorString( 'column-major' );
+* // returns false
+*
+* bool = isRowMajorString( 'foo' );
+* // returns false
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":354}],354:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Tests whether an input value is the string representing row-major order.
+*
+* @param {*} v - value to test
+* @returns {boolean} boolean result
+*
+* @example
+* var bool = isRowMajorString( 'row-major' );
+* // returns true
+*
+* bool = isRowMajorString( 'column-major' );
+* // returns false
+*
+* bool = isRowMajorString( 'foo' );
+* // returns false
+*/
+function isRowMajorString( v ) {
+	return ( v === 'row-major' );
+}
+
+
+// EXPORTS //
+
+module.exports = isRowMajorString;
+
+},{}],355:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28364,7 +28891,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":346}],346:[function(require,module,exports){
+},{"./main.js":356}],356:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28431,7 +28958,7 @@ function isRowMajor( strides ) {
 
 module.exports = isRowMajor;
 
-},{"@stdlib/math/base/special/abs":295}],347:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":301}],357:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28476,7 +29003,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":348}],348:[function(require,module,exports){
+},{"./main.js":358}],358:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28535,7 +29062,7 @@ function isSafeCast( from, to ) {
 
 module.exports = isSafeCast;
 
-},{"@stdlib/ndarray/safe-casts":829}],349:[function(require,module,exports){
+},{"@stdlib/ndarray/safe-casts":901}],359:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28580,7 +29107,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":350}],350:[function(require,module,exports){
+},{"./main.js":360}],360:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28639,7 +29166,7 @@ function isSameKindCast( from, to ) {
 
 module.exports = isSameKindCast;
 
-},{"@stdlib/ndarray/same-kind-casts":832}],351:[function(require,module,exports){
+},{"@stdlib/ndarray/same-kind-casts":904}],361:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28714,7 +29241,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":352}],352:[function(require,module,exports){
+},{"./main.js":362}],362:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28795,7 +29322,7 @@ var isSignedIntegerDataType = contains( dtypes( 'signed_integer' ) );
 
 module.exports = isSignedIntegerDataType;
 
-},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":805}],353:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":877}],363:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28851,7 +29378,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":354}],354:[function(require,module,exports){
+},{"./main.js":364}],364:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28924,7 +29451,7 @@ function isSingleSegmentCompatible( shape, strides, offset ) {
 
 module.exports = isSingleSegmentCompatible;
 
-},{"@stdlib/ndarray/base/minmax-view-buffer-index":555,"@stdlib/ndarray/base/numel":622}],355:[function(require,module,exports){
+},{"@stdlib/ndarray/base/minmax-view-buffer-index":617,"@stdlib/ndarray/base/numel":686}],365:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28999,7 +29526,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":356}],356:[function(require,module,exports){
+},{"./main.js":366}],366:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29080,7 +29607,7 @@ var isUnsignedIntegerDataType = contains( dtypes( 'unsigned_integer' ) );
 
 module.exports = isUnsignedIntegerDataType;
 
-},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":805}],357:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/dtypes":877}],367:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29190,6 +29717,15 @@ setReadOnly( ns, 'isColumnMajor', require( '@stdlib/ndarray/base/assert/is-colum
 * @see {@link module:@stdlib/ndarray/base/assert/is-column-major-contiguous}
 */
 setReadOnly( ns, 'isColumnMajorContiguous', require( '@stdlib/ndarray/base/assert/is-column-major-contiguous' ) );
+
+/**
+* @name isColumnMajorString
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/assert/is-column-major-string}
+*/
+setReadOnly( ns, 'isColumnMajorString', require( '@stdlib/ndarray/base/assert/is-column-major-string' ) );
 
 /**
 * @name isComplexFloatingPointDataType
@@ -29318,6 +29854,15 @@ setReadOnly( ns, 'isRowMajor', require( '@stdlib/ndarray/base/assert/is-row-majo
 setReadOnly( ns, 'isRowMajorContiguous', require( '@stdlib/ndarray/base/assert/is-row-major-contiguous' ) );
 
 /**
+* @name isRowMajorString
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/assert/is-row-major-string}
+*/
+setReadOnly( ns, 'isRowMajorString', require( '@stdlib/ndarray/base/assert/is-row-major-string' ) );
+
+/**
 * @name isSafeDataTypeCast
 * @memberof ns
 * @readonly
@@ -29367,7 +29912,7 @@ setReadOnly( ns, 'isUnsignedIntegerDataType', require( '@stdlib/ndarray/base/ass
 
 module.exports = ns;
 
-},{"@stdlib/ndarray/base/assert/has-equal-shape":303,"@stdlib/ndarray/base/assert/is-allowed-data-type-cast":305,"@stdlib/ndarray/base/assert/is-boolean-data-type":307,"@stdlib/ndarray/base/assert/is-buffer-length-compatible":311,"@stdlib/ndarray/base/assert/is-buffer-length-compatible-shape":309,"@stdlib/ndarray/base/assert/is-casting-mode":313,"@stdlib/ndarray/base/assert/is-column-major":317,"@stdlib/ndarray/base/assert/is-column-major-contiguous":315,"@stdlib/ndarray/base/assert/is-complex-floating-point-data-type":319,"@stdlib/ndarray/base/assert/is-contiguous":321,"@stdlib/ndarray/base/assert/is-data-type":323,"@stdlib/ndarray/base/assert/is-floating-point-data-type":325,"@stdlib/ndarray/base/assert/is-index-mode":327,"@stdlib/ndarray/base/assert/is-integer-data-type":329,"@stdlib/ndarray/base/assert/is-mostly-safe-data-type-cast":331,"@stdlib/ndarray/base/assert/is-numeric-data-type":333,"@stdlib/ndarray/base/assert/is-order":335,"@stdlib/ndarray/base/assert/is-read-only":337,"@stdlib/ndarray/base/assert/is-real-data-type":339,"@stdlib/ndarray/base/assert/is-real-floating-point-data-type":341,"@stdlib/ndarray/base/assert/is-row-major":345,"@stdlib/ndarray/base/assert/is-row-major-contiguous":343,"@stdlib/ndarray/base/assert/is-safe-data-type-cast":347,"@stdlib/ndarray/base/assert/is-same-kind-data-type-cast":349,"@stdlib/ndarray/base/assert/is-signed-integer-data-type":351,"@stdlib/ndarray/base/assert/is-single-segment-compatible":353,"@stdlib/ndarray/base/assert/is-unsigned-integer-data-type":355,"@stdlib/utils/define-read-only-property":912}],358:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/has-equal-shape":309,"@stdlib/ndarray/base/assert/is-allowed-data-type-cast":311,"@stdlib/ndarray/base/assert/is-boolean-data-type":313,"@stdlib/ndarray/base/assert/is-buffer-length-compatible":317,"@stdlib/ndarray/base/assert/is-buffer-length-compatible-shape":315,"@stdlib/ndarray/base/assert/is-casting-mode":319,"@stdlib/ndarray/base/assert/is-column-major":325,"@stdlib/ndarray/base/assert/is-column-major-contiguous":321,"@stdlib/ndarray/base/assert/is-column-major-string":323,"@stdlib/ndarray/base/assert/is-complex-floating-point-data-type":327,"@stdlib/ndarray/base/assert/is-contiguous":329,"@stdlib/ndarray/base/assert/is-data-type":331,"@stdlib/ndarray/base/assert/is-floating-point-data-type":333,"@stdlib/ndarray/base/assert/is-index-mode":335,"@stdlib/ndarray/base/assert/is-integer-data-type":337,"@stdlib/ndarray/base/assert/is-mostly-safe-data-type-cast":339,"@stdlib/ndarray/base/assert/is-numeric-data-type":341,"@stdlib/ndarray/base/assert/is-order":343,"@stdlib/ndarray/base/assert/is-read-only":345,"@stdlib/ndarray/base/assert/is-real-data-type":347,"@stdlib/ndarray/base/assert/is-real-floating-point-data-type":349,"@stdlib/ndarray/base/assert/is-row-major":355,"@stdlib/ndarray/base/assert/is-row-major-contiguous":351,"@stdlib/ndarray/base/assert/is-row-major-string":353,"@stdlib/ndarray/base/assert/is-safe-data-type-cast":357,"@stdlib/ndarray/base/assert/is-same-kind-data-type-cast":359,"@stdlib/ndarray/base/assert/is-signed-integer-data-type":361,"@stdlib/ndarray/base/assert/is-single-segment-compatible":363,"@stdlib/ndarray/base/assert/is-unsigned-integer-data-type":365,"@stdlib/utils/define-read-only-property":984}],368:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29461,7 +30006,7 @@ function assign0d( x, y ) {
 
 module.exports = assign0d;
 
-},{}],359:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29576,7 +30121,7 @@ function assign0d( x, y ) {
 
 module.exports = assign0d;
 
-},{}],360:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29840,7 +30385,7 @@ function assign10d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = assign10d;
 
-},{}],361:[function(require,module,exports){
+},{}],371:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30131,7 +30676,7 @@ function assign10d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = assign10d;
 
-},{}],362:[function(require,module,exports){
+},{}],372:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30510,7 +31055,7 @@ function blockedassign10d( x, y ) { // eslint-disable-line max-statements, max-l
 
 module.exports = blockedassign10d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],363:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],373:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30916,7 +31461,7 @@ function blockedassign10d( x, y ) { // eslint-disable-line max-statements, max-l
 
 module.exports = blockedassign10d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],364:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],374:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31039,7 +31584,7 @@ function assign1d( x, y ) {
 
 module.exports = assign1d;
 
-},{}],365:[function(require,module,exports){
+},{}],375:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31189,7 +31734,7 @@ function assign1d( x, y ) {
 
 module.exports = assign1d;
 
-},{}],366:[function(require,module,exports){
+},{}],376:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31339,7 +31884,7 @@ function assign2d( x, y ) {
 
 module.exports = assign2d;
 
-},{}],367:[function(require,module,exports){
+},{}],377:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31516,7 +32061,7 @@ function assign2d( x, y ) {
 
 module.exports = assign2d;
 
-},{}],368:[function(require,module,exports){
+},{}],378:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31701,7 +32246,7 @@ function blockedassign2d( x, y ) {
 
 module.exports = blockedassign2d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],369:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],379:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31913,7 +32458,7 @@ function blockedassign2d( x, y ) {
 
 module.exports = blockedassign2d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],370:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],380:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32077,7 +32622,7 @@ function assign3d( x, y ) {
 
 module.exports = assign3d;
 
-},{}],371:[function(require,module,exports){
+},{}],381:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32268,7 +32813,7 @@ function assign3d( x, y ) {
 
 module.exports = assign3d;
 
-},{}],372:[function(require,module,exports){
+},{}],382:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32479,7 +33024,7 @@ function blockedassign3d( x, y ) {
 
 module.exports = blockedassign3d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],373:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],383:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32717,7 +33262,7 @@ function blockedassign3d( x, y ) {
 
 module.exports = blockedassign3d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],374:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],384:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32895,7 +33440,7 @@ function assign4d( x, y ) {
 
 module.exports = assign4d;
 
-},{}],375:[function(require,module,exports){
+},{}],385:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33100,7 +33645,7 @@ function assign4d( x, y ) {
 
 module.exports = assign4d;
 
-},{}],376:[function(require,module,exports){
+},{}],386:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33335,7 +33880,7 @@ function blockedassign4d( x, y ) {
 
 module.exports = blockedassign4d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],377:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],387:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33597,7 +34142,7 @@ function blockedassign4d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = blockedassign4d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],378:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],388:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33789,7 +34334,7 @@ function assign5d( x, y ) {
 
 module.exports = assign5d;
 
-},{}],379:[function(require,module,exports){
+},{}],389:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34008,7 +34553,7 @@ function assign5d( x, y ) {
 
 module.exports = assign5d;
 
-},{}],380:[function(require,module,exports){
+},{}],390:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34267,7 +34812,7 @@ function blockedassign5d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = blockedassign5d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],381:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],391:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34553,7 +35098,7 @@ function blockedassign5d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = blockedassign5d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],382:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],392:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34761,7 +35306,7 @@ function assign6d( x, y ) {
 
 module.exports = assign6d;
 
-},{}],383:[function(require,module,exports){
+},{}],393:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34996,7 +35541,7 @@ function assign6d( x, y ) {
 
 module.exports = assign6d;
 
-},{}],384:[function(require,module,exports){
+},{}],394:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35279,7 +35824,7 @@ function blockedassign6d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = blockedassign6d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],385:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],395:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35589,7 +36134,7 @@ function blockedassign6d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = blockedassign6d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],386:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],396:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35811,7 +36356,7 @@ function assign7d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = assign7d;
 
-},{}],387:[function(require,module,exports){
+},{}],397:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36060,7 +36605,7 @@ function assign7d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = assign7d;
 
-},{}],388:[function(require,module,exports){
+},{}],398:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36367,7 +36912,7 @@ function blockedassign7d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = blockedassign7d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],389:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],399:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36701,7 +37246,7 @@ function blockedassign7d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = blockedassign7d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],390:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],400:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36937,7 +37482,7 @@ function assign8d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = assign8d;
 
-},{}],391:[function(require,module,exports){
+},{}],401:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37200,7 +37745,7 @@ function assign8d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = assign8d;
 
-},{}],392:[function(require,module,exports){
+},{}],402:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37531,7 +38076,7 @@ function blockedassign8d( x, y ) { // eslint-disable-line max-statements, max-li
 
 module.exports = blockedassign8d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],393:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],403:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37889,7 +38434,7 @@ function blockedassign8d( x, y ) { // eslint-disable-line max-statements, max-li
 
 module.exports = blockedassign8d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],394:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],404:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38139,7 +38684,7 @@ function assign9d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = assign9d;
 
-},{}],395:[function(require,module,exports){
+},{}],405:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38416,7 +38961,7 @@ function assign9d( x, y ) { // eslint-disable-line max-statements
 
 module.exports = assign9d;
 
-},{}],396:[function(require,module,exports){
+},{}],406:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38771,7 +39316,7 @@ function blockedassign9d( x, y ) { // eslint-disable-line max-statements, max-li
 
 module.exports = blockedassign9d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],397:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],407:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38821,7 +39366,7 @@ var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Array<Function>} x.accessors - data buffer accessors
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @returns {void}
 *
 * @example
@@ -39153,7 +39698,7 @@ function blockedassign9d( x, y ) { // eslint-disable-line max-statements, max-li
 
 module.exports = blockedassign9d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],398:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],408:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39232,7 +39777,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":399}],399:[function(require,module,exports){
+},{"./main.js":409}],409:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39577,7 +40122,7 @@ function assign( arrays ) {
 
 module.exports = assign;
 
-},{"./0d.js":358,"./0d_accessors.js":359,"./10d.js":360,"./10d_accessors.js":361,"./10d_blocked.js":362,"./10d_blocked_accessors.js":363,"./1d.js":364,"./1d_accessors.js":365,"./2d.js":366,"./2d_accessors.js":367,"./2d_blocked.js":368,"./2d_blocked_accessors.js":369,"./3d.js":370,"./3d_accessors.js":371,"./3d_blocked.js":372,"./3d_blocked_accessors.js":373,"./4d.js":374,"./4d_accessors.js":375,"./4d_blocked.js":376,"./4d_blocked_accessors.js":377,"./5d.js":378,"./5d_accessors.js":379,"./5d_blocked.js":380,"./5d_blocked_accessors.js":381,"./6d.js":382,"./6d_accessors.js":383,"./6d_blocked.js":384,"./6d_blocked_accessors.js":385,"./7d.js":386,"./7d_accessors.js":387,"./7d_blocked.js":388,"./7d_blocked_accessors.js":389,"./8d.js":390,"./8d_accessors.js":391,"./8d_blocked.js":392,"./8d_blocked_accessors.js":393,"./9d.js":394,"./9d_accessors.js":395,"./9d_blocked.js":396,"./9d_blocked_accessors.js":397,"./nd.js":400,"./nd_accessors.js":401,"@stdlib/complex/base/cast-return":255,"@stdlib/complex/ctors":258,"@stdlib/ndarray/base/assert/is-complex-floating-point-data-type":319,"@stdlib/ndarray/base/assert/is-real-data-type":339,"@stdlib/ndarray/base/iteration-order":541,"@stdlib/ndarray/base/minmax-view-buffer-index":555,"@stdlib/ndarray/base/ndarraylike2object":559}],400:[function(require,module,exports){
+},{"./0d.js":368,"./0d_accessors.js":369,"./10d.js":370,"./10d_accessors.js":371,"./10d_blocked.js":372,"./10d_blocked_accessors.js":373,"./1d.js":374,"./1d_accessors.js":375,"./2d.js":376,"./2d_accessors.js":377,"./2d_blocked.js":378,"./2d_blocked_accessors.js":379,"./3d.js":380,"./3d_accessors.js":381,"./3d_blocked.js":382,"./3d_blocked_accessors.js":383,"./4d.js":384,"./4d_accessors.js":385,"./4d_blocked.js":386,"./4d_blocked_accessors.js":387,"./5d.js":388,"./5d_accessors.js":389,"./5d_blocked.js":390,"./5d_blocked_accessors.js":391,"./6d.js":392,"./6d_accessors.js":393,"./6d_blocked.js":394,"./6d_blocked_accessors.js":395,"./7d.js":396,"./7d_accessors.js":397,"./7d_blocked.js":398,"./7d_blocked_accessors.js":399,"./8d.js":400,"./8d_accessors.js":401,"./8d_blocked.js":402,"./8d_blocked_accessors.js":403,"./9d.js":404,"./9d_accessors.js":405,"./9d_blocked.js":406,"./9d_blocked_accessors.js":407,"./nd.js":410,"./nd_accessors.js":411,"@stdlib/complex/base/cast-return":261,"@stdlib/complex/ctors":264,"@stdlib/ndarray/base/assert/is-complex-floating-point-data-type":327,"@stdlib/ndarray/base/assert/is-real-data-type":347,"@stdlib/ndarray/base/iteration-order":555,"@stdlib/ndarray/base/minmax-view-buffer-index":617,"@stdlib/ndarray/base/ndarraylike2object":621}],410:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39722,7 +40267,7 @@ function assignnd( x, y ) {
 
 module.exports = assignnd;
 
-},{"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/vind2bind":783}],401:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],411:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39894,7 +40439,7 @@ function assignnd( x, y ) {
 
 module.exports = assignnd;
 
-},{"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/vind2bind":783}],402:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],412:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39954,7 +40499,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":403}],403:[function(require,module,exports){
+},{"./main.js":413}],413:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40106,7 +40651,7 @@ function loopOrder( sh, sx, sy, sz ) {
 
 module.exports = loopOrder;
 
-},{"./sort2ins.js":404,"@stdlib/array/base/copy-indexed":18,"@stdlib/array/base/filled":20,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33,"@stdlib/ndarray/base/strides2order":677}],404:[function(require,module,exports){
+},{"./sort2ins.js":414,"@stdlib/array/base/copy-indexed":20,"@stdlib/array/base/filled":22,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37,"@stdlib/ndarray/base/strides2order":743}],414:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40206,7 +40751,7 @@ function sort2ins( x, y ) {
 
 module.exports = sort2ins;
 
-},{}],405:[function(require,module,exports){
+},{}],415:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40242,7 +40787,7 @@ var defaults = {
 
 module.exports = defaults;
 
-},{}],406:[function(require,module,exports){
+},{}],416:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40284,7 +40829,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":407}],407:[function(require,module,exports){
+},{"./main.js":417}],417:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40350,7 +40895,7 @@ function binaryBlockSize( dtypeX, dtypeY, dtypeZ ) {
 
 module.exports = binaryBlockSize;
 
-},{"./defaults.js":405,"@stdlib/ndarray/base/bytes-per-element":432}],408:[function(require,module,exports){
+},{"./defaults.js":415,"@stdlib/ndarray/base/bytes-per-element":442}],418:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40398,7 +40943,7 @@ var bind2vind = require( './main.js' );
 
 module.exports = bind2vind;
 
-},{"./main.js":409}],409:[function(require,module,exports){
+},{"./main.js":419}],419:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40530,7 +41075,7 @@ function bind2vind( shape, strides, offset, order, idx, mode ) {
 
 module.exports = bind2vind;
 
-},{"@stdlib/math/base/special/abs":295,"@stdlib/math/base/special/trunc":301,"@stdlib/string/format":892}],410:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":301,"@stdlib/math/base/special/trunc":307,"@stdlib/string/format":964}],420:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40600,7 +41145,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":411}],411:[function(require,module,exports){
+},{"./main.js":421}],421:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40745,7 +41290,7 @@ function broadcastArray( arr, shape ) {
 
 module.exports = broadcastArray;
 
-},{"@stdlib/array/base/copy-indexed":18,"@stdlib/ndarray/base/ctor":441,"@stdlib/ndarray/base/data-buffer":452,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/offset":624,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/strides":673,"@stdlib/string/format":892}],412:[function(require,module,exports){
+},{"@stdlib/array/base/copy-indexed":20,"@stdlib/ndarray/base/ctor":451,"@stdlib/ndarray/base/data-buffer":462,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/offset":688,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/strides":739,"@stdlib/string/format":964}],422:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40831,7 +41376,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":413}],413:[function(require,module,exports){
+},{"./main.js":423}],423:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40965,7 +41510,7 @@ function broadcastArrays( arrays ) {
 
 module.exports = broadcastArrays;
 
-},{"@stdlib/ndarray/base/broadcast-array":410,"@stdlib/ndarray/base/broadcast-shapes":416,"@stdlib/ndarray/base/shape":647}],414:[function(require,module,exports){
+},{"@stdlib/ndarray/base/broadcast-array":420,"@stdlib/ndarray/base/broadcast-shapes":426,"@stdlib/ndarray/base/shape":711}],424:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41016,7 +41561,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":415}],415:[function(require,module,exports){
+},{"./main.js":425}],425:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41098,7 +41643,7 @@ function broadcastScalar( value, dtype, shape, order ) {
 
 module.exports = broadcastScalar;
 
-},{"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/setter":28,"@stdlib/array/base/zeros":35,"@stdlib/ndarray/base/buffer":428,"@stdlib/ndarray/base/ctor":441,"@stdlib/string/format":892}],416:[function(require,module,exports){
+},{"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/setter":32,"@stdlib/array/base/zeros":39,"@stdlib/ndarray/base/buffer":438,"@stdlib/ndarray/base/ctor":451,"@stdlib/string/format":964}],426:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41145,7 +41690,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":417}],417:[function(require,module,exports){
+},{"./main.js":427}],427:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41403,7 +41948,7 @@ function broadcastShapes( shapes ) {
 
 module.exports = broadcastShapes;
 
-},{}],418:[function(require,module,exports){
+},{}],428:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41466,7 +42011,7 @@ var ctors = {
 
 module.exports = ctors;
 
-},{"@stdlib/array/bool":40,"@stdlib/array/complex128":48,"@stdlib/array/complex64":53,"@stdlib/array/float32":70,"@stdlib/array/float64":73,"@stdlib/array/int16":76,"@stdlib/array/int32":79,"@stdlib/array/int8":82,"@stdlib/array/uint16":85,"@stdlib/array/uint32":88,"@stdlib/array/uint8":91,"@stdlib/array/uint8c":94,"@stdlib/buffer/ctor":252}],419:[function(require,module,exports){
+},{"@stdlib/array/bool":44,"@stdlib/array/complex128":52,"@stdlib/array/complex64":57,"@stdlib/array/float32":76,"@stdlib/array/float64":79,"@stdlib/array/int16":82,"@stdlib/array/int32":85,"@stdlib/array/int8":88,"@stdlib/array/uint16":91,"@stdlib/array/uint32":94,"@stdlib/array/uint8":97,"@stdlib/array/uint8c":100,"@stdlib/buffer/ctor":258}],429:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41511,7 +42056,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":420}],420:[function(require,module,exports){
+},{"./main.js":430}],430:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41562,7 +42107,7 @@ function ctors( dtype ) {
 
 module.exports = ctors;
 
-},{"./ctors.js":418}],421:[function(require,module,exports){
+},{"./ctors.js":428}],431:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41607,7 +42152,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":422}],422:[function(require,module,exports){
+},{"./main.js":432}],432:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41663,7 +42208,7 @@ function dtypeEnum( arr ) {
 
 module.exports = dtypeEnum;
 
-},{"@stdlib/ndarray/base/buffer-dtype":426,"@stdlib/ndarray/base/dtype-str2enum":466}],423:[function(require,module,exports){
+},{"@stdlib/ndarray/base/buffer-dtype":436,"@stdlib/ndarray/base/dtype-str2enum":476}],433:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41710,11 +42255,11 @@ var dtypes = {
 
 module.exports = dtypes;
 
-},{}],424:[function(require,module,exports){
-arguments[4][65][0].apply(exports,arguments)
-},{"@stdlib/array/bool":40,"@stdlib/array/complex128":48,"@stdlib/array/complex64":53,"@stdlib/array/float32":70,"@stdlib/array/float64":73,"@stdlib/array/int16":76,"@stdlib/array/int32":79,"@stdlib/array/int8":82,"@stdlib/array/uint16":85,"@stdlib/array/uint32":88,"@stdlib/array/uint8":91,"@stdlib/array/uint8c":94,"dup":65}],425:[function(require,module,exports){
-arguments[4][66][0].apply(exports,arguments)
-},{"dup":66}],426:[function(require,module,exports){
+},{}],434:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"@stdlib/array/bool":44,"@stdlib/array/complex128":52,"@stdlib/array/complex64":57,"@stdlib/array/float32":76,"@stdlib/array/float64":79,"@stdlib/array/int16":82,"@stdlib/array/int32":85,"@stdlib/array/int8":88,"@stdlib/array/uint16":91,"@stdlib/array/uint32":94,"@stdlib/array/uint8":97,"@stdlib/array/uint8c":100,"dup":69}],435:[function(require,module,exports){
+arguments[4][70][0].apply(exports,arguments)
+},{"dup":70}],436:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41765,7 +42310,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":427}],427:[function(require,module,exports){
+},{"./main.js":437}],437:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41838,7 +42383,7 @@ function dtype( value ) {
 
 module.exports = dtype;
 
-},{"./ctor2dtype.js":423,"./ctors.js":424,"./dtypes.js":425,"@stdlib/assert/is-array":151,"@stdlib/assert/is-buffer":161,"@stdlib/utils/constructor-name":901}],428:[function(require,module,exports){
+},{"./ctor2dtype.js":433,"./ctors.js":434,"./dtypes.js":435,"@stdlib/assert/is-array":157,"@stdlib/assert/is-buffer":167,"@stdlib/utils/constructor-name":973}],438:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41880,7 +42425,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":429}],429:[function(require,module,exports){
+},{"./main.js":439}],439:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41984,7 +42529,7 @@ function buffer( dtype, size ) {
 
 module.exports = buffer;
 
-},{"./zeros.js":430,"@stdlib/buffer/alloc-unsafe":249,"@stdlib/ndarray/base/buffer-ctors":419}],430:[function(require,module,exports){
+},{"./zeros.js":440,"@stdlib/buffer/alloc-unsafe":255,"@stdlib/ndarray/base/buffer-ctors":429}],440:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42031,7 +42576,7 @@ function zeros( v ) {
 
 module.exports = zeros;
 
-},{}],431:[function(require,module,exports){
+},{}],441:[function(require,module,exports){
 module.exports={
 	"binary": 1,
 	"bool": 1,
@@ -42058,7 +42603,7 @@ module.exports={
 	"uint256": 32
 }
 
-},{}],432:[function(require,module,exports){
+},{}],442:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42103,7 +42648,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":433}],433:[function(require,module,exports){
+},{"./main.js":443}],443:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42153,7 +42698,7 @@ function bytesPerElement( dtype ) {
 
 module.exports = bytesPerElement;
 
-},{"./bytes_per_element.json":431}],434:[function(require,module,exports){
+},{"./bytes_per_element.json":441}],444:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42204,7 +42749,7 @@ var char2dtype = require( './main.js' );
 
 module.exports = char2dtype;
 
-},{"./main.js":435}],435:[function(require,module,exports){
+},{"./main.js":445}],445:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42270,7 +42815,7 @@ function char2dtype( ch ) {
 
 module.exports = char2dtype;
 
-},{"@stdlib/ndarray/base/dtype-char":454,"@stdlib/utils/object-inverse":954}],436:[function(require,module,exports){
+},{"@stdlib/ndarray/base/dtype-char":464,"@stdlib/utils/object-inverse":1026}],446:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42318,7 +42863,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":437}],437:[function(require,module,exports){
+},{"./main.js":447}],447:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42373,7 +42918,7 @@ function clampIndex( idx, max ) {
 
 module.exports = clampIndex;
 
-},{}],438:[function(require,module,exports){
+},{}],448:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42416,7 +42961,7 @@ function copyFlags( flags ) {
 
 module.exports = copyFlags;
 
-},{}],439:[function(require,module,exports){
+},{}],449:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42470,7 +43015,7 @@ function get() {
 
 module.exports = get;
 
-},{}],440:[function(require,module,exports){
+},{}],450:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42570,7 +43115,7 @@ function iget( idx ) {
 
 module.exports = iget;
 
-},{}],441:[function(require,module,exports){
+},{}],451:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42616,7 +43161,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":446}],442:[function(require,module,exports){
+},{"./main.js":456}],452:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42656,7 +43201,7 @@ function isColumnMajorContiguous( order, contiguous ) {
 
 module.exports = isColumnMajorContiguous;
 
-},{}],443:[function(require,module,exports){
+},{}],453:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42712,7 +43257,7 @@ function isContiguous( len, shape, strides, offset, iterationOrder ) {
 
 module.exports = isContiguous;
 
-},{"@stdlib/ndarray/base/minmax-view-buffer-index":555}],444:[function(require,module,exports){
+},{"@stdlib/ndarray/base/minmax-view-buffer-index":617}],454:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42752,7 +43297,7 @@ function isRowMajorContiguous( order, contiguous ) {
 
 module.exports = isRowMajorContiguous;
 
-},{}],445:[function(require,module,exports){
+},{}],455:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42863,7 +43408,7 @@ function iset( idx, v ) {
 
 module.exports = iset;
 
-},{}],446:[function(require,module,exports){
+},{}],456:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43477,7 +44022,7 @@ setReadOnly( ndarray.prototype, '__array_meta_dataview__', ( hasBigIntSupport() 
 
 module.exports = ndarray;
 
-},{"./copy_flags.js":438,"./get.js":439,"./iget.js":440,"./is_column_major_contiguous.js":442,"./is_contiguous.js":443,"./is_row_major_contiguous.js":444,"./iset.js":445,"./meta2dataview.js":447,"./meta2dataview.polyfill.js":448,"./set.js":449,"./tojson.js":450,"./tostring.js":451,"@stdlib/assert/has-bigint-support":102,"@stdlib/boolean/ctor":246,"@stdlib/ndarray/base/bytes-per-element":432,"@stdlib/ndarray/base/iteration-order":541,"@stdlib/ndarray/base/strides2order":677,"@stdlib/utils/define-nonenumerable-read-only-accessor":903,"@stdlib/utils/define-nonenumerable-read-only-property":905}],447:[function(require,module,exports){
+},{"./copy_flags.js":448,"./get.js":449,"./iget.js":450,"./is_column_major_contiguous.js":452,"./is_contiguous.js":453,"./is_row_major_contiguous.js":454,"./iset.js":455,"./meta2dataview.js":457,"./meta2dataview.polyfill.js":458,"./set.js":459,"./tojson.js":460,"./tostring.js":461,"@stdlib/assert/has-bigint-support":108,"@stdlib/boolean/ctor":252,"@stdlib/ndarray/base/bytes-per-element":442,"@stdlib/ndarray/base/iteration-order":555,"@stdlib/ndarray/base/strides2order":743,"@stdlib/utils/define-nonenumerable-read-only-accessor":975,"@stdlib/utils/define-nonenumerable-read-only-property":977}],457:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43685,7 +44230,7 @@ function meta2dataview() {
 
 module.exports = meta2dataview;
 
-},{"@stdlib/array/buffer":42,"@stdlib/array/dataview":58,"@stdlib/assert/is-little-endian":191,"@stdlib/bigint/ctor":240,"@stdlib/ndarray/dtypes":805,"@stdlib/ndarray/index-modes":808,"@stdlib/ndarray/orders":821}],448:[function(require,module,exports){
+},{"@stdlib/array/buffer":46,"@stdlib/array/dataview":62,"@stdlib/assert/is-little-endian":197,"@stdlib/bigint/ctor":246,"@stdlib/ndarray/dtypes":877,"@stdlib/ndarray/index-modes":880,"@stdlib/ndarray/orders":893}],458:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43896,7 +44441,7 @@ function meta2dataview() {
 
 module.exports = meta2dataview;
 
-},{"@stdlib/array/buffer":42,"@stdlib/array/dataview":58,"@stdlib/array/uint8":91,"@stdlib/assert/is-little-endian":191,"@stdlib/ndarray/dtypes":805,"@stdlib/ndarray/index-modes":808,"@stdlib/ndarray/orders":821,"@stdlib/number/float64/base/to-int64-bytes":845}],449:[function(require,module,exports){
+},{"@stdlib/array/buffer":46,"@stdlib/array/dataview":62,"@stdlib/array/uint8":97,"@stdlib/assert/is-little-endian":197,"@stdlib/ndarray/dtypes":877,"@stdlib/ndarray/index-modes":880,"@stdlib/ndarray/orders":893,"@stdlib/number/float64/base/to-int64-bytes":917}],459:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43953,7 +44498,7 @@ function set() {
 
 module.exports = set;
 
-},{}],450:[function(require,module,exports){
+},{}],460:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44013,7 +44558,7 @@ function toJSON() {
 	out.strides = this._strides.slice();
 
 	// Flip the signs of negative strides:
-	for ( i = 0; i < len; i++ ) {
+	for ( i = 0; i < out.strides.length; i++ ) {
 		if ( out.strides[ i ] < 0 ) {
 			out.strides[ i ] *= -1;
 		}
@@ -44040,7 +44585,7 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{"@stdlib/complex/float64/imag":272,"@stdlib/complex/float64/real":274}],451:[function(require,module,exports){
+},{"@stdlib/complex/float64/imag":278,"@stdlib/complex/float64/real":280}],461:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44083,7 +44628,8 @@ var CTORS = {
 	'generic': '[ {{data}} ]',
 	'binary': 'new Buffer( [ {{data}} ] )',
 	'complex64': 'new Complex64Array( [ {{data}} ] )',
-	'complex128': 'new Complex128Array( [ {{data}} ] )'
+	'complex128': 'new Complex128Array( [ {{data}} ] )',
+	'bool': 'new BooleanArray( [ {{data}} ] )'
 };
 
 
@@ -44222,7 +44768,7 @@ function toString() { // eslint-disable-line stdlib/no-redeclare
 
 module.exports = toString;
 
-},{"@stdlib/complex/float64/imag":272,"@stdlib/complex/float64/real":274,"@stdlib/string/replace":895}],452:[function(require,module,exports){
+},{"@stdlib/complex/float64/imag":278,"@stdlib/complex/float64/real":280,"@stdlib/string/replace":967}],462:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44269,7 +44815,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":453}],453:[function(require,module,exports){
+},{"./main.js":463}],463:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44317,7 +44863,7 @@ function data( x ) {
 
 module.exports = data;
 
-},{}],454:[function(require,module,exports){
+},{}],464:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44368,7 +44914,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":455}],455:[function(require,module,exports){
+},{"./main.js":465}],465:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44434,7 +44980,7 @@ function dtypeChar( dtype ) {
 
 module.exports = dtypeChar;
 
-},{"./table.js":456,"@stdlib/ndarray/base/dtype-resolve-str":464}],456:[function(require,module,exports){
+},{"./table.js":466,"@stdlib/ndarray/base/dtype-resolve-str":474}],466:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44502,7 +45048,7 @@ function table() {
 
 module.exports = table;
 
-},{}],457:[function(require,module,exports){
+},{}],467:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44553,7 +45099,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":458}],458:[function(require,module,exports){
+},{"./main.js":468}],468:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44619,7 +45165,7 @@ function dtypeDesc( dtype ) {
 
 module.exports = dtypeDesc;
 
-},{"./table.js":459,"@stdlib/ndarray/base/dtype-resolve-str":464}],459:[function(require,module,exports){
+},{"./table.js":469,"@stdlib/ndarray/base/dtype-resolve-str":474}],469:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44687,7 +45233,7 @@ function table() {
 
 module.exports = table;
 
-},{}],460:[function(require,module,exports){
+},{}],470:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44733,7 +45279,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":461}],461:[function(require,module,exports){
+},{"./main.js":471}],471:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44794,7 +45340,7 @@ function enum2str( dtype ) {
 
 module.exports = enum2str;
 
-},{"@stdlib/ndarray/dtypes":805,"@stdlib/utils/object-inverse":954}],462:[function(require,module,exports){
+},{"@stdlib/ndarray/dtypes":877,"@stdlib/utils/object-inverse":1026}],472:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44836,7 +45382,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":463}],463:[function(require,module,exports){
+},{"./main.js":473}],473:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44895,7 +45441,7 @@ function resolve( dtype ) {
 
 module.exports = resolve;
 
-},{"@stdlib/ndarray/base/dtype-enum2str":460,"@stdlib/ndarray/base/dtype-str2enum":466}],464:[function(require,module,exports){
+},{"@stdlib/ndarray/base/dtype-enum2str":470,"@stdlib/ndarray/base/dtype-str2enum":476}],474:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44938,7 +45484,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":465}],465:[function(require,module,exports){
+},{"./main.js":475}],475:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44995,7 +45541,7 @@ function resolve( dtype ) {
 
 module.exports = resolve;
 
-},{"@stdlib/ndarray/base/dtype-enum2str":460,"@stdlib/ndarray/base/dtype-str2enum":466}],466:[function(require,module,exports){
+},{"@stdlib/ndarray/base/dtype-enum2str":470,"@stdlib/ndarray/base/dtype-str2enum":476}],476:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45037,7 +45583,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":467}],467:[function(require,module,exports){
+},{"./main.js":477}],477:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45094,7 +45640,7 @@ function str2enum( dtype ) {
 
 module.exports = str2enum;
 
-},{"@stdlib/ndarray/dtypes":805}],468:[function(require,module,exports){
+},{"@stdlib/ndarray/dtypes":877}],478:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45141,7 +45687,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":469}],469:[function(require,module,exports){
+},{"./main.js":479}],479:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45189,7 +45735,7 @@ function dtype( x ) {
 
 module.exports = dtype;
 
-},{}],470:[function(require,module,exports){
+},{}],480:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45234,7 +45780,7 @@ var dtype2c = require( './main.js' );
 
 module.exports = dtype2c;
 
-},{"./main.js":471}],471:[function(require,module,exports){
+},{"./main.js":481}],481:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45285,7 +45831,7 @@ function dtype2c( dtype ) {
 
 module.exports = dtype2c;
 
-},{"./table.json":472,"@stdlib/ndarray/base/dtype-resolve-str":464}],472:[function(require,module,exports){
+},{"./table.json":482,"@stdlib/ndarray/base/dtype-resolve-str":474}],482:[function(require,module,exports){
 module.exports={
 	"binary": null,
 	"bool": "bool",
@@ -45312,7 +45858,7 @@ module.exports={
 	"uint256": null
 }
 
-},{}],473:[function(require,module,exports){
+},{}],483:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45359,7 +45905,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":474}],474:[function(require,module,exports){
+},{"./main.js":484}],484:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45487,7 +46033,7 @@ function dtypes2signatures( dtypes, nin, nout ) {
 
 module.exports = dtypes2signatures;
 
-},{"@stdlib/assert/is-array-like-object":149,"@stdlib/assert/is-nonnegative-integer":197,"@stdlib/ndarray/base/dtype-resolve-str":464,"@stdlib/string/format":892}],475:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":155,"@stdlib/assert/is-nonnegative-integer":203,"@stdlib/ndarray/base/dtype-resolve-str":474,"@stdlib/string/format":964}],485:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45539,7 +46085,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":476}],476:[function(require,module,exports){
+},{"./main.js":486}],486:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45631,7 +46177,7 @@ function emptyLike( x ) {
 
 module.exports = emptyLike;
 
-},{"@stdlib/array/empty":69,"@stdlib/buffer/alloc-unsafe":249,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/shape2strides":650,"@stdlib/ndarray/base/strides2offset":675}],477:[function(require,module,exports){
+},{"@stdlib/array/empty":75,"@stdlib/buffer/alloc-unsafe":255,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/shape2strides":714,"@stdlib/ndarray/base/strides2offset":741}],487:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45679,7 +46225,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":478}],478:[function(require,module,exports){
+},{"./main.js":488}],488:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45759,7 +46305,7 @@ function empty( dtype, shape, order ) {
 
 module.exports = empty;
 
-},{"@stdlib/array/empty":69,"@stdlib/buffer/alloc-unsafe":249,"@stdlib/ndarray/base/ctor":441,"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/shape2strides":650,"@stdlib/ndarray/base/strides2offset":675}],479:[function(require,module,exports){
+},{"@stdlib/array/empty":75,"@stdlib/buffer/alloc-unsafe":255,"@stdlib/ndarray/base/ctor":451,"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/shape2strides":714,"@stdlib/ndarray/base/strides2offset":741}],489:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45823,7 +46369,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":480}],480:[function(require,module,exports){
+},{"./main.js":490}],490:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45846,7 +46392,9 @@ module.exports = main;
 
 // MODULES //
 
+var isRowMajor = require( '@stdlib/ndarray/base/assert/is-row-major-string' );
 var isReadOnly = require( '@stdlib/ndarray/base/assert/is-read-only' );
+var normalizeIndex = require( '@stdlib/ndarray/base/normalize-index' );
 var getDType = require( '@stdlib/ndarray/base/dtype' );
 var getShape = require( '@stdlib/ndarray/base/shape' );
 var getStrides = require( '@stdlib/ndarray/base/strides' );
@@ -45900,39 +46448,42 @@ var format = require( '@stdlib/string/format' );
 function expandDimensions( x, axis ) {
 	var strides;
 	var shape;
+	var isrm;
 	var ord;
 	var sh;
 	var st;
+	var d;
 	var N;
 	var i;
 
 	sh = getShape( x, false );
 	st = getStrides( x, false );
 	ord = getOrder( x );
+
+	isrm = isRowMajor( ord );
 	N = sh.length;
 
 	strides = [];
 	shape = [];
 
-	if ( axis < 0 ) {
-		if ( axis < -N-1 ) {
-			throw new RangeError( format( 'invalid argument. Specified axis is out-of-bounds. Must be on the interval: [-%u-1, %u]. Value: `%d`.', N, N, axis ) );
-		}
-		axis += N + 1;
-	} else if ( axis > N ) {
-		throw new RangeError( format( 'invalid argument. Specified axis is out-of-bounds. Must be on the interval: [-%u-1, %u]. Value: `%d`.', N, N, axis ) );
+	d = normalizeIndex( axis, N );
+	if ( d === -1 ) {
+		throw new RangeError( format( 'invalid argument. Specified axis is out-of-bounds. Must be on the interval: [-%u, %u]. Value: `%d`.', N+1, N, axis ) );
 	}
-	if ( axis === 0 ) {
+	if ( d === 0 ) {
 		// Prepend singleton dimension...
 		shape.push( 1 );
-		strides.push( st[ 0 ] );
-
+		if ( isrm ) {
+			strides.push( sh[ 0 ] * st[ 0 ] );
+		} else {
+			strides.push( st[ 0 ] );
+		}
 		// Copy remaining dimensions...
 		for ( i = 0; i < N; i++ ) {
 			shape.push( sh[ i ] );
 			strides.push( st[ i ] );
 		}
-	} else if ( axis === N ) {
+	} else if ( d === N ) {
 		// Copy dimensions...
 		for ( i = 0; i < N; i++ ) {
 			shape.push( sh[ i ] );
@@ -45940,21 +46491,25 @@ function expandDimensions( x, axis ) {
 		}
 		// Append singleton dimension...
 		shape.push( 1 );
-		strides.push( st[ N-1 ] );
+		if ( isrm ) {
+			strides.push( st[ N-1 ] );
+		} else {
+			strides.push( sh[ N-1 ] * st[ N-1 ] );
+		}
 	} else {
 		// Insert a singleton dimension...
 		for ( i = 0; i < N+1; i++ ) {
-			if ( i === axis ) {
+			if ( i === d ) {
 				shape.push( 1 );
-				if ( ord === 'row-major' ) {
+				if ( isrm ) {
 					strides.push( st[ i-1 ] );
 				} else { // ord === 'column-major'
 					strides.push( st[ i ] );
 				}
-			} else if ( i < axis ) {
+			} else if ( i < d ) {
 				shape.push( sh[ i ] );
 				strides.push( st[ i ] );
-			} else { // i > axis
+			} else { // i > d
 				shape.push( sh[ i-1 ] );
 				strides.push( st[ i-1 ] );
 			}
@@ -45974,7 +46529,164 @@ function expandDimensions( x, axis ) {
 
 module.exports = expandDimensions;
 
-},{"@stdlib/ndarray/base/assert/is-read-only":337,"@stdlib/ndarray/base/data-buffer":452,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/offset":624,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/strides":673,"@stdlib/string/format":892}],481:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-read-only":345,"@stdlib/ndarray/base/assert/is-row-major-string":353,"@stdlib/ndarray/base/data-buffer":462,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/normalize-index":630,"@stdlib/ndarray/base/offset":688,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/strides":739,"@stdlib/string/format":964}],491:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Fill an input ndarray with a specified value.
+*
+* @module @stdlib/ndarray/base/fill
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var fill = require( '@stdlib/ndarray/base/fill' );
+*
+* // Create a data buffer:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+*
+* // Define the shape of the input array:
+* var shape = [ 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 2, 2, 1 ];
+*
+* // Define the index offset:
+* var ox = 0;
+*
+* // Create the input ndarray-like object:
+* var x = {
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+*
+* fill( x, 10.0 );
+*
+* console.log( x.data );
+* // => <Float64Array>[ 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":492}],492:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var broadcastScalar = require( '@stdlib/ndarray/base/broadcast-scalar' );
+var getDtype = require( '@stdlib/ndarray/base/dtype' );
+var getShape = require( '@stdlib/ndarray/base/shape' );
+var getOrder = require( '@stdlib/ndarray/base/order' );
+var assign = require( '@stdlib/ndarray/base/assign' );
+
+
+// MAIN //
+
+/**
+* Fills an input ndarray with a specified value.
+*
+* @param {ndarrayLike} x - ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {*} value - scalar value
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* // Create a data buffer:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+*
+* // Define the shape of the input array:
+* var shape = [ 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 2, 2, 1 ];
+*
+* // Define the index offset:
+* var ox = 0;
+*
+* // Create the input ndarray-like object:
+* var x = {
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+*
+* fill( x, 10.0 );
+*
+* console.log( x.data );
+* // => <Float64Array>[ 10.0, 10.0, 10.0, 10.0, 10.0, 10.0 ]
+*/
+function fill( x, value ) {
+	var v;
+
+	// Broadcast the fill value to an ndarray of same shape and data type as the input ndarray:
+	v = broadcastScalar( value, getDtype( x ), getShape( x ), getOrder( x ) );
+
+	// Assign the fill value to each element of the input ndarray:
+	assign( [ v, x ] );
+}
+
+
+// EXPORTS //
+
+module.exports = fill;
+
+},{"@stdlib/ndarray/base/assign":408,"@stdlib/ndarray/base/broadcast-scalar":424,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711}],493:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46017,7 +46729,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":482}],482:[function(require,module,exports){
+},{"./main.js":494}],494:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46067,7 +46779,7 @@ function flag( x, name ) {
 
 module.exports = flag;
 
-},{"@stdlib/ndarray/base/flags":483}],483:[function(require,module,exports){
+},{"@stdlib/ndarray/base/flags":495}],495:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46110,7 +46822,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":484}],484:[function(require,module,exports){
+},{"./main.js":496}],496:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46167,7 +46879,7 @@ function flags( x, copy ) {
 
 module.exports = flags;
 
-},{"@stdlib/object/assign":849}],485:[function(require,module,exports){
+},{"@stdlib/object/assign":921}],497:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46231,7 +46943,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":486}],486:[function(require,module,exports){
+},{"./main.js":498}],498:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46310,7 +47022,7 @@ function fliplr( x, writable ) {
 
 module.exports = fliplr;
 
-},{"@stdlib/ndarray/base/ndims":561,"@stdlib/ndarray/base/reverse-dimension":640,"@stdlib/ndarray/base/slice":667,"@stdlib/slice/multi":874}],487:[function(require,module,exports){
+},{"@stdlib/ndarray/base/ndims":623,"@stdlib/ndarray/base/reverse-dimension":704,"@stdlib/ndarray/base/slice":731,"@stdlib/slice/multi":946}],499:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46374,7 +47086,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":488}],488:[function(require,module,exports){
+},{"./main.js":500}],500:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46460,7 +47172,7 @@ function flipud( x, writable ) {
 
 module.exports = flipud;
 
-},{"@stdlib/ndarray/base/ndims":561,"@stdlib/ndarray/base/reverse-dimension":640,"@stdlib/ndarray/base/slice":667,"@stdlib/slice/multi":874}],489:[function(require,module,exports){
+},{"@stdlib/ndarray/base/ndims":623,"@stdlib/ndarray/base/reverse-dimension":704,"@stdlib/ndarray/base/slice":731,"@stdlib/slice/multi":946}],501:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46539,7 +47251,7 @@ function forEach0d( x, fcn, thisArg ) {
 
 module.exports = forEach0d;
 
-},{}],490:[function(require,module,exports){
+},{}],502:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46632,7 +47344,7 @@ function forEach0d( x, fcn, thisArg ) {
 
 module.exports = forEach0d;
 
-},{}],491:[function(require,module,exports){
+},{}],503:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46845,7 +47557,7 @@ function forEach10d( x, fcn, thisArg ) { // eslint-disable-line max-statements
 
 module.exports = forEach10d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],492:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],504:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47076,7 +47788,7 @@ function forEach10d( x, fcn, thisArg ) { // eslint-disable-line max-statements
 
 module.exports = forEach10d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],493:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],505:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47388,7 +48100,7 @@ function blockedforEach10d( x, fcn, thisArg ) { // eslint-disable-line max-state
 
 module.exports = blockedforEach10d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],494:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],506:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47718,7 +48430,7 @@ function blockedforEach10d( x, fcn, thisArg ) { // eslint-disable-line max-state
 
 module.exports = blockedforEach10d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],495:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],507:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47819,7 +48531,7 @@ function forEach1d( x, fcn, thisArg ) {
 
 module.exports = forEach1d;
 
-},{}],496:[function(require,module,exports){
+},{}],508:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47938,7 +48650,7 @@ function forEach1d( x, fcn, thisArg ) {
 
 module.exports = forEach1d;
 
-},{}],497:[function(require,module,exports){
+},{}],509:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48069,7 +48781,7 @@ function forEach2d( x, fcn, thisArg ) {
 
 module.exports = forEach2d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],498:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],510:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48218,7 +48930,7 @@ function forEach2d( x, fcn, thisArg ) {
 
 module.exports = forEach2d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],499:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],511:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48376,7 +49088,7 @@ function blockedforEach2d( x, fcn, thisArg ) {
 
 module.exports = blockedforEach2d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],500:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],512:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48552,7 +49264,7 @@ function blockedforEach2d( x, fcn, thisArg ) {
 
 module.exports = blockedforEach2d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],501:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],513:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48693,7 +49405,7 @@ function forEach3d( x, fcn, thisArg ) {
 
 module.exports = forEach3d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],502:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],514:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48852,7 +49564,7 @@ function forEach3d( x, fcn, thisArg ) {
 
 module.exports = forEach3d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],503:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],515:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49031,7 +49743,7 @@ function blockedforEach3d( x, fcn, thisArg ) {
 
 module.exports = blockedforEach3d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],504:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],516:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49228,7 +49940,7 @@ function blockedforEach3d( x, fcn, thisArg ) {
 
 module.exports = blockedforEach3d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],505:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],517:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49379,7 +50091,7 @@ function forEach4d( x, fcn, thisArg ) {
 
 module.exports = forEach4d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],506:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],518:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49548,7 +50260,7 @@ function forEach4d( x, fcn, thisArg ) {
 
 module.exports = forEach4d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],507:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],519:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49746,7 +50458,7 @@ function blockedforEach4d( x, fcn, thisArg ) {
 
 module.exports = blockedforEach4d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],508:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],520:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49962,7 +50674,7 @@ function blockedforEach4d( x, fcn, thisArg ) {
 
 module.exports = blockedforEach4d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],509:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],521:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50123,7 +50835,7 @@ function forEach5d( x, fcn, thisArg ) {
 
 module.exports = forEach5d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],510:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],522:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50302,7 +51014,7 @@ function forEach5d( x, fcn, thisArg ) {
 
 module.exports = forEach5d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],511:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],523:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50519,7 +51231,7 @@ function blockedforEach5d( x, fcn, thisArg ) {
 
 module.exports = blockedforEach5d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],512:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],524:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50754,7 +51466,7 @@ function blockedforEach5d( x, fcn, thisArg ) {
 
 module.exports = blockedforEach5d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],513:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],525:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50927,7 +51639,7 @@ function forEach6d( x, fcn, thisArg ) {
 
 module.exports = forEach6d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],514:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],526:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51118,7 +51830,7 @@ function forEach6d( x, fcn, thisArg ) {
 
 module.exports = forEach6d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],515:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],527:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51354,7 +52066,7 @@ function blockedforEach6d( x, fcn, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = blockedforEach6d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],516:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],528:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51608,7 +52320,7 @@ function blockedforEach6d( x, fcn, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = blockedforEach6d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],517:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],529:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51791,7 +52503,7 @@ function forEach7d( x, fcn, thisArg ) {
 
 module.exports = forEach7d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],518:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],530:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51992,7 +52704,7 @@ function forEach7d( x, fcn, thisArg ) {
 
 module.exports = forEach7d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],519:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],531:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52247,7 +52959,7 @@ function blockedforEach7d( x, fcn, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = blockedforEach7d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],520:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],532:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52520,7 +53232,7 @@ function blockedforEach7d( x, fcn, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = blockedforEach7d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],521:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],533:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52713,7 +53425,7 @@ function forEach8d( x, fcn, thisArg ) {
 
 module.exports = forEach8d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],522:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],534:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52924,7 +53636,7 @@ function forEach8d( x, fcn, thisArg ) {
 
 module.exports = forEach8d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],523:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],535:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53198,7 +53910,7 @@ function blockedforEach8d( x, fcn, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = blockedforEach8d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],524:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],536:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53490,7 +54202,7 @@ function blockedforEach8d( x, fcn, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = blockedforEach8d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],525:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],537:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53693,7 +54405,7 @@ function forEach9d( x, fcn, thisArg ) {
 
 module.exports = forEach9d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],526:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],538:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53914,7 +54626,7 @@ function forEach9d( x, fcn, thisArg ) {
 
 module.exports = forEach9d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],527:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],539:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54207,7 +54919,7 @@ function blockedforEach9d( x, fcn, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = blockedforEach9d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],528:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],540:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54518,7 +55230,7 @@ function blockedforEach9d( x, fcn, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = blockedforEach9d;
 
-},{"@stdlib/array/base/reverse":26,"@stdlib/array/base/take-indexed":30,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],529:[function(require,module,exports){
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],541:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54586,7 +55298,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":530}],530:[function(require,module,exports){
+},{"./main.js":542}],542:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54809,7 +55521,7 @@ function forEach( arrays, fcn, thisArg ) {
 
 module.exports = forEach;
 
-},{"./0d.js":489,"./0d_accessors.js":490,"./10d.js":491,"./10d_accessors.js":492,"./10d_blocked.js":493,"./10d_blocked_accessors.js":494,"./1d.js":495,"./1d_accessors.js":496,"./2d.js":497,"./2d_accessors.js":498,"./2d_blocked.js":499,"./2d_blocked_accessors.js":500,"./3d.js":501,"./3d_accessors.js":502,"./3d_blocked.js":503,"./3d_blocked_accessors.js":504,"./4d.js":505,"./4d_accessors.js":506,"./4d_blocked.js":507,"./4d_blocked_accessors.js":508,"./5d.js":509,"./5d_accessors.js":510,"./5d_blocked.js":511,"./5d_blocked_accessors.js":512,"./6d.js":513,"./6d_accessors.js":514,"./6d_blocked.js":515,"./6d_blocked_accessors.js":516,"./7d.js":517,"./7d_accessors.js":518,"./7d_blocked.js":519,"./7d_blocked_accessors.js":520,"./8d.js":521,"./8d_accessors.js":522,"./8d_blocked.js":523,"./8d_blocked_accessors.js":524,"./9d.js":525,"./9d_accessors.js":526,"./9d_blocked.js":527,"./9d_blocked_accessors.js":528,"./nd.js":531,"./nd_accessors.js":532,"@stdlib/ndarray/base/iteration-order":541,"@stdlib/ndarray/base/ndarraylike2object":559,"@stdlib/ndarray/base/numel":622}],531:[function(require,module,exports){
+},{"./0d.js":501,"./0d_accessors.js":502,"./10d.js":503,"./10d_accessors.js":504,"./10d_blocked.js":505,"./10d_blocked_accessors.js":506,"./1d.js":507,"./1d_accessors.js":508,"./2d.js":509,"./2d_accessors.js":510,"./2d_blocked.js":511,"./2d_blocked_accessors.js":512,"./3d.js":513,"./3d_accessors.js":514,"./3d_blocked.js":515,"./3d_blocked_accessors.js":516,"./4d.js":517,"./4d_accessors.js":518,"./4d_blocked.js":519,"./4d_blocked_accessors.js":520,"./5d.js":521,"./5d_accessors.js":522,"./5d_blocked.js":523,"./5d_blocked_accessors.js":524,"./6d.js":525,"./6d_accessors.js":526,"./6d_blocked.js":527,"./6d_blocked_accessors.js":528,"./7d.js":529,"./7d_accessors.js":530,"./7d_blocked.js":531,"./7d_blocked_accessors.js":532,"./8d.js":533,"./8d_accessors.js":534,"./8d_blocked.js":535,"./8d_blocked_accessors.js":536,"./9d.js":537,"./9d_accessors.js":538,"./9d_blocked.js":539,"./9d_blocked_accessors.js":540,"./nd.js":543,"./nd_accessors.js":544,"@stdlib/ndarray/base/iteration-order":555,"@stdlib/ndarray/base/ndarraylike2object":621,"@stdlib/ndarray/base/numel":686}],543:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54932,7 +55644,7 @@ function forEachnd( x, fcn, thisArg ) {
 
 module.exports = forEachnd;
 
-},{"@stdlib/ndarray/base/ind2sub":539,"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/vind2bind":783}],532:[function(require,module,exports){
+},{"@stdlib/ndarray/base/ind2sub":553,"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],544:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -55073,7 +55785,151 @@ function forEachnd( x, fcn, thisArg ) {
 
 module.exports = forEachnd;
 
-},{"@stdlib/ndarray/base/ind2sub":539,"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/vind2bind":783}],533:[function(require,module,exports){
+},{"@stdlib/ndarray/base/ind2sub":553,"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],545:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Convert a scalar value to a zero-dimensional ndarray having the same data type as a provided ndarray.
+*
+* @module @stdlib/ndarray/base/from-scalar-like
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/base/zeros' );
+* var scalar2ndarrayLike = require( '@stdlib/ndarray/base/from-scalar-like' );
+*
+* var x = zeros( 'float32', [ 2, 2 ], 'row-major' );
+* // returns <ndarray>
+*
+* var y = scalar2ndarrayLike( x, 1.0 );
+* // returns <ndarray>
+*
+* var sh = y.shape;
+* // returns []
+*
+* var dt = y.dtype;
+* // returns 'float64'
+*
+* var v = y.get();
+* // returns 1.0
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":546}],546:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
+var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
+var accessorSetter = require( '@stdlib/array/base/accessor-setter' );
+var setter = require( '@stdlib/array/base/setter' );
+var getDType = require( '@stdlib/ndarray/base/dtype' );
+var getOrder = require( '@stdlib/ndarray/base/order' );
+var emptyArray = require( '@stdlib/array/empty' );
+var allocUnsafe = require( '@stdlib/buffer/alloc-unsafe' );
+
+
+// MAIN //
+
+/**
+* Returns a zero-dimensional ndarray containing a provided scalar value and having the same data type as a provided ndarray.
+*
+* @param {ndarray} x - input array
+* @param {*} value - scalar value
+* @throws {TypeError} first argument must have a recognized data type
+* @returns {ndarray} ndarray
+*
+* @example
+* var zeros = require( '@stdlib/ndarray/base/zeros' );
+*
+* var x = zeros( 'float32', [ 2, 2 ], 'row-major' );
+* // returns <ndarray>
+*
+* var y = scalar2ndarrayLike( x, 1.0 );
+* // returns <ndarray>
+*
+* var sh = y.shape;
+* // returns []
+*
+* var dt = y.dtype;
+* // returns 'float32'
+*
+* var v = y.get();
+* // returns 1.0
+*/
+function scalar2ndarrayLike( x, value ) {
+	var buf;
+	var set;
+	var dt;
+
+	dt = getDType( x );
+	if ( dt === 'binary' ) {
+		buf = allocUnsafe( 1 );
+	} else {
+		buf = emptyArray( 1, dt );
+	}
+	if ( /^complex/.test( dt ) && isNumber( value ) ) {
+		value = [ value, 0.0 ]; // note: we're assuming that the ComplexXXArray setter accepts an array of interleaved real and imaginary components
+	}
+	if ( isAccessorArray( buf ) ) {
+		set = accessorSetter( dt );
+	} else {
+		set = setter( dt );
+	}
+	set( buf, 0, value );
+	return new x.constructor( dt, buf, [], [ 0 ], 0, getOrder( x ) );
+}
+
+
+// EXPORTS //
+
+module.exports = scalar2ndarrayLike;
+
+},{"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/setter":32,"@stdlib/array/empty":75,"@stdlib/assert/is-number":209,"@stdlib/buffer/alloc-unsafe":255,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/order":690}],547:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -55124,7 +55980,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":534}],534:[function(require,module,exports){
+},{"./main.js":548}],548:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -55147,6 +56003,7 @@ module.exports = main;
 
 // MODULES //
 
+var isNumber = require( '@stdlib/assert/is-number' ).isPrimitive;
 var isAccessorArray = require( '@stdlib/array/base/assert/is-accessor-array' );
 var accessorSetter = require( '@stdlib/array/base/accessor-setter' );
 var setter = require( '@stdlib/array/base/setter' );
@@ -55187,7 +56044,7 @@ function scalar2ndarray( value, dtype, order ) {
 	if ( buf === null ) {
 		throw new TypeError( format( 'invalid argument. Second argument must be a recognized data type. Value: `%s`.', dtype ) );
 	}
-	if ( /^complex/.test( dtype ) && typeof value === 'number' ) {
+	if ( /^complex/.test( dtype ) && isNumber( value ) ) {
 		value = [ value, 0.0 ]; // note: we're assuming that the ComplexXXArray setter accepts an array of interleaved real and imaginary components
 	}
 	if ( isAccessorArray( buf ) ) {
@@ -55204,7 +56061,7 @@ function scalar2ndarray( value, dtype, order ) {
 
 module.exports = scalar2ndarray;
 
-},{"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/setter":28,"@stdlib/ndarray/base/buffer":428,"@stdlib/ndarray/base/ctor":441,"@stdlib/string/format":892}],535:[function(require,module,exports){
+},{"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/setter":32,"@stdlib/assert/is-number":209,"@stdlib/ndarray/base/buffer":438,"@stdlib/ndarray/base/ctor":451,"@stdlib/string/format":964}],549:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -55369,7 +56226,7 @@ function factory( mode ) {
 
 module.exports = factory;
 
-},{"@stdlib/ndarray/base/assert/is-index-mode":327,"@stdlib/ndarray/base/clamp-index":436,"@stdlib/ndarray/base/normalize-index":568,"@stdlib/ndarray/base/wrap-index":785,"@stdlib/string/format":892}],536:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-index-mode":335,"@stdlib/ndarray/base/clamp-index":446,"@stdlib/ndarray/base/normalize-index":630,"@stdlib/ndarray/base/wrap-index":857,"@stdlib/string/format":964}],550:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -55474,7 +56331,7 @@ setReadOnly( main, 'factory', factory );
 
 module.exports = main;
 
-},{"./factory.js":535,"./main.js":537,"@stdlib/utils/define-nonenumerable-read-only-property":905}],537:[function(require,module,exports){
+},{"./factory.js":549,"./main.js":551,"@stdlib/utils/define-nonenumerable-read-only-property":977}],551:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -55577,7 +56434,7 @@ function ind( idx, max, mode ) {
 
 module.exports = ind;
 
-},{"@stdlib/ndarray/base/clamp-index":436,"@stdlib/ndarray/base/normalize-index":568,"@stdlib/ndarray/base/wrap-index":785,"@stdlib/string/format":892}],538:[function(require,module,exports){
+},{"@stdlib/ndarray/base/clamp-index":446,"@stdlib/ndarray/base/normalize-index":630,"@stdlib/ndarray/base/wrap-index":857,"@stdlib/string/format":964}],552:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -55728,7 +56585,7 @@ function ind2sub( shape, strides, offset, order, idx, mode, out ) {
 
 module.exports = ind2sub;
 
-},{"@stdlib/math/base/special/trunc":301,"@stdlib/string/format":892}],539:[function(require,module,exports){
+},{"@stdlib/math/base/special/trunc":307,"@stdlib/string/format":964}],553:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -55795,7 +56652,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":538,"./main.js":540,"@stdlib/utils/define-nonenumerable-read-only-property":905}],540:[function(require,module,exports){
+},{"./assign.js":552,"./main.js":554,"@stdlib/utils/define-nonenumerable-read-only-property":977}],554:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -55933,7 +56790,7 @@ function ind2sub( shape, strides, offset, order, idx, mode ) {
 
 module.exports = ind2sub;
 
-},{"./assign.js":538,"@stdlib/array/base/zeros":35}],541:[function(require,module,exports){
+},{"./assign.js":552,"@stdlib/array/base/zeros":39}],555:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -55981,7 +56838,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":542}],542:[function(require,module,exports){
+},{"./main.js":556}],556:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -56055,7 +56912,7 @@ function iterationOrder( strides ) {
 
 module.exports = iterationOrder;
 
-},{}],543:[function(require,module,exports){
+},{}],557:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -56369,6 +57226,15 @@ setReadOnly( ns, 'emptyLike', require( '@stdlib/ndarray/base/empty-like' ) );
 setReadOnly( ns, 'expandDimensions', require( '@stdlib/ndarray/base/expand-dimensions' ) );
 
 /**
+* @name fill
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/fill}
+*/
+setReadOnly( ns, 'fill', require( '@stdlib/ndarray/base/fill' ) );
+
+/**
 * @name flag
 * @memberof ns
 * @readonly
@@ -56423,6 +57289,15 @@ setReadOnly( ns, 'forEach', require( '@stdlib/ndarray/base/for-each' ) );
 setReadOnly( ns, 'scalar2ndarray', require( '@stdlib/ndarray/base/from-scalar' ) );
 
 /**
+* @name scalar2ndarrayLike
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/from-scalar-like}
+*/
+setReadOnly( ns, 'scalar2ndarrayLike', require( '@stdlib/ndarray/base/from-scalar-like' ) );
+
+/**
 * @name ind
 * @memberof ns
 * @readonly
@@ -56448,6 +57323,15 @@ setReadOnly( ns, 'ind2sub', require( '@stdlib/ndarray/base/ind2sub' ) );
 * @see {@link module:@stdlib/ndarray/base/iteration-order}
 */
 setReadOnly( ns, 'iterationOrder', require( '@stdlib/ndarray/base/iteration-order' ) );
+
+/**
+* @name map
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/map}
+*/
+setReadOnly( ns, 'map', require( '@stdlib/ndarray/base/map' ) );
 
 /**
 * @name maxViewBufferIndex
@@ -56484,6 +57368,24 @@ setReadOnly( ns, 'maybeBroadcastArrays', require( '@stdlib/ndarray/base/maybe-br
 * @see {@link module:@stdlib/ndarray/base/meta-data-props}
 */
 setReadOnly( ns, 'metaDataProps', require( '@stdlib/ndarray/base/meta-data-props' ) );
+
+/**
+* @name minSignedIntegerDataType
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/min-signed-integer-dtype}
+*/
+setReadOnly( ns, 'minSignedIntegerDataType', require( '@stdlib/ndarray/base/min-signed-integer-dtype' ) );
+
+/**
+* @name minUnsignedIntegerDataType
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/min-unsigned-integer-dtype}
+*/
+setReadOnly( ns, 'minUnsignedIntegerDataType', require( '@stdlib/ndarray/base/min-unsigned-integer-dtype' ) );
 
 /**
 * @name minViewBufferIndex
@@ -56556,6 +57458,15 @@ setReadOnly( ns, 'nonsingletonDimensions', require( '@stdlib/ndarray/base/nonsin
 * @see {@link module:@stdlib/ndarray/base/normalize-index}
 */
 setReadOnly( ns, 'normalizeIndex', require( '@stdlib/ndarray/base/normalize-index' ) );
+
+/**
+* @name normalizeIndices
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/normalize-indices}
+*/
+setReadOnly( ns, 'normalizeIndices', require( '@stdlib/ndarray/base/normalize-indices' ) );
 
 /**
 * @name nullary
@@ -56792,6 +57703,15 @@ setReadOnly( ns, 'sliceFrom', require( '@stdlib/ndarray/base/slice-from' ) );
 setReadOnly( ns, 'sliceTo', require( '@stdlib/ndarray/base/slice-to' ) );
 
 /**
+* @name spreadDimensions
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/spread-dimensions}
+*/
+setReadOnly( ns, 'spreadDimensions', require( '@stdlib/ndarray/base/spread-dimensions' ) );
+
+/**
 * @name stride
 * @memberof ns
 * @readonly
@@ -56844,6 +57764,33 @@ setReadOnly( ns, 'sub2ind', require( '@stdlib/ndarray/base/sub2ind' ) );
 * @see {@link module:@stdlib/ndarray/base/to-array}
 */
 setReadOnly( ns, 'ndarray2array', require( '@stdlib/ndarray/base/to-array' ) );
+
+/**
+* @name toNormalizedIndices
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/to-normalized-indices}
+*/
+setReadOnly( ns, 'toNormalizedIndices', require( '@stdlib/ndarray/base/to-normalized-indices' ) );
+
+/**
+* @name toReversed
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/to-reversed}
+*/
+setReadOnly( ns, 'toReversed', require( '@stdlib/ndarray/base/to-reversed' ) );
+
+/**
+* @name toUniqueNormalizedIndices
+* @memberof ns
+* @readonly
+* @type {Function}
+* @see {@link module:@stdlib/ndarray/base/to-unique-normalized-indices}
+*/
+setReadOnly( ns, 'toUniqueNormalizedIndices', require( '@stdlib/ndarray/base/to-unique-normalized-indices' ) );
 
 /**
 * @name transpose
@@ -56940,7 +57887,11024 @@ setReadOnly( ns, 'zerosLike', require( '@stdlib/ndarray/base/zeros-like' ) );
 
 module.exports = ns;
 
-},{"@stdlib/ndarray/base/assert":357,"@stdlib/ndarray/base/assign":398,"@stdlib/ndarray/base/binary-loop-interchange-order":402,"@stdlib/ndarray/base/binary-tiling-block-size":406,"@stdlib/ndarray/base/bind2vind":408,"@stdlib/ndarray/base/broadcast-array":410,"@stdlib/ndarray/base/broadcast-arrays":412,"@stdlib/ndarray/base/broadcast-scalar":414,"@stdlib/ndarray/base/broadcast-shapes":416,"@stdlib/ndarray/base/buffer":428,"@stdlib/ndarray/base/buffer-ctors":419,"@stdlib/ndarray/base/buffer-dtype":426,"@stdlib/ndarray/base/buffer-dtype-enum":421,"@stdlib/ndarray/base/bytes-per-element":432,"@stdlib/ndarray/base/char2dtype":434,"@stdlib/ndarray/base/clamp-index":436,"@stdlib/ndarray/base/ctor":441,"@stdlib/ndarray/base/data-buffer":452,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/dtype-char":454,"@stdlib/ndarray/base/dtype-desc":457,"@stdlib/ndarray/base/dtype-enum2str":460,"@stdlib/ndarray/base/dtype-resolve-enum":462,"@stdlib/ndarray/base/dtype-resolve-str":464,"@stdlib/ndarray/base/dtype-str2enum":466,"@stdlib/ndarray/base/dtype2c":470,"@stdlib/ndarray/base/dtypes2signatures":473,"@stdlib/ndarray/base/empty":477,"@stdlib/ndarray/base/empty-like":475,"@stdlib/ndarray/base/expand-dimensions":479,"@stdlib/ndarray/base/flag":481,"@stdlib/ndarray/base/flags":483,"@stdlib/ndarray/base/fliplr":485,"@stdlib/ndarray/base/flipud":487,"@stdlib/ndarray/base/for-each":529,"@stdlib/ndarray/base/from-scalar":533,"@stdlib/ndarray/base/ind":536,"@stdlib/ndarray/base/ind2sub":539,"@stdlib/ndarray/base/iteration-order":541,"@stdlib/ndarray/base/max-view-buffer-index":544,"@stdlib/ndarray/base/maybe-broadcast-array":546,"@stdlib/ndarray/base/maybe-broadcast-arrays":548,"@stdlib/ndarray/base/meta-data-props":550,"@stdlib/ndarray/base/min-view-buffer-index":552,"@stdlib/ndarray/base/minmax-view-buffer-index":555,"@stdlib/ndarray/base/ndarraylike2ndarray":557,"@stdlib/ndarray/base/ndarraylike2object":559,"@stdlib/ndarray/base/ndims":561,"@stdlib/ndarray/base/next-cartesian-index":564,"@stdlib/ndarray/base/nonsingleton-dimensions":566,"@stdlib/ndarray/base/normalize-index":568,"@stdlib/ndarray/base/nullary":616,"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574,"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/numel-dimension":620,"@stdlib/ndarray/base/offset":624,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/output-policy-enum2str":628,"@stdlib/ndarray/base/output-policy-resolve-enum":630,"@stdlib/ndarray/base/output-policy-resolve-str":632,"@stdlib/ndarray/base/output-policy-str2enum":634,"@stdlib/ndarray/base/prepend-singleton-dimensions":636,"@stdlib/ndarray/base/remove-singleton-dimensions":638,"@stdlib/ndarray/base/reverse":642,"@stdlib/ndarray/base/reverse-dimension":640,"@stdlib/ndarray/base/serialize-meta-data":644,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/shape2strides":650,"@stdlib/ndarray/base/singleton-dimensions":652,"@stdlib/ndarray/base/slice":667,"@stdlib/ndarray/base/slice-assign":654,"@stdlib/ndarray/base/slice-dimension":660,"@stdlib/ndarray/base/slice-dimension-from":656,"@stdlib/ndarray/base/slice-dimension-to":658,"@stdlib/ndarray/base/slice-from":662,"@stdlib/ndarray/base/slice-to":664,"@stdlib/ndarray/base/stride":671,"@stdlib/ndarray/base/strides":673,"@stdlib/ndarray/base/strides2offset":675,"@stdlib/ndarray/base/strides2order":677,"@stdlib/ndarray/base/sub2ind":679,"@stdlib/ndarray/base/to-array":682,"@stdlib/ndarray/base/transpose":685,"@stdlib/ndarray/base/unary":779,"@stdlib/ndarray/base/unary-by":727,"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-output-dtype":734,"@stdlib/ndarray/base/unary-tiling-block-size":737,"@stdlib/ndarray/base/vind2bind":783,"@stdlib/ndarray/base/wrap-index":785,"@stdlib/ndarray/base/zeros":789,"@stdlib/ndarray/base/zeros-like":787,"@stdlib/utils/define-read-only-property":912}],544:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert":367,"@stdlib/ndarray/base/assign":408,"@stdlib/ndarray/base/binary-loop-interchange-order":412,"@stdlib/ndarray/base/binary-tiling-block-size":416,"@stdlib/ndarray/base/bind2vind":418,"@stdlib/ndarray/base/broadcast-array":420,"@stdlib/ndarray/base/broadcast-arrays":422,"@stdlib/ndarray/base/broadcast-scalar":424,"@stdlib/ndarray/base/broadcast-shapes":426,"@stdlib/ndarray/base/buffer":438,"@stdlib/ndarray/base/buffer-ctors":429,"@stdlib/ndarray/base/buffer-dtype":436,"@stdlib/ndarray/base/buffer-dtype-enum":431,"@stdlib/ndarray/base/bytes-per-element":442,"@stdlib/ndarray/base/char2dtype":444,"@stdlib/ndarray/base/clamp-index":446,"@stdlib/ndarray/base/ctor":451,"@stdlib/ndarray/base/data-buffer":462,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/dtype-char":464,"@stdlib/ndarray/base/dtype-desc":467,"@stdlib/ndarray/base/dtype-enum2str":470,"@stdlib/ndarray/base/dtype-resolve-enum":472,"@stdlib/ndarray/base/dtype-resolve-str":474,"@stdlib/ndarray/base/dtype-str2enum":476,"@stdlib/ndarray/base/dtype2c":480,"@stdlib/ndarray/base/dtypes2signatures":483,"@stdlib/ndarray/base/empty":487,"@stdlib/ndarray/base/empty-like":485,"@stdlib/ndarray/base/expand-dimensions":489,"@stdlib/ndarray/base/fill":491,"@stdlib/ndarray/base/flag":493,"@stdlib/ndarray/base/flags":495,"@stdlib/ndarray/base/fliplr":497,"@stdlib/ndarray/base/flipud":499,"@stdlib/ndarray/base/for-each":541,"@stdlib/ndarray/base/from-scalar":547,"@stdlib/ndarray/base/from-scalar-like":545,"@stdlib/ndarray/base/ind":550,"@stdlib/ndarray/base/ind2sub":553,"@stdlib/ndarray/base/iteration-order":555,"@stdlib/ndarray/base/map":598,"@stdlib/ndarray/base/max-view-buffer-index":602,"@stdlib/ndarray/base/maybe-broadcast-array":604,"@stdlib/ndarray/base/maybe-broadcast-arrays":606,"@stdlib/ndarray/base/meta-data-props":608,"@stdlib/ndarray/base/min-signed-integer-dtype":610,"@stdlib/ndarray/base/min-unsigned-integer-dtype":612,"@stdlib/ndarray/base/min-view-buffer-index":614,"@stdlib/ndarray/base/minmax-view-buffer-index":617,"@stdlib/ndarray/base/ndarraylike2ndarray":619,"@stdlib/ndarray/base/ndarraylike2object":621,"@stdlib/ndarray/base/ndims":623,"@stdlib/ndarray/base/next-cartesian-index":626,"@stdlib/ndarray/base/nonsingleton-dimensions":628,"@stdlib/ndarray/base/normalize-index":630,"@stdlib/ndarray/base/normalize-indices":632,"@stdlib/ndarray/base/nullary":680,"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638,"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/numel-dimension":684,"@stdlib/ndarray/base/offset":688,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/output-policy-enum2str":692,"@stdlib/ndarray/base/output-policy-resolve-enum":694,"@stdlib/ndarray/base/output-policy-resolve-str":696,"@stdlib/ndarray/base/output-policy-str2enum":698,"@stdlib/ndarray/base/prepend-singleton-dimensions":700,"@stdlib/ndarray/base/remove-singleton-dimensions":702,"@stdlib/ndarray/base/reverse":706,"@stdlib/ndarray/base/reverse-dimension":704,"@stdlib/ndarray/base/serialize-meta-data":708,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/shape2strides":714,"@stdlib/ndarray/base/singleton-dimensions":716,"@stdlib/ndarray/base/slice":731,"@stdlib/ndarray/base/slice-assign":718,"@stdlib/ndarray/base/slice-dimension":724,"@stdlib/ndarray/base/slice-dimension-from":720,"@stdlib/ndarray/base/slice-dimension-to":722,"@stdlib/ndarray/base/slice-from":726,"@stdlib/ndarray/base/slice-to":728,"@stdlib/ndarray/base/spread-dimensions":735,"@stdlib/ndarray/base/stride":737,"@stdlib/ndarray/base/strides":739,"@stdlib/ndarray/base/strides2offset":741,"@stdlib/ndarray/base/strides2order":743,"@stdlib/ndarray/base/sub2ind":745,"@stdlib/ndarray/base/to-array":748,"@stdlib/ndarray/base/to-normalized-indices":751,"@stdlib/ndarray/base/to-reversed":753,"@stdlib/ndarray/base/to-unique-normalized-indices":755,"@stdlib/ndarray/base/transpose":757,"@stdlib/ndarray/base/unary":851,"@stdlib/ndarray/base/unary-by":799,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-output-dtype":806,"@stdlib/ndarray/base/unary-tiling-block-size":809,"@stdlib/ndarray/base/vind2bind":855,"@stdlib/ndarray/base/wrap-index":857,"@stdlib/ndarray/base/zeros":861,"@stdlib/ndarray/base/zeros-like":859,"@stdlib/utils/define-read-only-property":984}],558:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a zero-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ){
+*    return z * 10.0;
+* }
+*
+* // Create a data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0 ] );
+* var ybuf = new Float64Array( 1 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [];
+*
+* // Define the array strides:
+* var sx = [ 0 ];
+* var sy = [ 0 ];
+*
+* // Define the index offset:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like object:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* }
+*
+* // Apply the map function:
+* map0d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0 ]
+*/
+function map0d( x, y, fcn, thisArg ) {
+	y.data[ y.offset ] = fcn.call( thisArg, x.data[ x.offset ], [], x.ref );
+}
+
+
+// EXPORTS //
+
+module.exports = map0d;
+
+},{}],559:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a zero-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Array<Function>} x.accessors - data buffer accessors
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Array<Function>} y.accessors - data buffer accessors
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0 ] );
+* var ybuf = new Complex64Array( 2 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [];
+*
+* // Define the array strides:
+* var sx = [ 0 ];
+* var sy = [ 0 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* map0d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 30.0
+*
+* var im = imagf( v );
+* // returns 40.0
+*/
+function map0d( x, y, fcn, thisArg ) {
+	y.accessors[ 1 ]( y.data, y.offset, fcn.call( thisArg, x.accessors[ 0 ]( x.data, x.offset ), [], x.ref ) ); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = map0d;
+
+},{}],560:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a ten-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 12, 12, 12, 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 6, 6, 6, 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map10d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function map10d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dx8;
+	var dx9;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var dy8;
+	var dy9;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var S8;
+	var S9;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+	var i8;
+	var i9;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 9 ];
+		S1 = sh[ 8 ];
+		S2 = sh[ 7 ];
+		S3 = sh[ 6 ];
+		S4 = sh[ 5 ];
+		S5 = sh[ 4 ];
+		S6 = sh[ 3 ];
+		S7 = sh[ 2 ];
+		S8 = sh[ 1 ];
+		S9 = sh[ 0 ];
+		dx0 = sx[ 9 ];                // offset increment for innermost loop
+		dx1 = sx[ 8 ] - ( S0*sx[9] );
+		dx2 = sx[ 7 ] - ( S1*sx[8] );
+		dx3 = sx[ 6 ] - ( S2*sx[7] );
+		dx4 = sx[ 5 ] - ( S3*sx[6] );
+		dx5 = sx[ 4 ] - ( S4*sx[5] );
+		dx6 = sx[ 3 ] - ( S5*sx[4] );
+		dx7 = sx[ 2 ] - ( S6*sx[3] );
+		dx8 = sx[ 1 ] - ( S7*sx[2] );
+		dx9 = sx[ 0 ] - ( S8*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 9 ];
+		dy1 = sy[ 8 ] - ( S0*sy[9] );
+		dy2 = sy[ 7 ] - ( S1*sy[8] );
+		dy3 = sy[ 6 ] - ( S2*sy[7] );
+		dy4 = sy[ 5 ] - ( S3*sy[6] );
+		dy5 = sy[ 4 ] - ( S4*sy[5] );
+		dy6 = sy[ 3 ] - ( S5*sy[4] );
+		dy7 = sy[ 2 ] - ( S6*sy[3] );
+		dy8 = sy[ 1 ] - ( S7*sy[2] );
+		dy9 = sy[ 0 ] - ( S8*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 5 ];
+		S6 = sh[ 6 ];
+		S7 = sh[ 7 ];
+		S8 = sh[ 8 ];
+		S9 = sh[ 9 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] );
+		dx5 = sx[ 5 ] - ( S4*sx[4] );
+		dx6 = sx[ 6 ] - ( S5*sx[5] );
+		dx7 = sx[ 7 ] - ( S6*sx[6] );
+		dx8 = sx[ 8 ] - ( S7*sx[7] );
+		dx9 = sx[ 9 ] - ( S8*sx[8] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		dy5 = sy[ 5 ] - ( S4*sy[4] );
+		dy6 = sy[ 6 ] - ( S5*sy[5] );
+		dy7 = sy[ 7 ] - ( S6*sy[6] );
+		dy8 = sy[ 8 ] - ( S7*sy[7] );
+		dy9 = sy[ 9 ] - ( S8*sy[8] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Iterate over the ndarray dimensions...
+	for ( i9 = 0; i9 < S9; i9++ ) {
+		for ( i8 = 0; i8 < S8; i8++ ) {
+			for ( i7 = 0; i7 < S7; i7++ ) {
+				for ( i6 = 0; i6 < S6; i6++ ) {
+					for ( i5 = 0; i5 < S5; i5++ ) {
+						for ( i4 = 0; i4 < S4; i4++ ) {
+							for ( i3 = 0; i3 < S3; i3++ ) {
+								for ( i2 = 0; i2 < S2; i2++ ) {
+									for ( i1 = 0; i1 < S1; i1++ ) {
+										for ( i0 = 0; i0 < S0; i0++ ) {
+											ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i9, i8, i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+											ix += dx0;
+											iy += dy0;
+										}
+										ix += dx1;
+										iy += dy1;
+									}
+									ix += dx2;
+									iy += dy2;
+								}
+								ix += dx3;
+								iy += dy3;
+							}
+							ix += dx4;
+							iy += dy4;
+						}
+						ix += dx5;
+						iy += dy5;
+					}
+					ix += dx6;
+					iy += dy6;
+				}
+				ix += dx7;
+				iy += dy7;
+			}
+			ix += dx8;
+			iy += dy8;
+		}
+		ix += dx9;
+		iy += dy9;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map10d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],561:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a ten-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* map10d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function map10d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dx8;
+	var dx9;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var dy8;
+	var dy9;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var S8;
+	var S9;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+	var i8;
+	var i9;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 9 ];
+		S1 = sh[ 8 ];
+		S2 = sh[ 7 ];
+		S3 = sh[ 6 ];
+		S4 = sh[ 5 ];
+		S5 = sh[ 4 ];
+		S6 = sh[ 3 ];
+		S7 = sh[ 2 ];
+		S8 = sh[ 1 ];
+		S9 = sh[ 0 ];
+		dx0 = sx[ 9 ];                // offset increment for innermost loop
+		dx1 = sx[ 8 ] - ( S0*sx[9] );
+		dx2 = sx[ 7 ] - ( S1*sx[8] );
+		dx3 = sx[ 6 ] - ( S2*sx[7] );
+		dx4 = sx[ 5 ] - ( S3*sx[6] );
+		dx5 = sx[ 4 ] - ( S4*sx[5] );
+		dx6 = sx[ 3 ] - ( S5*sx[4] );
+		dx7 = sx[ 2 ] - ( S6*sx[3] );
+		dx8 = sx[ 1 ] - ( S7*sx[2] );
+		dx9 = sx[ 0 ] - ( S8*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 9 ];
+		dy1 = sy[ 8 ] - ( S0*sy[9] );
+		dy2 = sy[ 7 ] - ( S1*sy[8] );
+		dy3 = sy[ 6 ] - ( S2*sy[7] );
+		dy4 = sy[ 5 ] - ( S3*sy[6] );
+		dy5 = sy[ 4 ] - ( S4*sy[5] );
+		dy6 = sy[ 3 ] - ( S5*sy[4] );
+		dy7 = sy[ 2 ] - ( S6*sy[3] );
+		dy8 = sy[ 1 ] - ( S7*sy[2] );
+		dy9 = sy[ 0 ] - ( S8*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 5 ];
+		S6 = sh[ 6 ];
+		S7 = sh[ 7 ];
+		S8 = sh[ 8 ];
+		S9 = sh[ 9 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] );
+		dx5 = sx[ 5 ] - ( S4*sx[4] );
+		dx6 = sx[ 6 ] - ( S5*sx[5] );
+		dx7 = sx[ 7 ] - ( S6*sx[6] );
+		dx8 = sx[ 8 ] - ( S7*sx[7] );
+		dx9 = sx[ 9 ] - ( S8*sx[8] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		dy5 = sy[ 5 ] - ( S4*sy[4] );
+		dy6 = sy[ 6 ] - ( S5*sy[5] );
+		dy7 = sy[ 7 ] - ( S6*sy[6] );
+		dy8 = sy[ 8 ] - ( S7*sy[7] );
+		dy9 = sy[ 9 ] - ( S8*sy[8] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache accessors:
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
+
+	// Iterate over the ndarray dimensions...
+	for ( i9 = 0; i9 < S9; i9++ ) {
+		for ( i8 = 0; i8 < S8; i8++ ) {
+			for ( i7 = 0; i7 < S7; i7++ ) {
+				for ( i6 = 0; i6 < S6; i6++ ) {
+					for ( i5 = 0; i5 < S5; i5++ ) {
+						for ( i4 = 0; i4 < S4; i4++ ) {
+							for ( i3 = 0; i3 < S3; i3++ ) {
+								for ( i2 = 0; i2 < S2; i2++ ) {
+									for ( i1 = 0; i1 < S1; i1++ ) {
+										for ( i0 = 0; i0 < S0; i0++ ) {
+											set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i9, i8, i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+											ix += dx0;
+											iy += dy0;
+										}
+										ix += dx1;
+										iy += dy1;
+									}
+									ix += dx2;
+									iy += dy2;
+								}
+								ix += dx3;
+								iy += dy3;
+							}
+							ix += dx4;
+							iy += dy4;
+						}
+						ix += dx5;
+						iy += dy5;
+					}
+					ix += dx6;
+					iy += dy6;
+				}
+				ix += dx7;
+				iy += dy7;
+			}
+			ix += dx8;
+			iy += dy8;
+		}
+		ix += dx9;
+		iy += dy9;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map10d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],562:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth, max-len */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a ten-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 12, 12, 12, 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 6, 6, 6, 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* blockedmap10d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function blockedmap10d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements, max-lines-per-function
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dx8;
+	var dx9;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var dy8;
+	var dy9;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var ox5;
+	var ox6;
+	var ox7;
+	var ox8;
+	var ox9;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var oy5;
+	var oy6;
+	var oy7;
+	var oy8;
+	var oy9;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var S8;
+	var S9;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+	var i8;
+	var i9;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var j5;
+	var j6;
+	var j7;
+	var j8;
+	var j9;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Iterate over blocks...
+	for ( j9 = sh[9]; j9 > 0; ) {
+		if ( j9 < bsize ) {
+			S9 = j9;
+			j9 = 0;
+		} else {
+			S9 = bsize;
+			j9 -= bsize;
+		}
+		ox9 = ox + ( j9*sx[9] );
+		oy9 = oy + ( j9*sy[9] );
+		for ( j8 = sh[8]; j8 > 0; ) {
+			if ( j8 < bsize ) {
+				S8 = j8;
+				j8 = 0;
+			} else {
+				S8 = bsize;
+				j8 -= bsize;
+			}
+			dx9 = sx[9] - ( S8*sx[8] );
+			dy9 = sy[9] - ( S8*sy[8] );
+			ox8 = ox9 + ( j8*sx[8] );
+			oy8 = oy9 + ( j8*sy[8] );
+			for ( j7 = sh[7]; j7 > 0; ) {
+				if ( j7 < bsize ) {
+					S7 = j7;
+					j7 = 0;
+				} else {
+					S7 = bsize;
+					j7 -= bsize;
+				}
+				dx8 = sx[8] - ( S7*sx[7] );
+				dy8 = sy[8] - ( S7*sy[7] );
+				ox7 = ox8 + ( j7*sx[7] );
+				oy7 = oy8 + ( j7*sy[7] );
+				for ( j6 = sh[6]; j6 > 0; ) {
+					if ( j6 < bsize ) {
+						S6 = j6;
+						j6 = 0;
+					} else {
+						S6 = bsize;
+						j6 -= bsize;
+					}
+					dx7 = sx[7] - ( S6*sx[6] );
+					dy7 = sy[7] - ( S6*sy[6] );
+					ox6 = ox7 + ( j6*sx[6] );
+					oy6 = oy7 + ( j6*sy[6] );
+					for ( j5 = sh[5]; j5 > 0; ) {
+						if ( j5 < bsize ) {
+							S5 = j5;
+							j5 = 0;
+						} else {
+							S5 = bsize;
+							j5 -= bsize;
+						}
+						dx6 = sx[6] - ( S5*sx[5] );
+						dy6 = sy[6] - ( S5*sy[5] );
+						ox5 = ox6 + ( j5*sx[5] );
+						oy5 = oy6 + ( j5*sy[5] );
+						for ( j4 = sh[4]; j4 > 0; ) {
+							if ( j4 < bsize ) {
+								S4 = j4;
+								j4 = 0;
+							} else {
+								S4 = bsize;
+								j4 -= bsize;
+							}
+							dx5 = sx[5] - ( S4*sx[4] );
+							dy5 = sy[5] - ( S4*sy[4] );
+							ox4 = ox5 + ( j4*sx[4] );
+							oy4 = oy5 + ( j4*sy[4] );
+							for ( j3 = sh[3]; j3 > 0; ) {
+								if ( j3 < bsize ) {
+									S3 = j3;
+									j3 = 0;
+								} else {
+									S3 = bsize;
+									j3 -= bsize;
+								}
+								dx4 = sx[4] - ( S3*sx[3] );
+								dy4 = sy[4] - ( S3*sy[3] );
+								ox3 = ox4 + ( j3*sx[3] );
+								oy3 = oy4 + ( j3*sy[3] );
+								for ( j2 = sh[2]; j2 > 0; ) {
+									if ( j2 < bsize ) {
+										S2 = j2;
+										j2 = 0;
+									} else {
+										S2 = bsize;
+										j2 -= bsize;
+									}
+									dx3 = sx[3] - ( S2*sx[2] );
+									dy3 = sy[3] - ( S2*sy[2] );
+									ox2 = ox3 + ( j2*sx[2] );
+									oy2 = oy3 + ( j2*sy[2] );
+									for ( j1 = sh[1]; j1 > 0; ) {
+										if ( j1 < bsize ) {
+											S1 = j1;
+											j1 = 0;
+										} else {
+											S1 = bsize;
+											j1 -= bsize;
+										}
+										dx2 = sx[2] - ( S1*sx[1] );
+										dy2 = sy[2] - ( S1*sy[1] );
+										ox1 = ox2 + ( j1*sx[1] );
+										oy1 = oy2 + ( j1*sy[1] );
+										for ( j0 = sh[0]; j0 > 0; ) {
+											if ( j0 < bsize ) {
+												S0 = j0;
+												j0 = 0;
+											} else {
+												S0 = bsize;
+												j0 -= bsize;
+											}
+											// Compute index offsets for the first input and output ndarray elements in the current block...
+											ix = ox1 + ( j0*sx[0] );
+											iy = oy1 + ( j0*sy[0] );
+
+											// Compute loop offset increments...
+											dx1 = sx[1] - ( S0*sx[0] );
+											dy1 = sy[1] - ( S0*sy[0] );
+
+											// Iterate over the ndarray dimensions...
+											for ( i9 = 0; i9 < S9; i9++ ) {
+												for ( i8 = 0; i8 < S8; i8++ ) {
+													for ( i7 = 0; i7 < S7; i7++ ) {
+														for ( i6 = 0; i6 < S6; i6++ ) {
+															for ( i5 = 0; i5 < S5; i5++ ) {
+																for ( i4 = 0; i4 < S4; i4++ ) {
+																	for ( i3 = 0; i3 < S3; i3++ ) {
+																		for ( i2 = 0; i2 < S2; i2++ ) {
+																			for ( i1 = 0; i1 < S1; i1++ ) {
+																				for ( i0 = 0; i0 < S0; i0++ ) {
+																					ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i9, i8, i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref );
+																					ix += dx0;
+																					iy += dy0;
+																				}
+																				ix += dx1;
+																				iy += dy1;
+																			}
+																			ix += dx2;
+																			iy += dy2;
+																		}
+																		ix += dx3;
+																		iy += dy3;
+																	}
+																	ix += dx4;
+																	iy += dy4;
+																}
+																ix += dx5;
+																iy += dy5;
+															}
+															ix += dx6;
+															iy += dy6;
+														}
+														ix += dx7;
+														iy += dy7;
+													}
+													ix += dx8;
+													iy += dy8;
+												}
+												ix += dx9;
+												iy += dy9;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap10d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],563:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth, max-len */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a ten-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* blockedmap10d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function blockedmap10d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements, max-lines-per-function
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dx8;
+	var dx9;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var dy8;
+	var dy9;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var ox5;
+	var ox6;
+	var ox7;
+	var ox8;
+	var ox9;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var oy5;
+	var oy6;
+	var oy7;
+	var oy8;
+	var oy9;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var S8;
+	var S9;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+	var i8;
+	var i9;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var j5;
+	var j6;
+	var j7;
+	var j8;
+	var j9;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Cache accessors:
+	get = x.accessors[0];
+	set = y.accessors[1];
+
+	// Iterate over blocks...
+	for ( j9 = sh[9]; j9 > 0; ) {
+		if ( j9 < bsize ) {
+			S9 = j9;
+			j9 = 0;
+		} else {
+			S9 = bsize;
+			j9 -= bsize;
+		}
+		ox9 = ox + ( j9*sx[9] );
+		oy9 = oy + ( j9*sy[9] );
+		for ( j8 = sh[8]; j8 > 0; ) {
+			if ( j8 < bsize ) {
+				S8 = j8;
+				j8 = 0;
+			} else {
+				S8 = bsize;
+				j8 -= bsize;
+			}
+			dx9 = sx[9] - ( S8*sx[8] );
+			dy9 = sy[9] - ( S8*sy[8] );
+			ox8 = ox9 + ( j8*sx[8] );
+			oy8 = oy9 + ( j8*sy[8] );
+			for ( j7 = sh[7]; j7 > 0; ) {
+				if ( j7 < bsize ) {
+					S7 = j7;
+					j7 = 0;
+				} else {
+					S7 = bsize;
+					j7 -= bsize;
+				}
+				dx8 = sx[8] - ( S7*sx[7] );
+				dy8 = sy[8] - ( S7*sy[7] );
+				ox7 = ox8 + ( j7*sx[7] );
+				oy7 = oy8 + ( j7*sy[7] );
+				for ( j6 = sh[6]; j6 > 0; ) {
+					if ( j6 < bsize ) {
+						S6 = j6;
+						j6 = 0;
+					} else {
+						S6 = bsize;
+						j6 -= bsize;
+					}
+					dx7 = sx[7] - ( S6*sx[6] );
+					dy7 = sy[7] - ( S6*sy[6] );
+					ox6 = ox7 + ( j6*sx[6] );
+					oy6 = oy7 + ( j6*sy[6] );
+					for ( j5 = sh[5]; j5 > 0; ) {
+						if ( j5 < bsize ) {
+							S5 = j5;
+							j5 = 0;
+						} else {
+							S5 = bsize;
+							j5 -= bsize;
+						}
+						dx6 = sx[6] - ( S5*sx[5] );
+						dy6 = sy[6] - ( S5*sy[5] );
+						ox5 = ox6 + ( j5*sx[5] );
+						oy5 = oy6 + ( j5*sy[5] );
+						for ( j4 = sh[4]; j4 > 0; ) {
+							if ( j4 < bsize ) {
+								S4 = j4;
+								j4 = 0;
+							} else {
+								S4 = bsize;
+								j4 -= bsize;
+							}
+							dx5 = sx[5] - ( S4*sx[4] );
+							dy5 = sy[5] - ( S4*sy[4] );
+							ox4 = ox5 + ( j4*sx[4] );
+							oy4 = oy5 + ( j4*sy[4] );
+							for ( j3 = sh[3]; j3 > 0; ) {
+								if ( j3 < bsize ) {
+									S3 = j3;
+									j3 = 0;
+								} else {
+									S3 = bsize;
+									j3 -= bsize;
+								}
+								dx4 = sx[4] - ( S3*sx[3] );
+								dy4 = sy[4] - ( S3*sy[3] );
+								ox3 = ox4 + ( j3*sx[3] );
+								oy3 = oy4 + ( j3*sy[3] );
+								for ( j2 = sh[2]; j2 > 0; ) {
+									if ( j2 < bsize ) {
+										S2 = j2;
+										j2 = 0;
+									} else {
+										S2 = bsize;
+										j2 -= bsize;
+									}
+									dx3 = sx[3] - ( S2*sx[2] );
+									dy3 = sy[3] - ( S2*sy[2] );
+									ox2 = ox3 + ( j2*sx[2] );
+									oy2 = oy3 + ( j2*sy[2] );
+									for ( j1 = sh[1]; j1 > 0; ) {
+										if ( j1 < bsize ) {
+											S1 = j1;
+											j1 = 0;
+										} else {
+											S1 = bsize;
+											j1 -= bsize;
+										}
+										dx2 = sx[2] - ( S1*sx[1] );
+										dy2 = sy[2] - ( S1*sy[1] );
+										ox1 = ox2 + ( j1*sx[1] );
+										oy1 = oy2 + ( j1*sy[1] );
+										for ( j0 = sh[0]; j0 > 0; ) {
+											if ( j0 < bsize ) {
+												S0 = j0;
+												j0 = 0;
+											} else {
+												S0 = bsize;
+												j0 -= bsize;
+											}
+											// Compute index offsets for the first input and output ndarray elements in the current block...
+											ix = ox1 + ( j0*sx[0] );
+											iy = oy1 + ( j0*sy[0] );
+
+											// Compute loop offset increments...
+											dx1 = sx[1] - ( S0*sx[0] );
+											dy1 = sy[1] - ( S0*sy[0] );
+
+											// Iterate over the ndarray dimensions...
+											for ( i9 = 0; i9 < S9; i9++ ) {
+												for ( i8 = 0; i8 < S8; i8++ ) {
+													for ( i7 = 0; i7 < S7; i7++ ) {
+														for ( i6 = 0; i6 < S6; i6++ ) {
+															for ( i5 = 0; i5 < S5; i5++ ) {
+																for ( i4 = 0; i4 < S4; i4++ ) {
+																	for ( i3 = 0; i3 < S3; i3++ ) {
+																		for ( i2 = 0; i2 < S2; i2++ ) {
+																			for ( i1 = 0; i1 < S1; i1++ ) {
+																				for ( i0 = 0; i0 < S0; i0++ ) {
+																					set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i9, i8, i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ) );
+																					ix += dx0;
+																					iy += dy0;
+																				}
+																				ix += dx1;
+																				iy += dy1;
+																			}
+																			ix += dx2;
+																			iy += dy2;
+																		}
+																		ix += dx3;
+																		iy += dy3;
+																	}
+																	ix += dx4;
+																	iy += dy4;
+																}
+																ix += dx5;
+																iy += dy5;
+															}
+															ix += dx6;
+															iy += dy6;
+														}
+														ix += dx7;
+														iy += dy7;
+													}
+													ix += dx8;
+													iy += dy8;
+												}
+												ix += dx9;
+												iy += dy9;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap10d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],564:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a one-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Float64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 4 ];
+*
+* // Define the array strides:
+* var sx = [ 2 ];
+* var sy = [ 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map1d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 40.0, 60.0, 80.0 ]
+*/
+function map1d( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dy0;
+	var S0;
+	var ix;
+	var iy;
+	var i0;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables: dimensions and loop offset (pointer) increments...
+	S0 = x.shape[ 0 ];
+	dx0 = x.strides[ 0 ];
+	dy0 = y.strides[ 0 ];
+
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Iterate over the ndarray dimensions...
+	for ( i0 = 0; i0 < S0; i0++ ) {
+		ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], [ i0 ], x.ref );
+		ix += dx0;
+		iy += dy0;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map1d;
+
+},{}],565:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a one-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 4 ];
+*
+* // Define the array strides:
+* var sx = [ 1 ];
+* var sy = [ 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* map1d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function map1d( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dy0;
+	var S0;
+	var ix;
+	var iy;
+	var i0;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables: dimensions and loop offset (pointer) increments...
+	S0 = x.shape[ 0 ];
+	dx0 = x.strides[ 0 ];
+	dy0 = y.strides[ 0 ];
+
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache accessors:
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
+
+	// Iterate over the ndarray dimensions...
+	for ( i0 = 0; i0 < S0; i0++ ) {
+		set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), [ i0 ], x.ref ) );
+		ix += dx0;
+		iy += dy0;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map1d;
+
+},{}],566:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a two-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Float64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 1 ];
+* var sy = [ 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map2d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0 ]
+*/
+function map2d( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dy0;
+	var dy1;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 1 ];
+		S1 = sh[ 0 ];
+		dx0 = sx[ 1 ];                // offset increment for the outermost loop
+		dx1 = sx[ 0 ] - ( S0*sx[1] ); // offset increment for innermost loop
+		dy0 = sy[ 1 ];
+		dy1 = sy[ 0 ] - ( S0*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		dx0 = sx[ 0 ];                // offset increment for outermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] ); // offset increment for innermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sx[0] );
+		idx = reverse( idx );
+	}
+	// Set the pointer to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache the references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Iterate over the ndarray dimensions...
+	for ( i1 = 0; i1 < S1; i1++ ) {
+		for ( i0 = 0; i0 < S0; i0++ ) {
+			ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+			ix += dx0;
+			iy += dy0;
+		}
+		ix += dx1;
+		iy += dy1;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map2d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],567:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a two-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 2, 1 ];
+* var sy = [ 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* map2d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function map2d( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dy0;
+	var dy1;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 1 ];
+		S1 = sh[ 0 ];
+		dx0 = sx[ 1 ];                // offset increment for the outermost loop
+		dx1 = sx[ 0 ] - ( S0*sx[1] ); // offset increment for innermost loop
+		dy0 = sy[ 1 ];
+		dy1 = sy[ 0 ] - ( S0*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		dx0 = sx[ 0 ];                // offset increment for outermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] ); // offset increment for innermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sx[0] );
+		idx = reverse( idx );
+	}
+	// Set the pointer to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache the references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache accessors:
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
+
+	// Iterate over the ndarray dimensions...
+	for ( i1 = 0; i1 < S1; i1++ ) {
+		for ( i0 = 0; i0 < S0; i0++ ) {
+			set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+			ix += dx0;
+			iy += dy0;
+		}
+		ix += dx1;
+		iy += dy1;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map2d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],568:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a two-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Float64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 1 ];
+* var sy = [ 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* blockedmap2d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0 ]
+*/
+function blockedmap2d( x, y, fcn, thisArg ) {
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dy0;
+	var dy1;
+	var ox1;
+	var oy1;
+	var idx;
+	var sh;
+	var s0;
+	var s1;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var j0;
+	var j1;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache the references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Iterate over blocks...
+	for ( j1 = sh[1]; j1 > 0; ) {
+		if ( j1 < bsize ) {
+			s1 = j1;
+			j1 = 0;
+		} else {
+			s1 = bsize;
+			j1 -= bsize;
+		}
+		ox1 = ox + ( j1*sx[1] );
+		oy1 = oy + ( j1*sy[1] );
+		for ( j0 = sh[0]; j0 > 0; ) {
+			if ( j0 < bsize ) {
+				s0 = j0;
+				j0 = 0;
+			} else {
+				s0 = bsize;
+				j0 -= bsize;
+			}
+			// Compute the index offsets for the first input and output ndarray elements in the current block...
+			ix = ox1 + (j0*sx[0]);
+			iy = oy1 + (j0*sy[0]);
+
+			// Compute the loop offset increments...
+			dx1 = sx[1] - (s0*sx[0]);
+			dy1 = sy[1] - (s0*sy[0]);
+
+			// Iterate over the ndarray dimensions...
+			for ( i1 = 0; i1 < s1; i1++ ) {
+				for ( i0 = 0; i0 < s0; i0++ ) {
+					ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+					ix += dx0;
+					iy += dy0;
+				}
+				ix += dx1;
+				iy += dy1;
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap2d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],569:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a two-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 2, 1 ];
+* var sy = [ 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* blockedmap2d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function blockedmap2d( x, y, fcn, thisArg ) {
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dy0;
+	var dy1;
+	var ox1;
+	var oy1;
+	var idx;
+	var get;
+	var set;
+	var sh;
+	var s0;
+	var s1;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var j0;
+	var j1;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache the references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Iterate over blocks...
+	for ( j1 = sh[1]; j1 > 0; ) {
+		if ( j1 < bsize ) {
+			s1 = j1;
+			j1 = 0;
+		} else {
+			s1 = bsize;
+			j1 -= bsize;
+		}
+		ox1 = ox + ( j1*sx[1] );
+		oy1 = oy + ( j1*sy[1] );
+		for ( j0 = sh[0]; j0 > 0; ) {
+			if ( j0 < bsize ) {
+				s0 = j0;
+				j0 = 0;
+			} else {
+				s0 = bsize;
+				j0 -= bsize;
+			}
+			// Compute the index offsets for the first input and output ndarray elements in the current block...
+			ix = ox1 + (j0*sx[0]);
+			iy = oy1 + (j0*sy[0]);
+
+			// Compute the loop offset increments...
+			dx1 = sx[1] - (s0*sx[0]);
+			dy1 = sy[1] - (s0*sy[0]);
+
+			// Cache accessors:
+			get = x.accessors[0];
+			set = y.accessors[1];
+
+			// Iterate over the ndarray dimensions...
+			for ( i1 = 0; i1 < s1; i1++ ) {
+				for ( i0 = 0; i0 < s0; i0++ ) {
+					set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+					ix += dx0;
+					iy += dy0;
+				}
+				ix += dx1;
+				iy += dy1;
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap2d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],570:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a three-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 1 ];
+* var sy = [ 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map3d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function map3d( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dy0;
+	var dy1;
+	var dy2;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 2 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 0 ];
+		dx0 = sx[ 2 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[2] );
+		dx2 = sx[ 0 ] - ( S1*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 2 ];
+		dy1 = sy[ 1 ] - ( S0*sy[2] );
+		dy2 = sy[ 0 ] - ( S1*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Iterate over the ndarray dimensions...
+	for ( i2 = 0; i2 < S2; i2++ ) {
+		for ( i1 = 0; i1 < S1; i1++ ) {
+			for ( i0 = 0; i0 < S0; i0++ ) {
+				ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i2, i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+				ix += dx0;
+				iy += dy0;
+			}
+			ix += dx1;
+			iy += dy1;
+		}
+		ix += dx2;
+		iy += dy2;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map3d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],571:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a three-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 2, 1 ];
+* var sy = [ 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* map3d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function map3d( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dy0;
+	var dy1;
+	var dy2;
+	var idx;
+	var get;
+	var set;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 2 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 0 ];
+		dx0 = sx[ 2 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[2] );
+		dx2 = sx[ 0 ] - ( S1*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 2 ];
+		dy1 = sy[ 1 ] - ( S0*sy[2] );
+		dy2 = sy[ 0 ] - ( S1*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache accessors:
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
+
+	// Iterate over the ndarray dimensions...
+	for ( i2 = 0; i2 < S2; i2++ ) {
+		for ( i1 = 0; i1 < S1; i1++ ) {
+			for ( i0 = 0; i0 < S0; i0++ ) {
+				set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i2, i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+				ix += dx0;
+				iy += dy0;
+			}
+			ix += dx1;
+			iy += dy1;
+		}
+		ix += dx2;
+		iy += dy2;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map3d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],572:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a three-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( x ) {
+*     return x * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 1 ];
+* var sy = [ 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* blockedmap3d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function blockedmap3d( x, y, fcn, thisArg ) {
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dy0;
+	var dy1;
+	var dy2;
+	var ox1;
+	var ox2;
+	var oy1;
+	var oy2;
+	var idx;
+	var sh;
+	var s0;
+	var s1;
+	var s2;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var j0;
+	var j1;
+	var j2;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Iterate over blocks...
+	for ( j2 = sh[2]; j2 > 0; ) {
+		if ( j2 < bsize ) {
+			s2 = j2;
+			j2 = 0;
+		} else {
+			s2 = bsize;
+			j2 -= bsize;
+		}
+		ox2 = ox + ( j2*sx[2] );
+		oy2 = oy + ( j2*sy[2] );
+		for ( j1 = sh[1]; j1 > 0; ) {
+			if ( j1 < bsize ) {
+				s1 = j1;
+				j1 = 0;
+			} else {
+				s1 = bsize;
+				j1 -= bsize;
+			}
+			dx2 = sx[2] - ( s1*sx[1] );
+			dy2 = sy[2] - ( s1*sy[1] );
+			ox1 = ox2 + ( j1*sx[1] );
+			oy1 = oy2 + ( j1*sy[1] );
+			for ( j0 = sh[0]; j0 > 0; ) {
+				if ( j0 < bsize ) {
+					s0 = j0;
+					j0 = 0;
+				} else {
+					s0 = bsize;
+					j0 -= bsize;
+				}
+				// Compute index offsets for the first input and output ndarray elements in the current block...
+				ix = ox1 + ( j0*sx[0] );
+				iy = oy1 + ( j0*sy[0] );
+
+				// Compute loop offset increments...
+				dx1 = sx[1] - ( s0*sx[0] );
+				dy1 = sy[1] - ( s0*sy[0] );
+
+				// Iterate over the ndarray dimensions...
+				for ( i2 = 0; i2 < s2; i2++ ) {
+					for ( i1 = 0; i1 < s1; i1++ ) {
+						for ( i0 = 0; i0 < s0; i0++ ) {
+							ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i2, i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+							ix += dx0;
+							iy += dy0;
+						}
+						ix += dx1;
+						iy += dy1;
+					}
+					ix += dx2;
+					iy += dy2;
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap3d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],573:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a three-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 2, 2, 1 ];
+* var sy = [ 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* blockedmap3d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function blockedmap3d( x, y, fcn, thisArg ) {
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dy0;
+	var dy1;
+	var dy2;
+	var ox1;
+	var ox2;
+	var oy1;
+	var oy2;
+	var idx;
+	var get;
+	var set;
+	var sh;
+	var s0;
+	var s1;
+	var s2;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var j0;
+	var j1;
+	var j2;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Cache accessors:
+	get = x.accessors[0];
+	set = y.accessors[1];
+
+	// Iterate over blocks...
+	for ( j2 = sh[2]; j2 > 0; ) {
+		if ( j2 < bsize ) {
+			s2 = j2;
+			j2 = 0;
+		} else {
+			s2 = bsize;
+			j2 -= bsize;
+		}
+		ox2 = ox + ( j2*sx[2] );
+		oy2 = oy + ( j2*sy[2] );
+		for ( j1 = sh[1]; j1 > 0; ) {
+			if ( j1 < bsize ) {
+				s1 = j1;
+				j1 = 0;
+			} else {
+				s1 = bsize;
+				j1 -= bsize;
+			}
+			dx2 = sx[2] - ( s1*sx[1] );
+			dy2 = sy[2] - ( s1*sy[1] );
+			ox1 = ox2 + ( j1*sx[1] );
+			oy1 = oy2 + ( j1*sy[1] );
+			for ( j0 = sh[0]; j0 > 0; ) {
+				if ( j0 < bsize ) {
+					s0 = j0;
+					j0 = 0;
+				} else {
+					s0 = bsize;
+					j0 -= bsize;
+				}
+				// Compute index offsets for the first input and output ndarray elements in the current block...
+				ix = ox1 + ( j0*sx[0] );
+				iy = oy1 + ( j0*sy[0] );
+
+				// Compute loop offset increments...
+				dx1 = sx[1] - ( s0*sx[0] );
+				dy1 = sy[1] - ( s0*sy[0] );
+
+				// Iterate over the ndarray dimensions...
+				for ( i2 = 0; i2 < s2; i2++ ) {
+					for ( i1 = 0; i1 < s1; i1++ ) {
+						for ( i0 = 0; i0 < s0; i0++ ) {
+							set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i2, i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+							ix += dx0;
+							iy += dy0;
+						}
+						ix += dx1;
+						iy += dy1;
+					}
+					ix += dx2;
+					iy += dy2;
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap3d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],574:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a four-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 4, 4, 1 ];
+* var sy = [ 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map4d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function map4d( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 3 ];
+		S1 = sh[ 2 ];
+		S2 = sh[ 1 ];
+		S3 = sh[ 0 ];
+		dx0 = sx[ 3 ];                // offset increment for innermost loop
+		dx1 = sx[ 2 ] - ( S0*sx[3] );
+		dx2 = sx[ 1 ] - ( S1*sx[2] );
+		dx3 = sx[ 0 ] - ( S2*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 3 ];
+		dy1 = sy[ 2 ] - ( S0*sy[3] );
+		dy2 = sy[ 1 ] - ( S1*sy[2] );
+		dy3 = sy[ 0 ] - ( S2*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Iterate over the ndarray dimensions...
+	for ( i3 = 0; i3 < S3; i3++ ) {
+		for ( i2 = 0; i2 < S2; i2++ ) {
+			for ( i1 = 0; i1 < S1; i1++ ) {
+				for ( i0 = 0; i0 < S0; i0++ ) {
+					ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i3, i2, i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+					ix += dx0;
+					iy += dy0;
+				}
+				ix += dx1;
+				iy += dy1;
+			}
+			ix += dx2;
+			iy += dy2;
+		}
+		ix += dx3;
+		iy += dy3;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map4d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],575:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a four-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* map4d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function map4d( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 3 ];
+		S1 = sh[ 2 ];
+		S2 = sh[ 1 ];
+		S3 = sh[ 0 ];
+		dx0 = sx[ 3 ];                // offset increment for innermost loop
+		dx1 = sx[ 2 ] - ( S0*sx[3] );
+		dx2 = sx[ 1 ] - ( S1*sx[2] );
+		dx3 = sx[ 0 ] - ( S2*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 3 ];
+		dy1 = sy[ 2 ] - ( S0*sy[3] );
+		dy2 = sy[ 1 ] - ( S1*sy[2] );
+		dy3 = sy[ 0 ] - ( S2*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache accessors:
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
+
+	// Iterate over the ndarray dimensions...
+	for ( i3 = 0; i3 < S3; i3++ ) {
+		for ( i2 = 0; i2 < S2; i2++ ) {
+			for ( i1 = 0; i1 < S1; i1++ ) {
+				for ( i0 = 0; i0 < S0; i0++ ) {
+					set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i3, i2, i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+					ix += dx0;
+					iy += dy0;
+				}
+				ix += dx1;
+				iy += dy1;
+			}
+			ix += dx2;
+			iy += dy2;
+		}
+		ix += dx3;
+		iy += dy3;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map4d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],576:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a four-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( x ) {
+*     return x * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 4, 4, 1 ];
+* var sy = [ 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* blockedmap4d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function blockedmap4d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var ox1;
+	var ox2;
+	var ox3;
+	var idx;
+	var oy1;
+	var oy2;
+	var oy3;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Iterate over blocks...
+	for ( j3 = sh[3]; j3 > 0; ) {
+		if ( j3 < bsize ) {
+			S3 = j3;
+			j3 = 0;
+		} else {
+			S3 = bsize;
+			j3 -= bsize;
+		}
+		ox3 = ox + ( j3*sx[3] );
+		oy3 = oy + ( j3*sy[3] );
+		for ( j2 = sh[2]; j2 > 0; ) {
+			if ( j2 < bsize ) {
+				S2 = j2;
+				j2 = 0;
+			} else {
+				S2 = bsize;
+				j2 -= bsize;
+			}
+			dx3 = sx[3] - ( S2*sx[2] );
+			dy3 = sy[3] - ( S2*sy[2] );
+			ox2 = ox3 + ( j2*sx[2] );
+			oy2 = oy3 + ( j2*sy[2] );
+			for ( j1 = sh[1]; j1 > 0; ) {
+				if ( j1 < bsize ) {
+					S1 = j1;
+					j1 = 0;
+				} else {
+					S1 = bsize;
+					j1 -= bsize;
+				}
+				dx2 = sx[2] - ( S1*sx[1] );
+				dy2 = sy[2] - ( S1*sy[1] );
+				ox1 = ox2 + ( j1*sx[1] );
+				oy1 = oy2 + ( j1*sy[1] );
+				for ( j0 = sh[0]; j0 > 0; ) {
+					if ( j0 < bsize ) {
+						S0 = j0;
+						j0 = 0;
+					} else {
+						S0 = bsize;
+						j0 -= bsize;
+					}
+					// Compute index offsets for the first input and output ndarray elements in the current block...
+					ix = ox1 + ( j0*sx[0] );
+					iy = oy1 + ( j0*sy[0] );
+
+					// Compute loop offset increments...
+					dx1 = sx[1] - ( S0*sx[0] );
+					dy1 = sy[1] - ( S0*sy[0] );
+
+					// Iterate over the ndarray dimensions...
+					for ( i3 = 0; i3 < S3; i3++ ) {
+						for ( i2 = 0; i2 < S2; i2++ ) {
+							for ( i1 = 0; i1 < S1; i1++ ) {
+								for ( i0 = 0; i0 < S0; i0++ ) {
+									ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i3, i2, i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+									ix += dx0;
+									iy += dy0;
+								}
+								ix += dx1;
+								iy += dy1;
+							}
+							ix += dx2;
+							iy += dy2;
+						}
+						ix += dx3;
+						iy += dy3;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap4d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],577:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a four-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* blockedmap4d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function blockedmap4d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var ox1;
+	var ox2;
+	var ox3;
+	var idx;
+	var oy1;
+	var oy2;
+	var oy3;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Iterate over blocks...
+	for ( j3 = sh[3]; j3 > 0; ) {
+		if ( j3 < bsize ) {
+			S3 = j3;
+			j3 = 0;
+		} else {
+			S3 = bsize;
+			j3 -= bsize;
+		}
+		ox3 = ox + ( j3*sx[3] );
+		oy3 = oy + ( j3*sy[3] );
+		for ( j2 = sh[2]; j2 > 0; ) {
+			if ( j2 < bsize ) {
+				S2 = j2;
+				j2 = 0;
+			} else {
+				S2 = bsize;
+				j2 -= bsize;
+			}
+			dx3 = sx[3] - ( S2*sx[2] );
+			dy3 = sy[3] - ( S2*sy[2] );
+			ox2 = ox3 + ( j2*sx[2] );
+			oy2 = oy3 + ( j2*sy[2] );
+			for ( j1 = sh[1]; j1 > 0; ) {
+				if ( j1 < bsize ) {
+					S1 = j1;
+					j1 = 0;
+				} else {
+					S1 = bsize;
+					j1 -= bsize;
+				}
+				dx2 = sx[2] - ( S1*sx[1] );
+				dy2 = sy[2] - ( S1*sy[1] );
+				ox1 = ox2 + ( j1*sx[1] );
+				oy1 = oy2 + ( j1*sy[1] );
+				for ( j0 = sh[0]; j0 > 0; ) {
+					if ( j0 < bsize ) {
+						S0 = j0;
+						j0 = 0;
+					} else {
+						S0 = bsize;
+						j0 -= bsize;
+					}
+					// Compute index offsets for the first input and output ndarray elements in the current block...
+					ix = ox1 + ( j0*sx[0] );
+					iy = oy1 + ( j0*sy[0] );
+
+					// Compute loop offset increments...
+					dx1 = sx[1] - ( S0*sx[0] );
+					dy1 = sy[1] - ( S0*sy[0] );
+
+					// Cache accessors:
+					get = x.accessors[ 0 ];
+					set = y.accessors[ 1 ];
+
+					// Iterate over the ndarray dimensions...
+					for ( i3 = 0; i3 < S3; i3++ ) {
+						for ( i2 = 0; i2 < S2; i2++ ) {
+							for ( i1 = 0; i1 < S1; i1++ ) {
+								for ( i0 = 0; i0 < S0; i0++ ) {
+									set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i3, i2, i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+									ix += dx0;
+									iy += dy0;
+								}
+								ix += dx1;
+								iy += dy1;
+							}
+							ix += dx2;
+							iy += dy2;
+						}
+						ix += dx3;
+						iy += dy3;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap4d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],578:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a five-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map5d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function map5d( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 4 ];
+		S1 = sh[ 3 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 1 ];
+		S4 = sh[ 0 ];
+		dx0 = sx[ 4 ];                // offset increment for innermost loop
+		dx1 = sx[ 3 ] - ( S0*sx[4] );
+		dx2 = sx[ 2 ] - ( S1*sx[3] );
+		dx3 = sx[ 1 ] - ( S2*sx[2] );
+		dx4 = sx[ 0 ] - ( S3*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 4 ];
+		dy1 = sy[ 3 ] - ( S0*sy[4] );
+		dy2 = sy[ 2 ] - ( S1*sy[3] );
+		dy3 = sy[ 1 ] - ( S2*sy[2] );
+		dy4 = sy[ 0 ] - ( S3*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Iterate over the ndarray dimensions...
+	for ( i4 = 0; i4 < S4; i4++ ) {
+		for ( i3 = 0; i3 < S3; i3++ ) {
+			for ( i2 = 0; i2 < S2; i2++ ) {
+				for ( i1 = 0; i1 < S1; i1++ ) {
+					for ( i0 = 0; i0 < S0; i0++ ) {
+						ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i4, i3, i2, i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+						ix += dx0;
+						iy += dy0;
+					}
+					ix += dx1;
+					iy += dy1;
+				}
+				ix += dx2;
+				iy += dy2;
+			}
+			ix += dx3;
+			iy += dy3;
+		}
+		ix += dx4;
+		iy += dy4;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map5d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],579:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a five-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* map5d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function map5d( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 4 ];
+		S1 = sh[ 3 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 1 ];
+		S4 = sh[ 0 ];
+		dx0 = sx[ 4 ];                // offset increment for innermost loop
+		dx1 = sx[ 3 ] - ( S0*sx[4] );
+		dx2 = sx[ 2 ] - ( S1*sx[3] );
+		dx3 = sx[ 1 ] - ( S2*sx[2] );
+		dx4 = sx[ 0 ] - ( S3*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 4 ];
+		dy1 = sy[ 3 ] - ( S0*sy[4] );
+		dy2 = sy[ 2 ] - ( S1*sy[3] );
+		dy3 = sy[ 1 ] - ( S2*sy[2] );
+		dy4 = sy[ 0 ] - ( S3*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache accessors:
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
+
+	// Iterate over the ndarray dimensions...
+	for ( i4 = 0; i4 < S4; i4++ ) {
+		for ( i3 = 0; i3 < S3; i3++ ) {
+			for ( i2 = 0; i2 < S2; i2++ ) {
+				for ( i1 = 0; i1 < S1; i1++ ) {
+					for ( i0 = 0; i0 < S0; i0++ ) {
+						set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i4, i3, i2, i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+						ix += dx0;
+						iy += dy0;
+					}
+					ix += dx1;
+					iy += dy1;
+				}
+				ix += dx2;
+				iy += dy2;
+			}
+			ix += dx3;
+			iy += dy3;
+		}
+		ix += dx4;
+		iy += dy4;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map5d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],580:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a five-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* blockedmap5d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function blockedmap5d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var idx;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Iterate over blocks...
+	for ( j4 = sh[4]; j4 > 0; ) {
+		if ( j4 < bsize ) {
+			S4 = j4;
+			j4 = 0;
+		} else {
+			S4 = bsize;
+			j4 -= bsize;
+		}
+		ox4 = ox + ( j4*sx[4] );
+		oy4 = oy + ( j4*sy[4] );
+		for ( j3 = sh[3]; j3 > 0; ) {
+			if ( j3 < bsize ) {
+				S3 = j3;
+				j3 = 0;
+			} else {
+				S3 = bsize;
+				j3 -= bsize;
+			}
+			dx4 = sx[4] - ( S3*sx[3] );
+			dy4 = sy[4] - ( S3*sy[3] );
+			ox3 = ox4 + ( j3*sx[3] );
+			oy3 = oy4 + ( j3*sy[3] );
+			for ( j2 = sh[2]; j2 > 0; ) {
+				if ( j2 < bsize ) {
+					S2 = j2;
+					j2 = 0;
+				} else {
+					S2 = bsize;
+					j2 -= bsize;
+				}
+				dx3 = sx[3] - ( S2*sx[2] );
+				dy3 = sy[3] - ( S2*sy[2] );
+				ox2 = ox3 + ( j2*sx[2] );
+				oy2 = oy3 + ( j2*sy[2] );
+				for ( j1 = sh[1]; j1 > 0; ) {
+					if ( j1 < bsize ) {
+						S1 = j1;
+						j1 = 0;
+					} else {
+						S1 = bsize;
+						j1 -= bsize;
+					}
+					dx2 = sx[2] - ( S1*sx[1] );
+					dy2 = sy[2] - ( S1*sy[1] );
+					ox1 = ox2 + ( j1*sx[1] );
+					oy1 = oy2 + ( j1*sy[1] );
+					for ( j0 = sh[0]; j0 > 0; ) {
+						if ( j0 < bsize ) {
+							S0 = j0;
+							j0 = 0;
+						} else {
+							S0 = bsize;
+							j0 -= bsize;
+						}
+						// Compute index offsets for the first input and output ndarray elements in the current block...
+						ix = ox1 + ( j0*sx[0] );
+						iy = oy1 + ( j0*sy[0] );
+
+						// Compute loop offset increments...
+						dx1 = sx[1] - ( S0*sx[0] );
+						dy1 = sy[1] - ( S0*sy[0] );
+
+						// Iterate over the ndarray dimensions...
+						for ( i4 = 0; i4 < S4; i4++ ) {
+							for ( i3 = 0; i3 < S3; i3++ ) {
+								for ( i2 = 0; i2 < S2; i2++ ) {
+									for ( i1 = 0; i1 < S1; i1++ ) {
+										for ( i0 = 0; i0 < S0; i0++ ) {
+											ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i4, i3, i2, i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+											ix += dx0;
+											iy += dy0;
+										}
+										ix += dx1;
+										iy += dy1;
+									}
+									ix += dx2;
+									iy += dy2;
+								}
+								ix += dx3;
+								iy += dy3;
+							}
+							ix += dx4;
+							iy += dy4;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap5d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],581:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a five-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* blockedmap5d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function blockedmap5d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var idx;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Cache accessors:
+	get = x.accessors[0];
+	set = y.accessors[1];
+
+	// Iterate over blocks...
+	for ( j4 = sh[4]; j4 > 0; ) {
+		if ( j4 < bsize ) {
+			S4 = j4;
+			j4 = 0;
+		} else {
+			S4 = bsize;
+			j4 -= bsize;
+		}
+		ox4 = ox + ( j4*sx[4] );
+		oy4 = oy + ( j4*sy[4] );
+		for ( j3 = sh[3]; j3 > 0; ) {
+			if ( j3 < bsize ) {
+				S3 = j3;
+				j3 = 0;
+			} else {
+				S3 = bsize;
+				j3 -= bsize;
+			}
+			dx4 = sx[4] - ( S3*sx[3] );
+			dy4 = sy[4] - ( S3*sy[3] );
+			ox3 = ox4 + ( j3*sx[3] );
+			oy3 = oy4 + ( j3*sy[3] );
+			for ( j2 = sh[2]; j2 > 0; ) {
+				if ( j2 < bsize ) {
+					S2 = j2;
+					j2 = 0;
+				} else {
+					S2 = bsize;
+					j2 -= bsize;
+				}
+				dx3 = sx[3] - ( S2*sx[2] );
+				dy3 = sy[3] - ( S2*sy[2] );
+				ox2 = ox3 + ( j2*sx[2] );
+				oy2 = oy3 + ( j2*sy[2] );
+				for ( j1 = sh[1]; j1 > 0; ) {
+					if ( j1 < bsize ) {
+						S1 = j1;
+						j1 = 0;
+					} else {
+						S1 = bsize;
+						j1 -= bsize;
+					}
+					dx2 = sx[2] - ( S1*sx[1] );
+					dy2 = sy[2] - ( S1*sy[1] );
+					ox1 = ox2 + ( j1*sx[1] );
+					oy1 = oy2 + ( j1*sy[1] );
+					for ( j0 = sh[0]; j0 > 0; ) {
+						if ( j0 < bsize ) {
+							S0 = j0;
+							j0 = 0;
+						} else {
+							S0 = bsize;
+							j0 -= bsize;
+						}
+						// Compute index offsets for the first input and output ndarray elements in the current block...
+						ix = ox1 + ( j0*sx[0] );
+						iy = oy1 + ( j0*sy[0] );
+
+						// Compute loop offset increments...
+						dx1 = sx[1] - ( S0*sx[0] );
+						dy1 = sy[1] - ( S0*sy[0] );
+
+						// Iterate over the ndarray dimensions...
+						for ( i4 = 0; i4 < S4; i4++ ) {
+							for ( i3 = 0; i3 < S3; i3++ ) {
+								for ( i2 = 0; i2 < S2; i2++ ) {
+									for ( i1 = 0; i1 < S1; i1++ ) {
+										for ( i0 = 0; i0 < S0; i0++ ) {
+											set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i4, i3, i2, i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+											ix += dx0;
+											iy += dy0;
+										}
+										ix += dx1;
+										iy += dy1;
+									}
+									ix += dx2;
+									iy += dy2;
+								}
+								ix += dx3;
+								iy += dy3;
+							}
+							ix += dx4;
+							iy += dy4;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap5d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],582:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a six-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map6d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function map6d( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 5 ];
+		S1 = sh[ 4 ];
+		S2 = sh[ 3 ];
+		S3 = sh[ 2 ];
+		S4 = sh[ 1 ];
+		S5 = sh[ 0 ];
+		dx0 = sx[ 5 ];                // offset increment for innermost loop
+		dx1 = sx[ 4 ] - ( S0*sx[5] );
+		dx2 = sx[ 3 ] - ( S1*sx[4] );
+		dx3 = sx[ 2 ] - ( S2*sx[3] );
+		dx4 = sx[ 1 ] - ( S3*sx[2] );
+		dx5 = sx[ 0 ] - ( S4*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 5 ];
+		dy1 = sy[ 4 ] - ( S0*sy[5] );
+		dy2 = sy[ 3 ] - ( S1*sy[4] );
+		dy3 = sy[ 2 ] - ( S2*sy[3] );
+		dy4 = sy[ 1 ] - ( S3*sy[2] );
+		dy5 = sy[ 0 ] - ( S4*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 5 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] );
+		dx5 = sx[ 5 ] - ( S4*sx[4] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		dy5 = sy[ 5 ] - ( S4*sy[4] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Iterate over the ndarray dimensions...
+	for ( i5 = 0; i5 < S5; i5++ ) {
+		for ( i4 = 0; i4 < S4; i4++ ) {
+			for ( i3 = 0; i3 < S3; i3++ ) {
+				for ( i2 = 0; i2 < S2; i2++ ) {
+					for ( i1 = 0; i1 < S1; i1++ ) {
+						for ( i0 = 0; i0 < S0; i0++ ) {
+							ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i5, i4, i3, i2, i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+							ix += dx0;
+							iy += dy0;
+						}
+						ix += dx1;
+						iy += dy1;
+					}
+					ix += dx2;
+					iy += dy2;
+				}
+				ix += dx3;
+				iy += dy3;
+			}
+			ix += dx4;
+			iy += dy4;
+		}
+		ix += dx5;
+		iy += dy5;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map6d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],583:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a six-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* map6d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function map6d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 5 ];
+		S1 = sh[ 4 ];
+		S2 = sh[ 3 ];
+		S3 = sh[ 2 ];
+		S4 = sh[ 1 ];
+		S5 = sh[ 0 ];
+		dx0 = sx[ 5 ];                // offset increment for innermost loop
+		dx1 = sx[ 4 ] - ( S0*sx[5] );
+		dx2 = sx[ 3 ] - ( S1*sx[4] );
+		dx3 = sx[ 2 ] - ( S2*sx[3] );
+		dx4 = sx[ 1 ] - ( S3*sx[2] );
+		dx5 = sx[ 0 ] - ( S4*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 5 ];
+		dy1 = sy[ 4 ] - ( S0*sy[5] );
+		dy2 = sy[ 3 ] - ( S1*sy[4] );
+		dy3 = sy[ 2 ] - ( S2*sy[3] );
+		dy4 = sy[ 1 ] - ( S3*sy[2] );
+		dy5 = sy[ 0 ] - ( S4*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 5 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] );
+		dx5 = sx[ 5 ] - ( S4*sx[4] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		dy5 = sy[ 5 ] - ( S4*sy[4] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache accessors:
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
+
+	// Iterate over the ndarray dimensions...
+	for ( i5 = 0; i5 < S5; i5++ ) {
+		for ( i4 = 0; i4 < S4; i4++ ) {
+			for ( i3 = 0; i3 < S3; i3++ ) {
+				for ( i2 = 0; i2 < S2; i2++ ) {
+					for ( i1 = 0; i1 < S1; i1++ ) {
+						for ( i0 = 0; i0 < S0; i0++ ) {
+							set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i5, i4, i3, i2, i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+							ix += dx0;
+							iy += dy0;
+						}
+						ix += dx1;
+						iy += dy1;
+					}
+					ix += dx2;
+					iy += dy2;
+				}
+				ix += dx3;
+				iy += dy3;
+			}
+			ix += dx4;
+			iy += dy4;
+		}
+		ix += dx5;
+		iy += dy5;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map6d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],584:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth, max-len */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a six-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* blockedmap6d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function blockedmap6d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var ox5;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var oy5;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var j5;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Iterate over blocks...
+	for ( j5 = sh[5]; j5 > 0; ) {
+		if ( j5 < bsize ) {
+			S5 = j5;
+			j5 = 0;
+		} else {
+			S5 = bsize;
+			j5 -= bsize;
+		}
+		ox5 = ox + ( j5*sx[5] );
+		oy5 = oy + ( j5*sy[5] );
+		for ( j4 = sh[4]; j4 > 0; ) {
+			if ( j4 < bsize ) {
+				S4 = j4;
+				j4 = 0;
+			} else {
+				S4 = bsize;
+				j4 -= bsize;
+			}
+			dx5 = sx[5] - ( S4*sx[4] );
+			dy5 = sy[5] - ( S4*sy[4] );
+			ox4 = ox5 + ( j4*sx[4] );
+			oy4 = oy5 + ( j4*sy[4] );
+			for ( j3 = sh[3]; j3 > 0; ) {
+				if ( j3 < bsize ) {
+					S3 = j3;
+					j3 = 0;
+				} else {
+					S3 = bsize;
+					j3 -= bsize;
+				}
+				dx4 = sx[4] - ( S3*sx[3] );
+				dy4 = sy[4] - ( S3*sy[3] );
+				ox3 = ox4 + ( j3*sx[3] );
+				oy3 = oy4 + ( j3*sy[3] );
+				for ( j2 = sh[2]; j2 > 0; ) {
+					if ( j2 < bsize ) {
+						S2 = j2;
+						j2 = 0;
+					} else {
+						S2 = bsize;
+						j2 -= bsize;
+					}
+					dx3 = sx[3] - ( S2*sx[2] );
+					dy3 = sy[3] - ( S2*sy[2] );
+					ox2 = ox3 + ( j2*sx[2] );
+					oy2 = oy3 + ( j2*sy[2] );
+					for ( j1 = sh[1]; j1 > 0; ) {
+						if ( j1 < bsize ) {
+							S1 = j1;
+							j1 = 0;
+						} else {
+							S1 = bsize;
+							j1 -= bsize;
+						}
+						dx2 = sx[2] - ( S1*sx[1] );
+						dy2 = sy[2] - ( S1*sy[1] );
+						ox1 = ox2 + ( j1*sx[1] );
+						oy1 = oy2 + ( j1*sy[1] );
+						for ( j0 = sh[0]; j0 > 0; ) {
+							if ( j0 < bsize ) {
+								S0 = j0;
+								j0 = 0;
+							} else {
+								S0 = bsize;
+								j0 -= bsize;
+							}
+							// Compute index offsets for the first input and output ndarray elements in the current block...
+							ix = ox1 + ( j0*sx[0] );
+							iy = oy1 + ( j0*sy[0] );
+
+							// Compute loop offset increments...
+							dx1 = sx[1] - ( S0*sx[0] );
+							dy1 = sy[1] - ( S0*sy[0] );
+
+							// Iterate over the ndarray dimensions...
+							for ( i5 = 0; i5 < S5; i5++ ) {
+								for ( i4 = 0; i4 < S4; i4++ ) {
+									for ( i3 = 0; i3 < S3; i3++ ) {
+										for ( i2 = 0; i2 < S2; i2++ ) {
+											for ( i1 = 0; i1 < S1; i1++ ) {
+												for ( i0 = 0; i0 < S0; i0++ ) {
+													ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i5, i4, i3, i2, i1, i0 ], idx ), x.ref );
+													ix += dx0;
+													iy += dy0;
+												}
+												ix += dx1;
+												iy += dy1;
+											}
+											ix += dx2;
+											iy += dy2;
+										}
+										ix += dx3;
+										iy += dy3;
+									}
+									ix += dx4;
+									iy += dy4;
+								}
+								ix += dx5;
+								iy += dy5;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap6d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],585:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth, max-len */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a six-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* blockedmap6d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function blockedmap6d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var set;
+	var get;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var ox5;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var oy5;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var j5;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Cache accessors:
+	get = x.accessors[0];
+	set = y.accessors[1];
+
+	// Iterate over blocks...
+	for ( j5 = sh[5]; j5 > 0; ) {
+		if ( j5 < bsize ) {
+			S5 = j5;
+			j5 = 0;
+		} else {
+			S5 = bsize;
+			j5 -= bsize;
+		}
+		ox5 = ox + ( j5*sx[5] );
+		oy5 = oy + ( j5*sy[5] );
+		for ( j4 = sh[4]; j4 > 0; ) {
+			if ( j4 < bsize ) {
+				S4 = j4;
+				j4 = 0;
+			} else {
+				S4 = bsize;
+				j4 -= bsize;
+			}
+			dx5 = sx[5] - ( S4*sx[4] );
+			dy5 = sy[5] - ( S4*sy[4] );
+			ox4 = ox5 + ( j4*sx[4] );
+			oy4 = oy5 + ( j4*sy[4] );
+			for ( j3 = sh[3]; j3 > 0; ) {
+				if ( j3 < bsize ) {
+					S3 = j3;
+					j3 = 0;
+				} else {
+					S3 = bsize;
+					j3 -= bsize;
+				}
+				dx4 = sx[4] - ( S3*sx[3] );
+				dy4 = sy[4] - ( S3*sy[3] );
+				ox3 = ox4 + ( j3*sx[3] );
+				oy3 = oy4 + ( j3*sy[3] );
+				for ( j2 = sh[2]; j2 > 0; ) {
+					if ( j2 < bsize ) {
+						S2 = j2;
+						j2 = 0;
+					} else {
+						S2 = bsize;
+						j2 -= bsize;
+					}
+					dx3 = sx[3] - ( S2*sx[2] );
+					dy3 = sy[3] - ( S2*sy[2] );
+					ox2 = ox3 + ( j2*sx[2] );
+					oy2 = oy3 + ( j2*sy[2] );
+					for ( j1 = sh[1]; j1 > 0; ) {
+						if ( j1 < bsize ) {
+							S1 = j1;
+							j1 = 0;
+						} else {
+							S1 = bsize;
+							j1 -= bsize;
+						}
+						dx2 = sx[2] - ( S1*sx[1] );
+						dy2 = sy[2] - ( S1*sy[1] );
+						ox1 = ox2 + ( j1*sx[1] );
+						oy1 = oy2 + ( j1*sy[1] );
+						for ( j0 = sh[0]; j0 > 0; ) {
+							if ( j0 < bsize ) {
+								S0 = j0;
+								j0 = 0;
+							} else {
+								S0 = bsize;
+								j0 -= bsize;
+							}
+							// Compute index offsets for the first input and output ndarray elements in the current block...
+							ix = ox1 + ( j0*sx[0] );
+							iy = oy1 + ( j0*sy[0] );
+
+							// Compute loop offset increments...
+							dx1 = sx[1] - ( S0*sx[0] );
+							dy1 = sy[1] - ( S0*sy[0] );
+
+							// Iterate over the ndarray dimensions...
+							for ( i5 = 0; i5 < S5; i5++ ) {
+								for ( i4 = 0; i4 < S4; i4++ ) {
+									for ( i3 = 0; i3 < S3; i3++ ) {
+										for ( i2 = 0; i2 < S2; i2++ ) {
+											for ( i1 = 0; i1 < S1; i1++ ) {
+												for ( i0 = 0; i0 < S0; i0++ ) {
+													set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i5, i4, i3, i2, i1, i0 ], idx ), x.ref ) );
+													ix += dx0;
+													iy += dy0;
+												}
+												ix += dx1;
+												iy += dy1;
+											}
+											ix += dx2;
+											iy += dy2;
+										}
+										ix += dx3;
+										iy += dy3;
+									}
+									ix += dx4;
+									iy += dy4;
+								}
+								ix += dx5;
+								iy += dy5;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap6d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],586:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a seven-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map7d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function map7d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 6 ];
+		S1 = sh[ 5 ];
+		S2 = sh[ 4 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 2 ];
+		S5 = sh[ 1 ];
+		S6 = sh[ 0 ];
+		dx0 = sx[ 6 ];                // offset increment for innermost loop
+		dx1 = sx[ 5 ] - ( S0*sx[6] );
+		dx2 = sx[ 4 ] - ( S1*sx[5] );
+		dx3 = sx[ 3 ] - ( S2*sx[4] );
+		dx4 = sx[ 2 ] - ( S3*sx[3] );
+		dx5 = sx[ 1 ] - ( S4*sx[2] );
+		dx6 = sx[ 0 ] - ( S5*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 6 ];
+		dy1 = sy[ 5 ] - ( S0*sy[6] );
+		dy2 = sy[ 4 ] - ( S1*sy[5] );
+		dy3 = sy[ 3 ] - ( S2*sy[4] );
+		dy4 = sy[ 2 ] - ( S3*sy[3] );
+		dy5 = sy[ 1 ] - ( S4*sy[2] );
+		dy6 = sy[ 0 ] - ( S5*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 5 ];
+		S6 = sh[ 6 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] );
+		dx5 = sx[ 5 ] - ( S4*sx[4] );
+		dx6 = sx[ 6 ] - ( S5*sx[5] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		dy5 = sy[ 5 ] - ( S4*sy[4] );
+		dy6 = sy[ 6 ] - ( S5*sy[5] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Iterate over the ndarray dimensions...
+	for ( i6 = 0; i6 < S6; i6++ ) {
+		for ( i5 = 0; i5 < S5; i5++ ) {
+			for ( i4 = 0; i4 < S4; i4++ ) {
+				for ( i3 = 0; i3 < S3; i3++ ) {
+					for ( i2 = 0; i2 < S2; i2++ ) {
+						for ( i1 = 0; i1 < S1; i1++ ) {
+							for ( i0 = 0; i0 < S0; i0++ ) {
+								ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+								ix += dx0;
+								iy += dy0;
+							}
+							ix += dx1;
+							iy += dy1;
+						}
+						ix += dx2;
+						iy += dy2;
+					}
+					ix += dx3;
+					iy += dy3;
+				}
+				ix += dx4;
+				iy += dy4;
+			}
+			ix += dx5;
+			iy += dy5;
+		}
+		ix += dx6;
+		iy += dy6;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map7d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],587:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a seven-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* map7d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function map7d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 6 ];
+		S1 = sh[ 5 ];
+		S2 = sh[ 4 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 2 ];
+		S5 = sh[ 1 ];
+		S6 = sh[ 0 ];
+		dx0 = sx[ 6 ];                // offset increment for innermost loop
+		dx1 = sx[ 5 ] - ( S0*sx[6] );
+		dx2 = sx[ 4 ] - ( S1*sx[5] );
+		dx3 = sx[ 3 ] - ( S2*sx[4] );
+		dx4 = sx[ 2 ] - ( S3*sx[3] );
+		dx5 = sx[ 1 ] - ( S4*sx[2] );
+		dx6 = sx[ 0 ] - ( S5*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 6 ];
+		dy1 = sy[ 5 ] - ( S0*sy[6] );
+		dy2 = sy[ 4 ] - ( S1*sy[5] );
+		dy3 = sy[ 3 ] - ( S2*sy[4] );
+		dy4 = sy[ 2 ] - ( S3*sy[3] );
+		dy5 = sy[ 1 ] - ( S4*sy[2] );
+		dy6 = sy[ 0 ] - ( S5*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 5 ];
+		S6 = sh[ 6 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] );
+		dx5 = sx[ 5 ] - ( S4*sx[4] );
+		dx6 = sx[ 6 ] - ( S5*sx[5] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		dy5 = sy[ 5 ] - ( S4*sy[4] );
+		dy6 = sy[ 6 ] - ( S5*sy[5] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache accessors:
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
+
+	// Iterate over the ndarray dimensions...
+	for ( i6 = 0; i6 < S6; i6++ ) {
+		for ( i5 = 0; i5 < S5; i5++ ) {
+			for ( i4 = 0; i4 < S4; i4++ ) {
+				for ( i3 = 0; i3 < S3; i3++ ) {
+					for ( i2 = 0; i2 < S2; i2++ ) {
+						for ( i1 = 0; i1 < S1; i1++ ) {
+							for ( i0 = 0; i0 < S0; i0++ ) {
+								set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+								ix += dx0;
+								iy += dy0;
+							}
+							ix += dx1;
+							iy += dy1;
+						}
+						ix += dx2;
+						iy += dy2;
+					}
+					ix += dx3;
+					iy += dy3;
+				}
+				ix += dx4;
+				iy += dy4;
+			}
+			ix += dx5;
+			iy += dy5;
+		}
+		ix += dx6;
+		iy += dy6;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map7d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],588:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth, max-len */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a seven-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* blockedmap7d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function blockedmap7d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var ox5;
+	var ox6;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var oy5;
+	var oy6;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var j5;
+	var j6;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Iterate over blocks...
+	for ( j6 = sh[6]; j6 > 0; ) {
+		if ( j6 < bsize ) {
+			S6 = j6;
+			j6 = 0;
+		} else {
+			S6 = bsize;
+			j6 -= bsize;
+		}
+		ox6 = ox + ( j6*sx[6] );
+		oy6 = oy + ( j6*sy[6] );
+		for ( j5 = sh[5]; j5 > 0; ) {
+			if ( j5 < bsize ) {
+				S5 = j5;
+				j5 = 0;
+			} else {
+				S5 = bsize;
+				j5 -= bsize;
+			}
+			dx6 = sx[6] - ( S5*sx[5] );
+			dy6 = sy[6] - ( S5*sy[5] );
+			ox5 = ox6 + ( j5*sx[5] );
+			oy5 = oy6 + ( j5*sy[5] );
+			for ( j4 = sh[4]; j4 > 0; ) {
+				if ( j4 < bsize ) {
+					S4 = j4;
+					j4 = 0;
+				} else {
+					S4 = bsize;
+					j4 -= bsize;
+				}
+				dx5 = sx[5] - ( S4*sx[4] );
+				dy5 = sy[5] - ( S4*sy[4] );
+				ox4 = ox5 + ( j4*sx[4] );
+				oy4 = oy5 + ( j4*sy[4] );
+				for ( j3 = sh[3]; j3 > 0; ) {
+					if ( j3 < bsize ) {
+						S3 = j3;
+						j3 = 0;
+					} else {
+						S3 = bsize;
+						j3 -= bsize;
+					}
+					dx4 = sx[4] - ( S3*sx[3] );
+					dy4 = sy[4] - ( S3*sy[3] );
+					ox3 = ox4 + ( j3*sx[3] );
+					oy3 = oy4 + ( j3*sy[3] );
+					for ( j2 = sh[2]; j2 > 0; ) {
+						if ( j2 < bsize ) {
+							S2 = j2;
+							j2 = 0;
+						} else {
+							S2 = bsize;
+							j2 -= bsize;
+						}
+						dx3 = sx[3] - ( S2*sx[2] );
+						dy3 = sy[3] - ( S2*sy[2] );
+						ox2 = ox3 + ( j2*sx[2] );
+						oy2 = oy3 + ( j2*sy[2] );
+						for ( j1 = sh[1]; j1 > 0; ) {
+							if ( j1 < bsize ) {
+								S1 = j1;
+								j1 = 0;
+							} else {
+								S1 = bsize;
+								j1 -= bsize;
+							}
+							dx2 = sx[2] - ( S1*sx[1] );
+							dy2 = sy[2] - ( S1*sy[1] );
+							ox1 = ox2 + ( j1*sx[1] );
+							oy1 = oy2 + ( j1*sy[1] );
+							for ( j0 = sh[0]; j0 > 0; ) {
+								if ( j0 < bsize ) {
+									S0 = j0;
+									j0 = 0;
+								} else {
+									S0 = bsize;
+									j0 -= bsize;
+								}
+								// Compute index offsets for the first input and output ndarray elements in the current block...
+								ix = ox1 + ( j0*sx[0] );
+								iy = oy1 + ( j0*sy[0] );
+
+								// Compute loop offset increments...
+								dx1 = sx[1] - ( S0*sx[0] );
+								dy1 = sy[1] - ( S0*sy[0] );
+
+								// Iterate over the ndarray dimensions...
+								for ( i6 = 0; i6 < S6; i6++ ) {
+									for ( i5 = 0; i5 < S5; i5++ ) {
+										for ( i4 = 0; i4 < S4; i4++ ) {
+											for ( i3 = 0; i3 < S3; i3++ ) {
+												for ( i2 = 0; i2 < S2; i2++ ) {
+													for ( i1 = 0; i1 < S1; i1++ ) {
+														for ( i0 = 0; i0 < S0; i0++ ) {
+															ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref );
+															ix += dx0;
+															iy += dy0;
+														}
+														ix += dx1;
+														iy += dy1;
+													}
+													ix += dx2;
+													iy += dy2;
+												}
+												ix += dx3;
+												iy += dy3;
+											}
+											ix += dx4;
+											iy += dy4;
+										}
+										ix += dx5;
+										iy += dy5;
+									}
+									ix += dx6;
+									iy += dy6;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap7d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],589:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth, max-len */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a seven-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* blockedmap7d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function blockedmap7d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var ox5;
+	var ox6;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var oy5;
+	var oy6;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var j5;
+	var j6;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Cache accessors:
+	get = x.accessors[0];
+	set = y.accessors[1];
+
+	// Iterate over blocks...
+	for ( j6 = sh[6]; j6 > 0; ) {
+		if ( j6 < bsize ) {
+			S6 = j6;
+			j6 = 0;
+		} else {
+			S6 = bsize;
+			j6 -= bsize;
+		}
+		ox6 = ox + ( j6*sx[6] );
+		oy6 = oy + ( j6*sy[6] );
+		for ( j5 = sh[5]; j5 > 0; ) {
+			if ( j5 < bsize ) {
+				S5 = j5;
+				j5 = 0;
+			} else {
+				S5 = bsize;
+				j5 -= bsize;
+			}
+			dx6 = sx[6] - ( S5*sx[5] );
+			dy6 = sy[6] - ( S5*sy[5] );
+			ox5 = ox6 + ( j5*sx[5] );
+			oy5 = oy6 + ( j5*sy[5] );
+			for ( j4 = sh[4]; j4 > 0; ) {
+				if ( j4 < bsize ) {
+					S4 = j4;
+					j4 = 0;
+				} else {
+					S4 = bsize;
+					j4 -= bsize;
+				}
+				dx5 = sx[5] - ( S4*sx[4] );
+				dy5 = sy[5] - ( S4*sy[4] );
+				ox4 = ox5 + ( j4*sx[4] );
+				oy4 = oy5 + ( j4*sy[4] );
+				for ( j3 = sh[3]; j3 > 0; ) {
+					if ( j3 < bsize ) {
+						S3 = j3;
+						j3 = 0;
+					} else {
+						S3 = bsize;
+						j3 -= bsize;
+					}
+					dx4 = sx[4] - ( S3*sx[3] );
+					dy4 = sy[4] - ( S3*sy[3] );
+					ox3 = ox4 + ( j3*sx[3] );
+					oy3 = oy4 + ( j3*sy[3] );
+					for ( j2 = sh[2]; j2 > 0; ) {
+						if ( j2 < bsize ) {
+							S2 = j2;
+							j2 = 0;
+						} else {
+							S2 = bsize;
+							j2 -= bsize;
+						}
+						dx3 = sx[3] - ( S2*sx[2] );
+						dy3 = sy[3] - ( S2*sy[2] );
+						ox2 = ox3 + ( j2*sx[2] );
+						oy2 = oy3 + ( j2*sy[2] );
+						for ( j1 = sh[1]; j1 > 0; ) {
+							if ( j1 < bsize ) {
+								S1 = j1;
+								j1 = 0;
+							} else {
+								S1 = bsize;
+								j1 -= bsize;
+							}
+							dx2 = sx[2] - ( S1*sx[1] );
+							dy2 = sy[2] - ( S1*sy[1] );
+							ox1 = ox2 + ( j1*sx[1] );
+							oy1 = oy2 + ( j1*sy[1] );
+							for ( j0 = sh[0]; j0 > 0; ) {
+								if ( j0 < bsize ) {
+									S0 = j0;
+									j0 = 0;
+								} else {
+									S0 = bsize;
+									j0 -= bsize;
+								}
+								// Compute index offsets for the first input and output ndarray elements in the current block...
+								ix = ox1 + ( j0*sx[0] );
+								iy = oy1 + ( j0*sy[0] );
+
+								// Compute loop offset increments...
+								dx1 = sx[1] - ( S0*sx[0] );
+								dy1 = sy[1] - ( S0*sy[0] );
+
+								// Iterate over the ndarray dimensions...
+								for ( i6 = 0; i6 < S6; i6++ ) {
+									for ( i5 = 0; i5 < S5; i5++ ) {
+										for ( i4 = 0; i4 < S4; i4++ ) {
+											for ( i3 = 0; i3 < S3; i3++ ) {
+												for ( i2 = 0; i2 < S2; i2++ ) {
+													for ( i1 = 0; i1 < S1; i1++ ) {
+														for ( i0 = 0; i0 < S0; i0++ ) {
+															set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ) );
+															ix += dx0;
+															iy += dy0;
+														}
+														ix += dx1;
+														iy += dy1;
+													}
+													ix += dx2;
+													iy += dy2;
+												}
+												ix += dx3;
+												iy += dy3;
+											}
+											ix += dx4;
+											iy += dy4;
+										}
+										ix += dx5;
+										iy += dy5;
+									}
+									ix += dx6;
+									iy += dy6;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap7d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],590:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in an eight-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 12, 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 6, 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map8d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function map8d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 7 ];
+		S1 = sh[ 6 ];
+		S2 = sh[ 5 ];
+		S3 = sh[ 4 ];
+		S4 = sh[ 3 ];
+		S5 = sh[ 2 ];
+		S6 = sh[ 1 ];
+		S7 = sh[ 0 ];
+		dx0 = sx[ 7 ];                // offset increment for innermost loop
+		dx1 = sx[ 6 ] - ( S0*sx[7] );
+		dx2 = sx[ 5 ] - ( S1*sx[6] );
+		dx3 = sx[ 4 ] - ( S2*sx[5] );
+		dx4 = sx[ 3 ] - ( S3*sx[4] );
+		dx5 = sx[ 2 ] - ( S4*sx[3] );
+		dx6 = sx[ 1 ] - ( S5*sx[2] );
+		dx7 = sx[ 0 ] - ( S6*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 7 ];
+		dy1 = sy[ 6 ] - ( S0*sy[7] );
+		dy2 = sy[ 5 ] - ( S1*sy[6] );
+		dy3 = sy[ 4 ] - ( S2*sy[5] );
+		dy4 = sy[ 3 ] - ( S3*sy[4] );
+		dy5 = sy[ 2 ] - ( S4*sy[3] );
+		dy6 = sy[ 1 ] - ( S5*sy[2] );
+		dy7 = sy[ 0 ] - ( S6*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 5 ];
+		S6 = sh[ 6 ];
+		S7 = sh[ 7 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] );
+		dx5 = sx[ 5 ] - ( S4*sx[4] );
+		dx6 = sx[ 6 ] - ( S5*sx[5] );
+		dx7 = sx[ 7 ] - ( S6*sx[6] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		dy5 = sy[ 5 ] - ( S4*sy[4] );
+		dy6 = sy[ 6 ] - ( S5*sy[5] );
+		dy7 = sy[ 7 ] - ( S6*sy[6] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Iterate over the ndarray dimensions...
+	for ( i7 = 0; i7 < S7; i7++ ) {
+		for ( i6 = 0; i6 < S6; i6++ ) {
+			for ( i5 = 0; i5 < S5; i5++ ) {
+				for ( i4 = 0; i4 < S4; i4++ ) {
+					for ( i3 = 0; i3 < S3; i3++ ) {
+						for ( i2 = 0; i2 < S2; i2++ ) {
+							for ( i1 = 0; i1 < S1; i1++ ) {
+								for ( i0 = 0; i0 < S0; i0++ ) {
+									ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+									ix += dx0;
+									iy += dy0;
+								}
+								ix += dx1;
+								iy += dy1;
+							}
+							ix += dx2;
+							iy += dy2;
+						}
+						ix += dx3;
+						iy += dy3;
+					}
+					ix += dx4;
+					iy += dy4;
+				}
+				ix += dx5;
+				iy += dy5;
+			}
+			ix += dx6;
+			iy += dy6;
+		}
+		ix += dx7;
+		iy += dy7;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map8d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],591:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in an eight-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* map8d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function map8d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 7 ];
+		S1 = sh[ 6 ];
+		S2 = sh[ 5 ];
+		S3 = sh[ 4 ];
+		S4 = sh[ 3 ];
+		S5 = sh[ 2 ];
+		S6 = sh[ 1 ];
+		S7 = sh[ 0 ];
+		dx0 = sx[ 7 ];                // offset increment for innermost loop
+		dx1 = sx[ 6 ] - ( S0*sx[7] );
+		dx2 = sx[ 5 ] - ( S1*sx[6] );
+		dx3 = sx[ 4 ] - ( S2*sx[5] );
+		dx4 = sx[ 3 ] - ( S3*sx[4] );
+		dx5 = sx[ 2 ] - ( S4*sx[3] );
+		dx6 = sx[ 1 ] - ( S5*sx[2] );
+		dx7 = sx[ 0 ] - ( S6*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 7 ];
+		dy1 = sy[ 6 ] - ( S0*sy[7] );
+		dy2 = sy[ 5 ] - ( S1*sy[6] );
+		dy3 = sy[ 4 ] - ( S2*sy[5] );
+		dy4 = sy[ 3 ] - ( S3*sy[4] );
+		dy5 = sy[ 2 ] - ( S4*sy[3] );
+		dy6 = sy[ 1 ] - ( S5*sy[2] );
+		dy7 = sy[ 0 ] - ( S6*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 5 ];
+		S6 = sh[ 6 ];
+		S7 = sh[ 7 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] );
+		dx5 = sx[ 5 ] - ( S4*sx[4] );
+		dx6 = sx[ 6 ] - ( S5*sx[5] );
+		dx7 = sx[ 7 ] - ( S6*sx[6] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		dy5 = sy[ 5 ] - ( S4*sy[4] );
+		dy6 = sy[ 6 ] - ( S5*sy[5] );
+		dy7 = sy[ 7 ] - ( S6*sy[6] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache accessors:
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
+
+	// Iterate over the ndarray dimensions...
+	for ( i7 = 0; i7 < S7; i7++ ) {
+		for ( i6 = 0; i6 < S6; i6++ ) {
+			for ( i5 = 0; i5 < S5; i5++ ) {
+				for ( i4 = 0; i4 < S4; i4++ ) {
+					for ( i3 = 0; i3 < S3; i3++ ) {
+						for ( i2 = 0; i2 < S2; i2++ ) {
+							for ( i1 = 0; i1 < S1; i1++ ) {
+								for ( i0 = 0; i0 < S0; i0++ ) {
+									set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+									ix += dx0;
+									iy += dy0;
+								}
+								ix += dx1;
+								iy += dy1;
+							}
+							ix += dx2;
+							iy += dy2;
+						}
+						ix += dx3;
+						iy += dy3;
+					}
+					ix += dx4;
+					iy += dy4;
+				}
+				ix += dx5;
+				iy += dy5;
+			}
+			ix += dx6;
+			iy += dy6;
+		}
+		ix += dx7;
+		iy += dy7;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map8d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],592:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth, max-len */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in an eight-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 12, 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 6, 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* blockedmap8d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function blockedmap8d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements, max-lines-per-function
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var ox5;
+	var ox6;
+	var ox7;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var oy5;
+	var oy6;
+	var oy7;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var j5;
+	var j6;
+	var j7;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Iterate over blocks...
+	for ( j7 = sh[7]; j7 > 0; ) {
+		if ( j7 < bsize ) {
+			S7 = j7;
+			j7 = 0;
+		} else {
+			S7 = bsize;
+			j7 -= bsize;
+		}
+		ox7 = ox + ( j7*sx[7] );
+		oy7 = oy + ( j7*sy[7] );
+		for ( j6 = sh[6]; j6 > 0; ) {
+			if ( j6 < bsize ) {
+				S6 = j6;
+				j6 = 0;
+			} else {
+				S6 = bsize;
+				j6 -= bsize;
+			}
+			dx7 = sx[7] - ( S6*sx[6] );
+			dy7 = sy[7] - ( S6*sy[6] );
+			ox6 = ox7 + ( j6*sx[6] );
+			oy6 = oy7 + ( j6*sy[6] );
+			for ( j5 = sh[5]; j5 > 0; ) {
+				if ( j5 < bsize ) {
+					S5 = j5;
+					j5 = 0;
+				} else {
+					S5 = bsize;
+					j5 -= bsize;
+				}
+				dx6 = sx[6] - ( S5*sx[5] );
+				dy6 = sy[6] - ( S5*sy[5] );
+				ox5 = ox6 + ( j5*sx[5] );
+				oy5 = oy6 + ( j5*sy[5] );
+				for ( j4 = sh[4]; j4 > 0; ) {
+					if ( j4 < bsize ) {
+						S4 = j4;
+						j4 = 0;
+					} else {
+						S4 = bsize;
+						j4 -= bsize;
+					}
+					dx5 = sx[5] - ( S4*sx[4] );
+					dy5 = sy[5] - ( S4*sy[4] );
+					ox4 = ox5 + ( j4*sx[4] );
+					oy4 = oy5 + ( j4*sy[4] );
+					for ( j3 = sh[3]; j3 > 0; ) {
+						if ( j3 < bsize ) {
+							S3 = j3;
+							j3 = 0;
+						} else {
+							S3 = bsize;
+							j3 -= bsize;
+						}
+						dx4 = sx[4] - ( S3*sx[3] );
+						dy4 = sy[4] - ( S3*sy[3] );
+						ox3 = ox4 + ( j3*sx[3] );
+						oy3 = oy4 + ( j3*sy[3] );
+						for ( j2 = sh[2]; j2 > 0; ) {
+							if ( j2 < bsize ) {
+								S2 = j2;
+								j2 = 0;
+							} else {
+								S2 = bsize;
+								j2 -= bsize;
+							}
+							dx3 = sx[3] - ( S2*sx[2] );
+							dy3 = sy[3] - ( S2*sy[2] );
+							ox2 = ox3 + ( j2*sx[2] );
+							oy2 = oy3 + ( j2*sy[2] );
+							for ( j1 = sh[1]; j1 > 0; ) {
+								if ( j1 < bsize ) {
+									S1 = j1;
+									j1 = 0;
+								} else {
+									S1 = bsize;
+									j1 -= bsize;
+								}
+								dx2 = sx[2] - ( S1*sx[1] );
+								dy2 = sy[2] - ( S1*sy[1] );
+								ox1 = ox2 + ( j1*sx[1] );
+								oy1 = oy2 + ( j1*sy[1] );
+								for ( j0 = sh[0]; j0 > 0; ) {
+									if ( j0 < bsize ) {
+										S0 = j0;
+										j0 = 0;
+									} else {
+										S0 = bsize;
+										j0 -= bsize;
+									}
+									// Compute index offsets for the first input and output ndarray elements in the current block...
+									ix = ox1 + ( j0*sx[0] );
+									iy = oy1 + ( j0*sy[0] );
+
+									// Compute loop offset increments...
+									dx1 = sx[1] - ( S0*sx[0] );
+									dy1 = sy[1] - ( S0*sy[0] );
+
+									// Iterate over the ndarray dimensions...
+									for ( i7 = 0; i7 < S7; i7++ ) {
+										for ( i6 = 0; i6 < S6; i6++ ) {
+											for ( i5 = 0; i5 < S5; i5++ ) {
+												for ( i4 = 0; i4 < S4; i4++ ) {
+													for ( i3 = 0; i3 < S3; i3++ ) {
+														for ( i2 = 0; i2 < S2; i2++ ) {
+															for ( i1 = 0; i1 < S1; i1++ ) {
+																for ( i0 = 0; i0 < S0; i0++ ) {
+																	ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref );
+																	ix += dx0;
+																	iy += dy0;
+																}
+																ix += dx1;
+																iy += dy1;
+															}
+															ix += dx2;
+															iy += dy2;
+														}
+														ix += dx3;
+														iy += dy3;
+													}
+													ix += dx4;
+													iy += dy4;
+												}
+												ix += dx5;
+												iy += dy5;
+											}
+											ix += dx6;
+											iy += dy6;
+										}
+										ix += dx7;
+										iy += dy7;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap8d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],593:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth, max-len */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in an eight-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* blockedmap8d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function blockedmap8d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements, max-lines-per-function
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var ox5;
+	var ox6;
+	var ox7;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var oy5;
+	var oy6;
+	var oy7;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var j5;
+	var j6;
+	var j7;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Cache accessors:
+	get = x.accessors[0];
+	set = y.accessors[1];
+
+	// Iterate over blocks...
+	for ( j7 = sh[7]; j7 > 0; ) {
+		if ( j7 < bsize ) {
+			S7 = j7;
+			j7 = 0;
+		} else {
+			S7 = bsize;
+			j7 -= bsize;
+		}
+		ox7 = ox + ( j7*sx[7] );
+		oy7 = oy + ( j7*sy[7] );
+		for ( j6 = sh[6]; j6 > 0; ) {
+			if ( j6 < bsize ) {
+				S6 = j6;
+				j6 = 0;
+			} else {
+				S6 = bsize;
+				j6 -= bsize;
+			}
+			dx7 = sx[7] - ( S6*sx[6] );
+			dy7 = sy[7] - ( S6*sy[6] );
+			ox6 = ox7 + ( j6*sx[6] );
+			oy6 = oy7 + ( j6*sy[6] );
+			for ( j5 = sh[5]; j5 > 0; ) {
+				if ( j5 < bsize ) {
+					S5 = j5;
+					j5 = 0;
+				} else {
+					S5 = bsize;
+					j5 -= bsize;
+				}
+				dx6 = sx[6] - ( S5*sx[5] );
+				dy6 = sy[6] - ( S5*sy[5] );
+				ox5 = ox6 + ( j5*sx[5] );
+				oy5 = oy6 + ( j5*sy[5] );
+				for ( j4 = sh[4]; j4 > 0; ) {
+					if ( j4 < bsize ) {
+						S4 = j4;
+						j4 = 0;
+					} else {
+						S4 = bsize;
+						j4 -= bsize;
+					}
+					dx5 = sx[5] - ( S4*sx[4] );
+					dy5 = sy[5] - ( S4*sy[4] );
+					ox4 = ox5 + ( j4*sx[4] );
+					oy4 = oy5 + ( j4*sy[4] );
+					for ( j3 = sh[3]; j3 > 0; ) {
+						if ( j3 < bsize ) {
+							S3 = j3;
+							j3 = 0;
+						} else {
+							S3 = bsize;
+							j3 -= bsize;
+						}
+						dx4 = sx[4] - ( S3*sx[3] );
+						dy4 = sy[4] - ( S3*sy[3] );
+						ox3 = ox4 + ( j3*sx[3] );
+						oy3 = oy4 + ( j3*sy[3] );
+						for ( j2 = sh[2]; j2 > 0; ) {
+							if ( j2 < bsize ) {
+								S2 = j2;
+								j2 = 0;
+							} else {
+								S2 = bsize;
+								j2 -= bsize;
+							}
+							dx3 = sx[3] - ( S2*sx[2] );
+							dy3 = sy[3] - ( S2*sy[2] );
+							ox2 = ox3 + ( j2*sx[2] );
+							oy2 = oy3 + ( j2*sy[2] );
+							for ( j1 = sh[1]; j1 > 0; ) {
+								if ( j1 < bsize ) {
+									S1 = j1;
+									j1 = 0;
+								} else {
+									S1 = bsize;
+									j1 -= bsize;
+								}
+								dx2 = sx[2] - ( S1*sx[1] );
+								dy2 = sy[2] - ( S1*sy[1] );
+								ox1 = ox2 + ( j1*sx[1] );
+								oy1 = oy2 + ( j1*sy[1] );
+								for ( j0 = sh[0]; j0 > 0; ) {
+									if ( j0 < bsize ) {
+										S0 = j0;
+										j0 = 0;
+									} else {
+										S0 = bsize;
+										j0 -= bsize;
+									}
+									// Compute index offsets for the first input and output ndarray elements in the current block...
+									ix = ox1 + ( j0*sx[0] );
+									iy = oy1 + ( j0*sy[0] );
+
+									// Compute loop offset increments...
+									dx1 = sx[1] - ( S0*sx[0] );
+									dy1 = sy[1] - ( S0*sy[0] );
+
+									// Iterate over the ndarray dimensions...
+									for ( i7 = 0; i7 < S7; i7++ ) {
+										for ( i6 = 0; i6 < S6; i6++ ) {
+											for ( i5 = 0; i5 < S5; i5++ ) {
+												for ( i4 = 0; i4 < S4; i4++ ) {
+													for ( i3 = 0; i3 < S3; i3++ ) {
+														for ( i2 = 0; i2 < S2; i2++ ) {
+															for ( i1 = 0; i1 < S1; i1++ ) {
+																for ( i0 = 0; i0 < S0; i0++ ) {
+																	set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ) );
+																	ix += dx0;
+																	iy += dy0;
+																}
+																ix += dx1;
+																iy += dy1;
+															}
+															ix += dx2;
+															iy += dy2;
+														}
+														ix += dx3;
+														iy += dy3;
+													}
+													ix += dx4;
+													iy += dy4;
+												}
+												ix += dx5;
+												iy += dy5;
+											}
+											ix += dx6;
+											iy += dy6;
+										}
+										ix += dx7;
+										iy += dy7;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap8d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],594:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a nine-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 12, 12, 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 6, 6, 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map9d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function map9d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dx8;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var dy8;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var S8;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+	var i8;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 8 ];
+		S1 = sh[ 7 ];
+		S2 = sh[ 6 ];
+		S3 = sh[ 5 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 3 ];
+		S6 = sh[ 2 ];
+		S7 = sh[ 1 ];
+		S8 = sh[ 0 ];
+		dx0 = sx[ 8 ];                // offset increment for innermost loop
+		dx1 = sx[ 7 ] - ( S0*sx[8] );
+		dx2 = sx[ 6 ] - ( S1*sx[7] );
+		dx3 = sx[ 5 ] - ( S2*sx[6] );
+		dx4 = sx[ 4 ] - ( S3*sx[5] );
+		dx5 = sx[ 3 ] - ( S4*sx[4] );
+		dx6 = sx[ 2 ] - ( S5*sx[3] );
+		dx7 = sx[ 1 ] - ( S6*sx[2] );
+		dx8 = sx[ 0 ] - ( S7*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 8 ];
+		dy1 = sy[ 7 ] - ( S0*sy[8] );
+		dy2 = sy[ 6 ] - ( S1*sy[7] );
+		dy3 = sy[ 5 ] - ( S2*sy[6] );
+		dy4 = sy[ 4 ] - ( S3*sy[5] );
+		dy5 = sy[ 3 ] - ( S4*sy[4] );
+		dy6 = sy[ 2 ] - ( S5*sy[3] );
+		dy7 = sy[ 1 ] - ( S6*sy[2] );
+		dy8 = sy[ 0 ] - ( S7*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 5 ];
+		S6 = sh[ 6 ];
+		S7 = sh[ 7 ];
+		S8 = sh[ 8 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] );
+		dx5 = sx[ 5 ] - ( S4*sx[4] );
+		dx6 = sx[ 6 ] - ( S5*sx[5] );
+		dx7 = sx[ 7 ] - ( S6*sx[6] );
+		dx8 = sx[ 8 ] - ( S7*sx[7] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		dy5 = sy[ 5 ] - ( S4*sy[4] );
+		dy6 = sy[ 6 ] - ( S5*sy[5] );
+		dy7 = sy[ 7 ] - ( S6*sy[6] );
+		dy8 = sy[ 8 ] - ( S7*sy[7] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Iterate over the ndarray dimensions...
+	for ( i8 = 0; i8 < S8; i8++ ) {
+		for ( i7 = 0; i7 < S7; i7++ ) {
+			for ( i6 = 0; i6 < S6; i6++ ) {
+				for ( i5 = 0; i5 < S5; i5++ ) {
+					for ( i4 = 0; i4 < S4; i4++ ) {
+						for ( i3 = 0; i3 < S3; i3++ ) {
+							for ( i2 = 0; i2 < S2; i2++ ) {
+								for ( i1 = 0; i1 < S1; i1++ ) {
+									for ( i0 = 0; i0 < S0; i0++ ) {
+										ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i8, i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ); // eslint-disable-line max-len
+										ix += dx0;
+										iy += dy0;
+									}
+									ix += dx1;
+									iy += dy1;
+								}
+								ix += dx2;
+								iy += dy2;
+							}
+							ix += dx3;
+							iy += dy3;
+						}
+						ix += dx4;
+						iy += dy4;
+					}
+					ix += dx5;
+					iy += dy5;
+				}
+				ix += dx6;
+				iy += dy6;
+			}
+			ix += dx7;
+			iy += dy7;
+		}
+		ix += dx8;
+		iy += dy8;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map9d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],595:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth */
+
+'use strict';
+
+// MODULES //
+
+var zeroTo = require( '@stdlib/array/base/zero-to' );
+var reverse = require( '@stdlib/array/base/reverse' );
+var take = require( '@stdlib/array/base/take-indexed' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a nine-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* map9d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function map9d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dx8;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var dy8;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var S8;
+	var sx;
+	var sy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+	var i8;
+
+	// Note on variable naming convention: S#, dx#, dy#, i# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Extract loop variables for purposes of loop interchange: dimensions and loop offset (pointer) increments...
+	sh = x.shape;
+	sx = x.strides;
+	sy = y.strides;
+	idx = zeroTo( sh.length );
+	if ( x.order === 'row-major' ) {
+		// For row-major ndarrays, the last dimensions have the fastest changing indices...
+		S0 = sh[ 8 ];
+		S1 = sh[ 7 ];
+		S2 = sh[ 6 ];
+		S3 = sh[ 5 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 3 ];
+		S6 = sh[ 2 ];
+		S7 = sh[ 1 ];
+		S8 = sh[ 0 ];
+		dx0 = sx[ 8 ];                // offset increment for innermost loop
+		dx1 = sx[ 7 ] - ( S0*sx[8] );
+		dx2 = sx[ 6 ] - ( S1*sx[7] );
+		dx3 = sx[ 5 ] - ( S2*sx[6] );
+		dx4 = sx[ 4 ] - ( S3*sx[5] );
+		dx5 = sx[ 3 ] - ( S4*sx[4] );
+		dx6 = sx[ 2 ] - ( S5*sx[3] );
+		dx7 = sx[ 1 ] - ( S6*sx[2] );
+		dx8 = sx[ 0 ] - ( S7*sx[1] ); // offset increment for outermost loop
+		dy0 = sy[ 8 ];
+		dy1 = sy[ 7 ] - ( S0*sy[8] );
+		dy2 = sy[ 6 ] - ( S1*sy[7] );
+		dy3 = sy[ 5 ] - ( S2*sy[6] );
+		dy4 = sy[ 4 ] - ( S3*sy[5] );
+		dy5 = sy[ 3 ] - ( S4*sy[4] );
+		dy6 = sy[ 2 ] - ( S5*sy[3] );
+		dy7 = sy[ 1 ] - ( S6*sy[2] );
+		dy8 = sy[ 0 ] - ( S7*sy[1] );
+	} else { // order === 'column-major'
+		// For column-major ndarrays, the first dimensions have the fastest changing indices...
+		S0 = sh[ 0 ];
+		S1 = sh[ 1 ];
+		S2 = sh[ 2 ];
+		S3 = sh[ 3 ];
+		S4 = sh[ 4 ];
+		S5 = sh[ 5 ];
+		S6 = sh[ 6 ];
+		S7 = sh[ 7 ];
+		S8 = sh[ 8 ];
+		dx0 = sx[ 0 ];                // offset increment for innermost loop
+		dx1 = sx[ 1 ] - ( S0*sx[0] );
+		dx2 = sx[ 2 ] - ( S1*sx[1] );
+		dx3 = sx[ 3 ] - ( S2*sx[2] );
+		dx4 = sx[ 4 ] - ( S3*sx[3] );
+		dx5 = sx[ 5 ] - ( S4*sx[4] );
+		dx6 = sx[ 6 ] - ( S5*sx[5] );
+		dx7 = sx[ 7 ] - ( S6*sx[6] );
+		dx8 = sx[ 8 ] - ( S7*sx[7] ); // offset increment for outermost loop
+		dy0 = sy[ 0 ];
+		dy1 = sy[ 1 ] - ( S0*sy[0] );
+		dy2 = sy[ 2 ] - ( S1*sy[1] );
+		dy3 = sy[ 3 ] - ( S2*sy[2] );
+		dy4 = sy[ 4 ] - ( S3*sy[3] );
+		dy5 = sy[ 5 ] - ( S4*sy[4] );
+		dy6 = sy[ 6 ] - ( S5*sy[5] );
+		dy7 = sy[ 7 ] - ( S6*sy[6] );
+		dy8 = sy[ 8 ] - ( S7*sy[7] );
+		idx = reverse( idx );
+	}
+	// Set the pointers to the first indexed elements in the respective ndarrays...
+	ix = x.offset;
+	iy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache accessors:
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
+
+	// Iterate over the ndarray dimensions...
+	for ( i8 = 0; i8 < S8; i8++ ) {
+		for ( i7 = 0; i7 < S7; i7++ ) {
+			for ( i6 = 0; i6 < S6; i6++ ) {
+				for ( i5 = 0; i5 < S5; i5++ ) {
+					for ( i4 = 0; i4 < S4; i4++ ) {
+						for ( i3 = 0; i3 < S3; i3++ ) {
+							for ( i2 = 0; i2 < S2; i2++ ) {
+								for ( i1 = 0; i1 < S1; i1++ ) {
+									for ( i0 = 0; i0 < S0; i0++ ) {
+										set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i8, i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ) ); // eslint-disable-line max-len
+										ix += dx0;
+										iy += dy0;
+									}
+									ix += dx1;
+									iy += dy1;
+								}
+								ix += dx2;
+								iy += dy2;
+							}
+							ix += dx3;
+							iy += dy3;
+						}
+						ix += dx4;
+						iy += dy4;
+					}
+					ix += dx5;
+					iy += dy5;
+				}
+				ix += dx6;
+				iy += dy6;
+			}
+			ix += dx7;
+			iy += dy7;
+		}
+		ix += dx8;
+		iy += dy8;
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = map9d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],596:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth, max-len */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a nine-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 1, 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 12, 12, 12, 12, 12, 12, 4, 4, 1 ];
+* var sy = [ 6, 6, 6, 6, 6, 6, 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* blockedmap9d( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function blockedmap9d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements, max-lines-per-function
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dx8;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var dy8;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var ox5;
+	var ox6;
+	var ox7;
+	var ox8;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var oy5;
+	var oy6;
+	var oy7;
+	var oy8;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var S8;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+	var i8;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var j5;
+	var j6;
+	var j7;
+	var j8;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Iterate over blocks...
+	for ( j8 = sh[8]; j8 > 0; ) {
+		if ( j8 < bsize ) {
+			S8 = j8;
+			j8 = 0;
+		} else {
+			S8 = bsize;
+			j8 -= bsize;
+		}
+		ox8 = ox + ( j8*sx[8] );
+		oy8 = oy + ( j8*sy[8] );
+		for ( j7 = sh[7]; j7 > 0; ) {
+			if ( j7 < bsize ) {
+				S7 = j7;
+				j7 = 0;
+			} else {
+				S7 = bsize;
+				j7 -= bsize;
+			}
+			dx8 = sx[8] - ( S7*sx[7] );
+			dy8 = sy[8] - ( S7*sy[7] );
+			ox7 = ox8 + ( j7*sx[7] );
+			oy7 = oy8 + ( j7*sy[7] );
+			for ( j6 = sh[6]; j6 > 0; ) {
+				if ( j6 < bsize ) {
+					S6 = j6;
+					j6 = 0;
+				} else {
+					S6 = bsize;
+					j6 -= bsize;
+				}
+				dx7 = sx[7] - ( S6*sx[6] );
+				dy7 = sy[7] - ( S6*sy[6] );
+				ox6 = ox7 + ( j6*sx[6] );
+				oy6 = oy7 + ( j6*sy[6] );
+				for ( j5 = sh[5]; j5 > 0; ) {
+					if ( j5 < bsize ) {
+						S5 = j5;
+						j5 = 0;
+					} else {
+						S5 = bsize;
+						j5 -= bsize;
+					}
+					dx6 = sx[6] - ( S5*sx[5] );
+					dy6 = sy[6] - ( S5*sy[5] );
+					ox5 = ox6 + ( j5*sx[5] );
+					oy5 = oy6 + ( j5*sy[5] );
+					for ( j4 = sh[4]; j4 > 0; ) {
+						if ( j4 < bsize ) {
+							S4 = j4;
+							j4 = 0;
+						} else {
+							S4 = bsize;
+							j4 -= bsize;
+						}
+						dx5 = sx[5] - ( S4*sx[4] );
+						dy5 = sy[5] - ( S4*sy[4] );
+						ox4 = ox5 + ( j4*sx[4] );
+						oy4 = oy5 + ( j4*sy[4] );
+						for ( j3 = sh[3]; j3 > 0; ) {
+							if ( j3 < bsize ) {
+								S3 = j3;
+								j3 = 0;
+							} else {
+								S3 = bsize;
+								j3 -= bsize;
+							}
+							dx4 = sx[4] - ( S3*sx[3] );
+							dy4 = sy[4] - ( S3*sy[3] );
+							ox3 = ox4 + ( j3*sx[3] );
+							oy3 = oy4 + ( j3*sy[3] );
+							for ( j2 = sh[2]; j2 > 0; ) {
+								if ( j2 < bsize ) {
+									S2 = j2;
+									j2 = 0;
+								} else {
+									S2 = bsize;
+									j2 -= bsize;
+								}
+								dx3 = sx[3] - ( S2*sx[2] );
+								dy3 = sy[3] - ( S2*sy[2] );
+								ox2 = ox3 + ( j2*sx[2] );
+								oy2 = oy3 + ( j2*sy[2] );
+								for ( j1 = sh[1]; j1 > 0; ) {
+									if ( j1 < bsize ) {
+										S1 = j1;
+										j1 = 0;
+									} else {
+										S1 = bsize;
+										j1 -= bsize;
+									}
+									dx2 = sx[2] - ( S1*sx[1] );
+									dy2 = sy[2] - ( S1*sy[1] );
+									ox1 = ox2 + ( j1*sx[1] );
+									oy1 = oy2 + ( j1*sy[1] );
+									for ( j0 = sh[0]; j0 > 0; ) {
+										if ( j0 < bsize ) {
+											S0 = j0;
+											j0 = 0;
+										} else {
+											S0 = bsize;
+											j0 -= bsize;
+										}
+										// Compute index offsets for the first input and output ndarray elements in the current block...
+										ix = ox1 + ( j0*sx[0] );
+										iy = oy1 + ( j0*sy[0] );
+
+										// Compute loop offset increments...
+										dx1 = sx[1] - ( S0*sx[0] );
+										dy1 = sy[1] - ( S0*sy[0] );
+
+										// Iterate over the ndarray dimensions...
+										for ( i8 = 0; i8 < S8; i8++ ) {
+											for ( i7 = 0; i7 < S7; i7++ ) {
+												for ( i6 = 0; i6 < S6; i6++ ) {
+													for ( i5 = 0; i5 < S5; i5++ ) {
+														for ( i4 = 0; i4 < S4; i4++ ) {
+															for ( i3 = 0; i3 < S3; i3++ ) {
+																for ( i2 = 0; i2 < S2; i2++ ) {
+																	for ( i1 = 0; i1 < S1; i1++ ) {
+																		for ( i0 = 0; i0 < S0; i0++ ) {
+																			ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], take( [ i8, i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref );
+																			ix += dx0;
+																			iy += dy0;
+																		}
+																		ix += dx1;
+																		iy += dy1;
+																	}
+																	ix += dx2;
+																	iy += dy2;
+																}
+																ix += dx3;
+																iy += dy3;
+															}
+															ix += dx4;
+															iy += dy4;
+														}
+														ix += dx5;
+														iy += dy5;
+													}
+													ix += dx6;
+													iy += dy6;
+												}
+												ix += dx7;
+												iy += dy7;
+											}
+											ix += dx8;
+											iy += dy8;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap9d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],597:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+/* eslint-disable max-depth, max-len */
+
+'use strict';
+
+// MODULES //
+
+var loopOrder = require( '@stdlib/ndarray/base/unary-loop-interchange-order' );
+var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
+var take = require( '@stdlib/array/base/take-indexed' );
+var reverse = require( '@stdlib/array/base/reverse' );
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in a nine-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray via loop blocking.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 1, 1, 1, 1, 1, 1, 1, 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+* var sy = [ 4, 4, 4, 4, 4, 4, 4, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* blockedmap9d( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function blockedmap9d( x, y, fcn, thisArg ) { // eslint-disable-line max-statements, max-lines-per-function
+	var bsize;
+	var xbuf;
+	var ybuf;
+	var get;
+	var set;
+	var dx0;
+	var dx1;
+	var dx2;
+	var dx3;
+	var dx4;
+	var dx5;
+	var dx6;
+	var dx7;
+	var dx8;
+	var dy0;
+	var dy1;
+	var dy2;
+	var dy3;
+	var dy4;
+	var dy5;
+	var dy6;
+	var dy7;
+	var dy8;
+	var ox1;
+	var ox2;
+	var ox3;
+	var ox4;
+	var ox5;
+	var ox6;
+	var ox7;
+	var ox8;
+	var oy1;
+	var oy2;
+	var oy3;
+	var oy4;
+	var oy5;
+	var oy6;
+	var oy7;
+	var oy8;
+	var idx;
+	var sh;
+	var S0;
+	var S1;
+	var S2;
+	var S3;
+	var S4;
+	var S5;
+	var S6;
+	var S7;
+	var S8;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i0;
+	var i1;
+	var i2;
+	var i3;
+	var i4;
+	var i5;
+	var i6;
+	var i7;
+	var i8;
+	var j0;
+	var j1;
+	var j2;
+	var j3;
+	var j4;
+	var j5;
+	var j6;
+	var j7;
+	var j8;
+	var o;
+
+	// Note on variable naming convention: s#, dx#, dy#, i#, j# where # corresponds to the loop number, with `0` being the innermost loop...
+
+	// Resolve the loop interchange order:
+	o = loopOrder( x.shape, x.strides, y.strides );
+	sh = o.sh;
+	sx = o.sx;
+	sy = o.sy;
+	idx = reverse( o.idx );
+
+	// Determine the block size:
+	bsize = blockSize( x.dtype, y.dtype );
+
+	// Cache the indices of the first indexed elements in the respective ndarrays...
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache references to the input and output ndarray buffers...
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache offset increments for the innermost loop...
+	dx0 = sx[0];
+	dy0 = sy[0];
+
+	// Cache accessors:
+	get = x.accessors[0];
+	set = y.accessors[1];
+
+	// Iterate over blocks...
+	for ( j8 = sh[8]; j8 > 0; ) {
+		if ( j8 < bsize ) {
+			S8 = j8;
+			j8 = 0;
+		} else {
+			S8 = bsize;
+			j8 -= bsize;
+		}
+		ox8 = ox + ( j8*sx[8] );
+		oy8 = oy + ( j8*sy[8] );
+		for ( j7 = sh[7]; j7 > 0; ) {
+			if ( j7 < bsize ) {
+				S7 = j7;
+				j7 = 0;
+			} else {
+				S7 = bsize;
+				j7 -= bsize;
+			}
+			dx8 = sx[8] - ( S7*sx[7] );
+			dy8 = sy[8] - ( S7*sy[7] );
+			ox7 = ox8 + ( j7*sx[7] );
+			oy7 = oy8 + ( j7*sy[7] );
+			for ( j6 = sh[6]; j6 > 0; ) {
+				if ( j6 < bsize ) {
+					S6 = j6;
+					j6 = 0;
+				} else {
+					S6 = bsize;
+					j6 -= bsize;
+				}
+				dx7 = sx[7] - ( S6*sx[6] );
+				dy7 = sy[7] - ( S6*sy[6] );
+				ox6 = ox7 + ( j6*sx[6] );
+				oy6 = oy7 + ( j6*sy[6] );
+				for ( j5 = sh[5]; j5 > 0; ) {
+					if ( j5 < bsize ) {
+						S5 = j5;
+						j5 = 0;
+					} else {
+						S5 = bsize;
+						j5 -= bsize;
+					}
+					dx6 = sx[6] - ( S5*sx[5] );
+					dy6 = sy[6] - ( S5*sy[5] );
+					ox5 = ox6 + ( j5*sx[5] );
+					oy5 = oy6 + ( j5*sy[5] );
+					for ( j4 = sh[4]; j4 > 0; ) {
+						if ( j4 < bsize ) {
+							S4 = j4;
+							j4 = 0;
+						} else {
+							S4 = bsize;
+							j4 -= bsize;
+						}
+						dx5 = sx[5] - ( S4*sx[4] );
+						dy5 = sy[5] - ( S4*sy[4] );
+						ox4 = ox5 + ( j4*sx[4] );
+						oy4 = oy5 + ( j4*sy[4] );
+						for ( j3 = sh[3]; j3 > 0; ) {
+							if ( j3 < bsize ) {
+								S3 = j3;
+								j3 = 0;
+							} else {
+								S3 = bsize;
+								j3 -= bsize;
+							}
+							dx4 = sx[4] - ( S3*sx[3] );
+							dy4 = sy[4] - ( S3*sy[3] );
+							ox3 = ox4 + ( j3*sx[3] );
+							oy3 = oy4 + ( j3*sy[3] );
+							for ( j2 = sh[2]; j2 > 0; ) {
+								if ( j2 < bsize ) {
+									S2 = j2;
+									j2 = 0;
+								} else {
+									S2 = bsize;
+									j2 -= bsize;
+								}
+								dx3 = sx[3] - ( S2*sx[2] );
+								dy3 = sy[3] - ( S2*sy[2] );
+								ox2 = ox3 + ( j2*sx[2] );
+								oy2 = oy3 + ( j2*sy[2] );
+								for ( j1 = sh[1]; j1 > 0; ) {
+									if ( j1 < bsize ) {
+										S1 = j1;
+										j1 = 0;
+									} else {
+										S1 = bsize;
+										j1 -= bsize;
+									}
+									dx2 = sx[2] - ( S1*sx[1] );
+									dy2 = sy[2] - ( S1*sy[1] );
+									ox1 = ox2 + ( j1*sx[1] );
+									oy1 = oy2 + ( j1*sy[1] );
+									for ( j0 = sh[0]; j0 > 0; ) {
+										if ( j0 < bsize ) {
+											S0 = j0;
+											j0 = 0;
+										} else {
+											S0 = bsize;
+											j0 -= bsize;
+										}
+										// Compute index offsets for the first input and output ndarray elements in the current block...
+										ix = ox1 + ( j0*sx[0] );
+										iy = oy1 + ( j0*sy[0] );
+
+										// Compute loop offset increments...
+										dx1 = sx[1] - ( S0*sx[0] );
+										dy1 = sy[1] - ( S0*sy[0] );
+
+										// Iterate over the ndarray dimensions...
+										for ( i8 = 0; i8 < S8; i8++ ) {
+											for ( i7 = 0; i7 < S7; i7++ ) {
+												for ( i6 = 0; i6 < S6; i6++ ) {
+													for ( i5 = 0; i5 < S5; i5++ ) {
+														for ( i4 = 0; i4 < S4; i4++ ) {
+															for ( i3 = 0; i3 < S3; i3++ ) {
+																for ( i2 = 0; i2 < S2; i2++ ) {
+																	for ( i1 = 0; i1 < S1; i1++ ) {
+																		for ( i0 = 0; i0 < S0; i0++ ) {
+																			set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), take( [ i8, i7, i6, i5, i4, i3, i2, i1, i0 ], idx ), x.ref ) );
+																			ix += dx0;
+																			iy += dy0;
+																		}
+																		ix += dx1;
+																		iy += dy1;
+																	}
+																	ix += dx2;
+																	iy += dy2;
+																}
+																ix += dx3;
+																iy += dy3;
+															}
+															ix += dx4;
+															iy += dy4;
+														}
+														ix += dx5;
+														iy += dy5;
+													}
+													ix += dx6;
+													iy += dy6;
+												}
+												ix += dx7;
+												iy += dy7;
+											}
+											ix += dx8;
+											iy += dy8;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = blockedmap9d;
+
+},{"@stdlib/array/base/reverse":30,"@stdlib/array/base/take-indexed":34,"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],598:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Apply a callback function to the elements in an input ndarray and assign results to the elements in an output ndarray.
+*
+* @module @stdlib/ndarray/base/map
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+* var map = require( '@stdlib/ndarray/base/map' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 1 ];
+* var sy = [ 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map( [ x, y ], scale );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":599}],599:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var iterationOrder = require( '@stdlib/ndarray/base/iteration-order' );
+var ndarray2object = require( '@stdlib/ndarray/base/ndarraylike2object' );
+var blockedaccessormap2d = require( './2d_blocked_accessors.js' );
+var blockedaccessormap3d = require( './3d_blocked_accessors.js' );
+var blockedaccessormap4d = require( './4d_blocked_accessors.js' );
+var blockedaccessormap5d = require( './5d_blocked_accessors.js' );
+var blockedaccessormap6d = require( './6d_blocked_accessors.js' );
+var blockedaccessormap7d = require( './7d_blocked_accessors.js' );
+var blockedaccessormap8d = require( './8d_blocked_accessors.js' );
+var blockedaccessormap9d = require( './9d_blocked_accessors.js' );
+var blockedaccessormap10d = require( './10d_blocked_accessors.js' );
+var blockedmap2d = require( './2d_blocked.js' );
+var blockedmap3d = require( './3d_blocked.js' );
+var blockedmap4d = require( './4d_blocked.js' );
+var blockedmap5d = require( './5d_blocked.js' );
+var blockedmap6d = require( './6d_blocked.js' );
+var blockedmap7d = require( './7d_blocked.js' );
+var blockedmap8d = require( './8d_blocked.js' );
+var blockedmap9d = require( './9d_blocked.js' );
+var blockedmap10d = require( './10d_blocked.js' );
+var accessormap0d = require( './0d_accessors.js' );
+var accessormap1d = require( './1d_accessors.js' );
+var accessormap2d = require( './2d_accessors.js' );
+var accessormap3d = require( './3d_accessors.js' );
+var accessormap4d = require( './4d_accessors.js' );
+var accessormap5d = require( './5d_accessors.js' );
+var accessormap6d = require( './6d_accessors.js' );
+var accessormap7d = require( './7d_accessors.js' );
+var accessormap8d = require( './8d_accessors.js' );
+var accessormap9d = require( './9d_accessors.js' );
+var accessormap10d = require( './10d_accessors.js' );
+var accessormapnd = require( './nd_accessors.js' );
+var map0d = require( './0d.js' );
+var map1d = require( './1d.js' );
+var map2d = require( './2d.js' );
+var map3d = require( './3d.js' );
+var map4d = require( './4d.js' );
+var map5d = require( './5d.js' );
+var map6d = require( './6d.js' );
+var map7d = require( './7d.js' );
+var map8d = require( './8d.js' );
+var map9d = require( './9d.js' );
+var map10d = require( './10d.js' );
+var mapnd = require( './nd.js' );
+
+
+// VARIABLES //
+
+var MAP = [
+	map0d,
+	map1d,
+	map2d,
+	map3d,
+	map4d,
+	map5d,
+	map6d,
+	map7d,
+	map8d,
+	map9d,
+	map10d
+];
+var ACCESSOR_MAP = [
+	accessormap0d,
+	accessormap1d,
+	accessormap2d,
+	accessormap3d,
+	accessormap4d,
+	accessormap5d,
+	accessormap6d,
+	accessormap7d,
+	accessormap8d,
+	accessormap9d,
+	accessormap10d
+];
+var BLOCKED_MAP = [
+	blockedmap2d, // 0
+	blockedmap3d,
+	blockedmap4d,
+	blockedmap5d,
+	blockedmap6d,
+	blockedmap7d,
+	blockedmap8d,
+	blockedmap9d,
+	blockedmap10d // 8
+];
+var BLOCKED_ACCESSOR_MAP = [
+	blockedaccessormap2d, // 0
+	blockedaccessormap3d,
+	blockedaccessormap4d,
+	blockedaccessormap5d,
+	blockedaccessormap6d,
+	blockedaccessormap7d,
+	blockedaccessormap8d,
+	blockedaccessormap9d,
+	blockedaccessormap10d // 8
+];
+var MAX_DIMS = MAP.length -1;
+
+
+// MAIN //
+
+/**
+* Applies a callback function to the elements in an input ndarray and assigns results to the elements in an output ndarray.
+*
+* ## Notes
+*
+* -   Each provided ndarray should be an `object` with the following properties:
+*
+*     -   **dtype**: data type.
+*     -   **data**: data buffer.
+*     -   **shape**: dimensions.
+*     -   **strides**: stride lengths.
+*     -   **offset**: index offset.
+*     -   **order**: specifies whether an ndarray is row-major (C-style) or column major (Fortran-style).
+*
+* @param {ArrayLikeObject<Object>} arrays - array-like object containing one input array and one output array
+* @param {Callback} fcn - callback function
+* @param {*} [thisArg] - callback execution context
+* @throws {Error} arrays must have the same number of dimensions
+* @throws {Error} arrays must have the same shape
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( z ) {
+*     return z * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0 ] );
+* var ybuf = new Float64Array( 6 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 3, 1, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 4, 1 ];
+* var sy = [ 2, 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* map( [ x, y ], scale );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0, 100.0, 110.0 ]
+*/
+function map( arrays, fcn, thisArg ) {
+	var ndims;
+	var shx;
+	var shy;
+	var iox;
+	var ioy;
+	var len;
+	var x;
+	var y;
+	var i;
+	var d;
+
+	// Unpack the ndarrays and standardize ndarray meta data:
+	x = ndarray2object( arrays[ 0 ] );
+	y = ndarray2object( arrays[ 1 ] );
+
+	// Verify that the input and output arrays have the same number of dimensions...
+	shx = x.shape;
+	shy = y.shape;
+	ndims = shx.length;
+	if ( ndims !== shy.length ) {
+		throw new Error( 'invalid arguments. Arrays must have the same number of dimensions (i.e., same rank). ndims(x) == '+ndims+'. ndims(y) == '+shy.length+'.' );
+	}
+	// Determine whether we can avoid iteration altogether...
+	if ( ndims === 0 ) {
+		if ( x.accessorProtocol || y.accessorProtocol ) {
+			return ACCESSOR_MAP[ ndims ]( x, y, fcn, thisArg );
+		}
+		return MAP[ ndims ]( x, y, fcn, thisArg );
+	}
+	// Verify that the input and output arrays have the same dimensions...
+	len = 1; // number of elements
+	for ( i = 0; i < ndims; i++ ) {
+		d = shx[ i ];
+		if ( d !== shy[ i ] ) {
+			throw new Error( 'invalid arguments. Array must have the same shape.' );
+		}
+		// Note that, if one of the dimensions is `0`, the length will be `0`...
+		len *= d;
+	}
+	// Check whether we were provided empty ndarrays...
+	if ( len === 0 ) {
+		return;
+	}
+	// Determine whether the ndarrays are one-dimensional and thus readily translate to one-dimensional strided arrays...
+	if ( ndims === 1 ) {
+		if ( x.accessorProtocol || y.accessorProtocol ) {
+			return ACCESSOR_MAP[ ndims ]( x, y, fcn, thisArg );
+		}
+		return MAP[ ndims ]( x, y, fcn, thisArg );
+	}
+	// Determine iteration order:
+	iox = iterationOrder( x.strides ); // +/-1
+	ioy = iterationOrder( y.strides ); // +/-1
+
+	// Determine whether we can avoid blocked iteration...
+	if ( iox !== 0 && ioy !== 0 && iox === ioy ) {
+		// Determine whether we can use simple nested loops...
+		if ( ndims <= MAX_DIMS ) {
+			// So long as iteration for each respective array always moves in the same direction (i.e., no mixed sign strides), we can leverage cache-optimal (i.e., normal) nested loops without resorting to blocked iteration...
+			if ( x.accessorProtocol || y.accessorProtocol ) {
+				return ACCESSOR_MAP[ ndims ]( x, y, fcn, thisArg );
+			}
+			return MAP[ ndims ]( x, y, fcn, thisArg );
+		}
+		// Fall-through to blocked iteration...
+	}
+	// Determine whether we can perform blocked iteration...
+	if ( ndims <= MAX_DIMS ) {
+		if ( x.accessorProtocol || y.accessorProtocol ) {
+			return BLOCKED_ACCESSOR_MAP[ ndims-2 ]( x, y, fcn, thisArg );
+		}
+		return BLOCKED_MAP[ ndims-2 ]( x, y, fcn, thisArg );
+	}
+	// Fall-through to linear view iteration without regard for how data is stored in memory (i.e., take the slow path)...
+	if ( x.accessorProtocol || y.accessorProtocol ) {
+		return accessormapnd( x, y, fcn, thisArg );
+	}
+	mapnd( x, y, fcn, thisArg );
+}
+
+
+// EXPORTS //
+
+module.exports = map;
+
+},{"./0d.js":558,"./0d_accessors.js":559,"./10d.js":560,"./10d_accessors.js":561,"./10d_blocked.js":562,"./10d_blocked_accessors.js":563,"./1d.js":564,"./1d_accessors.js":565,"./2d.js":566,"./2d_accessors.js":567,"./2d_blocked.js":568,"./2d_blocked_accessors.js":569,"./3d.js":570,"./3d_accessors.js":571,"./3d_blocked.js":572,"./3d_blocked_accessors.js":573,"./4d.js":574,"./4d_accessors.js":575,"./4d_blocked.js":576,"./4d_blocked_accessors.js":577,"./5d.js":578,"./5d_accessors.js":579,"./5d_blocked.js":580,"./5d_blocked_accessors.js":581,"./6d.js":582,"./6d_accessors.js":583,"./6d_blocked.js":584,"./6d_blocked_accessors.js":585,"./7d.js":586,"./7d_accessors.js":587,"./7d_blocked.js":588,"./7d_blocked_accessors.js":589,"./8d.js":590,"./8d_accessors.js":591,"./8d_blocked.js":592,"./8d_blocked_accessors.js":593,"./9d.js":594,"./9d_accessors.js":595,"./9d_blocked.js":596,"./9d_blocked_accessors.js":597,"./nd.js":600,"./nd_accessors.js":601,"@stdlib/ndarray/base/iteration-order":555,"@stdlib/ndarray/base/ndarraylike2object":621}],600:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var numel = require( '@stdlib/ndarray/base/numel' );
+var vind2bind = require( '@stdlib/ndarray/base/vind2bind' );
+var ind2sub = require( '@stdlib/ndarray/base/ind2sub' );
+
+
+// VARIABLES //
+
+var MODE = 'throw';
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in an n-dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Float64Array = require( '@stdlib/array/float64' );
+*
+* function scale( x ) {
+*     return x * 10.0;
+* }
+*
+* // Create data buffers:
+* var xbuf = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Float64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 4, 1 ];
+* var sy = [ 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 1;
+* var oy = 0;
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'float64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major'
+* };
+* var y = {
+*     'dtype': 'float64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major'
+* };
+*
+* // Apply the map function:
+* mapnd( x, y, scale, {} );
+*
+* console.log( y.data );
+* // => <Float64Array>[ 20.0, 30.0, 60.0, 70.0 ]
+*/
+function mapnd( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var ordx;
+	var ordy;
+	var len;
+	var idx;
+	var sh;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i;
+
+	sh = x.shape;
+
+	// Compute the total number of elements over which to iterate:
+	len = numel( sh );
+
+	// Cache references to the input and output ndarray data buffers:
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache references to the respective stride arrays:
+	sx = x.strides;
+	sy = y.strides;
+
+	// Cache the indices of the first indexed elements in the respective ndarrays:
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache the respective array orders:
+	ordx = x.order;
+	ordy = y.order;
+
+	// Iterate over each element based on the linear **view** index, regardless as to how the data is stored in memory...
+	for ( i = 0; i < len; i++ ) {
+		ix = vind2bind( sh, sx, ox, ordx, i, MODE );
+		iy = vind2bind( sh, sy, oy, ordy, i, MODE );
+		idx = ind2sub( sh, sx, 0, ordx, i, MODE ); // return subscripts from the perspective of the ndarray view
+		ybuf[ iy ] = fcn.call( thisArg, xbuf[ ix ], idx, x.ref );
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = mapnd;
+
+},{"@stdlib/ndarray/base/ind2sub":553,"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],601:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var numel = require( '@stdlib/ndarray/base/numel' );
+var vind2bind = require( '@stdlib/ndarray/base/vind2bind' );
+var ind2sub = require( '@stdlib/ndarray/base/ind2sub' );
+
+
+// VARIABLES //
+
+var MODE = 'throw';
+
+
+// MAIN //
+
+/**
+* Applies a callback function to elements in an -dimensional input ndarray and assigns results to elements in an equivalently shaped output ndarray.
+*
+* @private
+* @param {Object} x - object containing ndarray meta data
+* @param {ndarrayLike} x.ref - reference to the original ndarray-like object
+* @param {string} x.dtype - data type
+* @param {Collection} x.data - data buffer
+* @param {NonNegativeIntegerArray} x.shape - dimensions
+* @param {IntegerArray} x.strides - stride lengths
+* @param {NonNegativeInteger} x.offset - index offset
+* @param {string} x.order - specifies whether `x` is row-major (C-style) or column-major (Fortran-style)
+* @param {Object} y - object containing output ndarray meta data
+* @param {string} y.dtype - data type
+* @param {Collection} y.data - data buffer
+* @param {NonNegativeIntegerArray} y.shape - dimensions
+* @param {IntegerArray} y.strides - stride lengths
+* @param {NonNegativeInteger} y.offset - index offset
+* @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
+* @param {Callback} fcn - callback function
+* @param {*} thisArg - callback execution context
+* @returns {void}
+*
+* @example
+* var Complex64Array = require( '@stdlib/array/complex64' );
+* var Complex64 = require( '@stdlib/complex/float32/ctor' );
+* var realf = require( '@stdlib/complex/float32/real' );
+* var imagf = require( '@stdlib/complex/float32/imag' );
+*
+* function scale( z ) {
+*     return new Complex64( realf(z)*10.0, imagf(z)*10.0 );
+* }
+*
+* // Create data buffers:
+* var xbuf = new Complex64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 ] );
+* var ybuf = new Complex64Array( 4 );
+*
+* // Define the shape of the input and output arrays:
+* var shape = [ 2, 2 ];
+*
+* // Define the array strides:
+* var sx = [ 2, 1 ];
+* var sy = [ 2, 1 ];
+*
+* // Define the index offsets:
+* var ox = 0;
+* var oy = 0;
+*
+* // Define getters and setters:
+* function getter( buf, idx ) {
+*     return buf.get( idx );
+* }
+*
+* function setter( buf, idx, value ) {
+*     buf.set( value, idx );
+* }
+*
+* // Create the input and output ndarray-like objects:
+* var x = {
+*     'ref': null,
+*     'dtype': 'complex64',
+*     'data': xbuf,
+*     'shape': shape,
+*     'strides': sx,
+*     'offset': ox,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+* var y = {
+*     'dtype': 'complex64',
+*     'data': ybuf,
+*     'shape': shape,
+*     'strides': sy,
+*     'offset': oy,
+*     'order': 'row-major',
+*     'accessors': [ getter, setter ]
+* };
+*
+* // Apply the map function:
+* mapnd( x, y, scale, {} );
+*
+* var v = y.data.get( 0 );
+*
+* var re = realf( v );
+* // returns 10.0
+*
+* var im = imagf( v );
+* // returns 20.0
+*/
+function mapnd( x, y, fcn, thisArg ) {
+	var xbuf;
+	var ybuf;
+	var ordx;
+	var ordy;
+	var len;
+	var get;
+	var set;
+	var idx;
+	var sh;
+	var sx;
+	var sy;
+	var ox;
+	var oy;
+	var ix;
+	var iy;
+	var i;
+
+	sh = x.shape;
+
+	// Compute the total number of elements over which to iterate:
+	len = numel( sh );
+
+	// Cache references to the input and output ndarray data buffers:
+	xbuf = x.data;
+	ybuf = y.data;
+
+	// Cache references to the respective stride arrays:
+	sx = x.strides;
+	sy = y.strides;
+
+	// Cache the indices of the first indexed elements in the respective ndarrays:
+	ox = x.offset;
+	oy = y.offset;
+
+	// Cache the respective array orders:
+	ordx = x.order;
+	ordy = y.order;
+
+	// Cache accessors:
+	get = x.accessors[ 0 ];
+	set = y.accessors[ 1 ];
+
+	// Iterate over each element based on the linear **view** index, regardless as to how the data is stored in memory...
+	for ( i = 0; i < len; i++ ) {
+		ix = vind2bind( sh, sx, ox, ordx, i, MODE );
+		iy = vind2bind( sh, sy, oy, ordy, i, MODE );
+		idx = ind2sub( sh, sx, 0, ordx, i, MODE ); // return subscripts from the perspective of the ndarray view
+		set( ybuf, iy, fcn.call( thisArg, get( xbuf, ix ), idx, x.ref ) );
+	}
+}
+
+
+// EXPORTS //
+
+module.exports = mapnd;
+
+},{"@stdlib/ndarray/base/ind2sub":553,"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],602:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -57016,7 +68980,7 @@ var maxViewBufferIndex = require( './main.js' );
 
 module.exports = maxViewBufferIndex;
 
-},{"./main.js":545}],545:[function(require,module,exports){
+},{"./main.js":603}],603:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -57102,7 +69066,7 @@ function maxViewBufferIndex( shape, strides, offset ) {
 
 module.exports = maxViewBufferIndex;
 
-},{}],546:[function(require,module,exports){
+},{}],604:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -57172,7 +69136,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":547}],547:[function(require,module,exports){
+},{"./main.js":605}],605:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -57286,7 +69250,7 @@ function maybeBroadcastArray( arr, shape ) {
 
 module.exports = maybeBroadcastArray;
 
-},{"@stdlib/ndarray/base/broadcast-array":410,"@stdlib/ndarray/base/shape":647}],548:[function(require,module,exports){
+},{"@stdlib/ndarray/base/broadcast-array":420,"@stdlib/ndarray/base/shape":711}],606:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -57372,7 +69336,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":549}],549:[function(require,module,exports){
+},{"./main.js":607}],607:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -57507,7 +69471,7 @@ function maybeBroadcastArrays( arrays ) {
 
 module.exports = maybeBroadcastArrays;
 
-},{"@stdlib/ndarray/base/broadcast-shapes":416,"@stdlib/ndarray/base/maybe-broadcast-array":546,"@stdlib/ndarray/base/shape":647}],550:[function(require,module,exports){
+},{"@stdlib/ndarray/base/broadcast-shapes":426,"@stdlib/ndarray/base/maybe-broadcast-array":604,"@stdlib/ndarray/base/shape":711}],608:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -57566,7 +69530,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":551}],551:[function(require,module,exports){
+},{"./main.js":609}],609:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -57682,7 +69646,236 @@ function setProps( meta, dtypes, obj ) {
 
 module.exports = setProps;
 
-},{"@stdlib/ndarray/base/dtypes2signatures":473,"@stdlib/utils/define-nonenumerable-read-only-accessor":903,"@stdlib/utils/define-nonenumerable-read-only-property":905}],552:[function(require,module,exports){
+},{"@stdlib/ndarray/base/dtypes2signatures":483,"@stdlib/utils/define-nonenumerable-read-only-accessor":975,"@stdlib/utils/define-nonenumerable-read-only-property":977}],610:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Determine the minimum ndarray data type for storing a provided signed integer value.
+*
+* @module @stdlib/ndarray/base/min-signed-integer-dtype
+*
+* @example
+* var minSignedIntegerDataType = require( '@stdlib/ndarray/base/min-signed-integer-dtype' );
+*
+* var dt = minSignedIntegerDataType( 1280 );
+* // returns 'int16'
+*
+* dt = minSignedIntegerDataType( 3 );
+* // returns 'int8'
+*/
+
+// MODULES //
+
+var minSignedIntegerDataType = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = minSignedIntegerDataType;
+
+},{"./main.js":611}],611:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var INT8_MIN = require( '@stdlib/constants/int8/min' );
+var INT16_MIN = require( '@stdlib/constants/int16/min' );
+var INT32_MIN = require( '@stdlib/constants/int32/min' );
+var INT8_MAX = require( '@stdlib/constants/int8/max' );
+var INT16_MAX = require( '@stdlib/constants/int16/max' );
+var INT32_MAX = require( '@stdlib/constants/int32/max' );
+
+
+// MAIN //
+
+/**
+* Returns the minimum ndarray data type for storing a provided signed integer value.
+*
+* @param {integer} value - scalar value
+* @returns {string} ndarray data type
+*
+* @example
+* var dt = minSignedIntegerDataType( 9999 );
+* // returns 'int16'
+*
+* @example
+* var dt = minSignedIntegerDataType( 3 );
+* // returns 'int8'
+*/
+function minSignedIntegerDataType( value ) {
+	if ( value < 0 ) {
+		if ( value >= INT8_MIN ) {
+			return 'int8';
+		}
+		if ( value >= INT16_MIN ) {
+			return 'int16';
+		}
+		if ( value >= INT32_MIN ) {
+			return 'int32';
+		}
+		return 'float64';
+	}
+	if ( value <= INT8_MAX ) {
+		return 'int8';
+	}
+	if ( value <= INT16_MAX ) {
+		return 'int16';
+	}
+	if ( value <= INT32_MAX ) {
+		return 'int32';
+	}
+	return 'float64';
+}
+
+
+// EXPORTS //
+
+module.exports = minSignedIntegerDataType;
+
+},{"@stdlib/constants/int16/max":286,"@stdlib/constants/int16/min":287,"@stdlib/constants/int32/max":288,"@stdlib/constants/int32/min":289,"@stdlib/constants/int8/max":290,"@stdlib/constants/int8/min":291}],612:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Determine the minimum ndarray data type for storing a provided unsigned integer value.
+*
+* @module @stdlib/ndarray/base/min-unsigned-integer-dtype
+*
+* @example
+* var minUnsignedIntegerDataType = require( '@stdlib/ndarray/base/min-unsigned-integer-dtype' );
+*
+* var dt = minUnsignedIntegerDataType( 1280 );
+* // returns 'uint16'
+*
+* dt = minUnsignedIntegerDataType( 3 );
+* // returns 'uint8'
+*/
+
+// MODULES //
+
+var minUnsignedIntegerDataType = require( './main.js' ); // eslint-disable-line id-length
+
+
+// EXPORTS //
+
+module.exports = minUnsignedIntegerDataType;
+
+},{"./main.js":613}],613:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var UINT8_MAX = require( '@stdlib/constants/uint8/max' );
+var UINT16_MAX = require( '@stdlib/constants/uint16/max' );
+var UINT32_MAX = require( '@stdlib/constants/uint32/max' );
+
+
+// MAIN //
+
+/**
+* Returns the minimum ndarray data type for storing a provided unsigned integer value.
+*
+* @param {uinteger} value - scalar value
+* @returns {string} ndarray data type
+*
+* @example
+* var dt = minUnsignedIntegerDataType( 9999 );
+* // returns 'uint16'
+*
+* @example
+* var dt = minUnsignedIntegerDataType( 3 );
+* // returns 'uint8'
+*/
+function minUnsignedIntegerDataType( value ) { // eslint-disable-line id-length
+	if ( value <= UINT8_MAX ) {
+		return 'uint8';
+	}
+	if ( value <= UINT16_MAX ) {
+		return 'uint16';
+	}
+	if ( value <= UINT32_MAX ) {
+		return 'uint32';
+	}
+	return 'float64';
+}
+
+
+// EXPORTS //
+
+module.exports = minUnsignedIntegerDataType;
+
+},{"@stdlib/constants/uint16/max":292,"@stdlib/constants/uint32/max":293,"@stdlib/constants/uint8/max":294}],614:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -57758,7 +69951,7 @@ var minViewBufferIndex = require( './main.js' );
 
 module.exports = minViewBufferIndex;
 
-},{"./main.js":553}],553:[function(require,module,exports){
+},{"./main.js":615}],615:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -57844,7 +70037,7 @@ function minViewBufferIndex( shape, strides, offset ) {
 
 module.exports = minViewBufferIndex;
 
-},{}],554:[function(require,module,exports){
+},{}],616:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -57957,7 +70150,7 @@ function minmaxViewBufferIndex( shape, strides, offset, out ) {
 
 module.exports = minmaxViewBufferIndex;
 
-},{}],555:[function(require,module,exports){
+},{}],617:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58040,7 +70233,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":554,"./main.js":556,"@stdlib/utils/define-nonenumerable-read-only-property":905}],556:[function(require,module,exports){
+},{"./assign.js":616,"./main.js":618,"@stdlib/utils/define-nonenumerable-read-only-property":977}],618:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58132,7 +70325,7 @@ function minmaxViewBufferIndex( shape, strides, offset ) {
 
 module.exports = minmaxViewBufferIndex;
 
-},{}],557:[function(require,module,exports){
+},{}],619:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58177,7 +70370,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":558}],558:[function(require,module,exports){
+},{"./main.js":620}],620:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58246,7 +70439,7 @@ function ndarraylike2ndarray( x ) {
 
 module.exports = ndarraylike2ndarray;
 
-},{"@stdlib/ndarray/base/ctor":441,"@stdlib/ndarray/data-buffer":795,"@stdlib/ndarray/defaults":798,"@stdlib/ndarray/dtype":800,"@stdlib/ndarray/offset":816,"@stdlib/ndarray/order":818,"@stdlib/ndarray/shape":835,"@stdlib/ndarray/strides":837}],559:[function(require,module,exports){
+},{"@stdlib/ndarray/base/ctor":451,"@stdlib/ndarray/data-buffer":867,"@stdlib/ndarray/defaults":870,"@stdlib/ndarray/dtype":872,"@stdlib/ndarray/offset":888,"@stdlib/ndarray/order":890,"@stdlib/ndarray/shape":907,"@stdlib/ndarray/strides":909}],621:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58291,7 +70484,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":560}],560:[function(require,module,exports){
+},{"./main.js":622}],622:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58400,7 +70593,7 @@ function ndarraylike2object( x ) {
 
 module.exports = ndarraylike2object;
 
-},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/getter":22,"@stdlib/array/base/setter":28,"@stdlib/ndarray/base/data-buffer":452,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/offset":624,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/strides":673}],561:[function(require,module,exports){
+},{"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/accessor-setter":3,"@stdlib/array/base/assert/is-accessor-array":12,"@stdlib/array/base/getter":24,"@stdlib/array/base/setter":32,"@stdlib/ndarray/base/data-buffer":462,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/offset":688,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/strides":739}],623:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58443,7 +70636,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":562}],562:[function(require,module,exports){
+},{"./main.js":624}],624:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58491,7 +70684,7 @@ function ndims( x ) {
 
 module.exports = ndims;
 
-},{}],563:[function(require,module,exports){
+},{}],625:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58677,7 +70870,7 @@ function nextCartesianIndex( shape, order, idx, dim, out ) {
 
 module.exports = nextCartesianIndex;
 
-},{}],564:[function(require,module,exports){
+},{}],626:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58743,7 +70936,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":563,"./main.js":565,"@stdlib/utils/define-nonenumerable-read-only-property":905}],565:[function(require,module,exports){
+},{"./assign.js":625,"./main.js":627,"@stdlib/utils/define-nonenumerable-read-only-property":977}],627:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58835,7 +71028,7 @@ function nextCartesianIndex( shape, order, idx, dim ) {
 
 module.exports = nextCartesianIndex;
 
-},{"./assign.js":563,"@stdlib/array/base/zeros":35}],566:[function(require,module,exports){
+},{"./assign.js":625,"@stdlib/array/base/zeros":39}],628:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58887,7 +71080,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":567}],567:[function(require,module,exports){
+},{"./main.js":629}],629:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58950,7 +71143,7 @@ function nonsingletonDimensions( shape ) {
 
 module.exports = nonsingletonDimensions;
 
-},{}],568:[function(require,module,exports){
+},{}],630:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -58998,7 +71191,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":569}],569:[function(require,module,exports){
+},{"./main.js":631}],631:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -59057,7 +71250,114 @@ function normalizeIndex( idx, max ) {
 
 module.exports = normalizeIndex;
 
-},{}],570:[function(require,module,exports){
+},{}],632:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Normalize a list of indices to the interval `[0,max]`.
+*
+* @module @stdlib/ndarray/base/normalize-indices
+*
+* @example
+* var normalizeIndices = require( '@stdlib/ndarray/base/normalize-indices' );
+*
+* var idx = normalizeIndices( [ -2, 5 ], 10 );
+* // returns [ 9, 5 ]
+*
+* idx = normalizeIndices( [ 15 ], 10 );
+* // returns null
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":633}],633:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var normalizeIndex = require( '@stdlib/ndarray/base/normalize-index' );
+
+
+// MAIN //
+
+/**
+* Normalizes a list of indices to the interval `[0,max]`.
+*
+* @param {IntegerArray} indices - indices
+* @param {NonNegativeInteger} max - maximum index
+* @returns {(IntegerArray|null)} normalized indices or null
+*
+* @example
+* var idx = normalizeIndices( [ -2, 5 ], 10 );
+* // returns [ 9, 5 ]
+*
+* idx = normalizeIndices( [ 15 ], 10 );
+* // returns null
+*/
+function normalizeIndices( indices, max ) {
+	var idx;
+	var flg;
+	var i;
+
+	for ( i = 0; i < indices.length; i++ ) {
+		idx = normalizeIndex( indices[ i ], max );
+		if ( idx === -1 ) {
+			flg = null;
+		}
+		indices[ i ] = idx;
+	}
+	return ( flg === null ) ? flg : indices;
+}
+
+
+// EXPORTS //
+
+module.exports = normalizeIndices;
+
+},{"@stdlib/ndarray/base/normalize-index":630}],634:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -59112,7 +71412,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":571}],571:[function(require,module,exports){
+},{"./main.js":635}],635:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -59200,11 +71500,11 @@ function loopOrder( sh, sx ) {
 
 module.exports = loopOrder;
 
-},{"./sort2ins.js":572,"@stdlib/array/base/copy-indexed":18,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],572:[function(require,module,exports){
-arguments[4][404][0].apply(exports,arguments)
-},{"dup":404}],573:[function(require,module,exports){
-arguments[4][405][0].apply(exports,arguments)
-},{"dup":405}],574:[function(require,module,exports){
+},{"./sort2ins.js":636,"@stdlib/array/base/copy-indexed":20,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],636:[function(require,module,exports){
+arguments[4][414][0].apply(exports,arguments)
+},{"dup":414}],637:[function(require,module,exports){
+arguments[4][415][0].apply(exports,arguments)
+},{"dup":415}],638:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -59246,7 +71546,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":575}],575:[function(require,module,exports){
+},{"./main.js":639}],639:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -59298,7 +71598,7 @@ function nullaryBlockSize( dtypeX ) {
 
 module.exports = nullaryBlockSize;
 
-},{"./defaults.js":573,"@stdlib/ndarray/base/bytes-per-element":432}],576:[function(require,module,exports){
+},{"./defaults.js":637,"@stdlib/ndarray/base/bytes-per-element":442}],640:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -59379,7 +71679,7 @@ function nullary0d( x, fcn ) {
 
 module.exports = nullary0d;
 
-},{}],577:[function(require,module,exports){
+},{}],641:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -59479,7 +71779,7 @@ function nullary0d( x, fcn ) {
 
 module.exports = nullary0d;
 
-},{}],578:[function(require,module,exports){
+},{}],642:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -59684,7 +71984,7 @@ function nullary10d( x, fcn ) {
 
 module.exports = nullary10d;
 
-},{}],579:[function(require,module,exports){
+},{}],643:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -59912,7 +72212,7 @@ function nullary10d( x, fcn ) { // eslint-disable-line max-statements
 
 module.exports = nullary10d;
 
-},{}],580:[function(require,module,exports){
+},{}],644:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -60221,7 +72521,7 @@ function blockednullary10d( x, fcn ) { // eslint-disable-line max-statements, ma
 
 module.exports = blockednullary10d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],581:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],645:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -60553,7 +72853,7 @@ function blockednullary10d( x, fcn ) { // eslint-disable-line max-statements, ma
 
 module.exports = blockednullary10d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],582:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],646:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -60656,7 +72956,7 @@ function nullary1d( x, fcn ) {
 
 module.exports = nullary1d;
 
-},{}],583:[function(require,module,exports){
+},{}],647:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -60782,7 +73082,7 @@ function nullary1d( x, fcn ) {
 
 module.exports = nullary1d;
 
-},{}],584:[function(require,module,exports){
+},{}],648:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -60905,7 +73205,7 @@ function nullary2d( x, fcn ) {
 
 module.exports = nullary2d;
 
-},{}],585:[function(require,module,exports){
+},{}],649:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -61051,7 +73351,7 @@ function nullary2d( x, fcn ) {
 
 module.exports = nullary2d;
 
-},{}],586:[function(require,module,exports){
+},{}],650:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -61206,7 +73506,7 @@ function blockednullary2d( x, fcn ) {
 
 module.exports = blockednullary2d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],587:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],651:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -61384,7 +73684,7 @@ function blockednullary2d( x, fcn ) {
 
 module.exports = blockednullary2d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],588:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],652:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -61517,7 +73817,7 @@ function nullary3d( x, fcn ) {
 
 module.exports = nullary3d;
 
-},{}],589:[function(require,module,exports){
+},{}],653:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -61673,7 +73973,7 @@ function nullary3d( x, fcn ) {
 
 module.exports = nullary3d;
 
-},{}],590:[function(require,module,exports){
+},{}],654:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -61849,7 +74149,7 @@ function blockednullary3d( x, fcn ) {
 
 module.exports = blockednullary3d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],591:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],655:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -62048,7 +74348,7 @@ function blockednullary3d( x, fcn ) {
 
 module.exports = blockednullary3d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],592:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],656:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -62191,7 +74491,7 @@ function nullary4d( x, fcn ) {
 
 module.exports = nullary4d;
 
-},{}],593:[function(require,module,exports){
+},{}],657:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -62357,7 +74657,7 @@ function nullary4d( x, fcn ) {
 
 module.exports = nullary4d;
 
-},{}],594:[function(require,module,exports){
+},{}],658:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -62552,7 +74852,7 @@ function blockednullary4d( x, fcn ) {
 
 module.exports = blockednullary4d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],595:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],659:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -62770,7 +75070,7 @@ function blockednullary4d( x, fcn ) {
 
 module.exports = blockednullary4d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],596:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],660:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -62923,7 +75223,7 @@ function nullary5d( x, fcn ) {
 
 module.exports = nullary5d;
 
-},{}],597:[function(require,module,exports){
+},{}],661:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -63099,7 +75399,7 @@ function nullary5d( x, fcn ) {
 
 module.exports = nullary5d;
 
-},{}],598:[function(require,module,exports){
+},{}],662:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -63313,7 +75613,7 @@ function blockednullary5d( x, fcn ) {
 
 module.exports = blockednullary5d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],599:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],663:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -63550,7 +75850,7 @@ function blockednullary5d( x, fcn ) {
 
 module.exports = blockednullary5d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],600:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],664:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -63715,7 +76015,7 @@ function nullary6d( x, fcn ) {
 
 module.exports = nullary6d;
 
-},{}],601:[function(require,module,exports){
+},{}],665:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -63903,7 +76203,7 @@ function nullary6d( x, fcn ) {
 
 module.exports = nullary6d;
 
-},{}],602:[function(require,module,exports){
+},{}],666:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -64136,7 +76436,7 @@ function blockednullary6d( x, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockednullary6d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],603:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],667:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -64392,7 +76692,7 @@ function blockednullary6d( x, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockednullary6d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],604:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],668:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -64567,7 +76867,7 @@ function nullary7d( x, fcn ) {
 
 module.exports = nullary7d;
 
-},{}],605:[function(require,module,exports){
+},{}],669:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -64765,7 +77065,7 @@ function nullary7d( x, fcn ) {
 
 module.exports = nullary7d;
 
-},{}],606:[function(require,module,exports){
+},{}],670:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -65017,7 +77317,7 @@ function blockednullary7d( x, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockednullary7d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],607:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],671:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -65292,7 +77592,7 @@ function blockednullary7d( x, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockednullary7d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],608:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],672:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -65477,7 +77777,7 @@ function nullary8d( x, fcn ) {
 
 module.exports = nullary8d;
 
-},{}],609:[function(require,module,exports){
+},{}],673:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -65685,7 +77985,7 @@ function nullary8d( x, fcn ) {
 
 module.exports = nullary8d;
 
-},{}],610:[function(require,module,exports){
+},{}],674:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -65956,7 +78256,7 @@ function blockednullary8d( x, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockednullary8d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],611:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],675:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -66250,7 +78550,7 @@ function blockednullary8d( x, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockednullary8d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],612:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],676:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -66445,7 +78745,7 @@ function nullary9d( x, fcn ) {
 
 module.exports = nullary9d;
 
-},{}],613:[function(require,module,exports){
+},{}],677:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -66663,7 +78963,7 @@ function nullary9d( x, fcn ) {
 
 module.exports = nullary9d;
 
-},{}],614:[function(require,module,exports){
+},{}],678:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -66953,7 +79253,7 @@ function blockednullary9d( x, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockednullary9d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],615:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],679:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -67266,7 +79566,7 @@ function blockednullary9d( x, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockednullary9d;
 
-},{"@stdlib/ndarray/base/nullary-loop-interchange-order":570,"@stdlib/ndarray/base/nullary-tiling-block-size":574}],616:[function(require,module,exports){
+},{"@stdlib/ndarray/base/nullary-loop-interchange-order":634,"@stdlib/ndarray/base/nullary-tiling-block-size":638}],680:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -67338,7 +79638,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":617}],617:[function(require,module,exports){
+},{"./main.js":681}],681:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -67639,7 +79939,7 @@ function nullary( arrays, fcn ) {
 
 module.exports = nullary;
 
-},{"./0d.js":576,"./0d_accessors.js":577,"./10d.js":578,"./10d_accessors.js":579,"./10d_blocked.js":580,"./10d_blocked_accessors.js":581,"./1d.js":582,"./1d_accessors.js":583,"./2d.js":584,"./2d_accessors.js":585,"./2d_blocked.js":586,"./2d_blocked_accessors.js":587,"./3d.js":588,"./3d_accessors.js":589,"./3d_blocked.js":590,"./3d_blocked_accessors.js":591,"./4d.js":592,"./4d_accessors.js":593,"./4d_blocked.js":594,"./4d_blocked_accessors.js":595,"./5d.js":596,"./5d_accessors.js":597,"./5d_blocked.js":598,"./5d_blocked_accessors.js":599,"./6d.js":600,"./6d_accessors.js":601,"./6d_blocked.js":602,"./6d_blocked_accessors.js":603,"./7d.js":604,"./7d_accessors.js":605,"./7d_blocked.js":606,"./7d_blocked_accessors.js":607,"./8d.js":608,"./8d_accessors.js":609,"./8d_blocked.js":610,"./8d_blocked_accessors.js":611,"./9d.js":612,"./9d_accessors.js":613,"./9d_blocked.js":614,"./9d_blocked_accessors.js":615,"./nd.js":618,"./nd_accessors.js":619,"@stdlib/ndarray/base/iteration-order":541,"@stdlib/ndarray/base/minmax-view-buffer-index":555,"@stdlib/ndarray/base/ndarraylike2object":559}],618:[function(require,module,exports){
+},{"./0d.js":640,"./0d_accessors.js":641,"./10d.js":642,"./10d_accessors.js":643,"./10d_blocked.js":644,"./10d_blocked_accessors.js":645,"./1d.js":646,"./1d_accessors.js":647,"./2d.js":648,"./2d_accessors.js":649,"./2d_blocked.js":650,"./2d_blocked_accessors.js":651,"./3d.js":652,"./3d_accessors.js":653,"./3d_blocked.js":654,"./3d_blocked_accessors.js":655,"./4d.js":656,"./4d_accessors.js":657,"./4d_blocked.js":658,"./4d_blocked_accessors.js":659,"./5d.js":660,"./5d_accessors.js":661,"./5d_blocked.js":662,"./5d_blocked_accessors.js":663,"./6d.js":664,"./6d_accessors.js":665,"./6d_blocked.js":666,"./6d_blocked_accessors.js":667,"./7d.js":668,"./7d_accessors.js":669,"./7d_blocked.js":670,"./7d_blocked_accessors.js":671,"./8d.js":672,"./8d_accessors.js":673,"./8d_blocked.js":674,"./8d_blocked_accessors.js":675,"./9d.js":676,"./9d_accessors.js":677,"./9d_blocked.js":678,"./9d_blocked_accessors.js":679,"./nd.js":682,"./nd_accessors.js":683,"@stdlib/ndarray/base/iteration-order":555,"@stdlib/ndarray/base/minmax-view-buffer-index":617,"@stdlib/ndarray/base/ndarraylike2object":621}],682:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -67761,7 +80061,7 @@ function nullarynd( x, fcn ) {
 
 module.exports = nullarynd;
 
-},{"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/vind2bind":783}],619:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],683:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -67906,7 +80206,7 @@ function nullarynd( x, fcn ) {
 
 module.exports = nullarynd;
 
-},{"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/vind2bind":783}],620:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],684:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -67949,7 +80249,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":621}],621:[function(require,module,exports){
+},{"./main.js":685}],685:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68020,7 +80320,7 @@ function numelDimension( x, dim ) {
 
 module.exports = numelDimension;
 
-},{"@stdlib/ndarray/base/ndims":561,"@stdlib/ndarray/base/normalize-index":568,"@stdlib/ndarray/base/shape":647,"@stdlib/string/format":892}],622:[function(require,module,exports){
+},{"@stdlib/ndarray/base/ndims":623,"@stdlib/ndarray/base/normalize-index":630,"@stdlib/ndarray/base/shape":711,"@stdlib/string/format":964}],686:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68062,7 +80362,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":623}],623:[function(require,module,exports){
+},{"./main.js":687}],687:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68116,7 +80416,7 @@ function numel( shape ) {
 
 module.exports = numel;
 
-},{}],624:[function(require,module,exports){
+},{}],688:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68159,7 +80459,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":625}],625:[function(require,module,exports){
+},{"./main.js":689}],689:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68224,7 +80524,7 @@ function offset( x ) {
 
 module.exports = offset;
 
-},{"@stdlib/ndarray/base/strides2offset":675}],626:[function(require,module,exports){
+},{"@stdlib/ndarray/base/strides2offset":741}],690:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68271,7 +80571,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":627}],627:[function(require,module,exports){
+},{"./main.js":691}],691:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68354,7 +80654,7 @@ function order( x ) {
 
 module.exports = order;
 
-},{"@stdlib/ndarray/base/strides2order":677}],628:[function(require,module,exports){
+},{"@stdlib/ndarray/base/strides2order":743}],692:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68400,7 +80700,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":629}],629:[function(require,module,exports){
+},{"./main.js":693}],693:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68461,7 +80761,7 @@ function enum2str( policy ) {
 
 module.exports = enum2str;
 
-},{"@stdlib/ndarray/output-dtype-policies":826,"@stdlib/utils/object-inverse":954}],630:[function(require,module,exports){
+},{"@stdlib/ndarray/output-dtype-policies":898,"@stdlib/utils/object-inverse":1026}],694:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68503,7 +80803,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":631}],631:[function(require,module,exports){
+},{"./main.js":695}],695:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68562,7 +80862,7 @@ function resolve( policy ) {
 
 module.exports = resolve;
 
-},{"@stdlib/ndarray/base/output-policy-enum2str":628,"@stdlib/ndarray/base/output-policy-str2enum":634}],632:[function(require,module,exports){
+},{"@stdlib/ndarray/base/output-policy-enum2str":692,"@stdlib/ndarray/base/output-policy-str2enum":698}],696:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68605,7 +80905,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":633}],633:[function(require,module,exports){
+},{"./main.js":697}],697:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68662,7 +80962,7 @@ function resolve( policy ) {
 
 module.exports = resolve;
 
-},{"@stdlib/ndarray/base/output-policy-enum2str":628,"@stdlib/ndarray/base/output-policy-str2enum":634}],634:[function(require,module,exports){
+},{"@stdlib/ndarray/base/output-policy-enum2str":692,"@stdlib/ndarray/base/output-policy-str2enum":698}],698:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68704,7 +81004,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":635}],635:[function(require,module,exports){
+},{"./main.js":699}],699:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68761,7 +81061,7 @@ function str2enum( policy ) {
 
 module.exports = str2enum;
 
-},{"@stdlib/ndarray/output-dtype-policies":826}],636:[function(require,module,exports){
+},{"@stdlib/ndarray/output-dtype-policies":898}],700:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68825,7 +81125,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":637}],637:[function(require,module,exports){
+},{"./main.js":701}],701:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68932,7 +81232,7 @@ function prependSingletonDimensions( x, n ) { // eslint-disable-line id-length
 
 module.exports = prependSingletonDimensions;
 
-},{"@stdlib/ndarray/base/assert/is-read-only":337,"@stdlib/ndarray/base/data-buffer":452,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/offset":624,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/strides":673}],638:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-read-only":345,"@stdlib/ndarray/base/data-buffer":462,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/offset":688,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/strides":739}],702:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -68998,7 +81298,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":639}],639:[function(require,module,exports){
+},{"./main.js":703}],703:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -69112,7 +81412,7 @@ function removeSingletonDimensions( x ) {
 
 module.exports = removeSingletonDimensions;
 
-},{"@stdlib/ndarray/base/assert/is-read-only":337,"@stdlib/ndarray/base/data-buffer":452,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/offset":624,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/strides":673}],640:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-read-only":345,"@stdlib/ndarray/base/data-buffer":462,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/offset":688,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/strides":739}],704:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -69176,7 +81476,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":641}],641:[function(require,module,exports){
+},{"./main.js":705}],705:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -69281,7 +81581,7 @@ function reverseDimension( x, dim, writable ) {
 
 module.exports = reverseDimension;
 
-},{"@stdlib/array/base/nulls":24,"@stdlib/ndarray/base/ndims":561,"@stdlib/ndarray/base/slice":667,"@stdlib/slice/base/args2multislice":856,"@stdlib/slice/ctor":872,"@stdlib/string/format":892}],642:[function(require,module,exports){
+},{"@stdlib/array/base/nulls":26,"@stdlib/ndarray/base/ndims":623,"@stdlib/ndarray/base/slice":731,"@stdlib/slice/base/args2multislice":928,"@stdlib/slice/ctor":944,"@stdlib/string/format":964}],706:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -69345,7 +81645,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":643}],643:[function(require,module,exports){
+},{"./main.js":707}],707:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -69421,7 +81721,7 @@ function reverse( x, writable ) {
 
 module.exports = reverse;
 
-},{"@stdlib/array/base/filled":20,"@stdlib/ndarray/base/ndims":561,"@stdlib/ndarray/base/slice":667,"@stdlib/slice/base/args2multislice":856,"@stdlib/slice/ctor":872}],644:[function(require,module,exports){
+},{"@stdlib/array/base/filled":22,"@stdlib/ndarray/base/ndims":623,"@stdlib/ndarray/base/slice":731,"@stdlib/slice/base/args2multislice":928,"@stdlib/slice/ctor":944}],708:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -69478,7 +81778,7 @@ if ( hasBigIntSupport() ) {
 
 module.exports = main;
 
-},{"./main.js":645,"./polyfill.js":646,"@stdlib/assert/has-bigint-support":102}],645:[function(require,module,exports){
+},{"./main.js":709,"./polyfill.js":710,"@stdlib/assert/has-bigint-support":108}],709:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -69704,7 +82004,7 @@ function serialize( x ) {
 
 module.exports = serialize;
 
-},{"@stdlib/array/buffer":42,"@stdlib/array/dataview":58,"@stdlib/assert/is-little-endian":191,"@stdlib/bigint/ctor":240,"@stdlib/ndarray/base/bytes-per-element":432,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/offset":624,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/strides":673,"@stdlib/ndarray/dtypes":805,"@stdlib/ndarray/index-modes":808,"@stdlib/ndarray/orders":821}],646:[function(require,module,exports){
+},{"@stdlib/array/buffer":46,"@stdlib/array/dataview":62,"@stdlib/assert/is-little-endian":197,"@stdlib/bigint/ctor":246,"@stdlib/ndarray/base/bytes-per-element":442,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/offset":688,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/strides":739,"@stdlib/ndarray/dtypes":877,"@stdlib/ndarray/index-modes":880,"@stdlib/ndarray/orders":893}],710:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -69934,7 +82234,7 @@ function serialize( x ) {
 
 module.exports = serialize;
 
-},{"@stdlib/array/buffer":42,"@stdlib/array/dataview":58,"@stdlib/array/uint8":91,"@stdlib/assert/is-little-endian":191,"@stdlib/ndarray/base/bytes-per-element":432,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/offset":624,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/strides":673,"@stdlib/ndarray/dtypes":805,"@stdlib/ndarray/index-modes":808,"@stdlib/ndarray/orders":821,"@stdlib/number/float64/base/to-int64-bytes":845}],647:[function(require,module,exports){
+},{"@stdlib/array/buffer":46,"@stdlib/array/dataview":62,"@stdlib/array/uint8":97,"@stdlib/assert/is-little-endian":197,"@stdlib/ndarray/base/bytes-per-element":442,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/offset":688,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/strides":739,"@stdlib/ndarray/dtypes":877,"@stdlib/ndarray/index-modes":880,"@stdlib/ndarray/orders":893,"@stdlib/number/float64/base/to-int64-bytes":917}],711:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -69977,7 +82277,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":648}],648:[function(require,module,exports){
+},{"./main.js":712}],712:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70031,7 +82331,7 @@ function shape( x, copy ) {
 
 module.exports = shape;
 
-},{"@stdlib/array/base/copy-indexed":18}],649:[function(require,module,exports){
+},{"@stdlib/array/base/copy-indexed":20}],713:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70131,7 +82431,7 @@ function shape2strides( shape, order, out ) {
 
 module.exports = shape2strides;
 
-},{}],650:[function(require,module,exports){
+},{}],714:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70183,7 +82483,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":649,"./main.js":651,"@stdlib/utils/define-nonenumerable-read-only-property":905}],651:[function(require,module,exports){
+},{"./assign.js":713,"./main.js":715,"@stdlib/utils/define-nonenumerable-read-only-property":977}],715:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70282,7 +82582,7 @@ function shape2strides( shape, order ) {
 
 module.exports = shape2strides;
 
-},{}],652:[function(require,module,exports){
+},{}],716:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70334,7 +82634,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":653}],653:[function(require,module,exports){
+},{"./main.js":717}],717:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70397,7 +82697,7 @@ function singletonDimensions( shape ) {
 
 module.exports = singletonDimensions;
 
-},{}],654:[function(require,module,exports){
+},{}],718:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70478,7 +82778,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":655}],655:[function(require,module,exports){
+},{"./main.js":719}],719:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70599,7 +82899,7 @@ function sliceAssign( x, y, s, strict ) {
 
 module.exports = sliceAssign;
 
-},{"@stdlib/ndarray/base/assert/is-mostly-safe-data-type-cast":331,"@stdlib/ndarray/base/assign":398,"@stdlib/ndarray/base/broadcast-array":410,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/slice":667,"@stdlib/string/format":892}],656:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-mostly-safe-data-type-cast":339,"@stdlib/ndarray/base/assign":408,"@stdlib/ndarray/base/broadcast-array":420,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/slice":731,"@stdlib/string/format":964}],720:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70663,7 +82963,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":657}],657:[function(require,module,exports){
+},{"./main.js":721}],721:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70767,7 +83067,7 @@ function sliceDimensionFrom( x, dim, start, strict, writable ) {
 
 module.exports = sliceDimensionFrom;
 
-},{"@stdlib/array/base/nulls":24,"@stdlib/ndarray/base/ndims":561,"@stdlib/ndarray/base/normalize-index":568,"@stdlib/ndarray/base/slice":667,"@stdlib/slice/base/args2multislice":856,"@stdlib/slice/ctor":872,"@stdlib/string/format":892}],658:[function(require,module,exports){
+},{"@stdlib/array/base/nulls":26,"@stdlib/ndarray/base/ndims":623,"@stdlib/ndarray/base/normalize-index":630,"@stdlib/ndarray/base/slice":731,"@stdlib/slice/base/args2multislice":928,"@stdlib/slice/ctor":944,"@stdlib/string/format":964}],722:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70831,7 +83131,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":659}],659:[function(require,module,exports){
+},{"./main.js":723}],723:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -70935,7 +83235,7 @@ function sliceDimensionTo( x, dim, stop, strict, writable ) {
 
 module.exports = sliceDimensionTo;
 
-},{"@stdlib/array/base/nulls":24,"@stdlib/ndarray/base/ndims":561,"@stdlib/ndarray/base/normalize-index":568,"@stdlib/ndarray/base/slice":667,"@stdlib/slice/base/args2multislice":856,"@stdlib/slice/ctor":872,"@stdlib/string/format":892}],660:[function(require,module,exports){
+},{"@stdlib/array/base/nulls":26,"@stdlib/ndarray/base/ndims":623,"@stdlib/ndarray/base/normalize-index":630,"@stdlib/ndarray/base/slice":731,"@stdlib/slice/base/args2multislice":928,"@stdlib/slice/ctor":944,"@stdlib/string/format":964}],724:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71003,7 +83303,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":661}],661:[function(require,module,exports){
+},{"./main.js":725}],725:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71110,7 +83410,7 @@ function sliceDimension( x, dim, s, strict, writable ) {
 
 module.exports = sliceDimension;
 
-},{"@stdlib/array/base/nulls":24,"@stdlib/ndarray/base/ndims":561,"@stdlib/ndarray/base/normalize-index":568,"@stdlib/ndarray/base/slice":667,"@stdlib/slice/base/args2multislice":856,"@stdlib/string/format":892}],662:[function(require,module,exports){
+},{"@stdlib/array/base/nulls":26,"@stdlib/ndarray/base/ndims":623,"@stdlib/ndarray/base/normalize-index":630,"@stdlib/ndarray/base/slice":731,"@stdlib/slice/base/args2multislice":928,"@stdlib/string/format":964}],726:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71175,7 +83475,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":663}],663:[function(require,module,exports){
+},{"./main.js":727}],727:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71276,7 +83576,7 @@ function sliceFrom( x, start, strict, writable ) {
 
 module.exports = sliceFrom;
 
-},{"@stdlib/assert/is-number":203,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/slice":667,"@stdlib/slice/base/args2multislice":856,"@stdlib/slice/ctor":872}],664:[function(require,module,exports){
+},{"@stdlib/assert/is-number":209,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/slice":731,"@stdlib/slice/base/args2multislice":928,"@stdlib/slice/ctor":944}],728:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71341,7 +83641,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":665}],665:[function(require,module,exports){
+},{"./main.js":729}],729:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71431,7 +83731,7 @@ function sliceTo( x, stop, strict, writable ) {
 
 module.exports = sliceTo;
 
-},{"@stdlib/assert/is-number":203,"@stdlib/ndarray/base/slice":667,"@stdlib/slice/base/args2multislice":856,"@stdlib/slice/ctor":872}],666:[function(require,module,exports){
+},{"@stdlib/assert/is-number":209,"@stdlib/ndarray/base/slice":731,"@stdlib/slice/base/args2multislice":928,"@stdlib/slice/ctor":944}],730:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71491,7 +83791,7 @@ function empty( ctor, dtype, shape, order, readonly ) {
 
 module.exports = empty;
 
-},{"@stdlib/array/base/zeros":35,"@stdlib/ndarray/base/buffer":428}],667:[function(require,module,exports){
+},{"@stdlib/array/base/zeros":39,"@stdlib/ndarray/base/buffer":438}],731:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71560,7 +83860,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":668}],668:[function(require,module,exports){
+},{"./main.js":732}],732:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71734,7 +84034,7 @@ function slice( x, s, strict, writable ) {
 
 module.exports = slice;
 
-},{"./empty.js":666,"./slice_start.js":669,"./slice_strides.js":670,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zeros":35,"@stdlib/ndarray/base/data-buffer":452,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/offset":624,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/strides":673,"@stdlib/slice/base/nonreduced-dimensions":863,"@stdlib/slice/base/normalize-multi-slice":865,"@stdlib/slice/base/shape":870,"@stdlib/string/format":892}],669:[function(require,module,exports){
+},{"./empty.js":730,"./slice_start.js":733,"./slice_strides.js":734,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zeros":39,"@stdlib/ndarray/base/data-buffer":462,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/offset":688,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/strides":739,"@stdlib/slice/base/nonreduced-dimensions":935,"@stdlib/slice/base/normalize-multi-slice":937,"@stdlib/slice/base/shape":942,"@stdlib/string/format":964}],733:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71784,7 +84084,7 @@ function sliceStart( slice, strides, offset ) {
 
 module.exports = sliceStart;
 
-},{}],670:[function(require,module,exports){
+},{}],734:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71846,7 +84146,239 @@ function slice2strides( slice, strides, rdims ) {
 
 module.exports = slice2strides;
 
-},{}],671:[function(require,module,exports){
+},{}],735:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Expand the shape of an array to a specified dimensionality by spreading its dimensions to specified dimension indices and inserting dimensions of size one for the remaining dimensions.
+*
+* @module @stdlib/ndarray/base/spread-dimensions
+*
+* @example
+* var array = require( '@stdlib/ndarray/array' );
+* var spreadDimensions = require( '@stdlib/ndarray/base/spread-dimensions' );
+*
+* var x = array( [ [ 1, 2 ], [ 3, 4 ] ] );
+* // returns <ndarray>
+*
+* var shx = x.shape;
+* // returns [ 2, 2 ]
+*
+* var y = spreadDimensions( 5, x, [ 1, 3 ] );
+* // returns <ndarray>
+*
+* var shy = y.shape;
+* // returns [ 1, 2, 1, 2, 1 ]
+*
+* var v = y.get( 0, 0, 0, 0, 0 );
+* // returns 1
+*
+* v = y.get( 0, 0, 0, 1, 0 );
+* // returns 2
+*
+* v = y.get( 0, 1, 0, 0, 0 );
+* // returns 3
+*
+* v = y.get( 0, 1, 0, 1, 0 );
+* // returns 4
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":736}],736:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var isRowMajor = require( '@stdlib/ndarray/base/assert/is-row-major-string' );
+var isReadOnly = require( '@stdlib/ndarray/base/assert/is-read-only' );
+var isSortedAscending = require( '@stdlib/array/base/assert/is-sorted-ascending' );
+var toNormalizedIndices = require( '@stdlib/ndarray/base/to-unique-normalized-indices' );
+var getDType = require( '@stdlib/ndarray/base/dtype' );
+var getShape = require( '@stdlib/ndarray/base/shape' );
+var getStrides = require( '@stdlib/ndarray/base/strides' );
+var getOffset = require( '@stdlib/ndarray/base/offset' );
+var getOrder = require( '@stdlib/ndarray/base/order' );
+var getData = require( '@stdlib/ndarray/base/data-buffer' );
+var ones = require( '@stdlib/array/base/ones' );
+var zeros = require( '@stdlib/array/base/zeros' );
+var format = require( '@stdlib/string/format' );
+
+
+// MAIN //
+
+/**
+* Expands the shape of an array to a specified dimensionality by spreading its dimensions to specified dimension indices and inserting dimensions of size one for the remaining dimensions.
+*
+* ## Notes
+*
+* -   Each provided dimension index must reside on the interval `[-ndims, ndims-1]`. If provided a negative dimension index, the position at which to place a respective dimension is computed as `ndims + index`.
+* -   Provided dimension indices must resolve to normalized dimension indices arranged in ascending order.
+*
+* @param {NonNegativeInteger} ndims - number of dimensions in the output array
+* @param {ndarray} x - input array
+* @param {IntegerArray} dims - dimension indices at which to spread array dimensions
+* @throws {RangeError} first argument must be greater than or equal to the number of dimensions in the input array
+* @throws {RangeError} must provide the same number of dimension indices as the number of dimensions in the input array
+* @throws {RangeError} must provide valid dimension indices
+* @throws {Error} must provide unique dimension indices
+* @throws {Error} dimension indices must resolve to normalized dimension indices arranged in ascending order
+* @returns {ndarray} output array
+*
+* @example
+* var array = require( '@stdlib/ndarray/array' );
+*
+* var x = array( [ [ 1, 2 ], [ 3, 4 ] ] );
+* // returns <ndarray>
+*
+* var shx = x.shape;
+* // returns [ 2, 2 ]
+*
+* var y = spreadDimensions( 5, x, [ 1, 3 ] );
+* // returns <ndarray>
+*
+* var shy = y.shape;
+* // returns [ 1, 2, 1, 2, 1 ]
+*
+* var v = y.get( 0, 0, 0, 0, 0 );
+* // returns 1
+*
+* v = y.get( 0, 0, 0, 1, 0 );
+* // returns 2
+*
+* v = y.get( 0, 1, 0, 0, 0 );
+* // returns 3
+*
+* v = y.get( 0, 1, 0, 1, 0 );
+* // returns 4
+*/
+function spreadDimensions( ndims, x, dims ) {
+	var strides;
+	var shape;
+	var isrm;
+	var ord;
+	var sh;
+	var st;
+	var d;
+	var S;
+	var s;
+	var i;
+	var j;
+
+	sh = getShape( x, false );
+	st = getStrides( x, false );
+	ord = getOrder( x );
+	isrm = isRowMajor( ord );
+
+	if ( sh.length > ndims ) {
+		throw new RangeError( format( 'invalid argument. First argument must be greater than or equal to the number of dimensions in the input ndarray. Number of dimensions: %d. Value: `%d`.', sh.length, ndims ) );
+	}
+	// Resolve dimension indices...
+	d = toNormalizedIndices( dims, ndims-1 );
+	if ( d === null ) {
+		throw new RangeError( format( 'invalid argument. Specified dimension index is out-of-bounds. Must be on the interval: [-%u, %u]. Value: `[%s]`.', ndims, ndims-1, dims.join( ', ' ) ) );
+	}
+	if ( d.length !== dims.length ) {
+		throw new Error( format( 'invalid argument. Must provide unique dimension indices. Value: `[%s]`.', dims.join( ', ' ) ) );
+	}
+	if ( d.length !== sh.length ) {
+		throw new RangeError( format( 'invalid argument. Must provide the same number of dimension indices as the number of dimensions in the input ndarray. Number of dimensions: %d. Value: `[%s]`.', sh.length, dims.join( ', ' ) ) );
+	}
+	if ( d.length && !isSortedAscending( d ) ) {
+		throw new Error( format( 'invalid argument. Must provide dimension indices which resolve to nonnegative indices arranged in ascending order. Value: `[%s]`.', dims.join( ', ' ) ) );
+	}
+	// When provided a zero-dimensional array, every expanded dimension is a singleton dimension having zero stride...
+	if ( sh.length === 0 ) {
+		shape = ones( ndims );
+		strides = zeros( ndims );
+	} else {
+		// Interweave singleton dimensions...
+		strides = [];
+		shape = [];
+		j = 0;
+		for ( i = 0; i < ndims; i++ ) {
+			if ( i === d[ j ] ) {
+				// If we have a match, we can move on to inserting singleton dimensions before the next dimension index...
+				S = sh[ j ];
+				s = st[ j ];
+				j += 1;
+			} else if ( j === sh.length ) { // append
+				// We should only get here after exhausting all the dimension indices...
+				S = 1;
+				s = st[ j-1 ];
+				if ( !isrm ) {
+					s *= sh[ j-1 ];
+				}
+			} else { // insert before
+				// We have yet to reach the next specified dimension index so we insert a singleton dimension...
+				S = 1;
+				s = st[ j ];
+				if ( isrm ) {
+					s *= sh[ j ];
+				}
+			}
+			shape.push( S );
+			strides.push( s );
+		}
+	}
+	if ( isReadOnly( x ) ) {
+		// If provided a read-only view, the returned array should also be read-only...
+		return new x.constructor( getDType( x ), getData( x ), shape, strides, getOffset( x ), ord, { // eslint-disable-line max-len
+			'readonly': true
+		});
+	}
+	return new x.constructor( getDType( x ), getData( x ), shape, strides, getOffset( x ), ord ); // eslint-disable-line max-len
+}
+
+
+// EXPORTS //
+
+module.exports = spreadDimensions;
+
+},{"@stdlib/array/base/assert/is-sorted-ascending":18,"@stdlib/array/base/ones":28,"@stdlib/array/base/zeros":39,"@stdlib/ndarray/base/assert/is-read-only":345,"@stdlib/ndarray/base/assert/is-row-major-string":353,"@stdlib/ndarray/base/data-buffer":462,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/offset":688,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/strides":739,"@stdlib/ndarray/base/to-unique-normalized-indices":755,"@stdlib/string/format":964}],737:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71889,7 +84421,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":672}],672:[function(require,module,exports){
+},{"./main.js":738}],738:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -71960,7 +84492,7 @@ function stride( x, dim ) {
 
 module.exports = stride;
 
-},{"@stdlib/ndarray/base/ndims":561,"@stdlib/ndarray/base/normalize-index":568,"@stdlib/ndarray/base/strides":673,"@stdlib/string/format":892}],673:[function(require,module,exports){
+},{"@stdlib/ndarray/base/ndims":623,"@stdlib/ndarray/base/normalize-index":630,"@stdlib/ndarray/base/strides":739,"@stdlib/string/format":964}],739:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72003,7 +84535,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":674}],674:[function(require,module,exports){
+},{"./main.js":740}],740:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72078,7 +84610,7 @@ function strides( x, copy ) {
 
 module.exports = strides;
 
-},{"@stdlib/array/base/copy-indexed":18,"@stdlib/ndarray/base/shape2strides":650}],675:[function(require,module,exports){
+},{"@stdlib/array/base/copy-indexed":20,"@stdlib/ndarray/base/shape2strides":714}],741:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72123,7 +84655,7 @@ var strides2offset = require( './main.js' );
 
 module.exports = strides2offset;
 
-},{"./main.js":676}],676:[function(require,module,exports){
+},{"./main.js":742}],742:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72181,7 +84713,7 @@ function strides2offset( shape, strides ) {
 
 module.exports = strides2offset;
 
-},{}],677:[function(require,module,exports){
+},{}],743:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72232,7 +84764,7 @@ var strides2order = require( './main.js' );
 
 module.exports = strides2order;
 
-},{"./main.js":678}],678:[function(require,module,exports){
+},{"./main.js":744}],744:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72324,7 +84856,7 @@ function strides2order( strides ) {
 
 module.exports = strides2order;
 
-},{"@stdlib/math/base/special/abs":295}],679:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":301}],745:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72371,7 +84903,7 @@ var sub2ind = require( './main.js' );
 
 module.exports = sub2ind;
 
-},{"./main.js":680}],680:[function(require,module,exports){
+},{"./main.js":746}],746:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72570,7 +85102,7 @@ function sub2ind() {
 
 module.exports = sub2ind;
 
-},{"@stdlib/string/format":892}],681:[function(require,module,exports){
+},{"@stdlib/string/format":964}],747:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -72614,7 +85146,7 @@ tape( 'the exported object contains key-value pairs', function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/ndarray/base/test/test.js")
-},{"./../lib":543,"@stdlib/utils/keys":940,"tape":1090}],682:[function(require,module,exports){
+},{"./../lib":557,"@stdlib/utils/keys":1012,"tape":1162}],748:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72662,7 +85194,7 @@ var ndarray2array = require( './main.js' );
 
 module.exports = ndarray2array;
 
-},{"./main.js":683}],683:[function(require,module,exports){
+},{"./main.js":749}],749:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72729,7 +85261,7 @@ function ndarray2array( buffer, shape, strides, offset, order ) {
 
 module.exports = ndarray2array;
 
-},{"./recurse.js":684,"@stdlib/array/base/arraylike2object":5}],684:[function(require,module,exports){
+},{"./recurse.js":750,"@stdlib/array/base/arraylike2object":5}],750:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72794,7 +85326,372 @@ function recurse( obj, shape, strides, offset, order, dim ) {
 
 module.exports = recurse;
 
-},{}],685:[function(require,module,exports){
+},{}],751:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Normalize a list of indices to the interval `[0,max]`.
+*
+* @module @stdlib/ndarray/base/to-normalized-indices
+*
+* @example
+* var toNormalizedIndices = require( '@stdlib/ndarray/base/to-normalized-indices' );
+*
+* var idx = toNormalizedIndices( [ -2, 5 ], 10 );
+* // returns [ 9, 5 ]
+*
+* idx = toNormalizedIndices( [ 15 ], 10 );
+* // returns [ -1 ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":752}],752:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var emptyLike = require( '@stdlib/array/empty-like' );
+var normalizeIndex = require( '@stdlib/ndarray/base/normalize-index' );
+
+
+// MAIN //
+
+/**
+* Normalizes a list of indices to the interval `[0,max]`.
+*
+* @param {IntegerArray} indices - indices
+* @param {NonNegativeInteger} max - maximum index
+* @returns {IntegerArray} normalized indices
+*
+* @example
+* var idx = toNormalizedIndices( [ -2, 5 ], 10 );
+* // returns [ 9, 5 ]
+*
+* idx = toNormalizedIndices( [ 15 ], 10 );
+* // returns [ -1 ]
+*/
+function toNormalizedIndices( indices, max ) {
+	var out;
+	var i;
+
+	out = emptyLike( indices );
+	for ( i = 0; i < indices.length; i++ ) {
+		out[ i ] = normalizeIndex( indices[ i ], max );
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = toNormalizedIndices;
+
+},{"@stdlib/array/empty-like":73,"@stdlib/ndarray/base/normalize-index":630}],753:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a new ndarray where the order of elements of an input ndarray is reversed along each dimension.
+*
+* @module @stdlib/ndarray/base/to-reversed
+*
+* @example
+* var ndarray = require( '@stdlib/ndarray/ctor' );
+* var ndarray2array = require( '@stdlib/ndarray/to-array' );
+* var toReversed = require( '@stdlib/ndarray/base/to-reversed' );
+*
+* var buffer = [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ];
+* var shape = [ 3, 2 ];
+* var strides = [ 2, 1 ];
+* var offset = 0;
+*
+* var x = ndarray( 'generic', buffer, shape, strides, offset, 'row-major' );
+* // returns <ndarray>
+*
+* var sh = x.shape;
+* // returns [ 3, 2 ]
+*
+* var arr = ndarray2array( x );
+* // returns [ [ 1.0, 2.0 ], [ 3.0, 4.0 ], [ 5.0, 6.0 ] ]
+*
+* var y = toReversed( x );
+* // returns <ndarray>
+*
+* sh = y.shape;
+* // returns [ 3, 2 ]
+*
+* arr = ndarray2array( y );
+* // returns [ [ 6.0, 5.0 ], [ 4.0, 3.0 ], [ 2.0, 1.0 ] ]
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":754}],754:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var emptyLike = require( '@stdlib/ndarray/base/empty-like' );
+var reverse = require( '@stdlib/ndarray/base/reverse' );
+var assign = require( '@stdlib/ndarray/base/assign' );
+
+
+// MAIN //
+
+/**
+* Returns a new ndarray where the order of elements of an input ndarray is reversed along each dimension.
+*
+* @param {ndarray} x - input array
+* @returns {ndarray} output array
+*
+* @example
+* var ndarray = require( '@stdlib/ndarray/ctor' );
+* var ndarray2array = require( '@stdlib/ndarray/to-array' );
+*
+* var buffer = [ 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ];
+* var shape = [ 3, 2 ];
+* var strides = [ 2, 1 ];
+* var offset = 0;
+*
+* var x = ndarray( 'generic', buffer, shape, strides, offset, 'row-major' );
+* // returns <ndarray>
+*
+* var sh = x.shape;
+* // returns [ 3, 2 ]
+*
+* var arr = ndarray2array( x );
+* // returns [ [ 1.0, 2.0 ], [ 3.0, 4.0 ], [ 5.0, 6.0 ] ]
+*
+* var y = toReversed( x );
+* // returns <ndarray>
+*
+* sh = y.shape;
+* // returns [ 3, 2 ]
+*
+* arr = ndarray2array( y );
+* // returns [ [ 6.0, 5.0 ], [ 4.0, 3.0 ], [ 2.0, 1.0 ] ]
+*/
+function toReversed( x ) {
+	var out;
+	var xr;
+
+	// Create a reversed view of the input ndarray:
+	xr = reverse( x, false );
+
+	// Create an output ndarray with the same shape and data type as the input ndarray:
+	out = emptyLike( x );
+
+	// Assign the elements of the reversed input ndarray view to the output ndarray:
+	assign( [ xr, out ] );
+
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = toReversed;
+
+},{"@stdlib/ndarray/base/assign":408,"@stdlib/ndarray/base/empty-like":485,"@stdlib/ndarray/base/reverse":706}],755:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Return a list of unique indices after normalizing to the interval `[0,max]`.
+*
+* @module @stdlib/ndarray/base/to-unique-normalized-indices
+*
+* @example
+* var toUniqueNormalizedIndices = require( '@stdlib/ndarray/base/to-unique-normalized-indices' );
+*
+* var idx = toUniqueNormalizedIndices( [ -2, 5 ], 10 );
+* // returns [ 9, 5 ]
+*
+* idx = toUniqueNormalizedIndices( [ 15 ], 10 );
+* // returns null
+*/
+
+// MODULES //
+
+var main = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = main;
+
+},{"./main.js":756}],756:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2025 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
+var normalizeIndex = require( '@stdlib/ndarray/base/normalize-index' );
+
+
+// MAIN //
+
+/**
+* Returns a list of unique indices after normalizing to the interval `[0,max]`.
+*
+* @param {IntegerArray} indices - indices
+* @param {NonNegativeInteger} max - maximum index
+* @returns {(IntegerArray|null)} normalized indices
+*
+* @example
+* var idx = toUniqueNormalizedIndices( [ -2, 5 ], 10 );
+* // returns [ 9, 5 ]
+*
+* idx = toUniqueNormalizedIndices( [ 15 ], 10 );
+* // returns null
+*/
+function toUniqueNormalizedIndices( indices, max ) {
+	var hash;
+	var out;
+	var idx;
+	var i;
+
+	hash = {};
+	out = [];
+	for ( i = 0; i < indices.length; i++ ) {
+		idx = normalizeIndex( indices[ i ], max );
+		if ( idx < 0 ) {
+			return null;
+		}
+		if ( hash[ idx ] === void 0 ) {
+			hash[ idx ] = true;
+			out.push( idx );
+		}
+	}
+	return out;
+}
+
+
+// EXPORTS //
+
+module.exports = toUniqueNormalizedIndices;
+
+},{"@stdlib/ndarray/base/normalize-index":630}],757:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72852,7 +85749,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":686}],686:[function(require,module,exports){
+},{"./main.js":758}],758:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -72943,7 +85840,7 @@ function transpose( x ) {
 
 module.exports = transpose;
 
-},{"@stdlib/ndarray/base/data-buffer":452,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/strides":673,"@stdlib/ndarray/base/strides2offset":675}],687:[function(require,module,exports){
+},{"@stdlib/ndarray/base/data-buffer":462,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/strides":739,"@stdlib/ndarray/base/strides2offset":741}],759:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -73053,7 +85950,7 @@ function unary0d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary0d;
 
-},{}],688:[function(require,module,exports){
+},{}],760:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -73181,7 +86078,7 @@ function unary0d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary0d;
 
-},{}],689:[function(require,module,exports){
+},{}],761:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -73463,7 +86360,7 @@ function unary10d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max-state
 
 module.exports = unary10d;
 
-},{}],690:[function(require,module,exports){
+},{}],762:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -73769,7 +86666,7 @@ function unary10d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max-state
 
 module.exports = unary10d;
 
-},{}],691:[function(require,module,exports){
+},{}],763:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -74165,7 +87062,7 @@ function blockedunary10d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line ma
 
 module.exports = blockedunary10d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],692:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],764:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -74585,7 +87482,7 @@ function blockedunary10d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line ma
 
 module.exports = blockedunary10d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],693:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],765:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -74726,7 +87623,7 @@ function unary1d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary1d;
 
-},{}],694:[function(require,module,exports){
+},{}],766:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -74891,7 +87788,7 @@ function unary1d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary1d;
 
-},{}],695:[function(require,module,exports){
+},{}],767:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -75059,7 +87956,7 @@ function unary2d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary2d;
 
-},{}],696:[function(require,module,exports){
+},{}],768:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -75251,7 +88148,7 @@ function unary2d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary2d;
 
-},{}],697:[function(require,module,exports){
+},{}],769:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -75455,7 +88352,7 @@ function blockedunary2d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = blockedunary2d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],698:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],770:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -75683,7 +88580,7 @@ function blockedunary2d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = blockedunary2d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],699:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],771:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -75865,7 +88762,7 @@ function unary3d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary3d;
 
-},{}],700:[function(require,module,exports){
+},{}],772:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -76073,7 +88970,7 @@ function unary3d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary3d;
 
-},{}],701:[function(require,module,exports){
+},{}],773:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -76301,7 +89198,7 @@ function blockedunary3d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = blockedunary3d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],702:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],774:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -76553,7 +89450,7 @@ function blockedunary3d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = blockedunary3d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],703:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],775:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -76751,7 +89648,7 @@ function unary4d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary4d;
 
-},{}],704:[function(require,module,exports){
+},{}],776:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -76973,7 +89870,7 @@ function unary4d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary4d;
 
-},{}],705:[function(require,module,exports){
+},{}],777:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -77225,7 +90122,7 @@ function blockedunary4d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary4d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],706:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],778:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -77501,7 +90398,7 @@ function blockedunary4d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary4d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],707:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],779:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -77713,7 +90610,7 @@ function unary5d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary5d;
 
-},{}],708:[function(require,module,exports){
+},{}],780:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -77949,7 +90846,7 @@ function unary5d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary5d;
 
-},{}],709:[function(require,module,exports){
+},{}],781:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -78225,7 +91122,7 @@ function blockedunary5d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary5d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],710:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],782:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -78525,7 +91422,7 @@ function blockedunary5d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary5d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],711:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],783:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -78751,7 +91648,7 @@ function unary6d( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unary6d;
 
-},{}],712:[function(require,module,exports){
+},{}],784:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -79001,7 +91898,7 @@ function unary6d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = unary6d;
 
-},{}],713:[function(require,module,exports){
+},{}],785:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -79301,7 +92198,7 @@ function blockedunary6d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary6d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],714:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],786:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -79625,7 +92522,7 @@ function blockedunary6d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary6d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],715:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],787:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -79865,7 +92762,7 @@ function unary7d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = unary7d;
 
-},{}],716:[function(require,module,exports){
+},{}],788:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -80129,7 +93026,7 @@ function unary7d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = unary7d;
 
-},{}],717:[function(require,module,exports){
+},{}],789:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -80453,7 +93350,7 @@ function blockedunary7d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary7d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],718:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],790:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -80801,7 +93698,7 @@ function blockedunary7d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary7d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],719:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],791:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -81055,7 +93952,7 @@ function unary8d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = unary8d;
 
-},{}],720:[function(require,module,exports){
+},{}],792:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -81333,7 +94230,7 @@ function unary8d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = unary8d;
 
-},{}],721:[function(require,module,exports){
+},{}],793:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -81681,7 +94578,7 @@ function blockedunary8d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary8d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],722:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],794:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -82053,7 +94950,7 @@ function blockedunary8d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary8d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],723:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],795:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -82321,7 +95218,7 @@ function unary9d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = unary9d;
 
-},{}],724:[function(require,module,exports){
+},{}],796:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -82613,7 +95510,7 @@ function unary9d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max-statem
 
 module.exports = unary9d;
 
-},{}],725:[function(require,module,exports){
+},{}],797:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -82985,7 +95882,7 @@ function blockedunary9d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary9d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],726:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],798:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -83035,7 +95932,7 @@ var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Array<Function>} x.accessors - data buffer accessors
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Function} fcn - unary function to apply to callback return values
 * @param {Callback} clbk - callback
 * @param {*} [thisArg] - callback execution context
@@ -83381,7 +96278,7 @@ function blockedunary9d( x, y, fcn, clbk, thisArg ) { // eslint-disable-line max
 
 module.exports = blockedunary9d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],727:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],799:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -83468,7 +96365,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":728}],728:[function(require,module,exports){
+},{"./main.js":800}],800:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -83815,7 +96712,7 @@ function unaryBy( arrays, fcn, clbk, thisArg ) {
 
 module.exports = unaryBy;
 
-},{"./0d.js":687,"./0d_accessors.js":688,"./10d.js":689,"./10d_accessors.js":690,"./10d_blocked.js":691,"./10d_blocked_accessors.js":692,"./1d.js":693,"./1d_accessors.js":694,"./2d.js":695,"./2d_accessors.js":696,"./2d_blocked.js":697,"./2d_blocked_accessors.js":698,"./3d.js":699,"./3d_accessors.js":700,"./3d_blocked.js":701,"./3d_blocked_accessors.js":702,"./4d.js":703,"./4d_accessors.js":704,"./4d_blocked.js":705,"./4d_blocked_accessors.js":706,"./5d.js":707,"./5d_accessors.js":708,"./5d_blocked.js":709,"./5d_blocked_accessors.js":710,"./6d.js":711,"./6d_accessors.js":712,"./6d_blocked.js":713,"./6d_blocked_accessors.js":714,"./7d.js":715,"./7d_accessors.js":716,"./7d_blocked.js":717,"./7d_blocked_accessors.js":718,"./8d.js":719,"./8d_accessors.js":720,"./8d_blocked.js":721,"./8d_blocked_accessors.js":722,"./9d.js":723,"./9d_accessors.js":724,"./9d_blocked.js":725,"./9d_blocked_accessors.js":726,"./nd.js":729,"./nd_accessors.js":730,"@stdlib/ndarray/base/iteration-order":541,"@stdlib/ndarray/base/minmax-view-buffer-index":555,"@stdlib/ndarray/base/ndarraylike2object":559}],729:[function(require,module,exports){
+},{"./0d.js":759,"./0d_accessors.js":760,"./10d.js":761,"./10d_accessors.js":762,"./10d_blocked.js":763,"./10d_blocked_accessors.js":764,"./1d.js":765,"./1d_accessors.js":766,"./2d.js":767,"./2d_accessors.js":768,"./2d_blocked.js":769,"./2d_blocked_accessors.js":770,"./3d.js":771,"./3d_accessors.js":772,"./3d_blocked.js":773,"./3d_blocked_accessors.js":774,"./4d.js":775,"./4d_accessors.js":776,"./4d_blocked.js":777,"./4d_blocked_accessors.js":778,"./5d.js":779,"./5d_accessors.js":780,"./5d_blocked.js":781,"./5d_blocked_accessors.js":782,"./6d.js":783,"./6d_accessors.js":784,"./6d_blocked.js":785,"./6d_blocked_accessors.js":786,"./7d.js":787,"./7d_accessors.js":788,"./7d_blocked.js":789,"./7d_blocked_accessors.js":790,"./8d.js":791,"./8d_accessors.js":792,"./8d_blocked.js":793,"./8d_blocked_accessors.js":794,"./9d.js":795,"./9d_accessors.js":796,"./9d_blocked.js":797,"./9d_blocked_accessors.js":798,"./nd.js":801,"./nd_accessors.js":802,"@stdlib/ndarray/base/iteration-order":555,"@stdlib/ndarray/base/minmax-view-buffer-index":617,"@stdlib/ndarray/base/ndarraylike2object":621}],801:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -83975,7 +96872,7 @@ function unarynd( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unarynd;
 
-},{"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/vind2bind":783}],730:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],802:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -84159,7 +97056,7 @@ function unarynd( x, y, fcn, clbk, thisArg ) {
 
 module.exports = unarynd;
 
-},{"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/vind2bind":783}],731:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],803:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -84218,7 +97115,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":732}],732:[function(require,module,exports){
+},{"./main.js":804}],804:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -84314,7 +97211,7 @@ function loopOrder( sh, sx, sy ) {
 
 module.exports = loopOrder;
 
-},{"./sort2ins.js":733,"@stdlib/array/base/copy-indexed":18,"@stdlib/array/base/take-indexed":30,"@stdlib/array/base/zero-to":33}],733:[function(require,module,exports){
+},{"./sort2ins.js":805,"@stdlib/array/base/copy-indexed":20,"@stdlib/array/base/take-indexed":34,"@stdlib/array/base/zero-to":37}],805:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -84414,7 +97311,7 @@ function sort2ins( x, y ) {
 
 module.exports = sort2ins;
 
-},{}],734:[function(require,module,exports){
+},{}],806:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -84456,7 +97353,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":735}],735:[function(require,module,exports){
+},{"./main.js":807}],807:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -84580,7 +97477,7 @@ function resolve( dtype, policy ) {
 
 module.exports = resolve;
 
-},{"@stdlib/ndarray/base/assert/is-complex-floating-point-data-type":319,"@stdlib/ndarray/base/assert/is-data-type":323,"@stdlib/ndarray/base/assert/is-floating-point-data-type":325,"@stdlib/ndarray/base/assert/is-integer-data-type":329,"@stdlib/ndarray/base/assert/is-numeric-data-type":333,"@stdlib/ndarray/base/assert/is-real-data-type":339,"@stdlib/ndarray/base/assert/is-real-floating-point-data-type":341,"@stdlib/ndarray/base/assert/is-signed-integer-data-type":351,"@stdlib/ndarray/base/assert/is-unsigned-integer-data-type":355,"@stdlib/ndarray/defaults":798,"@stdlib/string/format":892}],736:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-complex-floating-point-data-type":327,"@stdlib/ndarray/base/assert/is-data-type":331,"@stdlib/ndarray/base/assert/is-floating-point-data-type":333,"@stdlib/ndarray/base/assert/is-integer-data-type":337,"@stdlib/ndarray/base/assert/is-numeric-data-type":341,"@stdlib/ndarray/base/assert/is-real-data-type":347,"@stdlib/ndarray/base/assert/is-real-floating-point-data-type":349,"@stdlib/ndarray/base/assert/is-signed-integer-data-type":361,"@stdlib/ndarray/base/assert/is-unsigned-integer-data-type":365,"@stdlib/ndarray/defaults":870,"@stdlib/string/format":964}],808:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -84616,7 +97513,7 @@ var defaults = {
 
 module.exports = defaults;
 
-},{}],737:[function(require,module,exports){
+},{}],809:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -84658,7 +97555,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":738}],738:[function(require,module,exports){
+},{"./main.js":810}],810:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -84718,7 +97615,7 @@ function unaryBlockSize( dtypeX, dtypeY ) {
 
 module.exports = unaryBlockSize;
 
-},{"./defaults.js":736,"@stdlib/ndarray/base/bytes-per-element":432}],739:[function(require,module,exports){
+},{"./defaults.js":808,"@stdlib/ndarray/base/bytes-per-element":442}],811:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -84817,7 +97714,7 @@ function unary0d( x, y, fcn ) {
 
 module.exports = unary0d;
 
-},{}],740:[function(require,module,exports){
+},{}],812:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -84937,7 +97834,7 @@ function unary0d( x, y, fcn ) {
 
 module.exports = unary0d;
 
-},{}],741:[function(require,module,exports){
+},{}],813:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -85206,7 +98103,7 @@ function unary10d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary10d;
 
-},{}],742:[function(require,module,exports){
+},{}],814:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -85502,7 +98399,7 @@ function unary10d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary10d;
 
-},{}],743:[function(require,module,exports){
+},{}],815:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -85885,7 +98782,7 @@ function blockedunary10d( x, y, fcn ) { // eslint-disable-line max-statements, m
 
 module.exports = blockedunary10d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],744:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],816:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -86295,7 +99192,7 @@ function blockedunary10d( x, y, fcn ) { // eslint-disable-line max-statements, m
 
 module.exports = blockedunary10d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],745:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],817:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -86423,7 +99320,7 @@ function unary1d( x, y, fcn ) {
 
 module.exports = unary1d;
 
-},{}],746:[function(require,module,exports){
+},{}],818:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -86578,7 +99475,7 @@ function unary1d( x, y, fcn ) {
 
 module.exports = unary1d;
 
-},{}],747:[function(require,module,exports){
+},{}],819:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -86733,7 +99630,7 @@ function unary2d( x, y, fcn ) {
 
 module.exports = unary2d;
 
-},{}],748:[function(require,module,exports){
+},{}],820:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -86915,7 +99812,7 @@ function unary2d( x, y, fcn ) {
 
 module.exports = unary2d;
 
-},{}],749:[function(require,module,exports){
+},{}],821:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -87104,7 +100001,7 @@ function blockedunary2d( x, y, fcn ) {
 
 module.exports = blockedunary2d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],750:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],822:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -87320,7 +100217,7 @@ function blockedunary2d( x, y, fcn ) {
 
 module.exports = blockedunary2d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],751:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],823:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -87489,7 +100386,7 @@ function unary3d( x, y, fcn ) {
 
 module.exports = unary3d;
 
-},{}],752:[function(require,module,exports){
+},{}],824:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -87685,7 +100582,7 @@ function unary3d( x, y, fcn ) {
 
 module.exports = unary3d;
 
-},{}],753:[function(require,module,exports){
+},{}],825:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -87900,7 +100797,7 @@ function blockedunary3d( x, y, fcn ) {
 
 module.exports = blockedunary3d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],754:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],826:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -88142,7 +101039,7 @@ function blockedunary3d( x, y, fcn ) {
 
 module.exports = blockedunary3d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],755:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],827:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -88325,7 +101222,7 @@ function unary4d( x, y, fcn ) {
 
 module.exports = unary4d;
 
-},{}],756:[function(require,module,exports){
+},{}],828:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -88535,7 +101432,7 @@ function unary4d( x, y, fcn ) {
 
 module.exports = unary4d;
 
-},{}],757:[function(require,module,exports){
+},{}],829:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -88774,7 +101671,7 @@ function blockedunary4d( x, y, fcn ) {
 
 module.exports = blockedunary4d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],758:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],830:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -89040,7 +101937,7 @@ function blockedunary4d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary4d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],759:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],831:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -89237,7 +102134,7 @@ function unary5d( x, y, fcn ) {
 
 module.exports = unary5d;
 
-},{}],760:[function(require,module,exports){
+},{}],832:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -89461,7 +102358,7 @@ function unary5d( x, y, fcn ) {
 
 module.exports = unary5d;
 
-},{}],761:[function(require,module,exports){
+},{}],833:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -89724,7 +102621,7 @@ function blockedunary5d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary5d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],762:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],834:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -90014,7 +102911,7 @@ function blockedunary5d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary5d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],763:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],835:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -90227,7 +103124,7 @@ function unary6d( x, y, fcn ) {
 
 module.exports = unary6d;
 
-},{}],764:[function(require,module,exports){
+},{}],836:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -90467,7 +103364,7 @@ function unary6d( x, y, fcn ) {
 
 module.exports = unary6d;
 
-},{}],765:[function(require,module,exports){
+},{}],837:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -90754,7 +103651,7 @@ function blockedunary6d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary6d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],766:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],838:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -91068,7 +103965,7 @@ function blockedunary6d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary6d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],767:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],839:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -91295,7 +104192,7 @@ function unary7d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary7d;
 
-},{}],768:[function(require,module,exports){
+},{}],840:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -91549,7 +104446,7 @@ function unary7d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary7d;
 
-},{}],769:[function(require,module,exports){
+},{}],841:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -91860,7 +104757,7 @@ function blockedunary7d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary7d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],770:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],842:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -92198,7 +105095,7 @@ function blockedunary7d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = blockedunary7d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],771:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],843:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -92439,7 +105336,7 @@ function unary8d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary8d;
 
-},{}],772:[function(require,module,exports){
+},{}],844:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -92707,7 +105604,7 @@ function unary8d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary8d;
 
-},{}],773:[function(require,module,exports){
+},{}],845:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -93042,7 +105939,7 @@ function blockedunary8d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 module.exports = blockedunary8d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],774:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],846:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -93404,7 +106301,7 @@ function blockedunary8d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 module.exports = blockedunary8d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],775:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],847:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -93659,7 +106556,7 @@ function unary9d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary9d;
 
-},{}],776:[function(require,module,exports){
+},{}],848:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -93941,7 +106838,7 @@ function unary9d( x, y, fcn ) { // eslint-disable-line max-statements
 
 module.exports = unary9d;
 
-},{}],777:[function(require,module,exports){
+},{}],849:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -94300,7 +107197,7 @@ function blockedunary9d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 module.exports = blockedunary9d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],778:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],850:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -94350,7 +107247,7 @@ var blockSize = require( '@stdlib/ndarray/base/unary-tiling-block-size' );
 * @param {IntegerArray} y.strides - stride lengths
 * @param {NonNegativeInteger} y.offset - index offset
 * @param {string} y.order - specifies whether `y` is row-major (C-style) or column-major (Fortran-style)
-* @param {Array<Function>} x.accessors - data buffer accessors
+* @param {Array<Function>} y.accessors - data buffer accessors
 * @param {Callback} fcn - unary callback
 *
 * @example
@@ -94686,7 +107583,7 @@ function blockedunary9d( x, y, fcn ) { // eslint-disable-line max-statements, ma
 
 module.exports = blockedunary9d;
 
-},{"@stdlib/ndarray/base/unary-loop-interchange-order":731,"@stdlib/ndarray/base/unary-tiling-block-size":737}],779:[function(require,module,exports){
+},{"@stdlib/ndarray/base/unary-loop-interchange-order":803,"@stdlib/ndarray/base/unary-tiling-block-size":809}],851:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -94769,7 +107666,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":780}],780:[function(require,module,exports){
+},{"./main.js":852}],852:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -95110,7 +108007,7 @@ function unary( arrays, fcn ) {
 
 module.exports = unary;
 
-},{"./0d.js":739,"./0d_accessors.js":740,"./10d.js":741,"./10d_accessors.js":742,"./10d_blocked.js":743,"./10d_blocked_accessors.js":744,"./1d.js":745,"./1d_accessors.js":746,"./2d.js":747,"./2d_accessors.js":748,"./2d_blocked.js":749,"./2d_blocked_accessors.js":750,"./3d.js":751,"./3d_accessors.js":752,"./3d_blocked.js":753,"./3d_blocked_accessors.js":754,"./4d.js":755,"./4d_accessors.js":756,"./4d_blocked.js":757,"./4d_blocked_accessors.js":758,"./5d.js":759,"./5d_accessors.js":760,"./5d_blocked.js":761,"./5d_blocked_accessors.js":762,"./6d.js":763,"./6d_accessors.js":764,"./6d_blocked.js":765,"./6d_blocked_accessors.js":766,"./7d.js":767,"./7d_accessors.js":768,"./7d_blocked.js":769,"./7d_blocked_accessors.js":770,"./8d.js":771,"./8d_accessors.js":772,"./8d_blocked.js":773,"./8d_blocked_accessors.js":774,"./9d.js":775,"./9d_accessors.js":776,"./9d_blocked.js":777,"./9d_blocked_accessors.js":778,"./nd.js":781,"./nd_accessors.js":782,"@stdlib/ndarray/base/iteration-order":541,"@stdlib/ndarray/base/minmax-view-buffer-index":555,"@stdlib/ndarray/base/ndarraylike2object":559}],781:[function(require,module,exports){
+},{"./0d.js":811,"./0d_accessors.js":812,"./10d.js":813,"./10d_accessors.js":814,"./10d_blocked.js":815,"./10d_blocked_accessors.js":816,"./1d.js":817,"./1d_accessors.js":818,"./2d.js":819,"./2d_accessors.js":820,"./2d_blocked.js":821,"./2d_blocked_accessors.js":822,"./3d.js":823,"./3d_accessors.js":824,"./3d_blocked.js":825,"./3d_blocked_accessors.js":826,"./4d.js":827,"./4d_accessors.js":828,"./4d_blocked.js":829,"./4d_blocked_accessors.js":830,"./5d.js":831,"./5d_accessors.js":832,"./5d_blocked.js":833,"./5d_blocked_accessors.js":834,"./6d.js":835,"./6d_accessors.js":836,"./6d_blocked.js":837,"./6d_blocked_accessors.js":838,"./7d.js":839,"./7d_accessors.js":840,"./7d_blocked.js":841,"./7d_blocked_accessors.js":842,"./8d.js":843,"./8d_accessors.js":844,"./8d_blocked.js":845,"./8d_blocked_accessors.js":846,"./9d.js":847,"./9d_accessors.js":848,"./9d_blocked.js":849,"./9d_blocked_accessors.js":850,"./nd.js":853,"./nd_accessors.js":854,"@stdlib/ndarray/base/iteration-order":555,"@stdlib/ndarray/base/minmax-view-buffer-index":617,"@stdlib/ndarray/base/ndarraylike2object":621}],853:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -95260,7 +108157,7 @@ function unarynd( x, y, fcn ) {
 
 module.exports = unarynd;
 
-},{"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/vind2bind":783}],782:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],854:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -95437,7 +108334,7 @@ function unarynd( x, y, fcn ) {
 
 module.exports = unarynd;
 
-},{"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/vind2bind":783}],783:[function(require,module,exports){
+},{"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/vind2bind":855}],855:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -95485,7 +108382,7 @@ var vind2bind = require( './main.js' );
 
 module.exports = vind2bind;
 
-},{"./main.js":784}],784:[function(require,module,exports){
+},{"./main.js":856}],856:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -95602,7 +108499,7 @@ function vind2bind( shape, strides, offset, order, idx, mode ) {
 
 module.exports = vind2bind;
 
-},{"@stdlib/string/format":892}],785:[function(require,module,exports){
+},{"@stdlib/string/format":964}],857:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -95650,7 +108547,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":786}],786:[function(require,module,exports){
+},{"./main.js":858}],858:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -95717,7 +108614,7 @@ function wrapIndex( idx, max ) {
 
 module.exports = wrapIndex;
 
-},{}],787:[function(require,module,exports){
+},{}],859:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -95769,7 +108666,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":788}],788:[function(require,module,exports){
+},{"./main.js":860}],860:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -95860,7 +108757,7 @@ function zerosLike( x ) {
 
 module.exports = zerosLike;
 
-},{"@stdlib/ndarray/base/buffer":428,"@stdlib/ndarray/base/dtype":468,"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/order":626,"@stdlib/ndarray/base/shape":647,"@stdlib/ndarray/base/shape2strides":650,"@stdlib/ndarray/base/strides2offset":675,"@stdlib/string/format":892}],789:[function(require,module,exports){
+},{"@stdlib/ndarray/base/buffer":438,"@stdlib/ndarray/base/dtype":478,"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/order":690,"@stdlib/ndarray/base/shape":711,"@stdlib/ndarray/base/shape2strides":714,"@stdlib/ndarray/base/strides2offset":741,"@stdlib/string/format":964}],861:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -95908,7 +108805,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":790}],790:[function(require,module,exports){
+},{"./main.js":862}],862:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -95988,7 +108885,7 @@ function zeros( dtype, shape, order ) {
 
 module.exports = zeros;
 
-},{"@stdlib/ndarray/base/buffer":428,"@stdlib/ndarray/base/ctor":441,"@stdlib/ndarray/base/numel":622,"@stdlib/ndarray/base/shape2strides":650,"@stdlib/ndarray/base/strides2offset":675,"@stdlib/string/format":892}],791:[function(require,module,exports){
+},{"@stdlib/ndarray/base/buffer":438,"@stdlib/ndarray/base/ctor":451,"@stdlib/ndarray/base/numel":686,"@stdlib/ndarray/base/shape2strides":714,"@stdlib/ndarray/base/strides2offset":741,"@stdlib/string/format":964}],863:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96042,7 +108939,7 @@ function enumerated() {
 
 module.exports = enumerated;
 
-},{}],792:[function(require,module,exports){
+},{}],864:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96091,7 +108988,7 @@ setReadOnly( modes, 'enum', enumeration );
 
 module.exports = modes;
 
-},{"./enum.js":791,"./main.js":793,"@stdlib/utils/define-nonenumerable-read-only-property":905}],793:[function(require,module,exports){
+},{"./enum.js":863,"./main.js":865,"@stdlib/utils/define-nonenumerable-read-only-property":977}],865:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96137,7 +109034,7 @@ function modes() {
 
 module.exports = modes;
 
-},{"./modes.json":794}],794:[function(require,module,exports){
+},{"./modes.json":866}],866:[function(require,module,exports){
 module.exports=[
 	"none",
 	"equiv",
@@ -96147,7 +109044,7 @@ module.exports=[
 	"unsafe"
 ]
 
-},{}],795:[function(require,module,exports){
+},{}],867:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96194,7 +109091,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":796}],796:[function(require,module,exports){
+},{"./main.js":868}],868:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96260,7 +109157,7 @@ function data( x ) {
 
 module.exports = data;
 
-},{"@stdlib/assert/is-collection":163,"@stdlib/string/format":892}],797:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":169,"@stdlib/string/format":964}],869:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96328,7 +109225,7 @@ function get( name ) {
 
 module.exports = get;
 
-},{"./main.js":799}],798:[function(require,module,exports){
+},{"./main.js":871}],870:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96377,7 +109274,7 @@ setReadOnly( main, 'get', get );
 
 module.exports = main;
 
-},{"./get.js":797,"./main.js":799,"@stdlib/utils/define-nonenumerable-read-only-property":905}],799:[function(require,module,exports){
+},{"./get.js":869,"./main.js":871,"@stdlib/utils/define-nonenumerable-read-only-property":977}],871:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96441,7 +109338,7 @@ function defaults() {
 
 module.exports = defaults;
 
-},{}],800:[function(require,module,exports){
+},{}],872:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96488,7 +109385,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":801}],801:[function(require,module,exports){
+},{"./main.js":873}],873:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96554,7 +109451,7 @@ function dtype( x ) {
 
 module.exports = dtype;
 
-},{"@stdlib/ndarray/base/assert/is-data-type":323,"@stdlib/string/format":892}],802:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-data-type":331,"@stdlib/string/format":964}],874:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96624,7 +109521,7 @@ function assign( target, source ) {
 
 module.exports = assign;
 
-},{"@stdlib/utils/define-read-only-property":912,"@stdlib/utils/keys":940}],803:[function(require,module,exports){
+},{"@stdlib/utils/define-read-only-property":984,"@stdlib/utils/keys":1012}],875:[function(require,module,exports){
 module.exports={
   "all": [
     "binary",
@@ -96720,7 +109617,7 @@ module.exports={
   ]
 }
 
-},{}],804:[function(require,module,exports){
+},{}],876:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96811,7 +109708,7 @@ function enumeration() {
 
 module.exports = enumeration;
 
-},{}],805:[function(require,module,exports){
+},{}],877:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96862,7 +109759,7 @@ assign( main, enumeration() );
 
 module.exports = main;
 
-},{"./assign.js":802,"./enum.js":804,"./main.js":806,"@stdlib/utils/define-nonenumerable-read-only-property":905}],806:[function(require,module,exports){
+},{"./assign.js":874,"./enum.js":876,"./main.js":878,"@stdlib/utils/define-nonenumerable-read-only-property":977}],878:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96938,7 +109835,7 @@ function dtypes() {
 
 module.exports = dtypes;
 
-},{"./dtypes.json":803,"@stdlib/string/base/replace":890}],807:[function(require,module,exports){
+},{"./dtypes.json":875,"@stdlib/string/base/replace":962}],879:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -96990,7 +109887,7 @@ function enumerated() {
 
 module.exports = enumerated;
 
-},{}],808:[function(require,module,exports){
+},{}],880:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97039,7 +109936,7 @@ setReadOnly( modes, 'enum', enumeration );
 
 module.exports = modes;
 
-},{"./enum.js":807,"./main.js":809,"@stdlib/utils/define-nonenumerable-read-only-property":905}],809:[function(require,module,exports){
+},{"./enum.js":879,"./main.js":881,"@stdlib/utils/define-nonenumerable-read-only-property":977}],881:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97085,7 +109982,7 @@ function modes() {
 
 module.exports = modes;
 
-},{"./modes.json":810}],810:[function(require,module,exports){
+},{"./modes.json":882}],882:[function(require,module,exports){
 module.exports=[
 	"throw",
   "normalize",
@@ -97093,7 +109990,7 @@ module.exports=[
 	"wrap"
 ]
 
-},{}],811:[function(require,module,exports){
+},{}],883:[function(require,module,exports){
 module.exports={
 	"float64": {
 		"float64": 1,
@@ -97321,7 +110218,7 @@ module.exports={
 	}
 }
 
-},{}],812:[function(require,module,exports){
+},{}],884:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97363,7 +110260,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":813}],813:[function(require,module,exports){
+},{"./main.js":885}],885:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97500,7 +110397,7 @@ function mostlySafeCasts( dtype ) {
 
 module.exports = mostlySafeCasts;
 
-},{"./data.json":811,"@stdlib/assert/has-own-property":127,"@stdlib/ndarray/base/dtype-resolve-str":464,"@stdlib/utils/keys":940}],814:[function(require,module,exports){
+},{"./data.json":883,"@stdlib/assert/has-own-property":133,"@stdlib/ndarray/base/dtype-resolve-str":474,"@stdlib/utils/keys":1012}],886:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97543,7 +110440,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":815}],815:[function(require,module,exports){
+},{"./main.js":887}],887:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97610,7 +110507,7 @@ function ndims( x ) {
 
 module.exports = ndims;
 
-},{"@stdlib/assert/is-collection":163,"@stdlib/assert/is-nonnegative-integer":197,"@stdlib/string/format":892}],816:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":169,"@stdlib/assert/is-nonnegative-integer":203,"@stdlib/string/format":964}],888:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97653,7 +110550,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":817}],817:[function(require,module,exports){
+},{"./main.js":889}],889:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97730,7 +110627,7 @@ function offset( x ) {
 
 module.exports = offset;
 
-},{"@stdlib/assert/is-collection":163,"@stdlib/assert/is-nonnegative-integer":197,"@stdlib/ndarray/base/strides2offset":675,"@stdlib/string/format":892}],818:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":169,"@stdlib/assert/is-nonnegative-integer":203,"@stdlib/ndarray/base/strides2offset":741,"@stdlib/string/format":964}],890:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97777,7 +110674,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":819}],819:[function(require,module,exports){
+},{"./main.js":891}],891:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97866,7 +110763,7 @@ function order( x ) {
 
 module.exports = order;
 
-},{"@stdlib/ndarray/base/assert/is-order":335,"@stdlib/ndarray/base/strides2order":677,"@stdlib/ndarray/ndims":814,"@stdlib/ndarray/strides":837,"@stdlib/string/format":892}],820:[function(require,module,exports){
+},{"@stdlib/ndarray/base/assert/is-order":343,"@stdlib/ndarray/base/strides2order":743,"@stdlib/ndarray/ndims":886,"@stdlib/ndarray/strides":909,"@stdlib/string/format":964}],892:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97929,7 +110826,7 @@ function enumerated() {
 
 module.exports = enumerated;
 
-},{"@stdlib/blas/base/layouts":244}],821:[function(require,module,exports){
+},{"@stdlib/blas/base/layouts":250}],893:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -97978,7 +110875,7 @@ setReadOnly( main, 'enum', enumeration );
 
 module.exports = main;
 
-},{"./enum.js":820,"./main.js":822,"@stdlib/utils/define-nonenumerable-read-only-property":905}],822:[function(require,module,exports){
+},{"./enum.js":892,"./main.js":894,"@stdlib/utils/define-nonenumerable-read-only-property":977}],894:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -98024,13 +110921,13 @@ function orders() {
 
 module.exports = orders;
 
-},{"./orders.json":823}],823:[function(require,module,exports){
+},{"./orders.json":895}],895:[function(require,module,exports){
 module.exports=[
 	"row-major",
 	"column-major"
 ]
 
-},{}],824:[function(require,module,exports){
+},{}],896:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -98100,7 +110997,7 @@ function assign( target, source ) {
 
 module.exports = assign;
 
-},{"@stdlib/utils/define-read-only-property":912,"@stdlib/utils/keys":940}],825:[function(require,module,exports){
+},{"@stdlib/utils/define-read-only-property":984,"@stdlib/utils/keys":1012}],897:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -98161,7 +111058,7 @@ function enumeration() {
 
 module.exports = enumeration;
 
-},{}],826:[function(require,module,exports){
+},{}],898:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -98212,7 +111109,7 @@ assign( main, enumeration() );
 
 module.exports = main;
 
-},{"./assign.js":824,"./enum.js":825,"./main.js":827,"@stdlib/utils/define-nonenumerable-read-only-property":905}],827:[function(require,module,exports){
+},{"./assign.js":896,"./enum.js":897,"./main.js":899,"@stdlib/utils/define-nonenumerable-read-only-property":977}],899:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -98258,7 +111155,7 @@ function policies() {
 
 module.exports = policies;
 
-},{"./policies.json":828}],828:[function(require,module,exports){
+},{"./policies.json":900}],900:[function(require,module,exports){
 module.exports=[
   "same",
   "promoted",
@@ -98274,7 +111171,7 @@ module.exports=[
   "default"
 ]
 
-},{}],829:[function(require,module,exports){
+},{}],901:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -98316,7 +111213,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":830}],830:[function(require,module,exports){
+},{"./main.js":902}],902:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -98453,7 +111350,7 @@ function safeCasts( dtype ) {
 
 module.exports = safeCasts;
 
-},{"./safe_casts.json":831,"@stdlib/assert/has-own-property":127,"@stdlib/ndarray/base/dtype-resolve-str":464,"@stdlib/utils/keys":940}],831:[function(require,module,exports){
+},{"./safe_casts.json":903,"@stdlib/assert/has-own-property":133,"@stdlib/ndarray/base/dtype-resolve-str":474,"@stdlib/utils/keys":1012}],903:[function(require,module,exports){
 module.exports={
 	"float64": {
 		"float64": 1,
@@ -98681,7 +111578,7 @@ module.exports={
 	}
 }
 
-},{}],832:[function(require,module,exports){
+},{}],904:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -98723,7 +111620,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":833}],833:[function(require,module,exports){
+},{"./main.js":905}],905:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -98860,7 +111757,7 @@ function sameKindCasts( dtype ) {
 
 module.exports = sameKindCasts;
 
-},{"./same_kind_casts.json":834,"@stdlib/assert/has-own-property":127,"@stdlib/ndarray/base/dtype-resolve-str":464,"@stdlib/utils/keys":940}],834:[function(require,module,exports){
+},{"./same_kind_casts.json":906,"@stdlib/assert/has-own-property":133,"@stdlib/ndarray/base/dtype-resolve-str":474,"@stdlib/utils/keys":1012}],906:[function(require,module,exports){
 module.exports={
 	"float64": {
 		"float64": 1,
@@ -99088,7 +111985,7 @@ module.exports={
 	}
 }
 
-},{}],835:[function(require,module,exports){
+},{}],907:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99131,7 +112028,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":836}],836:[function(require,module,exports){
+},{"./main.js":908}],908:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99205,7 +112102,7 @@ function shape( x ) {
 
 module.exports = shape;
 
-},{"@stdlib/assert/is-collection":163,"@stdlib/assert/is-nonnegative-integer":197,"@stdlib/string/format":892}],837:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":169,"@stdlib/assert/is-nonnegative-integer":203,"@stdlib/string/format":964}],909:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99248,7 +112145,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":838}],838:[function(require,module,exports){
+},{"./main.js":910}],910:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99338,7 +112235,7 @@ function strides( x ) {
 
 module.exports = strides;
 
-},{"@stdlib/assert/is-collection":163,"@stdlib/assert/is-integer":185,"@stdlib/ndarray/base/assert/is-order":335,"@stdlib/ndarray/base/shape2strides":650,"@stdlib/string/format":892}],839:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":169,"@stdlib/assert/is-integer":191,"@stdlib/ndarray/base/assert/is-order":343,"@stdlib/ndarray/base/shape2strides":714,"@stdlib/string/format":964}],911:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99380,7 +112277,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":840}],840:[function(require,module,exports){
+},{"./main.js":912}],912:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99405,7 +112302,7 @@ module.exports = main;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],841:[function(require,module,exports){
+},{}],913:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99458,7 +112355,7 @@ if ( typeof builtin === 'function' ) {
 
 module.exports = float64ToFloat32;
 
-},{"./main.js":842,"./polyfill.js":843}],842:[function(require,module,exports){
+},{"./main.js":914,"./polyfill.js":915}],914:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99488,7 +112385,7 @@ var fround = ( typeof Math.fround === 'function' ) ? Math.fround : null; // esli
 
 module.exports = fround;
 
-},{}],843:[function(require,module,exports){
+},{}],915:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99541,7 +112438,7 @@ function float64ToFloat32( x ) {
 
 module.exports = float64ToFloat32;
 
-},{"@stdlib/array/float32":70}],844:[function(require,module,exports){
+},{"@stdlib/array/float32":76}],916:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99643,7 +112540,7 @@ function float64ToInt64Bytes( x, out, stride, offset ) {
 
 module.exports = float64ToInt64Bytes;
 
-},{"@stdlib/array/dataview":58,"@stdlib/array/uint8":91,"@stdlib/assert/is-little-endian":191,"@stdlib/math/base/special/floor":299}],845:[function(require,module,exports){
+},{"@stdlib/array/dataview":62,"@stdlib/array/uint8":97,"@stdlib/assert/is-little-endian":197,"@stdlib/math/base/special/floor":305}],917:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99700,7 +112597,7 @@ setReadOnly( main, 'assign', assign );
 
 module.exports = main;
 
-},{"./assign.js":844,"./main.js":846,"@stdlib/utils/define-nonenumerable-read-only-property":905}],846:[function(require,module,exports){
+},{"./assign.js":916,"./main.js":918,"@stdlib/utils/define-nonenumerable-read-only-property":977}],918:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99787,7 +112684,7 @@ function float64ToInt64Bytes( x ) {
 
 module.exports = float64ToInt64Bytes;
 
-},{"@stdlib/array/dataview":58,"@stdlib/array/uint8":91,"@stdlib/assert/is-little-endian":191,"@stdlib/math/base/special/floor":299}],847:[function(require,module,exports){
+},{"@stdlib/array/dataview":62,"@stdlib/array/uint8":97,"@stdlib/assert/is-little-endian":197,"@stdlib/math/base/special/floor":305}],919:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99843,7 +112740,7 @@ var assign = Object.assign; // eslint-disable-line node/no-unsupported-features/
 
 module.exports = assign;
 
-},{}],848:[function(require,module,exports){
+},{}],920:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99878,7 +112775,7 @@ var bool = isFunction( Object.assign ); // eslint-disable-line node/no-unsupport
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-function":177}],849:[function(require,module,exports){
+},{"@stdlib/assert/is-function":183}],921:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -99932,7 +112829,7 @@ if ( hasObjectAssign ) {
 
 module.exports = assign;
 
-},{"./builtin.js":847,"./has_object_assign.js":848,"./polyfill.js":850}],850:[function(require,module,exports){
+},{"./builtin.js":919,"./has_object_assign.js":920,"./polyfill.js":922}],922:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100019,7 +112916,7 @@ function assign( target ) {
 
 module.exports = assign;
 
-},{"@stdlib/object/ctor":851,"@stdlib/string/format":892,"@stdlib/utils/enumerable-properties":914}],851:[function(require,module,exports){
+},{"@stdlib/object/ctor":923,"@stdlib/string/format":964,"@stdlib/utils/enumerable-properties":986}],923:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100075,7 +112972,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":852}],852:[function(require,module,exports){
+},{"./main.js":924}],924:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100135,7 +113032,7 @@ var Obj = Object; // eslint-disable-line stdlib/require-globals
 
 module.exports = Obj;
 
-},{}],853:[function(require,module,exports){
+},{}],925:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100198,7 +113095,7 @@ setReadOnly( main, 'REGEXP', REGEXP );
 
 module.exports = main;
 
-},{"./main.js":854,"./regexp.js":855,"@stdlib/utils/define-nonenumerable-read-only-property":905}],854:[function(require,module,exports){
+},{"./main.js":926,"./regexp.js":927,"@stdlib/utils/define-nonenumerable-read-only-property":977}],926:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100254,7 +113151,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],855:[function(require,module,exports){
+},{}],927:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100316,7 +113213,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":854}],856:[function(require,module,exports){
+},{"./main.js":926}],928:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100392,7 +113289,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":857}],857:[function(require,module,exports){
+},{"./main.js":929}],929:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100498,7 +113395,7 @@ function args2multislice( args ) {
 
 module.exports = args2multislice;
 
-},{"@stdlib/slice/multi":874}],858:[function(require,module,exports){
+},{"@stdlib/slice/multi":946}],930:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100538,7 +113435,7 @@ function error() {
 
 module.exports = error;
 
-},{}],859:[function(require,module,exports){
+},{}],931:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100589,7 +113486,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":860}],860:[function(require,module,exports){
+},{"./main.js":932}],932:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100669,7 +113566,7 @@ function int2slice( value, max, strict ) {
 
 module.exports = int2slice;
 
-},{"./error_out_of_bounds.js":858,"@stdlib/slice/ctor":872}],861:[function(require,module,exports){
+},{"./error_out_of_bounds.js":930,"@stdlib/slice/ctor":944}],933:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100722,7 +113619,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":862}],862:[function(require,module,exports){
+},{"./main.js":934}],934:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100863,7 +113760,7 @@ function sliceLength( slice ) {
 
 module.exports = sliceLength;
 
-},{"@stdlib/math/base/special/ceil":297}],863:[function(require,module,exports){
+},{"@stdlib/math/base/special/ceil":303}],935:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100910,7 +113807,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":864}],864:[function(require,module,exports){
+},{"./main.js":936}],936:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -100969,7 +113866,7 @@ function nonreducedDimensions( slice ) {
 
 module.exports = nonreducedDimensions;
 
-},{}],865:[function(require,module,exports){
+},{}],937:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -101055,7 +113952,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":866}],866:[function(require,module,exports){
+},{"./main.js":938}],938:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -101194,7 +114091,7 @@ function normalizeMultiSlice( slice, shape, strict ) {
 
 module.exports = normalizeMultiSlice;
 
-},{"@stdlib/slice/base/args2multislice":856,"@stdlib/slice/base/int2slice":859,"@stdlib/slice/base/normalize-slice":868,"@stdlib/slice/ctor":872}],867:[function(require,module,exports){
+},{"@stdlib/slice/base/args2multislice":928,"@stdlib/slice/base/int2slice":931,"@stdlib/slice/base/normalize-slice":940,"@stdlib/slice/ctor":944}],939:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -101234,7 +114131,7 @@ function error() {
 
 module.exports = error;
 
-},{}],868:[function(require,module,exports){
+},{}],940:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -101286,7 +114183,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":869}],869:[function(require,module,exports){
+},{"./main.js":941}],941:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -101487,7 +114384,7 @@ function normalizeSlice( slice, len, strict ) {
 
 module.exports = normalizeSlice;
 
-},{"./error_out_of_bounds.js":867,"@stdlib/slice/ctor":872}],870:[function(require,module,exports){
+},{"./error_out_of_bounds.js":939,"@stdlib/slice/ctor":944}],942:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -101540,7 +114437,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":871}],871:[function(require,module,exports){
+},{"./main.js":943}],943:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -101640,7 +114537,7 @@ function sliceShape( slice ) {
 
 module.exports = sliceShape;
 
-},{"@stdlib/slice/base/length":861}],872:[function(require,module,exports){
+},{"@stdlib/slice/base/length":933}],944:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -101721,7 +114618,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":873}],873:[function(require,module,exports){
+},{"./main.js":945}],945:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102075,7 +114972,7 @@ setReadOnly( Slice.prototype, 'toJSON', function toJSON() {
 
 module.exports = Slice;
 
-},{"@stdlib/assert/is-integer":185,"@stdlib/assert/is-null":201,"@stdlib/assert/is-undefined":236,"@stdlib/string/format":892,"@stdlib/utils/define-nonenumerable-read-only-accessor":903,"@stdlib/utils/define-nonenumerable-read-only-property":905}],874:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":191,"@stdlib/assert/is-null":207,"@stdlib/assert/is-undefined":242,"@stdlib/string/format":964,"@stdlib/utils/define-nonenumerable-read-only-accessor":975,"@stdlib/utils/define-nonenumerable-read-only-property":977}],946:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102121,7 +115018,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":875}],875:[function(require,module,exports){
+},{"./main.js":947}],947:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102404,7 +115301,7 @@ setReadOnly( MultiSlice.prototype, 'toJSON', function toJSON() {
 
 module.exports = MultiSlice;
 
-},{"@stdlib/assert/is-integer":185,"@stdlib/assert/is-null":201,"@stdlib/assert/is-slice":219,"@stdlib/assert/is-undefined":236,"@stdlib/string/format":892,"@stdlib/utils/define-nonenumerable-read-only-accessor":903,"@stdlib/utils/define-nonenumerable-read-only-property":905}],876:[function(require,module,exports){
+},{"@stdlib/assert/is-integer":191,"@stdlib/assert/is-null":207,"@stdlib/assert/is-slice":225,"@stdlib/assert/is-undefined":242,"@stdlib/string/format":964,"@stdlib/utils/define-nonenumerable-read-only-accessor":975,"@stdlib/utils/define-nonenumerable-read-only-property":977}],948:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102452,7 +115349,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":877}],877:[function(require,module,exports){
+},{"./main.js":949}],949:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102507,7 +115404,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float64":73}],878:[function(require,module,exports){
+},{"@stdlib/array/float64":79}],950:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102555,7 +115452,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":879}],879:[function(require,module,exports){
+},{"./main.js":951}],951:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102610,7 +115507,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float32":70}],880:[function(require,module,exports){
+},{"@stdlib/array/float32":76}],952:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102723,7 +115620,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":883}],881:[function(require,module,exports){
+},{"./is_number.js":955}],953:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102840,7 +115737,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":883,"./zero_pad.js":887}],882:[function(require,module,exports){
+},{"./is_number.js":955,"./zero_pad.js":959}],954:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102883,7 +115780,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":885}],883:[function(require,module,exports){
+},{"./main.js":957}],955:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102931,7 +115828,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],884:[function(require,module,exports){
+},{}],956:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -102975,7 +115872,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],885:[function(require,module,exports){
+},{}],957:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103209,7 +116106,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":880,"./format_integer.js":881,"./is_string.js":884,"./space_pad.js":886,"./zero_pad.js":887}],886:[function(require,module,exports){
+},{"./format_double.js":952,"./format_integer.js":953,"./is_string.js":956,"./space_pad.js":958,"./zero_pad.js":959}],958:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103276,7 +116173,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],887:[function(require,module,exports){
+},{}],959:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103362,7 +116259,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],888:[function(require,module,exports){
+},{}],960:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103405,7 +116302,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":889}],889:[function(require,module,exports){
+},{"./main.js":961}],961:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103497,7 +116394,7 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],890:[function(require,module,exports){
+},{}],962:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103540,7 +116437,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":891}],891:[function(require,module,exports){
+},{"./main.js":963}],963:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103597,7 +116494,7 @@ function replace( str, search, newval ) {
 
 module.exports = replace;
 
-},{}],892:[function(require,module,exports){
+},{}],964:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103642,9 +116539,9 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":894}],893:[function(require,module,exports){
-arguments[4][884][0].apply(exports,arguments)
-},{"dup":884}],894:[function(require,module,exports){
+},{"./main.js":966}],965:[function(require,module,exports){
+arguments[4][956][0].apply(exports,arguments)
+},{"dup":956}],966:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103710,7 +116607,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":893,"@stdlib/string/base/format-interpolate":882,"@stdlib/string/base/format-tokenize":888}],895:[function(require,module,exports){
+},{"./is_string.js":965,"@stdlib/string/base/format-interpolate":954,"@stdlib/string/base/format-tokenize":960}],967:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103757,7 +116654,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":896}],896:[function(require,module,exports){
+},{"./main.js":968}],968:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103843,7 +116740,7 @@ function replace( str, search, newval ) {
 
 module.exports = replace;
 
-},{"@stdlib/assert/is-function":177,"@stdlib/assert/is-regexp":216,"@stdlib/assert/is-string":222,"@stdlib/string/base/replace":890,"@stdlib/string/format":892,"@stdlib/utils/escape-regexp-string":916}],897:[function(require,module,exports){
+},{"@stdlib/assert/is-function":183,"@stdlib/assert/is-regexp":222,"@stdlib/assert/is-string":228,"@stdlib/string/base/replace":962,"@stdlib/string/format":964,"@stdlib/utils/escape-regexp-string":988}],969:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103885,7 +116782,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":898}],898:[function(require,module,exports){
+},{"./main.js":970}],970:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103915,7 +116812,7 @@ var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-
 
 module.exports = Sym;
 
-},{}],899:[function(require,module,exports){
+},{}],971:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -103992,7 +116889,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":900}],900:[function(require,module,exports){
+},{"./main.js":972}],972:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104073,7 +116970,7 @@ var IteratorSymbol = ( hasIteratorSymbolSupport() ) ? Symbol.iterator : null;
 
 module.exports = IteratorSymbol;
 
-},{"@stdlib/assert/has-iterator-symbol-support":122}],901:[function(require,module,exports){
+},{"@stdlib/assert/has-iterator-symbol-support":128}],973:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104121,7 +117018,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":902}],902:[function(require,module,exports){
+},{"./main.js":974}],974:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104203,7 +117100,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":161,"@stdlib/regexp/function-name":853,"@stdlib/utils/native-class":947}],903:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":167,"@stdlib/regexp/function-name":925,"@stdlib/utils/native-class":1019}],975:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104256,7 +117153,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":904}],904:[function(require,module,exports){
+},{"./main.js":976}],976:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104319,7 +117216,7 @@ function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disab
 
 module.exports = setNonEnumerableReadOnlyAccessor;
 
-},{"@stdlib/utils/define-property":910}],905:[function(require,module,exports){
+},{"@stdlib/utils/define-property":982}],977:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104368,7 +117265,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":906}],906:[function(require,module,exports){
+},{"./main.js":978}],978:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104428,7 +117325,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":910}],907:[function(require,module,exports){
+},{"@stdlib/utils/define-property":982}],979:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104491,7 +117388,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],908:[function(require,module,exports){
+},{}],980:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104521,7 +117418,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],909:[function(require,module,exports){
+},{}],981:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104574,7 +117471,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":908}],910:[function(require,module,exports){
+},{"./define_property.js":980}],982:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104634,7 +117531,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":907,"./has_define_property_support.js":909,"./polyfill.js":911}],911:[function(require,module,exports){
+},{"./builtin.js":979,"./has_define_property_support.js":981,"./polyfill.js":983}],983:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104758,7 +117655,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":892}],912:[function(require,module,exports){
+},{"@stdlib/string/format":964}],984:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104807,7 +117704,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":913}],913:[function(require,module,exports){
+},{"./main.js":985}],985:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104867,7 +117764,7 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{"@stdlib/utils/define-property":910}],914:[function(require,module,exports){
+},{"@stdlib/utils/define-property":982}],986:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104912,7 +117809,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":915}],915:[function(require,module,exports){
+},{"./main.js":987}],987:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -104977,7 +117874,7 @@ function enumerableProperties( value ) {
 
 module.exports = enumerableProperties;
 
-},{"@stdlib/assert/is-enumerable-property":170,"@stdlib/utils/keys":940,"@stdlib/utils/property-symbols":958}],916:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":176,"@stdlib/utils/keys":1012,"@stdlib/utils/property-symbols":1030}],988:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105019,7 +117916,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":917}],917:[function(require,module,exports){
+},{"./main.js":989}],989:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105103,7 +118000,7 @@ function rescape( str ) {
 
 module.exports = rescape;
 
-},{"@stdlib/assert/is-string":222,"@stdlib/string/format":892}],918:[function(require,module,exports){
+},{"@stdlib/assert/is-string":228,"@stdlib/string/format":964}],990:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105145,7 +118042,7 @@ if ( isFunction( Object.getPrototypeOf ) ) {
 
 module.exports = getProto;
 
-},{"./native.js":921,"./polyfill.js":922,"@stdlib/assert/is-function":177}],919:[function(require,module,exports){
+},{"./native.js":993,"./polyfill.js":994,"@stdlib/assert/is-function":183}],991:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105187,7 +118084,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":920}],920:[function(require,module,exports){
+},{"./main.js":992}],992:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105244,7 +118141,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":918,"@stdlib/object/ctor":851}],921:[function(require,module,exports){
+},{"./detect.js":990,"@stdlib/object/ctor":923}],993:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105274,7 +118171,7 @@ var getProto = Object.getPrototypeOf;
 
 module.exports = getProto;
 
-},{}],922:[function(require,module,exports){
+},{}],994:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105331,7 +118228,7 @@ function getPrototypeOf( obj ) {
 
 module.exports = getPrototypeOf;
 
-},{"./proto.js":923,"@stdlib/utils/native-class":947}],923:[function(require,module,exports){
+},{"./proto.js":995,"@stdlib/utils/native-class":1019}],995:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105369,7 +118266,7 @@ function getProto( obj ) {
 
 module.exports = getProto;
 
-},{}],924:[function(require,module,exports){
+},{}],996:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105450,7 +118347,7 @@ function getGlobal( codegen ) {
 
 module.exports = getGlobal;
 
-},{"./codegen.js":925,"./global_this.js":926,"./self.js":927,"./window.js":928,"@stdlib/assert/is-boolean":155,"@stdlib/string/format":892}],925:[function(require,module,exports){
+},{"./codegen.js":997,"./global_this.js":998,"./self.js":999,"./window.js":1000,"@stdlib/assert/is-boolean":161,"@stdlib/string/format":964}],997:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105488,7 +118385,7 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],926:[function(require,module,exports){
+},{}],998:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105518,7 +118415,7 @@ var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disa
 
 module.exports = obj;
 
-},{}],927:[function(require,module,exports){
+},{}],999:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105548,7 +118445,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],928:[function(require,module,exports){
+},{}],1000:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105578,7 +118475,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],929:[function(require,module,exports){
+},{}],1001:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105653,7 +118550,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":930}],930:[function(require,module,exports){
+},{"./main.js":1002}],1002:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105788,7 +118685,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":163,"@stdlib/assert/is-integer":185,"@stdlib/assert/is-nan":193,"@stdlib/assert/is-string":222,"@stdlib/string/format":892}],931:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":169,"@stdlib/assert/is-integer":191,"@stdlib/assert/is-nan":199,"@stdlib/assert/is-string":228,"@stdlib/string/format":964}],1003:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105840,7 +118737,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],932:[function(require,module,exports){
+},{}],1004:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105902,7 +118799,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":931,"@stdlib/assert/is-arguments":146}],933:[function(require,module,exports){
+},{"./builtin.js":1003,"@stdlib/assert/is-arguments":152}],1005:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -105926,7 +118823,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],934:[function(require,module,exports){
+},{}],1006:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -105986,7 +118883,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":931}],935:[function(require,module,exports){
+},{"./builtin.js":1003}],1007:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106064,7 +118961,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":933,"./is_constructor_prototype.js":941,"./window.js":946,"@stdlib/assert/has-own-property":127,"@stdlib/utils/index-of":929,"@stdlib/utils/type-of":964}],936:[function(require,module,exports){
+},{"./excluded_keys.json":1005,"./is_constructor_prototype.js":1013,"./window.js":1018,"@stdlib/assert/has-own-property":133,"@stdlib/utils/index-of":1001,"@stdlib/utils/type-of":1036}],1008:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106094,7 +118991,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],937:[function(require,module,exports){
+},{}],1009:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106131,7 +119028,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":170,"@stdlib/utils/noop":952}],938:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":176,"@stdlib/utils/noop":1024}],1010:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106174,7 +119071,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":170}],939:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":176}],1011:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106204,7 +119101,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],940:[function(require,module,exports){
+},{}],1012:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106251,7 +119148,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":943}],941:[function(require,module,exports){
+},{"./main.js":1015}],1013:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106290,7 +119187,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],942:[function(require,module,exports){
+},{}],1014:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106343,7 +119240,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":935,"./has_window.js":939,"./is_constructor_prototype.js":941}],943:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":1007,"./has_window.js":1011,"./is_constructor_prototype.js":1013}],1015:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106408,7 +119305,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":931,"./builtin_wrapper.js":932,"./has_arguments_bug.js":934,"./has_builtin.js":936,"./polyfill.js":945}],944:[function(require,module,exports){
+},{"./builtin.js":1003,"./builtin_wrapper.js":1004,"./has_arguments_bug.js":1006,"./has_builtin.js":1008,"./polyfill.js":1017}],1016:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -106419,7 +119316,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],945:[function(require,module,exports){
+},{}],1017:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106523,7 +119420,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":937,"./has_non_enumerable_properties_bug.js":938,"./is_constructor_prototype_wrapper.js":942,"./non_enumerable.json":944,"@stdlib/assert/has-own-property":127,"@stdlib/assert/is-arguments":146,"@stdlib/assert/is-object-like":209}],946:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":1009,"./has_non_enumerable_properties_bug.js":1010,"./is_constructor_prototype_wrapper.js":1014,"./non_enumerable.json":1016,"@stdlib/assert/has-own-property":133,"@stdlib/assert/is-arguments":152,"@stdlib/assert/is-object-like":215}],1018:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106553,7 +119450,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],947:[function(require,module,exports){
+},{}],1019:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106616,7 +119513,7 @@ if ( hasToStringTag() ) {
 
 module.exports = main;
 
-},{"./main.js":948,"./polyfill.js":949,"@stdlib/assert/has-tostringtag-support":131}],948:[function(require,module,exports){
+},{"./main.js":1020,"./polyfill.js":1021,"@stdlib/assert/has-tostringtag-support":137}],1020:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106674,7 +119571,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":950}],949:[function(require,module,exports){
+},{"./tostring.js":1022}],1021:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106757,7 +119654,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":950,"./tostringtag.js":951,"@stdlib/assert/has-own-property":127}],950:[function(require,module,exports){
+},{"./tostring.js":1022,"./tostringtag.js":1023,"@stdlib/assert/has-own-property":133}],1022:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106787,7 +119684,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],951:[function(require,module,exports){
+},{}],1023:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106822,7 +119719,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{"@stdlib/symbol/ctor":897}],952:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":969}],1024:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106864,7 +119761,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":953}],953:[function(require,module,exports){
+},{"./main.js":1025}],1025:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106901,7 +119798,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],954:[function(require,module,exports){
+},{}],1026:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -106962,7 +119859,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":955}],955:[function(require,module,exports){
+},{"./main.js":1027}],1027:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107087,7 +119984,7 @@ function invert( obj, opts ) {
 
 module.exports = invert;
 
-},{"@stdlib/assert/has-own-property":127,"@stdlib/assert/is-array":151,"@stdlib/assert/is-boolean":155,"@stdlib/assert/is-object-like":209,"@stdlib/assert/is-plain-object":213,"@stdlib/string/format":892,"@stdlib/utils/keys":940}],956:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":133,"@stdlib/assert/is-array":157,"@stdlib/assert/is-boolean":161,"@stdlib/assert/is-object-like":215,"@stdlib/assert/is-plain-object":219,"@stdlib/string/format":964,"@stdlib/utils/keys":1012}],1028:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107143,7 +120040,7 @@ function getOwnPropertySymbols( value ) {
 
 module.exports = getOwnPropertySymbols;
 
-},{"@stdlib/object/ctor":851}],957:[function(require,module,exports){
+},{"@stdlib/object/ctor":923}],1029:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107173,7 +120070,7 @@ var bool = ( typeof Object.getOwnPropertySymbols !== 'undefined' );
 
 module.exports = bool;
 
-},{}],958:[function(require,module,exports){
+},{}],1030:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107226,7 +120123,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = main;
 
-},{"./builtin.js":956,"./has_builtin.js":957,"./polyfill.js":959}],959:[function(require,module,exports){
+},{"./builtin.js":1028,"./has_builtin.js":1029,"./polyfill.js":1031}],1031:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107273,7 +120170,7 @@ function getOwnPropertySymbols() {
 
 module.exports = getOwnPropertySymbols;
 
-},{}],960:[function(require,module,exports){
+},{}],1032:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107330,7 +120227,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":961,"./fixtures/re.js":962,"./fixtures/typedarray.js":963}],961:[function(require,module,exports){
+},{"./fixtures/nodelist.js":1033,"./fixtures/re.js":1034,"./fixtures/typedarray.js":1035}],1033:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107366,7 +120263,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":924}],962:[function(require,module,exports){
+},{"@stdlib/utils/global":996}],1034:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107394,7 +120291,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],963:[function(require,module,exports){
+},{}],1035:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107422,7 +120319,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],964:[function(require,module,exports){
+},{}],1036:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107474,7 +120371,7 @@ var main = ( usePolyfill() ) ? polyfill : builtin;
 
 module.exports = main;
 
-},{"./check.js":960,"./main.js":965,"./polyfill.js":966}],965:[function(require,module,exports){
+},{"./check.js":1032,"./main.js":1037,"./polyfill.js":1038}],1037:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107552,7 +120449,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":901}],966:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":973}],1038:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -107595,7 +120492,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":901}],967:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":973}],1039:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -107747,11 +120644,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],968:[function(require,module,exports){
+},{}],1040:[function(require,module,exports){
 
-},{}],969:[function(require,module,exports){
-arguments[4][968][0].apply(exports,arguments)
-},{"dup":968}],970:[function(require,module,exports){
+},{}],1041:[function(require,module,exports){
+arguments[4][1040][0].apply(exports,arguments)
+},{"dup":1040}],1042:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -109532,7 +122429,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":967,"buffer":970,"ieee754":1073}],971:[function(require,module,exports){
+},{"base64-js":1039,"buffer":1042,"ieee754":1145}],1043:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -110031,7 +122928,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],972:[function(require,module,exports){
+},{}],1044:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -110564,7 +123461,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":1080}],973:[function(require,module,exports){
+},{"_process":1152}],1045:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -110695,7 +123592,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":971,"inherits":1074,"readable-stream/lib/_stream_duplex.js":975,"readable-stream/lib/_stream_passthrough.js":976,"readable-stream/lib/_stream_readable.js":977,"readable-stream/lib/_stream_transform.js":978,"readable-stream/lib/_stream_writable.js":979,"readable-stream/lib/internal/streams/end-of-stream.js":983,"readable-stream/lib/internal/streams/pipeline.js":985}],974:[function(require,module,exports){
+},{"events":1043,"inherits":1146,"readable-stream/lib/_stream_duplex.js":1047,"readable-stream/lib/_stream_passthrough.js":1048,"readable-stream/lib/_stream_readable.js":1049,"readable-stream/lib/_stream_transform.js":1050,"readable-stream/lib/_stream_writable.js":1051,"readable-stream/lib/internal/streams/end-of-stream.js":1055,"readable-stream/lib/internal/streams/pipeline.js":1057}],1046:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -110824,7 +123721,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],975:[function(require,module,exports){
+},{}],1047:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -110966,7 +123863,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":977,"./_stream_writable":979,"_process":1080,"inherits":1074}],976:[function(require,module,exports){
+},{"./_stream_readable":1049,"./_stream_writable":1051,"_process":1152,"inherits":1146}],1048:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -111006,7 +123903,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":978,"inherits":1074}],977:[function(require,module,exports){
+},{"./_stream_transform":1050,"inherits":1146}],1049:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -112133,7 +125030,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":974,"./_stream_duplex":975,"./internal/streams/async_iterator":980,"./internal/streams/buffer_list":981,"./internal/streams/destroy":982,"./internal/streams/from":984,"./internal/streams/state":986,"./internal/streams/stream":987,"_process":1080,"buffer":970,"events":971,"inherits":1074,"string_decoder/":1089,"util":968}],978:[function(require,module,exports){
+},{"../errors":1046,"./_stream_duplex":1047,"./internal/streams/async_iterator":1052,"./internal/streams/buffer_list":1053,"./internal/streams/destroy":1054,"./internal/streams/from":1056,"./internal/streams/state":1058,"./internal/streams/stream":1059,"_process":1152,"buffer":1042,"events":1043,"inherits":1146,"string_decoder/":1161,"util":1040}],1050:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -112335,7 +125232,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":974,"./_stream_duplex":975,"inherits":1074}],979:[function(require,module,exports){
+},{"../errors":1046,"./_stream_duplex":1047,"inherits":1146}],1051:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -113035,7 +125932,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":974,"./_stream_duplex":975,"./internal/streams/destroy":982,"./internal/streams/state":986,"./internal/streams/stream":987,"_process":1080,"buffer":970,"inherits":1074,"util-deprecate":1098}],980:[function(require,module,exports){
+},{"../errors":1046,"./_stream_duplex":1047,"./internal/streams/destroy":1054,"./internal/streams/state":1058,"./internal/streams/stream":1059,"_process":1152,"buffer":1042,"inherits":1146,"util-deprecate":1170}],1052:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -113245,7 +126142,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":983,"_process":1080}],981:[function(require,module,exports){
+},{"./end-of-stream":1055,"_process":1152}],1053:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -113456,7 +126353,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":970,"util":968}],982:[function(require,module,exports){
+},{"buffer":1042,"util":1040}],1054:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -113564,7 +126461,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":1080}],983:[function(require,module,exports){
+},{"_process":1152}],1055:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -113669,12 +126566,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":974}],984:[function(require,module,exports){
+},{"../../../errors":1046}],1056:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],985:[function(require,module,exports){
+},{}],1057:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -113772,7 +126669,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":974,"./end-of-stream":983}],986:[function(require,module,exports){
+},{"../../../errors":1046,"./end-of-stream":1055}],1058:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -113800,10 +126697,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":974}],987:[function(require,module,exports){
+},{"../../../errors":1046}],1059:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":971}],988:[function(require,module,exports){
+},{"events":1043}],1060:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -113820,7 +126717,7 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":989,"get-intrinsic":1064}],989:[function(require,module,exports){
+},{"./":1061,"get-intrinsic":1136}],1061:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -113857,7 +126754,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"es-define-property":1049,"es-errors/type":1055,"function-bind":1063,"get-intrinsic":1064,"set-function-length":1084}],990:[function(require,module,exports){
+},{"es-define-property":1121,"es-errors/type":1127,"function-bind":1135,"get-intrinsic":1136,"set-function-length":1156}],1062:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -113953,7 +126850,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":991,"./lib/keys.js":992}],991:[function(require,module,exports){
+},{"./lib/is_arguments.js":1063,"./lib/keys.js":1064}],1063:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -113975,7 +126872,7 @@ function unsupported(object){
     false;
 };
 
-},{}],992:[function(require,module,exports){
+},{}],1064:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -113986,7 +126883,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],993:[function(require,module,exports){
+},{}],1065:[function(require,module,exports){
 'use strict';
 
 var $defineProperty = require('es-define-property');
@@ -114044,7 +126941,7 @@ module.exports = function defineDataProperty(
 	}
 };
 
-},{"es-define-property":1049,"es-errors/syntax":1054,"es-errors/type":1055,"gopd":1065}],994:[function(require,module,exports){
+},{"es-define-property":1121,"es-errors/syntax":1126,"es-errors/type":1127,"gopd":1137}],1066:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -114093,14 +126990,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"define-data-property":993,"has-property-descriptors":1066,"object-keys":1078}],995:[function(require,module,exports){
+},{"define-data-property":1065,"has-property-descriptors":1138,"object-keys":1150}],1067:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],996:[function(require,module,exports){
+},{}],1068:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -114139,7 +127036,7 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":1027,"./ToPrimitive":1029,"./Type":1034}],997:[function(require,module,exports){
+},{"./ToNumber":1099,"./ToPrimitive":1101,"./Type":1106}],1069:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -114203,7 +127100,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":1042,"../helpers/isNaN":1043,"../helpers/isPrefixOf":1044,"./ToNumber":1027,"./ToPrimitive":1029,"es-errors/type":1055,"get-intrinsic":1064}],998:[function(require,module,exports){
+},{"../helpers/isFinite":1114,"../helpers/isNaN":1115,"../helpers/isPrefixOf":1116,"./ToNumber":1099,"./ToPrimitive":1101,"es-errors/type":1127,"get-intrinsic":1136}],1070:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -114243,7 +127140,7 @@ module.exports = function Canonicalize(ch, IgnoreCase) {
 	return cu;
 };
 
-},{"call-bind/callBound":988,"es-errors/type":1055}],999:[function(require,module,exports){
+},{"call-bind/callBound":1060,"es-errors/type":1127}],1071:[function(require,module,exports){
 'use strict';
 
 var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
@@ -114254,7 +127151,7 @@ module.exports = function CheckObjectCoercible(value) {
 	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"es-object-atoms/RequireObjectCoercible":1057}],1000:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":1129}],1072:[function(require,module,exports){
 'use strict';
 
 var $EvalError = require('es-errors/eval');
@@ -114308,7 +127205,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":1003,"./InLeapYear":1007,"./MonthFromTime":1017,"es-errors/eval":1050}],1001:[function(require,module,exports){
+},{"./DayWithinYear":1075,"./InLeapYear":1079,"./MonthFromTime":1089,"es-errors/eval":1122}],1073:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -114321,7 +127218,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":1048,"./floor":1038}],1002:[function(require,module,exports){
+},{"../helpers/timeConstants":1120,"./floor":1110}],1074:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -114333,7 +127230,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":1038}],1003:[function(require,module,exports){
+},{"./floor":1110}],1075:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -114346,7 +127243,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":1001,"./DayFromYear":1002,"./YearFromTime":1036}],1004:[function(require,module,exports){
+},{"./Day":1073,"./DayFromYear":1074,"./YearFromTime":1108}],1076:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -114366,7 +127263,7 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":1039}],1005:[function(require,module,exports){
+},{"./modulo":1111}],1077:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -114406,7 +127303,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/records/property-descriptor":1046,"./IsAccessorDescriptor":1008,"./IsDataDescriptor":1010,"es-errors/type":1055}],1006:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":1118,"./IsAccessorDescriptor":1080,"./IsDataDescriptor":1082,"es-errors/type":1127}],1078:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -114422,7 +127319,7 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":1048,"./floor":1038,"./modulo":1039}],1007:[function(require,module,exports){
+},{"../helpers/timeConstants":1120,"./floor":1110,"./modulo":1111}],1079:[function(require,module,exports){
 'use strict';
 
 var $EvalError = require('es-errors/eval');
@@ -114443,7 +127340,7 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":1004,"./YearFromTime":1036,"es-errors/eval":1050}],1008:[function(require,module,exports){
+},{"./DaysInYear":1076,"./YearFromTime":1108,"es-errors/eval":1122}],1080:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -114470,14 +127367,14 @@ module.exports = function IsAccessorDescriptor(Desc) {
 	return true;
 };
 
-},{"../helpers/records/property-descriptor":1046,"es-errors/type":1055,"hasown":1072}],1009:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":1118,"es-errors/type":1127,"hasown":1144}],1081:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":1075}],1010:[function(require,module,exports){
+},{"is-callable":1147}],1082:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -114504,7 +127401,7 @@ module.exports = function IsDataDescriptor(Desc) {
 	return true;
 };
 
-},{"../helpers/records/property-descriptor":1046,"es-errors/type":1055,"hasown":1072}],1011:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":1118,"es-errors/type":1127,"hasown":1144}],1083:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -114532,7 +127429,7 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"./IsAccessorDescriptor":1008,"./IsDataDescriptor":1010,"./IsPropertyDescriptor":1012,"es-errors/type":1055}],1012:[function(require,module,exports){
+},{"./IsAccessorDescriptor":1080,"./IsDataDescriptor":1082,"./IsPropertyDescriptor":1084,"es-errors/type":1127}],1084:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
@@ -114545,7 +127442,7 @@ module.exports = function IsPropertyDescriptor(Desc) {
 	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/records/property-descriptor":1046}],1013:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":1118}],1085:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -114560,7 +127457,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":1042,"../helpers/timeConstants":1048}],1014:[function(require,module,exports){
+},{"../helpers/isFinite":1114,"../helpers/timeConstants":1120}],1086:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -114595,7 +127492,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":1042,"./DateFromTime":1000,"./Day":1001,"./MonthFromTime":1017,"./ToInteger":1026,"./YearFromTime":1036,"./floor":1038,"./modulo":1039,"get-intrinsic":1064}],1015:[function(require,module,exports){
+},{"../helpers/isFinite":1114,"./DateFromTime":1072,"./Day":1073,"./MonthFromTime":1089,"./ToInteger":1098,"./YearFromTime":1108,"./floor":1110,"./modulo":1111,"get-intrinsic":1136}],1087:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -114620,7 +127517,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":1042,"../helpers/timeConstants":1048,"./ToInteger":1026}],1016:[function(require,module,exports){
+},{"../helpers/isFinite":1114,"../helpers/timeConstants":1120,"./ToInteger":1098}],1088:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -114636,7 +127533,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":1048,"./floor":1038,"./modulo":1039}],1017:[function(require,module,exports){
+},{"../helpers/timeConstants":1120,"./floor":1110,"./modulo":1111}],1089:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -114685,7 +127582,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":1003,"./InLeapYear":1007}],1018:[function(require,module,exports){
+},{"./DayWithinYear":1075,"./InLeapYear":1079}],1090:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -114700,7 +127597,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":1043}],1019:[function(require,module,exports){
+},{"../helpers/isNaN":1115}],1091:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -114716,7 +127613,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":1048,"./floor":1038,"./modulo":1039}],1020:[function(require,module,exports){
+},{"../helpers/timeConstants":1120,"./floor":1110,"./modulo":1111}],1092:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -114735,7 +127632,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":1034}],1021:[function(require,module,exports){
+},{"./Type":1106}],1093:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -114758,7 +127655,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":1042,"./ToNumber":1027,"./abs":1037,"get-intrinsic":1064}],1022:[function(require,module,exports){
+},{"../helpers/isFinite":1114,"./ToNumber":1099,"./abs":1109,"get-intrinsic":1136}],1094:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -114771,7 +127668,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":1048,"./DayFromYear":1002}],1023:[function(require,module,exports){
+},{"../helpers/timeConstants":1120,"./DayFromYear":1074}],1095:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -114785,14 +127682,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":1048,"./modulo":1039}],1024:[function(require,module,exports){
+},{"../helpers/timeConstants":1120,"./modulo":1111}],1096:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],1025:[function(require,module,exports){
+},{}],1097:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -114803,7 +127700,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":1027}],1026:[function(require,module,exports){
+},{"./ToNumber":1099}],1098:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -114823,7 +127720,7 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":1042,"../helpers/isNaN":1043,"../helpers/sign":1047,"./ToNumber":1027,"./abs":1037,"./floor":1038}],1027:[function(require,module,exports){
+},{"../helpers/isFinite":1114,"../helpers/isNaN":1115,"../helpers/sign":1119,"./ToNumber":1099,"./abs":1109,"./floor":1110}],1099:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
@@ -114857,21 +127754,21 @@ module.exports = function ToNumber(value) {
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":1029,"call-bind/callBound":988,"safe-regex-test":1083}],1028:[function(require,module,exports){
+},{"./ToPrimitive":1101,"call-bind/callBound":1060,"safe-regex-test":1155}],1100:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
 module.exports = require('es-object-atoms/ToObject');
 
-},{"es-object-atoms/ToObject":1058}],1029:[function(require,module,exports){
+},{"es-object-atoms/ToObject":1130}],1101:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":1060}],1030:[function(require,module,exports){
+},{"es-to-primitive/es5":1132}],1102:[function(require,module,exports){
 'use strict';
 
 var hasOwn = require('hasown');
@@ -114923,7 +127820,7 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	return desc;
 };
 
-},{"./IsCallable":1009,"./ToBoolean":1024,"./Type":1034,"es-errors/type":1055,"hasown":1072}],1031:[function(require,module,exports){
+},{"./IsCallable":1081,"./ToBoolean":1096,"./Type":1106,"es-errors/type":1127,"hasown":1144}],1103:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -114937,7 +127834,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":1064}],1032:[function(require,module,exports){
+},{"get-intrinsic":1136}],1104:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -114958,7 +127855,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":1042,"../helpers/isNaN":1043,"../helpers/sign":1047,"./ToNumber":1027,"./abs":1037,"./floor":1038,"./modulo":1039}],1033:[function(require,module,exports){
+},{"../helpers/isFinite":1114,"../helpers/isNaN":1115,"../helpers/sign":1119,"./ToNumber":1099,"./abs":1109,"./floor":1110,"./modulo":1111}],1105:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -114969,7 +127866,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":1027}],1034:[function(require,module,exports){
+},{"./ToNumber":1099}],1106:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -114995,7 +127892,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],1035:[function(require,module,exports){
+},{}],1107:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -115007,7 +127904,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":1001,"./modulo":1039}],1036:[function(require,module,exports){
+},{"./Day":1073,"./modulo":1111}],1108:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -115025,7 +127922,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":988,"get-intrinsic":1064}],1037:[function(require,module,exports){
+},{"call-bind/callBound":1060,"get-intrinsic":1136}],1109:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -115038,7 +127935,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":1064}],1038:[function(require,module,exports){
+},{"get-intrinsic":1136}],1110:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -115051,7 +127948,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],1039:[function(require,module,exports){
+},{}],1111:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -115062,7 +127959,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":1045}],1040:[function(require,module,exports){
+},{"../helpers/mod":1117}],1112:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -115075,7 +127972,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":1048,"./modulo":1039}],1041:[function(require,module,exports){
+},{"../helpers/timeConstants":1120,"./modulo":1111}],1113:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -115129,21 +128026,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":996,"./5/AbstractRelationalComparison":997,"./5/Canonicalize":998,"./5/CheckObjectCoercible":999,"./5/DateFromTime":1000,"./5/Day":1001,"./5/DayFromYear":1002,"./5/DayWithinYear":1003,"./5/DaysInYear":1004,"./5/FromPropertyDescriptor":1005,"./5/HourFromTime":1006,"./5/InLeapYear":1007,"./5/IsAccessorDescriptor":1008,"./5/IsCallable":1009,"./5/IsDataDescriptor":1010,"./5/IsGenericDescriptor":1011,"./5/IsPropertyDescriptor":1012,"./5/MakeDate":1013,"./5/MakeDay":1014,"./5/MakeTime":1015,"./5/MinFromTime":1016,"./5/MonthFromTime":1017,"./5/SameValue":1018,"./5/SecFromTime":1019,"./5/StrictEqualityComparison":1020,"./5/TimeClip":1021,"./5/TimeFromYear":1022,"./5/TimeWithinDay":1023,"./5/ToBoolean":1024,"./5/ToInt32":1025,"./5/ToInteger":1026,"./5/ToNumber":1027,"./5/ToObject":1028,"./5/ToPrimitive":1029,"./5/ToPropertyDescriptor":1030,"./5/ToString":1031,"./5/ToUint16":1032,"./5/ToUint32":1033,"./5/Type":1034,"./5/WeekDay":1035,"./5/YearFromTime":1036,"./5/abs":1037,"./5/floor":1038,"./5/modulo":1039,"./5/msFromTime":1040}],1042:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":1068,"./5/AbstractRelationalComparison":1069,"./5/Canonicalize":1070,"./5/CheckObjectCoercible":1071,"./5/DateFromTime":1072,"./5/Day":1073,"./5/DayFromYear":1074,"./5/DayWithinYear":1075,"./5/DaysInYear":1076,"./5/FromPropertyDescriptor":1077,"./5/HourFromTime":1078,"./5/InLeapYear":1079,"./5/IsAccessorDescriptor":1080,"./5/IsCallable":1081,"./5/IsDataDescriptor":1082,"./5/IsGenericDescriptor":1083,"./5/IsPropertyDescriptor":1084,"./5/MakeDate":1085,"./5/MakeDay":1086,"./5/MakeTime":1087,"./5/MinFromTime":1088,"./5/MonthFromTime":1089,"./5/SameValue":1090,"./5/SecFromTime":1091,"./5/StrictEqualityComparison":1092,"./5/TimeClip":1093,"./5/TimeFromYear":1094,"./5/TimeWithinDay":1095,"./5/ToBoolean":1096,"./5/ToInt32":1097,"./5/ToInteger":1098,"./5/ToNumber":1099,"./5/ToObject":1100,"./5/ToPrimitive":1101,"./5/ToPropertyDescriptor":1102,"./5/ToString":1103,"./5/ToUint16":1104,"./5/ToUint32":1105,"./5/Type":1106,"./5/WeekDay":1107,"./5/YearFromTime":1108,"./5/abs":1109,"./5/floor":1110,"./5/modulo":1111,"./5/msFromTime":1112}],1114:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./isNaN');
 
 module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{"./isNaN":1043}],1043:[function(require,module,exports){
+},{"./isNaN":1115}],1115:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],1044:[function(require,module,exports){
+},{}],1116:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -115158,7 +128055,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":988}],1045:[function(require,module,exports){
+},{"call-bind/callBound":1060}],1117:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -115168,7 +128065,7 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],1046:[function(require,module,exports){
+},{}],1118:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -115206,14 +128103,14 @@ module.exports = function isPropertyDescriptor(Desc) {
 	return true;
 };
 
-},{"es-errors/type":1055,"hasown":1072}],1047:[function(require,module,exports){
+},{"es-errors/type":1127,"hasown":1144}],1119:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],1048:[function(require,module,exports){
+},{}],1120:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -115234,7 +128131,7 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],1049:[function(require,module,exports){
+},{}],1121:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -115252,49 +128149,49 @@ if ($defineProperty) {
 
 module.exports = $defineProperty;
 
-},{"get-intrinsic":1064}],1050:[function(require,module,exports){
+},{"get-intrinsic":1136}],1122:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./eval')} */
 module.exports = EvalError;
 
-},{}],1051:[function(require,module,exports){
+},{}],1123:[function(require,module,exports){
 'use strict';
 
 /** @type {import('.')} */
 module.exports = Error;
 
-},{}],1052:[function(require,module,exports){
+},{}],1124:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./range')} */
 module.exports = RangeError;
 
-},{}],1053:[function(require,module,exports){
+},{}],1125:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./ref')} */
 module.exports = ReferenceError;
 
-},{}],1054:[function(require,module,exports){
+},{}],1126:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./syntax')} */
 module.exports = SyntaxError;
 
-},{}],1055:[function(require,module,exports){
+},{}],1127:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./type')} */
 module.exports = TypeError;
 
-},{}],1056:[function(require,module,exports){
+},{}],1128:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./uri')} */
 module.exports = URIError;
 
-},{}],1057:[function(require,module,exports){
+},{}],1129:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -115307,7 +128204,7 @@ module.exports = function RequireObjectCoercible(value) {
 	return value;
 };
 
-},{"es-errors/type":1055}],1058:[function(require,module,exports){
+},{"es-errors/type":1127}],1130:[function(require,module,exports){
 'use strict';
 
 var $Object = require('./');
@@ -115319,13 +128216,13 @@ module.exports = function ToObject(value) {
 	return $Object(value);
 };
 
-},{"./":1059,"./RequireObjectCoercible":1057}],1059:[function(require,module,exports){
+},{"./":1131,"./RequireObjectCoercible":1129}],1131:[function(require,module,exports){
 'use strict';
 
 /** @type {import('.')} */
 module.exports = Object;
 
-},{}],1060:[function(require,module,exports){
+},{}],1132:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -115372,14 +128269,14 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":1061,"is-callable":1075}],1061:[function(require,module,exports){
+},{"./helpers/isPrimitive":1133,"is-callable":1147}],1133:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],1062:[function(require,module,exports){
+},{}],1134:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -115465,14 +128362,14 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],1063:[function(require,module,exports){
+},{}],1135:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":1062}],1064:[function(require,module,exports){
+},{"./implementation":1134}],1136:[function(require,module,exports){
 'use strict';
 
 var undefined;
@@ -115833,7 +128730,7 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"es-errors":1051,"es-errors/eval":1050,"es-errors/range":1052,"es-errors/ref":1053,"es-errors/syntax":1054,"es-errors/type":1055,"es-errors/uri":1056,"function-bind":1063,"has-proto":1067,"has-symbols":1068,"hasown":1072}],1065:[function(require,module,exports){
+},{"es-errors":1123,"es-errors/eval":1122,"es-errors/range":1124,"es-errors/ref":1125,"es-errors/syntax":1126,"es-errors/type":1127,"es-errors/uri":1128,"function-bind":1135,"has-proto":1139,"has-symbols":1140,"hasown":1144}],1137:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -115851,7 +128748,7 @@ if ($gOPD) {
 
 module.exports = $gOPD;
 
-},{"get-intrinsic":1064}],1066:[function(require,module,exports){
+},{"get-intrinsic":1136}],1138:[function(require,module,exports){
 'use strict';
 
 var $defineProperty = require('es-define-property');
@@ -115875,7 +128772,7 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"es-define-property":1049}],1067:[function(require,module,exports){
+},{"es-define-property":1121}],1139:[function(require,module,exports){
 'use strict';
 
 var test = {
@@ -115892,7 +128789,7 @@ module.exports = function hasProto() {
 		&& !(test instanceof $Object);
 };
 
-},{}],1068:[function(require,module,exports){
+},{}],1140:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -115907,7 +128804,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":1069}],1069:[function(require,module,exports){
+},{"./shams":1141}],1141:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -115951,7 +128848,7 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],1070:[function(require,module,exports){
+},{}],1142:[function(require,module,exports){
 'use strict';
 
 var hasSymbols = require('has-symbols/shams');
@@ -115961,14 +128858,14 @@ module.exports = function hasToStringTagShams() {
 	return hasSymbols() && !!Symbol.toStringTag;
 };
 
-},{"has-symbols/shams":1069}],1071:[function(require,module,exports){
+},{"has-symbols/shams":1141}],1143:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":1063}],1072:[function(require,module,exports){
+},{"function-bind":1135}],1144:[function(require,module,exports){
 'use strict';
 
 var call = Function.prototype.call;
@@ -115978,7 +128875,7 @@ var bind = require('function-bind');
 /** @type {import('.')} */
 module.exports = bind.call(call, $hasOwn);
 
-},{"function-bind":1063}],1073:[function(require,module,exports){
+},{"function-bind":1135}],1145:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -116065,7 +128962,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],1074:[function(require,module,exports){
+},{}],1146:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -116094,7 +128991,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],1075:[function(require,module,exports){
+},{}],1147:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -116197,7 +129094,7 @@ module.exports = reflectApply
 		return tryFunctionObject(value);
 	};
 
-},{}],1076:[function(require,module,exports){
+},{}],1148:[function(require,module,exports){
 'use strict';
 
 var callBound = require('call-bind/callBound');
@@ -116257,7 +129154,7 @@ module.exports = hasToStringTag
 		return $toString(value) === regexClass;
 	};
 
-},{"call-bind/callBound":988,"has-tostringtag/shams":1070}],1077:[function(require,module,exports){
+},{"call-bind/callBound":1060,"has-tostringtag/shams":1142}],1149:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -116381,7 +129278,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":1079}],1078:[function(require,module,exports){
+},{"./isArguments":1151}],1150:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -116415,7 +129312,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":1077,"./isArguments":1079}],1079:[function(require,module,exports){
+},{"./implementation":1149,"./isArguments":1151}],1151:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -116434,7 +129331,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],1080:[function(require,module,exports){
+},{}],1152:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -116620,7 +129517,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],1081:[function(require,module,exports){
+},{}],1153:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -116653,7 +129550,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":1080,"through":1096,"timers":1097}],1082:[function(require,module,exports){
+},{"_process":1152,"through":1168,"timers":1169}],1154:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -116720,7 +129617,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":970}],1083:[function(require,module,exports){
+},{"buffer":1042}],1155:[function(require,module,exports){
 'use strict';
 
 var callBound = require('call-bind/callBound');
@@ -116738,7 +129635,7 @@ module.exports = function regexTester(regex) {
 	};
 };
 
-},{"call-bind/callBound":988,"es-errors/type":1055,"is-regex":1076}],1084:[function(require,module,exports){
+},{"call-bind/callBound":1060,"es-errors/type":1127,"is-regex":1148}],1156:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -116782,7 +129679,7 @@ module.exports = function setFunctionLength(fn, length) {
 	return fn;
 };
 
-},{"define-data-property":993,"es-errors/type":1055,"get-intrinsic":1064,"gopd":1065,"has-property-descriptors":1066}],1085:[function(require,module,exports){
+},{"define-data-property":1065,"es-errors/type":1127,"get-intrinsic":1136,"gopd":1137,"has-property-descriptors":1138}],1157:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -116797,7 +129694,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":1041,"function-bind":1063}],1086:[function(require,module,exports){
+},{"es-abstract/es5":1113,"function-bind":1135}],1158:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -116817,7 +129714,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":1085,"./polyfill":1087,"./shim":1088,"define-properties":994,"function-bind":1063}],1087:[function(require,module,exports){
+},{"./implementation":1157,"./polyfill":1159,"./shim":1160,"define-properties":1066,"function-bind":1135}],1159:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -116831,7 +129728,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":1085}],1088:[function(require,module,exports){
+},{"./implementation":1157}],1160:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -116843,7 +129740,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":1087,"define-properties":994}],1089:[function(require,module,exports){
+},{"./polyfill":1159,"define-properties":1066}],1161:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -117140,7 +130037,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":1082}],1090:[function(require,module,exports){
+},{"safe-buffer":1154}],1162:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -117294,7 +130191,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":1091,"./lib/results":1093,"./lib/test":1094,"_process":1080,"defined":995,"through":1096,"timers":1097}],1091:[function(require,module,exports){
+},{"./lib/default_stream":1163,"./lib/results":1165,"./lib/test":1166,"_process":1152,"defined":1067,"through":1168,"timers":1169}],1163:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -117329,7 +130226,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":1080,"fs":969,"through":1096}],1092:[function(require,module,exports){
+},{"_process":1152,"fs":1041,"through":1168}],1164:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -117337,7 +130234,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":1080,"timers":1097}],1093:[function(require,module,exports){
+},{"_process":1152,"timers":1169}],1165:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -117528,7 +130425,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":1080,"events":971,"function-bind":1063,"has":1071,"inherits":1074,"object-inspect":1095,"resumer":1081,"through":1096,"timers":1097}],1094:[function(require,module,exports){
+},{"_process":1152,"events":1043,"function-bind":1135,"has":1143,"inherits":1146,"object-inspect":1167,"resumer":1153,"through":1168,"timers":1169}],1166:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -118029,7 +130926,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":1092,"deep-equal":990,"defined":995,"events":971,"has":1071,"inherits":1074,"path":972,"string.prototype.trim":1086}],1095:[function(require,module,exports){
+},{"./next_tick":1164,"deep-equal":1062,"defined":1067,"events":1043,"has":1143,"inherits":1146,"path":1044,"string.prototype.trim":1158}],1167:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -118223,7 +131120,7 @@ function inspectString (str) {
     }
 }
 
-},{}],1096:[function(require,module,exports){
+},{}],1168:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -118335,7 +131232,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":1080,"stream":973}],1097:[function(require,module,exports){
+},{"_process":1152,"stream":1045}],1169:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -118414,7 +131311,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":1080,"timers":1097}],1098:[function(require,module,exports){
+},{"process/browser.js":1152,"timers":1169}],1170:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -118485,4 +131382,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[681]);
+},{}]},{},[747]);

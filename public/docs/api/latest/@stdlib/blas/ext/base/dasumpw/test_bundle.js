@@ -1845,9 +1845,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dasumpw( N, x, 1 );
+* var v = dasumpw( x.length, x, 1 );
 * // returns 5.0
 */
 function dasumpw( N, x, strideX ) {
@@ -1974,10 +1973,10 @@ function dasumpw( N, x, strideX, offsetX ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || strideX === 0 ) {
-		return abs( x[ offsetX ] );
-	}
 	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * abs( x[ ix ] );
+	}
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
@@ -2012,7 +2011,7 @@ function dasumpw( N, x, strideX, offsetX ) {
 			ix += 8 * strideX;
 		}
 		// Pairwise sum the accumulators:
-		s = ((s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7));
+		s = ( (s0+s1) + (s2+s3) ) + ( (s4+s5) + (s6+s7) );
 
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {
@@ -2192,14 +2191,14 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the sum of the first element repeated N times', function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dasumpw( x.length, x, 0 );
-	t.strictEqual( v, 1.0, 'returns expected value' );
+	t.strictEqual( v, 5.0, 'returns expected value' );
 
 	t.end();
 });
@@ -2483,14 +2482,14 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element', opts, function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the sum of the first element repeated N times', opts, function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dasumpw( x.length, x, 0 );
-	t.strictEqual( v, 1.0, 'returns expected value' );
+	t.strictEqual( v, 5.0, 'returns expected value' );
 
 	t.end();
 });
@@ -2769,14 +2768,14 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first indexed element', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the sum of the first element repeated N times', function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dasumpw( x.length, x, 0, 0 );
-	t.strictEqual( v, 1.0, 'returns expected value' );
+	t.strictEqual( v, 5.0, 'returns expected value' );
 
 	t.end();
 });
@@ -2974,14 +2973,14 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first indexed element', opts, function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the sum of the first element repeated N times', opts, function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dasumpw( x.length, x, 0, 0 );
-	t.strictEqual( v, 1.0, 'returns expected value' );
+	t.strictEqual( v, 5.0, 'returns expected value' );
 
 	t.end();
 });

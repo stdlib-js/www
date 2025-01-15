@@ -40249,7 +40249,7 @@ function ibetaImp( x, a, b, regularized, upper, out, stride, offset ) {
 			upper = !upper;
 
 			if ( y >= 0.3 ) {
-				if (upper) {
+				if ( upper ) {
 					fract = -(( regularized ) ? 1.0 : beta( a, b ));
 					upper = false;
 					fract = -ibetaSeries( a, b, x, fract, regularized, out, y );
@@ -41181,7 +41181,7 @@ function ibetaPowerTerms( a, b, x, y, normalized ) {
 					result *= pow( p1 * b2, b );
 				} else {
 					l2 += l1 + ln( result );
-					if (l2 >= MAX_LN) {
+					if ( l2 >= MAX_LN ) {
 						return NaN;
 					}
 					result = exp( l2 );
@@ -55451,7 +55451,7 @@ function ibetaPowerTerms( a, b, x, y, normalized ) {
 					result *= pow( p1 * b2, b );
 				} else {
 					l2 += l1 + ln( result );
-					if (l2 >= MAX_LN) {
+					if ( l2 >= MAX_LN ) {
 						return NaN;
 					}
 					result = exp( l2 );

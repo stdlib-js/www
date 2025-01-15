@@ -60,7 +60,7 @@ chart.data = [
 
 <span class="hljs-keyword">var</span> str = chart.render();
 <span class="hljs-comment">// returns '▁█ ∞▆∞▅'</span>
-</code></pre><p><a name="prop-is-defined"></a></p><h4 id="columnchartprototypeisdefined-d-i-">ColumnChart.prototype.isDefined( d, i )</h4><p>An accessor <code>function</code> which defines whether a datum is defined. This accessor is used to define how missing values are encoded. When invoked, the function is provided two arguments:</p><ul><li><strong>d</strong>: datum</li><li><strong>i</strong>: datum index</li></ul><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDefined</span>(<span class="hljs-params"> d </span>) </span>{
+</code></pre><p><a name="prop-is-defined"></a></p><h4 id="columnchartprototypeisdefined-d-i-">ColumnChart.prototype.isDefined( d, i )</h4><p>An accessor <code>function</code> which defines whether a datum is defined. This accessor is used to define how missing values are encoded. When invoked, the function is provided two arguments:</p><ul><li><strong>d</strong>: datum.</li><li><strong>i</strong>: datum index.</li></ul><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isDefined</span>(<span class="hljs-params"> d </span>) </span>{
     <span class="hljs-keyword">return</span> ( d !== <span class="hljs-literal">null</span> );
 }
 

@@ -1820,18 +1820,19 @@ module.exports = arrayfcn;
 
 // MODULES //
 
-var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
 
 /**
-* Adds a constant to each single-precision floating-point strided array element and computes the sum using extended accumulation and returning an extended precision result.
+* Adds a scalar constant to each single-precision floating-point strided array element, and computes the sum using extended accumulation and returning an extended precision result.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
@@ -1839,11 +1840,11 @@ var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
 *
-* var v = dsapxsum( 3, 5.0, x, 1 );
+* var v = dsapxsum( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
-function dsapxsum( N, alpha, x, stride ) {
-	return dsapxsumpw( N, alpha, x, stride );
+function dsapxsum( N, alpha, x, strideX ) {
+	return ndarray( N, alpha, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -1851,7 +1852,7 @@ function dsapxsum( N, alpha, x, stride ) {
 
 module.exports = dsapxsum;
 
-},{"@stdlib/blas/ext/base/dsapxsumpw":38}],35:[function(require,module,exports){
+},{"./ndarray.js":36,"@stdlib/strided/base/stride2offset":66}],35:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1917,13 +1918,13 @@ var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' ).ndarray;
 // MAIN //
 
 /**
-* Adds a constant to each single-precision floating-point strided array element and computes the sum using extended accumulation and returning an extended precision result.
+* Adds a scalar constant to each single-precision floating-point strided array element, and computes the sum using extended accumulation and returning an extended precision result.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -1934,8 +1935,8 @@ var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' ).ndarray;
 * var v = dsapxsum( 4, 5.0, x, 2, 1 );
 * // returns 25.0
 */
-function dsapxsum( N, alpha, x, stride, offset ) {
-	return dsapxsumpw( N, alpha, x, stride, offset );
+function dsapxsum( N, alpha, x, strideX, offsetX ) {
+	return dsapxsumpw( N, alpha, x, strideX, offsetX );
 }
 
 
@@ -2202,7 +2203,8 @@ module.exports = dsapxsumpw;
 
 // MODULES //
 
-var dssumpw = require( '@stdlib/blas/ext/base/dssumpw' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -2212,20 +2214,19 @@ var dssumpw = require( '@stdlib/blas/ext/base/dssumpw' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dssum( N, x, 1 );
+* var v = dssum( x.length, x, 1 );
 * // returns 1.0
 */
-function dssum( N, x, stride ) {
-	return dssumpw( N, x, stride );
+function dssum( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -2233,7 +2234,7 @@ function dssum( N, x, stride ) {
 
 module.exports = dssum;
 
-},{"@stdlib/blas/ext/base/dssumpw":44}],41:[function(require,module,exports){
+},{"./ndarray.js":42,"@stdlib/strided/base/stride2offset":66}],41:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2303,8 +2304,8 @@ var dssumpw = require( '@stdlib/blas/ext/base/dssumpw' ).ndarray;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -2315,8 +2316,8 @@ var dssumpw = require( '@stdlib/blas/ext/base/dssumpw' ).ndarray;
 * var v = dssum( 4, x, 2, 1 );
 * // returns 5.0
 */
-function dssum( N, x, stride, offset ) {
-	return dssumpw( N, x, stride, offset );
+function dssum( N, x, strideX, offsetX ) {
+	return dssumpw( N, x, strideX, offsetX );
 }
 
 
@@ -2347,7 +2348,8 @@ module.exports = dssum;
 
 // MODULES //
 
-var sum = require( './ndarray.js' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -2365,44 +2367,19 @@ var sum = require( './ndarray.js' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dssumpw( N, x, 1 );
+* var v = dssumpw( x.length, x, 1 );
 * // returns 1.0
 */
-function dssumpw( N, x, stride ) {
-	var ix;
-	var s;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	if ( N < 8 ) {
-		// Use simple summation...
-		s = 0.0;
-		for ( i = 0; i < N; i++ ) {
-			s += x[ ix ];
-			ix += stride;
-		}
-		return s;
-	}
-	return sum( N, x, stride, ix );
+function dssumpw( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -2410,7 +2387,7 @@ function dssumpw( N, x, stride ) {
 
 module.exports = dssumpw;
 
-},{"./ndarray.js":45}],44:[function(require,module,exports){
+},{"./ndarray.js":45,"@stdlib/strided/base/stride2offset":66}],44:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2494,8 +2471,8 @@ var BLOCKSIZE = 128;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -2506,7 +2483,7 @@ var BLOCKSIZE = 128;
 * var v = dssumpw( 4, x, 2, 1 );
 * // returns 5.0
 */
-function dssumpw( N, x, stride, offset ) {
+function dssumpw( N, x, strideX, offsetX ) {
 	var ix;
 	var s0;
 	var s1;
@@ -2524,57 +2501,58 @@ function dssumpw( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
+
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
 		for ( i = 0; i < N; i++ ) {
 			s += x[ ix ];
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	if ( N <= BLOCKSIZE ) {
 		// Sum a block with 8 accumulators (by loop unrolling, we lower the effective blocksize to 16)...
 		s0 = x[ ix ];
-		s1 = x[ ix+stride ];
-		s2 = x[ ix+(2*stride) ];
-		s3 = x[ ix+(3*stride) ];
-		s4 = x[ ix+(4*stride) ];
-		s5 = x[ ix+(5*stride) ];
-		s6 = x[ ix+(6*stride) ];
-		s7 = x[ ix+(7*stride) ];
-		ix += 8 * stride;
+		s1 = x[ ix+strideX ];
+		s2 = x[ ix+(2*strideX) ];
+		s3 = x[ ix+(3*strideX) ];
+		s4 = x[ ix+(4*strideX) ];
+		s5 = x[ ix+(5*strideX) ];
+		s6 = x[ ix+(6*strideX) ];
+		s7 = x[ ix+(7*strideX) ];
+		ix += 8 * strideX;
 
 		M = N % 8;
 		for ( i = 8; i < N-M; i += 8 ) {
 			s0 += x[ ix ];
-			s1 += x[ ix+stride ];
-			s2 += x[ ix+(2*stride) ];
-			s3 += x[ ix+(3*stride) ];
-			s4 += x[ ix+(4*stride) ];
-			s5 += x[ ix+(5*stride) ];
-			s6 += x[ ix+(6*stride) ];
-			s7 += x[ ix+(7*stride) ];
-			ix += 8 * stride;
+			s1 += x[ ix+strideX ];
+			s2 += x[ ix+(2*strideX) ];
+			s3 += x[ ix+(3*strideX) ];
+			s4 += x[ ix+(4*strideX) ];
+			s5 += x[ ix+(5*strideX) ];
+			s6 += x[ ix+(6*strideX) ];
+			s7 += x[ ix+(7*strideX) ];
+			ix += 8 * strideX;
 		}
 		// Pairwise sum the accumulators:
-		s = ((s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7));
+		s = ( (s0+s1) + (s2+s3) ) + ( (s4+s5) + (s6+s7) );
 
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {
 			s += x[ ix ];
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	// Recurse by dividing by two, but avoiding non-multiples of unroll factor...
 	n = floor( N/2 );
 	n -= n % 8;
-	return dssumpw( n, x, stride, ix ) + dssumpw( N-n, x, stride, ix+(n*stride) ); // eslint-disable-line max-len
+	return dssumpw( n, x, strideX, ix ) + dssumpw( N-n, x, strideX, ix+(n*strideX) ); // eslint-disable-line max-len
 }
 
 

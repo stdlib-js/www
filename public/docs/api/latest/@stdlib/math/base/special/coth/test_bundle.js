@@ -4916,7 +4916,7 @@ tape( 'the function computes the hyperbolic cotangent', function test( t ) {
 	expected = data.expected;
 
 	for ( i = 0; i < x.length; i++ ) {
-		if ( isNegativeZero( x[ i ] ) || isPositiveZero( x[ i ] )) {
+		if ( isNegativeZero( x[ i ] ) || isPositiveZero( x[ i ] ) ) {
 			continue;
 		}
 		y = coth( x[i] );
@@ -5131,7 +5131,7 @@ tape( 'the function computes the hyperbolic cotangent', opts, function test( t )
 	expected = data.expected;
 
 	for ( i = 0; i < x.length; i++ ) {
-		if ( isNegativeZero( x[ i ] ) || isPositiveZero( x[ i ] )) {
+		if ( isNegativeZero( x[ i ] ) || isPositiveZero( x[ i ] ) ) {
 			continue;
 		}
 		y = coth( x[i] );

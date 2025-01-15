@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -20966,7 +20968,7 @@ var RE_UTF16_HIGH_SURROGATE = /[\uD800-\uDBFF]/;
 * var bool = isWellFormed( new String( '\uDC00' ) );
 * // returns false
 */
-function isWellFormed(str) {
+function isWellFormed( str ) {
 	var i;
 	for ( i = 0; i < str.length; i++ ) {
 		// Checking if a low surrogate is present at the beginning
@@ -30579,7 +30581,7 @@ function endsWith( str, search, len ) {
 	if ( idx < 0 ) {
 		return false;
 	}
-	for ( i = 0; i < N; i++) {
+	for ( i = 0; i < N; i++ ) {
 		if ( str.charCodeAt( idx + i ) !== search.charCodeAt( i ) ) {
 			return false;
 		}

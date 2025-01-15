@@ -1,0 +1,52 @@
+<h1 id="bquaternary5d">bquaternary5d</h1><blockquote><p>Apply a quaternary callback to elements in four <a href="/docs/api/latest/@stdlib/array/base/broadcast-array">broadcasted</a> input arrays and assign results to elements in a five-dimensional nested output array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bquaternary5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/broadcasted-quaternary5d'</span> );
+</code></pre><h4 id="bquaternary5d-arrays-shapes-fcn-">bquaternary5d( arrays, shapes, fcn )</h4><p>Applies a quaternary callback to elements in four <a href="/docs/api/latest/@stdlib/array/base/broadcast-array">broadcasted</a> input arrays and assigns results to elements in a five-dimensional nested output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add4'</span> );
+<span class="hljs-keyword">var</span> zeros5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros5d'</span> );
+
+<span class="hljs-keyword">var</span> x = [ [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] ];
+<span class="hljs-keyword">var</span> y = [ [ <span class="hljs-number">3.0</span> ], [ <span class="hljs-number">4.0</span> ] ];
+<span class="hljs-keyword">var</span> z = [ [ <span class="hljs-number">5.0</span> ] ];
+<span class="hljs-keyword">var</span> w = [ [ <span class="hljs-number">2.0</span> ] ];
+<span class="hljs-keyword">var</span> out = zeros5d( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ] );
+
+<span class="hljs-keyword">var</span> shapes = [
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span> ],
+    [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ],
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ],
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ],
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ]
+];
+
+bquaternary5d( [ x, y, z, w, out ], shapes, add );
+<span class="hljs-comment">// out => [ [ [ [ [ 11.0, 12.0 ], [ 12.0, 13.0 ] ], [ [ 11.0, 12.0 ], [ 12.0, 13.0 ] ] ] ] ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: array-like object containing four input nested arrays and one output nested array.</li><li><strong>shapes</strong>: array shapes.</li><li><strong>fcn</strong>: quaternary function to apply.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The input and output array shapes must be broadcast <a href="/docs/api/latest/@stdlib/ndarray/base/broadcast-shapes">compatible</a>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> filled5dBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled5d-by'</span> );
+<span class="hljs-keyword">var</span> zeros5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros5d'</span> );
+<span class="hljs-keyword">var</span> add = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/ops/add4'</span> );
+<span class="hljs-keyword">var</span> bquaternary5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/broadcasted-quaternary5d'</span> );
+
+<span class="hljs-keyword">var</span> shapes = [
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span> ],
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ],
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ],
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ],
+    [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ]
+];
+
+<span class="hljs-keyword">var</span> x = filled5dBy( shapes[ <span class="hljs-number">0</span> ], discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> y = filled5dBy( shapes[ <span class="hljs-number">1</span> ], discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( y );
+
+<span class="hljs-keyword">var</span> z = filled5dBy( shapes[ <span class="hljs-number">2</span> ], discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( z );
+
+<span class="hljs-keyword">var</span> w = filled5dBy( shapes[ <span class="hljs-number">3</span> ], discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( w );
+
+<span class="hljs-keyword">var</span> out = zeros5d( shapes[ <span class="hljs-number">4</span> ] );
+<span class="hljs-built_in">console</span>.log( z );
+
+bquaternary5d( [ x, y, z, w, out ], shapes, add );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -55,44 +55,19 @@ x = ldexp( -<span class="hljs-literal">Infinity</span>, -<span class="hljs-numbe
 <span class="hljs-comment">// returns 4.0</span>
 </code></pre><p>The function accepts the following arguments:</p><ul><li><strong>frac</strong>: <code>[in] double</code> input value.</li><li><strong>exp</strong>: <code>[in] int32_t</code> integer power of two.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_base_ldexp</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> frac, <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> <span class="hljs-built_in">exp</span> )</span></span>;
 </code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/ldexp.h"</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/special/frexp.h"</span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdlib.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdint.h></span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;inttypes.h></span></span>
-<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;math.h></span></span>
-
-<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">double</span> <span class="hljs-title">rand_double</span><span class="hljs-params">()</span> </span>{
-    <span class="hljs-keyword">int</span> r = rand();
-    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">double</span>)r / ( (<span class="hljs-keyword">double</span>)RAND_MAX + <span class="hljs-number">1.0</span> );
-}
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
-    <span class="hljs-keyword">double</span> sign;
-    <span class="hljs-keyword">double</span> frac;
-    <span class="hljs-keyword">int32_t</span> <span class="hljs-built_in">exp</span>;
-    <span class="hljs-keyword">double</span> x;
-    <span class="hljs-keyword">double</span> v;
+    <span class="hljs-keyword">double</span> y;
     <span class="hljs-keyword">int</span> i;
 
-    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
-        <span class="hljs-keyword">if</span> ( rand_double() &#x3C; <span class="hljs-number">0.5</span> ) {
-            sign = <span class="hljs-number">-1.0</span>;
-        } <span class="hljs-keyword">else</span> {
-            sign = <span class="hljs-number">1.0</span>;
-        }
-        <span class="hljs-comment">// Generate a random number:</span>
-        frac = rand_double() * <span class="hljs-number">10.0</span>;
-        <span class="hljs-built_in">exp</span> = (<span class="hljs-keyword">int32_t</span>)( rand_double()*<span class="hljs-number">616.0</span> ) - <span class="hljs-number">308</span>;
-        x = sign * frac * <span class="hljs-built_in">pow</span>( <span class="hljs-number">10.0</span>, <span class="hljs-built_in">exp</span> );
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> frac[] = { <span class="hljs-number">0.5</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">3.5</span>, <span class="hljs-number">7.9</span> };
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int32_t</span> <span class="hljs-built_in">exp</span>[] = { <span class="hljs-number">3</span>, <span class="hljs-number">-2</span>, <span class="hljs-number">20</span>, <span class="hljs-number">39</span>, <span class="hljs-number">14</span> };
 
-        <span class="hljs-comment">// Break the number into a normalized fraction and an integer power of two:</span>
-        stdlib_base_frexp( x, &#x26;frac, &#x26;<span class="hljs-built_in">exp</span> );
-
-        <span class="hljs-comment">// Reconstitute the original number:</span>
-        v = stdlib_base_ldexp( frac, <span class="hljs-built_in">exp</span> );
-
-        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"%e = %lf * 2^%"</span> PRId32 <span class="hljs-string">" = %e\n"</span>, x, frac, <span class="hljs-built_in">exp</span>, v );
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">5</span>; i++ ) {
+        y = stdlib_base_ldexp( frac[ i ], <span class="hljs-built_in">exp</span>[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"ldexp(%lf, %d) = %lf\n"</span>, frac[ i ], <span class="hljs-built_in">exp</span>[ i ], y );
     }
 }
 </code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/math/base/special/frexp"><code>@stdlib/math/base/special/frexp</code></a></span><span class="delimiter">: </span><span class="description">split a double-precision floating-point number into a normalized fraction and an integer power of two.</span></li></ul></section><section class="links"></section></section></section>

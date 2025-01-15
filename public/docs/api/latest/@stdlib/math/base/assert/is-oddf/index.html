@@ -1,0 +1,58 @@
+<h1 id="isoddf">isOddf</h1><blockquote><p>Test if a finite single-precision floating-point number is an odd number.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isOddf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/is-oddf'</span> );
+</code></pre><h4 id="isoddf-x-">isOddf( x )</h4><p>Tests if a <strong>finite</strong> single-precision floating-point number is an odd number.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> bool = isOddf( <span class="hljs-number">5.0</span> );
+<span class="hljs-comment">// returns true</span>
+
+bool = isOddf( -<span class="hljs-number">2.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isOddf( <span class="hljs-number">0.0</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = isOddf( <span class="hljs-literal">NaN</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>The function assumes a <strong>finite</strong> <code>number</code>. If provided positive or negative <code>infinity</code>, the function will return <code>true</code>, when, in fact, the result is undefined. If <code>x</code> can be <code>infinite</code>, wrap the implementation as follows:</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">check</span>(<span class="hljs-params"> x </span>) </span>{
+    <span class="hljs-keyword">return</span> (
+        x &#x3C; <span class="hljs-literal">Infinity</span> &#x26;&#x26;
+        x > -<span class="hljs-literal">Infinity</span> &#x26;&#x26;
+        isOddf( x )
+    );
+}
+
+<span class="hljs-keyword">var</span> bool = check( <span class="hljs-literal">Infinity</span> );
+<span class="hljs-comment">// returns false</span>
+
+bool = check( -<span class="hljs-literal">Infinity</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> isOddf = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/assert/is-oddf'</span> );
+
+<span class="hljs-keyword">var</span> x = randu( <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span> );
+
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">100</span>; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d is %s'</span>, x[ i ], ( isOddf( x[ i ] ) ) ? <span class="hljs-string">'odd'</span> : <span class="hljs-string">'not odd'</span> );
+}
+</code></pre></section><hr><section class="c"><h2 id="c-apis">C APIs</h2><section class="intro"></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/assert/is_oddf.h"</span></span>
+</code></pre><h4 id="stdlib_base_is_oddf-x-">stdlib_base_is_oddf( x )</h4><p>Tests if a finite single-precision floating-point number is an odd number.</p><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdbool.h></span></span>
+
+<span class="hljs-keyword">bool</span> out = stdlib_base_is_oddf( <span class="hljs-number">1.0f</span> );
+<span class="hljs-comment">// returns true</span>
+
+out = stdlib_base_is_oddf( <span class="hljs-number">4.0f</span> );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: <code>[in] float</code> input value.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">stdlib_base_is_oddf</span><span class="hljs-params">( <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/math/base/assert/is_oddf.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdbool.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span> x[] = { <span class="hljs-number">5.0f</span>, <span class="hljs-number">-5.0f</span>, <span class="hljs-number">3.14f</span>, <span class="hljs-number">-3.14f</span>, <span class="hljs-number">0.0f</span>, <span class="hljs-number">0.0f</span> / <span class="hljs-number">0.0f</span> };
+
+    <span class="hljs-keyword">bool</span> b;
+    <span class="hljs-keyword">int</span> i;
+    <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; <span class="hljs-number">6</span>; i++ ) {
+        b = stdlib_base_is_oddf( x[ i ] );
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"Value: %f. Is Odd? %s.\n"</span>, x[ i ], ( b ) ? <span class="hljs-string">"True"</span> : <span class="hljs-string">"False"</span> );
+    }
+}
+</code></pre></section></section><section class="related"><hr><h2 id="see-also">See Also</h2></section><section class="links"></section>

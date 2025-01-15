@@ -22023,9 +22023,9 @@ tape( 'the function returns `false` if provided a number less than `0.0`', funct
 	var x;
 	var i;
 	for ( i = 0; i < 1000; i++ ) {
-		x = -1.0 - ( randu()*1000.0 );
+		x = -1.0 - ( randu() * 1000.0 );
 		bool = isProbability( x );
-		t.equal( bool, false, 'returns false when provided '+x );
+		t.equal( bool, false, 'returns expected value when provided '+x );
 	}
 	t.end();
 });
@@ -22035,9 +22035,9 @@ tape( 'the function returns `false` if provided a number greater than `1.0`', fu
 	var x;
 	var i;
 	for ( i = 0; i < 1000; i++ ) {
-		x = ( randu()*1000.0 ) + 2.0;
+		x = ( randu() * 1000.0 ) + 2.0;
 		bool = isProbability( x );
-		t.equal( bool, false, 'returns false when provided '+x );
+		t.equal( bool, false, 'returns expected value when provided '+x );
 	}
 	t.end();
 });
@@ -22049,35 +22049,35 @@ tape( 'the function returns `true` if provided a probability', function test( t 
 	for ( i = 0; i < 1000; i++ ) {
 		x = randu();
 		bool = isProbability( x );
-		t.equal( bool, true, 'returns true when provided '+x );
+		t.equal( bool, true, 'returns expected value when provided '+x );
 	}
 	t.end();
 });
 
 tape( 'the function returns `true` if provided `+-0`', function test( t ) {
-	t.equal( isProbability( 0.0 ), true, 'returns true' );
-	t.equal( isProbability( -0.0 ), true, 'returns true' );
+	t.equal( isProbability( 0.0 ), true, 'returns expected value' );
+	t.equal( isProbability( -0.0 ), true, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `true` if provided `1`', function test( t ) {
-	t.equal( isProbability( 1.0 ), true, 'returns true' );
+	t.equal( isProbability( 1.0 ), true, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `false` if provided `+infinity`', function test( t ) {
-	t.equal( isProbability( PINF ), false, 'returns false' );
+	t.equal( isProbability( PINF ), false, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `false` if provided `-infinity`', function test( t ) {
-	t.equal( isProbability( NINF ), false, 'returns false' );
+	t.equal( isProbability( NINF ), false, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `false` if provided `NaN`', function test( t ) {
-	t.equal( isProbability( NaN ), false, 'returns false' );
-	t.equal( isProbability( 0.0/0.0 ), false, 'returns false' );
+	t.equal( isProbability( NaN ), false, 'returns expected value' );
+	t.equal( isProbability( 0.0 / 0.0 ), false, 'returns expected value' );
 	t.end();
 });
 
@@ -22135,9 +22135,9 @@ tape( 'the function returns `false` if provided a number less than `0.0`', opts,
 	var x;
 	var i;
 	for ( i = 0; i < 1000; i++ ) {
-		x = -1.0 - ( randu()*1000.0 );
+		x = -1.0 - ( randu() * 1000.0 );
 		bool = isProbability( x );
-		t.equal( bool, false, 'returns false when provided '+x );
+		t.equal( bool, false, 'returns expected value when provided '+x );
 	}
 	t.end();
 });
@@ -22147,9 +22147,9 @@ tape( 'the function returns `false` if provided a number greater than `1.0`', op
 	var x;
 	var i;
 	for ( i = 0; i < 1000; i++ ) {
-		x = ( randu()*1000.0 ) + 2.0;
+		x = ( randu() * 1000.0 ) + 2.0;
 		bool = isProbability( x );
-		t.equal( bool, false, 'returns false when provided '+x );
+		t.equal( bool, false, 'returns expected value when provided '+x );
 	}
 	t.end();
 });
@@ -22161,35 +22161,35 @@ tape( 'the function returns `true` if provided a probability', opts, function te
 	for ( i = 0; i < 1000; i++ ) {
 		x = randu();
 		bool = isProbability( x );
-		t.equal( bool, true, 'returns true when provided '+x );
+		t.equal( bool, true, 'returns expected value when provided '+x );
 	}
 	t.end();
 });
 
 tape( 'the function returns `true` if provided `+-0`', opts, function test( t ) {
-	t.equal( isProbability( 0.0 ), true, 'returns true' );
-	t.equal( isProbability( -0.0 ), true, 'returns true' );
+	t.equal( isProbability( 0.0 ), true, 'returns expected value' );
+	t.equal( isProbability( -0.0 ), true, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `true` if provided `1`', opts, function test( t ) {
-	t.equal( isProbability( 1.0 ), true, 'returns true' );
+	t.equal( isProbability( 1.0 ), true, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `false` if provided `+infinity`', opts, function test( t ) {
-	t.equal( isProbability( PINF ), false, 'returns false' );
+	t.equal( isProbability( PINF ), false, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `false` if provided `-infinity`', opts, function test( t ) {
-	t.equal( isProbability( NINF ), false, 'returns false' );
+	t.equal( isProbability( NINF ), false, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `false` if provided `NaN`', opts, function test( t ) {
-	t.equal( isProbability( NaN ), false, 'returns false' );
-	t.equal( isProbability( 0.0/0.0 ), false, 'returns false' );
+	t.equal( isProbability( NaN ), false, 'returns expected value' );
+	t.equal( isProbability( 0.0 / 0.0 ), false, 'returns expected value' );
 	t.end();
 });
 

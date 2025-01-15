@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -19142,6 +19144,7 @@ var generateId = require( './id.js' );
 /**
 * Array index constructor.
 *
+* @constructor
 * @param {Collection} x - input array
 * @param {Options} [options] - function options
 * @param {boolean} [options.persist=false] - boolean indicating whether to continue persisting an index object after first usage
@@ -19348,7 +19351,7 @@ setReadOnly( ArrayIndex, 'get', function get( id ) {
 });
 
 /**
-* Returns the underlying array data of array index object.
+* Returns the underlying array data of an array index object.
 *
 * @name data
 * @memberof ArrayIndex.prototype
@@ -19373,7 +19376,7 @@ setReadOnlyAccessor( ArrayIndex.prototype, 'data', function get() {
 });
 
 /**
-* Returns the underlying array data type of array index object.
+* Returns the underlying array data type of an array index object.
 *
 * @name dtype
 * @memberof ArrayIndex.prototype
@@ -19444,7 +19447,7 @@ setReadOnlyAccessor( ArrayIndex.prototype, 'isCached', function get() {
 });
 
 /**
-* Returns the type of array index object.
+* Returns the type of an array index object.
 *
 * @name type
 * @memberof ArrayIndex.prototype
@@ -22480,6 +22483,7 @@ bench( pkg+'::set,integer_array:len=1', opts, function benchmark( b ) {
 * @param {Function} array2fancy - function for creating a proxied array
 * @param {Object} opts - options
 * @param {boolean} opts.strict - boolean indicating whether to perform strict bounds checking
+* @param {Function} opts.cache - cache for resolving array index objects
 * @returns {Function} handler
 */
 function factory( array2fancy, opts ) {
@@ -22663,6 +22667,7 @@ module.exports = errMessage;
 
 // MODULES //
 
+var isCollection = require( '@stdlib/assert/is-collection' );
 var isArrayLike = require( '@stdlib/assert/is-array-like' );
 var Proxy = require( '@stdlib/proxy/ctor' );
 var arraylike2object = require( '@stdlib/array/base/arraylike2object' );
@@ -22767,7 +22772,7 @@ function factory() {
 		var arr;
 		var dt;
 		var o;
-		if ( !isArrayLike( x ) ) {
+		if ( !isArrayLike( x ) && !isCollection( x ) ) {
 			throw new TypeError( format( 'invalid argument. First argument must be array-like. Value: `%s`.', x ) );
 		}
 		if ( hasProxySupport ) {
@@ -22811,7 +22816,7 @@ function factory() {
 
 module.exports = factory;
 
-},{"./ctor.js":164,"./defaults.js":165,"./get.js":168,"./get_array_wrapper.js":169,"./has_proxy_support.js":174,"./set.js":185,"./set_element_wrapper.js":187,"./validate.js":191,"./validator.js":192,"@stdlib/array/base/arraylike2object":5,"@stdlib/assert/is-array-like":267,"@stdlib/object/assign":549,"@stdlib/proxy/ctor":553,"@stdlib/string/format":638}],168:[function(require,module,exports){
+},{"./ctor.js":164,"./defaults.js":165,"./get.js":168,"./get_array_wrapper.js":169,"./has_proxy_support.js":174,"./set.js":185,"./set_element_wrapper.js":187,"./validate.js":191,"./validator.js":192,"@stdlib/array/base/arraylike2object":5,"@stdlib/assert/is-array-like":267,"@stdlib/assert/is-collection":284,"@stdlib/object/assign":549,"@stdlib/proxy/ctor":553,"@stdlib/string/format":638}],168:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22982,6 +22987,7 @@ var resolveIndex = require( './resolve_index.js' );
 * @param {Object} ctx - context object
 * @param {Function} ctx.getter - accessor for retrieving array elements
 * @param {boolean} ctx.strict - boolean indicating whether to enforce strict bounds checking
+* @throws {RangeError} index exceeds array bounds
 * @returns {*} result
 */
 function getElement( target, property, ctx ) {
@@ -23968,7 +23974,6 @@ var setSlice = require( './set_slice.js' );
 *
 * @private
 * @param {Object} ctx - context object
-* @param {Function} ctx.setter - accessor for setting array elements
 * @param {string} ctx.dtype - array data type
 * @param {boolean} ctx.strict - boolean indicating whether to enforce strict bounds checking
 * @param {Function} ctx.validator - function for validating new values
@@ -24001,7 +24006,7 @@ function factory( ctx ) {
 		if ( isIntegerString( property ) ) {
 			return setElement( target, property, value, ctx );
 		}
-		if ( hasProperty( property ) || !isString( property ) ) {
+		if ( hasProperty( target, property ) || !isString( property ) ) {
 			return setValue( target, property, value, ctx );
 		}
 		if ( isArrayIndexString( property ) ) {
@@ -24064,6 +24069,7 @@ var resolveIndex = require( './resolve_index.js' );
 * @param {(Function|null)} ctx.preSetElement - function for normalizing new values (if necessary)
 * @throws {TypeError} assigned value cannot be safely cast to the target array data type
 * @throws {TypeError} target array must have a supported data type
+* @throws {RangeError} index exceeds array bounds
 * @returns {boolean} boolean indicating whether assignment succeeded
 */
 function setElement( target, property, value, ctx ) {

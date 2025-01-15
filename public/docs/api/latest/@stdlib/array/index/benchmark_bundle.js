@@ -11949,6 +11949,7 @@ var generateId = require( './id.js' );
 /**
 * Array index constructor.
 *
+* @constructor
 * @param {Collection} x - input array
 * @param {Options} [options] - function options
 * @param {boolean} [options.persist=false] - boolean indicating whether to continue persisting an index object after first usage
@@ -12155,7 +12156,7 @@ setReadOnly( ArrayIndex, 'get', function get( id ) {
 });
 
 /**
-* Returns the underlying array data of array index object.
+* Returns the underlying array data of an array index object.
 *
 * @name data
 * @memberof ArrayIndex.prototype
@@ -12180,7 +12181,7 @@ setReadOnlyAccessor( ArrayIndex.prototype, 'data', function get() {
 });
 
 /**
-* Returns the underlying array data type of array index object.
+* Returns the underlying array data type of an array index object.
 *
 * @name dtype
 * @memberof ArrayIndex.prototype
@@ -12251,7 +12252,7 @@ setReadOnlyAccessor( ArrayIndex.prototype, 'isCached', function get() {
 });
 
 /**
-* Returns the type of array index object.
+* Returns the type of an array index object.
 *
 * @name type
 * @memberof ArrayIndex.prototype

@@ -34783,7 +34783,7 @@ function factory( p ) {
 		if ( r === 1.0 ) {
 			return PINF;
 		}
-		return max( 0.0, ceil( (ln(1.0-r) / log1p(-p)) - (1.0 + 1e-12) ) );
+		return max( 0.0, ceil( ( ln(1.0-r)/log1p(-p) ) - ( 1.0+1.0e-12 ) ) );
 	}
 }
 
@@ -34940,7 +34940,7 @@ function quantile( r, p ) {
 	if ( r === 1.0 ) {
 		return PINF;
 	}
-	return max( 0.0, ceil( (ln(1.0-r) / log1p(-p))- ( 1 + 1e-12 ) ) );
+	return max( 0.0, ceil( ( ln(1.0-r)/log1p(-p) )- ( 1.0+1.0e-12 ) ) );
 }
 
 

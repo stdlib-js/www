@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -26744,7 +26746,7 @@ var ndarray = require( './ndarray.js' );
 * -   Klein, Andreas. 2005. "A Generalized Kahan-Babuška-Summation-Algorithm." _Computing_ 76 (3): 279–93. doi:[10.1007/s00607-005-0139-x](https://doi.org/10.1007/s00607-005-0139-x).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @returns {number} sum
@@ -26753,9 +26755,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dapxsumkbn2( N, 5.0, x, 1 );
+* var v = dapxsumkbn2( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
 function dapxsumkbn2( N, alpha, x, strideX ) {
@@ -26807,7 +26808,7 @@ var abs = require( '@stdlib/math/base/special/abs' );
 * -   Klein, Andreas. 2005. "A Generalized Kahan-Babuška-Summation-Algorithm." _Computing_ 76 (3): 279–93. doi:[10.1007/s00607-005-0139-x](https://doi.org/10.1007/s00607-005-0139-x).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @param {NonNegativeInteger} offsetX - starting index
@@ -26835,10 +26836,10 @@ function dapxsumkbn2( N, alpha, x, strideX, offsetX ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || strideX === 0 ) {
-		return alpha + x[ 0 ];
-	}
 	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * ( alpha + x[ ix ] );
+	}
 	sum = 0.0;
 	ccs = 0.0; // second order correction term for lost low order bits
 	cs = 0.0; // first order correction term for lost low order bits

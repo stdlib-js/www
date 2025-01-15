@@ -1,0 +1,111 @@
+<h1 id="ndarray2fancy">ndarray2fancy</h1><blockquote><p>Convert an ndarray to an object supporting fancy indexing.</p></blockquote><section class="intro"><p>A fancy ndarray is an <a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>ndarray</code></a> which supports slicing via indexing expressions.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+
+<span class="hljs-comment">// Create a plain ndarray:</span>
+<span class="hljs-keyword">var</span> buffer = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span> ];
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> ndarray( <span class="hljs-string">'generic'</span>, buffer, [ <span class="hljs-number">6</span> ], [ <span class="hljs-number">1</span> ], <span class="hljs-number">0</span>, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Convert to a fancy ndarray:</span>
+<span class="hljs-keyword">var</span> y = ndarray2fancy( x );
+
+<span class="hljs-comment">// Select the first 3 elements:</span>
+<span class="hljs-keyword">var</span> z = y[ <span class="hljs-string">':3'</span> ];
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> arr = ndarray2array( z );
+<span class="hljs-comment">// returns [ 1, 2, 3 ]</span>
+
+<span class="hljs-comment">// Select every other element, starting with the second element:</span>
+z = y[ <span class="hljs-string">'1::2'</span> ];
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+arr = ndarray2array( z );
+<span class="hljs-comment">// returns [ 2, 4, 6 ]</span>
+
+<span class="hljs-comment">// Reverse the array, starting with last element and skipping every other element:</span>
+z = y[ <span class="hljs-string">'::-2'</span> ];
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+arr = ndarray2array( z );
+<span class="hljs-comment">// returns [ 6, 4, 2 ]</span>
+</code></pre></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndarray2fancy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-fancy'</span> );
+</code></pre><h4 id="ndarray2fancy-x-options-">ndarray2fancy( x[, options] )</h4><p>Converts an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> to an object supporting fancy indexing.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( <span class="hljs-string">'TODO'</span> );
+</code></pre><p>The function supports the following options:</p><ul><li><p><strong>cache</strong>: cache for resolving ndarray index objects. Must have a <code>get</code> method which accepts a single argument: a string identifier associated with an ndarray index.</p><p>If an ndarray index associated with a provided identifier exists, the <code>get</code> method should return an object having the following properties:</p><ul><li><strong>data</strong>: the underlying index ndarray.</li><li><strong>type</strong>: the index type. Must be either <code>'mask'</code>, <code>'bool'</code>, or <code>'int'</code>.</li><li><strong>kind</strong>: the index kind. Must be either <code>''</code>, <code>'cartesian'</code>, or <code>'linear'</code>.</li><li><strong>dtype</strong>: the <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> of the underlying ndarray.</li></ul><p>If an ndarray index is not associated with a provided identifier, the <code>get</code> method should return <code>null</code>.</p><p>Default: <a href="/docs/api/latest/@stdlib/ndarray/index"><code>ndindex</code></a>.</p></li><li><p><strong>strict</strong>: boolean indicating whether to enforce strict bounds checking. Default: <code>false</code>.</p></li></ul><p>By default, the function returns a fancy ndarray which does <strong>not</strong> enforce strict bounds checking. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( <span class="hljs-string">'TODO'</span> );
+</code></pre><p>To enforce strict bounds checking, set the <code>strict</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( <span class="hljs-string">'TODO'</span> );
+</code></pre><h4 id="ndarray2fancyfactory-options-">ndarray2fancy.factory( [options] )</h4><p>Returns a function for converting an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> to an object supporting fancy indexing.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fcn = ndarray2fancy.factory();
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'TODO'</span> );
+</code></pre><p>The function supports the following options:</p><ul><li><p><strong>cache</strong>: default cache for resolving ndarray index objects. Must have a <code>get</code> method which accepts a single argument: a string identifier associated with an ndarray index.</p><p>If an ndarray index associated with a provided identifier exists, the <code>get</code> method should return an object having the following properties:</p><ul><li><strong>data</strong>: the underlying index ndarray.</li><li><strong>type</strong>: the index type. Must be either <code>'mask'</code>, <code>'bool'</code>, or <code>'int'</code>.</li><li><strong>kind</strong>: the index kind. Must be either <code>''</code>, <code>'cartesian'</code>, or <code>'linear'</code>.</li><li><strong>dtype</strong>: the <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> of the underlying ndarray.</li></ul><p>If an ndarray index is not associated with a provided identifier, the <code>get</code> method should return <code>null</code>.</p><p>Default: <a href="/docs/api/latest/@stdlib/ndarray/index"><code>ndindex</code></a>.</p></li><li><p><strong>strict</strong>: boolean indicating whether to enforce strict bounds checking by default. Default: <code>false</code>.</p></li></ul><p>By default, the function returns a function which, by default, does <strong>not</strong> enforce strict bounds checking. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fcn = ndarray2fancy.factory();
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'TODO'</span> );
+</code></pre><p>To enforce strict bounds checking by default, set the <code>strict</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> fcn = ndarray2fancy.factory({
+    <span class="hljs-string">'strict'</span>: <span class="hljs-literal">true</span>
+});
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'TODO'</span> );
+</code></pre><p>The returned function supports the same options as above. When the returned function is provided option values, those values override the factory method defaults.</p><h4 id="ndarray2fancyidx-x-options-">ndarray2fancy.idx( x[, options] )</h4><p>Wraps a provided ndarray as an ndarray index object.</p><pre><code class="hljs language-javascript"><span class="hljs-built_in">console</span>.log( <span class="hljs-string">'TODO'</span> );
+</code></pre><p>For documentation and usage, see <a href="/docs/api/latest/@stdlib/ndarray/index"><code>ndindex</code></a>.</p></section><section class="notes"><hr><h2 id="notes">Notes</h2><ul><li>A fancy ndarray shares the <strong>same</strong> data as the provided input <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>. Hence, any mutations to the returned ndarray will affect the underlying input ndarray and vice versa.</li><li>For operations returning a new ndarray (e.g., when slicing or invoking an instance method), a fancy ndarray returns a new fancy ndarray having the same configuration as specified by <code>options</code>.</li><li>A fancy ndarray supports indexing using positive and negative integers (both numeric literals and strings), <a href="/docs/api/latest/@stdlib/slice/ctor"><code>Slice</code></a> and <a href="/docs/api/latest/@stdlib/slice/multi"><code>MultiSlice</code></a> instances, <a href="/docs/api/latest/@stdlib/slice/seq2multislice">subsequence expressions</a>, and <a href="/docs/api/latest/@stdlib/ndarray/index">index arrays</a> (boolean, mask, and integer).</li><li>A fancy ndarray supports all properties and methods of the input ndarray, and, thus, a fancy ndarray can be consumed by any API which supports ndarray-like objects.</li><li>Indexing expressions provide a convenient and powerful means for creating and operating on ndarray views; however, their use does entail a performance cost. Indexing expressions are best suited for interactive use (e.g., in the <a href="/docs/api/latest/@stdlib/repl">REPL</a>) and scripting. For performance critical applications, prefer equivalent functional APIs supporting ndarray-like objects.</li><li>In older JavaScript environments which do <strong>not</strong> support <a href="/docs/api/latest/@stdlib/proxy/ctor"><code>Proxy</code></a> objects, the use of indexing expressions is <strong>not</strong> supported.</li></ul><h3 id="bounds-checking">Bounds Checking</h3><p>// TODO: see array/to-fancy</p><h3 id="linear-indexing">Linear Indexing</h3><p>// TODO: only applies to non-zero-dimensional ndarrays. In non-strict mode, out-of-bounds indices return <code>undefined</code> and fail to assign.</p><h3 id="broadcasting">Broadcasting</h3><p>// TODO: see array/to-fancy</p><h3 id="casting">Casting</h3><p>// TODO: see array/to-fancy</p></section><section class="examples"><hr><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> S = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/ctor'</span> );
+<span class="hljs-keyword">var</span> E = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/slice/multi'</span> );
+<span class="hljs-keyword">var</span> toArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> ndarray2fancy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-fancy'</span> );
+
+<span class="hljs-keyword">var</span> buffer = [
+    <span class="hljs-number">1</span>, <span class="hljs-number">2</span>,
+    <span class="hljs-number">3</span>, <span class="hljs-number">4</span>,  <span class="hljs-comment">// 0</span>
+    <span class="hljs-number">5</span>, <span class="hljs-number">6</span>,  <span class="hljs-comment">// 1</span>
+    <span class="hljs-number">7</span>, <span class="hljs-number">8</span>,  <span class="hljs-comment">// 2</span>
+    <span class="hljs-number">9</span>, <span class="hljs-number">10</span>
+];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">2</span>;
+
+<span class="hljs-comment">// Create a normal ndarray:</span>
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> ndarray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-comment">// Convert to a fancy ndarray:</span>
+<span class="hljs-keyword">var</span> y = ndarray2fancy( x );
+
+<span class="hljs-comment">// Access an ndarray property:</span>
+<span class="hljs-keyword">var</span> ndims = y.ndims;
+<span class="hljs-comment">// returns 2</span>
+
+<span class="hljs-comment">// Retrieve an ndarray element:</span>
+<span class="hljs-keyword">var</span> v = y.get( <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 8</span>
+
+<span class="hljs-comment">// Set an ndarray element:</span>
+y.set( <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">20</span> );
+v = y.get( <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns 20</span>
+
+<span class="hljs-comment">// Create an alias for `undefined` for more concise slicing expressions:</span>
+<span class="hljs-keyword">var</span> _ = <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>;
+
+<span class="hljs-comment">// Create a multi-dimensional slice:</span>
+<span class="hljs-keyword">var</span> s = E( S(<span class="hljs-number">0</span>,_,<span class="hljs-number">2</span>), _ );
+<span class="hljs-comment">// returns &#x3C;MultiSlice></span>
+
+<span class="hljs-comment">// Use the slice to create a view on the original ndarray:</span>
+<span class="hljs-keyword">var</span> y1 = y[ s ];
+<span class="hljs-built_in">console</span>.log( toArray( y1 ) );
+<span class="hljs-comment">// => [ [ 3, 4 ], [ 7, 20 ] ]</span>
+
+<span class="hljs-comment">// Use alternative syntax:</span>
+<span class="hljs-keyword">var</span> y2 = y[ [ S(<span class="hljs-number">0</span>,_,<span class="hljs-number">2</span>), _ ] ];
+<span class="hljs-built_in">console</span>.log( toArray( y2 ) );
+<span class="hljs-comment">// => [ [ 3, 4 ], [ 7, 20 ] ]</span>
+
+<span class="hljs-comment">// Use alternative syntax:</span>
+<span class="hljs-keyword">var</span> y3 = y[ <span class="hljs-string">'0::2,:'</span> ];
+<span class="hljs-built_in">console</span>.log( toArray( y3 ) );
+<span class="hljs-comment">// => [ [ 3, 4 ], [ 7, 20 ] ]</span>
+
+<span class="hljs-comment">// Flip dimensions:</span>
+<span class="hljs-keyword">var</span> y4 = y[ [ S(_,_,-<span class="hljs-number">2</span>), S(_,_,-<span class="hljs-number">1</span>) ] ];
+<span class="hljs-built_in">console</span>.log( toArray( y4 ) );
+<span class="hljs-comment">// => [ [ 20, 7 ], [ 4, 3 ] ]</span>
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/array/to-fancy"><code>@stdlib/array/to-fancy</code></a></span><span class="delimiter">: </span><span class="description">convert an array to an object supporting fancy indexing.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/fancy"><code>@stdlib/ndarray/fancy</code></a></span><span class="delimiter">: </span><span class="description">fancy multidimensional array constructor.</span></li></ul></section><section class="links"></section>

@@ -1837,7 +1837,7 @@ var ndarray = require( './ndarray.js' );
 * -   Klein, Andreas. 2005. "A Generalized Kahan-Babuška-Summation-Algorithm." _Computing_ 76 (3): 279–93. doi:[10.1007/s00607-005-0139-x](https://doi.org/10.1007/s00607-005-0139-x).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @returns {number} sum
@@ -1846,9 +1846,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dapxsumkbn2( N, 5.0, x, 1 );
+* var v = dapxsumkbn2( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
 function dapxsumkbn2( N, alpha, x, strideX ) {
@@ -1937,7 +1936,7 @@ var abs = require( '@stdlib/math/base/special/abs' );
 * -   Klein, Andreas. 2005. "A Generalized Kahan-Babuška-Summation-Algorithm." _Computing_ 76 (3): 279–93. doi:[10.1007/s00607-005-0139-x](https://doi.org/10.1007/s00607-005-0139-x).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @param {NonNegativeInteger} offsetX - starting index
@@ -1965,10 +1964,10 @@ function dapxsumkbn2( N, alpha, x, strideX, offsetX ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || strideX === 0 ) {
-		return alpha + x[ 0 ];
-	}
 	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * ( alpha + x[ ix ] );
+	}
 	sum = 0.0;
 	ccs = 0.0; // second order correction term for lost low order bits
 	cs = 0.0; // first order correction term for lost low order bits
@@ -2138,14 +2137,14 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dapxsumkbn2( x.length, 5.0, x, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });
@@ -2433,14 +2432,14 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant', opts, function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', opts, function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dapxsumkbn2( x.length, 5.0, x, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });
@@ -2696,14 +2695,14 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first indexed element plus a constant', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dapxsumkbn2( x.length, 5.0, x, 0, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });
@@ -2878,14 +2877,14 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first indexed element plus a constant', opts, function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', opts, function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dapxsumkbn2( x.length, 5.0, x, 0, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });

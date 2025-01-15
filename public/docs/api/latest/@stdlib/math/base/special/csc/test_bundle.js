@@ -4958,9 +4958,9 @@ tape( 'the function computes the cosecant (huge negative values)', function test
 	x = hugeNegative.x;
 	expected = hugeNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -4982,9 +4982,9 @@ tape( 'the function computes the cosecant (huge positive values)', function test
 	x = hugePositive.x;
 	expected = hugePositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5006,9 +5006,9 @@ tape( 'the function computes the cosecant (very large positive values)', functio
 	x = veryLargePositive.x;
 	expected = veryLargePositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5030,9 +5030,9 @@ tape( 'the function computes the cosecant (very large negative values)', functio
 	x = veryLargeNegative.x;
 	expected = veryLargeNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5054,9 +5054,9 @@ tape( 'the function computes the cosecant (large positive values)', function tes
 	x = largePositive.x;
 	expected = largePositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5078,9 +5078,9 @@ tape( 'the function computes the cosecant (large negative values)', function tes
 	x = largeNegative.x;
 	expected = largeNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5102,9 +5102,9 @@ tape( 'the function computes the cosecant (medium positive values)', function te
 	x = mediumPositive.x;
 	expected = mediumPositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5126,9 +5126,9 @@ tape( 'the function computes the cosecant (medium negative values)', function te
 	x = mediumNegative.x;
 	expected = mediumNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5150,9 +5150,9 @@ tape( 'the function computes the cosecant (small positive values)', function tes
 	x = smallPositive.x;
 	expected = smallPositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5174,9 +5174,9 @@ tape( 'the function computes the cosecant (small negative values)', function tes
 	x = smallNegative.x;
 	expected = smallNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5198,9 +5198,9 @@ tape( 'the function computes the cosecant (smaller values)', function test( t ) 
 	x = smaller.x;
 	expected = smaller.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5222,9 +5222,9 @@ tape( 'the function computes the cosecant (tiny positive values)', function test
 	x = tinyPositive.x;
 	expected = tinyPositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5246,9 +5246,9 @@ tape( 'the function computes the cosecant (tiny negative values)', function test
 	x = tinyNegative.x;
 	expected = tinyNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc(x[i]);
-		if (y === expected[i]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[i], 'x: ' + x[i] + '. E: ' + expected[i]);
 		} else {
 			delta = abs(y - expected[i]);
@@ -5367,9 +5367,9 @@ tape( 'the function computes the cosecant (huge negative values)', opts, functio
 	x = hugeNegative.x;
 	expected = hugeNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5391,9 +5391,9 @@ tape( 'the function computes the cosecant (huge positive values)', opts, functio
 	x = hugePositive.x;
 	expected = hugePositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5415,9 +5415,9 @@ tape( 'the function computes the cosecant (very large positive values)', opts, f
 	x = veryLargePositive.x;
 	expected = veryLargePositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5439,9 +5439,9 @@ tape( 'the function computes the cosecant (very large negative values)', opts, f
 	x = veryLargeNegative.x;
 	expected = veryLargeNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5463,9 +5463,9 @@ tape( 'the function computes the cosecant (large positive values)', opts, functi
 	x = largePositive.x;
 	expected = largePositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5487,9 +5487,9 @@ tape( 'the function computes the cosecant (large negative values)', opts, functi
 	x = largeNegative.x;
 	expected = largeNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5511,9 +5511,9 @@ tape( 'the function computes the cosecant (medium positive values)', opts, funct
 	x = mediumPositive.x;
 	expected = mediumPositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5535,9 +5535,9 @@ tape( 'the function computes the cosecant (medium negative values)', opts, funct
 	x = mediumNegative.x;
 	expected = mediumNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5559,9 +5559,9 @@ tape( 'the function computes the cosecant (small positive values)', opts, functi
 	x = smallPositive.x;
 	expected = smallPositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5583,9 +5583,9 @@ tape( 'the function computes the cosecant (small negative values)', opts, functi
 	x = smallNegative.x;
 	expected = smallNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5607,9 +5607,9 @@ tape( 'the function computes the cosecant (smaller values)', opts, function test
 	x = smaller.x;
 	expected = smaller.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5631,9 +5631,9 @@ tape( 'the function computes the cosecant (tiny positive values)', opts, functio
 	x = tinyPositive.x;
 	expected = tinyPositive.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);
@@ -5655,9 +5655,9 @@ tape( 'the function computes the cosecant (tiny negative values)', opts, functio
 	x = tinyNegative.x;
 	expected = tinyNegative.expected;
 
-	for (i = 0; i < x.length; i++) {
+	for ( i = 0; i < x.length; i++ ) {
 		y = csc( x[ i ] );
-		if (y === expected[ i ]) {
+		if ( y === expected[ i ] ) {
 			t.equal(y, expected[ i ], 'x: ' + x[ i ] + '. E: ' + expected[ i ]);
 		} else {
 			delta = abs(y - expected[ i ]);

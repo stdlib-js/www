@@ -2520,7 +2520,7 @@ function appendFile() {
 	var args;
 	var i;
 	args = [];
-	for (i = 0; i < arguments.length; i++) {
+	for ( i = 0; i < arguments.length; i++ ) {
 		args.push( arguments[i] );
 	}
 	append.apply( null, args );

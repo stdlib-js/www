@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -24009,11 +24011,11 @@ module.exports = slacpy;
 * var Float32Array = require( '@stdlib/array/float32' );
 * var slacpy = require( '@stdlib/lapack/base/slacpy' );
 *
-* var A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float32Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float32Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float32Array( 6 );
 *
 * slacpy.ndarray( 'all', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float32Array>[ 0.0, 0.0, 1.0, 2.0, 3.0, 4.0 ]
+* // B => <Float32Array>[ 0.0, 0.0, 2.0, 3.0, 4.0, 5.0 ]
 */
 
 // MODULES //
@@ -24126,29 +24128,29 @@ var base = require( './base.js' );
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
-* var A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float32Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float32Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float32Array( 6 );
 *
 * slacpy( 'all', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float32Array>[ 0.0, 0.0, 1.0, 2.0, 3.0, 4.0 ]
+* // B => <Float32Array>[ 0.0, 0.0, 2.0, 3.0, 4.0, 5.0 ]
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
-* var A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float32Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float32Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float32Array( 6 );
 *
 * slacpy( 'upper', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float32Array>[ 0.0, 0.0, 1.0, 2.0, 53.0, 4.0 ]
+* // B => <Float32Array>[ 0.0, 0.0, 2.0, 3.0, 0.0, 5.0 ]
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
-* var A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float32Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float32Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float32Array( 6 );
 *
 * slacpy( 'lower', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float32Array>[ 0.0, 0.0, 1.0, 312.0, 3.0, 4.0 ]
+* // B => <Float32Array>[ 0.0, 0.0, 2.0, 0.0, 4.0, 5.0 ]
 */
 function slacpy( uplo, M, N, A, strideA1, strideA2, offsetA, B, strideB1, strideB2, offsetB ) { // eslint-disable-line max-len, max-params
 	return base( uplo, M, N, A, strideA1, strideA2, offsetA, B, strideB1, strideB2, offsetB ); // eslint-disable-line max-len
@@ -24401,25 +24403,25 @@ tape( 'the function copies all of a matrix `A` to another matrix `B` (row-major)
 	var A;
 	var B;
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 
 	out = slacpy( 'all', 2, 3, A, 3, 1, 1, B, 3, 1, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0 ] );
 
 	out = slacpy( 'all', 2, 3, A, -3, -1, 6, B, 3, 1, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 
 	out = slacpy( 'all', 3, 2, A, 2, 1, 1, B, 2, 1, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
@@ -24434,25 +24436,25 @@ tape( 'the function copies part of a matrix `A` to another matrix `B` (row-major
 	var A;
 	var B;
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 2.0, 3.0, 0.0, 5.0, 6.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 12.0, 13.0, 0.0, 15.0, 16.0 ] );
 
 	out = slacpy( 'upper', 2, 3, A, 3, 1, 1, B, 3, 1, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 3.0, 2.0, 1.0, 0.0, 5.0, 4.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 13.0, 12.0, 11.0, 0.0, 15.0, 14.0 ] );
 
 	out = slacpy( 'upper', 2, 3, A, 3, -1, 3, B, 3, 1, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 2.0, 0.0, 4.0, 0.0, 0.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 12.0, 0.0, 14.0, 0.0, 0.0 ] );
 
 	out = slacpy( 'upper', 3, 2, A, 2, 1, 1, B, 2, 1, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
@@ -24467,25 +24469,25 @@ tape( 'the function copies part of a matrix `A` to another matrix `B` (row-major
 	var A;
 	var B;
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0, 5.0, 0.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 0.0, 0.0, 14.0, 15.0, 0.0 ] );
 
 	out = slacpy( 'lower', 2, 3, A, 3, 1, 1, B, 3, 1, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 1.0, 2.0, 0.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 14.0, 0.0, 0.0, 11.0, 12.0, 0.0 ] );
 
 	out = slacpy( 'lower', 2, 3, A, -3, 1, 4, B, 3, 1, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 0.0, 3.0, 4.0, 5.0, 6.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 0.0, 13.0, 14.0, 15.0, 16.0 ] );
 
 	out = slacpy( 'lower', 3, 2, A, 2, 1, 1, B, 2, 1, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
@@ -24500,25 +24502,25 @@ tape( 'the function copies all of a matrix `A` to another matrix `B` (column-maj
 	var A;
 	var B;
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 
 	out = slacpy( 'all', 2, 3, A, 1, 2, 1, B, 1, 2, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0 ] );
 
 	out = slacpy( 'all', 2, 3, A, 1, 2, 1, B, -1, -2, 8 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 
 	out = slacpy( 'all', 3, 2, A, 1, 3, 1, B, 1, 3, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
@@ -24533,25 +24535,25 @@ tape( 'the function copies part of a matrix `A` to another matrix `B` (column-ma
 	var A;
 	var B;
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 0.0, 3.0, 4.0, 5.0, 6.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 0.0, 13.0, 14.0, 15.0, 16.0 ] );
 
 	out = slacpy( 'upper', 2, 3, A, 1, 2, 1, B, 1, 2, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 1.0, 4.0, 3.0, 6.0, 5.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 11.0, 14.0, 13.0, 16.0, 15.0 ] );
 
 	out = slacpy( 'upper', 2, 3, A, 1, 2, 1, B, -1, 2, 4 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 4.0, 5.0, 0.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 0.0, 0.0, 14.0, 15.0, 0.0 ] );
 
 	out = slacpy( 'upper', 3, 2, A, 1, 3, 1, B, 1, 3, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
@@ -24566,25 +24568,25 @@ tape( 'the function copies part of a matrix `A` to another matrix `B` (column-ma
 	var A;
 	var B;
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 2.0, 0.0, 4.0, 0.0, 0.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 12.0, 0.0, 14.0, 0.0, 0.0 ] );
 
 	out = slacpy( 'lower', 2, 3, A, 1, 2, 1, B, 1, 2, 3 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 4.0, 1.0, 2.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 14.0, 11.0, 12.0 ] );
 
 	out = slacpy( 'lower', 2, 3, A, 1, 2, 1, B, 1, -2, 7 );
 	t.strictEqual( out, B, 'returns expected value' );
 	t.deepEqual( out, expected, 'returns expected value' );
 
-	A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0 ] );
+	A = new Float32Array( [ 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0 ] );
 	B = new Float32Array( [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ] );
-	expected = new Float32Array( [ 0.0, 0.0, 0.0, 1.0, 2.0, 3.0, 0.0, 5.0, 6.0 ] );
+	expected = new Float32Array( [ 0.0, 0.0, 0.0, 11.0, 12.0, 13.0, 0.0, 15.0, 16.0 ] );
 
 	out = slacpy( 'lower', 3, 2, A, 1, 3, 1, B, 1, 3, 3 );
 	t.strictEqual( out, B, 'returns expected value' );

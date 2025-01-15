@@ -17264,7 +17264,7 @@ module.exports = isSameArrayLikeObject;
 // MODULES //
 
 var tape = require( 'tape' );
-var isSameArrayLikeObject = require( '@stdlib/assert/is-same-array-like-object/lib' );
+var isSameArrayLikeObject = require( './../lib' );
 
 
 // TESTS //
@@ -17357,7 +17357,7 @@ tape( 'the function returns `false` if not provided two array-like values having
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/assert/is-same-array-like-object/test/test.js")
-},{"@stdlib/assert/is-same-array-like-object/lib":152,"tape":399}],155:[function(require,module,exports){
+},{"./../lib":152,"tape":399}],155:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *

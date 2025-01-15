@@ -35700,7 +35700,7 @@ function ibetaImp( x, a, b, regularized, upper, out, stride, offset ) {
 			upper = !upper;
 
 			if ( y >= 0.3 ) {
-				if (upper) {
+				if ( upper ) {
 					fract = -(( regularized ) ? 1.0 : beta( a, b ));
 					upper = false;
 					fract = -ibetaSeries( a, b, x, fract, regularized, out, y );
@@ -36632,7 +36632,7 @@ function ibetaPowerTerms( a, b, x, y, normalized ) {
 					result *= pow( p1 * b2, b );
 				} else {
 					l2 += l1 + ln( result );
-					if (l2 >= MAX_LN) {
+					if ( l2 >= MAX_LN ) {
 						return NaN;
 					}
 					result = exp( l2 );
@@ -56679,8 +56679,8 @@ var pow = require( '@stdlib/math/base/special/pow' );
 /**
 * Returns a function for evaluating the cumulative distribution function (CDF) for a Weibull distribution.
 *
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {Function} CDF
 *
 * @example
@@ -56813,11 +56813,11 @@ var pow = require( '@stdlib/math/base/special/pow' );
 // MAIN //
 
 /**
-* Evaluates the cumulative distribution function (CDF) for a Weibull distribution with scale parameter `k` and shape parameter `lambda` at a value `x`.
+* Evaluates the cumulative distribution function (CDF) for a Weibull distribution with shape parameter `k` and scale parameter `lambda` at a value `x`.
 *
 * @param {number} x - input value
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {Probability} evaluated CDF
 *
 * @example
@@ -57707,7 +57707,7 @@ function pKolmogorov( d, n ) {
 		var z;
 
 		z = new Float64Array( m * m );
-		for ( i = 0; i < m; i++) {
+		for ( i = 0; i < m; i++ ) {
 			for ( j = 0; j < m; j++ ) {
 				s = 0;
 				for ( k = 0; k < m; k++ ) {

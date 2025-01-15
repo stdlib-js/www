@@ -1,0 +1,22 @@
+<h1 id="tonormalizedindices">toNormalizedIndices</h1><blockquote><p>Normalize a list of indices to the interval <code>[0,max]</code>.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> toNormalizedIndices = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/to-normalized-indices'</span> );
+</code></pre><h4 id="tonormalizedindices-indices-max-">toNormalizedIndices( indices, max )</h4><p>Normalizes a list of indices to the interval <code>[0,max]</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = toNormalizedIndices( [ <span class="hljs-number">2</span>, -<span class="hljs-number">5</span> ], <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns [ 2, 6 ]</span>
+</code></pre><p>If provided an out-of-bounds index, the function normalizes the index to <code>-1</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> idx = toNormalizedIndices( [ <span class="hljs-number">15</span>, -<span class="hljs-number">15</span> ], <span class="hljs-number">10</span> );
+<span class="hljs-comment">// returns [ -1, -1 ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>During normalization, a negative index is converted to a nonnegative index according to <code>max + idx + 1</code>. If, after normalization, the resolved index is still negative, the value is considered out-of-bounds.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> toNormalizedIndices = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/to-normalized-indices'</span> );
+
+<span class="hljs-comment">// Generate a list of random indices:</span>
+<span class="hljs-keyword">var</span> idx = discreteUniform( <span class="hljs-number">100</span>, -<span class="hljs-number">20</span>, <span class="hljs-number">20</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+
+<span class="hljs-comment">// Normalize each index to the interval `[0, 15]`:</span>
+<span class="hljs-keyword">var</span> out = toNormalizedIndices( idx, <span class="hljs-number">15</span> );
+
+<span class="hljs-comment">// Print the results...</span>
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; idx.length; i++ ) {
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'%d => [%d, %d] => %d'</span>, idx[ i ], <span class="hljs-number">0</span>, <span class="hljs-number">15</span>, out[ i ] );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

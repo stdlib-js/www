@@ -1951,26 +1951,24 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 function dnannsumors( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 	var sum;
 	var ix;
-	var io;
 	var n;
 	var i;
 
 	sum = 0.0;
-	io = offsetOut;
 	if ( N <= 0 ) {
-		out[ io ] = sum;
-		out[ io+strideOut ] = 0;
+		out[ offsetOut ] = sum;
+		out[ offsetOut+strideOut ] = 0;
 		return out;
 	}
 	ix = offsetX;
 	if ( strideX === 0 ) {
 		if ( isnan( x[ ix ] ) ) {
-			out[ io ] = sum;
-			out[ io+strideOut ] = 0;
+			out[ offsetOut ] = sum;
+			out[ offsetOut+strideOut ] = 0;
 			return out;
 		}
-		out[ io ] = x[ ix ] * N;
-		out[ io+strideOut ] = N;
+		out[ offsetOut ] = x[ ix ] * N;
+		out[ offsetOut+strideOut ] = N;
 		return out;
 	}
 	n = 0;
@@ -1981,8 +1979,8 @@ function dnannsumors( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 		}
 		ix += strideX;
 	}
-	out[ io ] = sum;
-	out[ io+strideOut ] = n;
+	out[ offsetOut ] = sum;
+	out[ offsetOut+strideOut ] = n;
 	return out;
 }
 
@@ -2222,6 +2220,23 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum
 	v = dnannsumors( x.length, x, 0, out, 1 );
 
 	expected = new Float64Array( [ 5.0, 5.0 ] );
+	t.deepEqual( v, expected, 'returns expected value' );
+
+	t.end();
+});
+
+tape( 'if provided a `stride` parameter equal to `0` and the first element is `NaN`, the function returns `0.0`', function test( t ) {
+	var expected;
+	var out;
+	var x;
+	var v;
+
+	x = new Float64Array( [ NaN, -2.0, -4.0, 5.0, 3.0 ] );
+
+	out = new Float64Array( 2 );
+	v = dnannsumors( x.length, x, 0, out, 1 );
+
+	expected = new Float64Array( [ 0.0, 0.0 ] );
 	t.deepEqual( v, expected, 'returns expected value' );
 
 	t.end();
@@ -2506,6 +2521,23 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum
 	v = dnannsumors( x.length, x, 0, out, 1 );
 
 	expected = new Float64Array( [ 5.0, 5.0 ] );
+	t.deepEqual( v, expected, 'returns expected value' );
+
+	t.end();
+});
+
+tape( 'if provided a `stride` parameter equal to `0` and the first element is `NaN`, the function returns `0.0`', opts, function test( t ) {
+	var expected;
+	var out;
+	var x;
+	var v;
+
+	x = new Float64Array( [ NaN, -2.0, -4.0, 5.0, 3.0 ] );
+
+	out = new Float64Array( 2 );
+	v = dnannsumors( x.length, x, 0, out, 1 );
+
+	expected = new Float64Array( [ 0.0, 0.0 ] );
 	t.deepEqual( v, expected, 'returns expected value' );
 
 	t.end();
@@ -2872,6 +2904,23 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum
 	t.end();
 });
 
+tape( 'if provided a `stride` parameter equal to `0` and the first element is `NaN`, the function returns `0.0`', function test( t ) {
+	var expected;
+	var out;
+	var x;
+	var v;
+
+	x = new Float64Array( [ NaN, -2.0, -4.0, 5.0, 3.0 ] );
+
+	out = new Float64Array( 2 );
+	v = dnannsumors( x.length, x, 0, 0, out, 1, 0 );
+
+	expected = new Float64Array( [ 0.0, 0.0 ] );
+	t.deepEqual( v, expected, 'returns expected value' );
+
+	t.end();
+});
+
 tape( 'the function supports `offset` parameters', function test( t ) {
 	var expected;
 	var out;
@@ -3141,6 +3190,23 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum
 	v = dnannsumors( x.length, x, 0, 0, out, 1, 0 );
 
 	expected = new Float64Array( [ 5.0, 5.0 ] );
+	t.deepEqual( v, expected, 'returns expected value' );
+
+	t.end();
+});
+
+tape( 'if provided a `stride` parameter equal to `0` and the first element is `NaN`, the function returns `0.0`', opts, function test( t ) {
+	var expected;
+	var out;
+	var x;
+	var v;
+
+	x = new Float64Array( [ NaN, -2.0, -4.0, 5.0, 3.0 ] );
+
+	out = new Float64Array( 2 );
+	v = dnannsumors( x.length, x, 0, 0, out, 1, 0 );
+
+	expected = new Float64Array( [ 0.0, 0.0 ] );
 	t.deepEqual( v, expected, 'returns expected value' );
 
 	t.end();

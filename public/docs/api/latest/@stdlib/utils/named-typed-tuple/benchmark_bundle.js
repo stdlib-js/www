@@ -51434,7 +51434,7 @@ bench( pkg+'::instantiation,iterable', opts, function benchmark( b ) {
 
 		function next() {
 			i += 1;
-			if ( i <= 2) {
+			if ( i <= 2 ) {
 				return {
 					'value': 1.0
 				};
@@ -51486,7 +51486,7 @@ bench( pkg+'::instantiation,iterable,dtype', opts, function benchmark( b ) {
 
 		function next() {
 			i += 1;
-			if ( i <= 2) {
+			if ( i <= 2 ) {
 				return {
 					'value': 1.0
 				};

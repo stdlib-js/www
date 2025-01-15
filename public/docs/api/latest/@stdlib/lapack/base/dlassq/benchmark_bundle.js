@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -29326,7 +29328,7 @@ var uniform = require( '@stdlib/random/array/uniform' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var pow = require( '@stdlib/math/base/special/pow' );
 var Float64Array = require( '@stdlib/array/float64' );
-var pkg = require( '@stdlib/lapack/base/dlassq/package.json' ).name;
+var pkg = require( './../package.json' ).name;
 var dlassq = require( './../lib/ndarray.js' );
 
 
@@ -29399,7 +29401,7 @@ function main() {
 
 main();
 
-},{"./../lib/ndarray.js":347,"@stdlib/array/float64":54,"@stdlib/bench":286,"@stdlib/lapack/base/dlassq/package.json":348,"@stdlib/math/base/assert/is-nan":355,"@stdlib/math/base/special/pow":378,"@stdlib/random/array/uniform":436}],345:[function(require,module,exports){
+},{"./../lib/ndarray.js":347,"./../package.json":348,"@stdlib/array/float64":54,"@stdlib/bench":286,"@stdlib/math/base/assert/is-nan":355,"@stdlib/math/base/special/pow":378,"@stdlib/random/array/uniform":436}],345:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *

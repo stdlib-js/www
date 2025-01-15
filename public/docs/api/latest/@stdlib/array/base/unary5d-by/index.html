@@ -1,0 +1,69 @@
+<h1 id="unary5dby">unary5dBy</h1><blockquote><p>Apply a unary function to each element retrieved from a five-dimensional nested input array according to a callback function and assign results to elements in a five-dimensional nested output array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> unary5dBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/unary5d-by'</span> );
+</code></pre><h4 id="unary5dby-arrays-shape-fcn-clbk-thisarg-">unary5dBy( arrays, shape, fcn, clbk[, thisArg] )</h4><p>Applies a unary function to each element retrieved from a five-dimensional nested input array according to a callback function and assigns results to elements in a five-dimensional nested output array.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
+}
+
+<span class="hljs-keyword">var</span> x = [ [ [ [ [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span> ], [ -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ] ] ] ] ];
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+
+unary5dBy( [ x, x ], shape, abs, accessor );
+<span class="hljs-comment">// x => [ [ [ [ [ 2.0, 4.0 ], [ 6.0, 8.0 ] ] ] ] ]</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>arrays</strong>: array-like object containing one input nested array and one output nested array.</li><li><strong>shape</strong>: array shape.</li><li><strong>fcn</strong>: unary function to apply to callback return values.</li><li><strong>clbk</strong>: callback function.</li><li><strong>thisArg</strong>: callback function execution context (optional).</li></ul><p>The invoked callback function is provided the following arguments:</p><ul><li><strong>value</strong>: array element.</li><li><strong>indices</strong>: current array element indices.</li><li><strong>arrays</strong>: input and output arrays.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
+}
+
+<span class="hljs-keyword">var</span> context = {
+    <span class="hljs-string">'count'</span>: <span class="hljs-number">0</span>
+};
+
+<span class="hljs-keyword">var</span> x = [ [ [ [ [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span> ], [ -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ] ] ] ] ];
+<span class="hljs-keyword">var</span> y = [ [ [ [ [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ], [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] ] ] ] ];
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+
+unary5dBy( [ x, y ], shape, abs, accessor, context );
+<span class="hljs-comment">// y => [ [ [ [ [ 2.0, 4.0 ], [ 6.0, 8.0 ] ] ] ] ]</span>
+
+<span class="hljs-keyword">var</span> cnt = context.count;
+<span class="hljs-comment">// returns 4</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li><p>If a provided callback function does not return any value (or equivalently, explicitly returns <code>undefined</code>), the value is <strong>ignored</strong>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// No-op...</span>
+}
+
+<span class="hljs-keyword">var</span> x = [ [ [ [ [ -<span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span> ], [ -<span class="hljs-number">3.0</span>, -<span class="hljs-number">4.0</span> ] ] ] ] ];
+<span class="hljs-keyword">var</span> y = [ [ [ [ [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ], [ <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span> ] ] ] ] ];
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ];
+
+unary5dBy( [ x, y ], shape, abs, accessor );
+<span class="hljs-comment">// y => [ [ [ [ [ 0.0, 0.0 ], [ 0.0, 0.0 ] ] ] ] ]</span>
+</code></pre></li><li><p>The function assumes that the input and output arrays have the same shape.</p></li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> ).factory;
+<span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/bernoulli'</span> );
+<span class="hljs-keyword">var</span> filled5dBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled5d-by'</span> );
+<span class="hljs-keyword">var</span> zeros5d = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zeros5d'</span> );
+<span class="hljs-keyword">var</span> abs = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/abs'</span> );
+<span class="hljs-keyword">var</span> unary5dBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/unary5d-by'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accessor</span>(<span class="hljs-params"> v </span>) </span>{
+    <span class="hljs-comment">// Randomly determine whether a value should be considered "missing":</span>
+    <span class="hljs-keyword">return</span> ( bernoulli( <span class="hljs-number">0.5</span> ) > <span class="hljs-number">0</span> ) ? v : <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> x = filled5dBy( shape, discreteUniform( -<span class="hljs-number">100</span>, <span class="hljs-number">100</span> ) );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> y = zeros5d( shape );
+<span class="hljs-built_in">console</span>.log( y );
+
+unary5dBy( [ x, y ], shape, abs, accessor );
+<span class="hljs-built_in">console</span>.log( y );
+</code></pre></section><section class="related"></section><section class="links"></section>

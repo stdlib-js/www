@@ -1820,18 +1820,19 @@ module.exports = arrayfcn;
 
 // MODULES //
 
-var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
 
 /**
-* Adds a constant to each single-precision floating-point strided array element and computes the sum using extended accumulation and returning an extended precision result.
+* Adds a scalar constant to each single-precision floating-point strided array element, and computes the sum using extended accumulation and returning an extended precision result.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
@@ -1839,11 +1840,11 @@ var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
 *
-* var v = dsapxsum( 3, 5.0, x, 1 );
+* var v = dsapxsum( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
-function dsapxsum( N, alpha, x, stride ) {
-	return dsapxsumpw( N, alpha, x, stride );
+function dsapxsum( N, alpha, x, strideX ) {
+	return ndarray( N, alpha, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -1851,7 +1852,7 @@ function dsapxsum( N, alpha, x, stride ) {
 
 module.exports = dsapxsum;
 
-},{"@stdlib/blas/ext/base/dsapxsumpw":43}],35:[function(require,module,exports){
+},{"./ndarray.js":36,"@stdlib/strided/base/stride2offset":57}],35:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1917,13 +1918,13 @@ var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' ).ndarray;
 // MAIN //
 
 /**
-* Adds a constant to each single-precision floating-point strided array element and computes the sum using extended accumulation and returning an extended precision result.
+* Adds a scalar constant to each single-precision floating-point strided array element, and computes the sum using extended accumulation and returning an extended precision result.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -1934,8 +1935,8 @@ var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' ).ndarray;
 * var v = dsapxsum( 4, 5.0, x, 2, 1 );
 * // returns 25.0
 */
-function dsapxsum( N, alpha, x, stride, offset ) {
-	return dsapxsumpw( N, alpha, x, stride, offset );
+function dsapxsum( N, alpha, x, strideX, offsetX ) {
+	return dsapxsumpw( N, alpha, x, strideX, offsetX );
 }
 
 
@@ -2099,14 +2100,14 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', function test( t ) {
 	var x;
 	var v;
 
 	x = new Float32Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dsapxsum( x.length, 5.0, x, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });
@@ -2411,14 +2412,14 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant', opts, function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', opts, function test( t ) {
 	var x;
 	var v;
 
 	x = new Float32Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dsapxsum( x.length, 5.0, x, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });
@@ -2691,14 +2692,14 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first indexed element plus a constant', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', function test( t ) {
 	var x;
 	var v;
 
 	x = new Float32Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dsapxsum( x.length, 5.0, x, 0, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });
@@ -2890,14 +2891,14 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first indexed element plus a constant', opts, function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', opts, function test( t ) {
 	var x;
 	var v;
 
 	x = new Float32Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dsapxsum( x.length, 5.0, x, 0, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });

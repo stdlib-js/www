@@ -3896,7 +3896,7 @@ var format = require( '@stdlib/string/format' );
 * @returns {boolean} boolean indicating whether all elements fail a test
 *
 * @example
-* function isUnderage(age) {
+* function isUnderage( age ) {
 *    return ( age < 18 );
 * };
 *
@@ -3919,7 +3919,7 @@ function noneOwnBy( obj, predicate, thisArg ) {
 		throw new TypeError( format( 'invalid argument. Second argument must be a function. Value: `%s`.', predicate ) );
 	}
 	for ( key in obj ) {
-		if (hasOwnProp( obj, key ) && predicate.call( thisArg, obj[key], key, obj)) {
+		if ( hasOwnProp( obj, key ) && predicate.call( thisArg, obj[key], key, obj ) ) {
 			return false;
 		}
 	}
@@ -3985,7 +3985,7 @@ tape( 'the function throws an error if not provided an object', function test( t
 		/.*/,
 		new Date()
 	];
-	for (i =0; i < values.length; i++) {
+	for ( i =0; i < values.length; i++ ) {
 		t.throws( badValue( values ), TypeError, 'throws a type error when provided '+values[i] );
 	}
 	t.end();

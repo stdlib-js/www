@@ -13818,7 +13818,7 @@ bench( pkg+':sync', function benchmark( b ) {
 	var i;
 
 	b.tic();
-	for (i = 0; i < b.iterations; i++) {
+	for ( i = 0; i < b.iterations; i++ ) {
 		out = appendFile.sync( TMP, DATA );
 		if ( out instanceof Error ) {
 			b.fail( out.message );
@@ -13883,7 +13883,7 @@ function appendFile() {
 	var args;
 	var i;
 	args = [];
-	for (i = 0; i < arguments.length; i++) {
+	for ( i = 0; i < arguments.length; i++ ) {
 		args.push( arguments[i] );
 	}
 	append.apply( null, args );

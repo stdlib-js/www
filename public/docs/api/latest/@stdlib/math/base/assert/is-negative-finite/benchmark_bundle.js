@@ -28161,7 +28161,7 @@ var opts = {
 
 // MAIN //
 
-bench( pkg, opts, function benchmark( b ) {
+bench( pkg+'::native', opts, function benchmark( b ) {
 	var x;
 	var y;
 	var i;

@@ -1819,7 +1819,8 @@ module.exports = arrayfcn;
 
 // MODULES //
 
-var dnannsumkbn = require( '@stdlib/blas/ext/base/dnannsumkbn' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -1844,7 +1845,12 @@ var dnannsumkbn = require( '@stdlib/blas/ext/base/dnannsumkbn' );
 * // returns <Float64Array>[ 1.0, 3 ]
 */
 function dnannsum( N, x, strideX, out, strideOut ) {
-	return dnannsumkbn( N, x, strideX, out, strideOut );
+	var ix;
+	var io;
+
+	ix = stride2offset( N, strideX );
+	io = stride2offset( 2, strideOut );
+	return ndarray( N, x, strideX, ix, out, strideOut, io );
 }
 
 
@@ -1852,7 +1858,7 @@ function dnannsum( N, x, strideX, out, strideOut ) {
 
 module.exports = dnannsum;
 
-},{"@stdlib/blas/ext/base/dnannsumkbn":43}],35:[function(require,module,exports){
+},{"./ndarray.js":36,"@stdlib/strided/base/stride2offset":56}],35:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2166,7 +2172,7 @@ tape( 'the function supports negative `stride` parameters', function test( t ) {
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum equal to the first element', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum of the first element repeated N times', function test( t ) {
 	var expected;
 	var out;
 	var x;
@@ -2177,7 +2183,7 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum
 	out = new Float64Array( 2 );
 	v = dnannsum( x.length, x, 0, out, 1 );
 
-	expected = new Float64Array( [ 1.0, 1.0 ] );
+	expected = new Float64Array( [ 5.0, 5.0 ] );
 	t.deepEqual( v, expected, 'returns expected value' );
 
 	t.end();
@@ -2450,7 +2456,7 @@ tape( 'the function supports negative `stride` parameters', opts, function test(
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum equal to the first element', opts, function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum of the first element repeated N times', opts, function test( t ) {
 	var expected;
 	var out;
 	var x;
@@ -2461,7 +2467,7 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum
 	out = new Float64Array( 2 );
 	v = dnannsum( x.length, x, 0, out, 1 );
 
-	expected = new Float64Array( [ 1.0, 1.0 ] );
+	expected = new Float64Array( [ 5.0, 5.0 ] );
 	t.deepEqual( v, expected, 'returns expected value' );
 
 	t.end();
@@ -2811,7 +2817,7 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first indexed element', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum of the first element repeated N times', function test( t ) {
 	var expected;
 	var out;
 	var x;
@@ -2822,7 +2828,7 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns the f
 	out = new Float64Array( 2 );
 	v = dnannsum( x.length, x, 0, 0, out, 1, 0 );
 
-	expected = new Float64Array( [ 1.0, 1.0 ] );
+	expected = new Float64Array( [ 5.0, 5.0 ] );
 	t.deepEqual( v, expected, 'returns expected value' );
 
 	t.end();
@@ -3085,7 +3091,7 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first indexed element', opts, function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns a sum of the first element repeated N times', opts, function test( t ) {
 	var expected;
 	var out;
 	var x;
@@ -3096,7 +3102,7 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns the f
 	out = new Float64Array( 2 );
 	v = dnannsum( x.length, x, 0, 0, out, 1, 0 );
 
-	expected = new Float64Array( [ 1.0, 1.0 ] );
+	expected = new Float64Array( [ 5.0, 5.0 ] );
 	t.deepEqual( v, expected, 'returns expected value' );
 
 	t.end();

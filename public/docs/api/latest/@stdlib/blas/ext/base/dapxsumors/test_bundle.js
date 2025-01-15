@@ -1829,7 +1829,7 @@ var ndarray = require( './ndarray.js' );
 * Adds a scalar constant to each double-precision floating-point strided array element and computes the sum using ordinary recursive summation.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @returns {number} sum
@@ -1838,9 +1838,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dapxsumors( N, 5.0, x, 1 );
+* var v = dapxsumors( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
 function dapxsumors( N, alpha, x, strideX ) {
@@ -1916,7 +1915,7 @@ module.exports = dapxsumors;
 * Adds a scalar constant to each double-precision floating-point strided array element and computes the sum using ordinary recursive summation.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @param {NonNegativeInteger} offsetX - starting index
@@ -1938,10 +1937,10 @@ function dapxsumors( N, alpha, x, strideX, offsetX ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || strideX === 0 ) {
-		return alpha + x[ 0 ];
-	}
 	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * ( alpha + x[ ix ] );
+	}
 	sum = 0.0;
 	for ( i = 0; i < N; i++ ) {
 		sum += alpha + x[ ix ];
@@ -2094,14 +2093,14 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dapxsumors( x.length, 5.0, x, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });
@@ -2389,14 +2388,14 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant', opts, function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', opts, function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dapxsumors( x.length, 5.0, x, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });
@@ -2652,14 +2651,14 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first indexed element plus a constant', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dapxsumors( x.length, 5.0, x, 0, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });
@@ -2834,14 +2833,14 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 	t.end();
 });
 
-tape( 'if provided a `stride` parameter equal to `0`, the function returns the first indexed element plus a constant', opts, function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0`, the function returns the first element plus a constant repeated N times', opts, function test( t ) {
 	var x;
 	var v;
 
 	x = new Float64Array( [ 1.0, -2.0, -4.0, 5.0, 3.0 ] );
 
 	v = dapxsumors( x.length, 5.0, x, 0, 0 );
-	t.strictEqual( v, 6.0, 'returns expected value' );
+	t.strictEqual( v, x.length * (x[0]+5.0), 'returns expected value' );
 
 	t.end();
 });

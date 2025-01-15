@@ -37321,8 +37321,8 @@ var factory = require( './factory.js' );
 *
 * @name weibull
 * @type {PRNG}
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {NonNegativeNumber} pseudorandom number
 *
 * @example
@@ -37373,8 +37373,8 @@ var format = require( '@stdlib/string/format' );
 * Validates parameters.
 *
 * @private
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {(Error|null)} error or null
 *
 * @example
@@ -37432,8 +37432,8 @@ var ln = require( '@stdlib/math/base/special/ln' );
 *
 * @private
 * @param {PRNG} rand - PRNG for generating uniformly distributed numbers
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {NonNegativeNumber} pseudorandom number
 */
 function weibull( rand, k, lambda ) {

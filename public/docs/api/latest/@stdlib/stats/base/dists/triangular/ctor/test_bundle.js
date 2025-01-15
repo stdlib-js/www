@@ -12092,8 +12092,8 @@ function factory( a, b, c ) {
 		if ( t === 0.0 ) {
 			return 1.0;
 		}
-		ret = (bmc * exp( a * t )) - (bma * exp( c * t ));
-		ret += cma * exp( b * t );
+		ret = ( bmc * exp( a*t ) ) - ( bma * exp( c*t ) );
+		ret += cma * exp( b*t );
 		ret *= 2.0;
 		ret /= bma * cma * bmc * pow( t, 2.0 );
 		return ret;
@@ -12267,8 +12267,8 @@ function mgf( t, a, b, c ) {
 	bmc = b - c;
 	bma = b - a;
 	cma = c - a;
-	ret = (bmc * exp( a * t )) - (bma * exp( c * t ));
-	ret += cma * exp( b * t );
+	ret = ( bmc * exp( a*t ) ) - ( bma * exp( c*t ) );
+	ret += cma * exp( b*t );
 	ret *= 2.0;
 	ret /= bma * cma * bmc * pow( t, 2.0 );
 	return ret;

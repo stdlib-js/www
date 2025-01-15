@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -2659,8 +2661,8 @@ var ind = require( '@stdlib/ndarray/base/ind' ).factory;
 * var out = [ 0, 0, 0, 0 ];
 *
 * function clbk( val ){
-	return val;
-}
+*     return val;
+* }
 *
 * var arr = takeMapIndexed( x, indices, 'throw', out, 1, 0, clbk );
 * // returns [ 4, 2, 3, 1 ]
@@ -2685,7 +2687,7 @@ function takeMapIndexed( x, indices, mode, out, stride, offset, clbk ) {
 		out[ io ] = x[ j ];
 		io += stride;
 	}
-	for (i = 0; i<out.length; i++) {
+	for ( i = 0; i < out.length; i++ ) {
 		// eslint-disable-next-line no-useless-call
 		out[i] = clbk.call( null, out[i], i );
 	}
@@ -2749,7 +2751,7 @@ function accessorsMap( x, indices, mode, out, stride, offset, clbk ) {
 
 	// Extract each desired element from the provided array...
 	io = offset;
-	for (i = 0; i < idata.length; i++) {
+	for ( i = 0; i < idata.length; i++ ) {
 		j = getIndex( iget( idata, i ), max );
 
 		// eslint-disable-next-line no-useless-call
@@ -2920,8 +2922,8 @@ module.exports = assignMap;
 * var x = [ 1, 2, 3, 4 ];
 *
 * function mapFunction( val ) {
-    return val;
-}
+*     return val;
+* }
 *
 * var indices = [ 0, 0, 1, 1, 3, 3 ];
 * var y = takeMap( x, indices, 'throw', mapFunction );
@@ -2936,8 +2938,8 @@ module.exports = assignMap;
 * var indices = [ 0, 0, 1, 1, 3, 3 ];
 *
 * function clbk( val ) {
-    return val;
-}
+*     return val;
+* }
 *
 * var arr = takeMap.assign( x, indices, 'throw', out, 1, 0, mapFunction );
 * // returns [ 1, 1, 2, 2, 4, 4 ]

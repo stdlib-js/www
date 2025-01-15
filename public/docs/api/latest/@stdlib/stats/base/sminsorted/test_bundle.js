@@ -2636,109 +2636,6 @@ module.exports = isNegativeZerof;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Round a double-precision floating-point number toward negative infinity.
-*
-* @module @stdlib/math/base/special/floor
-*
-* @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* v = floor( 9.99999 );
-* // returns 9.0
-*
-* v = floor( 0.0 );
-* // returns 0.0
-*
-* v = floor( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":51}],51:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// TODO: implementation (?)
-
-/**
-* Rounds a double-precision floating-point number toward negative infinity.
-*
-* @param {number} x - input value
-* @returns {number} rounded value
-*
-* @example
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* @example
-* var v = floor( 9.99999 );
-* // returns 9.0
-*
-* @example
-* var v = floor( 0.0 );
-* // returns 0.0
-*
-* @example
-* var v = floor( NaN );
-* // returns NaN
-*/
-var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
-
-
-// EXPORTS //
-
-module.exports = floor;
-
-},{}],52:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
 * Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -2791,7 +2688,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":53}],53:[function(require,module,exports){
+},{"./main.js":51}],51:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2851,7 +2748,7 @@ var Obj = Object; // eslint-disable-line stdlib/require-globals
 
 module.exports = Obj;
 
-},{}],54:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2914,7 +2811,7 @@ setReadOnly( main, 'REGEXP', REGEXP );
 
 module.exports = main;
 
-},{"./main.js":55,"./regexp.js":56,"@stdlib/utils/define-nonenumerable-read-only-property":82}],55:[function(require,module,exports){
+},{"./main.js":53,"./regexp.js":54,"@stdlib/utils/define-nonenumerable-read-only-property":82}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2970,7 +2867,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],56:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3032,7 +2929,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":55}],57:[function(require,module,exports){
+},{"./main.js":53}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3069,7 +2966,7 @@ setReadOnly( sminsorted, 'ndarray', ndarray );
 
 module.exports = sminsorted;
 
-},{"./ndarray.js":58,"./sminsorted.js":59,"@stdlib/utils/define-nonenumerable-read-only-property":82}],58:[function(require,module,exports){
+},{"./ndarray.js":56,"./sminsorted.js":57,"@stdlib/utils/define-nonenumerable-read-only-property":82}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3103,32 +3000,30 @@ var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - sorted input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} minimum value
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
-* var floor = require( '@stdlib/math/base/special/floor' );
 *
 * var x = new Float32Array( [ 2.0, -3.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ] );
-* var N = floor( x.length / 2 );
 *
-* var v = sminsorted( N, x, 2, 1 );
+* var v = sminsorted( 4, x, 2, 1 );
 * // returns -3.0
 */
-function sminsorted( N, x, stride, offset ) {
+function sminsorted( N, x, strideX, offsetX ) {
 	var v1;
 	var v2;
 
 	if ( N <= 0 ) {
 		return NaN;
 	}
-	if ( N === 1 || stride === 0 ) {
+	if ( N === 1 || strideX === 0 ) {
 		return x[ 0 ];
 	}
-	v1 = x[ offset ];
-	v2 = x[ offset + ((N-1)*stride) ];
+	v1 = x[ offsetX ];
+	v2 = x[ offsetX + ((N-1)*strideX) ];
 	if ( isnanf( v1 ) || isnanf( v2 ) ) {
 		return NaN;
 	}
@@ -3149,7 +3044,7 @@ function sminsorted( N, x, stride, offset ) {
 
 module.exports = sminsorted;
 
-},{"@stdlib/math/base/assert/is-nanf":46,"@stdlib/math/base/assert/is-negative-zerof":48}],59:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":46,"@stdlib/math/base/assert/is-negative-zerof":48}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3172,8 +3067,8 @@ module.exports = sminsorted;
 
 // MODULES //
 
-var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
-var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -3183,48 +3078,19 @@ var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - sorted input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} minimum value
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, 2.0, 3.0 ] );
-* var N = x.length;
 *
-* var v = sminsorted( N, x, 1 );
+* var v = sminsorted( x.length, x, 1 );
 * // returns 1.0
 */
-function sminsorted( N, x, stride ) {
-	var v1;
-	var v2;
-
-	if ( N <= 0 ) {
-		return NaN;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		v1 = x[ (1-N) * stride ];
-		v2 = x[ 0 ];
-	} else {
-		v1 = x[ 0 ];
-		v2 = x[ (N-1) * stride ];
-	}
-	if ( isnanf( v1 ) || isnanf( v2 ) ) {
-		return NaN;
-	}
-	if ( v1 === v2 ) {
-		if ( isNegativeZerof( v1 ) || isNegativeZerof( v2 ) ) {
-			return -0.0;
-		}
-		return v1;
-	}
-	if ( v1 < v2 ) {
-		return v1;
-	}
-	return v2;
+function sminsorted( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -3232,7 +3098,7 @@ function sminsorted( N, x, stride ) {
 
 module.exports = sminsorted;
 
-},{"@stdlib/math/base/assert/is-nanf":46,"@stdlib/math/base/assert/is-negative-zerof":48}],60:[function(require,module,exports){
+},{"./ndarray.js":56,"@stdlib/strided/base/stride2offset":63}],58:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -3274,7 +3140,7 @@ tape( 'attached to the main export is a method providing an ndarray interface', 
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/sminsorted/test/test.js")
-},{"./../lib":57,"tape":237}],61:[function(require,module,exports){
+},{"./../lib":55,"tape":237}],59:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -3299,7 +3165,6 @@ tape( 'attached to the main export is a method providing an ndarray interface', 
 // MODULES //
 
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
 var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -3394,7 +3259,6 @@ tape( 'if provided an `N` parameter equal to `1`, the function returns the first
 });
 
 tape( 'the function supports a `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3403,21 +3267,19 @@ tape( 'the function supports a `stride` parameter', function test( t ) {
 		2.0,
 		2.0,  // 1
 		-7.0,
-		3.0, // 2
+		3.0,  // 2
 		3.0,
 		4.0,  // 3
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = sminsorted( N, x, 2, 0 );
+	v = sminsorted( 4, x, 2, 0 );
 
 	t.strictEqual( v, 1.0, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function supports a negative `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3432,8 +3294,7 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = sminsorted( N, x, -2, 6 );
+	v = sminsorted( 4, x, -2, 6 );
 
 	t.strictEqual( v, 1.0, 'returns expected value' );
 	t.end();
@@ -3452,7 +3313,6 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns the f
 });
 
 tape( 'the function supports an `offset` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3466,16 +3326,15 @@ tape( 'the function supports an `offset` parameter', function test( t ) {
 		3.0,
 		4.0   // 3
 	]);
-	N = floor( x.length / 2 );
 
-	v = sminsorted( N, x, 2, 1 );
+	v = sminsorted( 4, x, 2, 1 );
 	t.strictEqual( v, 1.0, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/sminsorted/test/test.ndarray.js")
-},{"./../lib/ndarray.js":58,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":46,"@stdlib/math/base/assert/is-negative-zerof":48,"@stdlib/math/base/special/floor":50,"tape":237}],62:[function(require,module,exports){
+},{"./../lib/ndarray.js":56,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":46,"@stdlib/math/base/assert/is-negative-zerof":48,"tape":237}],60:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -3501,7 +3360,6 @@ tape( 'the function supports an `offset` parameter', function test( t ) {
 
 var resolve = require( 'path' ).resolve;
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
 var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -3604,7 +3462,6 @@ tape( 'if provided an `N` parameter equal to `1`, the function returns the first
 });
 
 tape( 'the function supports a `stride` parameter', opts, function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3613,21 +3470,19 @@ tape( 'the function supports a `stride` parameter', opts, function test( t ) {
 		2.0,
 		2.0,  // 1
 		-7.0,
-		3.0, // 2
+		3.0,  // 2
 		3.0,
 		4.0,  // 3
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = sminsorted( N, x, 2, 0 );
+	v = sminsorted( 4, x, 2, 0 );
 
 	t.strictEqual( v, 1.0, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function supports a negative `stride` parameter', opts, function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3642,8 +3497,7 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = sminsorted( N, x, -2, 6 );
+	v = sminsorted( 4, x, -2, 6 );
 
 	t.strictEqual( v, 1.0, 'returns expected value' );
 	t.end();
@@ -3662,7 +3516,6 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns the f
 });
 
 tape( 'the function supports an `offset` parameter', opts, function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3676,16 +3529,15 @@ tape( 'the function supports an `offset` parameter', opts, function test( t ) {
 		3.0,
 		4.0   // 3
 	]);
-	N = floor( x.length / 2 );
 
-	v = sminsorted( N, x, 2, 1 );
+	v = sminsorted( 4, x, 2, 1 );
 	t.strictEqual( v, 1.0, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/sminsorted/test/test.ndarray.native.js","/lib/node_modules/@stdlib/stats/base/sminsorted/test")
-},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":46,"@stdlib/math/base/assert/is-negative-zerof":48,"@stdlib/math/base/special/floor":50,"@stdlib/utils/try-require":105,"path":119,"tape":237}],63:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":46,"@stdlib/math/base/assert/is-negative-zerof":48,"@stdlib/utils/try-require":105,"path":119,"tape":237}],61:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -3710,7 +3562,6 @@ tape( 'the function supports an `offset` parameter', opts, function test( t ) {
 // MODULES //
 
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
 var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -3805,7 +3656,6 @@ tape( 'if provided an `N` parameter equal to `1`, the function returns the first
 });
 
 tape( 'the function supports a `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3820,15 +3670,13 @@ tape( 'the function supports a `stride` parameter', function test( t ) {
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = sminsorted( N, x, 2 );
+	v = sminsorted( 4, x, 2 );
 
 	t.strictEqual( v, 1.0, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function supports a negative `stride` parameter', function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -3843,8 +3691,7 @@ tape( 'the function supports a negative `stride` parameter', function test( t ) 
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = sminsorted( N, x, -2 );
+	v = sminsorted( 4, x, -2 );
 
 	t.strictEqual( v, 1.0, 'returns expected value' );
 	t.end();
@@ -3865,7 +3712,6 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns the f
 tape( 'the function supports view offsets', function test( t ) {
 	var x0;
 	var x1;
-	var N;
 	var v;
 
 	x0 = new Float32Array([
@@ -3881,16 +3727,15 @@ tape( 'the function supports view offsets', function test( t ) {
 	]);
 
 	x1 = new Float32Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
-	N = floor(x1.length / 2);
 
-	v = sminsorted( N, x1, 2 );
+	v = sminsorted( 4, x1, 2 );
 	t.strictEqual( v, 1.0, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/sminsorted/test/test.sminsorted.js")
-},{"./../lib/sminsorted.js":59,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":46,"@stdlib/math/base/assert/is-negative-zerof":48,"@stdlib/math/base/special/floor":50,"tape":237}],64:[function(require,module,exports){
+},{"./../lib/sminsorted.js":57,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":46,"@stdlib/math/base/assert/is-negative-zerof":48,"tape":237}],62:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -3916,7 +3761,6 @@ tape( 'the function supports view offsets', function test( t ) {
 
 var resolve = require( 'path' ).resolve;
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
 var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -4019,7 +3863,6 @@ tape( 'if provided an `N` parameter equal to `1`, the function returns the first
 });
 
 tape( 'the function supports a `stride` parameter', opts, function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -4034,15 +3877,13 @@ tape( 'the function supports a `stride` parameter', opts, function test( t ) {
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = sminsorted( N, x, 2 );
+	v = sminsorted( 4, x, 2 );
 
 	t.strictEqual( v, 1.0, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function supports a negative `stride` parameter', opts, function test( t ) {
-	var N;
 	var x;
 	var v;
 
@@ -4057,8 +3898,7 @@ tape( 'the function supports a negative `stride` parameter', opts, function test
 		2.0
 	]);
 
-	N = floor( x.length / 2 );
-	v = sminsorted( N, x, -2 );
+	v = sminsorted( 4, x, -2 );
 
 	t.strictEqual( v, 1.0, 'returns expected value' );
 	t.end();
@@ -4079,7 +3919,6 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns the f
 tape( 'the function supports view offsets', opts, function test( t ) {
 	var x0;
 	var x1;
-	var N;
 	var v;
 
 	x0 = new Float32Array([
@@ -4095,16 +3934,103 @@ tape( 'the function supports view offsets', opts, function test( t ) {
 	]);
 
 	x1 = new Float32Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
-	N = floor(x1.length / 2);
 
-	v = sminsorted( N, x1, 2 );
+	v = sminsorted( 4, x1, 2 );
 	t.strictEqual( v, 1.0, 'returns expected value' );
 
 	t.end();
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/sminsorted/test/test.sminsorted.native.js","/lib/node_modules/@stdlib/stats/base/sminsorted/test")
-},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":46,"@stdlib/math/base/assert/is-negative-zerof":48,"@stdlib/math/base/special/floor":50,"@stdlib/utils/try-require":105,"path":119,"tape":237}],65:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":46,"@stdlib/math/base/assert/is-negative-zerof":48,"@stdlib/utils/try-require":105,"path":119,"tape":237}],63:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Determine the index offset which specifies the location of the first indexed value in a strided array.
+*
+* @module @stdlib/strided/base/stride2offset
+*
+* @example
+* var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+*
+* var offset = stride2offset( 10, -10 );
+* // returns 90
+*/
+
+// MODULES //
+
+var stride2offset = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = stride2offset;
+
+},{"./main.js":64}],64:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns the index offset which specifies the location of the first indexed value in a strided array.
+*
+* @param {NonNegativeInteger} N - number of indexed elements
+* @param {integer} stride - index increment
+* @returns {NonNegativeInteger} offset - offset
+*
+* @example
+* var offset = stride2offset( 10, -10 );
+* // returns 90
+*/
+function stride2offset( N, stride ) {
+	if ( stride > 0 ) {
+		return 0;
+	}
+	return ( 1 - N ) * stride;
+}
+
+
+// EXPORTS //
+
+module.exports = stride2offset;
+
+},{}],65:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5306,7 +5232,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":27,"@stdlib/regexp/function-name":54,"@stdlib/utils/native-class":100}],82:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":27,"@stdlib/regexp/function-name":52,"@stdlib/utils/native-class":100}],82:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5886,7 +5812,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":89,"@stdlib/object/ctor":52}],92:[function(require,module,exports){
+},{"./detect.js":89,"@stdlib/object/ctor":50}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17807,4 +17733,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[60,61,62,63,64]);
+},{}]},{},[58,59,60,61,62]);

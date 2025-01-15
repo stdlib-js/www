@@ -36347,6 +36347,7 @@ bench( pkg+':factory', function benchmark( b ) {
 
 var isPositiveInteger = require( '@stdlib/math/base/assert/is-positive-integer' );
 var constantFunction = require( '@stdlib/utils/constant-function' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
 var isfinite = require( '@stdlib/math/base/assert/is-finite' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var exp = require( '@stdlib/math/base/special/exp' );
@@ -36394,6 +36395,9 @@ function factory( n ) {
 		if ( isnan( x ) ) {
 			return NaN;
 		}
+		if ( !isInteger( x ) ) {
+			return 0.0;
+		}
 		if ( x < 0.0 || x > mlim ) {
 			return 0.0;
 		}
@@ -36406,7 +36410,7 @@ function factory( n ) {
 
 module.exports = factory;
 
-},{"./weights.js":431,"@stdlib/constants/float64/ln-two":307,"@stdlib/math/base/assert/is-finite":328,"@stdlib/math/base/assert/is-nan":334,"@stdlib/math/base/assert/is-positive-integer":336,"@stdlib/math/base/special/exp":349,"@stdlib/math/base/special/ln":356,"@stdlib/utils/constant-function":481}],429:[function(require,module,exports){
+},{"./weights.js":431,"@stdlib/constants/float64/ln-two":307,"@stdlib/math/base/assert/is-finite":328,"@stdlib/math/base/assert/is-integer":332,"@stdlib/math/base/assert/is-nan":334,"@stdlib/math/base/assert/is-positive-integer":336,"@stdlib/math/base/special/exp":349,"@stdlib/math/base/special/ln":356,"@stdlib/utils/constant-function":481}],429:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36483,6 +36487,7 @@ module.exports = main;
 // MODULES //
 
 var isPositiveInteger = require( '@stdlib/math/base/assert/is-positive-integer' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
 var isfinite = require( '@stdlib/math/base/assert/is-finite' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var exp = require( '@stdlib/math/base/special/exp' );
@@ -36537,6 +36542,9 @@ function pdf( x, n ) {
 	) {
 		return NaN;
 	}
+	if ( !isInteger( x ) ) {
+		return 0.0;
+	}
 	mlim = ( n * ( n + 1 ) ) / 2;
 	if ( x < 0.0 || x > mlim ) {
 		return 0.0;
@@ -36549,7 +36557,7 @@ function pdf( x, n ) {
 
 module.exports = pdf;
 
-},{"./weights.js":431,"@stdlib/constants/float64/ln-two":307,"@stdlib/math/base/assert/is-finite":328,"@stdlib/math/base/assert/is-nan":334,"@stdlib/math/base/assert/is-positive-integer":336,"@stdlib/math/base/special/exp":349,"@stdlib/math/base/special/ln":356}],431:[function(require,module,exports){
+},{"./weights.js":431,"@stdlib/constants/float64/ln-two":307,"@stdlib/math/base/assert/is-finite":328,"@stdlib/math/base/assert/is-integer":332,"@stdlib/math/base/assert/is-nan":334,"@stdlib/math/base/assert/is-positive-integer":336,"@stdlib/math/base/special/exp":349,"@stdlib/math/base/special/ln":356}],431:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *

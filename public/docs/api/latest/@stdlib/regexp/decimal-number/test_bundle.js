@@ -2476,8 +2476,7 @@ var reDecimalNumber = require( './main.js' );
 * -   `[0-9]+`
 *     -   match the characters `[0-9]` one or more times
 *
-*
- @constant
+* @constant
 * @type {RegExp}
 * @default /[-+]{0,1}[0-9]*\.[0-9]+/
 */
@@ -2536,8 +2535,7 @@ var reDecimalNumber = require( './main.js' );
 * -   `[0-9]+`
 *     -   match the characters `[0-9]` one or more times
 *
-*
- @constant
+* @constant
 * @type {RegExp}
 * @default /([-+]{0,1}[0-9]*\.[0-9]+)/
 */

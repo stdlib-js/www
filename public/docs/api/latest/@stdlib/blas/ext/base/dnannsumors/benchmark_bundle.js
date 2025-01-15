@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -28062,26 +28064,24 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 function dnannsumors( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 	var sum;
 	var ix;
-	var io;
 	var n;
 	var i;
 
 	sum = 0.0;
-	io = offsetOut;
 	if ( N <= 0 ) {
-		out[ io ] = sum;
-		out[ io+strideOut ] = 0;
+		out[ offsetOut ] = sum;
+		out[ offsetOut+strideOut ] = 0;
 		return out;
 	}
 	ix = offsetX;
 	if ( strideX === 0 ) {
 		if ( isnan( x[ ix ] ) ) {
-			out[ io ] = sum;
-			out[ io+strideOut ] = 0;
+			out[ offsetOut ] = sum;
+			out[ offsetOut+strideOut ] = 0;
 			return out;
 		}
-		out[ io ] = x[ ix ] * N;
-		out[ io+strideOut ] = N;
+		out[ offsetOut ] = x[ ix ] * N;
+		out[ offsetOut+strideOut ] = N;
 		return out;
 	}
 	n = 0;
@@ -28092,8 +28092,8 @@ function dnannsumors( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 		}
 		ix += strideX;
 	}
-	out[ io ] = sum;
-	out[ io+strideOut ] = n;
+	out[ offsetOut ] = sum;
+	out[ offsetOut+strideOut ] = n;
 	return out;
 }
 

@@ -1,0 +1,29 @@
+<h1 id="minimum-data-type">Minimum Data Type</h1><blockquote><p>Determine the minimum ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> for storing a provided signed integer value.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> minSignedIntegerDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/min-signed-integer-dtype'</span> );
+</code></pre><h4 id="minsignedintegerdatatype-value-">minSignedIntegerDataType( value )</h4><p>Returns the minimum ndarray <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> for storing a provided signed integer value.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dt = minSignedIntegerDataType( <span class="hljs-number">9999</span> );
+<span class="hljs-comment">// returns 'int16'</span>
+
+dt = minSignedIntegerDataType( -<span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 'int8'</span>
+
+dt = minSignedIntegerDataType( <span class="hljs-number">3</span> );
+<span class="hljs-comment">// returns 'int8'</span>
+
+dt = minSignedIntegerDataType( <span class="hljs-number">1e100</span> );
+<span class="hljs-comment">// returns 'float64'</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>Once a provided integer value exceeds the maximum values of all supported signed integer <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data types</a>, the function defaults to returning <code>'float64'</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> exp2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/exp2'</span> );
+<span class="hljs-keyword">var</span> minSignedIntegerDataType = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/base/min-signed-integer-dtype'</span> );
+
+<span class="hljs-comment">// Generate random powers:</span>
+<span class="hljs-keyword">var</span> exp = discreteUniform( <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">40</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+
+<span class="hljs-comment">// Determine the minimum data type for each generated value...</span>
+<span class="hljs-keyword">var</span> v;
+<span class="hljs-keyword">var</span> i;
+<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; exp.length; i++ ) {
+    v = exp2( exp[ i ] );
+    <span class="hljs-built_in">console</span>.log( <span class="hljs-string">'min(%d) => %s'</span>, v, minSignedIntegerDataType( v ) );
+}
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

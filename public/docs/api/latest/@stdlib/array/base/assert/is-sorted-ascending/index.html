@@ -1,0 +1,31 @@
+<h1 id="issortedascending">isSortedAscending</h1><blockquote><p>Test if an array is sorted in ascending order.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> isSortedAscending = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/assert/is-sorted-ascending'</span> );
+</code></pre><h4 id="issortedascending-x-">isSortedAscending( x )</h4><p>Tests if an array is sorted in ascending order.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = isSortedAscending( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns true</span>
+
+out = isSortedAscending( [ <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns false</span>
+</code></pre><p>If provided an empty array, the function returns <code>false</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> out = isSortedAscending( [] );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="notes"></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> AccessorArray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/accessor'</span> );
+<span class="hljs-keyword">var</span> isSortedAscending = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/assert/is-sorted-ascending'</span> );
+
+<span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> AccessorArray( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] );
+<span class="hljs-keyword">var</span> bool = isSortedAscending( x );
+<span class="hljs-comment">// returns true</span>
+
+x = <span class="hljs-keyword">new</span> AccessorArray( [ <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span> ] );
+bool = isSortedAscending( x );
+<span class="hljs-comment">// returns true</span>
+
+x = <span class="hljs-keyword">new</span> AccessorArray( [ <span class="hljs-number">1</span> ] );
+bool = isSortedAscending( x );
+<span class="hljs-comment">// returns true</span>
+
+x = <span class="hljs-keyword">new</span> AccessorArray( [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">4</span> ] );
+bool = isSortedAscending( x );
+<span class="hljs-comment">// returns false</span>
+
+x = <span class="hljs-keyword">new</span> AccessorArray( [ <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ] );
+bool = isSortedAscending( x );
+<span class="hljs-comment">// returns false</span>
+</code></pre></section><section class="references"></section><section class="related"></section><section class="links"></section>

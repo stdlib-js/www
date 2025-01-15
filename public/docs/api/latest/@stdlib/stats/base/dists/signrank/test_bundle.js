@@ -9720,6 +9720,7 @@ module.exports = signrank;
 
 var isPositiveInteger = require( '@stdlib/math/base/assert/is-positive-integer' );
 var constantFunction = require( '@stdlib/utils/constant-function' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
 var isfinite = require( '@stdlib/math/base/assert/is-finite' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var exp = require( '@stdlib/math/base/special/exp' );
@@ -9767,6 +9768,9 @@ function factory( n ) {
 		if ( isnan( x ) ) {
 			return NaN;
 		}
+		if ( !isInteger( x ) ) {
+			return 0.0;
+		}
 		if ( x < 0.0 || x > mlim ) {
 			return 0.0;
 		}
@@ -9779,7 +9783,7 @@ function factory( n ) {
 
 module.exports = factory;
 
-},{"./weights.js":169,"@stdlib/constants/float64/ln-two":96,"@stdlib/math/base/assert/is-finite":106,"@stdlib/math/base/assert/is-nan":112,"@stdlib/math/base/assert/is-positive-integer":114,"@stdlib/math/base/special/exp":123,"@stdlib/math/base/special/ln":130,"@stdlib/utils/constant-function":190}],167:[function(require,module,exports){
+},{"./weights.js":169,"@stdlib/constants/float64/ln-two":96,"@stdlib/math/base/assert/is-finite":106,"@stdlib/math/base/assert/is-integer":110,"@stdlib/math/base/assert/is-nan":112,"@stdlib/math/base/assert/is-positive-integer":114,"@stdlib/math/base/special/exp":123,"@stdlib/math/base/special/ln":130,"@stdlib/utils/constant-function":190}],167:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -9856,6 +9860,7 @@ module.exports = main;
 // MODULES //
 
 var isPositiveInteger = require( '@stdlib/math/base/assert/is-positive-integer' );
+var isInteger = require( '@stdlib/math/base/assert/is-integer' );
 var isfinite = require( '@stdlib/math/base/assert/is-finite' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var exp = require( '@stdlib/math/base/special/exp' );
@@ -9910,6 +9915,9 @@ function pdf( x, n ) {
 	) {
 		return NaN;
 	}
+	if ( !isInteger( x ) ) {
+		return 0.0;
+	}
 	mlim = ( n * ( n + 1 ) ) / 2;
 	if ( x < 0.0 || x > mlim ) {
 		return 0.0;
@@ -9922,7 +9930,7 @@ function pdf( x, n ) {
 
 module.exports = pdf;
 
-},{"./weights.js":169,"@stdlib/constants/float64/ln-two":96,"@stdlib/math/base/assert/is-finite":106,"@stdlib/math/base/assert/is-nan":112,"@stdlib/math/base/assert/is-positive-integer":114,"@stdlib/math/base/special/exp":123,"@stdlib/math/base/special/ln":130}],169:[function(require,module,exports){
+},{"./weights.js":169,"@stdlib/constants/float64/ln-two":96,"@stdlib/math/base/assert/is-finite":106,"@stdlib/math/base/assert/is-integer":110,"@stdlib/math/base/assert/is-nan":112,"@stdlib/math/base/assert/is-positive-integer":114,"@stdlib/math/base/special/exp":123,"@stdlib/math/base/special/ln":130}],169:[function(require,module,exports){
 arguments[4][164][0].apply(exports,arguments)
 },{"@stdlib/utils/memoize":228,"dup":164}],170:[function(require,module,exports){
 /**

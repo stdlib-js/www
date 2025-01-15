@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -22176,11 +22178,11 @@ module.exports = dlacpy;
 * var Float64Array = require( '@stdlib/array/float64' );
 * var dlacpy = require( '@stdlib/lapack/base/dlacpy' );
 *
-* var A = new Float64Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float64Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float64Array( 6 );
 *
 * dlacpy.ndarray( 'all', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float64Array>[ 0.0, 0.0, 1.0, 2.0, 3.0, 4.0 ]
+* // B => <Float64Array>[ 0.0, 0.0, 2.0, 3.0, 4.0, 5.0 ]
 */
 
 // MODULES //
@@ -22293,29 +22295,29 @@ var base = require( './base.js' );
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
 *
-* var A = new Float64Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float64Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float64Array( 6 );
 *
 * dlacpy( 'all', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float64Array>[ 0.0, 0.0, 1.0, 2.0, 3.0, 4.0 ]
+* // B => <Float64Array>[ 0.0, 0.0, 2.0, 3.0, 4.0, 5.0 ]
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
 *
-* var A = new Float64Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float64Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float64Array( 6 );
 *
 * dlacpy( 'upper', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float64Array>[ 0.0, 0.0, 1.0, 2.0, 53.0, 4.0 ]
+* // B => <Float64Array>[ 0.0, 0.0, 2.0, 3.0, 0.0, 5.0 ]
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
 *
-* var A = new Float64Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float64Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float64Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float64Array( 6 );
 *
 * dlacpy( 'lower', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float64Array>[ 0.0, 0.0, 1.0, 312.0, 3.0, 4.0 ]
+* // B => <Float64Array>[ 0.0, 0.0, 2.0, 0.0, 4.0, 5.0 ]
 */
 function dlacpy( uplo, M, N, A, strideA1, strideA2, offsetA, B, strideB1, strideB2, offsetB ) { // eslint-disable-line max-len, max-params
 	return base( uplo, M, N, A, strideA1, strideA2, offsetA, B, strideB1, strideB2, offsetB ); // eslint-disable-line max-len
@@ -24078,11 +24080,11 @@ module.exports = slacpy;
 * var Float32Array = require( '@stdlib/array/float32' );
 * var slacpy = require( '@stdlib/lapack/base/slacpy' );
 *
-* var A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float32Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float32Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float32Array( 6 );
 *
 * slacpy.ndarray( 'all', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float32Array>[ 0.0, 0.0, 1.0, 2.0, 3.0, 4.0 ]
+* // B => <Float32Array>[ 0.0, 0.0, 2.0, 3.0, 4.0, 5.0 ]
 */
 
 // MODULES //
@@ -24195,29 +24197,29 @@ var base = require( './base.js' );
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
-* var A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float32Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float32Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float32Array( 6 );
 *
 * slacpy( 'all', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float32Array>[ 0.0, 0.0, 1.0, 2.0, 3.0, 4.0 ]
+* // B => <Float32Array>[ 0.0, 0.0, 2.0, 3.0, 4.0, 5.0 ]
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
-* var A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float32Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float32Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float32Array( 6 );
 *
 * slacpy( 'upper', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float32Array>[ 0.0, 0.0, 1.0, 2.0, 53.0, 4.0 ]
+* // B => <Float32Array>[ 0.0, 0.0, 2.0, 3.0, 0.0, 5.0 ]
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
-* var A = new Float32Array( [ 0.0, 1.0, 2.0, 3.0, 4.0 ] );
-* var B = new Float32Array( [ 0.0, 0.0, 11.0, 312.0, 53.0, 412.0 ] );
+* var A = new Float32Array( [ 1.0, 2.0, 3.0, 4.0, 5.0 ] );
+* var B = new Float32Array( 6 );
 *
 * slacpy( 'lower', 2, 2, A, 2, 1, 1, B, 2, 1, 2 );
-* // B => <Float32Array>[ 0.0, 0.0, 1.0, 312.0, 3.0, 4.0 ]
+* // B => <Float32Array>[ 0.0, 0.0, 2.0, 0.0, 4.0, 5.0 ]
 */
 function slacpy( uplo, M, N, A, strideA1, strideA2, offsetA, B, strideB1, strideB2, offsetB ) { // eslint-disable-line max-len, max-params
 	return base( uplo, M, N, A, strideA1, strideA2, offsetA, B, strideB1, strideB2, offsetB ); // eslint-disable-line max-len

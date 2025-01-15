@@ -1,58 +1,73 @@
 <h1 id="dmin">dmin</h1><blockquote><p>Calculate the minimum value of a double-precision floating-point strided array.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> dmin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dmin'</span> );
-</code></pre><h4 id="dmin-n-x-stride-">dmin( N, x, stride )</h4><p>Computes the minimum value of a double-precision floating-point strided array <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><h4 id="dmin-n-x-stridex-">dmin( N, x, strideX )</h4><p>Computes the minimum value of a double-precision floating-point strided array <code>x</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ] );
-<span class="hljs-keyword">var</span> N = x.length;
 
-<span class="hljs-keyword">var</span> v = dmin( N, x, <span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> v = dmin( x.length, x, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns -2.0</span>
-</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li><li><strong>stride</strong>: index increment for <code>x</code>.</li></ul><p>The <code>N</code> and <code>stride</code> parameters determine which elements in <code>x</code> are accessed at runtime. For example, to compute the minimum value of every other element in <code>x</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
-<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre><p>The function has the following parameters:</p><ul><li><strong>N</strong>: number of indexed elements.</li><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/array/float64"><code>Float64Array</code></a>.</li><li><strong>strideX</strong>: stride length for <code>x</code>.</li></ul><p>The <code>N</code> and stride parameters determine which elements in the strided array are accessed at runtime. For example, to compute the minimum value of every other element in <code>x</code>,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">7.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">2.0</span> ] );
-<span class="hljs-keyword">var</span> N = floor( x.length / <span class="hljs-number">2</span> );
 
-<span class="hljs-keyword">var</span> v = dmin( N, x, <span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> v = dmin( <span class="hljs-number">4</span>, x, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns -2.0</span>
 </code></pre><p>Note that indexing is relative to the first index. To introduce an offset, use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
-<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
 
 <span class="hljs-keyword">var</span> x0 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
 <span class="hljs-keyword">var</span> x1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( x0.buffer, x0.BYTES_PER_ELEMENT*<span class="hljs-number">1</span> ); <span class="hljs-comment">// start at 2nd element</span>
 
-<span class="hljs-keyword">var</span> N = floor( x0.length / <span class="hljs-number">2</span> );
-
-<span class="hljs-keyword">var</span> v = dmin( N, x1, <span class="hljs-number">2</span> );
+<span class="hljs-keyword">var</span> v = dmin( <span class="hljs-number">4</span>, x1, <span class="hljs-number">2</span> );
 <span class="hljs-comment">// returns -2.0</span>
-</code></pre><h4 id="dminndarray-n-x-stride-offset-">dmin.ndarray( N, x, stride, offset )</h4><p>Computes the minimum value of a double-precision floating-point strided array using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre><h4 id="dminndarray-n-x-stridex-offsetx-">dmin.ndarray( N, x, strideX, offsetX )</h4><p>Computes the minimum value of a double-precision floating-point strided array using alternative indexing semantics.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span> ] );
-<span class="hljs-keyword">var</span> N = x.length;
 
-<span class="hljs-keyword">var</span> v = dmin.ndarray( N, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-keyword">var</span> v = dmin.ndarray( x.length, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
 <span class="hljs-comment">// returns -2.0</span>
-</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offset</strong>: starting index for <code>x</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying <code>buffer</code>, the <code>offset</code> parameter supports indexing semantics based on a starting index. For example, to calculate the minimum value for every other value in <code>x</code> starting from the second value</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
-<span class="hljs-keyword">var</span> floor = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/floor'</span> );
+</code></pre><p>The function has the following additional parameters:</p><ul><li><strong>offsetX</strong>: starting index for <code>x</code>.</li></ul><p>While <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>typed array</code></a> views mandate a view offset based on the underlying buffer, the offset parameter supports indexing semantics based on a starting index. For example, to calculate the minimum value for every other element in <code>x</code> starting from the second element</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
 
 <span class="hljs-keyword">var</span> x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, -<span class="hljs-number">2.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span> ] );
-<span class="hljs-keyword">var</span> N = floor( x.length / <span class="hljs-number">2</span> );
 
-<span class="hljs-keyword">var</span> v = dmin.ndarray( N, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
+<span class="hljs-keyword">var</span> v = dmin.ndarray( <span class="hljs-number">4</span>, x, <span class="hljs-number">2</span>, <span class="hljs-number">1</span> );
 <span class="hljs-comment">// returns -2.0</span>
-</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions return <code>NaN</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> randu = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/randu'</span> );
-<span class="hljs-keyword">var</span> round = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/math/base/special/round'</span> );
-<span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions return <code>NaN</code>.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> dmin = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/stats/base/dmin'</span> );
 
-<span class="hljs-keyword">var</span> x;
-<span class="hljs-keyword">var</span> i;
-
-x = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( <span class="hljs-number">10</span> );
-<span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &#x3C; x.length; i++ ) {
-    x[ i ] = round( (randu()*<span class="hljs-number">100.0</span>) - <span class="hljs-number">50.0</span> );
-}
+<span class="hljs-keyword">var</span> x = discreteUniform( <span class="hljs-number">10</span>, -<span class="hljs-number">50</span>, <span class="hljs-number">50</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float64'</span>
+});
 <span class="hljs-built_in">console</span>.log( x );
 
 <span class="hljs-keyword">var</span> v = dmin( x.length, x, <span class="hljs-number">1</span> );
 <span class="hljs-built_in">console</span>.log( v );
+</code></pre></section><section class="usage"><h3 id="usage-1">Usage</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/stats/base/dmin.h"</span></span>
+</code></pre><h4 id="stdlib_strided_dmin-n-x-stridex-">stdlib_strided_dmin( N, *X, strideX )</h4><p>Computes the minimum value of a double-precision floating-point strided array.</p><pre><code class="hljs language-c"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">1.0</span>, <span class="hljs-number">-2.0</span>, <span class="hljs-number">2.0</span> };
+
+<span class="hljs-keyword">double</span> v = stdlib_strided_dmin( <span class="hljs-number">3</span>, x, <span class="hljs-number">1</span> );
+<span class="hljs-comment">// returns -2.0</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] CBLAS_INT</code> number of indexed elements.</li><li><strong>X</strong>: <code>[in] double*</code> input array.</li><li><strong>strideX</strong>: <code>[in] CBLAS_INT</code> stride length for <code>X</code>.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_strided_dmin</span><span class="hljs-params">( <span class="hljs-keyword">const</span> CBLAS_INT N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *X, <span class="hljs-keyword">const</span> CBLAS_INT strideX )</span></span>;
+</code></pre><h4 id="stdlib_strided_dmin_ndarray-n-x-stridex-offsetx-">stdlib_strided_dmin_ndarray( N, *X, strideX, offsetX )</h4><p>Computes the minimum value of a double-precision floating-point strided array using alternative indexing semantics.</p><pre><code class="hljs language-c"><span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">1.0</span>, <span class="hljs-number">-2.0</span>, <span class="hljs-number">2.0</span> };
+
+<span class="hljs-keyword">double</span> v = stdlib_strided_dmin_ndarray( <span class="hljs-number">3</span>, x, <span class="hljs-number">1</span>, <span class="hljs-number">0</span> );
+<span class="hljs-comment">// returns -2.0</span>
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>N</strong>: <code>[in] CBLAS_INT</code> number of indexed elements.</li><li><strong>X</strong>: <code>[in] double*</code> input array.</li><li><strong>strideX</strong>: <code>[in] CBLAS_INT</code> stride length for <code>X</code>.</li><li><strong>offsetX</strong>: <code>[in] CBLAS_INT</code> starting index for <code>X</code>.</li></ul><pre><code class="hljs language-c"><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">stdlib_strided_dmin_ndarray</span><span class="hljs-params">( <span class="hljs-keyword">const</span> CBLAS_INT N, <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *X, <span class="hljs-keyword">const</span> CBLAS_INT strideX, <span class="hljs-keyword">const</span> CBLAS_INT offsetX )</span></span>;
+</code></pre></section><section class="notes"></section><section class="examples"><h3 id="examples-1">Examples</h3><pre><code class="hljs language-c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"stdlib/stats/base/dmin.h"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&#x3C;stdio.h></span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">void</span> )</span> </span>{
+    <span class="hljs-comment">// Create a strided array:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> x[] = { <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span> };
+
+    <span class="hljs-comment">// Specify the number of elements:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> N = <span class="hljs-number">4</span>;
+
+    <span class="hljs-comment">// Specify the stride length:</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> strideX = <span class="hljs-number">2</span>;
+
+    <span class="hljs-comment">// Compute the minimum value:</span>
+    <span class="hljs-keyword">double</span> v = stdlib_strided_dmin( N, x, strideX );
+
+    <span class="hljs-comment">// Print the result:</span>
+    <span class="hljs-built_in">printf</span>( <span class="hljs-string">"min: %lf\n"</span>, v );
+}
 </code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/dmax"><code>@stdlib/stats/base/dmax</code></a></span><span class="delimiter">: </span><span class="description">calculate the maximum value of a double-precision floating-point strided array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/dnanmin"><code>@stdlib/stats/base/dnanmin</code></a></span><span class="delimiter">: </span><span class="description">calculate the minimum value of a double-precision floating-point strided array, ignoring NaN values.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/min"><code>@stdlib/stats/base/min</code></a></span><span class="delimiter">: </span><span class="description">calculate the minimum value of a strided array.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/stats/base/smin"><code>@stdlib/stats/base/smin</code></a></span><span class="delimiter">: </span><span class="description">calculate the minimum value of a single-precision floating-point strided array.</span></li></ul></section><section class="links"></section>

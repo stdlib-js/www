@@ -1,0 +1,270 @@
+<h1 id="ndindex">ndindex</h1><blockquote><p><a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> index constructor.</p></blockquote><section class="intro"><p>In JavaScript, only strings and symbols are valid property names. When providing values for property names which are not strings or symbols, the values are serialized to strings <strong>prior to</strong> attempting to access property values. For example, the following</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-comment">// Create an ndarray:</span>
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-comment">// Define a list of indices for elements we want to retrieve from `x`:</span>
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-comment">// Attempt to retrieve the desired elements:</span>
+<span class="hljs-keyword">var</span> v = x[ y ]; <span class="hljs-comment">// => desired: &#x3C;ndarray>[ 1, 3 ]</span>
+<span class="hljs-comment">// returns undefined</span>
+</code></pre><p>is equivalent to</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0</span>, <span class="hljs-number">2</span> ];
+
+<span class="hljs-keyword">var</span> v = x[ y.toString() ];
+<span class="hljs-comment">// returns undefined</span>
+
+<span class="hljs-comment">// ...which is equivalent to:</span>
+v = x[ <span class="hljs-string">'0,2'</span> ];
+<span class="hljs-comment">// returns undefined</span>
+</code></pre><p>Accordingly, in order to circumvent built-in property access behavior and support non-traditional access patterns, one can leverage <a href="/docs/api/latest/@stdlib/proxy/ctor"><code>Proxy</code></a> objects which allow one to intercept property access and to perform transformations before attempting to access elements in a target object.</p><p>To support the access pattern shown in the example above, one can leverage built-in string serialization behavior to reconstruct the original property value provided prior to serialization. The <code>ndindex</code> constructor described below provides one such mechanism.</p><p>Specifically, instantiated <code>ndindex</code> objects are assigned a unique identifier and stored in a local cache. When provided as property values to <code>ndindex</code> consumers, instantiated objects serialize to a string containing their unique identifier. <code>ndindex</code> consumers can then parse the serialized string to obtain the unique identifier and subsequently recover the original <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> from the local cache.</p></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> ndindex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/index'</span> );
+</code></pre><p><a name="main"></a></p><h4 id="ndindex-x-options-">ndindex( x[, options] )</h4><p>Wraps a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> as an index object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+</code></pre><p>The constructor accepts the following arguments:</p><ul><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</li><li><strong>options</strong>: function options.</li></ul><p>The constructor accepts the following options:</p><ul><li><p><strong>kind</strong>: specifies whether a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> is a specialized kind of integer input <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>. This option is only applicable when <code>x</code> is an integer <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>. Must be one of the following:</p><ul><li><strong>cartesian</strong>: an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> containing Cartesian indices.</li><li><strong>linear</strong>: an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> containing indices representing locations in linear memory.</li></ul><p>Default: <code>''</code>.</p></li><li><p><strong>persist</strong>: boolean indicating whether to continue persisting an index object after first usage. Default: <code>false</code>.</p></li></ul><p>By default, an <code>ndindex</code> is invalidated and removed from an internal cache immediately after a consumer resolves the underlying data associated with an <code>ndindex</code> instance using the <a href="#static-method-get"><code>ndindex.get()</code></a> static method. Immediate invalidation and cache removal ensures that references to the underlying <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> data are not the source of memory leaks.</p><p>One may, however, want to reuse an <code>ndindex</code> instance to avoid additional memory allocation. In order to persist an <code>ndindex</code> and prevent automatic cache invalidation, set the <code>persist</code> option to <code>true</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x, {
+    <span class="hljs-string">'persist'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> o = ndindex.get( idx.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-comment">// ...</span>
+
+o = ndindex.get( idx.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Explicitly free the index object:</span>
+ndindex.free( idx.id );
+</code></pre><p>In order to <strong>prevent</strong> memory leaks when working with persisted <code>ndindex</code> instances, one <strong>must</strong> remember to manually free persisted instances using the <a href="#static-method-free"><code>ndindex.free()</code></a> method.</p><hr><h3 id="properties">Properties</h3><p><a name="static-prop-name"></a></p><h4 id="ndindexname">ndindex.name</h4><p>String value of the <code>ndindex</code> constructor name.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> str = ndindex.name;
+<span class="hljs-comment">// returns 'ndindex'</span>
+</code></pre><p><a name="prop-data"></a></p><h4 id="ndindexprototypedata">ndindex.prototype.data</h4><p><strong>Read-only</strong> property returning an <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> view of the underlying <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> data associated with an <code>ndindex</code> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-keyword">var</span> v = idx.data;
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+</code></pre><p><a name="prop-dtype"></a></p><h4 id="ndindexprototypedtype">ndindex.prototype.dtype</h4><p><strong>Read-only</strong> property returning the <a href="/docs/api/latest/@stdlib/ndarray/dtypes">data type</a> of the underlying <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> associated with an <code>ndindex</code> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-keyword">var</span> dt = idx.dtype;
+<span class="hljs-comment">// returns 'int32'</span>
+</code></pre><p><a name="prop-id"></a></p><h4 id="ndindexprototypeid">ndindex.prototype.id</h4><p><strong>Read-only</strong> property returning the unique identifier associated with an <code>ndindex</code> instance.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-keyword">var</span> id = idx.id;
+<span class="hljs-comment">// returns &#x3C;string></span>
+</code></pre><p>The identifier should be used by <code>ndindex</code> consumers to resolve the underlying data associated with an <code>ndindex</code> instance.</p><p><a name="prop-is-cached"></a></p><h4 id="ndindexprototypeiscached">ndindex.prototype.isCached</h4><p><strong>Read-only</strong> property returning a boolean indicating whether an <code>ndindex</code> instance is actively cached.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-keyword">var</span> out = idx.isCached;
+<span class="hljs-comment">// returns true</span>
+</code></pre><p><a name="prop-kind"></a></p><h4 id="ndindexprototypekind">ndindex.prototype.kind</h4><p><strong>Read-only</strong> property returning the <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> index kind.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x, {
+    <span class="hljs-string">'kind'</span>: <span class="hljs-string">'linear'</span>
+});
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-keyword">var</span> v = idx.kind;
+<span class="hljs-comment">// returns 'linear'</span>
+</code></pre><p>The following <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> index kinds are supported:</p><ul><li><strong>cartesian</strong>: an ndarray index object containing Cartesian indices.</li><li><strong>linear</strong>: an ndarray index object for indices representing locations in linear memory.</li></ul><p><a name="prop-type"></a></p><h4 id="ndindexprototypetype">ndindex.prototype.type</h4><p><strong>Read-only</strong> property returning the <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> index type.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-keyword">var</span> t = idx.type;
+<span class="hljs-comment">// returns 'int'</span>
+</code></pre><p>The following <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> index types are supported:</p><ul><li><strong>mask</strong>: mask <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>, in which a value of zero indicates to include a respective element and a value of one indicates to exclude a respective element. A mask <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> is the complement of a boolean <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</li><li><strong>bool</strong>: boolean <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>, in which a value of <code>true</code> indicates to include a respective element and a value of <code>false</code> indicates to exclude a respective element. A boolean <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> is the complement of a mask <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</li><li><strong>int</strong>: integer <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>, in which each element is an index indicating the position of an element to include. Elements are <strong>not</strong> required to be unique (i.e., more than element may resolve to the same position).</li></ul><hr><h3 id="methods">Methods</h3><p><a name="static-method-free"></a></p><h4 id="ndindexfree-id-">ndindex.free( id )</h4><p>Frees the <code>ndindex</code> associated with a provided identifier.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x, {
+    <span class="hljs-string">'persist'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> out = ndindex.free( idx.id );
+<span class="hljs-comment">// returns true</span>
+</code></pre><p>Once an <code>ndindex</code> is freed, the instance is invalid and can no longer be used. Any subsequent <code>ndindex</code> operations (i.e., property and method access) will raise an exception.</p><p><a name="static-method-get"></a></p><h4 id="ndindexget-id-">ndindex.get( id )</h4><p>Returns the <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> associated with the <code>ndindex</code> having a provided identifier.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x, {
+    <span class="hljs-string">'persist'</span>: <span class="hljs-literal">true</span>
+});
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">var</span> o = ndindex.get( idx.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-keyword">var</span> d = o.data;
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> t = o.type;
+<span class="hljs-comment">// returns 'int'</span>
+
+<span class="hljs-keyword">var</span> dt = o.dtype;
+<span class="hljs-comment">// returns 'int32'</span>
+</code></pre><p>The returned object has the following properties:</p><ul><li><strong>data</strong>: the underlying "base" <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> view associated with the <code>ndindex</code> identified by the provided <code>id</code>.</li><li><strong>type</strong>: the type of <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> index. One of the following: <code>'int'</code>, <code>'bool'</code>, or <code>'mask'</code>.</li><li><strong>kind</strong>: the <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> index "kind". One of the following: <code>''</code>, <code>'cartesian'</code>, or <code>'linear'</code>.</li><li><strong>dtype</strong>: the data type of the underlying <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</li></ul><p>If the <code>ndindex</code> associated with a provided identifier was not explicitly persisted, calling this method will cause the <code>ndindex</code> to be invalidated and removed from an internal cache. Any subsequent instance operations (i.e., property and method access) will raise an exception.</p><p><a name="static-method-cartesian-index"></a></p><h4 id="ndindexcartesianindex-x-options-">ndindex.cartesianIndex( x[, options] )</h4><p>Wraps a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> as a Cartesian index object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ), {
+    <span class="hljs-string">'shape'</span>: [ <span class="hljs-number">2</span>, <span class="hljs-number">2</span> ]
+});
+
+<span class="hljs-keyword">var</span> idx = ndindex.cartesianIndex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+</code></pre><p>This method is a convenience method for creating an <code>ndindex</code> with the <code>kind</code> option set to <code>'cartesian'</code>. The function accepts the same arguments and options as <code>ndindex</code> above.</p><p><a name="static-method-linear-index"></a></p><h4 id="ndindexlinearindex-x-options-">ndindex.linearIndex( x[, options] )</h4><p>Wraps a provided <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> as a linear index object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = ndindex.linearIndex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+</code></pre><p>This method is a convenience method for creating an <code>ndindex</code> with the <code>kind</code> option set to <code>'linear'</code>. The function accepts the same arguments and options as <code>ndindex</code> above.</p><p><a name="method-to-string"></a></p><h4 id="ndindexprototypetostring">ndindex.prototype.toString()</h4><p>Serializes an <code>ndindex</code> as a string.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-keyword">var</span> str = idx.toString();
+<span class="hljs-comment">// e.g., 'ndindex&#x3C;0>'</span>
+</code></pre><p>An <code>ndindex</code> is intended to be an opaque object used by objects supporting "fancy" indexing (e.g., <a href="/docs/api/latest/@stdlib/ndarray/to-fancy">fancy ndarrays</a>). As such, when serialized as a string, a serialized <code>ndindex</code> includes only the unique identifier associated with the respective instance.</p><p><a name="method-to-json"></a></p><h4 id="ndindexprototypetojson">ndindex.prototype.toJSON()</h4><p>Serializes an <code>ndindex</code> as a <a href="http://www.json.org/">JSON</a> object.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-keyword">var</span> o = idx.toJSON();
+<span class="hljs-comment">// returns { 'type': 'ndindex', 'kind': '', 'data': { ... } }</span>
+</code></pre><p><code>JSON.stringify()</code> implicitly calls this method when stringifying an <code>ndindex</code> instance.</p></section><hr><section class="notes"><h2 id="notes">Notes</h2><ul><li><p><code>ndindex</code> instances have no explicit functionality; however, they are used by <a href="/docs/api/latest/@stdlib/ndarray/to-fancy">"fancy" ndarrays</a> and other packages for element retrieval and assignment.</p></li><li><p>Because <code>ndindex</code> instances leverage an internal cache implementing the <strong>singleton pattern</strong>, one <strong>must</strong> be sure to use the same <code>ndindex</code> constructor as <code>ndindex</code> consumers. If one uses a different <code>ndindex</code> constructor, the consumer will <strong>not</strong> be able to resolve an <a href="/docs/api/latest/@stdlib/ndarray/base/ctor">ndarray</a> view of the original <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>, as the consumer will attempt to resolve an <code>ndindex</code> instance in the wrong internal cache.</p></li><li><p>Because non-persisted <code>ndindex</code> instances are freed after first use, in order to avoid holding onto memory and to allow garbage collection, one should avoid scenarios in which an <code>ndindex</code> is never used. For example,</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x );
+
+<span class="hljs-keyword">var</span> o;
+<span class="hljs-keyword">if</span> ( x.get( <span class="hljs-number">0</span> ) === <span class="hljs-number">0</span> ) {
+    <span class="hljs-comment">// Do something with `idx`...</span>
+    o = ndindex.get( idx.id );
+
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre><p>will leak memory as <code>idx</code> is only consumed within an <code>if</code> block which never evaluates. In such scenarios, one should either refactor to avoid inadvertently holding onto memory or explicitly free the <code>ndindex</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/array'</span> );
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">Int32Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/int32'</span> );
+
+<span class="hljs-keyword">var</span> x = array( <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>( [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ] ) );
+
+<span class="hljs-keyword">var</span> idx = <span class="hljs-keyword">new</span> ndindex( x );
+
+<span class="hljs-keyword">var</span> o;
+<span class="hljs-keyword">if</span> ( x.get( <span class="hljs-number">0</span> ) === <span class="hljs-number">0</span> ) {
+    <span class="hljs-comment">// Do something with `idx`...</span>
+    o = ndindex.get( idx.id );
+
+    <span class="hljs-comment">// ...</span>
+} <span class="hljs-keyword">else</span> {
+    ndindex.free( idx.id );
+}
+</code></pre></li></ul></section><hr><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> empty = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/empty'</span> );
+<span class="hljs-keyword">var</span> ndindex = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/index'</span> );
+
+<span class="hljs-keyword">var</span> x = empty( [ <span class="hljs-number">5</span> ], {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'uint8'</span>
+});
+<span class="hljs-keyword">var</span> i = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+<span class="hljs-keyword">var</span> o = ndindex.get( i.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Type: %s. Data type: %s.'</span>, o.type, o.dtype );
+
+x = empty( [ <span class="hljs-number">5</span> ], {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+i = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+o = ndindex.get( i.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Type: %s. Data type: %s.'</span>, o.type, o.dtype );
+
+x = empty( [ <span class="hljs-number">5</span> ], {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'bool'</span>
+});
+i = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+o = ndindex.get( i.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Type: %s. Data type: %s.'</span>, o.type, o.dtype );
+
+x = empty( [ <span class="hljs-number">5</span> ], {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'int32'</span>
+});
+i = <span class="hljs-keyword">new</span> ndindex( x );
+<span class="hljs-comment">// returns &#x3C;ndindex></span>
+
+o = ndindex.get( i.id );
+<span class="hljs-comment">// returns {...}</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-string">'Type: %s. Data type: %s.'</span>, o.type, o.dtype );
+</code></pre></section><section class="references"></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/array"><code>@stdlib/ndarray/array</code></a></span><span class="delimiter">: </span><span class="description">multidimensional arrays.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/ctor"><code>@stdlib/ndarray/ctor</code></a></span><span class="delimiter">: </span><span class="description">multidimensional array constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/fancy"><code>@stdlib/ndarray/fancy</code></a></span><span class="delimiter">: </span><span class="description">fancy multidimensional array constructor.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/slice"><code>@stdlib/ndarray/slice</code></a></span><span class="delimiter">: </span><span class="description">return a read-only view of an input ndarray.</span></li><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/to-fancy"><code>@stdlib/ndarray/to-fancy</code></a></span><span class="delimiter">: </span><span class="description">convert an ndarray to an object supporting fancy indexing.</span></li></ul></section><section class="links"></section>

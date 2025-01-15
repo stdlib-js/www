@@ -36,12 +36,11 @@
 <span class="hljs-built_in">console</span>.log( itSub.next().value );
 <span class="hljs-comment">// => -1.0</span>
 
-<span class="hljs-comment">// Demonstrate operation with iterator and constant</span>
-<span class="hljs-keyword">var</span> it3 = array2iterator( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] );
-<span class="hljs-keyword">var</span> itWithConstant = ns.iterAdd( it3, <span class="hljs-number">3.0</span> );
+<span class="hljs-comment">// Demonstrate broadcasting:</span>
+<span class="hljs-keyword">var</span> itAdd3 = ns.iterAdd( array2iterator( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ] ), <span class="hljs-number">3.0</span> );
 
-<span class="hljs-built_in">console</span>.log( itWithConstant.next().value );
+<span class="hljs-built_in">console</span>.log( itAdd3.next().value );
 <span class="hljs-comment">// => 4.0</span>
-<span class="hljs-built_in">console</span>.log( itWithConstant.next().value );
+<span class="hljs-built_in">console</span>.log( itAdd3.next().value );
 <span class="hljs-comment">// => 5.0</span>
 </code></pre></section><section class="related"></section><section class="links"></section>

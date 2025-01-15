@@ -14780,7 +14780,7 @@ module.exports = main;
 *
 * ## Notice
 *
-* The original C++ code and copyright notice are from the [Boost library]{@link http://www.boost.org/doc/libs/1_60_0/boost/math/special_functions/zeta.hpp}. The implementation follows the original, but has been modified for JavaScript.
+* The original C++ code and copyright notice are from the [Boost library]{@link http://www.boost.org/doc/libs/1_85_0/boost/math/special_functions/zeta.hpp}. The implementation follows the original, but has been modified for JavaScript.
 *
 * ```text
 * (C) Copyright John Maddock 2006.
@@ -14810,6 +14810,8 @@ var NINF = require( '@stdlib/constants/float64/ninf' );
 var TWO_PI = require( '@stdlib/constants/float64/two-pi' );
 var SQRT_EPSILON = require( '@stdlib/constants/float64/sqrt-eps' );
 var LN_SQRT_TWO_PI = require( '@stdlib/constants/float64/ln-sqrt-two-pi' );
+var MAX_SAFE_NTH_FACTORIAL = require( '@stdlib/constants/float64/max-safe-nth-factorial' );
+var FLOAT64_MAX_LN = require( '@stdlib/constants/float64/max-ln' );
 var ODD_POSITIVE_INTEGERS = require( './odd_positive_integers.json' );
 var EVEN_NONNEGATIVE_INTEGERS = require( './even_nonnegative_integers.json' );
 var BERNOULLI = require( './bernoulli.json' );
@@ -14824,8 +14826,7 @@ var rateval6 = require( './rational_p6q6.js' );
 // VARIABLES //
 
 var MAX_BERNOULLI_2N = 129;
-var MAX_FACTORIAL = 170; // TODO: consider making external constant
-var MAX_LN = 709; // TODO: consider making external constant
+var MAX_LN = floor( FLOAT64_MAX_LN );
 var Y1 = 1.2433929443359375;
 var Y3 = 0.6986598968505859375;
 
@@ -15023,7 +15024,7 @@ function zeta( s ) {
 		sc = tmp;
 
 		// Determine if computation will overflow:
-		if ( s > MAX_FACTORIAL ) {
+		if ( s > MAX_SAFE_NTH_FACTORIAL ) {
 			tmp = sinpi( 0.5*sc ) * 2.0 * zeta( s );
 			r = gammaln( s );
 			r -= s * ln( TWO_PI );
@@ -15071,7 +15072,7 @@ function zeta( s ) {
 
 module.exports = zeta;
 
-},{"./bernoulli.json":206,"./even_nonnegative_integers.json":207,"./odd_positive_integers.json":210,"./rational_p1q1.js":211,"./rational_p2q2.js":212,"./rational_p3q3.js":213,"./rational_p4q4.js":214,"./rational_p5q5.js":215,"./rational_p6q6.js":216,"@stdlib/constants/float64/ln-sqrt-two-pi":66,"@stdlib/constants/float64/ninf":75,"@stdlib/constants/float64/pinf":79,"@stdlib/constants/float64/sqrt-eps":81,"@stdlib/constants/float64/two-pi":83,"@stdlib/math/base/assert/is-integer":93,"@stdlib/math/base/assert/is-nan":95,"@stdlib/math/base/special/abs":103,"@stdlib/math/base/special/exp":123,"@stdlib/math/base/special/floor":129,"@stdlib/math/base/special/gamma":131,"@stdlib/math/base/special/gammaln":137,"@stdlib/math/base/special/ln":161,"@stdlib/math/base/special/pow":191,"@stdlib/math/base/special/sinpi":223}],210:[function(require,module,exports){
+},{"./bernoulli.json":206,"./even_nonnegative_integers.json":207,"./odd_positive_integers.json":210,"./rational_p1q1.js":211,"./rational_p2q2.js":212,"./rational_p3q3.js":213,"./rational_p4q4.js":214,"./rational_p5q5.js":215,"./rational_p6q6.js":216,"@stdlib/constants/float64/ln-sqrt-two-pi":66,"@stdlib/constants/float64/max-ln":70,"@stdlib/constants/float64/max-safe-nth-factorial":72,"@stdlib/constants/float64/ninf":75,"@stdlib/constants/float64/pinf":79,"@stdlib/constants/float64/sqrt-eps":81,"@stdlib/constants/float64/two-pi":83,"@stdlib/math/base/assert/is-integer":93,"@stdlib/math/base/assert/is-nan":95,"@stdlib/math/base/special/abs":103,"@stdlib/math/base/special/exp":123,"@stdlib/math/base/special/floor":129,"@stdlib/math/base/special/gamma":131,"@stdlib/math/base/special/gammaln":137,"@stdlib/math/base/special/ln":161,"@stdlib/math/base/special/pow":191,"@stdlib/math/base/special/sinpi":223}],210:[function(require,module,exports){
 module.exports=[
 	1.202056903159594285399738161511449990764986292340498881792,
 	1.036927755143369926331365486457034168057080919501912811974,
@@ -15135,7 +15136,7 @@ module.exports=[
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15156,7 +15157,7 @@ module.exports=[
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -15201,7 +15202,7 @@ module.exports = evalrational;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15222,7 +15223,7 @@ module.exports = evalrational;
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -15267,7 +15268,7 @@ module.exports = evalrational;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15288,7 +15289,7 @@ module.exports = evalrational;
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -15333,7 +15334,7 @@ module.exports = evalrational;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15354,7 +15355,7 @@ module.exports = evalrational;
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -15399,7 +15400,7 @@ module.exports = evalrational;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15420,7 +15421,7 @@ module.exports = evalrational;
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *
@@ -15465,7 +15466,7 @@ module.exports = evalrational;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2022 The Stdlib Authors.
+* Copyright (c) 2024 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -15486,7 +15487,7 @@ module.exports = evalrational;
 // MAIN //
 
 /**
-* Evaluates a rational function, i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\).
+* Evaluates a rational function (i.e., the ratio of two polynomials described by the coefficients stored in \\(P\\) and \\(Q\\)).
 *
 * ## Notes
 *

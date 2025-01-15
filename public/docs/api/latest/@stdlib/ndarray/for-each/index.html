@@ -1,0 +1,54 @@
+<h1 id="foreach">forEach</h1><blockquote><p>Invoke a callback function once for each <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> element.</p></blockquote><section class="intro"></section><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> forEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/for-each'</span> );
+</code></pre><h4 id="foreach-x-fcn-thisarg-">forEach( x, fcn[, thisArg] )</h4><p>Invokes a callback function once for each <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a> element.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> log = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log'</span> );
+
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">11.0</span>, <span class="hljs-number">12.0</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">6</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">1</span>;
+
+<span class="hljs-keyword">var</span> x = ndarray( <span class="hljs-string">'float64'</span>, buffer, shape, strides, offset, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+forEach( x, naryFunction( log, <span class="hljs-number">1</span> ) );
+</code></pre><p>The function accepts the following arguments:</p><ul><li><strong>x</strong>: input <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</li><li><strong>fcn</strong>: callback to apply.</li><li><strong>thisArg</strong>: callback execution context <em>(optional)</em>.</li></ul><p>To set the callback function execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Float64Array</span> = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/float64'</span> );
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">accumulate</span>(<span class="hljs-params"> z </span>) </span>{
+    <span class="hljs-built_in">this</span>.sum += z;
+}
+
+<span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float64Array</span>( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>, <span class="hljs-number">3.0</span>, <span class="hljs-number">4.0</span>, <span class="hljs-number">5.0</span>, <span class="hljs-number">6.0</span>, <span class="hljs-number">7.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">9.0</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">11.0</span>, <span class="hljs-number">12.0</span> ] );
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">6</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">var</span> x = ndarray( <span class="hljs-string">'float64'</span>, buffer, shape, strides, offset, <span class="hljs-string">'row-major'</span> );
+<span class="hljs-comment">// returns &#x3C;ndarray></span>
+
+<span class="hljs-keyword">var</span> ctx = {
+    <span class="hljs-string">'sum'</span>: <span class="hljs-number">0</span>
+};
+
+forEach( x, accumulate, ctx );
+<span class="hljs-keyword">var</span> sum = ctx.sum;
+<span class="hljs-comment">// returns 36</span>
+</code></pre><p>The callback function is provided the following arguments:</p><ul><li><strong>value</strong>: current array element.</li><li><strong>indices</strong>: current array element indices.</li><li><strong>arr</strong>: the input <a href="/docs/api/latest/@stdlib/ndarray/ctor">ndarray</a>.</li></ul></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>For very high-dimensional ndarrays which are non-contiguous, one should consider copying the underlying data to contiguous memory before applying a callback function in order to achieve better performance.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> ndarray = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/ctor'</span> );
+<span class="hljs-keyword">var</span> ndarray2array = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/to-array'</span> );
+<span class="hljs-keyword">var</span> naryFunction = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/utils/nary-function'</span> );
+<span class="hljs-keyword">var</span> log = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/console/log'</span> );
+<span class="hljs-keyword">var</span> forEach = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/ndarray/for-each'</span> );
+
+<span class="hljs-keyword">var</span> buffer = discreteUniform( <span class="hljs-number">10</span>, -<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+<span class="hljs-keyword">var</span> shape = [ <span class="hljs-number">5</span>, <span class="hljs-number">2</span> ];
+<span class="hljs-keyword">var</span> strides = [ <span class="hljs-number">2</span>, <span class="hljs-number">1</span> ];
+<span class="hljs-keyword">var</span> offset = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">var</span> x = ndarray( <span class="hljs-string">'generic'</span>, buffer, shape, strides, offset, <span class="hljs-string">'row-major'</span> );
+
+log( ndarray2array( x ) );
+forEach( x, naryFunction( log, <span class="hljs-number">2</span> ) );
+</code></pre></section><section class="related"><hr><h2 id="see-also">See Also</h2><ul><li><span class="package-name"><a href="/docs/api/latest/@stdlib/ndarray/map"><code>@stdlib/ndarray/map</code></a></span><span class="delimiter">: </span><span class="description">apply a callback to elements in an input ndarray and assign results to elements in a new output ndarray.</span></li></ul></section><section class="links"></section>

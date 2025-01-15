@@ -2938,7 +2938,7 @@ tape( 'the function throws an error if not provided an object', function test( t
 		/.*/,
 		new Date()
 	];
-	for (i =0; i < values.length; i++) {
+	for ( i =0; i < values.length; i++ ) {
 		t.throws( badValue( values ), TypeError, 'throws a type error when provided '+values[i] );
 	}
 	t.end();
@@ -2967,7 +2967,7 @@ tape( 'the function throws an error if not provided a predicate function', funct
 		/.*/,
 		new Date()
 	];
-	for (i =0; i < values.length; i++) {
+	for ( i =0; i < values.length; i++ ) {
 		t.throws( badValue( values ), TypeError, 'throws a type error when provided '+values[i] );
 	}
 	t.end();
@@ -2996,7 +2996,7 @@ tape( 'the function throws an error if predicate is not a function', function te
 		/.*/,
 		new Date()
 	];
-	for (i =0; i < values.length; i++) {
+	for ( i =0; i < values.length; i++ ) {
 		t.throws( badValue( values ), TypeError, 'throws a type error when provided '+values[i] );
 	}
 	t.end();

@@ -17,7 +17,7 @@
 
 <span class="hljs-keyword">var</span> bool = iterSomeBy( array2iterator( [] ), <span class="hljs-number">1</span>, predicate );
 <span class="hljs-comment">// returns false</span>
-</code></pre><p>A <code>predicate</code> function is provided two arguments:</p><ul><li><strong>value</strong>: iterated value</li><li><strong>index</strong>: iteration index (zero-based)</li></ul><p>To set the execution context of the <code>predicate</code> function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
+</code></pre><p>A <code>predicate</code> function is provided two arguments:</p><ul><li><strong>value</strong>: iterated value.</li><li><strong>index</strong>: iteration index (zero-based).</li></ul><p>To set the execution context of the <code>predicate</code> function, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> array2iterator = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/to-iterator'</span> );
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;

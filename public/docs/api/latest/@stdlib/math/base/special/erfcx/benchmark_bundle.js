@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -30223,8 +30225,8 @@ var resolve = require( 'path' ).resolve;
 var bench = require( '@stdlib/bench' );
 var randu = require( '@stdlib/random/array/uniform' );
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var pkg = require( '@stdlib/math/base/special/erfcx/package.json' ).name;
 var tryRequire = require( '@stdlib/utils/try-require' );
+var pkg = require( './../package.json' ).name;
 
 
 // VARIABLES //
@@ -30260,7 +30262,7 @@ bench( pkg+'::native', opts, function benchmark( b ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/math/base/special/erfcx/benchmark")
-},{"@stdlib/bench":286,"@stdlib/math/base/assert/is-nan":347,"@stdlib/math/base/special/erfcx/package.json":364,"@stdlib/random/array/uniform":417,"@stdlib/utils/try-require":588,"path":601}],361:[function(require,module,exports){
+},{"./../package.json":364,"@stdlib/bench":286,"@stdlib/math/base/assert/is-nan":347,"@stdlib/random/array/uniform":417,"@stdlib/utils/try-require":588,"path":601}],361:[function(require,module,exports){
 /* eslint-disable max-len, no-mixed-operators, max-lines */
 
 /**

@@ -1,0 +1,27 @@
+<h1 id="mskfiltern">mskfiltern</h1><blockquote><p>Apply a mask to one or more provided input arrays in a single pass.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> mskfiltern = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/mskfiltern'</span> );
+</code></pre><h4 id="mskfiltern-x-arrays-mask-">mskfiltern( x, [...arrays,] mask )</h4><p>Returns new arrays by applying a mask to one or more provided input arrays in a single pass.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ];
+
+<span class="hljs-keyword">var</span> out = mskfiltern( x, y, [ <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span> ] );
+<span class="hljs-comment">// returns [ [ 2, 4 ], [ 1, 3 ] ]</span>
+</code></pre><p>The function supports the following parameters:</p><ul><li><strong>x</strong>: first input array.</li><li><strong>...arrays</strong>: additional input arrays.</li><li><strong>mask</strong>: mask array.</li></ul><p>The function <strong>always</strong> returns new "generic" arrays.</p></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If a <code>mask</code> array element is truthy, the corresponding elements in the input arrays are <strong>included</strong> in the respective output arrays; otherwise, the corresponding elements in the input arrays are "masked" and thus <strong>excluded</strong> from the respective output arrays.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> zeroTo = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/zero-to'</span> );
+<span class="hljs-keyword">var</span> bernoulli = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/bernoulli'</span> );
+<span class="hljs-keyword">var</span> mskfiltern = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/mskfiltern'</span> );
+
+<span class="hljs-comment">// Generate linearly spaced arrays:</span>
+<span class="hljs-keyword">var</span> x = zeroTo( <span class="hljs-number">20</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> y = zeroTo( x.length );
+<span class="hljs-built_in">console</span>.log( y );
+
+<span class="hljs-comment">// Generate a random mask:</span>
+<span class="hljs-keyword">var</span> mask = bernoulli( x.length, <span class="hljs-number">0.5</span>, {
+    <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'generic'</span>
+});
+<span class="hljs-built_in">console</span>.log( mask );
+
+<span class="hljs-comment">// Filter both arrays using the mask:</span>
+<span class="hljs-keyword">var</span> out = mskfiltern( x, y, mask );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"></section><section class="links"></section>

@@ -42,7 +42,7 @@
 
 <span class="hljs-keyword">var</span> arr = <span class="hljs-built_in">Float32Array</span>.from( [ <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span> ], mapFcn );
 <span class="hljs-comment">// returns &#x3C;Float32Array>[ 2.0, 4.0 ]</span>
-</code></pre><p>A callback function is provided two arguments:</p><ul><li><code>value</code>: source value</li><li><code>index</code>: source index</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapFcn</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>A callback function is provided two arguments:</p><ul><li><code>value</code>: source value.</li><li><code>index</code>: source index.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mapFcn</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
 }
@@ -110,7 +110,7 @@ v = it.next().value;
 
 <span class="hljs-keyword">var</span> bool = arr.every( predicate );
 <span class="hljs-comment">// returns false</span>
-</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element.</li><li><code>index</code>: array index.</li><li><code>arr</code>: array on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">1.0</span> );
 }
@@ -180,7 +180,7 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> arr2 = arr1.filter( predicate );
 <span class="hljs-comment">// returns &#x3C;Float32Array>[]</span>
-</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element.</li><li><code>index</code>: array index.</li><li><code>arr</code>: array on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">2.0</span> );
 }
@@ -211,7 +211,7 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> v = arr.find( predicate );
 <span class="hljs-comment">// returns undefined</span>
-</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element.</li><li><code>index</code>: array index.</li><li><code>arr</code>: array on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> ( v > <span class="hljs-number">2.0</span> );
 }
@@ -243,7 +243,7 @@ v = arr[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> idx = arr.findIndex( predicate );
 <span class="hljs-comment">// returns -1</span>
-</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element.</li><li><code>index</code>: array index.</li><li><code>arr</code>: array on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">3.0</span> );
 }
@@ -274,7 +274,7 @@ arr.forEach( fcn );
 
 <span class="hljs-built_in">console</span>.log( str );
 <span class="hljs-comment">// => '0:1 1:2 2:3'</span>
-</code></pre><p>The callback is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"></span>) </span>{
+</code></pre><p>The callback is provided three arguments:</p><ul><li><code>value</code>: array element.</li><li><code>index</code>: array index.</li><li><code>arr</code>: array on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
 }
 
@@ -363,7 +363,7 @@ idx = arr.lastIndexOf( <span class="hljs-number">3.0</span> );
 
 <span class="hljs-keyword">var</span> arr2 = arr1.map( fcn );
 <span class="hljs-comment">// returns &#x3C;Float32Array>[ 2.0, 4.0, 6.0 ]</span>
-</code></pre><p>A callback is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>A callback is provided three arguments:</p><ul><li><code>value</code>: array element.</li><li><code>index</code>: array index.</li><li><code>arr</code>: array on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> v * <span class="hljs-number">2.0</span>;
 }
@@ -394,7 +394,7 @@ idx = arr.lastIndexOf( <span class="hljs-number">3.0</span> );
 
 <span class="hljs-keyword">var</span> v = arr.reduce( fcn, <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns 14.0</span>
-</code></pre><p>A callback is provided four arguments:</p><ul><li><code>acc</code>: accumulated result</li><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p><a name="method-reduce-right"></a></p><h4 id="float32arrayprototypereduceright-fcn-initialvalue-">Float32Array.prototype.reduceRight( fcn[, initialValue] )</h4><p>Applies a function against an accumulator and each element in an array and returns the accumulated result, iterating from right to left.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
+</code></pre><p>A callback is provided four arguments:</p><ul><li><code>acc</code>: accumulated result.</li><li><code>value</code>: array element.</li><li><code>index</code>: array index.</li><li><code>arr</code>: array on which the method is invoked.</li></ul><p><a name="method-reduce-right"></a></p><h4 id="float32arrayprototypereduceright-fcn-initialvalue-">Float32Array.prototype.reduceRight( fcn[, initialValue] )</h4><p>Applies a function against an accumulator and each element in an array and returns the accumulated result, iterating from right to left.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fcn</span>(<span class="hljs-params"> acc, v </span>) </span>{
     <span class="hljs-keyword">return</span> acc + ( v*v );
 }
 
@@ -410,7 +410,7 @@ idx = arr.lastIndexOf( <span class="hljs-number">3.0</span> );
 
 <span class="hljs-keyword">var</span> v = arr.reduce( fcn, <span class="hljs-number">0.0</span> );
 <span class="hljs-comment">// returns 14.0</span>
-</code></pre><p>A callback is provided four arguments:</p><ul><li><code>acc</code>: accumulated result</li><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p><a name="method-reverse"></a></p><h4 id="float32arrayprototypereverse">Float32Array.prototype.reverse()</h4><p>Reverses an array <strong>in-place</strong> (thus mutating the array on which the method is invoked).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">3.0</span> ] );
+</code></pre><p>A callback is provided four arguments:</p><ul><li><code>acc</code>: accumulated result.</li><li><code>value</code>: array element.</li><li><code>index</code>: array index.</li><li><code>arr</code>: array on which the method is invoked.</li></ul><p><a name="method-reverse"></a></p><h4 id="float32arrayprototypereverse">Float32Array.prototype.reverse()</h4><p>Reverses an array <strong>in-place</strong> (thus mutating the array on which the method is invoked).</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>( [ <span class="hljs-number">2.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">3.0</span> ] );
 
 <span class="hljs-comment">// Reverse the array:</span>
 arr.reverse();
@@ -507,7 +507,7 @@ v = arr2[ <span class="hljs-number">1</span> ];
 
 <span class="hljs-keyword">var</span> bool = arr.some( predicate );
 <span class="hljs-comment">// returns true</span>
-</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element</li><li><code>index</code>: array index</li><li><code>arr</code>: array on which the method is invoked</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
+</code></pre><p>A <code>predicate</code> function is provided three arguments:</p><ul><li><code>value</code>: array element.</li><li><code>index</code>: array index.</li><li><code>arr</code>: array on which the method is invoked.</li></ul><p>To set the callback execution context, provide a <code>thisArg</code>.</p><pre><code class="hljs language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> v </span>) </span>{
     <span class="hljs-built_in">this</span>.count += <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> ( v >= <span class="hljs-number">2.0</span> );
 }

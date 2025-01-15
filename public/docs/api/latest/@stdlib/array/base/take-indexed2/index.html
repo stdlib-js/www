@@ -1,0 +1,32 @@
+<h1 id="takeindexed2">takeIndexed2</h1><blockquote><p>Take elements from two indexed arrays in a single pass.</p></blockquote><section class="usage"><h2 id="usage">Usage</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> takeIndexed2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/take-indexed2'</span> );
+</code></pre><h4 id="takeindexed2-x-y-indices-">takeIndexed2( x, y, indices )</h4><p>Takes elements from two indexed arrays in a single pass.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ];
+
+<span class="hljs-keyword">var</span> out = takeIndexed2( x, y, [ <span class="hljs-number">1</span>, <span class="hljs-number">3</span> ] );
+<span class="hljs-comment">// returns [ [ 2, 4 ], [ 6, 8 ] ]</span>
+</code></pre><p>If <code>indices</code> is an empty array, the function returns empty arrays.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> x = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+<span class="hljs-keyword">var</span> y = [ <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span> ];
+
+<span class="hljs-keyword">var</span> out = takeIndexed2( x, y, [] );
+<span class="hljs-comment">// returns [ [], [] ]</span>
+</code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>The function does <strong>not</strong> perform bounds checking. If an index is less than zero or greater than the maximum index of <code>x</code> or <code>y</code>, the value of the corresponding element in the respective output array is undefined.</li><li>An <em>indexed</em> array-like object is a data structure in which one retrieves elements via integer indices using bracket <code>[]</code> notation (e.g., <code>Float64Array</code>, <code>Int32Array</code>, <code>Array</code>, etc). This is in contrast to an <em>accessor</em> array-like object in which one retrieves elements using <code>get</code> and <code>set</code> methods (e.g., <code>Complex64Array</code> and <code>Complex128Array</code>).</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> filledBy = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/filled-by'</span> );
+<span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/base/discrete-uniform'</span> );
+<span class="hljs-keyword">var</span> linspace = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/linspace'</span> );
+<span class="hljs-keyword">var</span> takeIndexed2 = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/array/base/take-indexed2'</span> );
+
+<span class="hljs-comment">// Generate linearly spaced arrays:</span>
+<span class="hljs-keyword">var</span> x = linspace( <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">11</span> );
+<span class="hljs-built_in">console</span>.log( x );
+
+<span class="hljs-keyword">var</span> y = linspace( <span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">11</span> );
+<span class="hljs-built_in">console</span>.log( y );
+
+<span class="hljs-comment">// Generate an array of random indices:</span>
+<span class="hljs-keyword">var</span> N = discreteUniform( <span class="hljs-number">5</span>, <span class="hljs-number">15</span> );
+<span class="hljs-keyword">var</span> indices = filledBy( N, discreteUniform.factory( <span class="hljs-number">0</span>, x.length-<span class="hljs-number">1</span> ) );
+<span class="hljs-built_in">console</span>.log( indices );
+
+<span class="hljs-comment">// Take a random sample of elements from `x` and `y`:</span>
+<span class="hljs-keyword">var</span> out = takeIndexed2( x, y, indices );
+<span class="hljs-built_in">console</span>.log( out );
+</code></pre></section><section class="related"></section><section class="links"></section>

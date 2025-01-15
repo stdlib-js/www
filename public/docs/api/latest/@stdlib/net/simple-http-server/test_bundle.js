@@ -4574,7 +4574,7 @@ function httpServer() {
 	nargs = arguments.length;
 	opts = {};
 	if ( nargs === 1 ) {
-		if ( isFunction( arguments[0] )) {
+		if ( isFunction( arguments[0] ) ) {
 			requestListener = arguments[ 0 ];
 		} else {
 			options = arguments[ 0 ];

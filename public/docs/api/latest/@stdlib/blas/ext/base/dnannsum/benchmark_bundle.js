@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -27527,6 +27529,19 @@ var dnannsum = require( './../lib/dnannsum.js' );
 // FUNCTIONS //
 
 /**
+* Returns a random number.
+*
+* @private
+* @returns {number} random number
+*/
+function rand() {
+	if ( bernoulli( 0.7 ) > 0 ) {
+		return discreteUniform( -10, 10 );
+	}
+	return NaN;
+}
+
+/**
 * Creates a benchmark function.
 *
 * @private
@@ -27537,16 +27552,9 @@ function createBenchmark( len ) {
 	var out;
 	var x;
 
-	x = filledarrayBy( len, 'float64', clbk );
+	x = filledarrayBy( len, 'float64', rand );
 	out = new Float64Array( 2 );
 	return benchmark;
-
-	function clbk() {
-		if ( bernoulli( 0.7 ) > 0 ) {
-			return discreteUniform( -10, 10 );
-		}
-		return NaN;
-	}
 
 	function benchmark( b ) {
 		var i;
@@ -27641,6 +27649,19 @@ var opts = {
 // FUNCTIONS //
 
 /**
+* Returns a random number.
+*
+* @private
+* @returns {number} random number
+*/
+function rand() {
+	if ( bernoulli( 0.7 ) > 0 ) {
+		return discreteUniform( -10, 10 );
+	}
+	return NaN;
+}
+
+/**
 * Creates a benchmark function.
 *
 * @private
@@ -27651,16 +27672,9 @@ function createBenchmark( len ) {
 	var out;
 	var x;
 
-	x = filledarrayBy( len, 'float64', clbk );
+	x = filledarrayBy( len, 'float64', rand );
 	out = new Float64Array( 2 );
 	return benchmark;
-
-	function clbk() {
-		if ( bernoulli( 0.7 ) > 0 ) {
-			return discreteUniform( -10, 10 );
-		}
-		return NaN;
-	}
 
 	function benchmark( b ) {
 		var i;
@@ -27746,6 +27760,19 @@ var dnannsum = require( './../lib/ndarray.js' );
 // FUNCTIONS //
 
 /**
+* Returns a random number.
+*
+* @private
+* @returns {number} random number
+*/
+function rand() {
+	if ( bernoulli( 0.7 ) > 0 ) {
+		return discreteUniform( -10, 10 );
+	}
+	return NaN;
+}
+
+/**
 * Creates a benchmark function.
 *
 * @private
@@ -27756,16 +27783,9 @@ function createBenchmark( len ) {
 	var out;
 	var x;
 
-	x = filledarrayBy( len, 'float64', clbk );
+	x = filledarrayBy( len, 'float64', rand );
 	out = new Float64Array( 2 );
 	return benchmark;
-
-	function clbk() {
-		if ( bernoulli( 0.7 ) > 0 ) {
-			return discreteUniform( -10, 10 );
-		}
-		return NaN;
-	}
 
 	function benchmark( b ) {
 		var i;
@@ -27860,6 +27880,19 @@ var opts = {
 // FUNCTIONS //
 
 /**
+* Returns a random number.
+*
+* @private
+* @returns {number} random number
+*/
+function rand() {
+	if ( bernoulli( 0.7 ) > 0 ) {
+		return discreteUniform( -10, 10 );
+	}
+	return NaN;
+}
+
+/**
 * Creates a benchmark function.
 *
 * @private
@@ -27870,16 +27903,9 @@ function createBenchmark( len ) {
 	var out;
 	var x;
 
-	x = filledarrayBy( len, 'float64', clbk );
+	x = filledarrayBy( len, 'float64', rand );
 	out = new Float64Array( 2 );
 	return benchmark;
-
-	function clbk() {
-		if ( bernoulli( 0.7 ) > 0 ) {
-			return discreteUniform( -10, 10 );
-		}
-		return NaN;
-	}
 
 	function benchmark( b ) {
 		var i;
@@ -27951,7 +27977,8 @@ main();
 
 // MODULES //
 
-var dnannsumkbn = require( '@stdlib/blas/ext/base/dnannsumkbn' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -27976,7 +28003,12 @@ var dnannsumkbn = require( '@stdlib/blas/ext/base/dnannsumkbn' );
 * // returns <Float64Array>[ 1.0, 3 ]
 */
 function dnannsum( N, x, strideX, out, strideOut ) {
-	return dnannsumkbn( N, x, strideX, out, strideOut );
+	var ix;
+	var io;
+
+	ix = stride2offset( N, strideX );
+	io = stride2offset( 2, strideOut );
+	return ndarray( N, x, strideX, ix, out, strideOut, io );
 }
 
 
@@ -27984,7 +28016,7 @@ function dnannsum( N, x, strideX, out, strideOut ) {
 
 module.exports = dnannsum;
 
-},{"@stdlib/blas/ext/base/dnannsumkbn":309}],306:[function(require,module,exports){
+},{"./ndarray.js":306,"@stdlib/strided/base/stride2offset":483}],306:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *

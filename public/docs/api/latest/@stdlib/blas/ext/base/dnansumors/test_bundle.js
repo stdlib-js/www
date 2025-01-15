@@ -2128,6 +2128,18 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns the s
 	t.end();
 });
 
+tape( 'if provided a `stride` parameter equal to `0` and the first element is NaN, the function returns `0`', function test( t ) {
+	var x;
+	var v;
+
+	x = new Float64Array( [ NaN, -2.0, -4.0, 5.0, 3.0 ] );
+
+	v = dnansumors( x.length, x, 0 );
+	t.strictEqual( v, 0.0, 'returns expected value' );
+
+	t.end();
+});
+
 tape( 'the function supports view offsets', function test( t ) {
 	var x0;
 	var x1;
@@ -2409,6 +2421,18 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns the s
 
 	v = dnansumors( x.length, x, 0 );
 	t.strictEqual( v, 5.0, 'returns expected value' );
+
+	t.end();
+});
+
+tape( 'if provided a `stride` parameter equal to `0` and the first element is NaN, the function returns `0`', opts, function test( t ) {
+	var x;
+	var v;
+
+	x = new Float64Array( [ NaN, -2.0, -4.0, 5.0, 3.0 ] );
+
+	v = dnansumors( x.length, x, 0 );
+	t.strictEqual( v, 0.0, 'returns expected value' );
 
 	t.end();
 });
@@ -2697,7 +2721,7 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns the s
 	t.end();
 });
 
-tape( 'if provided a `stride` and `offset` parameter equal to `0` and the first element is NaN, the function returns `0`', function test( t ) {
+tape( 'if provided a `stride` parameter equal to `0` and the first element is NaN, the function returns `0`', function test( t ) {
 	var x;
 	var v;
 
@@ -2904,6 +2928,18 @@ tape( 'if provided a `stride` parameter equal to `0`, the function returns the s
 
 	v = dnansumors( x.length, x, 0, 0 );
 	t.strictEqual( v, 5.0, 'returns expected value' );
+
+	t.end();
+});
+
+tape( 'if provided a `stride` parameter equal to `0` and the first element is NaN, the function returns `0`', opts, function test( t ) {
+	var x;
+	var v;
+
+	x = new Float64Array( [ NaN, -2.0, -4.0, 5.0, 3.0 ] );
+
+	v = dnansumors( x.length, x, 0, 0 );
+	t.strictEqual( v, 0.0, 'returns expected value' );
 
 	t.end();
 });

@@ -14605,7 +14605,7 @@ function logpdf( x, sigma ) {
 	}
 	s2 = pow( sigma, 2.0 );
 	s2i = 1.0 / s2;
-	return ln( s2i * x ) - (pow( x, 2.0 ) / ( 2.0 * s2 ));
+	return ln( s2i * x ) - ( pow( x, 2.0 ) / ( 2.0 * s2 ) );
 }
 
 

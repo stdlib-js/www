@@ -15,7 +15,7 @@ whileEachRight( arr, predicate, log );
     3: 3
     2: 2
 */</span>
-</code></pre><p>Both the <code>predicate</code> function and the <code>function</code> to apply are provided three arguments:</p><ul><li><code>value</code>: collection element</li><li><code>index</code>: collection index</li><li><code>collection</code>: input collection</li></ul><p>Basic support for dynamic collections is provided. Note, however, that index incrementation is <strong>not</strong> guaranteed to be monotonically <strong>decreasing</strong>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
+</code></pre><p>Both the <code>predicate</code> function and the <code>function</code> to apply are provided three arguments:</p><ul><li><code>value</code>: collection element.</li><li><code>index</code>: collection index.</li><li><code>collection</code>: input collection.</li></ul><p>Basic support for dynamic collections is provided. Note, however, that index incrementation is <strong>not</strong> guaranteed to be monotonically <strong>decreasing</strong>.</p><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> arr = [ <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span> ];
 <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>;
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">predicate</span>(<span class="hljs-params"> value </span>) </span>{

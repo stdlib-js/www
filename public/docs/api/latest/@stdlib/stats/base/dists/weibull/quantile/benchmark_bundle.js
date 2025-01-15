@@ -37434,8 +37434,8 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 /**
 * Returns a function for evaluating the quantile function for a Weibull distribution.
 *
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {Function} quantile function
 *
 * @example
@@ -37565,11 +37565,11 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 // MAIN //
 
 /**
-* Evaluates the quantile function for a Weibull distribution with scale parameter `k` and shape parameter `lambda` at a probability `p`.
+* Evaluates the quantile function for a Weibull distribution with shape parameter `k` and scale parameter `lambda` at a probability `p`.
 *
 * @param {Probability} p - input value
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {number} evaluated quantile function
 *
 * @example

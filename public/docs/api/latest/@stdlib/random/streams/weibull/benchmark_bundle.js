@@ -35641,8 +35641,8 @@ var factory = require( './factory.js' );
 *
 * @name weibull
 * @type {PRNG}
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {NonNegativeNumber} pseudorandom number
 *
 * @example
@@ -35693,8 +35693,8 @@ var format = require( '@stdlib/string/format' );
 * Validates parameters.
 *
 * @private
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {(Error|null)} error or null
 *
 * @example
@@ -35752,8 +35752,8 @@ var ln = require( '@stdlib/math/base/special/ln' );
 *
 * @private
 * @param {PRNG} rand - PRNG for generating uniformly distributed numbers
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @returns {NonNegativeNumber} pseudorandom number
 */
 function weibull( rand, k, lambda ) {
@@ -36591,8 +36591,8 @@ function destroy( error ) {
 * Stream constructor for generating a stream of pseudorandom numbers drawn from a Weibull distribution.
 *
 * @constructor
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @param {Options} [options] - stream options
 * @param {boolean} [options.objectMode=false] - specifies whether the stream should operate in object mode
 * @param {(string|null)} [options.encoding=null] - specifies how `Buffer` objects should be decoded to strings
@@ -36790,8 +36790,8 @@ var RandomStream = require( './main.js' );
 /**
 * Returns an "objectMode" readable stream for generating pseudorandom numbers drawn from a Weibull distribution.
 *
-* @param {PositiveNumber} k - scale parameter
-* @param {PositiveNumber} lambda - shape parameter
+* @param {PositiveNumber} k - shape parameter
+* @param {PositiveNumber} lambda - scale parameter
 * @param {Options} [options] - stream options
 * @param {(string|null)} [options.encoding=null] - specifies how `Buffer` objects should be decoded to `strings`
 * @param {NonNegativeNumber} [options.highWaterMark] - specifies the maximum number of objects to store in an internal buffer before ceasing to generate additional pseudorandom numbers

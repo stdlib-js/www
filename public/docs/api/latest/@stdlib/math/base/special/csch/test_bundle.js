@@ -23389,18 +23389,18 @@ module.exports = copysign;
 *
 * @example
 * var csch = require( '@stdlib/math/base/special/csch' );
- *
- * var v = csch( 0.0 );
- * // returns Infinity
- *
- * v = csch( 2.0 );
- * // returns ~0.2757
- *
- * v = csch( -2.0 );
- * // returns ~-0.2757
- *
- * v = csch( NaN );
- * // returns NaN
+*
+* var v = csch( 0.0 );
+* // returns Infinity
+*
+* v = csch( 2.0 );
+* // returns ~0.2757
+*
+* v = csch( -2.0 );
+* // returns ~-0.2757
+*
+* v = csch( NaN );
+* // returns NaN
 */
 
 // MODULES //
@@ -23661,31 +23661,31 @@ tape( 'the function computes the hyperbolic cosecant (tiny positive)', function 
 
 tape( 'the function returns `NaN` if provided a `NaN`', function test( t ) {
 	var v = csch( NaN );
-	t.equal( isnan( v ), true, 'returns NaN' );
+	t.equal( isnan( v ), true, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `+Infinity` if provided `+0.0`', function test( t ) {
 	var v = csch( +0.0 );
-	t.equal( v, PINF, 'returns +Infinity' );
+	t.equal( v, PINF, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `-Infinity` if provided `-0.0`', function test( t ) {
 	var v = csch( -0.0 );
-	t.equal( v, NINF, 'returns -Infinity' );
+	t.equal( v, NINF, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `+0.0` if provided `+Infinity`', function test( t ) {
 	var v = csch( PINF );
-	t.equal( isPositiveZero(v), true, 'returns +0.0' );
+	t.equal( isPositiveZero(v), true, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `-0.0` if provided `-Infinity`', function test( t ) {
 	var v = csch( NINF );
-	t.equal( isNegativeZero(v), true, 'returns -0.0' );
+	t.equal( isNegativeZero(v), true, 'returns expected value' );
 	t.end();
 });
 
@@ -23697,7 +23697,7 @@ tape( 'the function returns `+0.0` if provided a value greater than `~710.476`',
 	for ( i = 0; i < 500; i++ ) {
 		v = ( randu()*1e6 ) + 710.476;
 		y = csch( v );
-		t.equal( isPositiveZero( y ), true, 'returns +0.0' );
+		t.equal( isPositiveZero( y ), true, 'returns expected value' );
 	}
 	t.end();
 });
@@ -23710,7 +23710,7 @@ tape( 'the function returns `-0.0` if provided a value less than `~-709.0896`', 
 	for ( i = 0; i < 500; i++ ) {
 		v = ( -randu()*1e6 ) - 709.0896;
 		y = csch( v );
-		t.equal( isNegativeZero( y ), true, 'returns -0.0' );
+		t.equal( isNegativeZero( y ), true, 'returns expected value' );
 	}
 	t.end();
 });
@@ -23900,31 +23900,31 @@ tape( 'the function computes the hyperbolic cosecant (tiny positive)', opts, fun
 
 tape( 'the function returns `NaN` if provided a `NaN`', opts, function test( t ) {
 	var v = csch( NaN );
-	t.equal( isnan( v ), true, 'returns NaN' );
+	t.equal( isnan( v ), true, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `+Infinity` if provided `+0.0`', opts, function test( t ) {
 	var v = csch( +0.0 );
-	t.equal( v, PINF, 'returns +Infinity' );
+	t.equal( v, PINF, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `-Infinity` if provided `-0.0`', opts, function test( t ) {
 	var v = csch( -0.0 );
-	t.equal( v, NINF, 'returns -Infinity' );
+	t.equal( v, NINF, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `+0.0` if provided `+Infinity`', opts, function test( t ) {
 	var v = csch( PINF );
-	t.equal( isPositiveZero(v), true, 'returns +0.0' );
+	t.equal( isPositiveZero(v), true, 'returns expected value' );
 	t.end();
 });
 
 tape( 'the function returns `-0.0` if provided `-Infinity`', opts, function test( t ) {
 	var v = csch( NINF );
-	t.equal( isNegativeZero(v), true, 'returns -0.0' );
+	t.equal( isNegativeZero(v), true, 'returns expected value' );
 	t.end();
 });
 
@@ -23936,7 +23936,7 @@ tape( 'the function returns `+0.0` if provided a value greater than `~710.476`',
 	for ( i = 0; i < 500; i++ ) {
 		v = ( randu() * 1e6 ) + 710.476;
 		y = csch( v );
-		t.equal( isPositiveZero( y ), true, 'returns +0.0' );
+		t.equal( isPositiveZero( y ), true, 'returns expected value' );
 	}
 	t.end();
 });
@@ -23949,7 +23949,7 @@ tape( 'the function returns `-0.0` if provided a value less than `~-709.0896`', 
 	for ( i = 0; i < 500; i++ ) {
 		v = ( -randu() * 1e6 ) - 709.0896;
 		y = csch( v );
-		t.equal( isNegativeZero( y ), true, 'returns -0.0' );
+		t.equal( isNegativeZero( y ), true, 'returns expected value' );
 	}
 	t.end();
 });

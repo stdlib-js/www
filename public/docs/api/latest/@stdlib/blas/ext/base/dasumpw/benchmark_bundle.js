@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -26752,9 +26754,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dasumpw( N, x, 1 );
+* var v = dasumpw( x.length, x, 1 );
 * // returns 5.0
 */
 function dasumpw( N, x, strideX ) {
@@ -26844,10 +26845,10 @@ function dasumpw( N, x, strideX, offsetX ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || strideX === 0 ) {
-		return abs( x[ offsetX ] );
-	}
 	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * abs( x[ ix ] );
+	}
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
@@ -26882,7 +26883,7 @@ function dasumpw( N, x, strideX, offsetX ) {
 			ix += 8 * strideX;
 		}
 		// Pairwise sum the accumulators:
-		s = ((s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7));
+		s = ( (s0+s1) + (s2+s3) ) + ( (s4+s5) + (s6+s7) );
 
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {

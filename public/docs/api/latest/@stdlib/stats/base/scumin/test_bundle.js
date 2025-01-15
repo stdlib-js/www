@@ -2661,109 +2661,6 @@ module.exports = isNegativeZerof;
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-/**
-* Round a double-precision floating-point number toward negative infinity.
-*
-* @module @stdlib/math/base/special/floor
-*
-* @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* v = floor( 9.99999 );
-* // returns 9.0
-*
-* v = floor( 0.0 );
-* // returns 0.0
-*
-* v = floor( NaN );
-* // returns NaN
-*/
-
-// MODULES //
-
-var main = require( './main.js' );
-
-
-// EXPORTS //
-
-module.exports = main;
-
-},{"./main.js":52}],52:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
-* Copyright (c) 2018 The Stdlib Authors.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-'use strict';
-
-// TODO: implementation (?)
-
-/**
-* Rounds a double-precision floating-point number toward negative infinity.
-*
-* @param {number} x - input value
-* @returns {number} rounded value
-*
-* @example
-* var v = floor( -4.2 );
-* // returns -5.0
-*
-* @example
-* var v = floor( 9.99999 );
-* // returns 9.0
-*
-* @example
-* var v = floor( 0.0 );
-* // returns 0.0
-*
-* @example
-* var v = floor( NaN );
-* // returns NaN
-*/
-var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
-
-
-// EXPORTS //
-
-module.exports = floor;
-
-},{}],53:[function(require,module,exports){
-/**
-* @license Apache-2.0
-*
 * Copyright (c) 2022 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -2816,7 +2713,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":54}],54:[function(require,module,exports){
+},{"./main.js":52}],52:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2876,7 +2773,7 @@ var Obj = Object; // eslint-disable-line stdlib/require-globals
 
 module.exports = Obj;
 
-},{}],55:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2939,7 +2836,7 @@ setReadOnly( main, 'REGEXP', REGEXP );
 
 module.exports = main;
 
-},{"./main.js":56,"./regexp.js":57,"@stdlib/utils/define-nonenumerable-read-only-property":83}],56:[function(require,module,exports){
+},{"./main.js":54,"./regexp.js":55,"@stdlib/utils/define-nonenumerable-read-only-property":83}],54:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -2995,7 +2892,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],57:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3057,7 +2954,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":56}],58:[function(require,module,exports){
+},{"./main.js":54}],56:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3094,7 +2991,7 @@ setReadOnly( scumin, 'ndarray', ndarray );
 
 module.exports = scumin;
 
-},{"./ndarray.js":59,"./scumin.js":60,"@stdlib/utils/define-nonenumerable-read-only-property":83}],59:[function(require,module,exports){
+},{"./ndarray.js":57,"./scumin.js":58,"@stdlib/utils/define-nonenumerable-read-only-property":83}],57:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3137,13 +3034,11 @@ var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
-* var floor = require( '@stdlib/math/base/special/floor' );
 *
 * var x = new Float32Array( [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ] );
 * var y = new Float32Array( x.length );
-* var N = floor( x.length / 2 );
 *
-* var v = scumin( N, x, 2, 1, y, 1, 0 );
+* var v = scumin( 4, x, 2, 1, y, 1, 0 );
 * // returns <Float32Array>[ 1.0, -2.0, -2.0, -2.0, 0.0, 0.0, 0.0, 0.0 ]
 */
 function scumin( N, x, strideX, offsetX, y, strideY, offsetY ) {
@@ -3193,7 +3088,7 @@ function scumin( N, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = scumin;
 
-},{"@stdlib/math/base/assert/is-nanf":47,"@stdlib/math/base/assert/is-negative-zerof":49}],60:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":47,"@stdlib/math/base/assert/is-negative-zerof":49}],58:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -3216,8 +3111,8 @@ module.exports = scumin;
 
 // MODULES //
 
-var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
-var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -3237,58 +3132,14 @@ var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
 * var y = new Float32Array( x.length );
-* var N = x.length;
 *
-* var v = scumin( N, x, 1, y, 1 );
+* var v = scumin( x.length, x, 1, y, 1 );
 * // returns <Float32Array>[ 1.0, -2.0, -2.0 ]
 */
 function scumin( N, x, strideX, y, strideY ) {
-	var min;
-	var ix;
-	var iy;
-	var v;
-	var i;
-
-	if ( N <= 0 ) {
-		return y;
-	}
-	if ( strideX < 0 ) {
-		ix = (1-N) * strideX;
-	} else {
-		ix = 0;
-	}
-	if ( strideY < 0 ) {
-		iy = (1-N) * strideY;
-	} else {
-		iy = 0;
-	}
-	min = x[ ix ];
-	y[ iy ] = min;
-
-	iy += strideY;
-	i = 1;
-	if ( isnanf( min ) === false ) {
-		for ( i; i < N; i++ ) {
-			ix += strideX;
-			v = x[ ix ];
-			if ( isnanf( v ) ) {
-				min = v;
-				break;
-			}
-			if ( v < min || ( v === min && isNegativeZerof( v ) ) ) {
-				min = v;
-			}
-			y[ iy ] = min;
-			iy += strideY;
-		}
-	}
-	if ( isnanf( min ) ) {
-		for ( i; i < N; i++ ) {
-			y[ iy ] = min;
-			iy += strideY;
-		}
-	}
-	return y;
+	var ox = stride2offset( N, strideX );
+	var oy = stride2offset( N, strideY );
+	return ndarray( N, x, strideX, ox, y, strideY, oy );
 }
 
 
@@ -3296,7 +3147,7 @@ function scumin( N, x, strideX, y, strideY ) {
 
 module.exports = scumin;
 
-},{"@stdlib/math/base/assert/is-nanf":47,"@stdlib/math/base/assert/is-negative-zerof":49}],61:[function(require,module,exports){
+},{"./ndarray.js":57,"@stdlib/strided/base/stride2offset":64}],59:[function(require,module,exports){
 (function (__filename){(function (){
 /* proxyquireify injected requires to make browserify include dependencies in the bundle */ /* istanbul ignore next */; (function __makeBrowserifyIncludeModule__() { require('./../lib');});/**
 * @license Apache-2.0
@@ -3382,7 +3233,7 @@ tape( 'if a native implementation is not available, the main export is a JavaScr
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/scumin/test/test.js")
-},{"./../lib":58,"./../lib/scumin.js":60,"@stdlib/assert/is-browser":27,"proxyquireify":233,"tape":243}],62:[function(require,module,exports){
+},{"./../lib":56,"./../lib/scumin.js":58,"@stdlib/assert/is-browser":27,"proxyquireify":233,"tape":243}],60:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -3407,7 +3258,6 @@ tape( 'if a native implementation is not available, the main export is a JavaScr
 // MODULES //
 
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
 var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -3536,7 +3386,6 @@ tape( 'the function supports an `x` stride', function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -3552,9 +3401,8 @@ tape( 'the function supports an `x` stride', function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, 2, 0, y, 1, 0 );
+	scumin( 3, x, 2, 0, y, 1, 0 );
 
 	expected = new Float32Array( [ 1.0, 1.0, -5.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -3566,7 +3414,6 @@ tape( 'the function supports a `y` stride', function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -3582,9 +3429,8 @@ tape( 'the function supports a `y` stride', function test( t ) {
 		0.0,
 		0.0  // 2
 	]);
-	N = 3;
 
-	scumin( N, x, 1, 0, y, 2, 0 );
+	scumin( 3, x, 1, 0, y, 2, 0 );
 
 	expected = new Float32Array( [ 1.0, 0.0, -2.0, 0.0, -2.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -3596,7 +3442,6 @@ tape( 'the function supports negative strides', function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 2
@@ -3612,9 +3457,8 @@ tape( 'the function supports negative strides', function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, -2, x.length-1, y, -1, 2 );
+	scumin( 3, x, -2, x.length-1, y, -1, 2 );
 
 	expected = new Float32Array( [ -5.0, -5.0, -5.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -3624,7 +3468,6 @@ tape( 'the function supports negative strides', function test( t ) {
 
 tape( 'the function supports an `x` offset', function test( t ) {
 	var expected;
-	var N;
 	var x;
 	var y;
 
@@ -3648,9 +3491,8 @@ tape( 'the function supports an `x` offset', function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = floor( x.length / 2 );
 
-	scumin( N, x, 2, 1, y, 1, 0 );
+	scumin( 4, x, 2, 1, y, 1, 0 );
 
 	expected = new Float32Array( [ 1.0, -2.0, -2.0, -2.0, 0.0, 0.0, 0.0, 0.0 ] ); // eslint-disable-line max-len
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -3660,7 +3502,6 @@ tape( 'the function supports an `x` offset', function test( t ) {
 
 tape( 'the function supports a `y` offset', function test( t ) {
 	var expected;
-	var N;
 	var x;
 	var y;
 
@@ -3684,9 +3525,8 @@ tape( 'the function supports a `y` offset', function test( t ) {
 		0.0,
 		0.0  // 3
 	]);
-	N = floor( x.length / 2 );
 
-	scumin( N, x, 1, 0, y, 2, 1 );
+	scumin( 4, x, 1, 0, y, 2, 1 );
 
 	expected = new Float32Array( [ 0.0, 2.0, 0.0, 1.0, 0.0, 1.0, 0.0, -2.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -3698,7 +3538,6 @@ tape( 'the function supports complex access patterns', function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -3716,9 +3555,8 @@ tape( 'the function supports complex access patterns', function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, 2, 0, y, -1, 2 );
+	scumin( 3, x, 2, 0, y, -1, 2 );
 
 	expected = new Float32Array( [ -3.0, -3.0, 1.0, 0.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -3727,7 +3565,7 @@ tape( 'the function supports complex access patterns', function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/scumin/test/test.ndarray.js")
-},{"./../lib/ndarray.js":59,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":47,"@stdlib/math/base/assert/is-negative-zerof":49,"@stdlib/math/base/special/floor":51,"tape":243}],63:[function(require,module,exports){
+},{"./../lib/ndarray.js":57,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":47,"@stdlib/math/base/assert/is-negative-zerof":49,"tape":243}],61:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -3753,7 +3591,6 @@ tape( 'the function supports complex access patterns', function test( t ) {
 
 var resolve = require( 'path' ).resolve;
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
 var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -3890,7 +3727,6 @@ tape( 'the function supports an `x` stride', opts, function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -3906,9 +3742,8 @@ tape( 'the function supports an `x` stride', opts, function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, 2, 0, y, 1, 0 );
+	scumin( 3, x, 2, 0, y, 1, 0 );
 
 	expected = new Float32Array( [ 1.0, 1.0, -5.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -3920,7 +3755,6 @@ tape( 'the function supports a `y` stride', opts, function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -3936,9 +3770,8 @@ tape( 'the function supports a `y` stride', opts, function test( t ) {
 		0.0,
 		0.0  // 2
 	]);
-	N = 3;
 
-	scumin( N, x, 1, 0, y, 2, 0 );
+	scumin( 3, x, 1, 0, y, 2, 0 );
 
 	expected = new Float32Array( [ 1.0, 0.0, -2.0, 0.0, -2.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -3950,7 +3783,6 @@ tape( 'the function supports negative strides', opts, function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 2
@@ -3966,9 +3798,8 @@ tape( 'the function supports negative strides', opts, function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, -2, x.length-1, y, -1, 2 );
+	scumin( 3, x, -2, x.length-1, y, -1, 2 );
 
 	expected = new Float32Array( [ -5.0, -5.0, -5.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -3978,7 +3809,6 @@ tape( 'the function supports negative strides', opts, function test( t ) {
 
 tape( 'the function supports an `x` offset', opts, function test( t ) {
 	var expected;
-	var N;
 	var x;
 	var y;
 
@@ -4002,9 +3832,8 @@ tape( 'the function supports an `x` offset', opts, function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = floor( x.length / 2 );
 
-	scumin( N, x, 2, 1, y, 1, 0 );
+	scumin( 4, x, 2, 1, y, 1, 0 );
 
 	expected = new Float32Array( [ 1.0, -2.0, -2.0, -2.0, 0.0, 0.0, 0.0, 0.0 ] ); // eslint-disable-line max-len
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -4014,7 +3843,6 @@ tape( 'the function supports an `x` offset', opts, function test( t ) {
 
 tape( 'the function supports a `y` offset', opts, function test( t ) {
 	var expected;
-	var N;
 	var x;
 	var y;
 
@@ -4038,9 +3866,8 @@ tape( 'the function supports a `y` offset', opts, function test( t ) {
 		0.0,
 		0.0  // 3
 	]);
-	N = floor( x.length / 2 );
 
-	scumin( N, x, 1, 0, y, 2, 1 );
+	scumin( 4, x, 1, 0, y, 2, 1 );
 
 	expected = new Float32Array( [ 0.0, 2.0, 0.0, 1.0, 0.0, 1.0, 0.0, -2.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -4052,7 +3879,6 @@ tape( 'the function supports complex access patterns', opts, function test( t ) 
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -4070,9 +3896,8 @@ tape( 'the function supports complex access patterns', opts, function test( t ) 
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, 2, 0, y, -1, 2 );
+	scumin( 3, x, 2, 0, y, -1, 2 );
 
 	expected = new Float32Array( [ -3.0, -3.0, 1.0, 0.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -4081,7 +3906,7 @@ tape( 'the function supports complex access patterns', opts, function test( t ) 
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/scumin/test/test.ndarray.native.js","/lib/node_modules/@stdlib/stats/base/scumin/test")
-},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":47,"@stdlib/math/base/assert/is-negative-zerof":49,"@stdlib/math/base/special/floor":51,"@stdlib/utils/try-require":106,"path":120,"tape":243}],64:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":47,"@stdlib/math/base/assert/is-negative-zerof":49,"@stdlib/utils/try-require":106,"path":120,"tape":243}],62:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -4106,7 +3931,6 @@ tape( 'the function supports complex access patterns', opts, function test( t ) 
 // MODULES //
 
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
 var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -4235,7 +4059,6 @@ tape( 'the function supports an `x` stride', function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -4251,9 +4074,8 @@ tape( 'the function supports an `x` stride', function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, 2, y, 1 );
+	scumin( 3, x, 2, y, 1 );
 
 	expected = new Float32Array( [ 1.0, 1.0, -5.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -4265,7 +4087,6 @@ tape( 'the function supports a `y` stride', function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -4281,9 +4102,8 @@ tape( 'the function supports a `y` stride', function test( t ) {
 		0.0,
 		0.0  // 2
 	]);
-	N = 3;
 
-	scumin( N, x, 1, y, 2 );
+	scumin( 3, x, 1, y, 2 );
 
 	expected = new Float32Array( [ 1.0, 0.0, -2.0, 0.0, -2.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -4295,7 +4115,6 @@ tape( 'the function supports negative strides', function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 2
@@ -4311,9 +4130,8 @@ tape( 'the function supports negative strides', function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, -2, y, -1 );
+	scumin( 3, x, -2, y, -1 );
 
 	expected = new Float32Array( [ -5.0, -5.0, -5.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -4325,7 +4143,6 @@ tape( 'the function supports complex access patterns', function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -4343,9 +4160,8 @@ tape( 'the function supports complex access patterns', function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, 2, y, -1 );
+	scumin( 3, x, 2, y, -1 );
 
 	expected = new Float32Array( [ -3.0, -3.0, 1.0, 0.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -4359,7 +4175,6 @@ tape( 'the function supports view offsets', function test( t ) {
 	var y0;
 	var x1;
 	var y1;
-	var N;
 
 	// Initial arrays...
 	x0 = new Float32Array([
@@ -4383,9 +4198,7 @@ tape( 'the function supports view offsets', function test( t ) {
 	x1 = new Float32Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 ); // begin at 2nd element
 	y1 = new Float32Array( y0.buffer, y0.BYTES_PER_ELEMENT*3 ); // begin at the 4th element
 
-	N = floor( x0.length / 2 );
-
-	scumin( N, x1, -2, y1, 1 );
+	scumin( 3, x1, -2, y1, 1 );
 	expected = new Float32Array( [ 0.0, 0.0, 0.0, 6.0, 4.0, 2.0 ] );
 
 	t.deepEqual( y0, expected, 'returns expected value' );
@@ -4393,7 +4206,7 @@ tape( 'the function supports view offsets', function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/scumin/test/test.scumin.js")
-},{"./../lib/scumin.js":60,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":47,"@stdlib/math/base/assert/is-negative-zerof":49,"@stdlib/math/base/special/floor":51,"tape":243}],65:[function(require,module,exports){
+},{"./../lib/scumin.js":58,"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":47,"@stdlib/math/base/assert/is-negative-zerof":49,"tape":243}],63:[function(require,module,exports){
 (function (__filename,__dirname){(function (){
 /**
 * @license Apache-2.0
@@ -4419,7 +4232,6 @@ tape( 'the function supports view offsets', function test( t ) {
 
 var resolve = require( 'path' ).resolve;
 var tape = require( 'tape' );
-var floor = require( '@stdlib/math/base/special/floor' );
 var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
 var isNegativeZerof = require( '@stdlib/math/base/assert/is-negative-zerof' );
 var Float32Array = require( '@stdlib/array/float32' );
@@ -4556,7 +4368,6 @@ tape( 'the function supports an `x` stride', opts, function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -4572,9 +4383,8 @@ tape( 'the function supports an `x` stride', opts, function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, 2, y, 1 );
+	scumin( 3, x, 2, y, 1 );
 
 	expected = new Float32Array( [ 1.0, 1.0, -5.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -4586,7 +4396,6 @@ tape( 'the function supports a `y` stride', opts, function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -4602,9 +4411,8 @@ tape( 'the function supports a `y` stride', opts, function test( t ) {
 		0.0,
 		0.0  // 2
 	]);
-	N = 3;
 
-	scumin( N, x, 1, y, 2 );
+	scumin( 3, x, 1, y, 2 );
 
 	expected = new Float32Array( [ 1.0, 0.0, -2.0, 0.0, -2.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -4616,7 +4424,6 @@ tape( 'the function supports negative strides', opts, function test( t ) {
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 2
@@ -4632,9 +4439,8 @@ tape( 'the function supports negative strides', opts, function test( t ) {
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, -2, y, -1 );
+	scumin( 3, x, -2, y, -1 );
 
 	expected = new Float32Array( [ -5.0, -5.0, -5.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -4646,7 +4452,6 @@ tape( 'the function supports complex access patterns', opts, function test( t ) 
 	var expected;
 	var x;
 	var y;
-	var N;
 
 	x = new Float32Array([
 		1.0,  // 0
@@ -4664,9 +4469,8 @@ tape( 'the function supports complex access patterns', opts, function test( t ) 
 		0.0,
 		0.0
 	]);
-	N = 3;
 
-	scumin( N, x, 2, y, -1 );
+	scumin( 3, x, 2, y, -1 );
 
 	expected = new Float32Array( [ -3.0, -3.0, 1.0, 0.0, 0.0, 0.0 ] );
 	t.deepEqual( y, expected, 'returns expected value' );
@@ -4680,7 +4484,6 @@ tape( 'the function supports view offsets', opts, function test( t ) {
 	var y0;
 	var x1;
 	var y1;
-	var N;
 
 	// Initial arrays...
 	x0 = new Float32Array([
@@ -4704,9 +4507,7 @@ tape( 'the function supports view offsets', opts, function test( t ) {
 	x1 = new Float32Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 ); // begin at 2nd element
 	y1 = new Float32Array( y0.buffer, y0.BYTES_PER_ELEMENT*3 ); // begin at the 4th element
 
-	N = floor( x0.length / 2 );
-
-	scumin( N, x1, -2, y1, 1 );
+	scumin( 3, x1, -2, y1, 1 );
 	expected = new Float32Array( [ 0.0, 0.0, 0.0, 6.0, 4.0, 2.0 ] );
 
 	t.deepEqual( y0, expected, 'returns expected value' );
@@ -4714,7 +4515,95 @@ tape( 'the function supports view offsets', opts, function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/stats/base/scumin/test/test.scumin.native.js","/lib/node_modules/@stdlib/stats/base/scumin/test")
-},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":47,"@stdlib/math/base/assert/is-negative-zerof":49,"@stdlib/math/base/special/floor":51,"@stdlib/utils/try-require":106,"path":120,"tape":243}],66:[function(require,module,exports){
+},{"@stdlib/array/float32":1,"@stdlib/math/base/assert/is-nanf":47,"@stdlib/math/base/assert/is-negative-zerof":49,"@stdlib/utils/try-require":106,"path":120,"tape":243}],64:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+/**
+* Determine the index offset which specifies the location of the first indexed value in a strided array.
+*
+* @module @stdlib/strided/base/stride2offset
+*
+* @example
+* var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+*
+* var offset = stride2offset( 10, -10 );
+* // returns 90
+*/
+
+// MODULES //
+
+var stride2offset = require( './main.js' );
+
+
+// EXPORTS //
+
+module.exports = stride2offset;
+
+},{"./main.js":65}],65:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2024 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MAIN //
+
+/**
+* Returns the index offset which specifies the location of the first indexed value in a strided array.
+*
+* @param {NonNegativeInteger} N - number of indexed elements
+* @param {integer} stride - index increment
+* @returns {NonNegativeInteger} offset - offset
+*
+* @example
+* var offset = stride2offset( 10, -10 );
+* // returns 90
+*/
+function stride2offset( N, stride ) {
+	if ( stride > 0 ) {
+		return 0;
+	}
+	return ( 1 - N ) * stride;
+}
+
+
+// EXPORTS //
+
+module.exports = stride2offset;
+
+},{}],66:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -5916,7 +5805,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":28,"@stdlib/regexp/function-name":55,"@stdlib/utils/native-class":101}],83:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":28,"@stdlib/regexp/function-name":53,"@stdlib/utils/native-class":101}],83:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -6496,7 +6385,7 @@ function getPrototypeOf( value ) {
 
 module.exports = getPrototypeOf;
 
-},{"./detect.js":90,"@stdlib/object/ctor":53}],93:[function(require,module,exports){
+},{"./detect.js":90,"@stdlib/object/ctor":51}],93:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18628,4 +18517,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[61,62,63,64,65]);
+},{}]},{},[59,60,61,62,63]);

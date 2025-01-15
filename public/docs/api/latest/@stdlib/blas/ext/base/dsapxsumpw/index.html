@@ -33,7 +33,7 @@
 </code></pre></section><section class="notes"><h2 id="notes">Notes</h2><ul><li>If <code>N &#x3C;= 0</code>, both functions return <code>0.0</code>.</li><li>Accumulated intermediate values are stored as double-precision floating-point numbers.</li></ul></section><section class="examples"><h2 id="examples">Examples</h2><pre><code class="hljs language-javascript"><span class="hljs-keyword">var</span> discreteUniform = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/random/array/discrete-uniform'</span> );
 <span class="hljs-keyword">var</span> dsapxsumpw = <span class="hljs-built_in">require</span>( <span class="hljs-string">'@stdlib/blas/ext/base/dsapxsumpw'</span> );
 
-<span class="hljs-keyword">var</span> x = discreteUniform( <span class="hljs-number">10.0</span>, -<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, {
+<span class="hljs-keyword">var</span> x = discreteUniform( <span class="hljs-number">10</span>, -<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, {
     <span class="hljs-string">'dtype'</span>: <span class="hljs-string">'float32'</span>
 });
 <span class="hljs-built_in">console</span>.log( x );

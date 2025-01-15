@@ -1693,7 +1693,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/boolean/ctor":530}],18:[function(require,module,exports){
+},{"@stdlib/boolean/ctor":531}],18:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1748,7 +1748,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/boolean/ctor":530}],19:[function(require,module,exports){
+},{"@stdlib/boolean/ctor":531}],19:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -1808,7 +1808,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/boolean/ctor":530}],20:[function(require,module,exports){
+},{"@stdlib/boolean/ctor":531}],20:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4398,7 +4398,7 @@ setReadOnly( BooleanArray.prototype, 'with', function copyWith( index, value ) {
 
 module.exports = BooleanArray;
 
-},{"./from_array.js":17,"./from_iterator.js":18,"./from_iterator_map.js":19,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":13,"@stdlib/array/uint8":58,"@stdlib/assert/has-iterator-symbol-support":79,"@stdlib/assert/is-arraybuffer":107,"@stdlib/assert/is-boolean":109,"@stdlib/assert/is-collection":117,"@stdlib/assert/is-function":129,"@stdlib/assert/is-integer":137,"@stdlib/assert/is-nonnegative-integer":146,"@stdlib/assert/is-object":158,"@stdlib/assert/is-string":161,"@stdlib/assert/is-string-array":160,"@stdlib/boolean/ctor":530,"@stdlib/math/base/special/floor":581,"@stdlib/string/format":607,"@stdlib/symbol/iterator":612,"@stdlib/utils/define-nonenumerable-read-only-accessor":616,"@stdlib/utils/define-nonenumerable-read-only-property":618}],22:[function(require,module,exports){
+},{"./from_array.js":17,"./from_iterator.js":18,"./from_iterator_map.js":19,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/getter":13,"@stdlib/array/uint8":58,"@stdlib/assert/has-iterator-symbol-support":79,"@stdlib/assert/is-arraybuffer":107,"@stdlib/assert/is-boolean":109,"@stdlib/assert/is-collection":117,"@stdlib/assert/is-function":129,"@stdlib/assert/is-integer":137,"@stdlib/assert/is-nonnegative-integer":146,"@stdlib/assert/is-object":158,"@stdlib/assert/is-string":161,"@stdlib/assert/is-string-array":160,"@stdlib/boolean/ctor":531,"@stdlib/math/base/special/floor":582,"@stdlib/string/format":608,"@stdlib/symbol/iterator":613,"@stdlib/utils/define-nonenumerable-read-only-accessor":617,"@stdlib/utils/define-nonenumerable-read-only-property":619}],22:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4461,7 +4461,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float64/imag":544,"@stdlib/complex/float64/real":546}],23:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float64/imag":545,"@stdlib/complex/float64/real":547}],23:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4528,7 +4528,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float64/imag":544,"@stdlib/complex/float64/real":546,"@stdlib/string/format":607}],24:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float64/imag":545,"@stdlib/complex/float64/real":547,"@stdlib/string/format":608}],24:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -4600,7 +4600,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float64/imag":544,"@stdlib/complex/float64/real":546,"@stdlib/string/format":607}],25:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float64/imag":545,"@stdlib/complex/float64/real":547,"@stdlib/string/format":608}],25:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7735,7 +7735,7 @@ setReadOnly( Complex128Array.prototype, 'with', function copyWith( index, value 
 
 module.exports = Complex128Array;
 
-},{"./from_array.js":22,"./from_iterator.js":23,"./from_iterator_map.js":24,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float64":40,"@stdlib/assert/has-iterator-symbol-support":79,"@stdlib/assert/is-array":105,"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-arraybuffer":107,"@stdlib/assert/is-collection":117,"@stdlib/assert/is-complex-like":119,"@stdlib/assert/is-function":129,"@stdlib/assert/is-nonnegative-integer":146,"@stdlib/assert/is-object":158,"@stdlib/assert/is-string":161,"@stdlib/assert/is-string-array":160,"@stdlib/complex/float64/ctor":540,"@stdlib/complex/float64/imag":544,"@stdlib/complex/float64/real":546,"@stdlib/math/base/assert/is-even":563,"@stdlib/math/base/assert/is-integer":565,"@stdlib/math/base/special/floor":581,"@stdlib/strided/base/reinterpret-complex128":591,"@stdlib/strided/base/reinterpret-complex64":593,"@stdlib/string/format":607,"@stdlib/symbol/iterator":612,"@stdlib/utils/define-nonenumerable-read-only-accessor":616,"@stdlib/utils/define-nonenumerable-read-only-property":618}],27:[function(require,module,exports){
+},{"./from_array.js":22,"./from_iterator.js":23,"./from_iterator_map.js":24,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float64":40,"@stdlib/assert/has-iterator-symbol-support":79,"@stdlib/assert/is-array":105,"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-arraybuffer":107,"@stdlib/assert/is-collection":117,"@stdlib/assert/is-complex-like":119,"@stdlib/assert/is-function":129,"@stdlib/assert/is-nonnegative-integer":146,"@stdlib/assert/is-object":158,"@stdlib/assert/is-string":161,"@stdlib/assert/is-string-array":160,"@stdlib/complex/float64/ctor":541,"@stdlib/complex/float64/imag":545,"@stdlib/complex/float64/real":547,"@stdlib/math/base/assert/is-even":564,"@stdlib/math/base/assert/is-integer":566,"@stdlib/math/base/special/floor":582,"@stdlib/strided/base/reinterpret-complex128":592,"@stdlib/strided/base/reinterpret-complex64":594,"@stdlib/string/format":608,"@stdlib/symbol/iterator":613,"@stdlib/utils/define-nonenumerable-read-only-accessor":617,"@stdlib/utils/define-nonenumerable-read-only-property":619}],27:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7798,7 +7798,7 @@ function fromArray( buf, arr ) {
 
 module.exports = fromArray;
 
-},{"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float32/imag":536,"@stdlib/complex/float32/real":538}],28:[function(require,module,exports){
+},{"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float32/imag":537,"@stdlib/complex/float32/real":539}],28:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7865,7 +7865,7 @@ function fromIterator( it ) {
 
 module.exports = fromIterator;
 
-},{"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float32/imag":536,"@stdlib/complex/float32/real":538,"@stdlib/string/format":607}],29:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float32/imag":537,"@stdlib/complex/float32/real":539,"@stdlib/string/format":608}],29:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -7937,7 +7937,7 @@ function fromIteratorMap( it, clbk, thisArg ) {
 
 module.exports = fromIteratorMap;
 
-},{"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float32/imag":536,"@stdlib/complex/float32/real":538,"@stdlib/string/format":607}],30:[function(require,module,exports){
+},{"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-complex-like":119,"@stdlib/complex/float32/imag":537,"@stdlib/complex/float32/real":539,"@stdlib/string/format":608}],30:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11070,7 +11070,7 @@ setReadOnly( Complex64Array.prototype, 'with', function copyWith( index, value )
 
 module.exports = Complex64Array;
 
-},{"./from_array.js":27,"./from_iterator.js":28,"./from_iterator_map.js":29,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float32":37,"@stdlib/assert/has-iterator-symbol-support":79,"@stdlib/assert/is-array":105,"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-arraybuffer":107,"@stdlib/assert/is-collection":117,"@stdlib/assert/is-complex-like":119,"@stdlib/assert/is-function":129,"@stdlib/assert/is-nonnegative-integer":146,"@stdlib/assert/is-object":158,"@stdlib/assert/is-string":161,"@stdlib/assert/is-string-array":160,"@stdlib/complex/float32/ctor":532,"@stdlib/complex/float32/imag":536,"@stdlib/complex/float32/real":538,"@stdlib/math/base/assert/is-even":563,"@stdlib/math/base/assert/is-integer":565,"@stdlib/math/base/special/floor":581,"@stdlib/strided/base/reinterpret-complex128":591,"@stdlib/strided/base/reinterpret-complex64":593,"@stdlib/string/format":607,"@stdlib/symbol/iterator":612,"@stdlib/utils/define-nonenumerable-read-only-accessor":616,"@stdlib/utils/define-nonenumerable-read-only-property":618}],32:[function(require,module,exports){
+},{"./from_array.js":27,"./from_iterator.js":28,"./from_iterator_map.js":29,"@stdlib/array/base/accessor-getter":1,"@stdlib/array/base/assert/is-complex128array":9,"@stdlib/array/base/assert/is-complex64array":11,"@stdlib/array/base/getter":13,"@stdlib/array/float32":37,"@stdlib/assert/has-iterator-symbol-support":79,"@stdlib/assert/is-array":105,"@stdlib/assert/is-array-like-object":103,"@stdlib/assert/is-arraybuffer":107,"@stdlib/assert/is-collection":117,"@stdlib/assert/is-complex-like":119,"@stdlib/assert/is-function":129,"@stdlib/assert/is-nonnegative-integer":146,"@stdlib/assert/is-object":158,"@stdlib/assert/is-string":161,"@stdlib/assert/is-string-array":160,"@stdlib/complex/float32/ctor":533,"@stdlib/complex/float32/imag":537,"@stdlib/complex/float32/real":539,"@stdlib/math/base/assert/is-even":564,"@stdlib/math/base/assert/is-integer":566,"@stdlib/math/base/special/floor":582,"@stdlib/strided/base/reinterpret-complex128":592,"@stdlib/strided/base/reinterpret-complex64":594,"@stdlib/string/format":608,"@stdlib/symbol/iterator":613,"@stdlib/utils/define-nonenumerable-read-only-accessor":617,"@stdlib/utils/define-nonenumerable-read-only-property":619}],32:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -11343,7 +11343,7 @@ function dtype( value ) {
 
 module.exports = dtype;
 
-},{"./ctor2dtype.js":32,"./ctors.js":33,"./dtypes.js":34,"@stdlib/assert/is-array":105,"@stdlib/assert/is-buffer":115,"@stdlib/utils/constructor-name":614}],37:[function(require,module,exports){
+},{"./ctor2dtype.js":32,"./ctors.js":33,"./dtypes.js":34,"@stdlib/assert/is-array":105,"@stdlib/assert/is-buffer":115,"@stdlib/utils/constructor-name":615}],37:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12589,7 +12589,7 @@ function hasFloat32ArraySupport() {
 
 module.exports = hasFloat32ArraySupport;
 
-},{"./float32array.js":64,"@stdlib/assert/is-float32array":125,"@stdlib/constants/float64/pinf":553}],67:[function(require,module,exports){
+},{"./float32array.js":64,"@stdlib/assert/is-float32array":125,"@stdlib/constants/float64/pinf":554}],67:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -12867,7 +12867,7 @@ function hasInt16ArraySupport() {
 
 module.exports = hasInt16ArraySupport;
 
-},{"./int16array.js":71,"@stdlib/assert/is-int16array":131,"@stdlib/constants/int16/max":554,"@stdlib/constants/int16/min":555}],73:[function(require,module,exports){
+},{"./int16array.js":71,"@stdlib/assert/is-int16array":131,"@stdlib/constants/int16/max":555,"@stdlib/constants/int16/min":556}],73:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13007,7 +13007,7 @@ function hasInt32ArraySupport() {
 
 module.exports = hasInt32ArraySupport;
 
-},{"./int32array.js":74,"@stdlib/assert/is-int32array":133,"@stdlib/constants/int32/max":556,"@stdlib/constants/int32/min":557}],76:[function(require,module,exports){
+},{"./int32array.js":74,"@stdlib/assert/is-int32array":133,"@stdlib/constants/int32/max":557,"@stdlib/constants/int32/min":558}],76:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13147,7 +13147,7 @@ function hasInt8ArraySupport() {
 
 module.exports = hasInt8ArraySupport;
 
-},{"./int8array.js":77,"@stdlib/assert/is-int8array":135,"@stdlib/constants/int8/max":558,"@stdlib/constants/int8/min":559}],79:[function(require,module,exports){
+},{"./int8array.js":77,"@stdlib/assert/is-int8array":135,"@stdlib/constants/int8/max":559,"@stdlib/constants/int8/min":560}],79:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13241,7 +13241,7 @@ function hasIteratorSymbolSupport() {
 
 module.exports = hasIteratorSymbolSupport;
 
-},{"@stdlib/assert/has-own-property":81,"@stdlib/symbol/ctor":610}],81:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":81,"@stdlib/symbol/ctor":611}],81:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13646,7 +13646,7 @@ function hasUint16ArraySupport() {
 
 module.exports = hasUint16ArraySupport;
 
-},{"./uint16array.js":89,"@stdlib/assert/is-uint16array":167,"@stdlib/constants/uint16/max":560}],89:[function(require,module,exports){
+},{"./uint16array.js":89,"@stdlib/assert/is-uint16array":167,"@stdlib/constants/uint16/max":561}],89:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13787,7 +13787,7 @@ function hasUint32ArraySupport() {
 
 module.exports = hasUint32ArraySupport;
 
-},{"./uint32array.js":92,"@stdlib/assert/is-uint32array":169,"@stdlib/constants/uint32/max":561}],92:[function(require,module,exports){
+},{"./uint32array.js":92,"@stdlib/assert/is-uint32array":169,"@stdlib/constants/uint32/max":562}],92:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -13928,7 +13928,7 @@ function hasUint8ArraySupport() {
 
 module.exports = hasUint8ArraySupport;
 
-},{"./uint8array.js":95,"@stdlib/assert/is-uint8array":171,"@stdlib/constants/uint8/max":562}],95:[function(require,module,exports){
+},{"./uint8array.js":95,"@stdlib/assert/is-uint8array":171,"@stdlib/constants/uint8/max":563}],95:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14273,7 +14273,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/utils/native-class":650}],102:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],102:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14343,7 +14343,7 @@ function isArguments( value ) {
 
 module.exports = isArguments;
 
-},{"@stdlib/assert/has-own-property":81,"@stdlib/assert/is-array":105,"@stdlib/assert/is-enumerable-property":122,"@stdlib/constants/uint32/max":561,"@stdlib/math/base/assert/is-integer":565}],103:[function(require,module,exports){
+},{"@stdlib/assert/has-own-property":81,"@stdlib/assert/is-array":105,"@stdlib/assert/is-enumerable-property":122,"@stdlib/constants/uint32/max":562,"@stdlib/math/base/assert/is-integer":566}],103:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14454,7 +14454,7 @@ function isArrayLikeObject( value ) {
 
 module.exports = isArrayLikeObject;
 
-},{"@stdlib/constants/array/max-array-length":548,"@stdlib/math/base/assert/is-integer":565}],105:[function(require,module,exports){
+},{"@stdlib/constants/array/max-array-length":549,"@stdlib/math/base/assert/is-integer":566}],105:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14564,7 +14564,7 @@ if ( Array.isArray ) {
 
 module.exports = f;
 
-},{"@stdlib/utils/native-class":650}],107:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],107:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14671,7 +14671,7 @@ function isArrayBuffer( value ) {
 
 module.exports = isArrayBuffer;
 
-},{"@stdlib/utils/native-class":650}],109:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],109:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14746,7 +14746,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":110,"./object.js":111,"./primitive.js":112,"@stdlib/utils/define-nonenumerable-read-only-property":618}],110:[function(require,module,exports){
+},{"./main.js":110,"./object.js":111,"./primitive.js":112,"@stdlib/utils/define-nonenumerable-read-only-property":619}],110:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -14880,7 +14880,7 @@ function isBoolean( value ) {
 
 module.exports = isBoolean;
 
-},{"./try2serialize.js":114,"@stdlib/assert/has-tostringtag-support":85,"@stdlib/boolean/ctor":530,"@stdlib/utils/native-class":650}],112:[function(require,module,exports){
+},{"./try2serialize.js":114,"@stdlib/assert/has-tostringtag-support":85,"@stdlib/boolean/ctor":531,"@stdlib/utils/native-class":651}],112:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15229,7 +15229,7 @@ function isCollection( value ) {
 
 module.exports = isCollection;
 
-},{"@stdlib/constants/array/max-typed-array-length":549,"@stdlib/math/base/assert/is-integer":565}],119:[function(require,module,exports){
+},{"@stdlib/constants/array/max-typed-array-length":550,"@stdlib/math/base/assert/is-integer":566}],119:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15342,7 +15342,7 @@ function isComplexLike( value ) {
 
 module.exports = isComplexLike;
 
-},{"@stdlib/complex/float32/ctor":532,"@stdlib/complex/float64/ctor":540}],121:[function(require,module,exports){
+},{"@stdlib/complex/float32/ctor":533,"@stdlib/complex/float64/ctor":541}],121:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15686,7 +15686,7 @@ function isFloat32Array( value ) {
 
 module.exports = isFloat32Array;
 
-},{"@stdlib/utils/native-class":650}],127:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],127:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15790,7 +15790,7 @@ function isFloat64Array( value ) {
 
 module.exports = isFloat64Array;
 
-},{"@stdlib/utils/native-class":650}],129:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],129:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15888,7 +15888,7 @@ function isFunction( value ) {
 
 module.exports = isFunction;
 
-},{"@stdlib/utils/type-of":661}],131:[function(require,module,exports){
+},{"@stdlib/utils/type-of":662}],131:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -15992,7 +15992,7 @@ function isInt16Array( value ) {
 
 module.exports = isInt16Array;
 
-},{"@stdlib/utils/native-class":650}],133:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],133:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16096,7 +16096,7 @@ function isInt32Array( value ) {
 
 module.exports = isInt32Array;
 
-},{"@stdlib/utils/native-class":650}],135:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],135:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16200,7 +16200,7 @@ function isInt8Array( value ) {
 
 module.exports = isInt8Array;
 
-},{"@stdlib/utils/native-class":650}],137:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],137:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16280,7 +16280,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":139,"./object.js":140,"./primitive.js":141,"@stdlib/utils/define-nonenumerable-read-only-property":618}],138:[function(require,module,exports){
+},{"./main.js":139,"./object.js":140,"./primitive.js":141,"@stdlib/utils/define-nonenumerable-read-only-property":619}],138:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16330,7 +16330,7 @@ function isInteger( value ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/constants/float64/ninf":552,"@stdlib/constants/float64/pinf":553,"@stdlib/math/base/assert/is-integer":565}],139:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":553,"@stdlib/constants/float64/pinf":554,"@stdlib/math/base/assert/is-integer":566}],139:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16581,7 +16581,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":143,"./object.js":144,"./primitive.js":145,"@stdlib/utils/define-nonenumerable-read-only-property":618}],143:[function(require,module,exports){
+},{"./main.js":143,"./object.js":144,"./primitive.js":145,"@stdlib/utils/define-nonenumerable-read-only-property":619}],143:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16696,7 +16696,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":150,"@stdlib/math/base/assert/is-nan":567}],145:[function(require,module,exports){
+},{"@stdlib/assert/is-number":150,"@stdlib/math/base/assert/is-nan":568}],145:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16755,7 +16755,7 @@ function isnan( value ) {
 
 module.exports = isnan;
 
-},{"@stdlib/assert/is-number":150,"@stdlib/math/base/assert/is-nan":567}],146:[function(require,module,exports){
+},{"@stdlib/assert/is-number":150,"@stdlib/math/base/assert/is-nan":568}],146:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -16836,7 +16836,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":147,"./object.js":148,"./primitive.js":149,"@stdlib/utils/define-nonenumerable-read-only-property":618}],147:[function(require,module,exports){
+},{"./main.js":147,"./object.js":148,"./primitive.js":149,"@stdlib/utils/define-nonenumerable-read-only-property":619}],147:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17089,7 +17089,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":151,"./object.js":152,"./primitive.js":153,"@stdlib/utils/define-nonenumerable-read-only-property":618}],151:[function(require,module,exports){
+},{"./main.js":151,"./object.js":152,"./primitive.js":153,"@stdlib/utils/define-nonenumerable-read-only-property":619}],151:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17217,7 +17217,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{"./try2serialize.js":155,"@stdlib/assert/has-tostringtag-support":85,"@stdlib/number/ctor":583,"@stdlib/utils/native-class":650}],153:[function(require,module,exports){
+},{"./try2serialize.js":155,"@stdlib/assert/has-tostringtag-support":85,"@stdlib/number/ctor":584,"@stdlib/utils/native-class":651}],153:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17301,7 +17301,7 @@ var toString = Number.prototype.toString; // non-generic
 
 module.exports = toString;
 
-},{"@stdlib/number/ctor":583}],155:[function(require,module,exports){
+},{"@stdlib/number/ctor":584}],155:[function(require,module,exports){
 arguments[4][114][0].apply(exports,arguments)
 },{"./tostring.js":154,"dup":114}],156:[function(require,module,exports){
 /**
@@ -17372,7 +17372,7 @@ setReadOnly( main, 'isObjectLikeArray', isObjectLikeArray );
 
 module.exports = main;
 
-},{"./main.js":157,"@stdlib/assert/tools/array-function":175,"@stdlib/utils/define-nonenumerable-read-only-property":618}],157:[function(require,module,exports){
+},{"./main.js":157,"@stdlib/assert/tools/array-function":175,"@stdlib/utils/define-nonenumerable-read-only-property":619}],157:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17601,7 +17601,7 @@ setReadOnly( isStringArray, 'objects', isObjectArray );
 
 module.exports = isStringArray;
 
-},{"@stdlib/assert/is-string":161,"@stdlib/assert/tools/array-function":175,"@stdlib/utils/define-nonenumerable-read-only-property":618}],161:[function(require,module,exports){
+},{"@stdlib/assert/is-string":161,"@stdlib/assert/tools/array-function":175,"@stdlib/utils/define-nonenumerable-read-only-property":619}],161:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17676,7 +17676,7 @@ setReadOnly( main, 'isObject', isObject );
 
 module.exports = main;
 
-},{"./main.js":162,"./object.js":163,"./primitive.js":164,"@stdlib/utils/define-nonenumerable-read-only-property":618}],162:[function(require,module,exports){
+},{"./main.js":162,"./object.js":163,"./primitive.js":164,"@stdlib/utils/define-nonenumerable-read-only-property":619}],162:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -17795,7 +17795,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{"./try2valueof.js":165,"@stdlib/assert/has-tostringtag-support":85,"@stdlib/utils/native-class":650}],164:[function(require,module,exports){
+},{"./try2valueof.js":165,"@stdlib/assert/has-tostringtag-support":85,"@stdlib/utils/native-class":651}],164:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18021,7 +18021,7 @@ function isUint16Array( value ) {
 
 module.exports = isUint16Array;
 
-},{"@stdlib/utils/native-class":650}],169:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],169:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18125,7 +18125,7 @@ function isUint32Array( value ) {
 
 module.exports = isUint32Array;
 
-},{"@stdlib/utils/native-class":650}],171:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],171:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18229,7 +18229,7 @@ function isUint8Array( value ) {
 
 module.exports = isUint8Array;
 
-},{"@stdlib/utils/native-class":650}],173:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],173:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18333,7 +18333,7 @@ function isUint8ClampedArray( value ) {
 
 module.exports = isUint8ClampedArray;
 
-},{"@stdlib/utils/native-class":650}],175:[function(require,module,exports){
+},{"@stdlib/utils/native-class":651}],175:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18471,7 +18471,7 @@ function arrayfcn( predicate ) {
 
 module.exports = arrayfcn;
 
-},{"@stdlib/assert/is-array":105,"@stdlib/string/format":607}],177:[function(require,module,exports){
+},{"@stdlib/assert/is-array":105,"@stdlib/string/format":608}],177:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18504,9 +18504,9 @@ var ndarray = require( './ndarray.js' );
 * Adds a scalar constant to each element in a double-precision floating-point strided array.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - scalar
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
-* @param {integer} strideX - index increment
+* @param {integer} strideX - stride length
 * @returns {Float64Array} input array
 *
 * @example
@@ -18526,7 +18526,7 @@ function dapx( N, alpha, x, strideX ) {
 
 module.exports = dapx;
 
-},{"./ndarray.js":179,"@stdlib/strided/base/stride2offset":595}],178:[function(require,module,exports){
+},{"./ndarray.js":179,"@stdlib/strided/base/stride2offset":596}],178:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18563,7 +18563,7 @@ setReadOnly( dapx, 'ndarray', ndarray );
 
 module.exports = dapx;
 
-},{"./dapx.js":177,"./ndarray.js":179,"@stdlib/utils/define-nonenumerable-read-only-property":618}],179:[function(require,module,exports){
+},{"./dapx.js":177,"./ndarray.js":179,"@stdlib/utils/define-nonenumerable-read-only-property":619}],179:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18595,9 +18595,9 @@ var M = 5;
 * Adds a scalar constant to each element in a double-precision floating-point strided array.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - scalar
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
-* @param {integer} strideX - index increment
+* @param {integer} strideX - stride length
 * @param {NonNegativeInteger} offsetX - starting index
 * @returns {Float64Array} input array
 *
@@ -18605,9 +18605,8 @@ var M = 5;
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 3.0, -4.0, 5.0, -6.0 ] );
-* var alpha = 5.0;
 *
-* dapx( 3, alpha, x, 1, x.length-3 );
+* dapx( 3, 5.0, x, 1, x.length-3 );
 * // x => <Float64Array>[ 1.0, -2.0, 3.0, 1.0, 10.0, -1.0 ]
 */
 function dapx( N, alpha, x, strideX, offsetX ) {
@@ -18689,7 +18688,7 @@ var ndarray = require( './ndarray.js' );
 * Adds a scalar constant to each double-precision floating-point strided array element and computes the sum.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @returns {number} sum
@@ -18698,9 +18697,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dapxsum( N, 5.0, x, 1 );
+* var v = dapxsum( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
 function dapxsum( N, alpha, x, strideX ) {
@@ -18712,7 +18710,7 @@ function dapxsum( N, alpha, x, strideX ) {
 
 module.exports = dapxsum;
 
-},{"./ndarray.js":182,"@stdlib/strided/base/stride2offset":595}],181:[function(require,module,exports){
+},{"./ndarray.js":182,"@stdlib/strided/base/stride2offset":596}],181:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18749,7 +18747,7 @@ setReadOnly( dapxsum, 'ndarray', ndarray );
 
 module.exports = dapxsum;
 
-},{"./dapxsum.js":180,"./ndarray.js":182,"@stdlib/utils/define-nonenumerable-read-only-property":618}],182:[function(require,module,exports){
+},{"./dapxsum.js":180,"./ndarray.js":182,"@stdlib/utils/define-nonenumerable-read-only-property":619}],182:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18781,7 +18779,7 @@ var dapxsumkbn = require( '@stdlib/blas/ext/base/dapxsumkbn' ).ndarray;
 * Adds a scalar constant to each double-precision floating-point strided array element and computes the sum.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @param {NonNegativeInteger} offsetX - starting index
@@ -18845,7 +18843,7 @@ var ndarray = require( './ndarray.js' );
 * -   Neumaier, Arnold. 1974. "Rounding Error Analysis of Some Methods for Summing Finite Sums." _Zeitschrift Für Angewandte Mathematik Und Mechanik_ 54 (1): 39–51. doi:[10.1002/zamm.19740540106](https://doi.org/10.1002/zamm.19740540106).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @returns {number} sum
@@ -18854,9 +18852,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dapxsumkbn( N, 5.0, x, 1 );
+* var v = dapxsumkbn( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
 function dapxsumkbn( N, alpha, x, strideX ) {
@@ -18868,7 +18865,7 @@ function dapxsumkbn( N, alpha, x, strideX ) {
 
 module.exports = dapxsumkbn;
 
-},{"./ndarray.js":185,"@stdlib/strided/base/stride2offset":595}],184:[function(require,module,exports){
+},{"./ndarray.js":185,"@stdlib/strided/base/stride2offset":596}],184:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18905,7 +18902,7 @@ setReadOnly( dapxsumkbn, 'ndarray', ndarray );
 
 module.exports = dapxsumkbn;
 
-},{"./dapxsumkbn.js":183,"./ndarray.js":185,"@stdlib/utils/define-nonenumerable-read-only-property":618}],185:[function(require,module,exports){
+},{"./dapxsumkbn.js":183,"./ndarray.js":185,"@stdlib/utils/define-nonenumerable-read-only-property":619}],185:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -18945,7 +18942,7 @@ var abs = require( '@stdlib/math/base/special/abs' );
 * -   Neumaier, Arnold. 1974. "Rounding Error Analysis of Some Methods for Summing Finite Sums." _Zeitschrift Für Angewandte Mathematik Und Mechanik_ 54 (1): 39–51. doi:[10.1002/zamm.19740540106](https://doi.org/10.1002/zamm.19740540106).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @param {NonNegativeInteger} offsetX - starting index
@@ -18970,10 +18967,10 @@ function dapxsumkbn( N, alpha, x, strideX, offsetX ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || strideX === 0 ) {
-		return alpha + x[ offsetX ];
-	}
 	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * ( alpha + x[ ix ] );
+	}
 	sum = 0.0;
 	c = 0.0;
 	for ( i = 0; i < N; i++ ) {
@@ -18995,7 +18992,7 @@ function dapxsumkbn( N, alpha, x, strideX, offsetX ) {
 
 module.exports = dapxsumkbn;
 
-},{"@stdlib/math/base/special/abs":579}],186:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],186:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19036,7 +19033,7 @@ var ndarray = require( './ndarray.js' );
 * -   Klein, Andreas. 2005. "A Generalized Kahan-Babuška-Summation-Algorithm." _Computing_ 76 (3): 279–93. doi:[10.1007/s00607-005-0139-x](https://doi.org/10.1007/s00607-005-0139-x).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @returns {number} sum
@@ -19045,9 +19042,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dapxsumkbn2( N, 5.0, x, 1 );
+* var v = dapxsumkbn2( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
 function dapxsumkbn2( N, alpha, x, strideX ) {
@@ -19059,7 +19055,7 @@ function dapxsumkbn2( N, alpha, x, strideX ) {
 
 module.exports = dapxsumkbn2;
 
-},{"./ndarray.js":188,"@stdlib/strided/base/stride2offset":595}],187:[function(require,module,exports){
+},{"./ndarray.js":188,"@stdlib/strided/base/stride2offset":596}],187:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19096,7 +19092,7 @@ setReadOnly( dapxsumkbn2, 'ndarray', ndarray );
 
 module.exports = dapxsumkbn2;
 
-},{"./dapxsumkbn2.js":186,"./ndarray.js":188,"@stdlib/utils/define-nonenumerable-read-only-property":618}],188:[function(require,module,exports){
+},{"./dapxsumkbn2.js":186,"./ndarray.js":188,"@stdlib/utils/define-nonenumerable-read-only-property":619}],188:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19136,7 +19132,7 @@ var abs = require( '@stdlib/math/base/special/abs' );
 * -   Klein, Andreas. 2005. "A Generalized Kahan-Babuška-Summation-Algorithm." _Computing_ 76 (3): 279–93. doi:[10.1007/s00607-005-0139-x](https://doi.org/10.1007/s00607-005-0139-x).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @param {NonNegativeInteger} offsetX - starting index
@@ -19164,10 +19160,10 @@ function dapxsumkbn2( N, alpha, x, strideX, offsetX ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || strideX === 0 ) {
-		return alpha + x[ 0 ];
-	}
 	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * ( alpha + x[ ix ] );
+	}
 	sum = 0.0;
 	ccs = 0.0; // second order correction term for lost low order bits
 	cs = 0.0; // first order correction term for lost low order bits
@@ -19198,7 +19194,7 @@ function dapxsumkbn2( N, alpha, x, strideX, offsetX ) {
 
 module.exports = dapxsumkbn2;
 
-},{"@stdlib/math/base/special/abs":579}],189:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],189:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19231,7 +19227,7 @@ var ndarray = require( './ndarray.js' );
 * Adds a scalar constant to each double-precision floating-point strided array element and computes the sum using ordinary recursive summation.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @returns {number} sum
@@ -19240,9 +19236,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dapxsumors( N, 5.0, x, 1 );
+* var v = dapxsumors( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
 function dapxsumors( N, alpha, x, strideX ) {
@@ -19254,7 +19249,7 @@ function dapxsumors( N, alpha, x, strideX ) {
 
 module.exports = dapxsumors;
 
-},{"./ndarray.js":191,"@stdlib/strided/base/stride2offset":595}],190:[function(require,module,exports){
+},{"./ndarray.js":191,"@stdlib/strided/base/stride2offset":596}],190:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19291,7 +19286,7 @@ setReadOnly( dapxsumors, 'ndarray', ndarray );
 
 module.exports = dapxsumors;
 
-},{"./dapxsumors.js":189,"./ndarray.js":191,"@stdlib/utils/define-nonenumerable-read-only-property":618}],191:[function(require,module,exports){
+},{"./dapxsumors.js":189,"./ndarray.js":191,"@stdlib/utils/define-nonenumerable-read-only-property":619}],191:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19318,7 +19313,7 @@ module.exports = dapxsumors;
 * Adds a scalar constant to each double-precision floating-point strided array element and computes the sum using ordinary recursive summation.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @param {NonNegativeInteger} offsetX - starting index
@@ -19340,10 +19335,10 @@ function dapxsumors( N, alpha, x, strideX, offsetX ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || strideX === 0 ) {
-		return alpha + x[ 0 ];
-	}
 	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * ( alpha + x[ ix ] );
+	}
 	sum = 0.0;
 	for ( i = 0; i < N; i++ ) {
 		sum += alpha + x[ ix ];
@@ -19398,7 +19393,7 @@ var ndarray = require( './ndarray.js' );
 * -   Higham, Nicholas J. 1993. "The Accuracy of Floating Point Summation." _SIAM Journal on Scientific Computing_ 14 (4): 783–99. doi:[10.1137/0914050](https://doi.org/10.1137/0914050).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @returns {number} sum
@@ -19407,9 +19402,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dapxsumpw( N, 5.0, x, 1 );
+* var v = dapxsumpw( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
 function dapxsumpw( N, alpha, x, strideX ) {
@@ -19421,7 +19415,7 @@ function dapxsumpw( N, alpha, x, strideX ) {
 
 module.exports = dapxsumpw;
 
-},{"./ndarray.js":194,"@stdlib/strided/base/stride2offset":595}],193:[function(require,module,exports){
+},{"./ndarray.js":194,"@stdlib/strided/base/stride2offset":596}],193:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19458,7 +19452,7 @@ setReadOnly( dapxsumpw, 'ndarray', ndarray );
 
 module.exports = dapxsumpw;
 
-},{"./dapxsumpw.js":192,"./ndarray.js":194,"@stdlib/utils/define-nonenumerable-read-only-property":618}],194:[function(require,module,exports){
+},{"./dapxsumpw.js":192,"./ndarray.js":194,"@stdlib/utils/define-nonenumerable-read-only-property":619}],194:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19504,7 +19498,7 @@ var BLOCKSIZE = 128;
 * -   Higham, Nicholas J. 1993. "The Accuracy of Floating Point Summation." _SIAM Journal on Scientific Computing_ 14 (4): 783–99. doi:[10.1137/0914050](https://doi.org/10.1137/0914050).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float64Array} x - input array
 * @param {integer} strideX - stride length
 * @param {NonNegativeInteger} offsetX - starting index
@@ -19536,10 +19530,10 @@ function dapxsumpw( N, alpha, x, strideX, offsetX ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || strideX === 0 ) {
-		return alpha + x[ offsetX ];
-	}
 	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * ( alpha + x[ ix ] );
+	}
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
@@ -19594,7 +19588,7 @@ function dapxsumpw( N, alpha, x, strideX, offsetX ) {
 
 module.exports = dapxsumpw;
 
-},{"@stdlib/math/base/special/floor":581}],195:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],195:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19643,9 +19637,8 @@ var ndarray = require( './ndarray.js' );
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dasumpw( N, x, 1 );
+* var v = dasumpw( x.length, x, 1 );
 * // returns 5.0
 */
 function dasumpw( N, x, strideX ) {
@@ -19657,7 +19650,7 @@ function dasumpw( N, x, strideX ) {
 
 module.exports = dasumpw;
 
-},{"./ndarray.js":197,"@stdlib/strided/base/stride2offset":595}],196:[function(require,module,exports){
+},{"./ndarray.js":197,"@stdlib/strided/base/stride2offset":596}],196:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19694,7 +19687,7 @@ setReadOnly( dasumpw, 'ndarray', ndarray );
 
 module.exports = dasumpw;
 
-},{"./dasumpw.js":195,"./ndarray.js":197,"@stdlib/utils/define-nonenumerable-read-only-property":618}],197:[function(require,module,exports){
+},{"./dasumpw.js":195,"./ndarray.js":197,"@stdlib/utils/define-nonenumerable-read-only-property":619}],197:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19772,10 +19765,10 @@ function dasumpw( N, x, strideX, offsetX ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || strideX === 0 ) {
-		return abs( x[ offsetX ] );
-	}
 	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * abs( x[ ix ] );
+	}
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
@@ -19810,7 +19803,7 @@ function dasumpw( N, x, strideX, offsetX ) {
 			ix += 8 * strideX;
 		}
 		// Pairwise sum the accumulators:
-		s = ((s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7));
+		s = ( (s0+s1) + (s2+s3) ) + ( (s4+s5) + (s6+s7) );
 
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {
@@ -19830,7 +19823,7 @@ function dasumpw( N, x, strideX, offsetX ) {
 
 module.exports = dasumpw;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/math/base/special/floor":581}],198:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/math/base/special/floor":582}],198:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19888,7 +19881,7 @@ function dcusum( N, sum, x, strideX, y, strideY ) {
 
 module.exports = dcusum;
 
-},{"./ndarray.js":200,"@stdlib/strided/base/stride2offset":595}],199:[function(require,module,exports){
+},{"./ndarray.js":200,"@stdlib/strided/base/stride2offset":596}],199:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -19925,7 +19918,7 @@ setReadOnly( dcusum, 'ndarray', ndarray );
 
 module.exports = dcusum;
 
-},{"./dcusum.js":198,"./ndarray.js":200,"@stdlib/utils/define-nonenumerable-read-only-property":618}],200:[function(require,module,exports){
+},{"./dcusum.js":198,"./ndarray.js":200,"@stdlib/utils/define-nonenumerable-read-only-property":619}],200:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20051,7 +20044,7 @@ function dcusumkbn( N, sum, x, strideX, y, strideY ) {
 
 module.exports = dcusumkbn;
 
-},{"./ndarray.js":203,"@stdlib/strided/base/stride2offset":595}],202:[function(require,module,exports){
+},{"./ndarray.js":203,"@stdlib/strided/base/stride2offset":596}],202:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20088,7 +20081,7 @@ setReadOnly( dcusumkbn, 'ndarray', ndarray );
 
 module.exports = dcusumkbn;
 
-},{"./dcusumkbn.js":201,"./ndarray.js":203,"@stdlib/utils/define-nonenumerable-read-only-property":618}],203:[function(require,module,exports){
+},{"./dcusumkbn.js":201,"./ndarray.js":203,"@stdlib/utils/define-nonenumerable-read-only-property":619}],203:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20183,7 +20176,7 @@ function dcusumkbn( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = dcusumkbn;
 
-},{"@stdlib/math/base/special/abs":579}],204:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],204:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20251,7 +20244,7 @@ function dcusumkbn2( N, sum, x, strideX, y, strideY ) {
 
 module.exports = dcusumkbn2;
 
-},{"./ndarray.js":206,"@stdlib/strided/base/stride2offset":595}],205:[function(require,module,exports){
+},{"./ndarray.js":206,"@stdlib/strided/base/stride2offset":596}],205:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20288,7 +20281,7 @@ setReadOnly( dcusumkbn2, 'ndarray', ndarray );
 
 module.exports = dcusumkbn2;
 
-},{"./dcusumkbn2.js":204,"./ndarray.js":206,"@stdlib/utils/define-nonenumerable-read-only-property":618}],206:[function(require,module,exports){
+},{"./dcusumkbn2.js":204,"./ndarray.js":206,"@stdlib/utils/define-nonenumerable-read-only-property":619}],206:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20396,7 +20389,7 @@ function dcusumkbn2( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = dcusumkbn2;
 
-},{"@stdlib/math/base/special/abs":579}],207:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],207:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20455,7 +20448,7 @@ function dcusumors( N, sum, x, strideX, y, strideY ) {
 
 module.exports = dcusumors;
 
-},{"./ndarray.js":209,"@stdlib/strided/base/stride2offset":595}],208:[function(require,module,exports){
+},{"./ndarray.js":209,"@stdlib/strided/base/stride2offset":596}],208:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20492,7 +20485,7 @@ setReadOnly( dcusumors, 'ndarray', ndarray );
 
 module.exports = dcusumors;
 
-},{"./dcusumors.js":207,"./ndarray.js":209,"@stdlib/utils/define-nonenumerable-read-only-property":618}],209:[function(require,module,exports){
+},{"./dcusumors.js":207,"./ndarray.js":209,"@stdlib/utils/define-nonenumerable-read-only-property":619}],209:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20628,7 +20621,7 @@ function dcusumpw( N, sum, x, strideX, y, strideY ) {
 
 module.exports = dcusumpw;
 
-},{"./ndarray.js":212,"@stdlib/strided/base/stride2offset":595}],211:[function(require,module,exports){
+},{"./ndarray.js":212,"@stdlib/strided/base/stride2offset":596}],211:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20665,7 +20658,7 @@ setReadOnly( dcusumpw, 'ndarray', ndarray );
 
 module.exports = dcusumpw;
 
-},{"./dcusumpw.js":210,"./ndarray.js":212,"@stdlib/utils/define-nonenumerable-read-only-property":618}],212:[function(require,module,exports){
+},{"./dcusumpw.js":210,"./ndarray.js":212,"@stdlib/utils/define-nonenumerable-read-only-property":619}],212:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20763,7 +20756,7 @@ function dcusumpw( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = dcusumpw;
 
-},{"@stdlib/math/base/special/floor":581}],213:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],213:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20818,7 +20811,7 @@ function dfill( N, alpha, x, strideX ) {
 
 module.exports = dfill;
 
-},{"./ndarray.js":215,"@stdlib/strided/base/stride2offset":595}],214:[function(require,module,exports){
+},{"./ndarray.js":215,"@stdlib/strided/base/stride2offset":596}],214:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -20855,7 +20848,7 @@ setReadOnly( dfill, 'ndarray', ndarray );
 
 module.exports = dfill;
 
-},{"./dfill.js":213,"./ndarray.js":215,"@stdlib/utils/define-nonenumerable-read-only-property":618}],215:[function(require,module,exports){
+},{"./dfill.js":213,"./ndarray.js":215,"@stdlib/utils/define-nonenumerable-read-only-property":619}],215:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21004,7 +20997,7 @@ function dnanasum( N, x, strideX ) {
 
 module.exports = dnanasum;
 
-},{"./ndarray.js":218,"@stdlib/strided/base/stride2offset":595}],217:[function(require,module,exports){
+},{"./ndarray.js":218,"@stdlib/strided/base/stride2offset":596}],217:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21041,7 +21034,7 @@ setReadOnly( dnanasum, 'ndarray', ndarray );
 
 module.exports = dnanasum;
 
-},{"./dnanasum.js":216,"./ndarray.js":218,"@stdlib/utils/define-nonenumerable-read-only-property":618}],218:[function(require,module,exports){
+},{"./dnanasum.js":216,"./ndarray.js":218,"@stdlib/utils/define-nonenumerable-read-only-property":619}],218:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21151,7 +21144,7 @@ function dnanasumors( N, x, strideX ) {
 
 module.exports = dnanasumors;
 
-},{"./ndarray.js":221,"@stdlib/strided/base/stride2offset":595}],220:[function(require,module,exports){
+},{"./ndarray.js":221,"@stdlib/strided/base/stride2offset":596}],220:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21188,7 +21181,7 @@ setReadOnly( dnanasumors, 'ndarray', ndarray );
 
 module.exports = dnanasumors;
 
-},{"./dnanasumors.js":219,"./ndarray.js":221,"@stdlib/utils/define-nonenumerable-read-only-property":618}],221:[function(require,module,exports){
+},{"./dnanasumors.js":219,"./ndarray.js":221,"@stdlib/utils/define-nonenumerable-read-only-property":619}],221:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21266,7 +21259,7 @@ function dnanasumors( N, x, strideX, offsetX ) {
 
 module.exports = dnanasumors;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/abs":579}],222:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/special/abs":580}],222:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21289,7 +21282,8 @@ module.exports = dnanasumors;
 
 // MODULES //
 
-var dnannsumkbn = require( '@stdlib/blas/ext/base/dnannsumkbn' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -21314,7 +21308,12 @@ var dnannsumkbn = require( '@stdlib/blas/ext/base/dnannsumkbn' );
 * // returns <Float64Array>[ 1.0, 3 ]
 */
 function dnannsum( N, x, strideX, out, strideOut ) {
-	return dnannsumkbn( N, x, strideX, out, strideOut );
+	var ix;
+	var io;
+
+	ix = stride2offset( N, strideX );
+	io = stride2offset( 2, strideOut );
+	return ndarray( N, x, strideX, ix, out, strideOut, io );
 }
 
 
@@ -21322,7 +21321,7 @@ function dnannsum( N, x, strideX, out, strideOut ) {
 
 module.exports = dnannsum;
 
-},{"@stdlib/blas/ext/base/dnannsumkbn":226}],223:[function(require,module,exports){
+},{"./ndarray.js":224,"@stdlib/strided/base/stride2offset":596}],223:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21359,7 +21358,7 @@ setReadOnly( dnannsum, 'ndarray', ndarray );
 
 module.exports = dnannsum;
 
-},{"./dnannsum.js":222,"./ndarray.js":224,"@stdlib/utils/define-nonenumerable-read-only-property":618}],224:[function(require,module,exports){
+},{"./dnannsum.js":222,"./ndarray.js":224,"@stdlib/utils/define-nonenumerable-read-only-property":619}],224:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21487,7 +21486,7 @@ function dnannsumkbn( N, x, strideX, out, strideOut ) {
 
 module.exports = dnannsumkbn;
 
-},{"./ndarray.js":227,"@stdlib/strided/base/stride2offset":595}],226:[function(require,module,exports){
+},{"./ndarray.js":227,"@stdlib/strided/base/stride2offset":596}],226:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21524,7 +21523,7 @@ setReadOnly( dnannsumkbn, 'ndarray', ndarray );
 
 module.exports = dnannsumkbn;
 
-},{"./dnannsumkbn.js":225,"./ndarray.js":227,"@stdlib/utils/define-nonenumerable-read-only-property":618}],227:[function(require,module,exports){
+},{"./dnannsumkbn.js":225,"./ndarray.js":227,"@stdlib/utils/define-nonenumerable-read-only-property":619}],227:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21634,7 +21633,7 @@ function dnannsumkbn( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 
 module.exports = dnannsumkbn;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/abs":579}],228:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/special/abs":580}],228:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21704,7 +21703,7 @@ function dnannsumkbn2( N, x, strideX, out, strideOut ) {
 
 module.exports = dnannsumkbn2;
 
-},{"./ndarray.js":230,"@stdlib/strided/base/stride2offset":595}],229:[function(require,module,exports){
+},{"./ndarray.js":230,"@stdlib/strided/base/stride2offset":596}],229:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21741,7 +21740,7 @@ setReadOnly( dnannsumkbn2, 'ndarray', ndarray );
 
 module.exports = dnannsumkbn2;
 
-},{"./dnannsumkbn2.js":228,"./ndarray.js":230,"@stdlib/utils/define-nonenumerable-read-only-property":618}],230:[function(require,module,exports){
+},{"./dnannsumkbn2.js":228,"./ndarray.js":230,"@stdlib/utils/define-nonenumerable-read-only-property":619}],230:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21865,7 +21864,7 @@ function dnannsumkbn2( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 
 module.exports = dnannsumkbn2;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/abs":579}],231:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/special/abs":580}],231:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21931,7 +21930,7 @@ function dnannsumors( N, x, strideX, out, strideOut ) {
 
 module.exports = dnannsumors;
 
-},{"./ndarray.js":233,"@stdlib/strided/base/stride2offset":595}],232:[function(require,module,exports){
+},{"./ndarray.js":233,"@stdlib/strided/base/stride2offset":596}],232:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -21968,7 +21967,7 @@ setReadOnly( dnannsumors, 'ndarray', ndarray );
 
 module.exports = dnannsumors;
 
-},{"./dnannsumors.js":231,"./ndarray.js":233,"@stdlib/utils/define-nonenumerable-read-only-property":618}],233:[function(require,module,exports){
+},{"./dnannsumors.js":231,"./ndarray.js":233,"@stdlib/utils/define-nonenumerable-read-only-property":619}],233:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22020,26 +22019,24 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 function dnannsumors( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 	var sum;
 	var ix;
-	var io;
 	var n;
 	var i;
 
 	sum = 0.0;
-	io = offsetOut;
 	if ( N <= 0 ) {
-		out[ io ] = sum;
-		out[ io+strideOut ] = 0;
+		out[ offsetOut ] = sum;
+		out[ offsetOut+strideOut ] = 0;
 		return out;
 	}
 	ix = offsetX;
 	if ( strideX === 0 ) {
 		if ( isnan( x[ ix ] ) ) {
-			out[ io ] = sum;
-			out[ io+strideOut ] = 0;
+			out[ offsetOut ] = sum;
+			out[ offsetOut+strideOut ] = 0;
 			return out;
 		}
-		out[ io ] = x[ ix ] * N;
-		out[ io+strideOut ] = N;
+		out[ offsetOut ] = x[ ix ] * N;
+		out[ offsetOut+strideOut ] = N;
 		return out;
 	}
 	n = 0;
@@ -22050,8 +22047,8 @@ function dnannsumors( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 		}
 		ix += strideX;
 	}
-	out[ io ] = sum;
-	out[ io+strideOut ] = n;
+	out[ offsetOut ] = sum;
+	out[ offsetOut+strideOut ] = n;
 	return out;
 }
 
@@ -22060,7 +22057,7 @@ function dnannsumors( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 
 module.exports = dnannsumors;
 
-},{"@stdlib/math/base/assert/is-nan":567}],234:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568}],234:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22083,7 +22080,8 @@ module.exports = dnannsumors;
 
 // MODULES //
 
-var sumpw = require( './sumpw.js' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -22118,20 +22116,12 @@ var sumpw = require( './sumpw.js' );
 function dnannsumpw( N, x, strideX, out, strideOut ) {
 	var ix;
 	var io;
-	if ( strideX < 0 ) {
-		ix = (1-N) * strideX;
-	} else {
-		ix = 0;
-	}
-	if ( strideOut < 0 ) {
-		io = -strideOut;
-	} else {
-		io = 0;
-	}
+
+	ix = stride2offset( N, strideX );
+	io = stride2offset( 2, strideOut );
 	out[ io ] = 0.0;
 	out[ io+strideOut ] = 0;
-	sumpw( N, x, strideX, ix, out, strideOut, io );
-	return out;
+	return ndarray( N, x, strideX, ix, out, strideOut, io );
 }
 
 
@@ -22139,7 +22129,7 @@ function dnannsumpw( N, x, strideX, out, strideOut ) {
 
 module.exports = dnannsumpw;
 
-},{"./sumpw.js":237}],235:[function(require,module,exports){
+},{"./ndarray.js":236,"@stdlib/strided/base/stride2offset":596}],235:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22176,7 +22166,7 @@ setReadOnly( dnannsumpw, 'ndarray', ndarray );
 
 module.exports = dnannsumpw;
 
-},{"./dnannsumpw.js":234,"./ndarray.js":236,"@stdlib/utils/define-nonenumerable-read-only-property":618}],236:[function(require,module,exports){
+},{"./dnannsumpw.js":234,"./ndarray.js":236,"@stdlib/utils/define-nonenumerable-read-only-property":619}],236:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22236,8 +22226,7 @@ var sumpw = require( './sumpw.js' );
 function dnannsumpw( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 	out[ offsetOut ] = 0.0;
 	out[ offsetOut+strideOut ] = 0;
-	sumpw( N, x, strideX, offsetX, out, strideOut, offsetOut );
-	return out;
+	return sumpw( N, x, strideX, offsetX, out, strideOut, offsetOut );
 }
 
 
@@ -22306,15 +22295,13 @@ var BLOCKSIZE = 128;
 * var floor = require( '@stdlib/math/base/special/floor' );
 *
 * var x = new Float64Array( [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0, NaN, NaN ] );
-* var N = floor( x.length / 2 );
 *
 * var out = new Float64Array( [ 0.0, 0 ] );
-* var v = sumpw( N, x, 2, 1, out, 1, 0 );
+* var v = sumpw( 5.0, x, 2, 1, out, 1, 0 );
 * // returns <Float64Array>[ 5.0, 4 ]
 */
 function sumpw( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 	var ix;
-	var io;
 	var s0;
 	var s1;
 	var s2;
@@ -22333,13 +22320,12 @@ function sumpw( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 		return out;
 	}
 	ix = offsetX;
-	io = offsetOut;
-	if ( N === 1 || strideX === 0 ) {
+	if ( strideX === 0 ) {
 		if ( isnan( x[ ix ] ) ) {
 			return out;
 		}
-		out[ io ] += x[ ix ];
-		out[ io+strideOut ] += 1;
+		out[ offsetOut ] += x[ ix ] * N;
+		out[ offsetOut+strideOut ] += N;
 		return out;
 	}
 	if ( N < 8 ) {
@@ -22354,8 +22340,8 @@ function sumpw( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 			}
 			ix += strideX;
 		}
-		out[ io ] += s;
-		out[ io+strideOut ] += n;
+		out[ offsetOut ] += s;
+		out[ offsetOut+strideOut ] += n;
 		return out;
 	}
 	if ( N <= BLOCKSIZE ) {
@@ -22422,7 +22408,7 @@ function sumpw( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 			ix += strideX;
 		}
 		// Pairwise sum the accumulators:
-		s = ((s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7));
+		s = ( (s0+s1) + (s2+s3) ) + ( (s4+s5) + (s6+s7) );
 
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {
@@ -22433,8 +22419,8 @@ function sumpw( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 			}
 			ix += strideX;
 		}
-		out[ io ] += s;
-		out[ io+strideOut ] += n;
+		out[ offsetOut ] += s;
+		out[ offsetOut+strideOut ] += n;
 		return out;
 	}
 	// Recurse by dividing by two, but avoiding non-multiples of unroll factor...
@@ -22450,7 +22436,7 @@ function sumpw( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 
 module.exports = sumpw;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/floor":581}],238:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/special/floor":582}],238:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22504,7 +22490,7 @@ function dnansum( N, x, strideX ) {
 
 module.exports = dnansum;
 
-},{"./ndarray.js":240,"@stdlib/strided/base/stride2offset":595}],239:[function(require,module,exports){
+},{"./ndarray.js":240,"@stdlib/strided/base/stride2offset":596}],239:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22541,7 +22527,7 @@ setReadOnly( dnansum, 'ndarray', ndarray );
 
 module.exports = dnansum;
 
-},{"./dnansum.js":238,"./ndarray.js":240,"@stdlib/utils/define-nonenumerable-read-only-property":618}],240:[function(require,module,exports){
+},{"./dnansum.js":238,"./ndarray.js":240,"@stdlib/utils/define-nonenumerable-read-only-property":619}],240:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22657,7 +22643,7 @@ function dnansumkbn( N, x, strideX ) {
 
 module.exports = dnansumkbn;
 
-},{"./ndarray.js":243,"@stdlib/strided/base/stride2offset":595}],242:[function(require,module,exports){
+},{"./ndarray.js":243,"@stdlib/strided/base/stride2offset":596}],242:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22694,7 +22680,7 @@ setReadOnly( dnansumkbn, 'ndarray', ndarray );
 
 module.exports = dnansumkbn;
 
-},{"./dnansumkbn.js":241,"./ndarray.js":243,"@stdlib/utils/define-nonenumerable-read-only-property":618}],243:[function(require,module,exports){
+},{"./dnansumkbn.js":241,"./ndarray.js":243,"@stdlib/utils/define-nonenumerable-read-only-property":619}],243:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22789,7 +22775,7 @@ function dnansumkbn( N, x, strideX, offsetX ) {
 
 module.exports = dnansumkbn;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/abs":579}],244:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/special/abs":580}],244:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22851,7 +22837,7 @@ function dnansumkbn2( N, x, strideX ) {
 
 module.exports = dnansumkbn2;
 
-},{"./ndarray.js":246,"@stdlib/strided/base/stride2offset":595}],245:[function(require,module,exports){
+},{"./ndarray.js":246,"@stdlib/strided/base/stride2offset":596}],245:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22888,7 +22874,7 @@ setReadOnly( dnansumkbn2, 'ndarray', ndarray );
 
 module.exports = dnansumkbn2;
 
-},{"./dnansumkbn2.js":244,"./ndarray.js":246,"@stdlib/utils/define-nonenumerable-read-only-property":618}],246:[function(require,module,exports){
+},{"./dnansumkbn2.js":244,"./ndarray.js":246,"@stdlib/utils/define-nonenumerable-read-only-property":619}],246:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -22995,7 +22981,7 @@ function dnansumkbn2( N, x, strideX, offsetX ) {
 
 module.exports = dnansumkbn2;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/abs":579}],247:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/special/abs":580}],247:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23049,7 +23035,7 @@ function dnansumors( N, x, strideX ) {
 
 module.exports = dnansumors;
 
-},{"./ndarray.js":249,"@stdlib/strided/base/stride2offset":595}],248:[function(require,module,exports){
+},{"./ndarray.js":249,"@stdlib/strided/base/stride2offset":596}],248:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23086,7 +23072,7 @@ setReadOnly( dnansumors, 'ndarray', ndarray );
 
 module.exports = dnansumors;
 
-},{"./dnansumors.js":247,"./ndarray.js":249,"@stdlib/utils/define-nonenumerable-read-only-property":618}],249:[function(require,module,exports){
+},{"./dnansumors.js":247,"./ndarray.js":249,"@stdlib/utils/define-nonenumerable-read-only-property":619}],249:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23161,7 +23147,7 @@ function dnansumors( N, x, strideX, offsetX ) {
 
 module.exports = dnansumors;
 
-},{"@stdlib/math/base/assert/is-nan":567}],250:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568}],250:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23184,8 +23170,8 @@ module.exports = dnansumors;
 
 // MODULES //
 
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var sum = require( './ndarray.js' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -23203,49 +23189,19 @@ var sum = require( './ndarray.js' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, NaN, 2.0 ] );
-* var N = x.length;
 *
-* var v = dnansumpw( N, x, 1 );
+* var v = dnansumpw( x.length, x, 1 );
 * // returns 1.0
 */
-function dnansumpw( N, x, stride ) {
-	var ix;
-	var s;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ 0 ] ) ) {
-			return 0.0;
-		}
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	if ( N < 8 ) {
-		// Use simple summation...
-		s = 0.0;
-		for ( i = 0; i < N; i++ ) {
-			if ( isnan( x[ ix ] ) === false ) {
-				s += x[ ix ];
-			}
-			ix += stride;
-		}
-		return s;
-	}
-	return sum( N, x, stride, ix );
+function dnansumpw( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -23253,7 +23209,7 @@ function dnansumpw( N, x, stride ) {
 
 module.exports = dnansumpw;
 
-},{"./ndarray.js":252,"@stdlib/math/base/assert/is-nan":567}],251:[function(require,module,exports){
+},{"./ndarray.js":252,"@stdlib/strided/base/stride2offset":596}],251:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23290,7 +23246,7 @@ setReadOnly( dnansumpw, 'ndarray', ndarray );
 
 module.exports = dnansumpw;
 
-},{"./dnansumpw.js":250,"./ndarray.js":252,"@stdlib/utils/define-nonenumerable-read-only-property":618}],252:[function(require,module,exports){
+},{"./dnansumpw.js":250,"./ndarray.js":252,"@stdlib/utils/define-nonenumerable-read-only-property":619}],252:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23338,8 +23294,8 @@ var BLOCKSIZE = 128;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -23350,7 +23306,7 @@ var BLOCKSIZE = 128;
 * var v = dnansumpw( 5, x, 2, 1 );
 * // returns 5.0
 */
-function dnansumpw( N, x, stride, offset ) {
+function dnansumpw( N, x, strideX, offsetX ) {
 	var ix;
 	var s0;
 	var s1;
@@ -23368,13 +23324,13 @@ function dnansumpw( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ offset ] ) ) {
+	if ( strideX === 0 ) {
+		if ( isnan( x[ offsetX ] ) ) {
 			return 0.0;
 		}
-		return x[ offset ];
+		return x[ offsetX ] * N;
 	}
-	ix = offset;
+	ix = offsetX;
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
@@ -23382,64 +23338,64 @@ function dnansumpw( N, x, stride, offset ) {
 			if ( isnan( x[ ix ] ) === false ) {
 				s += x[ ix ];
 			}
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	if ( N <= BLOCKSIZE ) {
 		// Sum a block with 8 accumulators (by loop unrolling, we lower the effective blocksize to 16)...
 		s0 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s1 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s2 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s3 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s4 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s5 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s6 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s7 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 
 		M = N % 8;
 		for ( i = 8; i < N-M; i += 8 ) {
 			s0 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s1 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s2 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s3 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s4 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s5 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s6 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s7 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 		}
 		// Pairwise sum the accumulators:
-		s = ((s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7));
+		s = ( (s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7) );
 
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {
 			if ( isnan( x[ ix ] ) === false ) {
 				s += x[ ix ];
 			}
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	// Recurse by dividing by two, but avoiding non-multiples of unroll factor...
 	n = floor( N/2 );
 	n -= n % 8;
-	return dnansumpw( n, x, stride, ix ) + dnansumpw( N-n, x, stride, ix+(n*stride) ); // eslint-disable-line max-len
+	return dnansumpw( n, x, strideX, ix ) + dnansumpw( N-n, x, strideX, ix+(n*strideX) ); // eslint-disable-line max-len
 }
 
 
@@ -23447,7 +23403,7 @@ function dnansumpw( N, x, stride, offset ) {
 
 module.exports = dnansumpw;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/floor":581}],253:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/special/floor":582}],253:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23501,7 +23457,7 @@ function drev( N, x, strideX ) {
 
 module.exports = drev;
 
-},{"./ndarray.js":255,"@stdlib/strided/base/stride2offset":595}],254:[function(require,module,exports){
+},{"./ndarray.js":255,"@stdlib/strided/base/stride2offset":596}],254:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23538,7 +23494,7 @@ setReadOnly( drev, 'ndarray', ndarray );
 
 module.exports = drev;
 
-},{"./drev.js":253,"./ndarray.js":255,"@stdlib/utils/define-nonenumerable-read-only-property":618}],255:[function(require,module,exports){
+},{"./drev.js":253,"./ndarray.js":255,"@stdlib/utils/define-nonenumerable-read-only-property":619}],255:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23654,7 +23610,7 @@ function drev( N, x, strideX, offsetX ) {
 
 module.exports = drev;
 
-},{"@stdlib/math/base/special/floor":581}],256:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],256:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23677,18 +23633,19 @@ module.exports = drev;
 
 // MODULES //
 
-var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
 
 /**
-* Adds a constant to each single-precision floating-point strided array element and computes the sum using extended accumulation and returning an extended precision result.
+* Adds a scalar constant to each single-precision floating-point strided array element, and computes the sum using extended accumulation and returning an extended precision result.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
@@ -23696,11 +23653,11 @@ var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
 *
-* var v = dsapxsum( 3, 5.0, x, 1 );
+* var v = dsapxsum( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
-function dsapxsum( N, alpha, x, stride ) {
-	return dsapxsumpw( N, alpha, x, stride );
+function dsapxsum( N, alpha, x, strideX ) {
+	return ndarray( N, alpha, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -23708,7 +23665,7 @@ function dsapxsum( N, alpha, x, stride ) {
 
 module.exports = dsapxsum;
 
-},{"@stdlib/blas/ext/base/dsapxsumpw":260}],257:[function(require,module,exports){
+},{"./ndarray.js":258,"@stdlib/strided/base/stride2offset":596}],257:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23745,7 +23702,7 @@ setReadOnly( dsapxsum, 'ndarray', ndarray );
 
 module.exports = dsapxsum;
 
-},{"./dsapxsum.js":256,"./ndarray.js":258,"@stdlib/utils/define-nonenumerable-read-only-property":618}],258:[function(require,module,exports){
+},{"./dsapxsum.js":256,"./ndarray.js":258,"@stdlib/utils/define-nonenumerable-read-only-property":619}],258:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23774,13 +23731,13 @@ var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' ).ndarray;
 // MAIN //
 
 /**
-* Adds a constant to each single-precision floating-point strided array element and computes the sum using extended accumulation and returning an extended precision result.
+* Adds a scalar constant to each single-precision floating-point strided array element, and computes the sum using extended accumulation and returning an extended precision result.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -23791,8 +23748,8 @@ var dsapxsumpw = require( '@stdlib/blas/ext/base/dsapxsumpw' ).ndarray;
 * var v = dsapxsum( 4, 5.0, x, 2, 1 );
 * // returns 25.0
 */
-function dsapxsum( N, alpha, x, stride, offset ) {
-	return dsapxsumpw( N, alpha, x, stride, offset );
+function dsapxsum( N, alpha, x, strideX, offsetX ) {
+	return dsapxsumpw( N, alpha, x, strideX, offsetX );
 }
 
 
@@ -23863,7 +23820,7 @@ function dsapxsumpw( N, alpha, x, strideX ) {
 
 module.exports = dsapxsumpw;
 
-},{"./ndarray.js":261,"@stdlib/strided/base/stride2offset":595}],260:[function(require,module,exports){
+},{"./ndarray.js":261,"@stdlib/strided/base/stride2offset":596}],260:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -23900,7 +23857,7 @@ setReadOnly( dsapxsumpw, 'ndarray', ndarray );
 
 module.exports = dsapxsumpw;
 
-},{"./dsapxsumpw.js":259,"./ndarray.js":261,"@stdlib/utils/define-nonenumerable-read-only-property":618}],261:[function(require,module,exports){
+},{"./dsapxsumpw.js":259,"./ndarray.js":261,"@stdlib/utils/define-nonenumerable-read-only-property":619}],261:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24036,7 +23993,7 @@ function dsapxsumpw( N, alpha, x, strideX, offsetX ) {
 
 module.exports = dsapxsumpw;
 
-},{"@stdlib/math/base/special/floor":581}],262:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],262:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24099,7 +24056,7 @@ function dsnannsumors( N, x, strideX, out, strideOut ) {
 
 module.exports = dsnannsumors;
 
-},{"./ndarray.js":264,"@stdlib/strided/base/stride2offset":595}],263:[function(require,module,exports){
+},{"./ndarray.js":264,"@stdlib/strided/base/stride2offset":596}],263:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24136,7 +24093,7 @@ setReadOnly( dsnannsumors, 'ndarray', ndarray );
 
 module.exports = dsnannsumors;
 
-},{"./dsnannsumors.js":262,"./ndarray.js":264,"@stdlib/utils/define-nonenumerable-read-only-property":618}],264:[function(require,module,exports){
+},{"./dsnannsumors.js":262,"./ndarray.js":264,"@stdlib/utils/define-nonenumerable-read-only-property":619}],264:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24227,7 +24184,7 @@ function dsnannsumors( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 
 module.exports = dsnannsumors;
 
-},{"@stdlib/math/base/assert/is-nan":567}],265:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568}],265:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24250,7 +24207,8 @@ module.exports = dsnannsumors;
 
 // MODULES //
 
-var dsnansumpw = require( '@stdlib/blas/ext/base/dsnansumpw' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -24260,20 +24218,19 @@ var dsnansumpw = require( '@stdlib/blas/ext/base/dsnansumpw' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, NaN, 2.0 ] );
-* var N = x.length;
-*
-* var v = dsnansum( N, x, 1 );
+
+* var v = dsnansum( x.length, x, 1 );
 * // returns 1.0
 */
-function dsnansum( N, x, stride ) {
-	return dsnansumpw( N, x, stride );
+function dsnansum( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX) );
 }
 
 
@@ -24281,7 +24238,7 @@ function dsnansum( N, x, stride ) {
 
 module.exports = dsnansum;
 
-},{"@stdlib/blas/ext/base/dsnansumpw":272}],266:[function(require,module,exports){
+},{"./ndarray.js":267,"@stdlib/strided/base/stride2offset":596}],266:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24318,7 +24275,7 @@ setReadOnly( dsnansum, 'ndarray', ndarray );
 
 module.exports = dsnansum;
 
-},{"./dsnansum.js":265,"./ndarray.js":267,"@stdlib/utils/define-nonenumerable-read-only-property":618}],267:[function(require,module,exports){
+},{"./dsnansum.js":265,"./ndarray.js":267,"@stdlib/utils/define-nonenumerable-read-only-property":619}],267:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24351,8 +24308,8 @@ var dsnansumpw = require( '@stdlib/blas/ext/base/dsnansumpw' ).ndarray;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -24363,8 +24320,8 @@ var dsnansumpw = require( '@stdlib/blas/ext/base/dsnansumpw' ).ndarray;
 * var v = dsnansum( 5, x, 2, 1 );
 * // returns 5.0
 */
-function dsnansum( N, x, stride, offset ) {
-	return dsnansumpw( N, x, stride, offset );
+function dsnansum( N, x, strideX, offsetX ) {
+	return dsnansumpw( N, x, strideX, offsetX );
 }
 
 
@@ -24395,7 +24352,8 @@ module.exports = dsnansum;
 
 // MODULES //
 
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -24405,45 +24363,19 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, NaN, 2.0 ] );
-* var N = x.length;
 *
-* var v = dsnansumors( N, x, 1 );
+* var v = dsnansumors( x.length, x, 1 );
 * // returns 1.0
 */
-function dsnansumors( N, x, stride ) {
-	var sum;
-	var ix;
-	var i;
-
-	sum = 0.0;
-	if ( N <= 0 ) {
-		return sum;
-	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ 0 ] ) ) {
-			return sum;
-		}
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	for ( i = 0; i < N; i++ ) {
-		if ( isnan( x[ ix ] ) === false ) {
-			sum += x[ ix ];
-		}
-		ix += stride;
-	}
-	return sum;
+function dsnansumors( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -24451,7 +24383,7 @@ function dsnansumors( N, x, stride ) {
 
 module.exports = dsnansumors;
 
-},{"@stdlib/math/base/assert/is-nan":567}],269:[function(require,module,exports){
+},{"./ndarray.js":270,"@stdlib/strided/base/stride2offset":596}],269:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24488,7 +24420,7 @@ setReadOnly( dsnansumors, 'ndarray', ndarray );
 
 module.exports = dsnansumors;
 
-},{"./dsnansumors.js":268,"./ndarray.js":270,"@stdlib/utils/define-nonenumerable-read-only-property":618}],270:[function(require,module,exports){
+},{"./dsnansumors.js":268,"./ndarray.js":270,"@stdlib/utils/define-nonenumerable-read-only-property":619}],270:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24521,8 +24453,8 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -24533,7 +24465,7 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 * var v = dsnansumors( 5, x, 2, 1 );
 * // returns 5.0
 */
-function dsnansumors( N, x, stride, offset ) {
+function dsnansumors( N, x, strideX, offsetX ) {
 	var sum;
 	var ix;
 	var i;
@@ -24542,18 +24474,18 @@ function dsnansumors( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return sum;
 	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ offset ] ) ) {
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		if ( isnan( x[ ix ] ) ) {
 			return sum;
 		}
-		return x[ offset ];
+		return N * x[ ix ];
 	}
-	ix = offset;
 	for ( i = 0; i < N; i++ ) {
 		if ( isnan( x[ ix ] ) === false ) {
 			sum += x[ ix ];
 		}
-		ix += stride;
+		ix += strideX;
 	}
 	return sum;
 }
@@ -24563,7 +24495,7 @@ function dsnansumors( N, x, stride, offset ) {
 
 module.exports = dsnansumors;
 
-},{"@stdlib/math/base/assert/is-nan":567}],271:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568}],271:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24586,8 +24518,8 @@ module.exports = dsnansumors;
 
 // MODULES //
 
-var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
-var sum = require( './ndarray.js' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -24605,7 +24537,7 @@ var sum = require( './ndarray.js' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
@@ -24616,37 +24548,8 @@ var sum = require( './ndarray.js' );
 * var v = dsnansumpw( x.length, x, 1 );
 * // returns 1.0
 */
-function dsnansumpw( N, x, stride ) {
-	var ix;
-	var s;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnanf( x[ 0 ] ) ) {
-			return 0.0;
-		}
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	if ( N < 8 ) {
-		// Use simple summation...
-		s = 0.0;
-		for ( i = 0; i < N; i++ ) {
-			if ( isnanf( x[ ix ] ) === false ) {
-				s += x[ ix ];
-			}
-			ix += stride;
-		}
-		return s;
-	}
-	return sum( N, x, stride, ix );
+function dsnansumpw( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -24654,7 +24557,7 @@ function dsnansumpw( N, x, stride ) {
 
 module.exports = dsnansumpw;
 
-},{"./ndarray.js":273,"@stdlib/math/base/assert/is-nanf":569}],272:[function(require,module,exports){
+},{"./ndarray.js":273,"@stdlib/strided/base/stride2offset":596}],272:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24691,7 +24594,7 @@ setReadOnly( dsnansumpw, 'ndarray', ndarray );
 
 module.exports = dsnansumpw;
 
-},{"./dsnansumpw.js":271,"./ndarray.js":273,"@stdlib/utils/define-nonenumerable-read-only-property":618}],273:[function(require,module,exports){
+},{"./dsnansumpw.js":271,"./ndarray.js":273,"@stdlib/utils/define-nonenumerable-read-only-property":619}],273:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -24739,8 +24642,8 @@ var BLOCKSIZE = 128;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -24751,7 +24654,7 @@ var BLOCKSIZE = 128;
 * var v = dsnansumpw( 5, x, 2, 1 );
 * // returns 5.0
 */
-function dsnansumpw( N, x, stride, offset ) {
+function dsnansumpw( N, x, strideX, offsetX ) {
 	var ix;
 	var s0;
 	var s1;
@@ -24769,13 +24672,13 @@ function dsnansumpw( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnanf( x[ offset ] ) ) {
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		if ( isnanf( x[ ix ] ) ) {
 			return 0.0;
 		}
-		return x[ offset ];
+		return N * x[ ix ];
 	}
-	ix = offset;
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
@@ -24783,64 +24686,64 @@ function dsnansumpw( N, x, stride, offset ) {
 			if ( isnanf( x[ ix ] ) === false ) {
 				s += x[ ix ];
 			}
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	if ( N <= BLOCKSIZE ) {
 		// Sum a block with 8 accumulators (by loop unrolling, we lower the effective blocksize to 16)...
 		s0 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s1 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s2 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s3 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s4 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s5 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s6 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s7 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 
 		M = N % 8;
 		for ( i = 8; i < N-M; i += 8 ) {
 			s0 += ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s1 += ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s2 += ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s3 += ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s4 += ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s5 += ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s6 += ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s7 += ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 		}
 		// Pairwise sum the accumulators:
-		s = ((s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7));
+		s = ( (s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7) );
 
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {
 			if ( isnanf( x[ ix ] ) === false ) {
 				s += x[ ix ];
 			}
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	// Recurse by dividing by two, but avoiding non-multiples of unroll factor...
 	n = floor( N/2 );
 	n -= n % 8;
-	return dsnansumpw( n, x, stride, ix ) + dsnansumpw( N-n, x, stride, ix+(n*stride) ); // eslint-disable-line max-len
+	return dsnansumpw( n, x, strideX, ix ) + dsnansumpw( N-n, x, strideX, ix+(n*strideX) ); // eslint-disable-line max-len
 }
 
 
@@ -24848,7 +24751,7 @@ function dsnansumpw( N, x, stride, offset ) {
 
 module.exports = dsnansumpw;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/special/floor":581}],274:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/special/floor":582}],274:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25024,7 +24927,7 @@ function dsort2hp( N, order, x, strideX, y, strideY ) {
 
 module.exports = dsort2hp;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-positive-zero":575,"@stdlib/math/base/special/floor":581}],275:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-positive-zero":576,"@stdlib/math/base/special/floor":582}],275:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25061,7 +24964,7 @@ setReadOnly( dsort2hp, 'ndarray', ndarray );
 
 module.exports = dsort2hp;
 
-},{"./dsort2hp.js":274,"./ndarray.js":276,"@stdlib/utils/define-nonenumerable-read-only-property":618}],276:[function(require,module,exports){
+},{"./dsort2hp.js":274,"./ndarray.js":276,"@stdlib/utils/define-nonenumerable-read-only-property":619}],276:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25229,7 +25132,7 @@ function dsort2hp( N, order, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = dsort2hp;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-positive-zero":575,"@stdlib/math/base/special/floor":581}],277:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-positive-zero":576,"@stdlib/math/base/special/floor":582}],277:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25420,7 +25323,7 @@ function dsort2ins( N, order, x, strideX, y, strideY ) {
 
 module.exports = dsort2ins;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],278:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],278:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25457,7 +25360,7 @@ setReadOnly( dsort2ins, 'ndarray', ndarray );
 
 module.exports = dsort2ins;
 
-},{"./dsort2ins.js":277,"./ndarray.js":279,"@stdlib/utils/define-nonenumerable-read-only-property":618}],279:[function(require,module,exports){
+},{"./dsort2ins.js":277,"./ndarray.js":279,"@stdlib/utils/define-nonenumerable-read-only-property":619}],279:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25645,7 +25548,7 @@ function dsort2ins( N, order, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = dsort2ins;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],280:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],280:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25777,7 +25680,7 @@ function dsort2sh( N, order, x, strideX, y, strideY ) {
 
 module.exports = dsort2sh;
 
-},{"./gaps.json":281,"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],281:[function(require,module,exports){
+},{"./gaps.json":281,"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],281:[function(require,module,exports){
 module.exports=[701,301,132,57,23,10,4,1]
 
 },{}],282:[function(require,module,exports){
@@ -25817,7 +25720,7 @@ setReadOnly( dsort2sh, 'ndarray', ndarray );
 
 module.exports = dsort2sh;
 
-},{"./dsort2sh.js":280,"./ndarray.js":283,"@stdlib/utils/define-nonenumerable-read-only-property":618}],283:[function(require,module,exports){
+},{"./dsort2sh.js":280,"./ndarray.js":283,"@stdlib/utils/define-nonenumerable-read-only-property":619}],283:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -25941,7 +25844,7 @@ function dsort2sh( N, order, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = dsort2sh;
 
-},{"./gaps.json":281,"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],284:[function(require,module,exports){
+},{"./gaps.json":281,"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],284:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26094,7 +25997,7 @@ function dsorthp( N, order, x, stride ) {
 
 module.exports = dsorthp;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-positive-zero":575,"@stdlib/math/base/special/floor":581}],285:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-positive-zero":576,"@stdlib/math/base/special/floor":582}],285:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26131,7 +26034,7 @@ setReadOnly( dsorthp, 'ndarray', ndarray );
 
 module.exports = dsorthp;
 
-},{"./dsorthp.js":284,"./ndarray.js":286,"@stdlib/utils/define-nonenumerable-read-only-property":618}],286:[function(require,module,exports){
+},{"./dsorthp.js":284,"./ndarray.js":286,"@stdlib/utils/define-nonenumerable-read-only-property":619}],286:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26280,7 +26183,7 @@ function dsorthp( N, order, x, stride, offset ) {
 
 module.exports = dsorthp;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-positive-zero":575,"@stdlib/math/base/special/floor":581}],287:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-positive-zero":576,"@stdlib/math/base/special/floor":582}],287:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26428,7 +26331,7 @@ function dsortins( N, order, x, stride ) {
 
 module.exports = dsortins;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],288:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],288:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26465,7 +26368,7 @@ setReadOnly( dsortins, 'ndarray', ndarray );
 
 module.exports = dsortins;
 
-},{"./dsortins.js":287,"./ndarray.js":289,"@stdlib/utils/define-nonenumerable-read-only-property":618}],289:[function(require,module,exports){
+},{"./dsortins.js":287,"./ndarray.js":289,"@stdlib/utils/define-nonenumerable-read-only-property":619}],289:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26613,7 +26516,7 @@ function dsortins( N, order, x, stride, offset ) {
 
 module.exports = dsortins;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],290:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],290:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26725,7 +26628,7 @@ function dsortsh( N, order, x, stride ) {
 
 module.exports = dsortsh;
 
-},{"./gaps.json":291,"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],291:[function(require,module,exports){
+},{"./gaps.json":291,"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],291:[function(require,module,exports){
 arguments[4][281][0].apply(exports,arguments)
 },{"dup":281}],292:[function(require,module,exports){
 /**
@@ -26764,7 +26667,7 @@ setReadOnly( dsortsh, 'ndarray', ndarray );
 
 module.exports = dsortsh;
 
-},{"./dsortsh.js":290,"./ndarray.js":293,"@stdlib/utils/define-nonenumerable-read-only-property":618}],293:[function(require,module,exports){
+},{"./dsortsh.js":290,"./ndarray.js":293,"@stdlib/utils/define-nonenumerable-read-only-property":619}],293:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26872,7 +26775,7 @@ function dsortsh( N, order, x, stride, offset ) {
 
 module.exports = dsortsh;
 
-},{"./gaps.json":291,"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],294:[function(require,module,exports){
+},{"./gaps.json":291,"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],294:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26895,7 +26798,8 @@ module.exports = dsortsh;
 
 // MODULES //
 
-var dssumpw = require( '@stdlib/blas/ext/base/dssumpw' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -26905,20 +26809,19 @@ var dssumpw = require( '@stdlib/blas/ext/base/dssumpw' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dssum( N, x, 1 );
+* var v = dssum( x.length, x, 1 );
 * // returns 1.0
 */
-function dssum( N, x, stride ) {
-	return dssumpw( N, x, stride );
+function dssum( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -26926,7 +26829,7 @@ function dssum( N, x, stride ) {
 
 module.exports = dssum;
 
-},{"@stdlib/blas/ext/base/dssumpw":301}],295:[function(require,module,exports){
+},{"./ndarray.js":296,"@stdlib/strided/base/stride2offset":596}],295:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26963,7 +26866,7 @@ setReadOnly( dssum, 'ndarray', ndarray );
 
 module.exports = dssum;
 
-},{"./dssum.js":294,"./ndarray.js":296,"@stdlib/utils/define-nonenumerable-read-only-property":618}],296:[function(require,module,exports){
+},{"./dssum.js":294,"./ndarray.js":296,"@stdlib/utils/define-nonenumerable-read-only-property":619}],296:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -26996,8 +26899,8 @@ var dssumpw = require( '@stdlib/blas/ext/base/dssumpw' ).ndarray;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -27008,8 +26911,8 @@ var dssumpw = require( '@stdlib/blas/ext/base/dssumpw' ).ndarray;
 * var v = dssum( 4, x, 2, 1 );
 * // returns 5.0
 */
-function dssum( N, x, stride, offset ) {
-	return dssumpw( N, x, stride, offset );
+function dssum( N, x, strideX, offsetX ) {
+	return dssumpw( N, x, strideX, offsetX );
 }
 
 
@@ -27038,9 +26941,10 @@ module.exports = dssum;
 
 'use strict';
 
-// VARIABLES //
+// MODULES //
 
-var M = 6;
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -27050,7 +26954,7 @@ var M = 6;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
@@ -27058,50 +26962,11 @@ var M = 6;
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
 *
-* var v = dssumors( 3, x, 1 );
+* var v = dssumors( x.length, x, 1 );
 * // returns 1.0
 */
-function dssumors( N, x, stride ) {
-	var sum;
-	var ix;
-	var m;
-	var i;
-
-	sum = 0.0;
-	if ( N <= 0 ) {
-		return sum;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	// If the stride is equal to `1`, use unrolled loops...
-	if ( stride === 1 ) {
-		m = N % M;
-
-		// If we have a remainder, run a clean-up loop...
-		if ( m > 0 ) {
-			for ( i = 0; i < m; i++ ) {
-				sum += x[ i ];
-			}
-		}
-		if ( N < M ) {
-			return sum;
-		}
-		for ( i = m; i < N; i += M ) {
-			sum += x[i] + x[i+1] + x[i+2] + x[i+3] + x[i+4] + x[i+5];
-		}
-		return sum;
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	for ( i = 0; i < N; i++ ) {
-		sum += x[ ix ];
-		ix += stride;
-	}
-	return sum;
+function dssumors( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -27109,7 +26974,7 @@ function dssumors( N, x, stride ) {
 
 module.exports = dssumors;
 
-},{}],298:[function(require,module,exports){
+},{"./ndarray.js":299,"@stdlib/strided/base/stride2offset":596}],298:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27146,7 +27011,7 @@ setReadOnly( dssumors, 'ndarray', ndarray );
 
 module.exports = dssumors;
 
-},{"./dssumors.js":297,"./ndarray.js":299,"@stdlib/utils/define-nonenumerable-read-only-property":618}],299:[function(require,module,exports){
+},{"./dssumors.js":297,"./ndarray.js":299,"@stdlib/utils/define-nonenumerable-read-only-property":619}],299:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27179,8 +27044,8 @@ var M = 6;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -27191,7 +27056,7 @@ var M = 6;
 * var v = dssumors( 4, x, 2, 1 );
 * // returns 5.0
 */
-function dssumors( N, x, stride, offset ) {
+function dssumors( N, x, strideX, offsetX ) {
 	var sum;
 	var ix;
 	var m;
@@ -27201,20 +27066,20 @@ function dssumors( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return sum;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
 
 	// If the stride is equal to `1`, use unrolled loops...
-	if ( stride === 1 ) {
+	if ( strideX === 1 ) {
 		m = N % M;
 
 		// If we have a remainder, run a clean-up loop...
 		if ( m > 0 ) {
 			for ( i = 0; i < m; i++ ) {
 				sum += x[ ix ];
-				ix += stride;
+				ix += strideX;
 			}
 		}
 		if ( N < M ) {
@@ -27228,7 +27093,7 @@ function dssumors( N, x, stride, offset ) {
 	}
 	for ( i = 0; i < N; i++ ) {
 		sum += x[ ix ];
-		ix += stride;
+		ix += strideX;
 	}
 	return sum;
 }
@@ -27261,7 +27126,8 @@ module.exports = dssumors;
 
 // MODULES //
 
-var sum = require( './ndarray.js' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -27279,44 +27145,19 @@ var sum = require( './ndarray.js' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dssumpw( N, x, 1 );
+* var v = dssumpw( x.length, x, 1 );
 * // returns 1.0
 */
-function dssumpw( N, x, stride ) {
-	var ix;
-	var s;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	if ( N < 8 ) {
-		// Use simple summation...
-		s = 0.0;
-		for ( i = 0; i < N; i++ ) {
-			s += x[ ix ];
-			ix += stride;
-		}
-		return s;
-	}
-	return sum( N, x, stride, ix );
+function dssumpw( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -27324,7 +27165,7 @@ function dssumpw( N, x, stride ) {
 
 module.exports = dssumpw;
 
-},{"./ndarray.js":302}],301:[function(require,module,exports){
+},{"./ndarray.js":302,"@stdlib/strided/base/stride2offset":596}],301:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27361,7 +27202,7 @@ setReadOnly( dssumpw, 'ndarray', ndarray );
 
 module.exports = dssumpw;
 
-},{"./dssumpw.js":300,"./ndarray.js":302,"@stdlib/utils/define-nonenumerable-read-only-property":618}],302:[function(require,module,exports){
+},{"./dssumpw.js":300,"./ndarray.js":302,"@stdlib/utils/define-nonenumerable-read-only-property":619}],302:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27408,8 +27249,8 @@ var BLOCKSIZE = 128;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -27420,7 +27261,7 @@ var BLOCKSIZE = 128;
 * var v = dssumpw( 4, x, 2, 1 );
 * // returns 5.0
 */
-function dssumpw( N, x, stride, offset ) {
+function dssumpw( N, x, strideX, offsetX ) {
 	var ix;
 	var s0;
 	var s1;
@@ -27438,57 +27279,58 @@ function dssumpw( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
+
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
 		for ( i = 0; i < N; i++ ) {
 			s += x[ ix ];
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	if ( N <= BLOCKSIZE ) {
 		// Sum a block with 8 accumulators (by loop unrolling, we lower the effective blocksize to 16)...
 		s0 = x[ ix ];
-		s1 = x[ ix+stride ];
-		s2 = x[ ix+(2*stride) ];
-		s3 = x[ ix+(3*stride) ];
-		s4 = x[ ix+(4*stride) ];
-		s5 = x[ ix+(5*stride) ];
-		s6 = x[ ix+(6*stride) ];
-		s7 = x[ ix+(7*stride) ];
-		ix += 8 * stride;
+		s1 = x[ ix+strideX ];
+		s2 = x[ ix+(2*strideX) ];
+		s3 = x[ ix+(3*strideX) ];
+		s4 = x[ ix+(4*strideX) ];
+		s5 = x[ ix+(5*strideX) ];
+		s6 = x[ ix+(6*strideX) ];
+		s7 = x[ ix+(7*strideX) ];
+		ix += 8 * strideX;
 
 		M = N % 8;
 		for ( i = 8; i < N-M; i += 8 ) {
 			s0 += x[ ix ];
-			s1 += x[ ix+stride ];
-			s2 += x[ ix+(2*stride) ];
-			s3 += x[ ix+(3*stride) ];
-			s4 += x[ ix+(4*stride) ];
-			s5 += x[ ix+(5*stride) ];
-			s6 += x[ ix+(6*stride) ];
-			s7 += x[ ix+(7*stride) ];
-			ix += 8 * stride;
+			s1 += x[ ix+strideX ];
+			s2 += x[ ix+(2*strideX) ];
+			s3 += x[ ix+(3*strideX) ];
+			s4 += x[ ix+(4*strideX) ];
+			s5 += x[ ix+(5*strideX) ];
+			s6 += x[ ix+(6*strideX) ];
+			s7 += x[ ix+(7*strideX) ];
+			ix += 8 * strideX;
 		}
 		// Pairwise sum the accumulators:
-		s = ((s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7));
+		s = ( (s0+s1) + (s2+s3) ) + ( (s4+s5) + (s6+s7) );
 
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {
 			s += x[ ix ];
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	// Recurse by dividing by two, but avoiding non-multiples of unroll factor...
 	n = floor( N/2 );
 	n -= n % 8;
-	return dssumpw( n, x, stride, ix ) + dssumpw( N-n, x, stride, ix+(n*stride) ); // eslint-disable-line max-len
+	return dssumpw( n, x, strideX, ix ) + dssumpw( N-n, x, strideX, ix+(n*strideX) ); // eslint-disable-line max-len
 }
 
 
@@ -27496,7 +27338,7 @@ function dssumpw( N, x, stride, offset ) {
 
 module.exports = dssumpw;
 
-},{"@stdlib/math/base/special/floor":581}],303:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],303:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27519,7 +27361,8 @@ module.exports = dssumpw;
 
 // MODULES //
 
-var dsumkbn = require( '@stdlib/blas/ext/base/dsumkbn' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -27529,20 +27372,19 @@ var dsumkbn = require( '@stdlib/blas/ext/base/dsumkbn' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dsum( N, x, 1 );
+* var v = dsum( x.length, x, 1 );
 * // returns 1.0
 */
-function dsum( N, x, stride ) {
-	return dsumkbn( N, x, stride );
+function dsum( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -27550,7 +27392,7 @@ function dsum( N, x, stride ) {
 
 module.exports = dsum;
 
-},{"@stdlib/blas/ext/base/dsumkbn":307}],304:[function(require,module,exports){
+},{"./ndarray.js":305,"@stdlib/strided/base/stride2offset":596}],304:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27587,7 +27429,7 @@ setReadOnly( dsum, 'ndarray', ndarray );
 
 module.exports = dsum;
 
-},{"./dsum.js":303,"./ndarray.js":305,"@stdlib/utils/define-nonenumerable-read-only-property":618}],305:[function(require,module,exports){
+},{"./dsum.js":303,"./ndarray.js":305,"@stdlib/utils/define-nonenumerable-read-only-property":619}],305:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27620,22 +27462,20 @@ var dsumkbn = require( '@stdlib/blas/ext/base/dsumkbn' ).ndarray;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
-* var floor = require( '@stdlib/math/base/special/floor' );
 *
 * var x = new Float64Array( [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ] );
-* var N = floor( x.length / 2 );
 *
-* var v = dsum( N, x, 2, 1 );
+* var v = dsum( 4, x, 2, 1 );
 * // returns 5.0
 */
-function dsum( N, x, stride, offset ) {
-	return dsumkbn( N, x, stride, offset );
+function dsum( N, x, strideX, offsetX ) {
+	return dsumkbn( N, x, strideX, offsetX );
 }
 
 
@@ -27666,7 +27506,8 @@ module.exports = dsum;
 
 // MODULES //
 
-var abs = require( '@stdlib/math/base/special/abs' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -27684,51 +27525,19 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dsumkbn( N, x, 1 );
+* var v = dsumkbn( x.length, x, 1 );
 * // returns 1.0
 */
-function dsumkbn( N, x, stride ) {
-	var sum;
-	var ix;
-	var v;
-	var t;
-	var c;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	sum = 0.0;
-	c = 0.0;
-	for ( i = 0; i < N; i++ ) {
-		v = x[ ix ];
-		t = sum + v;
-		if ( abs( sum ) >= abs( v ) ) {
-			c += (sum-t) + v;
-		} else {
-			c += (v-t) + sum;
-		}
-		sum = t;
-		ix += stride;
-	}
-	return sum + c;
+function dsumkbn( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -27736,7 +27545,7 @@ function dsumkbn( N, x, stride ) {
 
 module.exports = dsumkbn;
 
-},{"@stdlib/math/base/special/abs":579}],307:[function(require,module,exports){
+},{"./ndarray.js":308,"@stdlib/strided/base/stride2offset":596}],307:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27773,7 +27582,7 @@ setReadOnly( dsumkbn, 'ndarray', ndarray );
 
 module.exports = dsumkbn;
 
-},{"./dsumkbn.js":306,"./ndarray.js":308,"@stdlib/utils/define-nonenumerable-read-only-property":618}],308:[function(require,module,exports){
+},{"./dsumkbn.js":306,"./ndarray.js":308,"@stdlib/utils/define-nonenumerable-read-only-property":619}],308:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27814,21 +27623,19 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
-* var floor = require( '@stdlib/math/base/special/floor' );
 *
 * var x = new Float64Array( [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ] );
-* var N = floor( x.length / 2 );
 *
-* var v = dsumkbn( N, x, 2, 1 );
+* var v = dsumkbn( 4, x, 2, 1 );
 * // returns 5.0
 */
-function dsumkbn( N, x, stride, offset ) {
+function dsumkbn( N, x, strideX, offsetX ) {
 	var sum;
 	var ix;
 	var v;
@@ -27839,10 +27646,10 @@ function dsumkbn( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
 	sum = 0.0;
 	c = 0.0;
 	for ( i = 0; i < N; i++ ) {
@@ -27854,7 +27661,7 @@ function dsumkbn( N, x, stride, offset ) {
 			c += (v-t) + sum;
 		}
 		sum = t;
-		ix += stride;
+		ix += strideX;
 	}
 	return sum + c;
 }
@@ -27864,7 +27671,7 @@ function dsumkbn( N, x, stride, offset ) {
 
 module.exports = dsumkbn;
 
-},{"@stdlib/math/base/special/abs":579}],309:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],309:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -27887,7 +27694,8 @@ module.exports = dsumkbn;
 
 // MODULES //
 
-var abs = require( '@stdlib/math/base/special/abs' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -27905,63 +27713,19 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dsumkbn2( N, x, 1 );
+* var v = dsumkbn2( x.length, x, 1 );
 * // returns 1.0
 */
-function dsumkbn2( N, x, stride ) {
-	var sum;
-	var ccs;
-	var ix;
-	var cs;
-	var cc;
-	var v;
-	var t;
-	var c;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	sum = 0.0;
-	ccs = 0.0; // second order correction term for lost low order bits
-	cs = 0.0; // first order correction term for lost low order bits
-	for ( i = 0; i < N; i++ ) {
-		v = x[ ix ];
-		t = sum + v;
-		if ( abs( sum ) >= abs( v ) ) {
-			c = (sum-t) + v;
-		} else {
-			c = (v-t) + sum;
-		}
-		sum = t;
-		t = cs + c;
-		if ( abs( cs ) >= abs( c ) ) {
-			cc = (cs-t) + c;
-		} else {
-			cc = (c-t) + cs;
-		}
-		cs = t;
-		ccs += cc;
-		ix += stride;
-	}
-	return sum + cs + ccs;
+function dsumkbn2( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -27969,7 +27733,7 @@ function dsumkbn2( N, x, stride ) {
 
 module.exports = dsumkbn2;
 
-},{"@stdlib/math/base/special/abs":579}],310:[function(require,module,exports){
+},{"./ndarray.js":311,"@stdlib/strided/base/stride2offset":596}],310:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28006,7 +27770,7 @@ setReadOnly( dsumkbn2, 'ndarray', ndarray );
 
 module.exports = dsumkbn2;
 
-},{"./dsumkbn2.js":309,"./ndarray.js":311,"@stdlib/utils/define-nonenumerable-read-only-property":618}],311:[function(require,module,exports){
+},{"./dsumkbn2.js":309,"./ndarray.js":311,"@stdlib/utils/define-nonenumerable-read-only-property":619}],311:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28047,21 +27811,19 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
-* var floor = require( '@stdlib/math/base/special/floor' );
 *
 * var x = new Float64Array( [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ] );
-* var N = 4;
 *
-* var v = dsumkbn2( N, x, 2, 1 );
+* var v = dsumkbn2( 4, x, 2, 1 );
 * // returns 5.0
 */
-function dsumkbn2( N, x, stride, offset ) {
+function dsumkbn2( N, x, strideX, offsetX ) {
 	var sum;
 	var ccs;
 	var ix;
@@ -28075,10 +27837,10 @@ function dsumkbn2( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
 	sum = 0.0;
 	ccs = 0.0; // second order correction term for lost low order bits
 	cs = 0.0; // first order correction term for lost low order bits
@@ -28099,7 +27861,7 @@ function dsumkbn2( N, x, stride, offset ) {
 		}
 		cs = t;
 		ccs += cc;
-		ix += stride;
+		ix += strideX;
 	}
 	return sum + cs + ccs;
 }
@@ -28109,7 +27871,7 @@ function dsumkbn2( N, x, stride, offset ) {
 
 module.exports = dsumkbn2;
 
-},{"@stdlib/math/base/special/abs":579}],312:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],312:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28130,9 +27892,10 @@ module.exports = dsumkbn2;
 
 'use strict';
 
-// VARIABLES //
+// MODULES //
 
-var M = 6;
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -28142,59 +27905,19 @@ var M = 6;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dsumors( N, x, 1 );
+* var v = dsumors( x.length, x, 1 );
 * // returns 1.0
 */
-function dsumors( N, x, stride ) {
-	var sum;
-	var ix;
-	var m;
-	var i;
-
-	sum = 0.0;
-	if ( N <= 0 ) {
-		return sum;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	// If the stride is equal to `1`, use unrolled loops...
-	if ( stride === 1 ) {
-		m = N % M;
-
-		// If we have a remainder, run a clean-up loop...
-		if ( m > 0 ) {
-			for ( i = 0; i < m; i++ ) {
-				sum += x[ i ];
-			}
-		}
-		if ( N < M ) {
-			return sum;
-		}
-		for ( i = m; i < N; i += M ) {
-			sum += x[i] + x[i+1] + x[i+2] + x[i+3] + x[i+4] + x[i+5];
-		}
-		return sum;
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	for ( i = 0; i < N; i++ ) {
-		sum += x[ ix ];
-		ix += stride;
-	}
-	return sum;
+function dsumors( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -28202,7 +27925,7 @@ function dsumors( N, x, stride ) {
 
 module.exports = dsumors;
 
-},{}],313:[function(require,module,exports){
+},{"./ndarray.js":314,"@stdlib/strided/base/stride2offset":596}],313:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28239,7 +27962,7 @@ setReadOnly( dsumors, 'ndarray', ndarray );
 
 module.exports = dsumors;
 
-},{"./dsumors.js":312,"./ndarray.js":314,"@stdlib/utils/define-nonenumerable-read-only-property":618}],314:[function(require,module,exports){
+},{"./dsumors.js":312,"./ndarray.js":314,"@stdlib/utils/define-nonenumerable-read-only-property":619}],314:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28272,8 +27995,8 @@ var M = 6;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -28284,7 +28007,7 @@ var M = 6;
 * var v = dsumors( 4, x, 2, 1 );
 * // returns 5.0
 */
-function dsumors( N, x, stride, offset ) {
+function dsumors( N, x, strideX, offsetX ) {
 	var sum;
 	var ix;
 	var m;
@@ -28294,20 +28017,20 @@ function dsumors( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return sum;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
 
 	// If the stride is equal to `1`, use unrolled loops...
-	if ( stride === 1 ) {
+	if ( strideX === 1 ) {
 		m = N % M;
 
 		// If we have a remainder, run a clean-up loop...
 		if ( m > 0 ) {
 			for ( i = 0; i < m; i++ ) {
 				sum += x[ ix ];
-				ix += stride;
+				ix += strideX;
 			}
 		}
 		if ( N < M ) {
@@ -28321,7 +28044,7 @@ function dsumors( N, x, stride, offset ) {
 	}
 	for ( i = 0; i < N; i++ ) {
 		sum += x[ ix ];
-		ix += stride;
+		ix += strideX;
 	}
 	return sum;
 }
@@ -28354,7 +28077,8 @@ module.exports = dsumors;
 
 // MODULES //
 
-var sum = require( './ndarray.js' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -28372,44 +28096,19 @@ var sum = require( './ndarray.js' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float64Array = require( '@stdlib/array/float64' );
 *
 * var x = new Float64Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = dsumpw( N, x, 1 );
+* var v = dsumpw( x.length, x, 1 );
 * // returns 1.0
 */
-function dsumpw( N, x, stride ) {
-	var ix;
-	var s;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	if ( N < 8 ) {
-		// Use simple summation...
-		s = 0.0;
-		for ( i = 0; i < N; i++ ) {
-			s += x[ ix ];
-			ix += stride;
-		}
-		return s;
-	}
-	return sum( N, x, stride, ix );
+function dsumpw( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -28417,7 +28116,7 @@ function dsumpw( N, x, stride ) {
 
 module.exports = dsumpw;
 
-},{"./ndarray.js":317}],316:[function(require,module,exports){
+},{"./ndarray.js":317,"@stdlib/strided/base/stride2offset":596}],316:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28454,7 +28153,7 @@ setReadOnly( dsumpw, 'ndarray', ndarray );
 
 module.exports = dsumpw;
 
-},{"./dsumpw.js":315,"./ndarray.js":317,"@stdlib/utils/define-nonenumerable-read-only-property":618}],317:[function(require,module,exports){
+},{"./dsumpw.js":315,"./ndarray.js":317,"@stdlib/utils/define-nonenumerable-read-only-property":619}],317:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28501,8 +28200,8 @@ var BLOCKSIZE = 128;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float64Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -28513,7 +28212,7 @@ var BLOCKSIZE = 128;
 * var v = dsumpw( 4, x, 2, 1 );
 * // returns 5.0
 */
-function dsumpw( N, x, stride, offset ) {
+function dsumpw( N, x, strideX, offsetX ) {
 	var ix;
 	var s0;
 	var s1;
@@ -28531,57 +28230,57 @@ function dsumpw( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
 		for ( i = 0; i < N; i++ ) {
 			s += x[ ix ];
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	if ( N <= BLOCKSIZE ) {
 		// Sum a block with 8 accumulators (by loop unrolling, we lower the effective blocksize to 16)...
 		s0 = x[ ix ];
-		s1 = x[ ix+stride ];
-		s2 = x[ ix+(2*stride) ];
-		s3 = x[ ix+(3*stride) ];
-		s4 = x[ ix+(4*stride) ];
-		s5 = x[ ix+(5*stride) ];
-		s6 = x[ ix+(6*stride) ];
-		s7 = x[ ix+(7*stride) ];
-		ix += 8 * stride;
+		s1 = x[ ix+strideX ];
+		s2 = x[ ix+(2*strideX) ];
+		s3 = x[ ix+(3*strideX) ];
+		s4 = x[ ix+(4*strideX) ];
+		s5 = x[ ix+(5*strideX) ];
+		s6 = x[ ix+(6*strideX) ];
+		s7 = x[ ix+(7*strideX) ];
+		ix += 8 * strideX;
 
 		M = N % 8;
 		for ( i = 8; i < N-M; i += 8 ) {
 			s0 += x[ ix ];
-			s1 += x[ ix+stride ];
-			s2 += x[ ix+(2*stride) ];
-			s3 += x[ ix+(3*stride) ];
-			s4 += x[ ix+(4*stride) ];
-			s5 += x[ ix+(5*stride) ];
-			s6 += x[ ix+(6*stride) ];
-			s7 += x[ ix+(7*stride) ];
-			ix += 8 * stride;
+			s1 += x[ ix+strideX ];
+			s2 += x[ ix+(2*strideX) ];
+			s3 += x[ ix+(3*strideX) ];
+			s4 += x[ ix+(4*strideX) ];
+			s5 += x[ ix+(5*strideX) ];
+			s6 += x[ ix+(6*strideX) ];
+			s7 += x[ ix+(7*strideX) ];
+			ix += 8 * strideX;
 		}
 		// Pairwise sum the accumulators:
-		s = ((s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7));
+		s = ( (s0+s1) + (s2+s3) ) + ( (s4+s5) + (s6+s7) );
 
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {
 			s += x[ ix ];
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	// Recurse by dividing by two, but avoiding non-multiples of unroll factor...
 	n = floor( N/2 );
 	n -= n % 8;
-	return dsumpw( n, x, stride, ix ) + dsumpw( N-n, x, stride, ix+(n*stride) );
+	return dsumpw( n, x, strideX, ix ) + dsumpw( N-n, x, strideX, ix+(n*strideX) );	// eslint-disable-line max-len
 }
 
 
@@ -28589,7 +28288,7 @@ function dsumpw( N, x, stride, offset ) {
 
 module.exports = dsumpw;
 
-},{"@stdlib/math/base/special/floor":581}],318:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],318:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28648,7 +28347,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":319,"./ndarray.js":320,"@stdlib/utils/define-nonenumerable-read-only-property":618}],319:[function(require,module,exports){
+},{"./main.js":319,"./ndarray.js":320,"@stdlib/utils/define-nonenumerable-read-only-property":619}],319:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -28891,7 +28590,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":322,"./ndarray.js":323,"@stdlib/utils/define-nonenumerable-read-only-property":618}],322:[function(require,module,exports){
+},{"./main.js":322,"./ndarray.js":323,"@stdlib/utils/define-nonenumerable-read-only-property":619}],322:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29022,7 +28721,7 @@ module.exports = gapxsum;
 'use strict';
 
 /**
-* Add a constant to each strided array element and compute the sum using an improved Kahan–Babuška algorithm.
+* Add a scalar constant to each strided array element and compute the sum using an improved Kahan–Babuška algorithm.
 *
 * @module @stdlib/blas/ext/base/gapxsumkbn
 *
@@ -29030,19 +28729,16 @@ module.exports = gapxsum;
 * var gapxsumkbn = require( '@stdlib/blas/ext/base/gapxsumkbn' );
 *
 * var x = [ 1.0, -2.0, 2.0 ];
-* var N = x.length;
 *
-* var v = gapxsumkbn( N, 5.0, x, 1 );
+* var v = gapxsumkbn( x.length, 5.0, x, 1 );
 * // returns 16.0
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gapxsumkbn = require( '@stdlib/blas/ext/base/gapxsumkbn' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gapxsumkbn.ndarray( N, 5.0, x, 2, 1 );
+* var v = gapxsumkbn.ndarray( 4, 5.0, x, 2, 1 );
 * // returns 25.0
 */
 
@@ -29062,7 +28758,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":325,"./ndarray.js":326,"@stdlib/utils/define-nonenumerable-read-only-property":618}],325:[function(require,module,exports){
+},{"./main.js":325,"./ndarray.js":326,"@stdlib/utils/define-nonenumerable-read-only-property":619}],325:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29085,13 +28781,14 @@ module.exports = main;
 
 // MODULES //
 
-var abs = require( '@stdlib/math/base/special/abs' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
 
 /**
-* Adds a constant to each strided array element and computes the sum using an improved Kahan–Babuška algorithm.
+* Adds a scalar constant to each strided array element and computes the sum using an improved Kahan–Babuška algorithm.
 *
 * ## Method
 *
@@ -29102,51 +28799,19 @@ var abs = require( '@stdlib/math/base/special/abs' );
 * -   Neumaier, Arnold. 1974. "Rounding Error Analysis of Some Methods for Summing Finite Sums." _Zeitschrift Für Angewandte Mathematik Und Mechanik_ 54 (1): 39–51. doi:[10.1002/zamm.19740540106](https://doi.org/10.1002/zamm.19740540106).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var x = [ 1.0, -2.0, 2.0 ];
-* var N = x.length;
 *
-* var v = gapxsumkbn( N, 5.0, x, 1 );
+* var v = gapxsumkbn( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
-function gapxsumkbn( N, alpha, x, stride ) {
-	var sum;
-	var ix;
-	var v;
-	var t;
-	var c;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return alpha + x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	sum = 0.0;
-	c = 0.0;
-	for ( i = 0; i < N; i++ ) {
-		v = alpha + x[ ix ];
-		t = sum + v;
-		if ( abs( sum ) >= abs( v ) ) {
-			c += (sum-t) + v;
-		} else {
-			c += (v-t) + sum;
-		}
-		sum = t;
-		ix += stride;
-	}
-	return sum + c;
+function gapxsumkbn( N, alpha, x, strideX ) {
+	return ndarray( N, alpha, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -29154,7 +28819,7 @@ function gapxsumkbn( N, alpha, x, stride ) {
 
 module.exports = gapxsumkbn;
 
-},{"@stdlib/math/base/special/abs":579}],326:[function(require,module,exports){
+},{"./ndarray.js":326,"@stdlib/strided/base/stride2offset":596}],326:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29183,7 +28848,7 @@ var abs = require( '@stdlib/math/base/special/abs' );
 // MAIN //
 
 /**
-* Adds a constant to each strided array element and computes the sum using an improved Kahan–Babuška algorithm.
+* Adds a scalar constant to each strided array element and computes the sum using an improved Kahan–Babuška algorithm.
 *
 * ## Method
 *
@@ -29194,22 +28859,19 @@ var abs = require( '@stdlib/math/base/special/abs' );
 * -   Neumaier, Arnold. 1974. "Rounding Error Analysis of Some Methods for Summing Finite Sums." _Zeitschrift Für Angewandte Mathematik Und Mechanik_ 54 (1): 39–51. doi:[10.1002/zamm.19740540106](https://doi.org/10.1002/zamm.19740540106).
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gapxsumkbn( N, 5.0, x, 2, 1 );
+* var v = gapxsumkbn( 4, 5.0, x, 2, 1 );
 * // returns 25.0
 */
-function gapxsumkbn( N, alpha, x, stride, offset ) {
+function gapxsumkbn( N, alpha, x, strideX, offsetX ) {
 	var sum;
 	var ix;
 	var v;
@@ -29220,10 +28882,10 @@ function gapxsumkbn( N, alpha, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return alpha + x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * ( alpha + x[ ix ] );
 	}
-	ix = offset;
 	sum = 0.0;
 	c = 0.0;
 	for ( i = 0; i < N; i++ ) {
@@ -29235,7 +28897,7 @@ function gapxsumkbn( N, alpha, x, stride, offset ) {
 			c += (v-t) + sum;
 		}
 		sum = t;
-		ix += stride;
+		ix += strideX;
 	}
 	return sum + c;
 }
@@ -29245,7 +28907,7 @@ function gapxsumkbn( N, alpha, x, stride, offset ) {
 
 module.exports = gapxsumkbn;
 
-},{"@stdlib/math/base/special/abs":579}],327:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],327:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29307,7 +28969,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":328,"./ndarray.js":329,"@stdlib/utils/define-nonenumerable-read-only-property":618}],328:[function(require,module,exports){
+},{"./main.js":328,"./ndarray.js":329,"@stdlib/utils/define-nonenumerable-read-only-property":619}],328:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29411,7 +29073,7 @@ function gapxsumkbn2( N, alpha, x, stride ) {
 
 module.exports = gapxsumkbn2;
 
-},{"@stdlib/math/base/special/abs":579}],329:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],329:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29514,7 +29176,7 @@ function gapxsumkbn2( N, alpha, x, stride, offset ) {
 
 module.exports = gapxsumkbn2;
 
-},{"@stdlib/math/base/special/abs":579}],330:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],330:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29576,7 +29238,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":331,"./ndarray.js":332,"@stdlib/utils/define-nonenumerable-read-only-property":618}],331:[function(require,module,exports){
+},{"./main.js":331,"./ndarray.js":332,"@stdlib/utils/define-nonenumerable-read-only-property":619}],331:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29773,7 +29435,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":334,"./ndarray.js":335,"@stdlib/utils/define-nonenumerable-read-only-property":618}],334:[function(require,module,exports){
+},{"./main.js":334,"./ndarray.js":335,"@stdlib/utils/define-nonenumerable-read-only-property":619}],334:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -29995,7 +29657,7 @@ function gapxsumpw( N, alpha, x, stride, offset ) {
 
 module.exports = gapxsumpw;
 
-},{"@stdlib/math/base/special/floor":581}],336:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],336:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30056,7 +29718,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":337,"./ndarray.js":338,"@stdlib/utils/define-nonenumerable-read-only-property":618}],337:[function(require,module,exports){
+},{"./main.js":337,"./ndarray.js":338,"@stdlib/utils/define-nonenumerable-read-only-property":619}],337:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30140,7 +29802,7 @@ function gasumpw( N, x, stride ) {
 
 module.exports = gasumpw;
 
-},{"./ndarray.js":338,"@stdlib/math/base/special/abs":579}],338:[function(require,module,exports){
+},{"./ndarray.js":338,"@stdlib/math/base/special/abs":580}],338:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30277,7 +29939,7 @@ function gasumpw( N, x, stride, offset ) {
 
 module.exports = gasumpw;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/math/base/special/floor":581}],339:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/math/base/special/floor":582}],339:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30340,7 +30002,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":340,"./ndarray.js":341,"@stdlib/utils/define-nonenumerable-read-only-property":618}],340:[function(require,module,exports){
+},{"./main.js":340,"./ndarray.js":341,"@stdlib/utils/define-nonenumerable-read-only-property":619}],340:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30491,14 +30153,12 @@ module.exports = gcusum;
 * // y => [ 1.0, -1.0, 1.0 ]
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gcusumkbn = require( '@stdlib/blas/ext/base/gcusumkbn' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
 * var y = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
-* var N = floor( x.length / 2 );
 *
-* gcusumkbn.ndarray( N, 0.0, x, 2, 1, y, 1, 0 );
+* gcusumkbn.ndarray( 4, 0.0, x, 2, 1, y, 1, 0 );
 * // y => [ 1.0, -1.0, 1.0, 5.0, 0.0, 0.0, 0.0, 0.0 ]
 */
 
@@ -30518,7 +30178,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":343,"./ndarray.js":344,"@stdlib/utils/define-nonenumerable-read-only-property":618}],343:[function(require,module,exports){
+},{"./main.js":343,"./ndarray.js":344,"@stdlib/utils/define-nonenumerable-read-only-property":619}],343:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30541,7 +30201,8 @@ module.exports = main;
 
 // MODULES //
 
-var abs = require( '@stdlib/math/base/special/abs' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -30560,9 +30221,9 @@ var abs = require( '@stdlib/math/base/special/abs' );
 * @param {PositiveInteger} N - number of indexed elements
 * @param {number} sum - initial sum
 * @param {NumericArray} x - input array
-* @param {integer} strideX - `x` stride length
+* @param {integer} strideX - stride length for `x`
 * @param {NumericArray} y - output array
-* @param {integer} strideY - `y` stride length
+* @param {integer} strideY - stride length for `y`
 * @returns {NumericArray} output array
 *
 * @example
@@ -30573,43 +30234,9 @@ var abs = require( '@stdlib/math/base/special/abs' );
 * // returns [ 1.0, -1.0, 1.0 ]
 */
 function gcusumkbn( N, sum, x, strideX, y, strideY ) {
-	var ix;
-	var iy;
-	var s;
-	var v;
-	var t;
-	var c;
-	var i;
-
-	if ( N <= 0 ) {
-		return y;
-	}
-	if ( strideX < 0 ) {
-		ix = (1-N) * strideX;
-	} else {
-		ix = 0;
-	}
-	if ( strideY < 0 ) {
-		iy = (1-N) * strideY;
-	} else {
-		iy = 0;
-	}
-	s = sum;
-	c = 0.0;
-	for ( i = 0; i < N; i++ ) {
-		v = x[ ix ];
-		t = s + v;
-		if ( abs( s ) >= abs( v ) ) {
-			c += (s-t) + v;
-		} else {
-			c += (v-t) + s;
-		}
-		s = t;
-		y[ iy ] = s + c;
-		ix += strideX;
-		iy += strideY;
-	}
-	return y;
+	var ox = stride2offset( N, strideX );
+	var oy = stride2offset( N, strideY );
+	return ndarray( N, sum, x, strideX, ox, y, strideY, oy );
 }
 
 
@@ -30617,7 +30244,7 @@ function gcusumkbn( N, sum, x, strideX, y, strideY ) {
 
 module.exports = gcusumkbn;
 
-},{"@stdlib/math/base/special/abs":579}],344:[function(require,module,exports){
+},{"./ndarray.js":344,"@stdlib/strided/base/stride2offset":596}],344:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30659,21 +30286,18 @@ var abs = require( '@stdlib/math/base/special/abs' );
 * @param {PositiveInteger} N - number of indexed elements
 * @param {number} sum - initial sum
 * @param {NumericArray} x - input array
-* @param {integer} strideX - `x` stride length
+* @param {integer} strideX - stride length for `x`
 * @param {NonNegativeInteger} offsetX - starting index for `x`
 * @param {NumericArray} y - output array
-* @param {integer} strideY - `y` stride length
+* @param {integer} strideY - stride length for `y`
 * @param {NonNegativeInteger} offsetY - starting index for `y`
 * @returns {NumericArray} output array
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
 * var y = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
-* var N = floor( x.length / 2 );
 *
-* gcusumkbn( N, 0.0, x, 2, 1, y, 1, 0 );
+* gcusumkbn( 4, 0.0, x, 2, 1, y, 1, 0 );
 * // y => [ 1.0, -1.0, 1.0, 5.0, 0.0, 0.0, 0.0, 0.0 ]
 */
 function gcusumkbn( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
@@ -30713,7 +30337,7 @@ function gcusumkbn( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = gcusumkbn;
 
-},{"@stdlib/math/base/special/abs":579}],345:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],345:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30776,7 +30400,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":346,"./ndarray.js":347,"@stdlib/utils/define-nonenumerable-read-only-property":618}],346:[function(require,module,exports){
+},{"./main.js":346,"./ndarray.js":347,"@stdlib/utils/define-nonenumerable-read-only-property":619}],346:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30886,7 +30510,7 @@ function gcusumkbn2( N, sum, x, strideX, y, strideY ) {
 
 module.exports = gcusumkbn2;
 
-},{"@stdlib/math/base/special/abs":579}],347:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],347:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30994,7 +30618,7 @@ function gcusumkbn2( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = gcusumkbn2;
 
-},{"@stdlib/math/base/special/abs":579}],348:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],348:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31030,14 +30654,12 @@ module.exports = gcusumkbn2;
 * // y => [ 1.0, -1.0, 1.0 ]
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gcusumors = require( '@stdlib/blas/ext/base/gcusumors' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
 * var y = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
-* var N = floor( x.length / 2 );
 *
-* gcusumors.ndarray( N, 0.0, x, 2, 1, y, 1, 0 );
+* gcusumors.ndarray( 4, 0.0, x, 2, 1, y, 1, 0 );
 * // y => [ 1.0, -1.0, 1.0, 5.0, 0.0, 0.0, 0.0, 0.0 ]
 */
 
@@ -31057,7 +30679,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":349,"./ndarray.js":350,"@stdlib/utils/define-nonenumerable-read-only-property":618}],349:[function(require,module,exports){
+},{"./main.js":349,"./ndarray.js":350,"@stdlib/utils/define-nonenumerable-read-only-property":619}],349:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31078,6 +30700,12 @@ module.exports = main;
 
 'use strict';
 
+// MODULES //
+
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
+
+
 // MAIN //
 
 /**
@@ -31086,9 +30714,9 @@ module.exports = main;
 * @param {PositiveInteger} N - number of indexed elements
 * @param {number} sum - initial sum
 * @param {NumericArray} x - input array
-* @param {integer} strideX - `x` stride length
+* @param {integer} strideX - stride length for `x`
 * @param {NumericArray} y - output array
-* @param {integer} strideY - `y` stride length
+* @param {integer} strideY - stride length for `y`
 * @returns {NumericArray} output array
 *
 * @example
@@ -31099,30 +30727,9 @@ module.exports = main;
 * // returns [ 1.0, -1.0, 1.0 ]
 */
 function gcusumors( N, sum, x, strideX, y, strideY ) {
-	var ix;
-	var iy;
-	var i;
-
-	if ( N <= 0 ) {
-		return y;
-	}
-	if ( strideX < 0 ) {
-		ix = (1-N) * strideX;
-	} else {
-		ix = 0;
-	}
-	if ( strideY < 0 ) {
-		iy = (1-N) * strideY;
-	} else {
-		iy = 0;
-	}
-	for ( i = 0; i < N; i++ ) {
-		sum += x[ ix ];
-		y[ iy ] = sum;
-		ix += strideX;
-		iy += strideY;
-	}
-	return y;
+	var ox = stride2offset( N, strideX );
+	var oy = stride2offset( N, strideY );
+	return ndarray( N, sum, x, strideX, ox, y, strideY, oy );
 }
 
 
@@ -31130,7 +30737,7 @@ function gcusumors( N, sum, x, strideX, y, strideY ) {
 
 module.exports = gcusumors;
 
-},{}],350:[function(require,module,exports){
+},{"./ndarray.js":350,"@stdlib/strided/base/stride2offset":596}],350:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31159,21 +30766,18 @@ module.exports = gcusumors;
 * @param {PositiveInteger} N - number of indexed elements
 * @param {number} sum - initial sum
 * @param {NumericArray} x - input array
-* @param {integer} strideX - `x` stride length
+* @param {integer} strideX - stride length for `x`
 * @param {NonNegativeInteger} offsetX - starting index for `x`
 * @param {NumericArray} y - output array
-* @param {integer} strideY - `y` stride length
+* @param {integer} strideY - stride length for `y`
 * @param {NonNegativeInteger} offsetY - starting index for `y`
 * @returns {NumericArray} output array
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
 * var y = [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ];
-* var N = floor( x.length / 2 );
 *
-* gcusumors( N, 0.0, x, 2, 1, y, 1, 0 );
+* gcusumors( 4, 0.0, x, 2, 1, y, 1, 0 );
 * // y => [ 1.0, -1.0, 1.0, 5.0, 0.0, 0.0, 0.0, 0.0 ]
 */
 function gcusumors( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
@@ -31263,7 +30867,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":352,"./ndarray.js":353,"@stdlib/utils/define-nonenumerable-read-only-property":618}],352:[function(require,module,exports){
+},{"./main.js":352,"./ndarray.js":353,"@stdlib/utils/define-nonenumerable-read-only-property":619}],352:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31441,7 +31045,7 @@ function gcusumpw( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = gcusumpw;
 
-},{"@stdlib/math/base/special/floor":581}],354:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],354:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31601,7 +31205,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":356,"./ndarray.js":357,"@stdlib/utils/define-nonenumerable-read-only-property":618}],356:[function(require,module,exports){
+},{"./main.js":356,"./ndarray.js":357,"@stdlib/utils/define-nonenumerable-read-only-property":619}],356:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -31899,7 +31503,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":360,"./ndarray.js":361,"@stdlib/utils/define-nonenumerable-read-only-property":618}],360:[function(require,module,exports){
+},{"./main.js":360,"./ndarray.js":361,"@stdlib/utils/define-nonenumerable-read-only-property":619}],360:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32137,6 +31741,71 @@ module.exports = gfill;
 
 // MODULES //
 
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
+
+
+// MAIN //
+
+/**
+* Computes the sum of strided array elements, ignoring `NaN` values and using an improved Kahan–Babuška algorithm.
+*
+* ## Method
+*
+* -   This implementation uses an "improved Kahan–Babuška algorithm", as described by Neumaier (1974).
+*
+* ## References
+*
+* -   Neumaier, Arnold. 1974. "Rounding Error Analysis of Some Methods for Summing Finite Sums." _Zeitschrift Für Angewandte Mathematik Und Mechanik_ 54 (1): 39–51. doi:[10.1002/zamm.19740540106](https://doi.org/10.1002/zamm.19740540106).
+*
+* @param {PositiveInteger} N - number of indexed elements
+* @param {NumericArray} x - input array
+* @param {integer} strideX - stride length for `x`
+* @param {NumericArray} out - output array
+* @param {integer} strideOut - stride length for `out`
+* @returns {NumericArray} output array
+*
+* @example
+* var x = [ 1.0, -2.0, NaN, 2.0 ];
+* var out = [ 0.0, 0 ];
+*
+* var v = gnannsumkbn( x.length, x, 1, out, 1 );
+* // returns [ 1.0, 3 ]
+*/
+function gnannsumkbn( N, x, strideX, out, strideOut ) {
+	var ix = stride2offset( N, strideX );
+	var io = stride2offset( 2, strideOut );
+	return ndarray( N, x, strideX, ix, out, strideOut, io );
+}
+
+
+// EXPORTS //
+
+module.exports = gnannsumkbn;
+
+},{"./ndarray.js":363,"@stdlib/strided/base/stride2offset":596}],363:[function(require,module,exports){
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2020 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+'use strict';
+
+// MODULES //
+
 var isnan = require( '@stdlib/math/base/assert/is-nan' );
 var abs = require( '@stdlib/math/base/special/abs' );
 
@@ -32156,52 +31825,44 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} strideX - `x` stride length
+* @param {integer} strideX - stride length for `x`
+* @param {NonNegativeInteger} offsetX - starting index for `x`
 * @param {NumericArray} out - output array
-* @param {integer} strideOut - `out` stride length
+* @param {integer} strideOut - stride length for `out`
+* @param {NonNegativeInteger} offsetOut - starting index for `out`
 * @returns {NumericArray} output array
 *
 * @example
-* var x = [ 1.0, -2.0, NaN, 2.0 ];
+* var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0, NaN, NaN ];
 * var out = [ 0.0, 0 ];
 *
-* var v = gnannsumkbn( x.length, x, 1, out, 1 );
-* // returns [ 1.0, 3 ]
+* var v = gnannsumkbn( 5, x, 2, 1, out, 1, 0 );
+* // returns [ 5.0, 4 ]
 */
-function gnannsumkbn( N, x, strideX, out, strideOut ) {
+function gnannsumkbn( N, x, strideX, offsetX, out, strideOut, offsetOut ) {
 	var sum;
 	var ix;
-	var io;
 	var v;
 	var t;
 	var c;
 	var n;
 	var i;
 
-	if ( strideX < 0 ) {
-		ix = (1-N) * strideX;
-	} else {
-		ix = 0;
-	}
-	if ( strideOut < 0 ) {
-		io = -strideOut;
-	} else {
-		io = 0;
-	}
 	sum = 0.0;
 	if ( N <= 0 ) {
-		out[ io ] = sum;
-		out[ io+strideOut ] = 0;
+		out[ offsetOut ] = sum;
+		out[ offsetOut+strideOut ] = 0;
 		return out;
 	}
-	if ( N === 1 || strideX === 0 ) {
+	ix = offsetX;
+	if ( strideX === 0 ) {
 		if ( isnan( x[ ix ] ) ) {
-			out[ io ] = sum;
-			out[ io+strideOut ] = 0;
+			out[ offsetOut ] = sum;
+			out[ offsetOut+strideOut ] = 0;
 			return out;
 		}
-		out[ io ] = x[ ix ];
-		out[ io+strideOut ] = 1;
+		out[ offsetOut ] = x[ ix ] * N;
+		out[ offsetOut+strideOut ] = N;
 		return out;
 	}
 	c = 0.0;
@@ -32220,8 +31881,8 @@ function gnannsumkbn( N, x, strideX, out, strideOut ) {
 		}
 		ix += strideX;
 	}
-	out[ io ] = sum + c;
-	out[ io+strideOut ] = n;
+	out[ offsetOut ] = sum + c;
+	out[ offsetOut+strideOut ] = n;
 	return out;
 }
 
@@ -32230,7 +31891,7 @@ function gnannsumkbn( N, x, strideX, out, strideOut ) {
 
 module.exports = gnannsumkbn;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/abs":579}],363:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/special/abs":580}],364:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32260,19 +31921,16 @@ module.exports = gnannsumkbn;
 * var gnansum = require( '@stdlib/blas/ext/base/gnansum' );
 *
 * var x = [ 1.0, -2.0, NaN, 2.0 ];
-* var N = x.length;
 *
-* var v = gnansum( N, x, 1 );
+* var v = gnansum( x.length, x, 1 );
 * // returns 1.0
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gnansum = require( '@stdlib/blas/ext/base/gnansum' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0, NaN, NaN ];
-* var N = floor( x.length / 2 );
 *
-* var v = gnansum.ndarray( N, x, 2, 1 );
+* var v = gnansum.ndarray( 5, x, 2, 1 );
 * // returns 5.0
 */
 
@@ -32292,7 +31950,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":364,"./ndarray.js":365,"@stdlib/utils/define-nonenumerable-read-only-property":618}],364:[function(require,module,exports){
+},{"./main.js":365,"./ndarray.js":366,"@stdlib/utils/define-nonenumerable-read-only-property":619}],365:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32315,7 +31973,8 @@ module.exports = main;
 
 // MODULES //
 
-var gnansumkbn = require( '@stdlib/blas/ext/base/gnansumkbn' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -32325,18 +31984,17 @@ var gnansumkbn = require( '@stdlib/blas/ext/base/gnansumkbn' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var x = [ 1.0, -2.0, NaN, 2.0 ];
-* var N = x.length;
 *
-* var v = gnansum( N, x, 1 );
+* var v = gnansum( x.length, x, 1 );
 * // returns 1.0
 */
-function gnansum( N, x, stride ) {
-	return gnansumkbn( N, x, stride );
+function gnansum( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -32344,7 +32002,7 @@ function gnansum( N, x, stride ) {
 
 module.exports = gnansum;
 
-},{"@stdlib/blas/ext/base/gnansumkbn":366}],365:[function(require,module,exports){
+},{"./ndarray.js":366,"@stdlib/strided/base/stride2offset":596}],366:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32377,21 +32035,18 @@ var gnansumkbn = require( '@stdlib/blas/ext/base/gnansumkbn' ).ndarray;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gnansum( N, x, 2, 1 );
+* var v = gnansum( 4, x, 2, 1 );
 * // returns 5.0
 */
-function gnansum( N, x, stride, offset ) {
-	return gnansumkbn( N, x, stride, offset );
+function gnansum( N, x, strideX, offsetX ) {
+	return gnansumkbn( N, x, strideX, offsetX );
 }
 
 
@@ -32399,7 +32054,7 @@ function gnansum( N, x, stride, offset ) {
 
 module.exports = gnansum;
 
-},{"@stdlib/blas/ext/base/gnansumkbn":366}],366:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/gnansumkbn":367}],367:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32429,19 +32084,16 @@ module.exports = gnansum;
 * var gnansumkbn = require( '@stdlib/blas/ext/base/gnansumkbn' );
 *
 * var x = [ 1.0, -2.0, NaN, 2.0 ];
-* var N = x.length;
 *
-* var v = gnansumkbn( N, x, 1 );
+* var v = gnansumkbn( x.length, x, 1 );
 * // returns 1.0
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gnansumkbn = require( '@stdlib/blas/ext/base/gnansumkbn' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0, NaN, NaN ];
-* var N = floor( x.length / 2 );
 *
-* var v = gnansumkbn.ndarray( N, x, 2, 1 );
+* var v = gnansumkbn.ndarray( 5, x, 2, 1 );
 * // returns 5.0
 */
 
@@ -32461,7 +32113,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":367,"./ndarray.js":368,"@stdlib/utils/define-nonenumerable-read-only-property":618}],367:[function(require,module,exports){
+},{"./main.js":368,"./ndarray.js":369,"@stdlib/utils/define-nonenumerable-read-only-property":619}],368:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32484,8 +32136,8 @@ module.exports = main;
 
 // MODULES //
 
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var abs = require( '@stdlib/math/base/special/abs' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -32503,54 +32155,17 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var x = [ 1.0, -2.0, NaN, 2.0 ];
-* var N = x.length;
 *
-* var v = gnansumkbn( N, x, 1 );
+* var v = gnansumkbn( x.length, x, 1 );
 * // returns 1.0
 */
-function gnansumkbn( N, x, stride ) {
-	var sum;
-	var ix;
-	var v;
-	var t;
-	var c;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ 0 ] ) ) {
-			return 0.0;
-		}
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	sum = 0.0;
-	c = 0.0;
-	for ( i = 0; i < N; i++ ) {
-		v = x[ ix ];
-		if ( isnan( v ) === false ) {
-			t = sum + v;
-			if ( abs( sum ) >= abs( v ) ) {
-				c += (sum-t) + v;
-			} else {
-				c += (v-t) + sum;
-			}
-			sum = t;
-		}
-		ix += stride;
-	}
-	return sum + c;
+function gnansumkbn( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -32558,7 +32173,7 @@ function gnansumkbn( N, x, stride ) {
 
 module.exports = gnansumkbn;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/abs":579}],368:[function(require,module,exports){
+},{"./ndarray.js":369,"@stdlib/strided/base/stride2offset":596}],369:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32600,20 +32215,17 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gnansumkbn( N, x, 2, 1 );
+* var v = gnansumkbn( 4, x, 2, 1 );
 * // returns 5.0
 */
-function gnansumkbn( N, x, stride, offset ) {
+function gnansumkbn( N, x, strideX, offsetX ) {
 	var sum;
 	var ix;
 	var v;
@@ -32624,13 +32236,13 @@ function gnansumkbn( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ offset ] ) ) {
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		if ( isnan( x[ ix ] ) ) {
 			return 0.0;
 		}
-		return x[ offset ];
+		return N * x[ ix ];
 	}
-	ix = offset;
 	sum = 0.0;
 	c = 0.0;
 	for ( i = 0; i < N; i++ ) {
@@ -32644,7 +32256,7 @@ function gnansumkbn( N, x, stride, offset ) {
 			}
 			sum = t;
 		}
-		ix += stride;
+		ix += strideX;
 	}
 	return sum + c;
 }
@@ -32654,7 +32266,7 @@ function gnansumkbn( N, x, stride, offset ) {
 
 module.exports = gnansumkbn;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/abs":579}],369:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/special/abs":580}],370:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32684,19 +32296,16 @@ module.exports = gnansumkbn;
 * var gnansumkbn2 = require( '@stdlib/blas/ext/base/gnansumkbn2' );
 *
 * var x = [ 1.0, -2.0, NaN, 2.0 ];
-* var N = x.length;
 *
-* var v = gnansumkbn2( N, x, 1 );
+* var v = gnansumkbn2( x.length, x, 1 );
 * // returns 1.0
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gnansumkbn2 = require( '@stdlib/blas/ext/base/gnansumkbn2' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0, NaN, NaN ];
-* var N = floor( x.length / 2 );
 *
-* var v = gnansumkbn2.ndarray( N, x, 2, 1 );
+* var v = gnansumkbn2.ndarray( 5, x, 2, 1 );
 * // returns 5.0
 */
 
@@ -32716,7 +32325,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":370,"./ndarray.js":371,"@stdlib/utils/define-nonenumerable-read-only-property":618}],370:[function(require,module,exports){
+},{"./main.js":371,"./ndarray.js":372,"@stdlib/utils/define-nonenumerable-read-only-property":619}],371:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32739,8 +32348,8 @@ module.exports = main;
 
 // MODULES //
 
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var abs = require( '@stdlib/math/base/special/abs' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -32758,66 +32367,17 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var x = [ 1.0, -2.0, NaN, 2.0 ];
-* var N = x.length;
 *
-* var v = gnansumkbn2( N, x, 1 );
+* var v = gnansumkbn2( x.length, x, 1 );
 * // returns 1.0
 */
-function gnansumkbn2( N, x, stride ) {
-	var sum;
-	var ccs;
-	var ix;
-	var cs;
-	var cc;
-	var v;
-	var t;
-	var c;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ 0 ] ) ) {
-			return 0.0;
-		}
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	sum = 0.0;
-	ccs = 0.0; // second order correction term for lost low order bits
-	cs = 0.0; // first order correction term for lost low order bits
-	for ( i = 0; i < N; i++ ) {
-		v = x[ ix ];
-		if ( isnan( v ) === false ) {
-			t = sum + v;
-			if ( abs( sum ) >= abs( v ) ) {
-				c = (sum-t) + v;
-			} else {
-				c = (v-t) + sum;
-			}
-			sum = t;
-			t = cs + c;
-			if ( abs( cs ) >= abs( c ) ) {
-				cc = (cs-t) + c;
-			} else {
-				cc = (c-t) + cs;
-			}
-			cs = t;
-			ccs += cc;
-		}
-		ix += stride;
-	}
-	return sum + cs + ccs;
+function gnansumkbn2( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -32825,7 +32385,7 @@ function gnansumkbn2( N, x, stride ) {
 
 module.exports = gnansumkbn2;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/abs":579}],371:[function(require,module,exports){
+},{"./ndarray.js":372,"@stdlib/strided/base/stride2offset":596}],372:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32867,20 +32427,17 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gnansumkbn2( N, x, 2, 1 );
+* var v = gnansumkbn2( 4, x, 2, 1 );
 * // returns 5.0
 */
-function gnansumkbn2( N, x, stride, offset ) {
+function gnansumkbn2( N, x, strideX, offsetX ) {
 	var sum;
 	var ccs;
 	var ix;
@@ -32894,13 +32451,13 @@ function gnansumkbn2( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ offset ] ) ) {
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		if ( isnan( x[ ix ] ) ) {
 			return 0.0;
 		}
-		return x[ offset ];
+		return N * x[ ix ];
 	}
-	ix = offset;
 	sum = 0.0;
 	ccs = 0.0; // second order correction term for lost low order bits
 	cs = 0.0; // first order correction term for lost low order bits
@@ -32923,7 +32480,7 @@ function gnansumkbn2( N, x, stride, offset ) {
 			cs = t;
 			ccs += cc;
 		}
-		ix += stride;
+		ix += strideX;
 	}
 	return sum + cs + ccs;
 }
@@ -32933,7 +32490,7 @@ function gnansumkbn2( N, x, stride, offset ) {
 
 module.exports = gnansumkbn2;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/abs":579}],372:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/special/abs":580}],373:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -32963,19 +32520,16 @@ module.exports = gnansumkbn2;
 * var gnansumors = require( '@stdlib/blas/ext/base/gnansumors' );
 *
 * var x = [ 1.0, -2.0, NaN, 2.0 ];
-* var N = x.length;
 *
-* var v = gnansumors( N, x, 1 );
+* var v = gnansumors( x.length, x, 1 );
 * // returns 1.0
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gnansumors = require( '@stdlib/blas/ext/base/gnansumors' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0, NaN, NaN ];
-* var N = floor( x.length / 2 );
 *
-* var v = gnansumors.ndarray( N, x, 2, 1 );
+* var v = gnansumors.ndarray( 5, x, 2, 1 );
 * // returns 5.0
 */
 
@@ -32995,7 +32549,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":373,"./ndarray.js":374,"@stdlib/utils/define-nonenumerable-read-only-property":618}],373:[function(require,module,exports){
+},{"./main.js":374,"./ndarray.js":375,"@stdlib/utils/define-nonenumerable-read-only-property":619}],374:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33018,7 +32572,8 @@ module.exports = main;
 
 // MODULES //
 
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -33028,43 +32583,17 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var x = [ 1.0, -2.0, NaN, 2.0 ];
-* var N = x.length;
 *
-* var v = gnansumors( N, x, 1 );
+* var v = gnansumors( x.length, x, 1 );
 * // returns 1.0
 */
-function gnansumors( N, x, stride ) {
-	var ix;
-	var s;
-	var i;
-
-	s = 0.0;
-	if ( N <= 0 ) {
-		return s;
-	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ 0 ] ) ) {
-			return s;
-		}
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	for ( i = 0; i < N; i++ ) {
-		if ( isnan( x[ ix ] ) === false ) {
-			s += x[ ix ];
-		}
-		ix += stride;
-	}
-	return s;
+function gnansumors( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -33072,7 +32601,7 @@ function gnansumors( N, x, stride ) {
 
 module.exports = gnansumors;
 
-},{"@stdlib/math/base/assert/is-nan":567}],374:[function(require,module,exports){
+},{"./ndarray.js":375,"@stdlib/strided/base/stride2offset":596}],375:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33105,42 +32634,39 @@ var isnan = require( '@stdlib/math/base/assert/is-nan' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gnansumors( N, x, 2, 1 );
+* var v = gnansumors( 4, x, 2, 1 );
 * // returns 5.0
 */
-function gnansumors( N, x, stride, offset ) {
+function gnansumors( N, x, strideX, offsetX ) {
+	var sum;
 	var ix;
-	var s;
 	var i;
 
-	s = 0.0;
 	if ( N <= 0 ) {
-		return s;
+		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ offset ] ) ) {
-			return s;
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		if ( isnan( x[ ix ] ) ) {
+			return 0.0;
 		}
-		return x[ offset ];
+		return N * x[ ix ];
 	}
-	ix = offset;
+	sum = 0.0;
 	for ( i = 0; i < N; i++ ) {
 		if ( isnan( x[ ix ] ) === false ) {
-			s += x[ ix ];
+			sum += x[ ix ];
 		}
-		ix += stride;
+		ix += strideX;
 	}
-	return s;
+	return sum;
 }
 
 
@@ -33148,7 +32674,7 @@ function gnansumors( N, x, stride, offset ) {
 
 module.exports = gnansumors;
 
-},{"@stdlib/math/base/assert/is-nan":567}],375:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568}],376:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33178,19 +32704,16 @@ module.exports = gnansumors;
 * var gnansumpw = require( '@stdlib/blas/ext/base/gnansumpw' );
 *
 * var x = [ 1.0, -2.0, NaN, 2.0 ];
-* var N = x.length;
 *
-* var v = gnansumpw( N, x, 1 );
+* var v = gnansumpw( x.length, x, 1 );
 * // returns 1.0
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gnansumpw = require( '@stdlib/blas/ext/base/gnansumpw' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0, NaN, NaN ];
-* var N = floor( x.length / 2 );
 *
-* var v = gnansumpw.ndarray( N, x, 2, 1 );
+* var v = gnansumpw.ndarray( 5, x, 2, 1 );
 * // returns 5.0
 */
 
@@ -33210,7 +32733,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":376,"./ndarray.js":377,"@stdlib/utils/define-nonenumerable-read-only-property":618}],376:[function(require,module,exports){
+},{"./main.js":377,"./ndarray.js":378,"@stdlib/utils/define-nonenumerable-read-only-property":619}],377:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33233,8 +32756,8 @@ module.exports = main;
 
 // MODULES //
 
-var isnan = require( '@stdlib/math/base/assert/is-nan' );
-var sum = require( './ndarray.js' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -33252,47 +32775,17 @@ var sum = require( './ndarray.js' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var x = [ 1.0, -2.0, NaN, 2.0 ];
-* var N = x.length;
 *
-* var v = gnansumpw( N, x, 1 );
+* var v = gnansumpw( x.length, x, 1 );
 * // returns 1.0
 */
-function gnansumpw( N, x, stride ) {
-	var ix;
-	var s;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ 0 ] ) ) {
-			return 0.0;
-		}
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	if ( N < 8 ) {
-		// Use simple summation...
-		s = 0.0;
-		for ( i = 0; i < N; i++ ) {
-			if ( isnan( x[ ix ] ) === false ) {
-				s += x[ ix ];
-			}
-			ix += stride;
-		}
-		return s;
-	}
-	return sum( N, x, stride, ix );
+function gnansumpw( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -33300,7 +32793,7 @@ function gnansumpw( N, x, stride ) {
 
 module.exports = gnansumpw;
 
-},{"./ndarray.js":377,"@stdlib/math/base/assert/is-nan":567}],377:[function(require,module,exports){
+},{"./ndarray.js":378,"@stdlib/strided/base/stride2offset":596}],378:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33348,20 +32841,17 @@ var BLOCKSIZE = 128;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gnansumpw( N, x, 2, 1 );
+* var v = gnansumpw( 4, x, 2, 1 );
 * // returns 5.0
 */
-function gnansumpw( N, x, stride, offset ) {
+function gnansumpw( N, x, strideX, offsetX ) {
 	var ix;
 	var s0;
 	var s1;
@@ -33379,13 +32869,13 @@ function gnansumpw( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnan( x[ offset ] ) ) {
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		if ( isnan( x[ ix ] ) ) {
 			return 0.0;
 		}
-		return x[ offset ];
+		return N * x[ ix ];
 	}
-	ix = offset;
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
@@ -33393,64 +32883,64 @@ function gnansumpw( N, x, stride, offset ) {
 			if ( isnan( x[ ix ] ) === false ) {
 				s += x[ ix ];
 			}
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	if ( N <= BLOCKSIZE ) {
 		// Sum a block with 8 accumulators (by loop unrolling, we lower the effective blocksize to 16)...
 		s0 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s1 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s2 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s3 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s4 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s5 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s6 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s7 = ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 
 		M = N % 8;
 		for ( i = 8; i < N-M; i += 8 ) {
 			s0 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s1 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s2 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s3 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s4 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s5 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s6 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 			s7 += ( isnan( x[ ix ] ) ) ? 0.0 : x[ ix ];
-			ix += stride;
+			ix += strideX;
 		}
 		// Pairwise sum the accumulators:
-		s = ((s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7));
+		s = ( (s0+s1) + (s2+s3) ) + ( (s4+s5) + (s6+s7) );
 
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {
 			if ( isnan( x[ ix ] ) === false ) {
 				s += x[ ix ];
 			}
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	// Recurse by dividing by two, but avoiding non-multiples of unroll factor...
 	n = floor( N/2 );
 	n -= n % 8;
-	return gnansumpw( n, x, stride, ix ) + gnansumpw( N-n, x, stride, ix+(n*stride) ); // eslint-disable-line max-len
+	return gnansumpw( n, x, strideX, ix ) + gnansumpw( N-n, x, strideX, ix+(n*strideX) ); // eslint-disable-line max-len
 }
 
 
@@ -33458,7 +32948,7 @@ function gnansumpw( N, x, stride, offset ) {
 
 module.exports = gnansumpw;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/special/floor":581}],378:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/special/floor":582}],379:[function(require,module,exports){
 
 /**
 * @license Apache-2.0
@@ -33495,8 +32985,8 @@ var floor = require( '@stdlib/math/base/special/floor' );
 * @param {Object} x - input array object
 * @param {Collection} x.data - input array data
 * @param {Array<Function>} x.accessors - array element accessors
-* @param {integer} stride - index increment
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {Object} input array object
 *
 * @example
@@ -33524,7 +33014,7 @@ var floor = require( '@stdlib/math/base/special/floor' );
 * var view = reinterpret64( x.data, 0 );
 * // view => <Float32Array>[ -1.0, -3.0, 4.0, 0.0, 3.0, -5.0, -2.0, 1.0 ]
 */
-function grev( N, x, stride, offset ) {
+function grev( N, x, strideX, offsetX ) {
 	var xbuf;
 	var set;
 	var get;
@@ -33542,14 +33032,14 @@ function grev( N, x, stride, offset ) {
 	set = x.accessors[ 1 ];
 
 	n = floor( N/2 );
-	ix = offset;
-	iy = ix + ((N-1)*stride);
+	ix = offsetX;
+	iy = ix + ( ( N - 1 ) * strideX );
 	for ( i = 0; i < n; i++ ) {
 		tmp = get( xbuf, ix );
 		set( xbuf, ix, get( xbuf, iy ) );
 		set( xbuf, iy, tmp );
-		ix += stride;
-		iy -= stride;
+		ix += strideX;
+		iy -= strideX;
 	}
 	return x;
 }
@@ -33559,7 +33049,7 @@ function grev( N, x, stride, offset ) {
 
 module.exports = grev;
 
-},{"@stdlib/math/base/special/floor":581}],379:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],380:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33618,7 +33108,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":380,"./ndarray.js":381,"@stdlib/utils/define-nonenumerable-read-only-property":618}],380:[function(require,module,exports){
+},{"./main.js":381,"./ndarray.js":382,"@stdlib/utils/define-nonenumerable-read-only-property":619}],381:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33641,14 +33131,8 @@ module.exports = main;
 
 // MODULES //
 
-var floor = require( '@stdlib/math/base/special/floor' );
-var arraylike2object = require( '@stdlib/array/base/arraylike2object' );
-var accessors = require( './accessors.js' );
-
-
-// VARIABLES //
-
-var M = 3;
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -33658,7 +33142,7 @@ var M = 3;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - index increment
+* @param {integer} strideX - stride length
 * @returns {NumericArray} input array
 *
 * @example
@@ -33667,78 +33151,8 @@ var M = 3;
 * grev( x.length, x, 1 );
 * // x => [ -3.0, -1.0, 0.0, 4.0, -5.0, 3.0, 1.0, -2.0 ]
 */
-function grev( N, x, stride ) {
-	var tmp;
-	var ix;
-	var iy;
-	var o;
-	var m;
-	var n;
-	var i;
-
-	if ( N <= 0 ) {
-		return x;
-	}
-	o = arraylike2object( x );
-	if ( o.accessorProtocol ) {
-		if ( stride < 0 ) {
-			ix = (1-N) * stride;
-		} else {
-			ix = 0;
-		}
-		accessors( N, o, stride, ix );
-		return o.data;
-	}
-	n = floor( N/2 );
-
-	// Use loop unrolling if the stride is equal to `1`...
-	if ( stride === 1 ) {
-		m = n % M;
-		iy = N - 1;
-
-		// If we have a remainder, run a clean-up loop...
-		if ( m > 0 ) {
-			for ( ix = 0; ix < m; ix++ ) {
-				tmp = x[ ix ];
-				x[ ix ] = x[ iy ];
-				x[ iy ] = tmp;
-				iy -= 1;
-			}
-		}
-		if ( n < M ) {
-			return x;
-		}
-		for ( ix = m; ix < n; ix += M ) {
-			tmp = x[ ix ];
-			x[ ix ] = x[ iy ];
-			x[ iy ] = tmp;
-
-			tmp = x[ ix+1 ];
-			x[ ix+1 ] = x[ iy-1 ];
-			x[ iy-1 ] = tmp;
-
-			tmp = x[ ix+2 ];
-			x[ ix+2 ] = x[ iy-2 ];
-			x[ iy-2 ] = tmp;
-
-			iy -= M;
-		}
-		return x;
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	iy = ix + ((N-1)*stride);
-	for ( i = 0; i < n; i++ ) {
-		tmp = x[ ix ];
-		x[ ix ] = x[ iy ];
-		x[ iy ] = tmp;
-		ix += stride;
-		iy -= stride;
-	}
-	return x;
+function grev( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -33746,7 +33160,7 @@ function grev( N, x, stride ) {
 
 module.exports = grev;
 
-},{"./accessors.js":378,"@stdlib/array/base/arraylike2object":5,"@stdlib/math/base/special/floor":581}],381:[function(require,module,exports){
+},{"./ndarray.js":382,"@stdlib/strided/base/stride2offset":596}],382:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33786,8 +33200,8 @@ var M = 3;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - index increment
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {NumericArray} input array
 *
 * @example
@@ -33796,7 +33210,7 @@ var M = 3;
 * grev( 3, x, 1, x.length-3 );
 * // x => [ 1.0, -2.0, 3.0, -6.0, 5.0, -4.0 ]
 */
-function grev( N, x, stride, offset ) {
+function grev( N, x, strideX, offsetX ) {
 	var tmp;
 	var ix;
 	var iy;
@@ -33810,14 +33224,14 @@ function grev( N, x, stride, offset ) {
 	}
 	o = arraylike2object( x );
 	if ( o.accessorProtocol ) {
-		accessors( N, o, stride, offset );
+		accessors( N, o, strideX, offsetX );
 		return o.data;
 	}
 	n = floor( N/2 );
-	ix = offset;
+	ix = offsetX;
 
 	// Use loop unrolling if the stride is equal to `1`...
-	if ( stride === 1 ) {
+	if ( strideX === 1 ) {
 		m = n % M;
 		iy = ix + N - 1;
 
@@ -33827,8 +33241,8 @@ function grev( N, x, stride, offset ) {
 				tmp = x[ ix ];
 				x[ ix ] = x[ iy ];
 				x[ iy ] = tmp;
-				ix += stride;
-				iy -= stride;
+				ix += strideX;
+				iy -= strideX;
 			}
 		}
 		if ( n < M ) {
@@ -33852,13 +33266,13 @@ function grev( N, x, stride, offset ) {
 		}
 		return x;
 	}
-	iy = ix + ((N-1)*stride);
+	iy = ix + ( ( N - 1 ) * strideX );
 	for ( i = 0; i < n; i++ ) {
 		tmp = x[ ix ];
 		x[ ix ] = x[ iy ];
 		x[ iy ] = tmp;
-		ix += stride;
-		iy -= stride;
+		ix += strideX;
+		iy -= strideX;
 	}
 	return x;
 }
@@ -33868,7 +33282,7 @@ function grev( N, x, stride, offset ) {
 
 module.exports = grev;
 
-},{"./accessors.js":378,"@stdlib/array/base/arraylike2object":5,"@stdlib/math/base/special/floor":581}],382:[function(require,module,exports){
+},{"./accessors.js":379,"@stdlib/array/base/arraylike2object":5,"@stdlib/math/base/special/floor":582}],383:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -33939,7 +33353,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":383,"./ndarray.js":384,"@stdlib/utils/define-nonenumerable-read-only-property":618}],383:[function(require,module,exports){
+},{"./main.js":384,"./ndarray.js":385,"@stdlib/utils/define-nonenumerable-read-only-property":619}],384:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34113,7 +33527,7 @@ function gsort2hp( N, order, x, strideX, y, strideY ) {
 
 module.exports = gsort2hp;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-positive-zero":575,"@stdlib/math/base/special/floor":581}],384:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-positive-zero":576,"@stdlib/math/base/special/floor":582}],385:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34279,7 +33693,7 @@ function gsort2hp( N, order, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = gsort2hp;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-positive-zero":575,"@stdlib/math/base/special/floor":581}],385:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-positive-zero":576,"@stdlib/math/base/special/floor":582}],386:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34350,7 +33764,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":386,"./ndarray.js":387,"@stdlib/utils/define-nonenumerable-read-only-property":618}],386:[function(require,module,exports){
+},{"./main.js":387,"./ndarray.js":388,"@stdlib/utils/define-nonenumerable-read-only-property":619}],387:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34539,7 +33953,7 @@ function gsort2ins( N, order, x, strideX, y, strideY ) {
 
 module.exports = gsort2ins;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],387:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],388:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34725,9 +34139,9 @@ function gsort2ins( N, order, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = gsort2ins;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],388:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],389:[function(require,module,exports){
 arguments[4][281][0].apply(exports,arguments)
-},{"dup":281}],389:[function(require,module,exports){
+},{"dup":281}],390:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34798,7 +34212,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":390,"./ndarray.js":391,"@stdlib/utils/define-nonenumerable-read-only-property":618}],390:[function(require,module,exports){
+},{"./main.js":391,"./ndarray.js":392,"@stdlib/utils/define-nonenumerable-read-only-property":619}],391:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -34928,7 +34342,7 @@ function gsort2sh( N, order, x, strideX, y, strideY ) {
 
 module.exports = gsort2sh;
 
-},{"./gaps.json":388,"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],391:[function(require,module,exports){
+},{"./gaps.json":389,"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],392:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35050,7 +34464,7 @@ function gsort2sh( N, order, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = gsort2sh;
 
-},{"./gaps.json":388,"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],392:[function(require,module,exports){
+},{"./gaps.json":389,"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],393:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35109,7 +34523,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":393,"./ndarray.js":394,"@stdlib/utils/define-nonenumerable-read-only-property":618}],393:[function(require,module,exports){
+},{"./main.js":394,"./ndarray.js":395,"@stdlib/utils/define-nonenumerable-read-only-property":619}],394:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35260,7 +34674,7 @@ function gsorthp( N, order, x, stride ) {
 
 module.exports = gsorthp;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-positive-zero":575,"@stdlib/math/base/special/floor":581}],394:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-positive-zero":576,"@stdlib/math/base/special/floor":582}],395:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35407,7 +34821,7 @@ function gsorthp( N, order, x, stride, offset ) {
 
 module.exports = gsorthp;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-positive-zero":575,"@stdlib/math/base/special/floor":581}],395:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-positive-zero":576,"@stdlib/math/base/special/floor":582}],396:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35466,7 +34880,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":396,"./ndarray.js":397,"@stdlib/utils/define-nonenumerable-read-only-property":618}],396:[function(require,module,exports){
+},{"./main.js":397,"./ndarray.js":398,"@stdlib/utils/define-nonenumerable-read-only-property":619}],397:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35612,7 +35026,7 @@ function gsortins( N, order, x, stride ) {
 
 module.exports = gsortins;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],397:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],398:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35758,9 +35172,9 @@ function gsortins( N, order, x, stride, offset ) {
 
 module.exports = gsortins;
 
-},{"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],398:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],399:[function(require,module,exports){
 arguments[4][281][0].apply(exports,arguments)
-},{"dup":281}],399:[function(require,module,exports){
+},{"dup":281}],400:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35819,7 +35233,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":400,"./ndarray.js":401,"@stdlib/utils/define-nonenumerable-read-only-property":618}],400:[function(require,module,exports){
+},{"./main.js":401,"./ndarray.js":402,"@stdlib/utils/define-nonenumerable-read-only-property":619}],401:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -35929,7 +35343,7 @@ function gsortsh( N, order, x, stride ) {
 
 module.exports = gsortsh;
 
-},{"./gaps.json":398,"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],401:[function(require,module,exports){
+},{"./gaps.json":399,"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],402:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36035,7 +35449,7 @@ function gsortsh( N, order, x, stride, offset ) {
 
 module.exports = gsortsh;
 
-},{"./gaps.json":398,"@stdlib/math/base/assert/is-nan":567,"@stdlib/math/base/assert/is-negative-zero":571}],402:[function(require,module,exports){
+},{"./gaps.json":399,"@stdlib/math/base/assert/is-nan":568,"@stdlib/math/base/assert/is-negative-zero":572}],403:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36097,7 +35511,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":403,"./ndarray.js":404,"@stdlib/utils/define-nonenumerable-read-only-property":618}],403:[function(require,module,exports){
+},{"./main.js":404,"./ndarray.js":405,"@stdlib/utils/define-nonenumerable-read-only-property":619}],404:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36149,7 +35563,7 @@ function gsum( N, x, stride ) {
 
 module.exports = gsum;
 
-},{"@stdlib/blas/ext/base/gsumkbn":405}],404:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/gsumkbn":406}],405:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36204,7 +35618,7 @@ function gsum( N, x, stride, offset ) {
 
 module.exports = gsum;
 
-},{"@stdlib/blas/ext/base/gsumkbn":405}],405:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/gsumkbn":406}],406:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36266,7 +35680,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":406,"./ndarray.js":407,"@stdlib/utils/define-nonenumerable-read-only-property":618}],406:[function(require,module,exports){
+},{"./main.js":407,"./ndarray.js":408,"@stdlib/utils/define-nonenumerable-read-only-property":619}],407:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36357,7 +35771,7 @@ function gsumkbn( N, x, stride ) {
 
 module.exports = gsumkbn;
 
-},{"@stdlib/math/base/special/abs":579}],407:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],408:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36447,7 +35861,7 @@ function gsumkbn( N, x, stride, offset ) {
 
 module.exports = gsumkbn;
 
-},{"@stdlib/math/base/special/abs":579}],408:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],409:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36477,19 +35891,16 @@ module.exports = gsumkbn;
 * var gsumkbn2 = require( '@stdlib/blas/ext/base/gsumkbn2' );
 *
 * var x = [ 1.0, -2.0, 2.0 ];
-* var N = x.length;
 *
-* var v = gsumkbn2( N, x, 1 );
+* var v = gsumkbn2( x.length, x, 1 );
 * // returns 1.0
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gsumkbn2 = require( '@stdlib/blas/ext/base/gsumkbn2' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gsumkbn2.ndarray( N, x, 2, 1 );
+* var v = gsumkbn2.ndarray( 4, x, 2, 1 );
 * // returns 5.0
 */
 
@@ -36509,7 +35920,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":409,"./ndarray.js":410,"@stdlib/utils/define-nonenumerable-read-only-property":618}],409:[function(require,module,exports){
+},{"./main.js":410,"./ndarray.js":411,"@stdlib/utils/define-nonenumerable-read-only-property":619}],410:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36532,7 +35943,8 @@ module.exports = main;
 
 // MODULES //
 
-var abs = require( '@stdlib/math/base/special/abs' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -36550,61 +35962,17 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var x = [ 1.0, -2.0, 2.0 ];
-* var N = x.length;
 *
-* var v = gsumkbn2( N, x, 1 );
+* var v = gsumkbn2( x.length, x, 1 );
 * // returns 1.0
 */
-function gsumkbn2( N, x, stride ) {
-	var sum;
-	var ccs;
-	var ix;
-	var cs;
-	var cc;
-	var v;
-	var t;
-	var c;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	sum = 0.0;
-	ccs = 0.0; // second order correction term for lost low order bits
-	cs = 0.0; // first order correction term for lost low order bits
-	for ( i = 0; i < N; i++ ) {
-		v = x[ ix ];
-		t = sum + v;
-		if ( abs( sum ) >= abs( v ) ) {
-			c = (sum-t) + v;
-		} else {
-			c = (v-t) + sum;
-		}
-		sum = t;
-		t = cs + c;
-		if ( abs( cs ) >= abs( c ) ) {
-			cc = (cs-t) + c;
-		} else {
-			cc = (c-t) + cs;
-		}
-		cs = t;
-		ccs += cc;
-		ix += stride;
-	}
-	return sum + cs + ccs;
+function gsumkbn2( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -36612,7 +35980,7 @@ function gsumkbn2( N, x, stride ) {
 
 module.exports = gsumkbn2;
 
-},{"@stdlib/math/base/special/abs":579}],410:[function(require,module,exports){
+},{"./ndarray.js":411,"@stdlib/strided/base/stride2offset":596}],411:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36653,20 +36021,17 @@ var abs = require( '@stdlib/math/base/special/abs' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gsumkbn2( N, x, 2, 1 );
+* var v = gsumkbn2( 4, x, 2, 1 );
 * // returns 5.0
 */
-function gsumkbn2( N, x, stride, offset ) {
+function gsumkbn2( N, x, strideX, offsetX ) {
 	var sum;
 	var ccs;
 	var ix;
@@ -36680,10 +36045,10 @@ function gsumkbn2( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
 	sum = 0.0;
 	ccs = 0.0; // second order correction term for lost low order bits
 	cs = 0.0; // first order correction term for lost low order bits
@@ -36704,7 +36069,7 @@ function gsumkbn2( N, x, stride, offset ) {
 		}
 		cs = t;
 		ccs += cc;
-		ix += stride;
+		ix += strideX;
 	}
 	return sum + cs + ccs;
 }
@@ -36714,7 +36079,7 @@ function gsumkbn2( N, x, stride, offset ) {
 
 module.exports = gsumkbn2;
 
-},{"@stdlib/math/base/special/abs":579}],411:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580}],412:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36744,19 +36109,16 @@ module.exports = gsumkbn2;
 * var gsumors = require( '@stdlib/blas/ext/base/gsumors' );
 *
 * var x = [ 1.0, -2.0, 2.0 ];
-* var N = x.length;
 *
-* var v = gsumors( N, x, 1 );
+* var v = gsumors( x.length, x, 1 );
 * // returns 1.0
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gsumors = require( '@stdlib/blas/ext/base/gsumors' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gsumors.ndarray( N, x, 2, 1 );
+* var v = gsumors.ndarray( 4, x, 2, 1 );
 * // returns 5.0
 */
 
@@ -36776,7 +36138,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":412,"./ndarray.js":413,"@stdlib/utils/define-nonenumerable-read-only-property":618}],412:[function(require,module,exports){
+},{"./main.js":413,"./ndarray.js":414,"@stdlib/utils/define-nonenumerable-read-only-property":619}],413:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36797,9 +36159,10 @@ module.exports = main;
 
 'use strict';
 
-// VARIABLES //
+// MODULES //
 
-var M = 6;
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -36809,57 +36172,17 @@ var M = 6;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var x = [ 1.0, -2.0, 2.0 ];
-* var N = x.length;
 *
-* var v = gsumors( N, x, 1 );
+* var v = gsumors( x.length, x, 1 );
 * // returns 1.0
 */
-function gsumors( N, x, stride ) {
-	var ix;
-	var m;
-	var s;
-	var i;
-
-	s = 0.0;
-	if ( N <= 0 ) {
-		return s;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	// If the stride is equal to `1`, use unrolled loops...
-	if ( stride === 1 ) {
-		m = N % M;
-
-		// If we have a remainder, run a clean-up loop...
-		if ( m > 0 ) {
-			for ( i = 0; i < m; i++ ) {
-				s += x[ i ];
-			}
-		}
-		if ( N < M ) {
-			return s;
-		}
-		for ( i = m; i < N; i += M ) {
-			s += x[i] + x[i+1] + x[i+2] + x[i+3] + x[i+4] + x[i+5];
-		}
-		return s;
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	for ( i = 0; i < N; i++ ) {
-		s += x[ ix ];
-		ix += stride;
-	}
-	return s;
+function gsumors( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -36867,7 +36190,7 @@ function gsumors( N, x, stride ) {
 
 module.exports = gsumors;
 
-},{}],413:[function(require,module,exports){
+},{"./ndarray.js":414,"@stdlib/strided/base/stride2offset":596}],414:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36900,20 +36223,17 @@ var M = 6;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gsumors( N, x, 2, 1 );
+* var v = gsumors( 4, x, 2, 1 );
 * // returns 5.0
 */
-function gsumors( N, x, stride, offset ) {
+function gsumors( N, x, strideX, offsetX ) {
 	var ix;
 	var m;
 	var s;
@@ -36923,20 +36243,20 @@ function gsumors( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return s;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
 
 	// If the stride is equal to `1`, use unrolled loops...
-	if ( stride === 1 ) {
+	if ( strideX === 1 ) {
 		m = N % M;
 
 		// If we have a remainder, run a clean-up loop...
 		if ( m > 0 ) {
 			for ( i = 0; i < m; i++ ) {
 				s += x[ ix ];
-				ix += stride;
+				ix += strideX;
 			}
 		}
 		if ( N < M ) {
@@ -36950,7 +36270,7 @@ function gsumors( N, x, stride, offset ) {
 	}
 	for ( i = 0; i < N; i++ ) {
 		s += x[ ix ];
-		ix += stride;
+		ix += strideX;
 	}
 	return s;
 }
@@ -36960,7 +36280,7 @@ function gsumors( N, x, stride, offset ) {
 
 module.exports = gsumors;
 
-},{}],414:[function(require,module,exports){
+},{}],415:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -36990,19 +36310,16 @@ module.exports = gsumors;
 * var gsumpw = require( '@stdlib/blas/ext/base/gsumpw' );
 *
 * var x = [ 1.0, -2.0, 2.0 ];
-* var N = x.length;
 *
-* var v = gsumpw( N, x, 1 );
+* var v = gsumpw( x.length, x, 1 );
 * // returns 1.0
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
 * var gsumpw = require( '@stdlib/blas/ext/base/gsumpw' );
 *
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gsumpw.ndarray( N, x, 2, 1 );
+* var v = gsumpw.ndarray( 4, x, 2, 1 );
 * // returns 5.0
 */
 
@@ -37022,7 +36339,7 @@ setReadOnly( main, 'ndarray', ndarray );
 
 module.exports = main;
 
-},{"./main.js":415,"./ndarray.js":416,"@stdlib/utils/define-nonenumerable-read-only-property":618}],415:[function(require,module,exports){
+},{"./main.js":416,"./ndarray.js":417,"@stdlib/utils/define-nonenumerable-read-only-property":619}],416:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37045,7 +36362,8 @@ module.exports = main;
 
 // MODULES //
 
-var sum = require( './ndarray.js' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -37063,42 +36381,17 @@ var sum = require( './ndarray.js' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var x = [ 1.0, -2.0, 2.0 ];
-* var N = x.length;
 *
-* var v = gsumpw( N, x, 1 );
+* var v = gsumpw( x.length, x, 1 );
 * // returns 1.0
 */
-function gsumpw( N, x, stride ) {
-	var ix;
-	var s;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	if ( N < 8 ) {
-		// Use simple summation...
-		s = 0.0;
-		for ( i = 0; i < N; i++ ) {
-			s += x[ ix ];
-			ix += stride;
-		}
-		return s;
-	}
-	return sum( N, x, stride, ix );
+function gsumpw( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -37106,7 +36399,7 @@ function gsumpw( N, x, stride ) {
 
 module.exports = gsumpw;
 
-},{"./ndarray.js":416}],416:[function(require,module,exports){
+},{"./ndarray.js":417,"@stdlib/strided/base/stride2offset":596}],417:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -37153,20 +36446,17 @@ var BLOCKSIZE = 128;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {NumericArray} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
-* var floor = require( '@stdlib/math/base/special/floor' );
-*
 * var x = [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ];
-* var N = floor( x.length / 2 );
 *
-* var v = gsumpw( N, x, 2, 1 );
+* var v = gsumpw( 4, x, 2, 1 );
 * // returns 5.0
 */
-function gsumpw( N, x, stride, offset ) {
+function gsumpw( N, x, strideX, offsetX ) {
 	var ix;
 	var s0;
 	var s1;
@@ -37184,57 +36474,57 @@ function gsumpw( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
 		for ( i = 0; i < N; i++ ) {
 			s += x[ ix ];
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	if ( N <= BLOCKSIZE ) {
 		// Sum a block with 8 accumulators (by loop unrolling, we lower the effective blocksize to 16)...
 		s0 = x[ ix ];
-		s1 = x[ ix+stride ];
-		s2 = x[ ix+(2*stride) ];
-		s3 = x[ ix+(3*stride) ];
-		s4 = x[ ix+(4*stride) ];
-		s5 = x[ ix+(5*stride) ];
-		s6 = x[ ix+(6*stride) ];
-		s7 = x[ ix+(7*stride) ];
-		ix += 8 * stride;
+		s1 = x[ ix+strideX ];
+		s2 = x[ ix+(2*strideX) ];
+		s3 = x[ ix+(3*strideX) ];
+		s4 = x[ ix+(4*strideX) ];
+		s5 = x[ ix+(5*strideX) ];
+		s6 = x[ ix+(6*strideX) ];
+		s7 = x[ ix+(7*strideX) ];
+		ix += 8 * strideX;
 
 		M = N % 8;
 		for ( i = 8; i < N-M; i += 8 ) {
 			s0 += x[ ix ];
-			s1 += x[ ix+stride ];
-			s2 += x[ ix+(2*stride) ];
-			s3 += x[ ix+(3*stride) ];
-			s4 += x[ ix+(4*stride) ];
-			s5 += x[ ix+(5*stride) ];
-			s6 += x[ ix+(6*stride) ];
-			s7 += x[ ix+(7*stride) ];
-			ix += 8 * stride;
+			s1 += x[ ix+strideX ];
+			s2 += x[ ix+(2*strideX) ];
+			s3 += x[ ix+(3*strideX) ];
+			s4 += x[ ix+(4*strideX) ];
+			s5 += x[ ix+(5*strideX) ];
+			s6 += x[ ix+(6*strideX) ];
+			s7 += x[ ix+(7*strideX) ];
+			ix += 8 * strideX;
 		}
 		// Pairwise sum the accumulators:
-		s = ((s0+s1) + (s2+s3)) + ((s4+s5) + (s6+s7));
+		s = ( (s0+s1) + (s2+s3) ) + ( (s4+s5) + (s6+s7) );
 
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {
 			s += x[ ix ];
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	// Recurse by dividing by two, but avoiding non-multiples of unroll factor...
 	n = floor( N/2 );
 	n -= n % 8;
-	return gsumpw( n, x, stride, ix ) + gsumpw( N-n, x, stride, ix+(n*stride) );
+	return gsumpw( n, x, strideX, ix ) + gsumpw( N-n, x, strideX, ix+(n*strideX) ); // eslint-disable-line max-len
 }
 
 
@@ -37242,7 +36532,7 @@ function gsumpw( N, x, stride, offset ) {
 
 module.exports = gsumpw;
 
-},{"@stdlib/math/base/special/floor":581}],417:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],418:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38312,7 +37602,7 @@ setReadOnly( ns, 'ssumpw', require( '@stdlib/blas/ext/base/ssumpw' ) );
 
 module.exports = ns;
 
-},{"@stdlib/blas/ext/base/dapx":178,"@stdlib/blas/ext/base/dapxsum":181,"@stdlib/blas/ext/base/dapxsumkbn":184,"@stdlib/blas/ext/base/dapxsumkbn2":187,"@stdlib/blas/ext/base/dapxsumors":190,"@stdlib/blas/ext/base/dapxsumpw":193,"@stdlib/blas/ext/base/dasumpw":196,"@stdlib/blas/ext/base/dcusum":199,"@stdlib/blas/ext/base/dcusumkbn":202,"@stdlib/blas/ext/base/dcusumkbn2":205,"@stdlib/blas/ext/base/dcusumors":208,"@stdlib/blas/ext/base/dcusumpw":211,"@stdlib/blas/ext/base/dfill":214,"@stdlib/blas/ext/base/dnanasum":217,"@stdlib/blas/ext/base/dnanasumors":220,"@stdlib/blas/ext/base/dnannsum":223,"@stdlib/blas/ext/base/dnannsumkbn":226,"@stdlib/blas/ext/base/dnannsumkbn2":229,"@stdlib/blas/ext/base/dnannsumors":232,"@stdlib/blas/ext/base/dnannsumpw":235,"@stdlib/blas/ext/base/dnansum":239,"@stdlib/blas/ext/base/dnansumkbn":242,"@stdlib/blas/ext/base/dnansumkbn2":245,"@stdlib/blas/ext/base/dnansumors":248,"@stdlib/blas/ext/base/dnansumpw":251,"@stdlib/blas/ext/base/drev":254,"@stdlib/blas/ext/base/dsapxsum":257,"@stdlib/blas/ext/base/dsapxsumpw":260,"@stdlib/blas/ext/base/dsnannsumors":263,"@stdlib/blas/ext/base/dsnansum":266,"@stdlib/blas/ext/base/dsnansumors":269,"@stdlib/blas/ext/base/dsnansumpw":272,"@stdlib/blas/ext/base/dsort2hp":275,"@stdlib/blas/ext/base/dsort2ins":278,"@stdlib/blas/ext/base/dsort2sh":282,"@stdlib/blas/ext/base/dsorthp":285,"@stdlib/blas/ext/base/dsortins":288,"@stdlib/blas/ext/base/dsortsh":292,"@stdlib/blas/ext/base/dssum":295,"@stdlib/blas/ext/base/dssumors":298,"@stdlib/blas/ext/base/dssumpw":301,"@stdlib/blas/ext/base/dsum":304,"@stdlib/blas/ext/base/dsumkbn":307,"@stdlib/blas/ext/base/dsumkbn2":310,"@stdlib/blas/ext/base/dsumors":313,"@stdlib/blas/ext/base/dsumpw":316,"@stdlib/blas/ext/base/gapx":318,"@stdlib/blas/ext/base/gapxsum":321,"@stdlib/blas/ext/base/gapxsumkbn":324,"@stdlib/blas/ext/base/gapxsumkbn2":327,"@stdlib/blas/ext/base/gapxsumors":330,"@stdlib/blas/ext/base/gapxsumpw":333,"@stdlib/blas/ext/base/gasumpw":336,"@stdlib/blas/ext/base/gcusum":339,"@stdlib/blas/ext/base/gcusumkbn":342,"@stdlib/blas/ext/base/gcusumkbn2":345,"@stdlib/blas/ext/base/gcusumors":348,"@stdlib/blas/ext/base/gcusumpw":351,"@stdlib/blas/ext/base/gfill":359,"@stdlib/blas/ext/base/gfill-by":355,"@stdlib/blas/ext/base/gnannsumkbn":362,"@stdlib/blas/ext/base/gnansum":363,"@stdlib/blas/ext/base/gnansumkbn":366,"@stdlib/blas/ext/base/gnansumkbn2":369,"@stdlib/blas/ext/base/gnansumors":372,"@stdlib/blas/ext/base/gnansumpw":375,"@stdlib/blas/ext/base/grev":379,"@stdlib/blas/ext/base/gsort2hp":382,"@stdlib/blas/ext/base/gsort2ins":385,"@stdlib/blas/ext/base/gsort2sh":389,"@stdlib/blas/ext/base/gsorthp":392,"@stdlib/blas/ext/base/gsortins":395,"@stdlib/blas/ext/base/gsortsh":399,"@stdlib/blas/ext/base/gsum":402,"@stdlib/blas/ext/base/gsumkbn":405,"@stdlib/blas/ext/base/gsumkbn2":408,"@stdlib/blas/ext/base/gsumors":411,"@stdlib/blas/ext/base/gsumpw":414,"@stdlib/blas/ext/base/sapx":418,"@stdlib/blas/ext/base/sapxsum":421,"@stdlib/blas/ext/base/sapxsumkbn":424,"@stdlib/blas/ext/base/sapxsumkbn2":427,"@stdlib/blas/ext/base/sapxsumors":430,"@stdlib/blas/ext/base/sapxsumpw":433,"@stdlib/blas/ext/base/sasumpw":436,"@stdlib/blas/ext/base/scusum":439,"@stdlib/blas/ext/base/scusumkbn":442,"@stdlib/blas/ext/base/scusumkbn2":445,"@stdlib/blas/ext/base/scusumors":448,"@stdlib/blas/ext/base/scusumpw":451,"@stdlib/blas/ext/base/sdsapxsum":454,"@stdlib/blas/ext/base/sdsapxsumpw":457,"@stdlib/blas/ext/base/sdsnansum":460,"@stdlib/blas/ext/base/sdsnansumpw":463,"@stdlib/blas/ext/base/sdssum":466,"@stdlib/blas/ext/base/sdssumpw":469,"@stdlib/blas/ext/base/sfill":472,"@stdlib/blas/ext/base/snansum":475,"@stdlib/blas/ext/base/snansumkbn":478,"@stdlib/blas/ext/base/snansumkbn2":481,"@stdlib/blas/ext/base/snansumors":484,"@stdlib/blas/ext/base/snansumpw":487,"@stdlib/blas/ext/base/srev":490,"@stdlib/blas/ext/base/ssort2hp":493,"@stdlib/blas/ext/base/ssort2ins":496,"@stdlib/blas/ext/base/ssort2sh":500,"@stdlib/blas/ext/base/ssorthp":503,"@stdlib/blas/ext/base/ssortins":506,"@stdlib/blas/ext/base/ssortsh":510,"@stdlib/blas/ext/base/ssum":513,"@stdlib/blas/ext/base/ssumkbn":516,"@stdlib/blas/ext/base/ssumkbn2":519,"@stdlib/blas/ext/base/ssumors":522,"@stdlib/blas/ext/base/ssumpw":525,"@stdlib/utils/define-read-only-property":625}],418:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/dapx":178,"@stdlib/blas/ext/base/dapxsum":181,"@stdlib/blas/ext/base/dapxsumkbn":184,"@stdlib/blas/ext/base/dapxsumkbn2":187,"@stdlib/blas/ext/base/dapxsumors":190,"@stdlib/blas/ext/base/dapxsumpw":193,"@stdlib/blas/ext/base/dasumpw":196,"@stdlib/blas/ext/base/dcusum":199,"@stdlib/blas/ext/base/dcusumkbn":202,"@stdlib/blas/ext/base/dcusumkbn2":205,"@stdlib/blas/ext/base/dcusumors":208,"@stdlib/blas/ext/base/dcusumpw":211,"@stdlib/blas/ext/base/dfill":214,"@stdlib/blas/ext/base/dnanasum":217,"@stdlib/blas/ext/base/dnanasumors":220,"@stdlib/blas/ext/base/dnannsum":223,"@stdlib/blas/ext/base/dnannsumkbn":226,"@stdlib/blas/ext/base/dnannsumkbn2":229,"@stdlib/blas/ext/base/dnannsumors":232,"@stdlib/blas/ext/base/dnannsumpw":235,"@stdlib/blas/ext/base/dnansum":239,"@stdlib/blas/ext/base/dnansumkbn":242,"@stdlib/blas/ext/base/dnansumkbn2":245,"@stdlib/blas/ext/base/dnansumors":248,"@stdlib/blas/ext/base/dnansumpw":251,"@stdlib/blas/ext/base/drev":254,"@stdlib/blas/ext/base/dsapxsum":257,"@stdlib/blas/ext/base/dsapxsumpw":260,"@stdlib/blas/ext/base/dsnannsumors":263,"@stdlib/blas/ext/base/dsnansum":266,"@stdlib/blas/ext/base/dsnansumors":269,"@stdlib/blas/ext/base/dsnansumpw":272,"@stdlib/blas/ext/base/dsort2hp":275,"@stdlib/blas/ext/base/dsort2ins":278,"@stdlib/blas/ext/base/dsort2sh":282,"@stdlib/blas/ext/base/dsorthp":285,"@stdlib/blas/ext/base/dsortins":288,"@stdlib/blas/ext/base/dsortsh":292,"@stdlib/blas/ext/base/dssum":295,"@stdlib/blas/ext/base/dssumors":298,"@stdlib/blas/ext/base/dssumpw":301,"@stdlib/blas/ext/base/dsum":304,"@stdlib/blas/ext/base/dsumkbn":307,"@stdlib/blas/ext/base/dsumkbn2":310,"@stdlib/blas/ext/base/dsumors":313,"@stdlib/blas/ext/base/dsumpw":316,"@stdlib/blas/ext/base/gapx":318,"@stdlib/blas/ext/base/gapxsum":321,"@stdlib/blas/ext/base/gapxsumkbn":324,"@stdlib/blas/ext/base/gapxsumkbn2":327,"@stdlib/blas/ext/base/gapxsumors":330,"@stdlib/blas/ext/base/gapxsumpw":333,"@stdlib/blas/ext/base/gasumpw":336,"@stdlib/blas/ext/base/gcusum":339,"@stdlib/blas/ext/base/gcusumkbn":342,"@stdlib/blas/ext/base/gcusumkbn2":345,"@stdlib/blas/ext/base/gcusumors":348,"@stdlib/blas/ext/base/gcusumpw":351,"@stdlib/blas/ext/base/gfill":359,"@stdlib/blas/ext/base/gfill-by":355,"@stdlib/blas/ext/base/gnannsumkbn":362,"@stdlib/blas/ext/base/gnansum":364,"@stdlib/blas/ext/base/gnansumkbn":367,"@stdlib/blas/ext/base/gnansumkbn2":370,"@stdlib/blas/ext/base/gnansumors":373,"@stdlib/blas/ext/base/gnansumpw":376,"@stdlib/blas/ext/base/grev":380,"@stdlib/blas/ext/base/gsort2hp":383,"@stdlib/blas/ext/base/gsort2ins":386,"@stdlib/blas/ext/base/gsort2sh":390,"@stdlib/blas/ext/base/gsorthp":393,"@stdlib/blas/ext/base/gsortins":396,"@stdlib/blas/ext/base/gsortsh":400,"@stdlib/blas/ext/base/gsum":403,"@stdlib/blas/ext/base/gsumkbn":406,"@stdlib/blas/ext/base/gsumkbn2":409,"@stdlib/blas/ext/base/gsumors":412,"@stdlib/blas/ext/base/gsumpw":415,"@stdlib/blas/ext/base/sapx":419,"@stdlib/blas/ext/base/sapxsum":422,"@stdlib/blas/ext/base/sapxsumkbn":425,"@stdlib/blas/ext/base/sapxsumkbn2":428,"@stdlib/blas/ext/base/sapxsumors":431,"@stdlib/blas/ext/base/sapxsumpw":434,"@stdlib/blas/ext/base/sasumpw":437,"@stdlib/blas/ext/base/scusum":440,"@stdlib/blas/ext/base/scusumkbn":443,"@stdlib/blas/ext/base/scusumkbn2":446,"@stdlib/blas/ext/base/scusumors":449,"@stdlib/blas/ext/base/scusumpw":452,"@stdlib/blas/ext/base/sdsapxsum":455,"@stdlib/blas/ext/base/sdsapxsumpw":458,"@stdlib/blas/ext/base/sdsnansum":461,"@stdlib/blas/ext/base/sdsnansumpw":464,"@stdlib/blas/ext/base/sdssum":467,"@stdlib/blas/ext/base/sdssumpw":470,"@stdlib/blas/ext/base/sfill":473,"@stdlib/blas/ext/base/snansum":476,"@stdlib/blas/ext/base/snansumkbn":479,"@stdlib/blas/ext/base/snansumkbn2":482,"@stdlib/blas/ext/base/snansumors":485,"@stdlib/blas/ext/base/snansumpw":488,"@stdlib/blas/ext/base/srev":491,"@stdlib/blas/ext/base/ssort2hp":494,"@stdlib/blas/ext/base/ssort2ins":497,"@stdlib/blas/ext/base/ssort2sh":501,"@stdlib/blas/ext/base/ssorthp":504,"@stdlib/blas/ext/base/ssortins":507,"@stdlib/blas/ext/base/ssortsh":511,"@stdlib/blas/ext/base/ssum":514,"@stdlib/blas/ext/base/ssumkbn":517,"@stdlib/blas/ext/base/ssumkbn2":520,"@stdlib/blas/ext/base/ssumors":523,"@stdlib/blas/ext/base/ssumpw":526,"@stdlib/utils/define-read-only-property":626}],419:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38349,7 +37639,7 @@ setReadOnly( sapx, 'ndarray', ndarray );
 
 module.exports = sapx;
 
-},{"./ndarray.js":419,"./sapx.js":420,"@stdlib/utils/define-nonenumerable-read-only-property":618}],419:[function(require,module,exports){
+},{"./ndarray.js":420,"./sapx.js":421,"@stdlib/utils/define-nonenumerable-read-only-property":619}],420:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38442,7 +37732,7 @@ function sapx( N, alpha, x, stride, offset ) {
 
 module.exports = sapx;
 
-},{}],420:[function(require,module,exports){
+},{}],421:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38534,7 +37824,7 @@ function sapx( N, alpha, x, stride ) {
 
 module.exports = sapx;
 
-},{}],421:[function(require,module,exports){
+},{}],422:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38571,7 +37861,7 @@ setReadOnly( sapxsum, 'ndarray', ndarray );
 
 module.exports = sapxsum;
 
-},{"./ndarray.js":422,"./sapxsum.js":423,"@stdlib/utils/define-nonenumerable-read-only-property":618}],422:[function(require,module,exports){
+},{"./ndarray.js":423,"./sapxsum.js":424,"@stdlib/utils/define-nonenumerable-read-only-property":619}],423:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38626,7 +37916,7 @@ function sapxsum( N, alpha, x, stride, offset ) {
 
 module.exports = sapxsum;
 
-},{"@stdlib/blas/ext/base/sapxsumkbn":424}],423:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/sapxsumkbn":425}],424:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38681,7 +37971,7 @@ function sapxsum( N, alpha, x, stride ) {
 
 module.exports = sapxsum;
 
-},{"@stdlib/blas/ext/base/sapxsumkbn":424}],424:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/sapxsumkbn":425}],425:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38718,7 +38008,7 @@ setReadOnly( sapxsumkbn, 'ndarray', ndarray );
 
 module.exports = sapxsumkbn;
 
-},{"./ndarray.js":425,"./sapxsumkbn.js":426,"@stdlib/utils/define-nonenumerable-read-only-property":618}],425:[function(require,module,exports){
+},{"./ndarray.js":426,"./sapxsumkbn.js":427,"@stdlib/utils/define-nonenumerable-read-only-property":619}],426:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38809,7 +38099,7 @@ function sapxsumkbn( N, alpha, x, stride, offset ) {
 
 module.exports = sapxsumkbn;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],426:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],427:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38903,7 +38193,7 @@ function sapxsumkbn( N, alpha, x, stride ) {
 
 module.exports = sapxsumkbn;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],427:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],428:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -38940,7 +38230,7 @@ setReadOnly( sapxsumkbn2, 'ndarray', ndarray );
 
 module.exports = sapxsumkbn2;
 
-},{"./ndarray.js":428,"./sapxsumkbn2.js":429,"@stdlib/utils/define-nonenumerable-read-only-property":618}],428:[function(require,module,exports){
+},{"./ndarray.js":429,"./sapxsumkbn2.js":430,"@stdlib/utils/define-nonenumerable-read-only-property":619}],429:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39043,7 +38333,7 @@ function sapxsumkbn2( N, alpha, x, stride, offset ) {
 
 module.exports = sapxsumkbn2;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],429:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],430:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39150,7 +38440,7 @@ function sapxsumkbn2( N, alpha, x, stride ) {
 
 module.exports = sapxsumkbn2;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],430:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],431:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39187,7 +38477,7 @@ setReadOnly( sapxsumors, 'ndarray', ndarray );
 
 module.exports = sapxsumors;
 
-},{"./ndarray.js":431,"./sapxsumors.js":432,"@stdlib/utils/define-nonenumerable-read-only-property":618}],431:[function(require,module,exports){
+},{"./ndarray.js":432,"./sapxsumors.js":433,"@stdlib/utils/define-nonenumerable-read-only-property":619}],432:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39216,25 +38506,24 @@ var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
 // MAIN //
 
 /**
-* Adds a constant to each single-precision floating-point strided array element and computes the sum using ordinary recursive summation.
+* Adds a scalar constant to each single-precision floating-point strided array element and computes the sum using ordinary recursive summation.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
-* var floor = require( '@stdlib/math/base/special/floor' );
 *
 * var x = new Float32Array( [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0 ] );
 *
 * var v = sapxsumors( 4, 5.0, x, 2, 1 );
 * // returns 25.0
 */
-function sapxsumors( N, alpha, x, stride, offset ) {
+function sapxsumors( N, alpha, x, strideX, offsetX ) {
 	var sum;
 	var ix;
 	var i;
@@ -39242,14 +38531,14 @@ function sapxsumors( N, alpha, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return float64ToFloat32( alpha + x[ 0 ] );
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return float64ToFloat32( N * float64ToFloat32( alpha + x[ ix ] ) );
 	}
-	ix = offset;
 	sum = 0.0;
 	for ( i = 0; i < N; i++ ) {
 		sum = float64ToFloat32( sum + float64ToFloat32( alpha+x[ ix ] ) );
-		ix += stride;
+		ix += strideX;
 	}
 	return sum;
 }
@@ -39259,7 +38548,7 @@ function sapxsumors( N, alpha, x, stride, offset ) {
 
 module.exports = sapxsumors;
 
-},{"@stdlib/number/float64/base/to-float32":585}],432:[function(require,module,exports){
+},{"@stdlib/number/float64/base/to-float32":586}],433:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39282,18 +38571,19 @@ module.exports = sapxsumors;
 
 // MODULES //
 
-var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
 
 /**
-* Adds a constant to each single-precision floating-point strided array element and computes the sum using ordinary recursive summation.
+* Adds a scalar constant to each single-precision floating-point strided array element and computes the sum using ordinary recursive summation.
 *
 * @param {PositiveInteger} N - number of indexed elements
-* @param {number} alpha - constant
+* @param {number} alpha - scalar constant
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
@@ -39304,28 +38594,8 @@ var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
 * var v = sapxsumors( x.length, 5.0, x, 1 );
 * // returns 16.0
 */
-function sapxsumors( N, alpha, x, stride ) {
-	var sum;
-	var ix;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return float64ToFloat32( alpha + x[ 0 ] );
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	sum = 0.0;
-	for ( i = 0; i < N; i++ ) {
-		sum = float64ToFloat32( sum + float64ToFloat32( alpha+x[ ix ] ) );
-		ix += stride;
-	}
-	return sum;
+function sapxsumors( N, alpha, x, strideX ) {
+	return ndarray( N, alpha, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -39333,7 +38603,7 @@ function sapxsumors( N, alpha, x, stride ) {
 
 module.exports = sapxsumors;
 
-},{"@stdlib/number/float64/base/to-float32":585}],433:[function(require,module,exports){
+},{"./ndarray.js":432,"@stdlib/strided/base/stride2offset":596}],434:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39370,7 +38640,7 @@ setReadOnly( sapxsumpw, 'ndarray', ndarray );
 
 module.exports = sapxsumpw;
 
-},{"./ndarray.js":434,"./sapxsumpw.js":435,"@stdlib/utils/define-nonenumerable-read-only-property":618}],434:[function(require,module,exports){
+},{"./ndarray.js":435,"./sapxsumpw.js":436,"@stdlib/utils/define-nonenumerable-read-only-property":619}],435:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39509,7 +38779,7 @@ function sapxsumpw( N, alpha, x, stride, offset ) {
 
 module.exports = sapxsumpw;
 
-},{"@stdlib/math/base/special/floor":581,"@stdlib/number/float64/base/to-float32":585}],435:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582,"@stdlib/number/float64/base/to-float32":586}],436:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39597,7 +38867,7 @@ function sapxsumpw( N, alpha, x, stride ) {
 
 module.exports = sapxsumpw;
 
-},{"./ndarray.js":434,"@stdlib/number/float64/base/to-float32":585}],436:[function(require,module,exports){
+},{"./ndarray.js":435,"@stdlib/number/float64/base/to-float32":586}],437:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39634,7 +38904,7 @@ setReadOnly( sasumpw, 'ndarray', ndarray );
 
 module.exports = sasumpw;
 
-},{"./ndarray.js":437,"./sasumpw.js":438,"@stdlib/utils/define-nonenumerable-read-only-property":618}],437:[function(require,module,exports){
+},{"./ndarray.js":438,"./sasumpw.js":439,"@stdlib/utils/define-nonenumerable-read-only-property":619}],438:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39771,7 +39041,7 @@ function sasumpw( N, x, stride, offset ) {
 
 module.exports = sasumpw;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/math/base/special/floor":581,"@stdlib/number/float64/base/to-float32":585}],438:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/math/base/special/floor":582,"@stdlib/number/float64/base/to-float32":586}],439:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39859,7 +39129,7 @@ function sasumpw( N, x, stride ) {
 
 module.exports = sasumpw;
 
-},{"./ndarray.js":437,"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],439:[function(require,module,exports){
+},{"./ndarray.js":438,"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],440:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39896,7 +39166,7 @@ setReadOnly( scusum, 'ndarray', ndarray );
 
 module.exports = scusum;
 
-},{"./ndarray.js":440,"./scusum.js":441,"@stdlib/utils/define-nonenumerable-read-only-property":618}],440:[function(require,module,exports){
+},{"./ndarray.js":441,"./scusum.js":442,"@stdlib/utils/define-nonenumerable-read-only-property":619}],441:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -39955,7 +39225,7 @@ function scusum( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = scusum;
 
-},{"@stdlib/blas/ext/base/scusumkbn":442}],441:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/scusumkbn":443}],442:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40012,7 +39282,7 @@ function scusum( N, sum, x, strideX, y, strideY ) {
 
 module.exports = scusum;
 
-},{"@stdlib/blas/ext/base/scusumkbn":442}],442:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/scusumkbn":443}],443:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40049,7 +39319,7 @@ setReadOnly( scusumkbn, 'ndarray', ndarray );
 
 module.exports = scusumkbn;
 
-},{"./ndarray.js":443,"./scusumkbn.js":444,"@stdlib/utils/define-nonenumerable-read-only-property":618}],443:[function(require,module,exports){
+},{"./ndarray.js":444,"./scusumkbn.js":445,"@stdlib/utils/define-nonenumerable-read-only-property":619}],444:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40147,7 +39417,7 @@ function scusumkbn( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = scusumkbn;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],444:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],445:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40250,7 +39520,7 @@ function scusumkbn( N, sum, x, strideX, y, strideY ) {
 
 module.exports = scusumkbn;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],445:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],446:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40287,7 +39557,7 @@ setReadOnly( scusumkbn2, 'ndarray', ndarray );
 
 module.exports = scusumkbn2;
 
-},{"./ndarray.js":446,"./scusumkbn2.js":447,"@stdlib/utils/define-nonenumerable-read-only-property":618}],446:[function(require,module,exports){
+},{"./ndarray.js":447,"./scusumkbn2.js":448,"@stdlib/utils/define-nonenumerable-read-only-property":619}],447:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40397,7 +39667,7 @@ function scusumkbn2( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = scusumkbn2;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],447:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],448:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40511,7 +39781,7 @@ function scusumkbn2( N, sum, x, strideX, y, strideY ) {
 
 module.exports = scusumkbn2;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],448:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],449:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40548,7 +39818,7 @@ setReadOnly( scusumors, 'ndarray', ndarray );
 
 module.exports = scusumors;
 
-},{"./ndarray.js":449,"./scusumors.js":450,"@stdlib/utils/define-nonenumerable-read-only-property":618}],449:[function(require,module,exports){
+},{"./ndarray.js":450,"./scusumors.js":451,"@stdlib/utils/define-nonenumerable-read-only-property":619}],450:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40622,7 +39892,7 @@ function scusumors( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = scusumors;
 
-},{"@stdlib/number/float64/base/to-float32":585}],450:[function(require,module,exports){
+},{"@stdlib/number/float64/base/to-float32":586}],451:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40703,7 +39973,7 @@ function scusumors( N, sum, x, strideX, y, strideY ) {
 
 module.exports = scusumors;
 
-},{"@stdlib/number/float64/base/to-float32":585}],451:[function(require,module,exports){
+},{"@stdlib/number/float64/base/to-float32":586}],452:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40740,7 +40010,7 @@ setReadOnly( scusumpw, 'ndarray', ndarray );
 
 module.exports = scusumpw;
 
-},{"./ndarray.js":452,"./scusumpw.js":453,"@stdlib/utils/define-nonenumerable-read-only-property":618}],452:[function(require,module,exports){
+},{"./ndarray.js":453,"./scusumpw.js":454,"@stdlib/utils/define-nonenumerable-read-only-property":619}],453:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40841,7 +40111,7 @@ function scusumpw( N, sum, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = scusumpw;
 
-},{"@stdlib/math/base/special/floor":581,"@stdlib/number/float64/base/to-float32":585}],453:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582,"@stdlib/number/float64/base/to-float32":586}],454:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40923,7 +40193,7 @@ function scusumpw( N, sum, x, strideX, y, strideY ) {
 
 module.exports = scusumpw;
 
-},{"./ndarray.js":452}],454:[function(require,module,exports){
+},{"./ndarray.js":453}],455:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -40960,7 +40230,7 @@ setReadOnly( sdsapxsum, 'ndarray', ndarray );
 
 module.exports = sdsapxsum;
 
-},{"./ndarray.js":455,"./sdsapxsum.js":456,"@stdlib/utils/define-nonenumerable-read-only-property":618}],455:[function(require,module,exports){
+},{"./ndarray.js":456,"./sdsapxsum.js":457,"@stdlib/utils/define-nonenumerable-read-only-property":619}],456:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41015,7 +40285,7 @@ function sdsapxsum( N, alpha, x, stride, offset ) {
 
 module.exports = sdsapxsum;
 
-},{"@stdlib/blas/ext/base/sdsapxsumpw":457}],456:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/sdsapxsumpw":458}],457:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41069,7 +40339,7 @@ function sdsapxsum( N, alpha, x, stride ) {
 
 module.exports = sdsapxsum;
 
-},{"@stdlib/blas/ext/base/sdsapxsumpw":457}],457:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/sdsapxsumpw":458}],458:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41106,7 +40376,7 @@ setReadOnly( sdsapxsumpw, 'ndarray', ndarray );
 
 module.exports = sdsapxsumpw;
 
-},{"./ndarray.js":458,"./sdsapxsumpw.js":459,"@stdlib/utils/define-nonenumerable-read-only-property":618}],458:[function(require,module,exports){
+},{"./ndarray.js":459,"./sdsapxsumpw.js":460,"@stdlib/utils/define-nonenumerable-read-only-property":619}],459:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41243,7 +40513,7 @@ function sdsapxsumpw( N, alpha, x, stride, offset ) {
 
 module.exports = sdsapxsumpw;
 
-},{"@stdlib/math/base/special/floor":581,"@stdlib/number/float64/base/to-float32":585}],459:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582,"@stdlib/number/float64/base/to-float32":586}],460:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41330,7 +40600,7 @@ function sdsapxsumpw( N, alpha, x, stride ) {
 
 module.exports = sdsapxsumpw;
 
-},{"./ndarray.js":458,"@stdlib/number/float64/base/to-float32":585}],460:[function(require,module,exports){
+},{"./ndarray.js":459,"@stdlib/number/float64/base/to-float32":586}],461:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41367,7 +40637,7 @@ setReadOnly( sdsnansum, 'ndarray', ndarray );
 
 module.exports = sdsnansum;
 
-},{"./ndarray.js":461,"./sdsnansum.js":462,"@stdlib/utils/define-nonenumerable-read-only-property":618}],461:[function(require,module,exports){
+},{"./ndarray.js":462,"./sdsnansum.js":463,"@stdlib/utils/define-nonenumerable-read-only-property":619}],462:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41421,7 +40691,7 @@ function sdsnansum( N, x, stride, offset ) {
 
 module.exports = sdsnansum;
 
-},{"@stdlib/blas/ext/base/sdsnansumpw":463}],462:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/sdsnansumpw":464}],463:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41475,7 +40745,7 @@ function sdsnansum( N, x, stride ) {
 
 module.exports = sdsnansum;
 
-},{"@stdlib/blas/ext/base/sdsnansumpw":463}],463:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/sdsnansumpw":464}],464:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41512,7 +40782,7 @@ setReadOnly( sdsnansumpw, 'ndarray', ndarray );
 
 module.exports = sdsnansumpw;
 
-},{"./ndarray.js":464,"./sdsnansumpw.js":465,"@stdlib/utils/define-nonenumerable-read-only-property":618}],464:[function(require,module,exports){
+},{"./ndarray.js":465,"./sdsnansumpw.js":466,"@stdlib/utils/define-nonenumerable-read-only-property":619}],465:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41671,7 +40941,7 @@ function sdsnansumpw( N, x, stride, offset ) {
 
 module.exports = sdsnansumpw;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/special/floor":581,"@stdlib/number/float64/base/to-float32":585}],465:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/special/floor":582,"@stdlib/number/float64/base/to-float32":586}],466:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41763,7 +41033,7 @@ function sdsnansumpw( N, x, stride ) {
 
 module.exports = sdsnansumpw;
 
-},{"./ndarray.js":464,"@stdlib/math/base/assert/is-nanf":569,"@stdlib/number/float64/base/to-float32":585}],466:[function(require,module,exports){
+},{"./ndarray.js":465,"@stdlib/math/base/assert/is-nanf":570,"@stdlib/number/float64/base/to-float32":586}],467:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41800,7 +41070,7 @@ setReadOnly( sdssum, 'ndarray', ndarray );
 
 module.exports = sdssum;
 
-},{"./ndarray.js":467,"./sdssum.js":468,"@stdlib/utils/define-nonenumerable-read-only-property":618}],467:[function(require,module,exports){
+},{"./ndarray.js":468,"./sdssum.js":469,"@stdlib/utils/define-nonenumerable-read-only-property":619}],468:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41856,7 +41126,7 @@ function sdssum( N, x, stride, offset ) {
 
 module.exports = sdssum;
 
-},{"@stdlib/blas/ext/base/sdssumpw":469}],468:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/sdssumpw":470}],469:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41910,7 +41180,7 @@ function sdssum( N, x, stride ) {
 
 module.exports = sdssum;
 
-},{"@stdlib/blas/ext/base/sdssumpw":469}],469:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/sdssumpw":470}],470:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -41947,7 +41217,7 @@ setReadOnly( sdssumpw, 'ndarray', ndarray );
 
 module.exports = sdssumpw;
 
-},{"./ndarray.js":470,"./sdssumpw.js":471,"@stdlib/utils/define-nonenumerable-read-only-property":618}],470:[function(require,module,exports){
+},{"./ndarray.js":471,"./sdssumpw.js":472,"@stdlib/utils/define-nonenumerable-read-only-property":619}],471:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42083,7 +41353,7 @@ function sdssumpw( N, x, stride, offset ) {
 
 module.exports = sdssumpw;
 
-},{"@stdlib/math/base/special/floor":581,"@stdlib/number/float64/base/to-float32":585}],471:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582,"@stdlib/number/float64/base/to-float32":586}],472:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42170,7 +41440,7 @@ function sdssumpw( N, x, stride ) {
 
 module.exports = sdssumpw;
 
-},{"./ndarray.js":470,"@stdlib/number/float64/base/to-float32":585}],472:[function(require,module,exports){
+},{"./ndarray.js":471,"@stdlib/number/float64/base/to-float32":586}],473:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42207,7 +41477,7 @@ setReadOnly( sfill, 'ndarray', ndarray );
 
 module.exports = sfill;
 
-},{"./ndarray.js":473,"./sfill.js":474,"@stdlib/utils/define-nonenumerable-read-only-property":618}],473:[function(require,module,exports){
+},{"./ndarray.js":474,"./sfill.js":475,"@stdlib/utils/define-nonenumerable-read-only-property":619}],474:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42302,7 +41572,7 @@ function sfill( N, alpha, x, strideX, offsetX ) {
 
 module.exports = sfill;
 
-},{}],474:[function(require,module,exports){
+},{}],475:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42357,7 +41627,7 @@ function sfill( N, alpha, x, strideX ) {
 
 module.exports = sfill;
 
-},{"./ndarray.js":473,"@stdlib/strided/base/stride2offset":595}],475:[function(require,module,exports){
+},{"./ndarray.js":474,"@stdlib/strided/base/stride2offset":596}],476:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42394,7 +41664,7 @@ setReadOnly( snansum, 'ndarray', ndarray );
 
 module.exports = snansum;
 
-},{"./ndarray.js":476,"./snansum.js":477,"@stdlib/utils/define-nonenumerable-read-only-property":618}],476:[function(require,module,exports){
+},{"./ndarray.js":477,"./snansum.js":478,"@stdlib/utils/define-nonenumerable-read-only-property":619}],477:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42448,7 +41718,7 @@ function snansum( N, x, stride, offset ) {
 
 module.exports = snansum;
 
-},{"@stdlib/blas/ext/base/snansumkbn":478}],477:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/snansumkbn":479}],478:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42501,7 +41771,7 @@ function snansum( N, x, stride ) {
 
 module.exports = snansum;
 
-},{"@stdlib/blas/ext/base/snansumkbn":478}],478:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/snansumkbn":479}],479:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42538,7 +41808,7 @@ setReadOnly( snansumkbn, 'ndarray', ndarray );
 
 module.exports = snansumkbn;
 
-},{"./ndarray.js":479,"./snansumkbn.js":480,"@stdlib/utils/define-nonenumerable-read-only-property":618}],479:[function(require,module,exports){
+},{"./ndarray.js":480,"./snansumkbn.js":481,"@stdlib/utils/define-nonenumerable-read-only-property":619}],480:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42634,7 +41904,7 @@ function snansumkbn( N, x, stride, offset ) {
 
 module.exports = snansumkbn;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],480:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],481:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42734,7 +42004,7 @@ function snansumkbn( N, x, stride ) {
 
 module.exports = snansumkbn;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],481:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],482:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42771,7 +42041,7 @@ setReadOnly( snansumkbn2, 'ndarray', ndarray );
 
 module.exports = snansumkbn2;
 
-},{"./ndarray.js":482,"./snansumkbn2.js":483,"@stdlib/utils/define-nonenumerable-read-only-property":618}],482:[function(require,module,exports){
+},{"./ndarray.js":483,"./snansumkbn2.js":484,"@stdlib/utils/define-nonenumerable-read-only-property":619}],483:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42879,7 +42149,7 @@ function snansumkbn2( N, x, stride, offset ) {
 
 module.exports = snansumkbn2;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],483:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],484:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -42990,7 +42260,7 @@ function snansumkbn2( N, x, stride ) {
 
 module.exports = snansumkbn2;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],484:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],485:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43027,7 +42297,7 @@ setReadOnly( snansumors, 'ndarray', ndarray );
 
 module.exports = snansumors;
 
-},{"./ndarray.js":485,"./snansumors.js":486,"@stdlib/utils/define-nonenumerable-read-only-property":618}],485:[function(require,module,exports){
+},{"./ndarray.js":486,"./snansumors.js":487,"@stdlib/utils/define-nonenumerable-read-only-property":619}],486:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43061,8 +42331,8 @@ var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -43073,7 +42343,7 @@ var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
 * var v = snansumors( 5, x, 2, 1 );
 * // returns 5.0
 */
-function snansumors( N, x, stride, offset ) {
+function snansumors( N, x, strideX, offsetX ) {
 	var sum;
 	var ix;
 	var i;
@@ -43082,18 +42352,18 @@ function snansumors( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return sum;
 	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnanf( x[ offset ] ) ) {
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		if ( isnanf( x[ ix ] ) ) {
 			return sum;
 		}
-		return x[ offset ];
+		return N * x[ ix ];
 	}
-	ix = offset;
 	for ( i = 0; i < N; i++ ) {
 		if ( isnanf( x[ ix ] ) === false ) {
 			sum = float64ToFloat32( sum + x[ ix ] );
 		}
-		ix += stride;
+		ix += strideX;
 	}
 	return sum;
 }
@@ -43103,7 +42373,7 @@ function snansumors( N, x, stride, offset ) {
 
 module.exports = snansumors;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/number/float64/base/to-float32":585}],486:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/number/float64/base/to-float32":586}],487:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43126,8 +42396,8 @@ module.exports = snansumors;
 
 // MODULES //
 
-var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
-var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -43137,45 +42407,19 @@ var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, NaN, 2.0 ] );
-* var N = x.length;
 *
-* var v = snansumors( N, x, 1 );
+* var v = snansumors( x.length, x, 1 );
 * // returns 1.0
 */
-function snansumors( N, x, stride ) {
-	var sum;
-	var ix;
-	var i;
-
-	sum = 0.0;
-	if ( N <= 0 ) {
-		return sum;
-	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnanf( x[ 0 ] ) ) {
-			return sum;
-		}
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	for ( i = 0; i < N; i++ ) {
-		if ( isnanf( x[ ix ] ) === false ) {
-			sum = float64ToFloat32( sum + x[ ix ] );
-		}
-		ix += stride;
-	}
-	return sum;
+function snansumors( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -43183,7 +42427,7 @@ function snansumors( N, x, stride ) {
 
 module.exports = snansumors;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/number/float64/base/to-float32":585}],487:[function(require,module,exports){
+},{"./ndarray.js":486,"@stdlib/strided/base/stride2offset":596}],488:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43220,7 +42464,7 @@ setReadOnly( snansumpw, 'ndarray', ndarray );
 
 module.exports = snansumpw;
 
-},{"./ndarray.js":488,"./snansumpw.js":489,"@stdlib/utils/define-nonenumerable-read-only-property":618}],488:[function(require,module,exports){
+},{"./ndarray.js":489,"./snansumpw.js":490,"@stdlib/utils/define-nonenumerable-read-only-property":619}],489:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43269,8 +42513,8 @@ var BLOCKSIZE = 128;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -43281,7 +42525,7 @@ var BLOCKSIZE = 128;
 * var v = snansumpw( 5, x, 2, 1 );
 * // returns 5.0
 */
-function snansumpw( N, x, stride, offset ) {
+function snansumpw( N, x, strideX, offsetX ) {
 	var ix;
 	var s0;
 	var s1;
@@ -43299,13 +42543,13 @@ function snansumpw( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnanf( x[ offset ] ) ) {
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		if ( isnanf( x[ ix ] ) ) {
 			return 0.0;
 		}
-		return x[ offset ];
+		return N * x[ ix ];
 	}
-	ix = offset;
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
@@ -43313,47 +42557,47 @@ function snansumpw( N, x, stride, offset ) {
 			if ( isnanf( x[ ix ] ) === false ) {
 				s = float64ToFloat32( s + x[ ix ] );
 			}
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	if ( N <= BLOCKSIZE ) {
 		// Sum a block with 8 accumulators (by loop unrolling, we lower the effective blocksize to 16)...
 		s0 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s1 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s2 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s3 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s4 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s5 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s6 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 		s7 = ( isnanf( x[ ix ] ) ) ? 0.0 : x[ ix ];
-		ix += stride;
+		ix += strideX;
 
 		M = N % 8;
 		for ( i = 8; i < N-M; i += 8 ) {
 			s0 = ( isnanf( x[ ix ] ) ) ? s0 : float64ToFloat32( s0 + x[ ix ] );
-			ix += stride;
+			ix += strideX;
 			s1 = ( isnanf( x[ ix ] ) ) ? s1 : float64ToFloat32( s1 + x[ ix ] );
-			ix += stride;
+			ix += strideX;
 			s2 = ( isnanf( x[ ix ] ) ) ? s2 : float64ToFloat32( s2 + x[ ix ] );
-			ix += stride;
+			ix += strideX;
 			s3 = ( isnanf( x[ ix ] ) ) ? s3 : float64ToFloat32( s3 + x[ ix ] );
-			ix += stride;
+			ix += strideX;
 			s4 = ( isnanf( x[ ix ] ) ) ? s4 : float64ToFloat32( s4 + x[ ix ] );
-			ix += stride;
+			ix += strideX;
 			s5 = ( isnanf( x[ ix ] ) ) ? s5 : float64ToFloat32( s5 + x[ ix ] );
-			ix += stride;
+			ix += strideX;
 			s6 = ( isnanf( x[ ix ] ) ) ? s6 : float64ToFloat32( s6 + x[ ix ] );
-			ix += stride;
+			ix += strideX;
 			s7 = ( isnanf( x[ ix ] ) ) ? s7 : float64ToFloat32( s7 + x[ ix ] );
-			ix += stride;
+			ix += strideX;
 		}
 		// Pairwise sum the accumulators:
 		s = float64ToFloat32( float64ToFloat32( float64ToFloat32(s0+s1) + float64ToFloat32(s2+s3) ) + float64ToFloat32( float64ToFloat32(s4+s5) + float64ToFloat32(s6+s7) ) ); // eslint-disable-line max-len
@@ -43363,14 +42607,14 @@ function snansumpw( N, x, stride, offset ) {
 			if ( isnanf( x[ ix ] ) === false ) {
 				s = float64ToFloat32( s + x[ ix ] );
 			}
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	// Recurse by dividing by two, but avoiding non-multiples of unroll factor...
 	n = floor( N/2 );
 	n -= n % 8;
-	return float64ToFloat32( snansumpw( n, x, stride, ix ) + snansumpw( N-n, x, stride, ix+(n*stride) ) ); // eslint-disable-line max-len
+	return float64ToFloat32( snansumpw( n, x, strideX, ix ) + snansumpw( N-n, x, strideX, ix+(n*strideX) ) ); // eslint-disable-line max-len
 }
 
 
@@ -43378,7 +42622,7 @@ function snansumpw( N, x, stride, offset ) {
 
 module.exports = snansumpw;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/special/floor":581,"@stdlib/number/float64/base/to-float32":585}],489:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/special/floor":582,"@stdlib/number/float64/base/to-float32":586}],490:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43401,9 +42645,8 @@ module.exports = snansumpw;
 
 // MODULES //
 
-var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
-var isnanf = require( '@stdlib/math/base/assert/is-nanf' );
-var sum = require( './ndarray.js' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -43421,49 +42664,19 @@ var sum = require( './ndarray.js' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, NaN, 2.0 ] );
-* var N = x.length;
 *
-* var v = snansumpw( N, x, 1 );
+* var v = snansumpw( x.length, x, 1 );
 * // returns 1.0
 */
-function snansumpw( N, x, stride ) {
-	var ix;
-	var s;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		if ( isnanf( x[ 0 ] ) ) {
-			return 0.0;
-		}
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	if ( N < 8 ) {
-		// Use simple summation...
-		s = 0.0;
-		for ( i = 0; i < N; i++ ) {
-			if ( isnanf( x[ ix ] ) === false ) {
-				s = float64ToFloat32( s + x[ ix ] );
-			}
-			ix += stride;
-		}
-		return s;
-	}
-	return sum( N, x, stride, ix );
+function snansumpw( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -43471,7 +42684,7 @@ function snansumpw( N, x, stride ) {
 
 module.exports = snansumpw;
 
-},{"./ndarray.js":488,"@stdlib/math/base/assert/is-nanf":569,"@stdlib/number/float64/base/to-float32":585}],490:[function(require,module,exports){
+},{"./ndarray.js":489,"@stdlib/strided/base/stride2offset":596}],491:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43508,7 +42721,7 @@ setReadOnly( srev, 'ndarray', ndarray );
 
 module.exports = srev;
 
-},{"./ndarray.js":491,"./srev.js":492,"@stdlib/utils/define-nonenumerable-read-only-property":618}],491:[function(require,module,exports){
+},{"./ndarray.js":492,"./srev.js":493,"@stdlib/utils/define-nonenumerable-read-only-property":619}],492:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43624,7 +42837,7 @@ function srev( N, x, stride, offset ) {
 
 module.exports = srev;
 
-},{"@stdlib/math/base/special/floor":581}],492:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],493:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43741,7 +42954,7 @@ function srev( N, x, stride ) {
 
 module.exports = srev;
 
-},{"@stdlib/math/base/special/floor":581}],493:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],494:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43778,7 +42991,7 @@ setReadOnly( ssort2hp, 'ndarray', ndarray );
 
 module.exports = ssort2hp;
 
-},{"./ndarray.js":494,"./ssort2hp.js":495,"@stdlib/utils/define-nonenumerable-read-only-property":618}],494:[function(require,module,exports){
+},{"./ndarray.js":495,"./ssort2hp.js":496,"@stdlib/utils/define-nonenumerable-read-only-property":619}],495:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -43946,7 +43159,7 @@ function ssort2hp( N, order, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = ssort2hp;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-positive-zerof":577,"@stdlib/math/base/special/floor":581}],495:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-positive-zerof":578,"@stdlib/math/base/special/floor":582}],496:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44122,7 +43335,7 @@ function ssort2hp( N, order, x, strideX, y, strideY ) {
 
 module.exports = ssort2hp;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-positive-zerof":577,"@stdlib/math/base/special/floor":581}],496:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-positive-zerof":578,"@stdlib/math/base/special/floor":582}],497:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44159,7 +43372,7 @@ setReadOnly( ssort2ins, 'ndarray', ndarray );
 
 module.exports = ssort2ins;
 
-},{"./ndarray.js":497,"./ssort2ins.js":498,"@stdlib/utils/define-nonenumerable-read-only-property":618}],497:[function(require,module,exports){
+},{"./ndarray.js":498,"./ssort2ins.js":499,"@stdlib/utils/define-nonenumerable-read-only-property":619}],498:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44347,7 +43560,7 @@ function ssort2ins( N, order, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = ssort2ins;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-negative-zerof":573}],498:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-negative-zerof":574}],499:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44538,9 +43751,9 @@ function ssort2ins( N, order, x, strideX, y, strideY ) {
 
 module.exports = ssort2ins;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-negative-zerof":573}],499:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-negative-zerof":574}],500:[function(require,module,exports){
 arguments[4][281][0].apply(exports,arguments)
-},{"dup":281}],500:[function(require,module,exports){
+},{"dup":281}],501:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44577,7 +43790,7 @@ setReadOnly( ssort2sh, 'ndarray', ndarray );
 
 module.exports = ssort2sh;
 
-},{"./ndarray.js":501,"./ssort2sh.js":502,"@stdlib/utils/define-nonenumerable-read-only-property":618}],501:[function(require,module,exports){
+},{"./ndarray.js":502,"./ssort2sh.js":503,"@stdlib/utils/define-nonenumerable-read-only-property":619}],502:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44701,7 +43914,7 @@ function ssort2sh( N, order, x, strideX, offsetX, y, strideY, offsetY ) {
 
 module.exports = ssort2sh;
 
-},{"./gaps.json":499,"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-negative-zerof":573}],502:[function(require,module,exports){
+},{"./gaps.json":500,"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-negative-zerof":574}],503:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44833,7 +44046,7 @@ function ssort2sh( N, order, x, strideX, y, strideY ) {
 
 module.exports = ssort2sh;
 
-},{"./gaps.json":499,"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-negative-zerof":573}],503:[function(require,module,exports){
+},{"./gaps.json":500,"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-negative-zerof":574}],504:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -44870,7 +44083,7 @@ setReadOnly( ssorthp, 'ndarray', ndarray );
 
 module.exports = ssorthp;
 
-},{"./ndarray.js":504,"./ssorthp.js":505,"@stdlib/utils/define-nonenumerable-read-only-property":618}],504:[function(require,module,exports){
+},{"./ndarray.js":505,"./ssorthp.js":506,"@stdlib/utils/define-nonenumerable-read-only-property":619}],505:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45019,7 +44232,7 @@ function ssorthp( N, order, x, stride, offset ) {
 
 module.exports = ssorthp;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-positive-zerof":577,"@stdlib/math/base/special/floor":581}],505:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-positive-zerof":578,"@stdlib/math/base/special/floor":582}],506:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45172,7 +44385,7 @@ function ssorthp( N, order, x, stride ) {
 
 module.exports = ssorthp;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-positive-zerof":577,"@stdlib/math/base/special/floor":581}],506:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-positive-zerof":578,"@stdlib/math/base/special/floor":582}],507:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45209,7 +44422,7 @@ setReadOnly( ssortins, 'ndarray', ndarray );
 
 module.exports = ssortins;
 
-},{"./ndarray.js":507,"./ssortins.js":508,"@stdlib/utils/define-nonenumerable-read-only-property":618}],507:[function(require,module,exports){
+},{"./ndarray.js":508,"./ssortins.js":509,"@stdlib/utils/define-nonenumerable-read-only-property":619}],508:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45357,7 +44570,7 @@ function ssortins( N, order, x, stride, offset ) {
 
 module.exports = ssortins;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-negative-zerof":573}],508:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-negative-zerof":574}],509:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45505,9 +44718,9 @@ function ssortins( N, order, x, stride ) {
 
 module.exports = ssortins;
 
-},{"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-negative-zerof":573}],509:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-negative-zerof":574}],510:[function(require,module,exports){
 arguments[4][281][0].apply(exports,arguments)
-},{"dup":281}],510:[function(require,module,exports){
+},{"dup":281}],511:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45544,7 +44757,7 @@ setReadOnly( ssortsh, 'ndarray', ndarray );
 
 module.exports = ssortsh;
 
-},{"./ndarray.js":511,"./ssortsh.js":512,"@stdlib/utils/define-nonenumerable-read-only-property":618}],511:[function(require,module,exports){
+},{"./ndarray.js":512,"./ssortsh.js":513,"@stdlib/utils/define-nonenumerable-read-only-property":619}],512:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45652,7 +44865,7 @@ function ssortsh( N, order, x, stride, offset ) {
 
 module.exports = ssortsh;
 
-},{"./gaps.json":509,"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-negative-zerof":573}],512:[function(require,module,exports){
+},{"./gaps.json":510,"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-negative-zerof":574}],513:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45764,7 +44977,7 @@ function ssortsh( N, order, x, stride ) {
 
 module.exports = ssortsh;
 
-},{"./gaps.json":509,"@stdlib/math/base/assert/is-nanf":569,"@stdlib/math/base/assert/is-negative-zerof":573}],513:[function(require,module,exports){
+},{"./gaps.json":510,"@stdlib/math/base/assert/is-nanf":570,"@stdlib/math/base/assert/is-negative-zerof":574}],514:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45801,7 +45014,7 @@ setReadOnly( ssum, 'ndarray', ndarray );
 
 module.exports = ssum;
 
-},{"./ndarray.js":514,"./ssum.js":515,"@stdlib/utils/define-nonenumerable-read-only-property":618}],514:[function(require,module,exports){
+},{"./ndarray.js":515,"./ssum.js":516,"@stdlib/utils/define-nonenumerable-read-only-property":619}],515:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45855,7 +45068,7 @@ function ssum( N, x, stride, offset ) {
 
 module.exports = ssum;
 
-},{"@stdlib/blas/ext/base/ssumkbn":516}],515:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/ssumkbn":517}],516:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45909,7 +45122,7 @@ function ssum( N, x, stride ) {
 
 module.exports = ssum;
 
-},{"@stdlib/blas/ext/base/ssumkbn":516}],516:[function(require,module,exports){
+},{"@stdlib/blas/ext/base/ssumkbn":517}],517:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -45946,7 +45159,7 @@ setReadOnly( ssumkbn, 'ndarray', ndarray );
 
 module.exports = ssumkbn;
 
-},{"./ndarray.js":517,"./ssumkbn.js":518,"@stdlib/utils/define-nonenumerable-read-only-property":618}],517:[function(require,module,exports){
+},{"./ndarray.js":518,"./ssumkbn.js":519,"@stdlib/utils/define-nonenumerable-read-only-property":619}],518:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46038,7 +45251,7 @@ function ssumkbn( N, x, stride, offset ) {
 
 module.exports = ssumkbn;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],518:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],519:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46132,7 +45345,7 @@ function ssumkbn( N, x, stride ) {
 
 module.exports = ssumkbn;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],519:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],520:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46169,7 +45382,7 @@ setReadOnly( ssumkbn2, 'ndarray', ndarray );
 
 module.exports = ssumkbn2;
 
-},{"./ndarray.js":520,"./ssumkbn2.js":521,"@stdlib/utils/define-nonenumerable-read-only-property":618}],520:[function(require,module,exports){
+},{"./ndarray.js":521,"./ssumkbn2.js":522,"@stdlib/utils/define-nonenumerable-read-only-property":619}],521:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46273,7 +45486,7 @@ function ssumkbn2( N, x, stride, offset ) {
 
 module.exports = ssumkbn2;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],521:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],522:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46379,7 +45592,7 @@ function ssumkbn2( N, x, stride ) {
 
 module.exports = ssumkbn2;
 
-},{"@stdlib/math/base/special/abs":579,"@stdlib/number/float64/base/to-float32":585}],522:[function(require,module,exports){
+},{"@stdlib/math/base/special/abs":580,"@stdlib/number/float64/base/to-float32":586}],523:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46416,7 +45629,7 @@ setReadOnly( ssumors, 'ndarray', ndarray );
 
 module.exports = ssumors;
 
-},{"./ndarray.js":523,"./ssumors.js":524,"@stdlib/utils/define-nonenumerable-read-only-property":618}],523:[function(require,module,exports){
+},{"./ndarray.js":524,"./ssumors.js":525,"@stdlib/utils/define-nonenumerable-read-only-property":619}],524:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46449,8 +45662,8 @@ var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -46461,7 +45674,7 @@ var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
 * var v = ssumors( 4, x, 2, 1 );
 * // returns 5.0
 */
-function ssumors( N, x, stride, offset ) {
+function ssumors( N, x, strideX, offsetX ) {
 	var sum;
 	var ix;
 	var i;
@@ -46470,13 +45683,13 @@ function ssumors( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return sum;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
 	for ( i = 0; i < N; i++ ) {
 		sum = float64ToFloat32( sum + x[ ix ] );
-		ix += stride;
+		ix += strideX;
 	}
 	return sum;
 }
@@ -46486,7 +45699,7 @@ function ssumors( N, x, stride, offset ) {
 
 module.exports = ssumors;
 
-},{"@stdlib/number/float64/base/to-float32":585}],524:[function(require,module,exports){
+},{"@stdlib/number/float64/base/to-float32":586}],525:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46509,7 +45722,8 @@ module.exports = ssumors;
 
 // MODULES //
 
-var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -46519,40 +45733,19 @@ var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = ssumors( N, x, 1 );
+* var v = ssumors( x.length, x, 1 );
 * // returns 1.0
 */
-function ssumors( N, x, stride ) {
-	var sum;
-	var ix;
-	var i;
-
-	sum = 0.0;
-	if ( N <= 0 ) {
-		return sum;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	for ( i = 0; i < N; i++ ) {
-		sum = float64ToFloat32( sum + x[ ix ] );
-		ix += stride;
-	}
-	return sum;
+function ssumors( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -46560,7 +45753,7 @@ function ssumors( N, x, stride ) {
 
 module.exports = ssumors;
 
-},{"@stdlib/number/float64/base/to-float32":585}],525:[function(require,module,exports){
+},{"./ndarray.js":524,"@stdlib/strided/base/stride2offset":596}],526:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46597,7 +45790,7 @@ setReadOnly( ssumpw, 'ndarray', ndarray );
 
 module.exports = ssumpw;
 
-},{"./ndarray.js":526,"./ssumpw.js":527,"@stdlib/utils/define-nonenumerable-read-only-property":618}],526:[function(require,module,exports){
+},{"./ndarray.js":527,"./ssumpw.js":528,"@stdlib/utils/define-nonenumerable-read-only-property":619}],527:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46645,8 +45838,8 @@ var BLOCKSIZE = 128;
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
-* @param {NonNegativeInteger} offset - starting index
+* @param {integer} strideX - stride length
+* @param {NonNegativeInteger} offsetX - starting index
 * @returns {number} sum
 *
 * @example
@@ -46657,7 +45850,7 @@ var BLOCKSIZE = 128;
 * var v = ssumpw( 4, x, 2, 1 );
 * // returns 5.0
 */
-function ssumpw( N, x, stride, offset ) {
+function ssumpw( N, x, strideX, offsetX ) {
 	var ix;
 	var s0;
 	var s1;
@@ -46675,42 +45868,42 @@ function ssumpw( N, x, stride, offset ) {
 	if ( N <= 0 ) {
 		return 0.0;
 	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ offset ];
+	ix = offsetX;
+	if ( strideX === 0 ) {
+		return N * x[ ix ];
 	}
-	ix = offset;
 	if ( N < 8 ) {
 		// Use simple summation...
 		s = 0.0;
 		for ( i = 0; i < N; i++ ) {
 			s = float64ToFloat32( s + x[ ix ] );
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	if ( N <= BLOCKSIZE ) {
 		// Sum a block with 8 accumulators (by loop unrolling, we lower the effective blocksize to 16)...
 		s0 = x[ ix ];
-		s1 = x[ ix+stride ];
-		s2 = x[ ix+(2*stride) ];
-		s3 = x[ ix+(3*stride) ];
-		s4 = x[ ix+(4*stride) ];
-		s5 = x[ ix+(5*stride) ];
-		s6 = x[ ix+(6*stride) ];
-		s7 = x[ ix+(7*stride) ];
-		ix += 8 * stride;
+		s1 = x[ ix+strideX ];
+		s2 = x[ ix+(2*strideX) ];
+		s3 = x[ ix+(3*strideX) ];
+		s4 = x[ ix+(4*strideX) ];
+		s5 = x[ ix+(5*strideX) ];
+		s6 = x[ ix+(6*strideX) ];
+		s7 = x[ ix+(7*strideX) ];
+		ix += 8 * strideX;
 
 		M = N % 8;
 		for ( i = 8; i < N-M; i += 8 ) {
 			s0 = float64ToFloat32( s0 + x[ ix ] );
-			s1 = float64ToFloat32( s1 + x[ ix+stride ] );
-			s2 = float64ToFloat32( s2 + x[ ix+(2*stride) ] );
-			s3 = float64ToFloat32( s3 + x[ ix+(3*stride) ] );
-			s4 = float64ToFloat32( s4 + x[ ix+(4*stride) ] );
-			s5 = float64ToFloat32( s5 + x[ ix+(5*stride) ] );
-			s6 = float64ToFloat32( s6 + x[ ix+(6*stride) ] );
-			s7 = float64ToFloat32( s7 + x[ ix+(7*stride) ] );
-			ix += 8 * stride;
+			s1 = float64ToFloat32( s1 + x[ ix+strideX ] );
+			s2 = float64ToFloat32( s2 + x[ ix+(2*strideX) ] );
+			s3 = float64ToFloat32( s3 + x[ ix+(3*strideX) ] );
+			s4 = float64ToFloat32( s4 + x[ ix+(4*strideX) ] );
+			s5 = float64ToFloat32( s5 + x[ ix+(5*strideX) ] );
+			s6 = float64ToFloat32( s6 + x[ ix+(6*strideX) ] );
+			s7 = float64ToFloat32( s7 + x[ ix+(7*strideX) ] );
+			ix += 8 * strideX;
 		}
 		// Pairwise sum the accumulators:
 		s = float64ToFloat32( float64ToFloat32( float64ToFloat32(s0+s1) + float64ToFloat32(s2+s3) ) + float64ToFloat32( float64ToFloat32(s4+s5) + float64ToFloat32(s6+s7) ) ); // eslint-disable-line max-len
@@ -46718,14 +45911,14 @@ function ssumpw( N, x, stride, offset ) {
 		// Clean-up loop...
 		for ( i; i < N; i++ ) {
 			s = float64ToFloat32( s + x[ ix ] );
-			ix += stride;
+			ix += strideX;
 		}
 		return s;
 	}
 	// Recurse by dividing by two, but avoiding non-multiples of unroll factor...
 	n = floor( N/2 );
 	n -= n % 8;
-	return float64ToFloat32( ssumpw( n, x, stride, ix ) + ssumpw( N-n, x, stride, ix+(n*stride) ) ); // eslint-disable-line max-len
+	return float64ToFloat32( ssumpw( n, x, strideX, ix ) + ssumpw( N-n, x, strideX, ix+(n*strideX) ) ); // eslint-disable-line max-len
 }
 
 
@@ -46733,7 +45926,7 @@ function ssumpw( N, x, stride, offset ) {
 
 module.exports = ssumpw;
 
-},{"@stdlib/math/base/special/floor":581,"@stdlib/number/float64/base/to-float32":585}],527:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582,"@stdlib/number/float64/base/to-float32":586}],528:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46756,8 +45949,8 @@ module.exports = ssumpw;
 
 // MODULES //
 
-var float64ToFloat32 = require( '@stdlib/number/float64/base/to-float32' );
-var sum = require( './ndarray.js' );
+var stride2offset = require( '@stdlib/strided/base/stride2offset' );
+var ndarray = require( './ndarray.js' );
 
 
 // MAIN //
@@ -46775,44 +45968,19 @@ var sum = require( './ndarray.js' );
 *
 * @param {PositiveInteger} N - number of indexed elements
 * @param {Float32Array} x - input array
-* @param {integer} stride - stride length
+* @param {integer} strideX - stride length
 * @returns {number} sum
 *
 * @example
 * var Float32Array = require( '@stdlib/array/float32' );
 *
 * var x = new Float32Array( [ 1.0, -2.0, 2.0 ] );
-* var N = x.length;
 *
-* var v = ssumpw( N, x, 1 );
+* var v = ssumpw( x.length, x, 1 );
 * // returns 1.0
 */
-function ssumpw( N, x, stride ) {
-	var ix;
-	var s;
-	var i;
-
-	if ( N <= 0 ) {
-		return 0.0;
-	}
-	if ( N === 1 || stride === 0 ) {
-		return x[ 0 ];
-	}
-	if ( stride < 0 ) {
-		ix = (1-N) * stride;
-	} else {
-		ix = 0;
-	}
-	if ( N < 8 ) {
-		// Use simple summation...
-		s = 0.0;
-		for ( i = 0; i < N; i++ ) {
-			s = float64ToFloat32( s + x[ ix ] );
-			ix += stride;
-		}
-		return s;
-	}
-	return sum( N, x, stride, ix );
+function ssumpw( N, x, strideX ) {
+	return ndarray( N, x, strideX, stride2offset( N, strideX ) );
 }
 
 
@@ -46820,7 +45988,7 @@ function ssumpw( N, x, stride ) {
 
 module.exports = ssumpw;
 
-},{"./ndarray.js":526,"@stdlib/number/float64/base/to-float32":585}],528:[function(require,module,exports){
+},{"./ndarray.js":527,"@stdlib/strided/base/stride2offset":596}],529:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46873,7 +46041,7 @@ setReadOnly( ns, 'base', require( '@stdlib/blas/ext/base' ) );
 
 module.exports = ns;
 
-},{"@stdlib/blas/ext/base":417,"@stdlib/utils/define-read-only-property":625}],529:[function(require,module,exports){
+},{"@stdlib/blas/ext/base":418,"@stdlib/utils/define-read-only-property":626}],530:[function(require,module,exports){
 (function (__filename){(function (){
 /**
 * @license Apache-2.0
@@ -46917,7 +46085,7 @@ tape( 'the exported object contains key-value pairs', function test( t ) {
 });
 
 }).call(this)}).call(this,"/lib/node_modules/@stdlib/blas/ext/test/test.js")
-},{"./../lib":528,"@stdlib/utils/keys":643,"tape":787}],530:[function(require,module,exports){
+},{"./../lib":529,"@stdlib/utils/keys":644,"tape":788}],531:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -46971,7 +46139,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":531}],531:[function(require,module,exports){
+},{"./main.js":532}],532:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47024,7 +46192,7 @@ var Bool = Boolean; // eslint-disable-line stdlib/require-globals
 
 module.exports = Bool;
 
-},{}],532:[function(require,module,exports){
+},{}],533:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47066,7 +46234,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":533}],533:[function(require,module,exports){
+},{"./main.js":534}],534:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47227,7 +46395,7 @@ setReadOnly( Complex64.prototype, 'toJSON', toJSON );
 
 module.exports = Complex64;
 
-},{"./tojson.js":534,"./tostring.js":535,"@stdlib/assert/is-number":150,"@stdlib/number/float64/base/to-float32":585,"@stdlib/string/format":607,"@stdlib/utils/define-nonenumerable-read-only-property":618,"@stdlib/utils/define-property":623}],534:[function(require,module,exports){
+},{"./tojson.js":535,"./tostring.js":536,"@stdlib/assert/is-number":150,"@stdlib/number/float64/base/to-float32":586,"@stdlib/string/format":608,"@stdlib/utils/define-nonenumerable-read-only-property":619,"@stdlib/utils/define-property":624}],535:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47268,7 +46436,7 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],535:[function(require,module,exports){
+},{}],536:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47312,7 +46480,7 @@ function toString() { // eslint-disable-line stdlib/no-redeclare
 
 module.exports = toString;
 
-},{}],536:[function(require,module,exports){
+},{}],537:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47357,7 +46525,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":537}],537:[function(require,module,exports){
+},{"./main.js":538}],538:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47401,7 +46569,7 @@ function imag( z ) {
 
 module.exports = imag;
 
-},{}],538:[function(require,module,exports){
+},{}],539:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47446,7 +46614,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":539}],539:[function(require,module,exports){
+},{"./main.js":540}],540:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47490,7 +46658,7 @@ function real( z ) {
 
 module.exports = real;
 
-},{}],540:[function(require,module,exports){
+},{}],541:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47532,7 +46700,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":541}],541:[function(require,module,exports){
+},{"./main.js":542}],542:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47692,7 +46860,7 @@ setReadOnly( Complex128.prototype, 'toJSON', toJSON );
 
 module.exports = Complex128;
 
-},{"./tojson.js":542,"./tostring.js":543,"@stdlib/assert/is-number":150,"@stdlib/string/format":607,"@stdlib/utils/define-nonenumerable-read-only-property":618,"@stdlib/utils/define-property":623}],542:[function(require,module,exports){
+},{"./tojson.js":543,"./tostring.js":544,"@stdlib/assert/is-number":150,"@stdlib/string/format":608,"@stdlib/utils/define-nonenumerable-read-only-property":619,"@stdlib/utils/define-property":624}],543:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47733,9 +46901,9 @@ function toJSON() {
 
 module.exports = toJSON;
 
-},{}],543:[function(require,module,exports){
-arguments[4][535][0].apply(exports,arguments)
-},{"dup":535}],544:[function(require,module,exports){
+},{}],544:[function(require,module,exports){
+arguments[4][536][0].apply(exports,arguments)
+},{"dup":536}],545:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47780,7 +46948,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":545}],545:[function(require,module,exports){
+},{"./main.js":546}],546:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47824,7 +46992,7 @@ function imag( z ) {
 
 module.exports = imag;
 
-},{}],546:[function(require,module,exports){
+},{}],547:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47869,7 +47037,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":547}],547:[function(require,module,exports){
+},{"./main.js":548}],548:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47913,7 +47081,7 @@ function real( z ) {
 
 module.exports = real;
 
-},{}],548:[function(require,module,exports){
+},{}],549:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -47964,7 +47132,7 @@ var MAX_ARRAY_LENGTH = 4294967295>>>0; // asm type annotation
 
 module.exports = MAX_ARRAY_LENGTH;
 
-},{}],549:[function(require,module,exports){
+},{}],550:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48015,7 +47183,7 @@ var MAX_TYPED_ARRAY_LENGTH = 9007199254740991;
 
 module.exports = MAX_TYPED_ARRAY_LENGTH;
 
-},{}],550:[function(require,module,exports){
+},{}],551:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48092,7 +47260,7 @@ v = FLOAT32_VIEW[ 0 ];
 
 module.exports = v;
 
-},{"@stdlib/array/float32":37,"@stdlib/array/uint32":55}],551:[function(require,module,exports){
+},{"@stdlib/array/float32":37,"@stdlib/array/uint32":55}],552:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48169,7 +47337,7 @@ v = FLOAT32_VIEW[ 0 ];
 
 module.exports = v;
 
-},{"@stdlib/array/float32":37,"@stdlib/array/uint32":55}],552:[function(require,module,exports){
+},{"@stdlib/array/float32":37,"@stdlib/array/uint32":55}],553:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48231,7 +47399,7 @@ var FLOAT64_NINF = Number.NEGATIVE_INFINITY;
 
 module.exports = FLOAT64_NINF;
 
-},{"@stdlib/number/ctor":583}],553:[function(require,module,exports){
+},{"@stdlib/number/ctor":584}],554:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48289,7 +47457,7 @@ var FLOAT64_PINF = Number.POSITIVE_INFINITY; // eslint-disable-line stdlib/requi
 
 module.exports = FLOAT64_PINF;
 
-},{}],554:[function(require,module,exports){
+},{}],555:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48352,7 +47520,7 @@ var INT16_MAX = 32767|0; // asm type annotation
 
 module.exports = INT16_MAX;
 
-},{}],555:[function(require,module,exports){
+},{}],556:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48415,7 +47583,7 @@ var INT16_MIN = -32768|0; // asm type annotation
 
 module.exports = INT16_MIN;
 
-},{}],556:[function(require,module,exports){
+},{}],557:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48478,7 +47646,7 @@ var INT32_MAX = 2147483647|0; // asm type annotation
 
 module.exports = INT32_MAX;
 
-},{}],557:[function(require,module,exports){
+},{}],558:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48541,7 +47709,7 @@ var INT32_MIN = -2147483648|0; // asm type annotation
 
 module.exports = INT32_MIN;
 
-},{}],558:[function(require,module,exports){
+},{}],559:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48604,7 +47772,7 @@ var INT8_MAX = 127|0; // asm type annotation
 
 module.exports = INT8_MAX;
 
-},{}],559:[function(require,module,exports){
+},{}],560:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48667,7 +47835,7 @@ var INT8_MIN = -128|0; // asm type annotation
 
 module.exports = INT8_MIN;
 
-},{}],560:[function(require,module,exports){
+},{}],561:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48730,7 +47898,7 @@ var UINT16_MAX = 65535|0; // asm type annotation
 
 module.exports = UINT16_MAX;
 
-},{}],561:[function(require,module,exports){
+},{}],562:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48793,7 +47961,7 @@ var UINT32_MAX = 4294967295;
 
 module.exports = UINT32_MAX;
 
-},{}],562:[function(require,module,exports){
+},{}],563:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48856,7 +48024,7 @@ var UINT8_MAX = 255|0; // asm type annotation
 
 module.exports = UINT8_MAX;
 
-},{}],563:[function(require,module,exports){
+},{}],564:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48907,7 +48075,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":564}],564:[function(require,module,exports){
+},{"./main.js":565}],565:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -48966,7 +48134,7 @@ function isEven( x ) {
 
 module.exports = isEven;
 
-},{"@stdlib/math/base/assert/is-integer":565}],565:[function(require,module,exports){
+},{"@stdlib/math/base/assert/is-integer":566}],566:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49011,7 +48179,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":566}],566:[function(require,module,exports){
+},{"./main.js":567}],567:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49062,7 +48230,7 @@ function isInteger( x ) {
 
 module.exports = isInteger;
 
-},{"@stdlib/math/base/special/floor":581}],567:[function(require,module,exports){
+},{"@stdlib/math/base/special/floor":582}],568:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49107,7 +48275,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":568}],568:[function(require,module,exports){
+},{"./main.js":569}],569:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49153,7 +48321,7 @@ function isnan( x ) {
 
 module.exports = isnan;
 
-},{}],569:[function(require,module,exports){
+},{}],570:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49198,7 +48366,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":570}],570:[function(require,module,exports){
+},{"./main.js":571}],571:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49244,7 +48412,7 @@ function isnanf( x ) {
 
 module.exports = isnanf;
 
-},{}],571:[function(require,module,exports){
+},{}],572:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49289,7 +48457,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":572}],572:[function(require,module,exports){
+},{"./main.js":573}],573:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49340,7 +48508,7 @@ function isNegativeZero( x ) {
 
 module.exports = isNegativeZero;
 
-},{"@stdlib/constants/float64/ninf":552}],573:[function(require,module,exports){
+},{"@stdlib/constants/float64/ninf":553}],574:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49385,7 +48553,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":574}],574:[function(require,module,exports){
+},{"./main.js":575}],575:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49436,7 +48604,7 @@ function isNegativeZerof( x ) {
 
 module.exports = isNegativeZerof;
 
-},{"@stdlib/constants/float32/ninf":550}],575:[function(require,module,exports){
+},{"@stdlib/constants/float32/ninf":551}],576:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49481,7 +48649,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":576}],576:[function(require,module,exports){
+},{"./main.js":577}],577:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49532,7 +48700,7 @@ function isPositiveZero( x ) {
 
 module.exports = isPositiveZero;
 
-},{"@stdlib/constants/float64/pinf":553}],577:[function(require,module,exports){
+},{"@stdlib/constants/float64/pinf":554}],578:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49577,7 +48745,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":578}],578:[function(require,module,exports){
+},{"./main.js":579}],579:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49628,7 +48796,7 @@ function isPositiveZerof( x ) {
 
 module.exports = isPositiveZerof;
 
-},{"@stdlib/constants/float32/pinf":551}],579:[function(require,module,exports){
+},{"@stdlib/constants/float32/pinf":552}],580:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49682,7 +48850,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":580}],580:[function(require,module,exports){
+},{"./main.js":581}],581:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49740,7 +48908,7 @@ function abs( x ) {
 
 module.exports = abs;
 
-},{}],581:[function(require,module,exports){
+},{}],582:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49791,7 +48959,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":582}],582:[function(require,module,exports){
+},{"./main.js":583}],583:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49843,7 +49011,7 @@ var floor = Math.floor; // eslint-disable-line stdlib/no-builtin-math
 
 module.exports = floor;
 
-},{}],583:[function(require,module,exports){
+},{}],584:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49885,7 +49053,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":584}],584:[function(require,module,exports){
+},{"./main.js":585}],585:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49910,7 +49078,7 @@ module.exports = main;
 
 module.exports = Number; // eslint-disable-line stdlib/require-globals
 
-},{}],585:[function(require,module,exports){
+},{}],586:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49963,7 +49131,7 @@ if ( typeof builtin === 'function' ) {
 
 module.exports = float64ToFloat32;
 
-},{"./main.js":586,"./polyfill.js":587}],586:[function(require,module,exports){
+},{"./main.js":587,"./polyfill.js":588}],587:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -49993,7 +49161,7 @@ var fround = ( typeof Math.fround === 'function' ) ? Math.fround : null; // esli
 
 module.exports = fround;
 
-},{}],587:[function(require,module,exports){
+},{}],588:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50046,7 +49214,7 @@ function float64ToFloat32( x ) {
 
 module.exports = float64ToFloat32;
 
-},{"@stdlib/array/float32":37}],588:[function(require,module,exports){
+},{"@stdlib/array/float32":37}],589:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50109,7 +49277,7 @@ setReadOnly( main, 'REGEXP', REGEXP );
 
 module.exports = main;
 
-},{"./main.js":589,"./regexp.js":590,"@stdlib/utils/define-nonenumerable-read-only-property":618}],589:[function(require,module,exports){
+},{"./main.js":590,"./regexp.js":591,"@stdlib/utils/define-nonenumerable-read-only-property":619}],590:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50165,7 +49333,7 @@ function reFunctionName() {
 
 module.exports = reFunctionName;
 
-},{}],590:[function(require,module,exports){
+},{}],591:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50227,7 +49395,7 @@ var RE_FUNCTION_NAME = reFunctionName();
 
 module.exports = RE_FUNCTION_NAME;
 
-},{"./main.js":589}],591:[function(require,module,exports){
+},{"./main.js":590}],592:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50275,7 +49443,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":592}],592:[function(require,module,exports){
+},{"./main.js":593}],593:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50330,7 +49498,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float64":40}],593:[function(require,module,exports){
+},{"@stdlib/array/float64":40}],594:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50378,7 +49546,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":594}],594:[function(require,module,exports){
+},{"./main.js":595}],595:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50433,7 +49601,7 @@ function reinterpret( x, offset ) {
 
 module.exports = reinterpret;
 
-},{"@stdlib/array/float32":37}],595:[function(require,module,exports){
+},{"@stdlib/array/float32":37}],596:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50475,7 +49643,7 @@ var stride2offset = require( './main.js' );
 
 module.exports = stride2offset;
 
-},{"./main.js":596}],596:[function(require,module,exports){
+},{"./main.js":597}],597:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50521,7 +49689,7 @@ function stride2offset( N, stride ) {
 
 module.exports = stride2offset;
 
-},{}],597:[function(require,module,exports){
+},{}],598:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50634,7 +49802,7 @@ function formatDouble( token ) {
 
 module.exports = formatDouble;
 
-},{"./is_number.js":600}],598:[function(require,module,exports){
+},{"./is_number.js":601}],599:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50751,7 +49919,7 @@ function formatInteger( token ) {
 
 module.exports = formatInteger;
 
-},{"./is_number.js":600,"./zero_pad.js":604}],599:[function(require,module,exports){
+},{"./is_number.js":601,"./zero_pad.js":605}],600:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50794,7 +49962,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":602}],600:[function(require,module,exports){
+},{"./main.js":603}],601:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50842,7 +50010,7 @@ function isNumber( value ) {
 
 module.exports = isNumber;
 
-},{}],601:[function(require,module,exports){
+},{}],602:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -50886,7 +50054,7 @@ function isString( value ) {
 
 module.exports = isString;
 
-},{}],602:[function(require,module,exports){
+},{}],603:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51120,7 +50288,7 @@ function formatInterpolate( tokens ) {
 
 module.exports = formatInterpolate;
 
-},{"./format_double.js":597,"./format_integer.js":598,"./is_string.js":601,"./space_pad.js":603,"./zero_pad.js":604}],603:[function(require,module,exports){
+},{"./format_double.js":598,"./format_integer.js":599,"./is_string.js":602,"./space_pad.js":604,"./zero_pad.js":605}],604:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51187,7 +50355,7 @@ function spacePad( str, width, right ) {
 
 module.exports = spacePad;
 
-},{}],604:[function(require,module,exports){
+},{}],605:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51273,7 +50441,7 @@ function zeroPad( str, width, right ) {
 
 module.exports = zeroPad;
 
-},{}],605:[function(require,module,exports){
+},{}],606:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51316,7 +50484,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":606}],606:[function(require,module,exports){
+},{"./main.js":607}],607:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51408,7 +50576,7 @@ function formatTokenize( str ) {
 
 module.exports = formatTokenize;
 
-},{}],607:[function(require,module,exports){
+},{}],608:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51453,9 +50621,9 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":609}],608:[function(require,module,exports){
-arguments[4][601][0].apply(exports,arguments)
-},{"dup":601}],609:[function(require,module,exports){
+},{"./main.js":610}],609:[function(require,module,exports){
+arguments[4][602][0].apply(exports,arguments)
+},{"dup":602}],610:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51521,7 +50689,7 @@ function format( str ) {
 
 module.exports = format;
 
-},{"./is_string.js":608,"@stdlib/string/base/format-interpolate":599,"@stdlib/string/base/format-tokenize":605}],610:[function(require,module,exports){
+},{"./is_string.js":609,"@stdlib/string/base/format-interpolate":600,"@stdlib/string/base/format-tokenize":606}],611:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51563,7 +50731,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":611}],611:[function(require,module,exports){
+},{"./main.js":612}],612:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51593,7 +50761,7 @@ var Sym = ( typeof Symbol === 'function' ) ? Symbol : void 0; // eslint-disable-
 
 module.exports = Sym;
 
-},{}],612:[function(require,module,exports){
+},{}],613:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51670,7 +50838,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":613}],613:[function(require,module,exports){
+},{"./main.js":614}],614:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51751,7 +50919,7 @@ var IteratorSymbol = ( hasIteratorSymbolSupport() ) ? Symbol.iterator : null;
 
 module.exports = IteratorSymbol;
 
-},{"@stdlib/assert/has-iterator-symbol-support":79}],614:[function(require,module,exports){
+},{"@stdlib/assert/has-iterator-symbol-support":79}],615:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51799,7 +50967,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":615}],615:[function(require,module,exports){
+},{"./main.js":616}],616:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51881,7 +51049,7 @@ function constructorName( v ) {
 
 module.exports = constructorName;
 
-},{"@stdlib/assert/is-buffer":115,"@stdlib/regexp/function-name":588,"@stdlib/utils/native-class":650}],616:[function(require,module,exports){
+},{"@stdlib/assert/is-buffer":115,"@stdlib/regexp/function-name":589,"@stdlib/utils/native-class":651}],617:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51934,7 +51102,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":617}],617:[function(require,module,exports){
+},{"./main.js":618}],618:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -51997,7 +51165,7 @@ function setNonEnumerableReadOnlyAccessor( obj, prop, getter ) { // eslint-disab
 
 module.exports = setNonEnumerableReadOnlyAccessor;
 
-},{"@stdlib/utils/define-property":623}],618:[function(require,module,exports){
+},{"@stdlib/utils/define-property":624}],619:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52046,7 +51214,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":619}],619:[function(require,module,exports){
+},{"./main.js":620}],620:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52106,7 +51274,7 @@ function setNonEnumerableReadOnly( obj, prop, value ) {
 
 module.exports = setNonEnumerableReadOnly;
 
-},{"@stdlib/utils/define-property":623}],620:[function(require,module,exports){
+},{"@stdlib/utils/define-property":624}],621:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52169,7 +51337,7 @@ var defineProperty = Object.defineProperty;
 
 module.exports = defineProperty;
 
-},{}],621:[function(require,module,exports){
+},{}],622:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52199,7 +51367,7 @@ var main = ( typeof Object.defineProperty === 'function' ) ? Object.defineProper
 
 module.exports = main;
 
-},{}],622:[function(require,module,exports){
+},{}],623:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52252,7 +51420,7 @@ function hasDefinePropertySupport() {
 
 module.exports = hasDefinePropertySupport;
 
-},{"./define_property.js":621}],623:[function(require,module,exports){
+},{"./define_property.js":622}],624:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52312,7 +51480,7 @@ if ( hasDefinePropertySupport() ) {
 
 module.exports = defineProperty;
 
-},{"./builtin.js":620,"./has_define_property_support.js":622,"./polyfill.js":624}],624:[function(require,module,exports){
+},{"./builtin.js":621,"./has_define_property_support.js":623,"./polyfill.js":625}],625:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52436,7 +51604,7 @@ function defineProperty( obj, prop, descriptor ) {
 
 module.exports = defineProperty;
 
-},{"@stdlib/string/format":607}],625:[function(require,module,exports){
+},{"@stdlib/string/format":608}],626:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52485,7 +51653,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":626}],626:[function(require,module,exports){
+},{"./main.js":627}],627:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52545,7 +51713,7 @@ function setReadOnly( obj, prop, value ) {
 
 module.exports = setReadOnly;
 
-},{"@stdlib/utils/define-property":623}],627:[function(require,module,exports){
+},{"@stdlib/utils/define-property":624}],628:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52626,7 +51794,7 @@ function getGlobal( codegen ) {
 
 module.exports = getGlobal;
 
-},{"./codegen.js":628,"./global_this.js":629,"./self.js":630,"./window.js":631,"@stdlib/assert/is-boolean":109,"@stdlib/string/format":607}],628:[function(require,module,exports){
+},{"./codegen.js":629,"./global_this.js":630,"./self.js":631,"./window.js":632,"@stdlib/assert/is-boolean":109,"@stdlib/string/format":608}],629:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52664,7 +51832,7 @@ function getGlobal() {
 
 module.exports = getGlobal;
 
-},{}],629:[function(require,module,exports){
+},{}],630:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52694,7 +51862,7 @@ var obj = ( typeof globalThis === 'object' ) ? globalThis : null; // eslint-disa
 
 module.exports = obj;
 
-},{}],630:[function(require,module,exports){
+},{}],631:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52724,7 +51892,7 @@ var obj = ( typeof self === 'object' ) ? self : null;
 
 module.exports = obj;
 
-},{}],631:[function(require,module,exports){
+},{}],632:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52754,7 +51922,7 @@ var obj = ( typeof window === 'object' ) ? window : null;
 
 module.exports = obj;
 
-},{}],632:[function(require,module,exports){
+},{}],633:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52829,7 +51997,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":633}],633:[function(require,module,exports){
+},{"./main.js":634}],634:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -52964,7 +52132,7 @@ function indexOf( arr, searchElement, fromIndex ) {
 
 module.exports = indexOf;
 
-},{"@stdlib/assert/is-collection":117,"@stdlib/assert/is-integer":137,"@stdlib/assert/is-nan":142,"@stdlib/assert/is-string":161,"@stdlib/string/format":607}],634:[function(require,module,exports){
+},{"@stdlib/assert/is-collection":117,"@stdlib/assert/is-integer":137,"@stdlib/assert/is-nan":142,"@stdlib/assert/is-string":161,"@stdlib/string/format":608}],635:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53016,7 +52184,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{}],635:[function(require,module,exports){
+},{}],636:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53078,7 +52246,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./builtin.js":634,"@stdlib/assert/is-arguments":100}],636:[function(require,module,exports){
+},{"./builtin.js":635,"@stdlib/assert/is-arguments":100}],637:[function(require,module,exports){
 module.exports=[
 	"console",
 	"external",
@@ -53102,7 +52270,7 @@ module.exports=[
 	"window"
 ]
 
-},{}],637:[function(require,module,exports){
+},{}],638:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53162,7 +52330,7 @@ function check() {
 
 module.exports = check;
 
-},{"./builtin.js":634}],638:[function(require,module,exports){
+},{"./builtin.js":635}],639:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53240,7 +52408,7 @@ bool = check();
 
 module.exports = bool;
 
-},{"./excluded_keys.json":636,"./is_constructor_prototype.js":644,"./window.js":649,"@stdlib/assert/has-own-property":81,"@stdlib/utils/index-of":632,"@stdlib/utils/type-of":661}],639:[function(require,module,exports){
+},{"./excluded_keys.json":637,"./is_constructor_prototype.js":645,"./window.js":650,"@stdlib/assert/has-own-property":81,"@stdlib/utils/index-of":633,"@stdlib/utils/type-of":662}],640:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53270,7 +52438,7 @@ var bool = ( typeof Object.keys !== 'undefined' );
 
 module.exports = bool;
 
-},{}],640:[function(require,module,exports){
+},{}],641:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53307,7 +52475,7 @@ var bool = isEnumerableProperty( noop, 'prototype' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":122,"@stdlib/utils/noop":655}],641:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":122,"@stdlib/utils/noop":656}],642:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53350,7 +52518,7 @@ var bool = !isEnumerableProperty( obj, 'toString' );
 
 module.exports = bool;
 
-},{"@stdlib/assert/is-enumerable-property":122}],642:[function(require,module,exports){
+},{"@stdlib/assert/is-enumerable-property":122}],643:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53380,7 +52548,7 @@ var bool = ( typeof window !== 'undefined' );
 
 module.exports = bool;
 
-},{}],643:[function(require,module,exports){
+},{}],644:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53427,7 +52595,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":646}],644:[function(require,module,exports){
+},{"./main.js":647}],645:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53466,7 +52634,7 @@ function isConstructorPrototype( value ) {
 
 module.exports = isConstructorPrototype;
 
-},{}],645:[function(require,module,exports){
+},{}],646:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53519,7 +52687,7 @@ function wrapper( value ) {
 
 module.exports = wrapper;
 
-},{"./has_automation_equality_bug.js":638,"./has_window.js":642,"./is_constructor_prototype.js":644}],646:[function(require,module,exports){
+},{"./has_automation_equality_bug.js":639,"./has_window.js":643,"./is_constructor_prototype.js":645}],647:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53584,7 +52752,7 @@ if ( HAS_BUILTIN ) {
 
 module.exports = keys;
 
-},{"./builtin.js":634,"./builtin_wrapper.js":635,"./has_arguments_bug.js":637,"./has_builtin.js":639,"./polyfill.js":648}],647:[function(require,module,exports){
+},{"./builtin.js":635,"./builtin_wrapper.js":636,"./has_arguments_bug.js":638,"./has_builtin.js":640,"./polyfill.js":649}],648:[function(require,module,exports){
 module.exports=[
 	"toString",
 	"toLocaleString",
@@ -53595,7 +52763,7 @@ module.exports=[
 	"constructor"
 ]
 
-},{}],648:[function(require,module,exports){
+},{}],649:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53699,7 +52867,7 @@ function keys( value ) {
 
 module.exports = keys;
 
-},{"./has_enumerable_prototype_bug.js":640,"./has_non_enumerable_properties_bug.js":641,"./is_constructor_prototype_wrapper.js":645,"./non_enumerable.json":647,"@stdlib/assert/has-own-property":81,"@stdlib/assert/is-arguments":100,"@stdlib/assert/is-object-like":156}],649:[function(require,module,exports){
+},{"./has_enumerable_prototype_bug.js":641,"./has_non_enumerable_properties_bug.js":642,"./is_constructor_prototype_wrapper.js":646,"./non_enumerable.json":648,"@stdlib/assert/has-own-property":81,"@stdlib/assert/is-arguments":100,"@stdlib/assert/is-object-like":156}],650:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53729,7 +52897,7 @@ var w = ( typeof window === 'undefined' ) ? void 0 : window;
 
 module.exports = w;
 
-},{}],650:[function(require,module,exports){
+},{}],651:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53792,7 +52960,7 @@ if ( hasToStringTag() ) {
 
 module.exports = main;
 
-},{"./main.js":651,"./polyfill.js":652,"@stdlib/assert/has-tostringtag-support":85}],651:[function(require,module,exports){
+},{"./main.js":652,"./polyfill.js":653,"@stdlib/assert/has-tostringtag-support":85}],652:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53850,7 +53018,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":653}],652:[function(require,module,exports){
+},{"./tostring.js":654}],653:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53933,7 +53101,7 @@ function nativeClass( v ) {
 
 module.exports = nativeClass;
 
-},{"./tostring.js":653,"./tostringtag.js":654,"@stdlib/assert/has-own-property":81}],653:[function(require,module,exports){
+},{"./tostring.js":654,"./tostringtag.js":655,"@stdlib/assert/has-own-property":81}],654:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53963,7 +53131,7 @@ var toStr = Object.prototype.toString;
 
 module.exports = toStr;
 
-},{}],654:[function(require,module,exports){
+},{}],655:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -53998,7 +53166,7 @@ var toStrTag = ( typeof Symbol === 'function' ) ? Symbol.toStringTag : '';
 
 module.exports = toStrTag;
 
-},{"@stdlib/symbol/ctor":610}],655:[function(require,module,exports){
+},{"@stdlib/symbol/ctor":611}],656:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54040,7 +53208,7 @@ var main = require( './main.js' );
 
 module.exports = main;
 
-},{"./main.js":656}],656:[function(require,module,exports){
+},{"./main.js":657}],657:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54077,7 +53245,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],657:[function(require,module,exports){
+},{}],658:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54134,7 +53302,7 @@ function check() {
 
 module.exports = check;
 
-},{"./fixtures/nodelist.js":658,"./fixtures/re.js":659,"./fixtures/typedarray.js":660}],658:[function(require,module,exports){
+},{"./fixtures/nodelist.js":659,"./fixtures/re.js":660,"./fixtures/typedarray.js":661}],659:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54170,7 +53338,7 @@ var nodeList = root.document && root.document.childNodes;
 
 module.exports = nodeList;
 
-},{"@stdlib/utils/global":627}],659:[function(require,module,exports){
+},{"@stdlib/utils/global":628}],660:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54198,7 +53366,7 @@ var RE = /./;
 
 module.exports = RE;
 
-},{}],660:[function(require,module,exports){
+},{}],661:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54226,7 +53394,7 @@ var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 
 module.exports = typedarray;
 
-},{}],661:[function(require,module,exports){
+},{}],662:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54278,7 +53446,7 @@ var main = ( usePolyfill() ) ? polyfill : builtin;
 
 module.exports = main;
 
-},{"./check.js":657,"./main.js":662,"./polyfill.js":663}],662:[function(require,module,exports){
+},{"./check.js":658,"./main.js":663,"./polyfill.js":664}],663:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54356,7 +53524,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":614}],663:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":615}],664:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -54399,7 +53567,7 @@ function typeOf( v ) {
 
 module.exports = typeOf;
 
-},{"@stdlib/utils/constructor-name":614}],664:[function(require,module,exports){
+},{"@stdlib/utils/constructor-name":615}],665:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -54551,11 +53719,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],665:[function(require,module,exports){
-
 },{}],666:[function(require,module,exports){
-arguments[4][665][0].apply(exports,arguments)
-},{"dup":665}],667:[function(require,module,exports){
+
+},{}],667:[function(require,module,exports){
+arguments[4][666][0].apply(exports,arguments)
+},{"dup":666}],668:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -56336,7 +55504,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":664,"buffer":667,"ieee754":770}],668:[function(require,module,exports){
+},{"base64-js":665,"buffer":668,"ieee754":771}],669:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -56835,7 +56003,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],669:[function(require,module,exports){
+},{}],670:[function(require,module,exports){
 (function (process){(function (){
 // 'path' module extracted from Node.js v8.11.1 (only the posix part)
 // transplited with Babel
@@ -57368,7 +56536,7 @@ posix.posix = posix;
 module.exports = posix;
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":777}],670:[function(require,module,exports){
+},{"_process":778}],671:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57499,7 +56667,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":668,"inherits":771,"readable-stream/lib/_stream_duplex.js":672,"readable-stream/lib/_stream_passthrough.js":673,"readable-stream/lib/_stream_readable.js":674,"readable-stream/lib/_stream_transform.js":675,"readable-stream/lib/_stream_writable.js":676,"readable-stream/lib/internal/streams/end-of-stream.js":680,"readable-stream/lib/internal/streams/pipeline.js":682}],671:[function(require,module,exports){
+},{"events":669,"inherits":772,"readable-stream/lib/_stream_duplex.js":673,"readable-stream/lib/_stream_passthrough.js":674,"readable-stream/lib/_stream_readable.js":675,"readable-stream/lib/_stream_transform.js":676,"readable-stream/lib/_stream_writable.js":677,"readable-stream/lib/internal/streams/end-of-stream.js":681,"readable-stream/lib/internal/streams/pipeline.js":683}],672:[function(require,module,exports){
 'use strict';
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
@@ -57628,7 +56796,7 @@ createErrorType('ERR_UNKNOWN_ENCODING', function (arg) {
 createErrorType('ERR_STREAM_UNSHIFT_AFTER_END_EVENT', 'stream.unshift() after end event');
 module.exports.codes = codes;
 
-},{}],672:[function(require,module,exports){
+},{}],673:[function(require,module,exports){
 (function (process){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -57770,7 +56938,7 @@ Object.defineProperty(Duplex.prototype, 'destroyed', {
   }
 });
 }).call(this)}).call(this,require('_process'))
-},{"./_stream_readable":674,"./_stream_writable":676,"_process":777,"inherits":771}],673:[function(require,module,exports){
+},{"./_stream_readable":675,"./_stream_writable":677,"_process":778,"inherits":772}],674:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57810,7 +56978,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":675,"inherits":771}],674:[function(require,module,exports){
+},{"./_stream_transform":676,"inherits":772}],675:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -58937,7 +58105,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":671,"./_stream_duplex":672,"./internal/streams/async_iterator":677,"./internal/streams/buffer_list":678,"./internal/streams/destroy":679,"./internal/streams/from":681,"./internal/streams/state":683,"./internal/streams/stream":684,"_process":777,"buffer":667,"events":668,"inherits":771,"string_decoder/":786,"util":665}],675:[function(require,module,exports){
+},{"../errors":672,"./_stream_duplex":673,"./internal/streams/async_iterator":678,"./internal/streams/buffer_list":679,"./internal/streams/destroy":680,"./internal/streams/from":682,"./internal/streams/state":684,"./internal/streams/stream":685,"_process":778,"buffer":668,"events":669,"inherits":772,"string_decoder/":787,"util":666}],676:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -59139,7 +58307,7 @@ function done(stream, er, data) {
   if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
   return stream.push(null);
 }
-},{"../errors":671,"./_stream_duplex":672,"inherits":771}],676:[function(require,module,exports){
+},{"../errors":672,"./_stream_duplex":673,"inherits":772}],677:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -59839,7 +59007,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"../errors":671,"./_stream_duplex":672,"./internal/streams/destroy":679,"./internal/streams/state":683,"./internal/streams/stream":684,"_process":777,"buffer":667,"inherits":771,"util-deprecate":795}],677:[function(require,module,exports){
+},{"../errors":672,"./_stream_duplex":673,"./internal/streams/destroy":680,"./internal/streams/state":684,"./internal/streams/stream":685,"_process":778,"buffer":668,"inherits":772,"util-deprecate":796}],678:[function(require,module,exports){
 (function (process){(function (){
 'use strict';
 
@@ -60049,7 +59217,7 @@ var createReadableStreamAsyncIterator = function createReadableStreamAsyncIterat
 
 module.exports = createReadableStreamAsyncIterator;
 }).call(this)}).call(this,require('_process'))
-},{"./end-of-stream":680,"_process":777}],678:[function(require,module,exports){
+},{"./end-of-stream":681,"_process":778}],679:[function(require,module,exports){
 'use strict';
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -60260,7 +59428,7 @@ function () {
 
   return BufferList;
 }();
-},{"buffer":667,"util":665}],679:[function(require,module,exports){
+},{"buffer":668,"util":666}],680:[function(require,module,exports){
 (function (process){(function (){
 'use strict'; // undocumented cb() API, needed for core, not for public API
 
@@ -60368,7 +59536,7 @@ module.exports = {
   errorOrDestroy: errorOrDestroy
 };
 }).call(this)}).call(this,require('_process'))
-},{"_process":777}],680:[function(require,module,exports){
+},{"_process":778}],681:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/end-of-stream with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -60473,12 +59641,12 @@ function eos(stream, opts, callback) {
 }
 
 module.exports = eos;
-},{"../../../errors":671}],681:[function(require,module,exports){
+},{"../../../errors":672}],682:[function(require,module,exports){
 module.exports = function () {
   throw new Error('Readable.from is not available in the browser')
 };
 
-},{}],682:[function(require,module,exports){
+},{}],683:[function(require,module,exports){
 // Ported from https://github.com/mafintosh/pump with
 // permission from the author, Mathias Buus (@mafintosh).
 'use strict';
@@ -60576,7 +59744,7 @@ function pipeline() {
 }
 
 module.exports = pipeline;
-},{"../../../errors":671,"./end-of-stream":680}],683:[function(require,module,exports){
+},{"../../../errors":672,"./end-of-stream":681}],684:[function(require,module,exports){
 'use strict';
 
 var ERR_INVALID_OPT_VALUE = require('../../../errors').codes.ERR_INVALID_OPT_VALUE;
@@ -60604,10 +59772,10 @@ function getHighWaterMark(state, options, duplexKey, isDuplex) {
 module.exports = {
   getHighWaterMark: getHighWaterMark
 };
-},{"../../../errors":671}],684:[function(require,module,exports){
+},{"../../../errors":672}],685:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":668}],685:[function(require,module,exports){
+},{"events":669}],686:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -60624,7 +59792,7 @@ module.exports = function callBoundIntrinsic(name, allowMissing) {
 	return intrinsic;
 };
 
-},{"./":686,"get-intrinsic":761}],686:[function(require,module,exports){
+},{"./":687,"get-intrinsic":762}],687:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -60661,7 +59829,7 @@ if ($defineProperty) {
 	module.exports.apply = applyBind;
 }
 
-},{"es-define-property":746,"es-errors/type":752,"function-bind":760,"get-intrinsic":761,"set-function-length":781}],687:[function(require,module,exports){
+},{"es-define-property":747,"es-errors/type":753,"function-bind":761,"get-intrinsic":762,"set-function-length":782}],688:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -60757,7 +59925,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":688,"./lib/keys.js":689}],688:[function(require,module,exports){
+},{"./lib/is_arguments.js":689,"./lib/keys.js":690}],689:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -60779,7 +59947,7 @@ function unsupported(object){
     false;
 };
 
-},{}],689:[function(require,module,exports){
+},{}],690:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -60790,7 +59958,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],690:[function(require,module,exports){
+},{}],691:[function(require,module,exports){
 'use strict';
 
 var $defineProperty = require('es-define-property');
@@ -60848,7 +60016,7 @@ module.exports = function defineDataProperty(
 	}
 };
 
-},{"es-define-property":746,"es-errors/syntax":751,"es-errors/type":752,"gopd":762}],691:[function(require,module,exports){
+},{"es-define-property":747,"es-errors/syntax":752,"es-errors/type":753,"gopd":763}],692:[function(require,module,exports){
 'use strict';
 
 var keys = require('object-keys');
@@ -60897,14 +60065,14 @@ defineProperties.supportsDescriptors = !!supportsDescriptors;
 
 module.exports = defineProperties;
 
-},{"define-data-property":690,"has-property-descriptors":763,"object-keys":775}],692:[function(require,module,exports){
+},{"define-data-property":691,"has-property-descriptors":764,"object-keys":776}],693:[function(require,module,exports){
 module.exports = function () {
     for (var i = 0; i < arguments.length; i++) {
         if (arguments[i] !== undefined) return arguments[i];
     }
 };
 
-},{}],693:[function(require,module,exports){
+},{}],694:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -60943,7 +60111,7 @@ module.exports = function AbstractEqualityComparison(x, y) {
 	return false;
 };
 
-},{"./ToNumber":724,"./ToPrimitive":726,"./Type":731}],694:[function(require,module,exports){
+},{"./ToNumber":725,"./ToPrimitive":727,"./Type":732}],695:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -61007,7 +60175,7 @@ module.exports = function AbstractRelationalComparison(x, y, LeftFirst) {
 	return px < py; // both strings, neither a prefix of the other. shortcut for steps c-f
 };
 
-},{"../helpers/isFinite":739,"../helpers/isNaN":740,"../helpers/isPrefixOf":741,"./ToNumber":724,"./ToPrimitive":726,"es-errors/type":752,"get-intrinsic":761}],695:[function(require,module,exports){
+},{"../helpers/isFinite":740,"../helpers/isNaN":741,"../helpers/isPrefixOf":742,"./ToNumber":725,"./ToPrimitive":727,"es-errors/type":753,"get-intrinsic":762}],696:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -61047,7 +60215,7 @@ module.exports = function Canonicalize(ch, IgnoreCase) {
 	return cu;
 };
 
-},{"call-bind/callBound":685,"es-errors/type":752}],696:[function(require,module,exports){
+},{"call-bind/callBound":686,"es-errors/type":753}],697:[function(require,module,exports){
 'use strict';
 
 var RequireObjectCoercible = require('es-object-atoms/RequireObjectCoercible');
@@ -61058,7 +60226,7 @@ module.exports = function CheckObjectCoercible(value) {
 	return RequireObjectCoercible(value, arguments.length > 1 ? arguments[1] : void undefined);
 };
 
-},{"es-object-atoms/RequireObjectCoercible":754}],697:[function(require,module,exports){
+},{"es-object-atoms/RequireObjectCoercible":755}],698:[function(require,module,exports){
 'use strict';
 
 var $EvalError = require('es-errors/eval');
@@ -61112,7 +60280,7 @@ module.exports = function DateFromTime(t) {
 	throw new $EvalError('Assertion failed: MonthFromTime returned an impossible value: ' + m);
 };
 
-},{"./DayWithinYear":700,"./InLeapYear":704,"./MonthFromTime":714,"es-errors/eval":747}],698:[function(require,module,exports){
+},{"./DayWithinYear":701,"./InLeapYear":705,"./MonthFromTime":715,"es-errors/eval":748}],699:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -61125,7 +60293,7 @@ module.exports = function Day(t) {
 	return floor(t / msPerDay);
 };
 
-},{"../helpers/timeConstants":745,"./floor":735}],699:[function(require,module,exports){
+},{"../helpers/timeConstants":746,"./floor":736}],700:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -61137,7 +60305,7 @@ module.exports = function DayFromYear(y) {
 };
 
 
-},{"./floor":735}],700:[function(require,module,exports){
+},{"./floor":736}],701:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -61150,7 +60318,7 @@ module.exports = function DayWithinYear(t) {
 	return Day(t) - DayFromYear(YearFromTime(t));
 };
 
-},{"./Day":698,"./DayFromYear":699,"./YearFromTime":733}],701:[function(require,module,exports){
+},{"./Day":699,"./DayFromYear":700,"./YearFromTime":734}],702:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -61170,7 +60338,7 @@ module.exports = function DaysInYear(y) {
 	return 366;
 };
 
-},{"./modulo":736}],702:[function(require,module,exports){
+},{"./modulo":737}],703:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -61210,7 +60378,7 @@ module.exports = function FromPropertyDescriptor(Desc) {
 
 };
 
-},{"../helpers/records/property-descriptor":743,"./IsAccessorDescriptor":705,"./IsDataDescriptor":707,"es-errors/type":752}],703:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":744,"./IsAccessorDescriptor":706,"./IsDataDescriptor":708,"es-errors/type":753}],704:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -61226,7 +60394,7 @@ module.exports = function HourFromTime(t) {
 	return modulo(floor(t / msPerHour), HoursPerDay);
 };
 
-},{"../helpers/timeConstants":745,"./floor":735,"./modulo":736}],704:[function(require,module,exports){
+},{"../helpers/timeConstants":746,"./floor":736,"./modulo":737}],705:[function(require,module,exports){
 'use strict';
 
 var $EvalError = require('es-errors/eval');
@@ -61247,7 +60415,7 @@ module.exports = function InLeapYear(t) {
 	throw new $EvalError('Assertion failed: there are not 365 or 366 days in a year, got: ' + days);
 };
 
-},{"./DaysInYear":701,"./YearFromTime":733,"es-errors/eval":747}],705:[function(require,module,exports){
+},{"./DaysInYear":702,"./YearFromTime":734,"es-errors/eval":748}],706:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -61274,14 +60442,14 @@ module.exports = function IsAccessorDescriptor(Desc) {
 	return true;
 };
 
-},{"../helpers/records/property-descriptor":743,"es-errors/type":752,"hasown":769}],706:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":744,"es-errors/type":753,"hasown":770}],707:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.11
 
 module.exports = require('is-callable');
 
-},{"is-callable":772}],707:[function(require,module,exports){
+},{"is-callable":773}],708:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -61308,7 +60476,7 @@ module.exports = function IsDataDescriptor(Desc) {
 	return true;
 };
 
-},{"../helpers/records/property-descriptor":743,"es-errors/type":752,"hasown":769}],708:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":744,"es-errors/type":753,"hasown":770}],709:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -61336,7 +60504,7 @@ module.exports = function IsGenericDescriptor(Desc) {
 	return false;
 };
 
-},{"./IsAccessorDescriptor":705,"./IsDataDescriptor":707,"./IsPropertyDescriptor":709,"es-errors/type":752}],709:[function(require,module,exports){
+},{"./IsAccessorDescriptor":706,"./IsDataDescriptor":708,"./IsPropertyDescriptor":710,"es-errors/type":753}],710:[function(require,module,exports){
 'use strict';
 
 // TODO, semver-major: delete this
@@ -61349,7 +60517,7 @@ module.exports = function IsPropertyDescriptor(Desc) {
 	return isPropertyDescriptor(Desc);
 };
 
-},{"../helpers/records/property-descriptor":743}],710:[function(require,module,exports){
+},{"../helpers/records/property-descriptor":744}],711:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -61364,7 +60532,7 @@ module.exports = function MakeDate(day, time) {
 	return (day * msPerDay) + time;
 };
 
-},{"../helpers/isFinite":739,"../helpers/timeConstants":745}],711:[function(require,module,exports){
+},{"../helpers/isFinite":740,"../helpers/timeConstants":746}],712:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -61399,7 +60567,7 @@ module.exports = function MakeDay(year, month, date) {
 	return Day(t) + dt - 1;
 };
 
-},{"../helpers/isFinite":739,"./DateFromTime":697,"./Day":698,"./MonthFromTime":714,"./ToInteger":723,"./YearFromTime":733,"./floor":735,"./modulo":736,"get-intrinsic":761}],712:[function(require,module,exports){
+},{"../helpers/isFinite":740,"./DateFromTime":698,"./Day":699,"./MonthFromTime":715,"./ToInteger":724,"./YearFromTime":734,"./floor":736,"./modulo":737,"get-intrinsic":762}],713:[function(require,module,exports){
 'use strict';
 
 var $isFinite = require('../helpers/isFinite');
@@ -61424,7 +60592,7 @@ module.exports = function MakeTime(hour, min, sec, ms) {
 	return t;
 };
 
-},{"../helpers/isFinite":739,"../helpers/timeConstants":745,"./ToInteger":723}],713:[function(require,module,exports){
+},{"../helpers/isFinite":740,"../helpers/timeConstants":746,"./ToInteger":724}],714:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -61440,7 +60608,7 @@ module.exports = function MinFromTime(t) {
 	return modulo(floor(t / msPerMinute), MinutesPerHour);
 };
 
-},{"../helpers/timeConstants":745,"./floor":735,"./modulo":736}],714:[function(require,module,exports){
+},{"../helpers/timeConstants":746,"./floor":736,"./modulo":737}],715:[function(require,module,exports){
 'use strict';
 
 var DayWithinYear = require('./DayWithinYear');
@@ -61489,7 +60657,7 @@ module.exports = function MonthFromTime(t) {
 	}
 };
 
-},{"./DayWithinYear":700,"./InLeapYear":704}],715:[function(require,module,exports){
+},{"./DayWithinYear":701,"./InLeapYear":705}],716:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('../helpers/isNaN');
@@ -61504,7 +60672,7 @@ module.exports = function SameValue(x, y) {
 	return $isNaN(x) && $isNaN(y);
 };
 
-},{"../helpers/isNaN":740}],716:[function(require,module,exports){
+},{"../helpers/isNaN":741}],717:[function(require,module,exports){
 'use strict';
 
 var floor = require('./floor');
@@ -61520,7 +60688,7 @@ module.exports = function SecFromTime(t) {
 	return modulo(floor(t / msPerSecond), SecondsPerMinute);
 };
 
-},{"../helpers/timeConstants":745,"./floor":735,"./modulo":736}],717:[function(require,module,exports){
+},{"../helpers/timeConstants":746,"./floor":736,"./modulo":737}],718:[function(require,module,exports){
 'use strict';
 
 var Type = require('./Type');
@@ -61539,7 +60707,7 @@ module.exports = function StrictEqualityComparison(x, y) {
 	return x === y; // shortcut for steps 4-7
 };
 
-},{"./Type":731}],718:[function(require,module,exports){
+},{"./Type":732}],719:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -61562,7 +60730,7 @@ module.exports = function TimeClip(time) {
 };
 
 
-},{"../helpers/isFinite":739,"./ToNumber":724,"./abs":734,"get-intrinsic":761}],719:[function(require,module,exports){
+},{"../helpers/isFinite":740,"./ToNumber":725,"./abs":735,"get-intrinsic":762}],720:[function(require,module,exports){
 'use strict';
 
 var msPerDay = require('../helpers/timeConstants').msPerDay;
@@ -61575,7 +60743,7 @@ module.exports = function TimeFromYear(y) {
 	return msPerDay * DayFromYear(y);
 };
 
-},{"../helpers/timeConstants":745,"./DayFromYear":699}],720:[function(require,module,exports){
+},{"../helpers/timeConstants":746,"./DayFromYear":700}],721:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -61589,14 +60757,14 @@ module.exports = function TimeWithinDay(t) {
 };
 
 
-},{"../helpers/timeConstants":745,"./modulo":736}],721:[function(require,module,exports){
+},{"../helpers/timeConstants":746,"./modulo":737}],722:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.2
 
 module.exports = function ToBoolean(value) { return !!value; };
 
-},{}],722:[function(require,module,exports){
+},{}],723:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -61607,7 +60775,7 @@ module.exports = function ToInt32(x) {
 	return ToNumber(x) >> 0;
 };
 
-},{"./ToNumber":724}],723:[function(require,module,exports){
+},{"./ToNumber":725}],724:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -61627,7 +60795,7 @@ module.exports = function ToInteger(value) {
 	return $sign(number) * floor(abs(number));
 };
 
-},{"../helpers/isFinite":739,"../helpers/isNaN":740,"../helpers/sign":744,"./ToNumber":724,"./abs":734,"./floor":735}],724:[function(require,module,exports){
+},{"../helpers/isFinite":740,"../helpers/isNaN":741,"../helpers/sign":745,"./ToNumber":725,"./abs":735,"./floor":736}],725:[function(require,module,exports){
 'use strict';
 
 var ToPrimitive = require('./ToPrimitive');
@@ -61661,21 +60829,21 @@ module.exports = function ToNumber(value) {
 	return +trimmed; // eslint-disable-line no-implicit-coercion
 };
 
-},{"./ToPrimitive":726,"call-bind/callBound":685,"safe-regex-test":780}],725:[function(require,module,exports){
+},{"./ToPrimitive":727,"call-bind/callBound":686,"safe-regex-test":781}],726:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.9
 
 module.exports = require('es-object-atoms/ToObject');
 
-},{"es-object-atoms/ToObject":755}],726:[function(require,module,exports){
+},{"es-object-atoms/ToObject":756}],727:[function(require,module,exports){
 'use strict';
 
 // http://262.ecma-international.org/5.1/#sec-9.1
 
 module.exports = require('es-to-primitive/es5');
 
-},{"es-to-primitive/es5":757}],727:[function(require,module,exports){
+},{"es-to-primitive/es5":758}],728:[function(require,module,exports){
 'use strict';
 
 var hasOwn = require('hasown');
@@ -61727,7 +60895,7 @@ module.exports = function ToPropertyDescriptor(Obj) {
 	return desc;
 };
 
-},{"./IsCallable":706,"./ToBoolean":721,"./Type":731,"es-errors/type":752,"hasown":769}],728:[function(require,module,exports){
+},{"./IsCallable":707,"./ToBoolean":722,"./Type":732,"es-errors/type":753,"hasown":770}],729:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -61741,7 +60909,7 @@ module.exports = function ToString(value) {
 };
 
 
-},{"get-intrinsic":761}],729:[function(require,module,exports){
+},{"get-intrinsic":762}],730:[function(require,module,exports){
 'use strict';
 
 var abs = require('./abs');
@@ -61762,7 +60930,7 @@ module.exports = function ToUint16(value) {
 	return modulo(posInt, 0x10000);
 };
 
-},{"../helpers/isFinite":739,"../helpers/isNaN":740,"../helpers/sign":744,"./ToNumber":724,"./abs":734,"./floor":735,"./modulo":736}],730:[function(require,module,exports){
+},{"../helpers/isFinite":740,"../helpers/isNaN":741,"../helpers/sign":745,"./ToNumber":725,"./abs":735,"./floor":736,"./modulo":737}],731:[function(require,module,exports){
 'use strict';
 
 var ToNumber = require('./ToNumber');
@@ -61773,7 +60941,7 @@ module.exports = function ToUint32(x) {
 	return ToNumber(x) >>> 0;
 };
 
-},{"./ToNumber":724}],731:[function(require,module,exports){
+},{"./ToNumber":725}],732:[function(require,module,exports){
 'use strict';
 
 // https://262.ecma-international.org/5.1/#sec-8
@@ -61799,7 +60967,7 @@ module.exports = function Type(x) {
 	}
 };
 
-},{}],732:[function(require,module,exports){
+},{}],733:[function(require,module,exports){
 'use strict';
 
 var Day = require('./Day');
@@ -61811,7 +60979,7 @@ module.exports = function WeekDay(t) {
 	return modulo(Day(t) + 4, 7);
 };
 
-},{"./Day":698,"./modulo":736}],733:[function(require,module,exports){
+},{"./Day":699,"./modulo":737}],734:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -61829,7 +60997,7 @@ module.exports = function YearFromTime(t) {
 	return $getUTCFullYear(new $Date(t));
 };
 
-},{"call-bind/callBound":685,"get-intrinsic":761}],734:[function(require,module,exports){
+},{"call-bind/callBound":686,"get-intrinsic":762}],735:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -61842,7 +61010,7 @@ module.exports = function abs(x) {
 	return $abs(x);
 };
 
-},{"get-intrinsic":761}],735:[function(require,module,exports){
+},{"get-intrinsic":762}],736:[function(require,module,exports){
 'use strict';
 
 // var modulo = require('./modulo');
@@ -61855,7 +61023,7 @@ module.exports = function floor(x) {
 	return $floor(x);
 };
 
-},{}],736:[function(require,module,exports){
+},{}],737:[function(require,module,exports){
 'use strict';
 
 var mod = require('../helpers/mod');
@@ -61866,7 +61034,7 @@ module.exports = function modulo(x, y) {
 	return mod(x, y);
 };
 
-},{"../helpers/mod":742}],737:[function(require,module,exports){
+},{"../helpers/mod":743}],738:[function(require,module,exports){
 'use strict';
 
 var modulo = require('./modulo');
@@ -61879,7 +61047,7 @@ module.exports = function msFromTime(t) {
 	return modulo(t, msPerSecond);
 };
 
-},{"../helpers/timeConstants":745,"./modulo":736}],738:[function(require,module,exports){
+},{"../helpers/timeConstants":746,"./modulo":737}],739:[function(require,module,exports){
 'use strict';
 
 /* eslint global-require: 0 */
@@ -61933,21 +61101,21 @@ module.exports = {
 	YearFromTime: require('./5/YearFromTime')
 };
 
-},{"./5/AbstractEqualityComparison":693,"./5/AbstractRelationalComparison":694,"./5/Canonicalize":695,"./5/CheckObjectCoercible":696,"./5/DateFromTime":697,"./5/Day":698,"./5/DayFromYear":699,"./5/DayWithinYear":700,"./5/DaysInYear":701,"./5/FromPropertyDescriptor":702,"./5/HourFromTime":703,"./5/InLeapYear":704,"./5/IsAccessorDescriptor":705,"./5/IsCallable":706,"./5/IsDataDescriptor":707,"./5/IsGenericDescriptor":708,"./5/IsPropertyDescriptor":709,"./5/MakeDate":710,"./5/MakeDay":711,"./5/MakeTime":712,"./5/MinFromTime":713,"./5/MonthFromTime":714,"./5/SameValue":715,"./5/SecFromTime":716,"./5/StrictEqualityComparison":717,"./5/TimeClip":718,"./5/TimeFromYear":719,"./5/TimeWithinDay":720,"./5/ToBoolean":721,"./5/ToInt32":722,"./5/ToInteger":723,"./5/ToNumber":724,"./5/ToObject":725,"./5/ToPrimitive":726,"./5/ToPropertyDescriptor":727,"./5/ToString":728,"./5/ToUint16":729,"./5/ToUint32":730,"./5/Type":731,"./5/WeekDay":732,"./5/YearFromTime":733,"./5/abs":734,"./5/floor":735,"./5/modulo":736,"./5/msFromTime":737}],739:[function(require,module,exports){
+},{"./5/AbstractEqualityComparison":694,"./5/AbstractRelationalComparison":695,"./5/Canonicalize":696,"./5/CheckObjectCoercible":697,"./5/DateFromTime":698,"./5/Day":699,"./5/DayFromYear":700,"./5/DayWithinYear":701,"./5/DaysInYear":702,"./5/FromPropertyDescriptor":703,"./5/HourFromTime":704,"./5/InLeapYear":705,"./5/IsAccessorDescriptor":706,"./5/IsCallable":707,"./5/IsDataDescriptor":708,"./5/IsGenericDescriptor":709,"./5/IsPropertyDescriptor":710,"./5/MakeDate":711,"./5/MakeDay":712,"./5/MakeTime":713,"./5/MinFromTime":714,"./5/MonthFromTime":715,"./5/SameValue":716,"./5/SecFromTime":717,"./5/StrictEqualityComparison":718,"./5/TimeClip":719,"./5/TimeFromYear":720,"./5/TimeWithinDay":721,"./5/ToBoolean":722,"./5/ToInt32":723,"./5/ToInteger":724,"./5/ToNumber":725,"./5/ToObject":726,"./5/ToPrimitive":727,"./5/ToPropertyDescriptor":728,"./5/ToString":729,"./5/ToUint16":730,"./5/ToUint32":731,"./5/Type":732,"./5/WeekDay":733,"./5/YearFromTime":734,"./5/abs":735,"./5/floor":736,"./5/modulo":737,"./5/msFromTime":738}],740:[function(require,module,exports){
 'use strict';
 
 var $isNaN = require('./isNaN');
 
 module.exports = function (x) { return (typeof x === 'number' || typeof x === 'bigint') && !$isNaN(x) && x !== Infinity && x !== -Infinity; };
 
-},{"./isNaN":740}],740:[function(require,module,exports){
+},{"./isNaN":741}],741:[function(require,module,exports){
 'use strict';
 
 module.exports = Number.isNaN || function isNaN(a) {
 	return a !== a;
 };
 
-},{}],741:[function(require,module,exports){
+},{}],742:[function(require,module,exports){
 'use strict';
 
 var $strSlice = require('call-bind/callBound')('String.prototype.slice');
@@ -61962,7 +61130,7 @@ module.exports = function isPrefixOf(prefix, string) {
 	return $strSlice(string, 0, prefix.length) === prefix;
 };
 
-},{"call-bind/callBound":685}],742:[function(require,module,exports){
+},{"call-bind/callBound":686}],743:[function(require,module,exports){
 'use strict';
 
 var $floor = Math.floor;
@@ -61972,7 +61140,7 @@ module.exports = function mod(number, modulo) {
 	return $floor(remain >= 0 ? remain : remain + modulo);
 };
 
-},{}],743:[function(require,module,exports){
+},{}],744:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -62010,14 +61178,14 @@ module.exports = function isPropertyDescriptor(Desc) {
 	return true;
 };
 
-},{"es-errors/type":752,"hasown":769}],744:[function(require,module,exports){
+},{"es-errors/type":753,"hasown":770}],745:[function(require,module,exports){
 'use strict';
 
 module.exports = function sign(number) {
 	return number >= 0 ? 1 : -1;
 };
 
-},{}],745:[function(require,module,exports){
+},{}],746:[function(require,module,exports){
 'use strict';
 
 var HoursPerDay = 24;
@@ -62038,7 +61206,7 @@ module.exports = {
 	msPerDay: msPerDay
 };
 
-},{}],746:[function(require,module,exports){
+},{}],747:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -62056,49 +61224,49 @@ if ($defineProperty) {
 
 module.exports = $defineProperty;
 
-},{"get-intrinsic":761}],747:[function(require,module,exports){
+},{"get-intrinsic":762}],748:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./eval')} */
 module.exports = EvalError;
 
-},{}],748:[function(require,module,exports){
+},{}],749:[function(require,module,exports){
 'use strict';
 
 /** @type {import('.')} */
 module.exports = Error;
 
-},{}],749:[function(require,module,exports){
+},{}],750:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./range')} */
 module.exports = RangeError;
 
-},{}],750:[function(require,module,exports){
+},{}],751:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./ref')} */
 module.exports = ReferenceError;
 
-},{}],751:[function(require,module,exports){
+},{}],752:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./syntax')} */
 module.exports = SyntaxError;
 
-},{}],752:[function(require,module,exports){
+},{}],753:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./type')} */
 module.exports = TypeError;
 
-},{}],753:[function(require,module,exports){
+},{}],754:[function(require,module,exports){
 'use strict';
 
 /** @type {import('./uri')} */
 module.exports = URIError;
 
-},{}],754:[function(require,module,exports){
+},{}],755:[function(require,module,exports){
 'use strict';
 
 var $TypeError = require('es-errors/type');
@@ -62111,7 +61279,7 @@ module.exports = function RequireObjectCoercible(value) {
 	return value;
 };
 
-},{"es-errors/type":752}],755:[function(require,module,exports){
+},{"es-errors/type":753}],756:[function(require,module,exports){
 'use strict';
 
 var $Object = require('./');
@@ -62123,13 +61291,13 @@ module.exports = function ToObject(value) {
 	return $Object(value);
 };
 
-},{"./":756,"./RequireObjectCoercible":754}],756:[function(require,module,exports){
+},{"./":757,"./RequireObjectCoercible":755}],757:[function(require,module,exports){
 'use strict';
 
 /** @type {import('.')} */
 module.exports = Object;
 
-},{}],757:[function(require,module,exports){
+},{}],758:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -62176,14 +61344,14 @@ module.exports = function ToPrimitive(input) {
 	return ES5internalSlots['[[DefaultValue]]'](input);
 };
 
-},{"./helpers/isPrimitive":758,"is-callable":772}],758:[function(require,module,exports){
+},{"./helpers/isPrimitive":759,"is-callable":773}],759:[function(require,module,exports){
 'use strict';
 
 module.exports = function isPrimitive(value) {
 	return value === null || (typeof value !== 'function' && typeof value !== 'object');
 };
 
-},{}],759:[function(require,module,exports){
+},{}],760:[function(require,module,exports){
 'use strict';
 
 /* eslint no-invalid-this: 1 */
@@ -62269,14 +61437,14 @@ module.exports = function bind(that) {
     return bound;
 };
 
-},{}],760:[function(require,module,exports){
+},{}],761:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
 
 module.exports = Function.prototype.bind || implementation;
 
-},{"./implementation":759}],761:[function(require,module,exports){
+},{"./implementation":760}],762:[function(require,module,exports){
 'use strict';
 
 var undefined;
@@ -62637,7 +61805,7 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 	return value;
 };
 
-},{"es-errors":748,"es-errors/eval":747,"es-errors/range":749,"es-errors/ref":750,"es-errors/syntax":751,"es-errors/type":752,"es-errors/uri":753,"function-bind":760,"has-proto":764,"has-symbols":765,"hasown":769}],762:[function(require,module,exports){
+},{"es-errors":749,"es-errors/eval":748,"es-errors/range":750,"es-errors/ref":751,"es-errors/syntax":752,"es-errors/type":753,"es-errors/uri":754,"function-bind":761,"has-proto":765,"has-symbols":766,"hasown":770}],763:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -62655,7 +61823,7 @@ if ($gOPD) {
 
 module.exports = $gOPD;
 
-},{"get-intrinsic":761}],763:[function(require,module,exports){
+},{"get-intrinsic":762}],764:[function(require,module,exports){
 'use strict';
 
 var $defineProperty = require('es-define-property');
@@ -62679,7 +61847,7 @@ hasPropertyDescriptors.hasArrayLengthDefineBug = function hasArrayLengthDefineBu
 
 module.exports = hasPropertyDescriptors;
 
-},{"es-define-property":746}],764:[function(require,module,exports){
+},{"es-define-property":747}],765:[function(require,module,exports){
 'use strict';
 
 var test = {
@@ -62696,7 +61864,7 @@ module.exports = function hasProto() {
 		&& !(test instanceof $Object);
 };
 
-},{}],765:[function(require,module,exports){
+},{}],766:[function(require,module,exports){
 'use strict';
 
 var origSymbol = typeof Symbol !== 'undefined' && Symbol;
@@ -62711,7 +61879,7 @@ module.exports = function hasNativeSymbols() {
 	return hasSymbolSham();
 };
 
-},{"./shams":766}],766:[function(require,module,exports){
+},{"./shams":767}],767:[function(require,module,exports){
 'use strict';
 
 /* eslint complexity: [2, 18], max-statements: [2, 33] */
@@ -62755,7 +61923,7 @@ module.exports = function hasSymbols() {
 	return true;
 };
 
-},{}],767:[function(require,module,exports){
+},{}],768:[function(require,module,exports){
 'use strict';
 
 var hasSymbols = require('has-symbols/shams');
@@ -62765,14 +61933,14 @@ module.exports = function hasToStringTagShams() {
 	return hasSymbols() && !!Symbol.toStringTag;
 };
 
-},{"has-symbols/shams":766}],768:[function(require,module,exports){
+},{"has-symbols/shams":767}],769:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
 
-},{"function-bind":760}],769:[function(require,module,exports){
+},{"function-bind":761}],770:[function(require,module,exports){
 'use strict';
 
 var call = Function.prototype.call;
@@ -62782,7 +61950,7 @@ var bind = require('function-bind');
 /** @type {import('.')} */
 module.exports = bind.call(call, $hasOwn);
 
-},{"function-bind":760}],770:[function(require,module,exports){
+},{"function-bind":761}],771:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -62869,7 +62037,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],771:[function(require,module,exports){
+},{}],772:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -62898,7 +62066,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],772:[function(require,module,exports){
+},{}],773:[function(require,module,exports){
 'use strict';
 
 var fnToStr = Function.prototype.toString;
@@ -63001,7 +62169,7 @@ module.exports = reflectApply
 		return tryFunctionObject(value);
 	};
 
-},{}],773:[function(require,module,exports){
+},{}],774:[function(require,module,exports){
 'use strict';
 
 var callBound = require('call-bind/callBound');
@@ -63061,7 +62229,7 @@ module.exports = hasToStringTag
 		return $toString(value) === regexClass;
 	};
 
-},{"call-bind/callBound":685,"has-tostringtag/shams":767}],774:[function(require,module,exports){
+},{"call-bind/callBound":686,"has-tostringtag/shams":768}],775:[function(require,module,exports){
 'use strict';
 
 var keysShim;
@@ -63185,7 +62353,7 @@ if (!Object.keys) {
 }
 module.exports = keysShim;
 
-},{"./isArguments":776}],775:[function(require,module,exports){
+},{"./isArguments":777}],776:[function(require,module,exports){
 'use strict';
 
 var slice = Array.prototype.slice;
@@ -63219,7 +62387,7 @@ keysShim.shim = function shimObjectKeys() {
 
 module.exports = keysShim;
 
-},{"./implementation":774,"./isArguments":776}],776:[function(require,module,exports){
+},{"./implementation":775,"./isArguments":777}],777:[function(require,module,exports){
 'use strict';
 
 var toStr = Object.prototype.toString;
@@ -63238,7 +62406,7 @@ module.exports = function isArguments(value) {
 	return isArgs;
 };
 
-},{}],777:[function(require,module,exports){
+},{}],778:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -63424,7 +62592,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],778:[function(require,module,exports){
+},{}],779:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var through = require('through');
 var nextTick = typeof setImmediate !== 'undefined'
@@ -63457,7 +62625,7 @@ module.exports = function (write, end) {
 };
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":777,"through":793,"timers":794}],779:[function(require,module,exports){
+},{"_process":778,"through":794,"timers":795}],780:[function(require,module,exports){
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
@@ -63524,7 +62692,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":667}],780:[function(require,module,exports){
+},{"buffer":668}],781:[function(require,module,exports){
 'use strict';
 
 var callBound = require('call-bind/callBound');
@@ -63542,7 +62710,7 @@ module.exports = function regexTester(regex) {
 	};
 };
 
-},{"call-bind/callBound":685,"es-errors/type":752,"is-regex":773}],781:[function(require,module,exports){
+},{"call-bind/callBound":686,"es-errors/type":753,"is-regex":774}],782:[function(require,module,exports){
 'use strict';
 
 var GetIntrinsic = require('get-intrinsic');
@@ -63586,7 +62754,7 @@ module.exports = function setFunctionLength(fn, length) {
 	return fn;
 };
 
-},{"define-data-property":690,"es-errors/type":752,"get-intrinsic":761,"gopd":762,"has-property-descriptors":763}],782:[function(require,module,exports){
+},{"define-data-property":691,"es-errors/type":753,"get-intrinsic":762,"gopd":763,"has-property-descriptors":764}],783:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -63601,7 +62769,7 @@ module.exports = function trim() {
 	return replace(replace(S, leftWhitespace, ''), rightWhitespace, '');
 };
 
-},{"es-abstract/es5":738,"function-bind":760}],783:[function(require,module,exports){
+},{"es-abstract/es5":739,"function-bind":761}],784:[function(require,module,exports){
 'use strict';
 
 var bind = require('function-bind');
@@ -63621,7 +62789,7 @@ define(boundTrim, {
 
 module.exports = boundTrim;
 
-},{"./implementation":782,"./polyfill":784,"./shim":785,"define-properties":691,"function-bind":760}],784:[function(require,module,exports){
+},{"./implementation":783,"./polyfill":785,"./shim":786,"define-properties":692,"function-bind":761}],785:[function(require,module,exports){
 'use strict';
 
 var implementation = require('./implementation');
@@ -63635,7 +62803,7 @@ module.exports = function getPolyfill() {
 	return implementation;
 };
 
-},{"./implementation":782}],785:[function(require,module,exports){
+},{"./implementation":783}],786:[function(require,module,exports){
 'use strict';
 
 var define = require('define-properties');
@@ -63647,7 +62815,7 @@ module.exports = function shimStringTrim() {
 	return polyfill;
 };
 
-},{"./polyfill":784,"define-properties":691}],786:[function(require,module,exports){
+},{"./polyfill":785,"define-properties":692}],787:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -63944,7 +63112,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":779}],787:[function(require,module,exports){
+},{"safe-buffer":780}],788:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var defined = require('defined');
 var createDefaultStream = require('./lib/default_stream');
@@ -64098,7 +63266,7 @@ function createHarness (conf_) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"./lib/default_stream":788,"./lib/results":790,"./lib/test":791,"_process":777,"defined":692,"through":793,"timers":794}],788:[function(require,module,exports){
+},{"./lib/default_stream":789,"./lib/results":791,"./lib/test":792,"_process":778,"defined":693,"through":794,"timers":795}],789:[function(require,module,exports){
 (function (process){(function (){
 var through = require('through');
 var fs = require('fs');
@@ -64133,7 +63301,7 @@ module.exports = function () {
 };
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":777,"fs":666,"through":793}],789:[function(require,module,exports){
+},{"_process":778,"fs":667,"through":794}],790:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 module.exports = typeof setImmediate !== 'undefined'
     ? setImmediate
@@ -64141,7 +63309,7 @@ module.exports = typeof setImmediate !== 'undefined'
 ;
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":777,"timers":794}],790:[function(require,module,exports){
+},{"_process":778,"timers":795}],791:[function(require,module,exports){
 (function (process,setImmediate){(function (){
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
@@ -64332,7 +63500,7 @@ function invalidYaml (str) {
 }
 
 }).call(this)}).call(this,require('_process'),require("timers").setImmediate)
-},{"_process":777,"events":668,"function-bind":760,"has":768,"inherits":771,"object-inspect":792,"resumer":778,"through":793,"timers":794}],791:[function(require,module,exports){
+},{"_process":778,"events":669,"function-bind":761,"has":769,"inherits":772,"object-inspect":793,"resumer":779,"through":794,"timers":795}],792:[function(require,module,exports){
 (function (__dirname){(function (){
 var deepEqual = require('deep-equal');
 var defined = require('defined');
@@ -64833,7 +64001,7 @@ Test.skip = function (name_, _opts, _cb) {
 
 
 }).call(this)}).call(this,"/node_modules/tape/lib")
-},{"./next_tick":789,"deep-equal":687,"defined":692,"events":668,"has":768,"inherits":771,"path":669,"string.prototype.trim":783}],792:[function(require,module,exports){
+},{"./next_tick":790,"deep-equal":688,"defined":693,"events":669,"has":769,"inherits":772,"path":670,"string.prototype.trim":784}],793:[function(require,module,exports){
 var hasMap = typeof Map === 'function' && Map.prototype;
 var mapSizeDescriptor = Object.getOwnPropertyDescriptor && hasMap ? Object.getOwnPropertyDescriptor(Map.prototype, 'size') : null;
 var mapSize = hasMap && mapSizeDescriptor && typeof mapSizeDescriptor.get === 'function' ? mapSizeDescriptor.get : null;
@@ -65027,7 +64195,7 @@ function inspectString (str) {
     }
 }
 
-},{}],793:[function(require,module,exports){
+},{}],794:[function(require,module,exports){
 (function (process){(function (){
 var Stream = require('stream')
 
@@ -65139,7 +64307,7 @@ function through (write, end, opts) {
 
 
 }).call(this)}).call(this,require('_process'))
-},{"_process":777,"stream":670}],794:[function(require,module,exports){
+},{"_process":778,"stream":671}],795:[function(require,module,exports){
 (function (setImmediate,clearImmediate){(function (){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -65218,7 +64386,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this)}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":777,"timers":794}],795:[function(require,module,exports){
+},{"process/browser.js":778,"timers":795}],796:[function(require,module,exports){
 (function (global){(function (){
 
 /**
@@ -65289,4 +64457,4 @@ function config (name) {
 }
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[529]);
+},{}]},{},[530]);

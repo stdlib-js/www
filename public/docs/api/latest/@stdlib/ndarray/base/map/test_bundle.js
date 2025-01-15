@@ -783,6 +783,8 @@ module.exports = factory;
 * // returns true
 */
 
+// MODULES //
+
 var setReadOnly = require( '@stdlib/utils/define-nonenumerable-read-only-property' );
 var main = require( './main.js' );
 var factory = require( './factory.js' );
@@ -28105,13 +28107,8 @@ module.exports = main;
 
 // MODULES //
 
+var contains = require( '@stdlib/array/base/assert/contains' ).factory;
 var orders = require( '@stdlib/ndarray/orders' );
-
-
-// VARIABLES //
-
-var ORDERS = orders();
-var len = ORDERS.length;
 
 
 // MAIN //
@@ -28119,6 +28116,8 @@ var len = ORDERS.length;
 /**
 * Tests whether an input value is an ndarray order.
 *
+* @name isOrder
+* @type {Function}
 * @param {*} v - value to test
 * @returns {boolean} boolean indicating whether an input value is an ndarray order
 *
@@ -28132,22 +28131,14 @@ var len = ORDERS.length;
 * bool = isOrder( 'foo' );
 * // returns false
 */
-function isOrder( v ) {
-	var i;
-	for ( i = 0; i < len; i++ ) {
-		if ( v === ORDERS[ i ] ) {
-			return true;
-		}
-	}
-	return false;
-}
+var isOrder = contains( orders() );
 
 
 // EXPORTS //
 
 module.exports = isOrder;
 
-},{"@stdlib/ndarray/orders":495}],344:[function(require,module,exports){
+},{"@stdlib/array/base/assert/contains":8,"@stdlib/ndarray/orders":495}],344:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *
@@ -30364,7 +30355,7 @@ function toJSON() {
 	out.strides = this._strides.slice();
 
 	// Flip the signs of negative strides:
-	for ( i = 0; i < len; i++ ) {
+	for ( i = 0; i < out.strides.length; i++ ) {
 		if ( out.strides[ i ] < 0 ) {
 			out.strides[ i ] *= -1;
 		}
@@ -30434,7 +30425,8 @@ var CTORS = {
 	'generic': '[ {{data}} ]',
 	'binary': 'new Buffer( [ {{data}} ] )',
 	'complex64': 'new Complex64Array( [ {{data}} ] )',
-	'complex128': 'new Complex128Array( [ {{data}} ] )'
+	'complex128': 'new Complex128Array( [ {{data}} ] )',
+	'bool': 'new BooleanArray( [ {{data}} ] )'
 };
 
 
@@ -42041,7 +42033,6 @@ module.exports = main;
 // MODULES //
 
 var iterationOrder = require( '@stdlib/ndarray/base/iteration-order' );
-var minmaxViewBufferIndex = require( '@stdlib/ndarray/base/minmax-view-buffer-index' );
 var ndarray2object = require( '@stdlib/ndarray/base/ndarraylike2object' );
 var blockedaccessormap2d = require( './2d_blocked_accessors.js' );
 var blockedaccessormap3d = require( './3d_blocked_accessors.js' );
@@ -42211,18 +42202,11 @@ var MAX_DIMS = MAP.length -1;
 */
 function map( arrays, fcn, thisArg ) {
 	var ndims;
-	var xmmv;
-	var ymmv;
 	var shx;
 	var shy;
 	var iox;
 	var ioy;
 	var len;
-	var sx;
-	var sy;
-	var ox;
-	var oy;
-	var ns;
 	var x;
 	var y;
 	var i;
@@ -42248,7 +42232,6 @@ function map( arrays, fcn, thisArg ) {
 	}
 	// Verify that the input and output arrays have the same dimensions...
 	len = 1; // number of elements
-	ns = 0; // number of singleton dimensions
 	for ( i = 0; i < ndims; i++ ) {
 		d = shx[ i ];
 		if ( d !== shy[ i ] ) {
@@ -42256,11 +42239,6 @@ function map( arrays, fcn, thisArg ) {
 		}
 		// Note that, if one of the dimensions is `0`, the length will be `0`...
 		len *= d;
-
-		// Check whether the current dimension is a singleton dimension...
-		if ( d === 1 ) {
-			ns += 1;
-		}
 	}
 	// Check whether we were provided empty ndarrays...
 	if ( len === 0 ) {
@@ -42273,63 +42251,12 @@ function map( arrays, fcn, thisArg ) {
 		}
 		return MAP[ ndims ]( x, y, fcn, thisArg );
 	}
-
-	sx = x.strides;
-	sy = y.strides;
-
-	// Determine whether the ndarray has only **one** non-singleton dimension (e.g., ndims=4, shape=[10,1,1,1]) so that we can treat the ndarrays as being equivalent to one-dimensional strided arrays...
-	if ( ns === ndims-1 ) {
-		// Get the index of the non-singleton dimension...
-		for ( i = 0; i < ndims; i++ ) {
-			if ( shx[ i ] !== 1 ) {
-				break;
-			}
-		}
-		x.shape = [ shx[i] ];
-		y.shape = x.shape;
-		x.strides = [ sx[i] ];
-		y.strides = [ sy[i] ];
-		if ( x.accessorProtocol || y.accessorProtocol ) {
-			return ACCESSOR_MAP[ 1 ]( x, y, fcn, thisArg );
-		}
-		return MAP[ 1 ]( x, y, fcn, thisArg );
-	}
-
-	iox = iterationOrder( sx ); // +/-1
-	ioy = iterationOrder( sy ); // +/-1
+	// Determine iteration order:
+	iox = iterationOrder( x.strides ); // +/-1
+	ioy = iterationOrder( y.strides ); // +/-1
 
 	// Determine whether we can avoid blocked iteration...
 	if ( iox !== 0 && ioy !== 0 && iox === ioy ) {
-		// Determine the minimum and maximum linear indices which are accessible by the array views:
-		xmmv = minmaxViewBufferIndex( shx, sx, x.offset );
-		ymmv = minmaxViewBufferIndex( shy, sy, y.offset );
-
-		// Determine whether we can ignore shape (and strides) and treat the ndarrays as linear one-dimensional strided arrays...
-		if ( len === ( xmmv[1]-xmmv[0]+1 ) && len === ( ymmv[1]-ymmv[0]+1 ) ) {
-			// Note: the above is equivalent to @stdlib/ndarray/base/assert/is-contiguous, but in-lined so we can retain computed values...
-			if ( iox === 1 ) {
-				ox = xmmv[ 0 ];
-			} else {
-				ox = xmmv[ 1 ];
-			}
-			if ( ioy === 1 ) {
-				oy = ymmv[ 0 ];
-			} else {
-				oy = ymmv[ 1 ];
-			}
-			x.shape = [ len ];
-			y.shape = x.shape;
-			x.strides = [ iox ];
-			y.strides = [ ioy ];
-			x.offset = ox;
-			y.offset = oy;
-			if ( x.accessorProtocol || y.accessorProtocol ) {
-				return ACCESSOR_MAP[ 1 ]( x, y, fcn, thisArg );
-			}
-			return MAP[ 1 ]( x, y, fcn, thisArg );
-		}
-		// At least one ndarray is non-contiguous, so we cannot directly use one-dimensional array functionality...
-
 		// Determine whether we can use simple nested loops...
 		if ( ndims <= MAX_DIMS ) {
 			// So long as iteration for each respective array always moves in the same direction (i.e., no mixed sign strides), we can leverage cache-optimal (i.e., normal) nested loops without resorting to blocked iteration...
@@ -42340,8 +42267,6 @@ function map( arrays, fcn, thisArg ) {
 		}
 		// Fall-through to blocked iteration...
 	}
-	// At this point, we're either dealing with non-contiguous n-dimensional arrays, high dimensional n-dimensional arrays, and/or arrays having differing memory layouts, so our only hope is that we can still perform blocked iteration...
-
 	// Determine whether we can perform blocked iteration...
 	if ( ndims <= MAX_DIMS ) {
 		if ( x.accessorProtocol || y.accessorProtocol ) {
@@ -42361,7 +42286,7 @@ function map( arrays, fcn, thisArg ) {
 
 module.exports = map;
 
-},{"./0d.js":381,"./0d_accessors.js":382,"./10d.js":383,"./10d_accessors.js":384,"./10d_blocked.js":385,"./10d_blocked_accessors.js":386,"./1d.js":387,"./1d_accessors.js":388,"./2d.js":389,"./2d_accessors.js":390,"./2d_blocked.js":391,"./2d_blocked_accessors.js":392,"./3d.js":393,"./3d_accessors.js":394,"./3d_blocked.js":395,"./3d_blocked_accessors.js":396,"./4d.js":397,"./4d_accessors.js":398,"./4d_blocked.js":399,"./4d_blocked_accessors.js":400,"./5d.js":401,"./5d_accessors.js":402,"./5d_blocked.js":403,"./5d_blocked_accessors.js":404,"./6d.js":405,"./6d_accessors.js":406,"./6d_blocked.js":407,"./6d_blocked_accessors.js":408,"./7d.js":409,"./7d_accessors.js":410,"./7d_blocked.js":411,"./7d_blocked_accessors.js":412,"./8d.js":413,"./8d_accessors.js":414,"./8d_blocked.js":415,"./8d_blocked_accessors.js":416,"./9d.js":417,"./9d_accessors.js":418,"./9d_blocked.js":419,"./9d_blocked_accessors.js":420,"./nd.js":423,"./nd_accessors.js":424,"@stdlib/ndarray/base/iteration-order":379,"@stdlib/ndarray/base/minmax-view-buffer-index":439,"@stdlib/ndarray/base/ndarraylike2object":441}],423:[function(require,module,exports){
+},{"./0d.js":381,"./0d_accessors.js":382,"./10d.js":383,"./10d_accessors.js":384,"./10d_blocked.js":385,"./10d_blocked_accessors.js":386,"./1d.js":387,"./1d_accessors.js":388,"./2d.js":389,"./2d_accessors.js":390,"./2d_blocked.js":391,"./2d_blocked_accessors.js":392,"./3d.js":393,"./3d_accessors.js":394,"./3d_blocked.js":395,"./3d_blocked_accessors.js":396,"./4d.js":397,"./4d_accessors.js":398,"./4d_blocked.js":399,"./4d_blocked_accessors.js":400,"./5d.js":401,"./5d_accessors.js":402,"./5d_blocked.js":403,"./5d_blocked_accessors.js":404,"./6d.js":405,"./6d_accessors.js":406,"./6d_blocked.js":407,"./6d_blocked_accessors.js":408,"./7d.js":409,"./7d_accessors.js":410,"./7d_blocked.js":411,"./7d_blocked_accessors.js":412,"./8d.js":413,"./8d_accessors.js":414,"./8d_blocked.js":415,"./8d_blocked_accessors.js":416,"./9d.js":417,"./9d_accessors.js":418,"./9d_blocked.js":419,"./9d_blocked_accessors.js":420,"./nd.js":423,"./nd_accessors.js":424,"@stdlib/ndarray/base/iteration-order":379,"@stdlib/ndarray/base/ndarraylike2object":441}],423:[function(require,module,exports){
 /**
 * @license Apache-2.0
 *

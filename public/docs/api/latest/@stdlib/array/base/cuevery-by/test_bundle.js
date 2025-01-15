@@ -1361,7 +1361,7 @@ function indexed( x, out, stride, offset, predicate, thisArg ) {
 			io += stride;
 			continue;
 		}
-		if ( !predicate.call( thisArg, x[ i ], i, x )) {
+		if ( !predicate.call( thisArg, x[ i ], i, x ) ) {
 			flg = false;
 		}
 		out[ io ] = flg;
@@ -1446,7 +1446,7 @@ function accessors( x, out, stride, offset, predicate, thisArg ) {
 *
 * @example
 * function isPositive( value ) {
-* 	 return ( value > 0 );
+*     return ( value > 0 );
 * }
 *
 * var x = [ 1, 1, 1, 0, 1 ];
