@@ -30,7 +30,8 @@ import Head from './head.jsx';
 var THEMES = [
 	// value, display_name
 	'light', 'Light',
-	'dark', 'Dark'
+	'dark', 'Dark',
+	'auto', 'Auto'
 ];
 
 var MODES = [
@@ -127,7 +128,12 @@ class Settings extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onThemeChange = ( event ) => {
-		this.props.onThemeChange( event.target.value );
+		let theme = event.target.value;
+		if(theme === 'auto'){
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			theme = prefersDark ? 'dark' : 'light';
+		}
+		this.props.onThemeChange(theme);
 	}
 
 	/**
