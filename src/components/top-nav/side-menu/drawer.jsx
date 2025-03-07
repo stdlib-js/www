@@ -798,12 +798,14 @@ class SideMenuDrawer extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	render() {
+		const isMobile = typeof window !== 'undefined' && window.innerWidth <= 640;
 		return (
 			<Drawer
 				className="side-menu-drawer"
-				variant="persistent"
+				variant={isMobile ? 'temporary' : 'persistent'}
 				anchor="left"
 				open={ this.props.open }
+				onClose={isMobile ? this._onMenuClose : undefined}
 				classes={{
 					paper: 'side-menu-drawer'
 				}}
