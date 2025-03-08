@@ -85,7 +85,8 @@ class Settings extends React.Component {
 
 		this.state = {
 			// Boolean indicating whether the settings menu is open or closed:
-			'open': false
+			'open': false,
+			'selectedTheme': props.theme
 		};
 	}
 
@@ -128,12 +129,14 @@ class Settings extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onThemeChange = ( event ) => {
-		let theme = event.target.value;
-		if(theme === 'auto'){
+		const selectedTheme = event.target.value;
+		let effectiveTheme = selectedTheme;
+		if(selectedTheme === 'auto'){
 			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			theme = prefersDark ? 'dark' : 'light';
+			effectiveTheme = prefersDark ? 'dark' : 'light';
 		}
-		this.props.onThemeChange(theme);
+		this.setState({ selectedTheme });
+		this.props.onThemeChange(effectiveTheme);
 	}
 
 	/**
@@ -252,7 +255,7 @@ class Settings extends React.Component {
 						className="settings-select"
 						onChange={ this._onThemeChange }
 					>
-						{ this._renderOptions( THEMES, this.props.theme ) }
+						{ this._renderOptions( THEMES, this.state.selectedTheme ) }
 					</select>
 					<div className="settings-select-custom">
 						<ChevronDownIcon className="settings-select-custom-icon"/>
