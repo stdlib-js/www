@@ -34,6 +34,7 @@ import namespaces from 'namespace-list';
 import filter from 'filter-pkg-tree';
 import deprefix from 'deprefix-pkg-name';
 import log from 'log';
+import viewportWidth from 'viewport-width';
 import VersionMenu from './version_menu.jsx';
 import Head from './head.jsx';
 import Filter from './filter.jsx';
@@ -798,7 +799,7 @@ class SideMenuDrawer extends React.Component {
 	* @returns {ReactElement} React element
 	*/
 	render() {
-		const isMobile = typeof window !== 'undefined' && window.innerWidth <= 640;
+		const isMobile = viewportWidth() <= 640;
 		return (
 			<Drawer
 				className="side-menu-drawer"
