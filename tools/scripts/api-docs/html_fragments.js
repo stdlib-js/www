@@ -118,8 +118,7 @@ function processHeadings(baseDir){
 				const headingRegex = /<(h[1-6])(.*?)>(.*?)<\/\1>/gi;
 				html = html.replace(headingRegex, (match, tag, attrs, content) => {
 					let id = content.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim().replace(/\s+/g, '-').replace(/-+/g, '-');
-					return `<a id="${id}" class="heading-link" href="#${id}"></a><${tag}${attrs}>${content}</${tag}>`;
-					
+					return `<div class="heading-wrapper"><a id="${id}" class="heading-link" href="#${id}"></a><${tag}${attrs}>${content}</${tag}></div>`;
 				})
 				
 				const err = writeFile(fullPath, html);
