@@ -1418,6 +1418,17 @@ h2 {
 	margin: 12px;
 }
 
+@media screen and (max-width: 640px) {
+	.side-menu-head .icon-button.side-menu-close-button {
+		border: none;
+	}
+	.side-menu-head .icon-button.side-menu-close-button .icon {
+		width: 24px;
+		height: 24px;
+		margin: 0px;
+	}
+}
+
 .side-menu-wrapper {
 	width: 0;
 }
