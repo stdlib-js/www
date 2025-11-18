@@ -27,7 +27,9 @@
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
 const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
+const path = require('path');
 const configFactory = require('./config.js');
+const paths = require('./paths');
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
 const host = process.env.HOST || '0.0.0.0';
@@ -59,7 +61,11 @@ module.exports = function( proxy ) {
 			disableDotRule: true,
 			index: 'docs/api/index.html'
 		},
-		static: false,
+		static: {
+			directory: paths.appPublic,
+			publicPath: [paths.servedPath],
+			watch: true,
+		},
 		hot: true,
 		open: [],
 		proxy: proxy,

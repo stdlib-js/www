@@ -87,7 +87,7 @@ function UserStories() {
 						</li>
 						<li>
 							<p>
-								I am interested in using a substantial amount of functionality found in a top-level stdlib namespace and don't want to separately install hundreds of individual packages (e.g., if building an on-line calculator application and wanting all of stdlib's math functionality).
+								I am interested in using a substantial amount of functionality found in a top-level stdlib ~!namespace and don't want to separately install hundreds of individual packages (e.g., if building an on-line calculator application and wanting all of stdlib's math functionality).
 							</p>
 							<ul>
 								<li>

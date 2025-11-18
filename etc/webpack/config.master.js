@@ -29,17 +29,19 @@
 const isWsl = require('is-wsl');
 const path = require('path');
 const webpack = require('webpack');
+const PnpWebpackPlugin = require('pnp-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const paths = require('./paths');
@@ -106,24 +108,22 @@ module.exports = function(webpackEnv) {
 				// package.json
 				loader: require.resolve('postcss-loader'),
 				options: {
-					postcssOptions: {
-						// Necessary for external CSS imports to work
-						// https://github.com/facebook/create-react-app/issues/2677
-						ident: 'postcss',
-						plugins: [
-							require('postcss-flexbugs-fixes'),
-							require('postcss-preset-env')({
-								autoprefixer: {
-									flexbox: 'no-2009',
-								},
-								stage: 3,
-							}),
-							// Adds PostCSS Normalize as the reset css with default options,
-							// so that it honors browserslist config in package.json
-							// which in turn let's users customize the target behavior as per their needs.
-							postcssNormalize(),
-						],
-					},
+					// Necessary for external CSS imports to work
+					// https://github.com/facebook/create-react-app/issues/2677
+					ident: 'postcss',
+					plugins: () => [
+						require('postcss-flexbugs-fixes'),
+						require('postcss-preset-env')({
+							autoprefixer: {
+								flexbox: 'no-2009',
+							},
+							stage: 3,
+						}),
+						// Adds PostCSS Normalize as the reset css with default options,
+						// so that it honors browserslist config in package.json
+						// which in turn let's users customize the target behavior as per their needs.
+						postcssNormalize(),
+					],
 					sourceMap: isEnvProduction && shouldUseSourceMap,
 				},
 			},
@@ -180,8 +180,9 @@ module.exports = function(webpackEnv) {
 			// In development, it does not produce real files.
 			filename: isEnvProduction
 				? 'static/js/[name].[contenthash:8].js'
-				: isEnvDevelopment && 'static/js/[name].bundle.dev.js',
-
+				: isEnvDevelopment && 'static/js/bundle.dev.js',
+			// TODO: remove this when upgrading to webpack 5
+			futureEmitAssets: true,
 			// There are also additional JS chunk files if you use code splitting.
 			chunkFilename: isEnvProduction
 				? 'static/js/[name].[contenthash:8].chunk.js'
@@ -199,7 +200,7 @@ module.exports = function(webpackEnv) {
 					(info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
 			// Prevents conflicts when multiple Webpack runtimes (from different apps)
 			// are used on the same page.
-			chunkLoadingGlobal: `webpackJsonp${appPackageJson.name}`,
+			jsonpFunction: `webpackJsonp${appPackageJson.name}`,
 			// this defaults to 'window', but by setting it to 'this' then
 			// module chunks which are built will work in web workers as well.
 			globalObject: 'this',
@@ -252,11 +253,25 @@ module.exports = function(webpackEnv) {
 					// https://github.com/webpack-contrib/terser-webpack-plugin/issues/21
 					parallel: !isWsl,
 					// Enable file caching
-					// cache: true, // Webpack 5 has built-in caching
-					// sourceMap: shouldUseSourceMap, // TerserPlugin v5 respects devtool
+					cache: true,
+					sourceMap: shouldUseSourceMap,
 				}),
 				// This is only used in production mode
-				new CssMinimizerPlugin(),
+				new OptimizeCSSAssetsPlugin({
+					cssProcessorOptions: {
+						parser: safePostCssParser,
+						map: shouldUseSourceMap
+							? {
+									// `inline: false` forces the sourcemap to be output into a
+									// separate file
+									inline: false,
+									// `annotation: true` appends the sourceMappingURL to the end of
+									// the css file, helping the browser find the sourcemap
+									annotation: true,
+								}
+							: false,
+					},
+				}),
 			],
 			// Automatically split vendor and commons
 			// https://twitter.com/wSokra/status/969633336732905474
@@ -291,9 +306,6 @@ module.exports = function(webpackEnv) {
 			// for React Native Web.
 			extensions: paths.moduleFileExtensions
 				.map(ext => `.${ext}`),
-			fallback: {
-				url: require.resolve('url/'),
-			},
 			alias: {
 				// Support React Native Web
 				// https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
@@ -305,8 +317,18 @@ module.exports = function(webpackEnv) {
 				}),
 				...(modules.webpackAliases || {}),
 			},
+			plugins: [
+				// Adds support for installing with Plug'n'Play, leading to faster installs and adding
+				// guards against forgotten dependencies and such.
+				PnpWebpackPlugin
+			],
 		},
 		resolveLoader: {
+			plugins: [
+				// Also related to Plug'n'Play, but this time it tells Webpack to load its loaders
+				// from the current package.
+				PnpWebpackPlugin.moduleLoader(module),
+			],
 		},
 		module: {
 			strictExportPresence: true,
@@ -332,7 +354,6 @@ module.exports = function(webpackEnv) {
 						},
 					],
 					include: paths.appSrc,
-					exclude: /node_modules/,
 				},
 				{
 					// "oneOf" will traverse all following loaders until one will
@@ -440,15 +461,14 @@ module.exports = function(webpackEnv) {
 						// This loader doesn't use a "test" so it will catch all modules
 						// that fall through the other loaders.
 						{
-							// "file" loader makes sure those assets get served by WebpackDevServer.
-							// When you `import` an asset, you get its (virtual) filename.
-							// In production, they would get copied to the `build` folder.
-							// This loader doesn't use a "test" so it will catch all modules
-							// that fall through the other loaders.
+							loader: require.resolve('file-loader'),
+							// Exclude `js` files to keep "css" loader working as it injects
+							// its runtime that would otherwise be processed through "file" loader.
+							// Also exclude `html` and `json` extensions so they get processed
+							// by webpacks internal loaders.
 							exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
-							type: 'asset/resource',
-							generator: {
-								filename: 'static/media/[name].[hash:8][ext]',
+							options: {
+								name: 'static/media/[name].[hash:8].[ext]',
 							},
 						},
 						// ** STOP ** Are you adding a new loader?
@@ -519,6 +539,12 @@ module.exports = function(webpackEnv) {
 			// a plugin that prints an error when you attempt to do this.
 			// See https://github.com/facebook/create-react-app/issues/240
 			isEnvDevelopment && new CaseSensitivePathsPlugin(),
+			// If you require a missing module and then `npm install` it, you still have
+			// to restart the development server for Webpack to discover it. This plugin
+			// makes the discovery automatic so you don't have to restart.
+			// See https://github.com/facebook/create-react-app/issues/186
+			isEnvDevelopment &&
+				new WatchMissingNodeModulesPlugin(paths.appNodeModules),
 			isEnvProduction &&
 				new MiniCssExtractPlugin({
 					// Options similar to the same options in webpackOptions.output
@@ -532,7 +558,7 @@ module.exports = function(webpackEnv) {
 			//   `index.html`
 			// - "entrypoints" key: Array of files which are included in `index.html`,
 			//   can be used to reconstruct the HTML if necessary
-			new WebpackManifestPlugin({
+			new ManifestPlugin({
 				fileName: 'asset-manifest.json',
 				publicPath: publicPath,
 				generate: (seed, files, entrypoints) => {
@@ -556,11 +582,12 @@ module.exports = function(webpackEnv) {
 				new WorkboxWebpackPlugin.GenerateSW({
 					clientsClaim: true,
 					exclude: [/\.map$/, /asset-manifest\.json$/],
+					importWorkboxFrom: 'cdn',
 
 					// NOTE: the following is disabled, as this seemed to be contributing to SSR hydration issues when rendering a package page. Package pages are not precached, leading to the service worker to load the fallback URL. The fallback URL is **not** the same as the SSR, leading to discrepancies when React attempts to make the application interactive. A key assumption of hydration is that the initial client render DOM is the exact same as the SSR.
 					// navigateFallback: publicUrl + '/index.html',
 
-					navigateFallbackDenylist: [
+					navigateFallbackBlacklist: [
 						// Exclude URLs starting with /_, as they're likely an API call
 						new RegExp('^/_'),
 						// Exclude any URLs whose last part seems to be a file extension
@@ -577,12 +604,18 @@ module.exports = function(webpackEnv) {
 		].filter(Boolean),
 		// Some libraries import Node modules but don't use them in the browser.
 		// Tell Webpack to provide empty mocks for them so importing them works.
-
+		node: {
+			module: 'empty',
+			dgram: 'empty',
+			dns: 'mock',
+			fs: 'empty',
+			http2: 'empty',
+			net: 'empty',
+			tls: 'empty',
+			child_process: 'empty',
+		},
 		// Turn off performance processing because we utilize
 		// our own hints via the FileSizeReporter
 		performance: false,
-		watchOptions: {
-			ignored: /node_modules/,
-		},
 	};
 };
