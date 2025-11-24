@@ -36,7 +36,7 @@ require( '@babel/register' )({
 		[ '@babel/plugin-transform-nullish-coalescing-operator', { 'loose': false } ],
 		'@babel/plugin-proposal-do-expressions',
 
-		[ '@babel/plugin-proposal-decorators', { 'decoratorsBeforeExport': true } ],
+		[ '@babel/plugin-proposal-decorators', { 'version': '2023-11' } ],
 		[ '@babel/plugin-transform-class-properties', { 'loose': true } ],
 		'@babel/plugin-proposal-function-sent',
 		'@babel/plugin-proposal-export-namespace-from',
