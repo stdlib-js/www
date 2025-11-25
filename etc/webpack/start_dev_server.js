@@ -116,15 +116,17 @@ checkBrowsers(paths.appPath, isInteractive)
 				secure: false,
 				changeOrigin: true,
 				bypass: function (req, res, proxyOptions) {
-					if (req.headers.accept && req.headers.accept.indexOf('html') !== -1) {
-						console.log('Proxying HTML request:', req.url);
-						return null; // Let proxy handle HTML (SSR)
-					}
-					// Bypass proxy for static assets and HMR updates
-					if (req.url.indexOf('/static/') !== -1 || req.url.indexOf('hot-update') !== -1 || req.url.indexOf('manifest.json') !== -1) {
+					// Bypass proxy for webpack dev server assets
+					if (req.url.indexOf('/static/') !== -1 || req.url.indexOf('hot-update') !== -1 || req.url.indexOf('manifest.json') !== -1 || req.url.indexOf('asset-manifest.json') !== -1) {
 						return req.url;
 					}
-					return null; // Default to proxy
+					// Let webpack dev server handle SPA routes that start with /docs/api/
+					if (req.headers.accept && req.headers.accept.indexOf('html') !== -1 && req.url.startsWith('/docs/api/')) {
+						console.log('Serving from webpack dev server:', req.url);
+						return '/docs/api/index.html';
+					}
+					// Proxy API requests to backend
+					return null;
 				}
 			}
 		};

@@ -1,0 +1,32 @@
+Line 357-369 needs to change from:
+
+								plugins: [
+									[
+										require.resolve('babel-plugin-named-asset-import'),
+										{
+											loaderMap: {
+												svg: {
+													ReactComponent:
+														'@svgr/webpack?-svgo,+titleProp,+ref![path]',
+												},
+											},
+										},
+									],
+								],
+
+To:
+
+								plugins: [
+									isEnvDevelopment && require.resolve('react-refresh/babel'),
+									[
+										require.resolve('babel-plugin-named-asset-import'),
+										{
+											loaderMap: {
+												svg: {
+													ReactComponent:
+														'@svgr/webpack?-svgo,+titleProp,+ref![path]',
+												},
+											},
+										},
+									],
+								].filter(Boolean),

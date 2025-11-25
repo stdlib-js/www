@@ -42,6 +42,7 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const paths = require('./paths');
 const modules = require('./modules');
 const getClientEnvironment = require('./env');
@@ -169,7 +170,7 @@ module.exports = function(webpackEnv) {
 			// We include the app code last so that if there is a runtime error during
 			// initialization, it doesn't blow up the WebpackDevServer client, and
 			// changing JS code would still trigger a refresh.
-		],
+		].filter(Boolean),
 		output: {
 			// The build folder.
 			path: paths.appBuild,
@@ -514,6 +515,8 @@ module.exports = function(webpackEnv) {
 			new webpack.DefinePlugin(env.stringified),
 			// This is necessary to emit hot updates (currently CSS only):
 			isEnvDevelopment && new webpack.HotModuleReplacementPlugin(),
+			// React Fast Refresh for hot reloading React components
+			isEnvDevelopment && new ReactRefreshWebpackPlugin(),
 			// Watcher doesn't work well if you mistype casing in a path so we use
 			// a plugin that prints an error when you attempt to do this.
 			// See https://github.com/facebook/create-react-app/issues/240
@@ -573,7 +576,7 @@ module.exports = function(webpackEnv) {
 						handler: 'NetworkFirst'
 					}]
 				}),
-		],
+		].filter(Boolean),
 		// Some libraries import Node modules but don't use them in the browser.
 		// Tell Webpack to provide empty mocks for them so importing them works.
 

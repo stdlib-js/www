@@ -61,11 +61,7 @@ module.exports = function( proxy ) {
 			disableDotRule: true,
 			index: 'docs/api/index.html'
 		},
-		static: {
-			directory: paths.appPublic,
-			publicPath: [paths.servedPath],
-			watch: true,
-		},
+		static: false,
 		hot: true,
 		open: [],
 		proxy: proxy,
