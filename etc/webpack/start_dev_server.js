@@ -122,7 +122,6 @@ checkBrowsers(paths.appPath, isInteractive)
 					}
 					// Let webpack dev server handle SPA routes that start with /docs/api/
 					if (req.headers.accept && req.headers.accept.indexOf('html') !== -1 && req.url.startsWith('/docs/api/')) {
-						console.log('Serving from webpack dev server:', req.url);
 						return '/docs/api/index.html';
 					}
 					// Proxy API requests to backend
