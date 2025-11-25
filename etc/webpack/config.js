@@ -255,7 +255,16 @@ module.exports = function(webpackEnv) {
 					// sourceMap: shouldUseSourceMap, // TerserPlugin v5 respects devtool
 				}),
 				// This is only used in production mode
-				new CssMinimizerPlugin(),
+				new CssMinimizerPlugin({
+					minimizerOptions: {
+						preset: [
+							'default',
+							{
+								discardComments: { removeAll: true },
+							},
+						],
+					},
+				}),
 			],
 			// Automatically split vendor and commons
 			// https://twitter.com/wSokra/status/969633336732905474
