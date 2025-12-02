@@ -50,16 +50,6 @@
 
 	<!-- Styles -->
 	<style id="mui-ssr-styles"></style>
-
-	<!-- Set theme from cookie before page renders to avoid flash (dev only - in production, backend SSR handles this) -->
-	<script>
-		(function() {
-			var theme = document.cookie.split('; ').find(function(row) { return row.startsWith('theme='); });
-			if (theme) {
-				document.documentElement.setAttribute('data-theme', theme.split('=')[1]);
-			}
-		})();
-	</script>
 </head>
 <body>
 	<noscript>
