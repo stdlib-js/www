@@ -36,7 +36,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
-const WebpackManifestPlugin = require('webpack-manifest-plugin').WebpackManifestPlugin;
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
@@ -169,7 +169,7 @@ module.exports = function(webpackEnv) {
 			// We include the app code last so that if there is a runtime error during
 			// initialization, it doesn't blow up the WebpackDevServer client, and
 			// changing JS code would still trigger a refresh.
-		],
+		].filter(Boolean),
 		output: {
 			// The build folder.
 			path: paths.appBuild,
@@ -255,16 +255,7 @@ module.exports = function(webpackEnv) {
 					// sourceMap: shouldUseSourceMap, // TerserPlugin v5 respects devtool
 				}),
 				// This is only used in production mode
-				new CssMinimizerPlugin({
-					minimizerOptions: {
-						preset: [
-							'default',
-							{
-								discardComments: { removeAll: true },
-							},
-						],
-					},
-				}),
+				new CssMinimizerPlugin(),
 			],
 			// Automatically split vendor and commons
 			// https://twitter.com/wSokra/status/969633336732905474
@@ -363,6 +354,7 @@ module.exports = function(webpackEnv) {
 								),
 
 								plugins: [
+									isEnvDevelopment && require.resolve('react-refresh/babel'),
 									[
 										require.resolve('babel-plugin-named-asset-import'),
 										{
@@ -373,7 +365,7 @@ module.exports = function(webpackEnv) {
 												},
 											},
 										},
-									],
+									].filter(Boolean),
 								],
 								// This is a feature of `babel-loader` for webpack (not Babel itself).
 								// It enables caching results in ./node_modules/.cache/babel-loader/
@@ -582,7 +574,7 @@ module.exports = function(webpackEnv) {
 						handler: 'NetworkFirst'
 					}]
 				}),
-		],
+		].filter(Boolean),
 		// Some libraries import Node modules but don't use them in the browser.
 		// Tell Webpack to provide empty mocks for them so importing them works.
 
