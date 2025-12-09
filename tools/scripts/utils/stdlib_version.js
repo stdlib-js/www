@@ -55,7 +55,7 @@ function version() {
 		throw new Error( 'unexpected error. Unexpected package name. Name: `'+pkg.name+'`.' );
 	}
 
-	return process.env.STDLIB_OUTPUT_DIR ?? 'latest'; // 'v' + pkg.version;
+	return process.env.STDLIB_DOCS_DIRNAME ?? 'latest'; // 'v' + pkg.version;
 }
 
 
