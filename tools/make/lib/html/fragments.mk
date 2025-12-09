@@ -31,6 +31,6 @@ pkg_html_fragments ?= $(TOOLS_DIR)/scripts/api-docs/html_fragments.js
 # make pkg-html-fragments
 #/
 pkg-html-fragments: $(NODE_MODULES) $(pkg_html_fragments)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(pkg_html_fragments)"
+	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_DIRNAME="$(STDLIB_DOCS_DIRNAME)" $(NODE) "$(pkg_html_fragments)"
 
 .PHONY: pkg-html-fragments

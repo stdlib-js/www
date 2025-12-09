@@ -73,12 +73,9 @@ class ClientApp extends React.Component {
 		pathname = loc.pathname;
 
 		// Extract the version from the current window location...
-		i = pathname.indexOf( config.mount ) + config.mount.length;
-		j = pathname.substring( i ).indexOf( '/' );
-		if ( j === -1 ) {
-			version = '';
-		} else {
-			version = pathname.substring( i, i+j );
+		const pathParts = pathname.split( '/' );
+		if ( pathname.startsWith( config.mount ) && pathParts.length ) {
+			version = pathParts[ pathParts.length - 1 ];
 		}
 		// If the extracted version is not supported, default to the latest supported version...
 		if ( !version || !config.versions.includes( version ) || version === 'latest' ) {

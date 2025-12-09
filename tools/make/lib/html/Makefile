@@ -31,6 +31,6 @@ include $(TOOLS_MAKE_LIB_DIR)/html/minify.mk
 # make pkg-html
 #/
 pkg-html: pkg-html-fragments
-	$(QUIET) NODE_PATH="$(NODE_PATH)" HTML_FILTER='.*/docs/api/latest/\@stdlib/.*' $(MAKE) -f $(this_file) html-minify
+	$(QUIET) NODE_PATH="$(NODE_PATH)" HTML_FILTER='.*/docs/api/$(STDLIB_DOCS_DIRNAME)/\@stdlib/.*' $(MAKE) -f $(this_file) html-minify
 
 .PHONY: pkg-html
