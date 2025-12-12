@@ -85,6 +85,7 @@
     "@mui/material": "^5.0.1",
     "@mui/styles": "^5.0.1",
     "@stdlib/assert": "^0.3.3",
+    "@stdlib/error": "^0.3.3",
     "@stdlib/fs": "^0.3.3",
     "@stdlib/process": "^0.3.3",
     "@stdlib/string": "^0.3.3",
