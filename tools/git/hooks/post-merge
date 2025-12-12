@@ -72,7 +72,7 @@ clean_node_deps() {
 # Installs Node.js module dependencies.
 install_node_deps() {
 	echo 'Installing Node.js module dependencies...'
-	make install
+	npm install
 }
 
 # Main execution sequence.

@@ -17,11 +17,9 @@
   "scripts": {
     "build": "make build",
     "clean": "make clean",
-    "install:dev": "npm run install:prod",
-    "install:prod": "make install",
-    "start": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules NODE_ENV=production node ./server/index.js",
-    "start-dev": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules NODE_ENV=development node ./server/index.js",
-    "start-watch": "NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules NODE_ENV=development PORT=8000 node ./etc/webpack/start_dev_server.js",
+    "start": "NODE_ENV=production node ./server/index.js",
+    "start-dev": "NODE_ENV=development node ./server/index.js",
+    "start-watch": "NODE_ENV=development PORT=8000 node ./etc/webpack/start_dev_server.js",
     "restart": "make api-docs-app && make css-minify && npm run start",
     "restart-dev": "make api-docs-app && make css-minify && npm run start-dev"
   },

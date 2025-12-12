@@ -21,27 +21,6 @@
 # Define the path to the root `package.json`:
 ROOT_PACKAGE_JSON ?= $(ROOT_DIR)/package.json
 
-
-# VARIABLES #
-
-#/
-# Installs package dependencies by executing [`npm install`][1].
-#
-# ## Notes
-#
-# -   Packages will be installed in a local `node_modules` directory relative to the project's `package.json` file.
-#
-# [1]: https://docs.npmjs.com/cli/install
-#
-# @example
-# make install-node
-#/
-install-node: $(ROOT_PACKAGE_JSON)
-	$(QUIET) $(NPM) install
-	$(QUIET) $(GIT) clone https://github.com/stdlib-js/stdlib.git --depth=1 --branch=develop "$(NODE_MODULES)/@stdlib/stdlib" && cd "$(NODE_MODULES)/@stdlib/stdlib" && make install-node-modules
-
-.PHONY: install-node
-
 #/
 # Cleans the `node_modules` directory by removing it entirely.
 #

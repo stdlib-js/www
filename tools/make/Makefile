@@ -29,7 +29,6 @@ include $(TOOLS_MAKE_LIB_DIR)/css/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/debug/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/docs/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/html/Makefile
-include $(TOOLS_MAKE_LIB_DIR)/install/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/ls/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/notes/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/tests/Makefile
