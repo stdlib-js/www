@@ -58,6 +58,7 @@ class ClientApp extends React.Component {
 	*/
 	constructor( props ) {
 		var allowCookies;
+		var afterMount;
 		var pathname;
 		var version;
 		var cookies;
@@ -74,9 +75,10 @@ class ClientApp extends React.Component {
 
 		// Extract the version from the current window location...
 		if ( pathname.startsWith( config.mount ) ) {
-			// Remove the mount prefix (e.g., '/docs/api/')
-			const afterMount = pathname.substring( config.mount.length );
-			// Get the first segment (the version), up to the next '/'
+			// Remove the mount prefix (e.g., '/docs/api/'):
+			afterMount = pathname.substring( config.mount.length );
+			
+			// Get the first segment (the version), up to the next '/':
 			version = afterMount.split( '/' )[0] || '';
 		} else {
 			version = '';

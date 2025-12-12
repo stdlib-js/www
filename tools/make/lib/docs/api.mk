@@ -18,16 +18,14 @@
 
 # VARIABLES #
 
-# Stdlib branch/tag to clone and build docs for:
+# Branch/tag to clone and build docs for:
 STDLIB_BRANCH ?= develop
 
 # Compute the output directory name from the branch:
-# - 'develop' branch maps to 'latest'
-# - Other branches have '/' replaced with '-' for safe paths
 ifeq ($(STDLIB_BRANCH),develop)
-  STDLIB_DOCS_FOLDER := latest
+	STDLIB_DOCS_FOLDER := latest
 else
-  STDLIB_DOCS_FOLDER := $(subst /,-,$(STDLIB_BRANCH))
+	STDLIB_DOCS_FOLDER := $(subst /,-,$(STDLIB_BRANCH))
 endif
 
 # Path where stdlib will be cloned:
