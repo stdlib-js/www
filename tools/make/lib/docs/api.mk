@@ -29,7 +29,7 @@ else
 endif
 
 # Path where stdlib will be cloned:
-STDLIB_PATH := $(NODE_MODULES)/@stdlib/stdlib
+STDLIB_PATH ?= $(NODE_MODULES)/@stdlib/stdlib
 
 
 # DEPENDENCIES #
