@@ -93,7 +93,7 @@ class PrintButton extends React.Component {
 		text += 'Copyright (c) 2016-'+( new Date() ).getFullYear()+' The Stdlib Authors.';
 		text += '</p>';
 		text += '<p>';
-		text += 'If you have any questions, please join the discussion on <a href="'+config.gitter+'">Gitter</a>.';
+		text += 'If you have any questions, please join the discussion on <a href="'+config.zulip+'">Zulip</a>.';
 		text += '</p>';
 
 		this._$footer.innerHTML = text;
