@@ -25,9 +25,9 @@ STDLIB_BRANCH ?= develop
 # - 'develop' branch maps to 'latest'
 # - Other branches have '/' replaced with '-' for safe paths
 ifeq ($(STDLIB_BRANCH),develop)
-  STDLIB_DOCS_DIRNAME := latest
+  STDLIB_DOCS_FOLDER := latest
 else
-  STDLIB_DOCS_DIRNAME := $(subst /,-,$(STDLIB_BRANCH))
+  STDLIB_DOCS_FOLDER := $(subst /,-,$(STDLIB_BRANCH))
 endif
 
 # Path where stdlib will be cloned:
@@ -53,7 +53,7 @@ include $(TOOLS_MAKE_LIB_DIR)/docs/typescript.mk
 # make clone-stdlib-version STDLIB_BRANCH=v0.2.0
 #/
 clone-stdlib-version:
-	$(QUIET) echo "Cloning stdlib branch: $(STDLIB_BRANCH) -> $(STDLIB_DOCS_DIRNAME)"
+	$(QUIET) echo "Cloning stdlib branch: $(STDLIB_BRANCH) -> $(STDLIB_DOCS_FOLDER)"
 	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(STDLIB_PATH)
 	$(QUIET) $(GIT) clone https://github.com/stdlib-js/stdlib.git --depth=1 --branch=$(STDLIB_BRANCH) "$(STDLIB_PATH)"
 	$(QUIET) cd "$(STDLIB_PATH)" && $(MAKE) install-node-modules

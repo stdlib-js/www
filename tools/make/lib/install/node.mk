@@ -22,6 +22,23 @@
 ROOT_PACKAGE_JSON ?= $(ROOT_DIR)/package.json
 
 #/
+# Installs package dependencies by executing [`npm install`][1].
+#
+# ## Notes
+#
+# -   Packages will be installed in a local `node_modules` directory relative to the project's `package.json` file.
+#
+# [1]: https://docs.npmjs.com/cli/install
+#
+# @example
+# make install-node
+#/
+install-node: $(ROOT_PACKAGE_JSON)
+	$(QUIET) $(NPM) install
+
+.PHONY: install-node
+
+#/
 # Cleans the `node_modules` directory by removing it entirely.
 #
 # @example

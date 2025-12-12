@@ -18,19 +18,17 @@
 
 # DEPENDENCIES #
 
-include $(TOOLS_MAKE_LIB_DIR)/html/fragments.mk
-include $(TOOLS_MAKE_LIB_DIR)/html/minify.mk
+include $(TOOLS_MAKE_LIB_DIR)/install/node.mk
 
 
 # RULES #
 
 #/
-# Builds package HTML files.
+# Runs the project's install process.
 #
 # @example
-# make pkg-html
+# make install
 #/
-pkg-html: pkg-html-fragments
-	$(QUIET) NODE_PATH="$(NODE_PATH)" HTML_FILTER='.*/docs/api/$(STDLIB_DOCS_FOLDER)/\@stdlib/.*' $(MAKE) -f $(this_file) html-minify
+install: install-node
 
-.PHONY: pkg-html
+.PHONY: install

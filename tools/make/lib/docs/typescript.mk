@@ -27,7 +27,7 @@
 api-docs-ts: $(NODE_MODULES) clean-api-docs-ts
 	$(QUIET) cd $(NODE_MODULES)/@stdlib/stdlib && $(MAKE) typedoc-html
 	$(QUIET) cd $(ROOT_DIR)
-	$(QUIET) mv $(NODE_MODULES)/@stdlib/stdlib/build/docs/typedoc/static $(WWW_DIR)/docs/ts/$(STDLIB_DOCS_DIRNAME)
+	$(QUIET) mv $(NODE_MODULES)/@stdlib/stdlib/build/docs/typedoc/static $(WWW_DIR)/docs/ts/$(STDLIB_DOCS_FOLDER)
 
 .PHONY: api-docs-ts
 
@@ -38,6 +38,6 @@ api-docs-ts: $(NODE_MODULES) clean-api-docs-ts
 # make clean-api-docs-ts
 #/
 clean-api-docs-ts:
-	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(WWW_DIR)/docs/ts/$(STDLIB_DOCS_DIRNAME)
+	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(WWW_DIR)/docs/ts/$(STDLIB_DOCS_FOLDER)
 
 .PHONY: clean-api-docs-ts

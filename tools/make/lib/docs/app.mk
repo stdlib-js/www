@@ -31,7 +31,7 @@ api_docs_app ?= $(TOOLS_DIR)/scripts/api-docs/app.js
 # make api-docs-app
 #/
 api-docs-app: $(NODE_MODULES) $(api_docs_app) clean-api-docs-app
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_DIRNAME="$(STDLIB_DOCS_DIRNAME)" $(NODE) "$(api_docs_app)"
+	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_app)"
 
 .PHONY: api-docs-app
 
