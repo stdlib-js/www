@@ -25,9 +25,9 @@ STDLIB_BRANCH ?= develop
 # - 'develop' branch maps to 'latest'
 # - Other branches have '/' replaced with '-' for safe paths
 ifeq ($(STDLIB_BRANCH),develop)
-  STDLIB_DOCS_DIRNAME := latest
+	STDLIB_DOCS_DIRNAME := latest
 else
-  STDLIB_DOCS_DIRNAME := $(subst /,-,$(STDLIB_BRANCH))
+	STDLIB_DOCS_DIRNAME := $(subst /,-,$(STDLIB_BRANCH))
 endif
 
 # Path where stdlib will be cloned:
