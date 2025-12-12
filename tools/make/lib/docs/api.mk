@@ -22,8 +22,6 @@
 STDLIB_BRANCH ?= develop
 
 # Compute the output directory name from the branch:
-# - 'develop' branch maps to 'latest'
-# - Other branches have '/' replaced with '-' for safe paths
 ifeq ($(STDLIB_BRANCH),develop)
 	STDLIB_DOCS_DIRNAME := latest
 else
