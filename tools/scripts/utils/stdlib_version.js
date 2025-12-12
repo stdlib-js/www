@@ -54,7 +54,7 @@ function version() {
 		// Somehow we did not resolve the `package.json` file for `@stdlib/stdlib`...
 		throw new Error( 'unexpected error. Unexpected package name. Name: `'+pkg.name+'`.' );
 	}
-	return 'latest'; // 'v' + pkg.version;
+	return process.env.STDLIB_DOCS_FOLDER || 'latest'; // 'v' + pkg.version;
 }
 
 

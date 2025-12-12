@@ -40,7 +40,7 @@ Building the website **requires** the following prerequisites:
 To install dependencies,
 
 ```bash
-$ make install
+$ npm install
 ```
 
 * * *

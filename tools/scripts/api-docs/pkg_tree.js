@@ -49,7 +49,9 @@ function main() {
 
 	dir = documentationPath();
 	if ( !exists( join( dir, 'package' ) ) ) {
-		mkdir( join( dir, 'package' ) );
+		mkdir( join( dir, 'package' ), {
+			'recursive': true
+		});
 	}
 	// Resolve a package tree:
 	opts = {

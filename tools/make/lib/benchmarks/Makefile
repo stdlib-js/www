@@ -31,6 +31,6 @@ pkg_benchmarks ?= $(TOOLS_DIR)/scripts/api-docs/benchmarks.js
 # make pkg-benchmarks
 #/
 pkg-benchmarks: $(NODE_MODULES) $(pkg_benchmarks)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" $(NODE) "$(pkg_benchmarks)"
+	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(pkg_benchmarks)"
 
 .PHONY: pkg-benchmarks
