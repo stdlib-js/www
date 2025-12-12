@@ -18,7 +18,7 @@
 
 # VARIABLES #
 
-# Stdlib branch/tag to clone and build docs for:
+# Branch/tag to clone and build docs for:
 STDLIB_BRANCH ?= develop
 
 # Compute the output directory name from the branch:
