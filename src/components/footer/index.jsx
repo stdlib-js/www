@@ -47,7 +47,7 @@ function Footer( props ) {
 				<span aria-hidden="true"> / </span>
 				<a href={ config.blog } title="Read our blog">Blog</a>
 				<span aria-hidden="true"> / </span>
-				<a href={ config.twitter } title="Follow us on Twitter!">Twitter</a>
+				<a href={ config.bluesky } title="Follow us on Bluesky!">Bluesky</a>
 				<span aria-hidden="true"> / </span>
 				<a href={ config.repository } title="Contribute to stdlib">Contribute</a>
 				<span aria-hidden="true"> / </span>

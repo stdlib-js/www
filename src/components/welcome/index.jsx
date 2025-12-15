@@ -59,7 +59,7 @@ function Welcome( props ) {
 				<section className="help" aria-label="getting help">
 					<h2>Getting Help</h2>
 					<p>
-						Ask questions and get help from the community on the project's <a href={ config.gitter }>Gitter</a> channel.
+						Ask questions and get help from the community on the project's <a href={ config.zulip }>Zulip</a> channel.
 					</p>
 				</section>
 				<section className="installation" aria-label="installation">
