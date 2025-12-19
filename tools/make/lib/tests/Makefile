@@ -30,7 +30,7 @@ api_docs_pkg_tests ?= $(TOOLS_DIR)/scripts/api-docs/tests.js
 # @example
 # make pkg-tests
 #/
-pkg-tests: $(NODE_MODULES) $(api_docs_pkg_tests)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_pkg_tests)"
+pkg-tests: $(NODE_MODULES) $(stdlib_path) $(api_docs_pkg_tests)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(api_docs_pkg_tests)"
 
 .PHONY: pkg-tests

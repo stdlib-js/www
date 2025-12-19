@@ -19,6 +19,7 @@
 # DEPENDENCIES #
 
 include $(TOOLS_MAKE_LIB_DIR)/install/node.mk
+include $(TOOLS_MAKE_LIB_DIR)/install/stdlib.mk
 
 
 # RULES #

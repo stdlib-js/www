@@ -5,7 +5,9 @@ Usage: make <cmd>
   make notes                  Search for code annotations.
   make list-files             List files.
   make install                Run install sequence.
+  make install-stdlib         Install stdlib for building stdlib documentation.
   make clean                  Run all cleanup tasks.
   make clean-node             Remove Node dependencies.
+  make clean-stdlib           Remove a stdlib installation.
   make inspect.VARIABLE       Print the runtime value of a VARIABLE.
   make assert.VARIABLE        Assert that a VARIABLE is set.

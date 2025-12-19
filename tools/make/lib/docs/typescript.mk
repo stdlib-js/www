@@ -24,10 +24,10 @@
 # @example
 # make api-docs-ts
 #/
-api-docs-ts: $(NODE_MODULES) clean-api-docs-ts
-	$(QUIET) cd $(NODE_MODULES)/@stdlib/stdlib && $(MAKE) typedoc-html
+api-docs-ts: $(NODE_MODULES) $(STDLIB_OUT) clean-api-docs-ts
+	$(QUIET) cd $(STDLIB_OUT) && $(MAKE) typedoc-html
 	$(QUIET) cd $(ROOT_DIR)
-	$(QUIET) mv $(NODE_MODULES)/@stdlib/stdlib/build/docs/typedoc/static $(WWW_DIR)/docs/ts/$(STDLIB_DOCS_FOLDER)
+	$(QUIET) mv $(STDLIB_OUT)/build/docs/typedoc/static $(WWW_DIR)/docs/ts/$(STDLIB_DOCS_FOLDER)
 
 .PHONY: api-docs-ts
 

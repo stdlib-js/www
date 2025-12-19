@@ -85,8 +85,11 @@ TMP_FOLDER ?= tmp
 CSS_FILENAME_EXT ?= css
 HTML_FILENAME_EXT ?= html
 
-# Define Node paths: (WARNING: we cannot use an absolute path here because of Webpack which only allows relative paths)
-NODE_PATH ?= ./node_modules/@stdlib/stdlib/lib/node_modules
+# Define Node paths:
+NODE_PATH ?=
+
+# Define the stdlib branch/tag for which we want to build docs:
+STDLIB_BRANCH ?= develop
 
 
 # DEPENDENCIES #

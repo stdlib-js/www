@@ -69,8 +69,8 @@ api-docs-resources: api-docs-pkg-tree api-docs-pkg-tree-array api-docs-pkg-list 
 # @example
 # make api-docs-pkg-tree
 #/
-api-docs-pkg-tree: $(NODE_MODULES) $(api_docs_pkg_tree)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_pkg_tree)"
+api-docs-pkg-tree: $(NODE_MODULES) $(stdlib_path) $(api_docs_pkg_tree)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(api_docs_pkg_tree)"
 
 .PHONY: api-docs-pkg-tree
 
@@ -80,8 +80,8 @@ api-docs-pkg-tree: $(NODE_MODULES) $(api_docs_pkg_tree)
 # @example
 # make api-docs-pkg-tree-array
 #/
-api-docs-pkg-tree-array: $(NODE_MODULES) $(api_docs_pkg_tree_array)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_pkg_tree_array)"
+api-docs-pkg-tree-array: $(NODE_MODULES) $(stdlib_path) $(api_docs_pkg_tree_array)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(api_docs_pkg_tree_array)"
 
 .PHONY: api-docs-pkg-tree-array
 
@@ -91,8 +91,8 @@ api-docs-pkg-tree-array: $(NODE_MODULES) $(api_docs_pkg_tree_array)
 # @example
 # make api-docs-pkg-list
 #/
-api-docs-pkg-list: $(NODE_MODULES) $(api_docs_pkg_list)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_pkg_list)"
+api-docs-pkg-list: $(NODE_MODULES) $(stdlib_path) $(api_docs_pkg_list)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(api_docs_pkg_list)"
 
 .PHONY: api-docs-pkg-list
 
@@ -102,8 +102,8 @@ api-docs-pkg-list: $(NODE_MODULES) $(api_docs_pkg_list)
 # @example
 # make api-docs-pkg-order
 #/
-api-docs-pkg-order: $(NODE_MODULES) $(api_docs_pkg_order)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_pkg_order)"
+api-docs-pkg-order: $(NODE_MODULES) $(stdlib_path) $(api_docs_pkg_order)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(api_docs_pkg_order)"
 
 .PHONY: api-docs-pkg-order
 
@@ -113,8 +113,8 @@ api-docs-pkg-order: $(NODE_MODULES) $(api_docs_pkg_order)
 # @example
 # make api-docs-pkg-desc
 #/
-api-docs-pkg-desc: $(NODE_MODULES) $(api_docs_pkg_desc)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_pkg_desc)"
+api-docs-pkg-desc: $(NODE_MODULES) $(stdlib_path) $(api_docs_pkg_desc)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(api_docs_pkg_desc)"
 
 .PHONY: api-docs-pkg-desc
 
@@ -124,8 +124,8 @@ api-docs-pkg-desc: $(NODE_MODULES) $(api_docs_pkg_desc)
 # @example
 # make api-docs-namespace-list
 #/
-api-docs-namespace-list: $(NODE_MODULES) $(api_docs_namespace_list)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_namespace_list)"
+api-docs-namespace-list: $(NODE_MODULES) $(stdlib_path) $(api_docs_namespace_list)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(api_docs_namespace_list)"
 
 .PHONY: api-docs-namespace-list
 
@@ -135,8 +135,8 @@ api-docs-namespace-list: $(NODE_MODULES) $(api_docs_namespace_list)
 # @example
 # make api-docs-pkg-search-index
 #/
-api-docs-pkg-search-index: $(NODE_MODULES) $(api_docs_pkg_search_index)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_pkg_search_index)"
+api-docs-pkg-search-index: $(NODE_MODULES) $(stdlib_path) $(api_docs_pkg_search_index)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(api_docs_pkg_search_index)"
 
 .PHONY: api-docs-pkg-search-index
 
@@ -146,8 +146,8 @@ api-docs-pkg-search-index: $(NODE_MODULES) $(api_docs_pkg_search_index)
 # @example
 # make api-docs-pkg-resources
 #/
-api-docs-pkg-resources: $(NODE_MODULES) $(api_docs_pkg_resources)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_pkg_resources)"
+api-docs-pkg-resources: $(NODE_MODULES) $(stdlib_path) $(api_docs_pkg_resources)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(api_docs_pkg_resources)"
 
 .PHONY: api-docs-pkg-resources
 
@@ -157,8 +157,8 @@ api-docs-pkg-resources: $(NODE_MODULES) $(api_docs_pkg_resources)
 # @example
 # make api-docs-pkg-data
 #/
-api-docs-pkg-data: $(NODE_MODULES) $(api_docs_pkg_data)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_pkg_data)"
+api-docs-pkg-data: $(NODE_MODULES) $(stdlib_path) $(api_docs_pkg_data)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(api_docs_pkg_data)"
 
 .PHONY: api-docs-pkg-data
 
@@ -168,7 +168,7 @@ api-docs-pkg-data: $(NODE_MODULES) $(api_docs_pkg_data)
 # @example
 # make api-docs-version-list
 #/
-api-docs-version-list: $(NODE_MODULES) $(api_docs_version_list)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(api_docs_version_list)"
+api-docs-version-list: $(NODE_MODULES) $(stdlib_path) $(api_docs_version_list)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(api_docs_version_list)"
 
 .PHONY: api-docs-version-list
