@@ -22,7 +22,20 @@
 * SOFTWARE.
 */
 
+/* eslint-disable */
+
 'use strict';
+
+// ===== //
+
+// The following content can be edited...
+
+var INDEX_HTML = 'docs/api/index.html';
+
+
+// == DO NOT EDIT == //
+
+// The following content likely should not be edited...
 
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
@@ -57,7 +70,7 @@ module.exports = function( proxy ) {
 			// Paths with dots should still use the history fallback.
 			// See https://github.com/facebook/create-react-app/issues/387.
 			disableDotRule: true,
-			index: 'docs/api/index.html'
+			index: INDEX_HTML
 		},
 		static: false,
 		hot: true,

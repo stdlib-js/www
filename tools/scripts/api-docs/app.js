@@ -26,6 +26,20 @@
 
 'use strict';
 
+// ===== //
+
+// The following content can be edited...
+
+var resolve = require( 'path' ).resolve;
+var root = require( './../utils/root.js' );
+
+var CONFIG_DIR = resolve( root(), 'etc', 'webpack', 'api-docs' );
+
+
+// == DO NOT EDIT == //
+
+// The following content likely should not be edited...
+
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'production';
 process.env.NODE_ENV = 'production';
@@ -38,13 +52,13 @@ process.on('unhandledRejection', err => {
 });
 
 // Ensure environment variables are read.
-require('../../../etc/webpack/env');
+require(CONFIG_DIR+'/env');
 
 const path = require('path');
 const chalk = require('react-dev-utils/chalk');
 const webpack = require('webpack');
-const configFactory = require('../../../etc/webpack/config');
-const paths = require('../../../etc/webpack/paths');
+const configFactory = require(CONFIG_DIR+'/config');
+const paths = require(CONFIG_DIR+'/paths');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const printHostingInstructions = require('react-dev-utils/printHostingInstructions');

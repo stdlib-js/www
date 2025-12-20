@@ -22,7 +22,21 @@
 * SOFTWARE.
 */
 
+/* eslint-disable */
+
 'use strict';
+
+// ===== //
+
+// The following content can be edited...
+
+var SERVE_PATH = '/docs/api/';
+var SERVE_PATH_HTML = SERVE_PATH+'index.html';
+
+
+// == DO NOT EDIT == //
+
+// The following content likely should not be edited...
 
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'development';
@@ -121,8 +135,8 @@ checkBrowsers(paths.appPath, isInteractive)
 						return req.url;
 					}
 					// Let webpack dev server handle SPA routes that start with /docs/api/
-					if (req.headers.accept && req.headers.accept.indexOf('html') !== -1 && req.url.startsWith('/docs/api/')) {
-						return '/docs/api/index.html';
+					if (req.headers.accept && req.headers.accept.indexOf('html') !== -1 && req.url.startsWith(SERVE_PATH)) {
+						return SERVE_PATH_HTML;
 					}
 					// Proxy API requests to backend
 					return null;

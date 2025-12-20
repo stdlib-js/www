@@ -22,7 +22,25 @@
 * SOFTWARE.
 */
 
+/* eslint-disable */
+
 'use strict';
+
+// ===== //
+
+// The following content can be edited...
+
+var PUBLIC_URL = 'https://stdlib.io';
+var MOUNT_PATH = 'public/docs/api';
+var SERVE_PATH = '/docs/api/';
+var SRC_PATH = 'src/api-docs';
+var SRC_PATH_HTML = SRC_PATH+'/index.html';
+var SRC_PATH_INDEX = SRC_PATH+'/index';
+
+
+// == DO NOT EDIT == //
+
+// The following content likely should not be edited...
 
 const path = require('path');
 const fs = require('fs');
@@ -62,17 +80,17 @@ const resolveModule = (resolveFn, filePath) => {
 // config after eject: we're in ./config/
 module.exports = {
 	dotenv: resolveApp('.env'),
-	appPath: resolveApp('public/docs/api'),
-	appBuild: resolveApp('public/docs/api'),
-	appPublic: resolveApp('public/docs/api'),
-	appHtml: resolveApp('src/index.html'),
-	appIndexJs: resolveModule(resolveApp, 'src/index'),
+	appPath: resolveApp(MOUNT_PATH),
+	appBuild: resolveApp(MOUNT_PATH),
+	appPublic: resolveApp(MOUNT_PATH),
+	appHtml: resolveApp(SRC_PATH_HTML),
+	appIndexJs: resolveModule(resolveApp, SRC_PATH_INDEX),
 	appPackageJson: resolveApp('package.json'),
-	appSrc: resolveApp('src'),
+	appSrc: resolveApp(SRC_PATH),
 	appJsConfig: resolveApp('jsconfig.json'),
 	appNodeModules: resolveApp('node_modules'),
-	publicUrl: 'https://stdlib.io',
-	servedPath: '/docs/api/'
+	publicUrl: PUBLIC_URL,
+	servedPath: SERVE_PATH
 };
 
 
