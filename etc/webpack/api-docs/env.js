@@ -22,6 +22,10 @@
 * SOFTWARE.
 */
 
+/* eslint-disable */
+
+// Note: this file should likely not need to be edited.
+
 'use strict';
 
 const fs = require('fs');

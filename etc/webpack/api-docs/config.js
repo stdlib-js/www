@@ -26,6 +26,18 @@
 
 'use strict';
 
+// ===== //
+
+// The following content can be edited...
+
+var resolve = require( 'path' ).resolve;
+var BUNDLE_REPORT_PATH = resolve( __dirname, '..', '..', '..', 'build', 'bundle_report.html' );
+
+
+// == DO NOT EDIT == //
+
+// The following content likely should not be edited...
+
 const isWsl = require('is-wsl');
 const path = require('path');
 const webpack = require('webpack');
@@ -470,7 +482,7 @@ module.exports = function(webpackEnv) {
 			new BundleAnalyzerPlugin({
 				'analyzerMode': 'static',
 				'openAnalyzer': false,
-				'reportFilename': path.resolve( __dirname, '..', '..', 'build', 'bundle_report.html' )
+				'reportFilename': BUNDLE_REPORT_PATH
 			}),
 
 			// Generates an `index.html` file with the <script> injected.
