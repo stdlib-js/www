@@ -20,42 +20,22 @@
 
 // MODULES //
 
-var resolve = require( 'resolve' ).sync;
-var resolveParentPath = require( '@stdlib/fs/resolve-parent-path' ).sync;
-var dirname = require( '@stdlib/utils/dirname' );
+var join = require( 'path' ).join;
+var ENV = require( '@stdlib/process/env' );
+var version = require( './stdlib_version.js' );
 var root = require( './root.js' );
 
 
 // MAIN //
 
 /**
-* Synchronously resolves the currently installed `@stdlib/stdlib` path.
+* Returns a path to a stdlib installation.
 *
 * @private
-* @throws {Error} unexpected error
 * @returns {string} package path
 */
 function path() {
-	var opts;
-	var main;
-	var pdir;
-
-	// Resolve the main `@stdlib/stdlib` entry point:
-	opts = {
-		'basedir': root()
-	};
-	main = resolve( '@stdlib/stdlib' );
-
-	// Resolve the `package.json`:
-	opts = {
-		'dir': dirname( main )
-	};
-	pdir = resolveParentPath( 'package.json', opts );
-	if ( pdir instanceof Error ) {
-		throw pdir;
-	}
-	// Return the package path:
-	return dirname( pdir );
+	return ENV.STDLIB_DIR || join( root(), 'tmp', 'stdlib', version() );
 }
 
 

@@ -20,41 +20,19 @@
 
 // MODULES //
 
-var join = require( 'path' ).join;
-var readJSON = require( '@stdlib/fs/read-json' ).sync;
-var stdlibPath = require( './stdlib_path.js' );
+var ENV = require( '@stdlib/process/env' );
 
 
 // MAIN //
 
 /**
-* Synchronously resolves the currently installed `@stdlib/stdlib` version.
+* Returns the stdlib version for which to build documentation.
 *
 * @private
-* @throws {Error} unexpected error
-* @returns {string} package version
+* @returns {string} version
 */
 function version() {
-	var opts;
-	var pdir;
-	var pkg;
-
-	// Resolve the `@stdlib/stdlib` installation directory:
-	pdir = stdlibPath();
-
-	// Read the `package.json`:
-	opts = {
-		'encoding': 'utf8'
-	};
-	pkg = readJSON( join( pdir, 'package.json' ), opts );
-	if ( pkg instanceof Error ) {
-		throw pkg;
-	}
-	if ( pkg.name !== '@stdlib/stdlib' ) {
-		// Somehow we did not resolve the `package.json` file for `@stdlib/stdlib`...
-		throw new Error( 'unexpected error. Unexpected package name. Name: `'+pkg.name+'`.' );
-	}
-	return process.env.STDLIB_DOCS_FOLDER || 'latest'; // 'v' + pkg.version;
+	return ENV.STDLIB_VERSION || 'latest';
 }
 
 

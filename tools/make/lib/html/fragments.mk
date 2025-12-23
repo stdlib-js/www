@@ -30,7 +30,7 @@ pkg_html_fragments ?= $(TOOLS_DIR)/scripts/api-docs/html_fragments.js
 # @example
 # make pkg-html-fragments
 #/
-pkg-html-fragments: $(NODE_MODULES) $(pkg_html_fragments)
-	$(QUIET) NODE_PATH="$(NODE_PATH)" STDLIB_DOCS_FOLDER="$(STDLIB_DOCS_FOLDER)" $(NODE) "$(pkg_html_fragments)"
+pkg-html-fragments: $(NODE_MODULES) $(stdlib_path) $(pkg_html_fragments)
+	$(QUIET) NODE_PATH="$(stdlib_path)" STDLIB_DIR="$(STDLIB_OUT)" STDLIB_VERSION="$(stdlib_docs_folder)" $(NODE) "$(pkg_html_fragments)"
 
 .PHONY: pkg-html-fragments

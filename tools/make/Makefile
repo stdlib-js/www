@@ -56,7 +56,7 @@ all: help
 # @example
 # make clean
 #/
-clean: clean-node clean-docs
+clean: clean-node clean-docs clean-stdlib
 	$(QUIET) $(DELETE) $(DELETE_FLAGS) $(BUILD_DIR)
 
 .PHONY: clean
