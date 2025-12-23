@@ -30,7 +30,8 @@ import Head from './head.jsx';
 var THEMES = [
 	// value, display_name
 	'light', 'Light',
-	'dark', 'Dark'
+	'dark', 'Dark',
+	'auto', 'Auto'
 ];
 
 var MODES = [
@@ -84,7 +85,8 @@ class Settings extends React.Component {
 
 		this.state = {
 			// Boolean indicating whether the settings menu is open or closed:
-			'open': false
+			'open': false,
+			'selectedTheme': props.theme
 		};
 	}
 
@@ -127,7 +129,14 @@ class Settings extends React.Component {
 	* @param {Object} event - event object
 	*/
 	_onThemeChange = ( event ) => {
-		this.props.onThemeChange( event.target.value );
+		const selectedTheme = event.target.value;
+		let effectiveTheme = selectedTheme;
+		if(selectedTheme === 'auto'){
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			effectiveTheme = prefersDark ? 'dark' : 'light';
+		}
+		this.setState({ selectedTheme });
+		this.props.onThemeChange(effectiveTheme);
 	}
 
 	/**
@@ -246,7 +255,7 @@ class Settings extends React.Component {
 						className="settings-select"
 						onChange={ this._onThemeChange }
 					>
-						{ this._renderOptions( THEMES, this.props.theme ) }
+						{ this._renderOptions( THEMES, this.state.selectedTheme ) }
 					</select>
 					<div className="settings-select-custom">
 						<ChevronDownIcon className="settings-select-custom-icon"/>
