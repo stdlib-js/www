@@ -88,7 +88,7 @@
     "@stdlib/process": "^0.3.3",
     "@stdlib/string": "^0.3.3",
     "@stdlib/utils": "^0.3.3",
-    "fastify": "^3.29.0",
+    "fastify": "^3.29.4",
     "ignore-styles": "^5.0.1",
     "lunr": "^2.3.9",
     "prop-types": "^15.8.1",
