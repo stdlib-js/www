@@ -19,9 +19,8 @@
 // MODULES //
 
 import React, { Fragment } from 'react';
-import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
+import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import qs from 'qs';
-import substringBeforeLast from '@stdlib/string/substring-before-last';
 import log from 'log';
 import resetScroll from 'reset-scroll';
 import viewportWidth from 'viewport-width';
@@ -36,54 +35,13 @@ import routes from './routes.js';
 
 var RE_INTERNAL_URL = new RegExp( '^'+config.mount );
 var RE_SEARCH_URL = /\/search\/?/;
-var RE_FORWARD_SLASH = /\//g;
 
 var SIDE_MENU_TIMEOUT = 1000; // milliseconds
-
-var ROUTE_LIST = [
-	// Note: order matters...
-	routes.SEARCH,
-	routes.HELP,
-	routes.DEFAULT
-];
 
 var RENDER_METHOD_NAMES = {
 	'welcome': '_renderWelcome',
 	'search': '_renderSearch'
 };
-
-
-// FUNCTIONS //
-
-/**
-* Parses the current URL path.
-*
-* @private
-* @param {string} pathname - current URL path
-* @param {string} version - default documentation version
-* @returns {(Object|null)} parse results
-*/
-function matchCurrentPath( pathname, version ) {
-	var match;
-	var i;
-
-	// Try to find the matching route...
-	for ( i = 0; i < ROUTE_LIST.length; i++ ) {
-		match = matchPath( pathname, {
-			'path': ROUTE_LIST[ i ],
-			'exact': true
-		});
-		if ( match ) {
-			return match;
-		}
-	}
-	// Default to landing page:
-	return {
-		'path': routes.DEFAULT,
-		'url': pathname,
-		'params': {}
-	};
-}
 
 
 // MAIN //
@@ -191,10 +149,6 @@ class App extends React.Component {
 	* @param {string} query - search query
 	*/
 	_onSearchChange = ( query ) => {
-		var self;
-
-		self = this;
-
 		// Update the component state:
 		this.setState({
 			'query': query

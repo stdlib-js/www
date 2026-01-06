@@ -25,7 +25,6 @@ import qs from 'qs';
 import getCookies from 'get-cookies';
 import cookieString from 'cookie-string';
 import resetScroll from 'reset-scroll';
-import log from 'log';
 import config from 'config';
 import App from './app.jsx';
 
@@ -54,7 +53,6 @@ class ClientApp extends React.Component {
 	*/
 	constructor( props ) {
 		var allowCookies;
-		var pathname;
 		var cookies;
 		var query;
 		var loc;
@@ -64,7 +62,6 @@ class ClientApp extends React.Component {
 
 		// Retrieve the current window location:
 		loc = window.location;
-		pathname = loc.pathname;
 
 		// Resolve an initial search query, if present...
 		query = loc.search || '';
