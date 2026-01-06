@@ -1,0 +1,566 @@
+/**
+* @license Apache-2.0
+*
+* Copyright (c) 2026 The Stdlib Authors.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+// MODULES //
+
+import React, { Fragment } from 'react';
+import { Route, Redirect, Switch, matchPath, withRouter } from 'react-router-dom';
+import qs from 'qs';
+import substringBeforeLast from '@stdlib/string/substring-before-last';
+import log from 'log';
+import resetScroll from 'reset-scroll';
+import viewportWidth from 'viewport-width';
+import config from 'config';
+import Head from 'components/head/new_page.jsx';
+import Welcome from './components/welcome/index.jsx';
+import Footer from './components/footer/index.jsx';
+import routes from './routes.js';
+
+
+// VARIABLES //
+
+var RE_INTERNAL_URL = new RegExp( '^'+config.mount );
+var RE_SEARCH_URL = /\/search\/?/;
+var RE_FORWARD_SLASH = /\//g;
+
+var SIDE_MENU_TIMEOUT = 1000; // milliseconds
+
+var ROUTE_LIST = [
+	// Note: order matters...
+	routes.SEARCH,
+	routes.HELP,
+	routes.DEFAULT
+];
+
+var RENDER_METHOD_NAMES = {
+	'welcome': '_renderWelcome',
+	'search': '_renderSearch'
+};
+
+
+// FUNCTIONS //
+
+/**
+* Parses the current URL path.
+*
+* @private
+* @param {string} pathname - current URL path
+* @param {string} version - default documentation version
+* @returns {(Object|null)} parse results
+*/
+function matchCurrentPath( pathname, version ) {
+	var match;
+	var i;
+
+	// Try to find the matching route...
+	for ( i = 0; i < ROUTE_LIST.length; i++ ) {
+		match = matchPath( pathname, {
+			'path': ROUTE_LIST[ i ],
+			'exact': true
+		});
+		if ( match ) {
+			return match;
+		}
+	}
+	// Default to landing page:
+	return {
+		'path': routes.DEFAULT,
+		'url': pathname,
+		'params': {}
+	};
+}
+
+
+// MAIN //
+
+/**
+* Component for rendering the main application.
+*
+* @private
+*/
+class App extends React.Component {
+	/**
+	* Returns a component which renders the main application.
+	*
+	* @constructor
+	* @param {Object} props - component properties
+	* @param {boolean} props.isClient - boolean indicating whether the application is being rendered on the server or the client
+	* @param {Object} props.history - history object for navigation
+	* @param {boolean} props.allowSettingsCookies - boolean indicating whether to allow the use of cookies for storing settings
+	* @param {string} props.theme - documentation theme
+	* @param {string} props.query - initial search query
+	* @param {(string|Object)} props.content - initial content
+	* @param {Callback} props.onVersionChange - callback to invoke upon changing the documentation version
+	* @param {Callback} props.onAllowSettingsCookiesChange - callback to invoke upon changing the setting indicating whether to allow cookies for storing settings
+	* @param {Callback} props.onThemeChange - callback to invoke upon changing the documentation theme
+	* @returns {ReactComponent} React component
+	*/
+	constructor( props ) {
+		// Register component properties:
+		super( props );
+
+		// Set the initial component state:
+		this.state = {
+			// Search query:
+			'query': props.query || '',
+
+			// Boolean indicating whether to show the side menu:
+			'sideMenu': false,
+
+			// Boolean indicating whether keyboard shortcuts are active:
+			'shortcuts': true,
+
+			// Boolean indicating whether a notification is currently displayed:
+			'notification': props.location.search.indexOf( 'notification' ) >= 0
+		};
+
+		// Previous (non-search) location (e.g., used for navigating to previous page after closing search results):
+		this._prevLocation = config.mount; // default is landing page
+
+		// Create a `ref` to point to a DOM element for resetting focus on page change:
+		this._focusRef = React.createRef();
+	}
+
+	/**
+	* Callback invoked upon toggling the side menu.
+	*
+	* @private
+	* @param {boolean} bool - boolean indicating whether the side menu is open or closed
+	*/
+	_onSideMenuToggle = ( bool ) => {
+		this.setState({
+			'sideMenu': bool
+		});
+	}
+
+	/**
+	* Callback invoked upon clicking on README content.
+	*
+	* ## Notes
+	*
+	* -   This `click` handler intercepts hyperlink navigation in order to notify the application router and ensure that internal documentation navigation does not trigger a fresh page load.
+	*
+	* @private
+	* @param {Object} event - event object
+	* @returns {void}
+	*/
+	_onReadmeClick = ( event ) => {
+		var target;
+		var href;
+
+		// Find the nearest parent anchor element:
+		target = event.target.closest( 'a' );
+		if ( !target ) {
+			return;
+		}
+		// Allow links to external resources to proceed unhindered:
+		href = target.getAttribute( 'href' );
+		if ( RE_INTERNAL_URL.test( href ) === false ) {
+			return;
+		}
+		// Check that the user is navigating to a different page:
+		if ( href === this.props.history.location.pathname ) {
+			return;
+		}
+		// Prevent the application from navigating to a page via a fresh page load:
+		event.preventDefault();
+
+		// Notify the router that the user has navigated to a different page:
+		this.props.history.push( href );
+	}
+
+	/**
+	* Callback invoked upon updating a search input element.
+	*
+	* @private
+	* @param {string} query - search query
+	*/
+	_onSearchChange = ( query ) => {
+		var self;
+
+		self = this;
+
+		// Update the component state:
+		this.setState({
+			'query': query
+		});
+
+		// If we do not currently have a search index, try to eagerly create one...
+		// fetchSearchData( done ); // FIXME: uncomment once search is supported
+
+		/**
+		* Callback invoked upon retrieving search data.
+		*
+		* @private
+		* @param {(Error|null)} error - error object
+		* @returns {void}
+		*/
+		function done( error ) {
+			if ( error ) {
+				return log( error );
+			}
+		}
+	}
+
+	/**
+	* Callback invoked upon submitting a search query.
+	*
+	* @private
+	* @returns {void}
+	*/
+	_onSearchSubmit = () => {
+		var path;
+
+		// Check whether a user has entered a search query...
+		if ( this.state.query === '' ) {
+			return;
+		}
+		// If we are coming from a non-search page, cache the current location...
+		path = this.props.location.pathname;
+		if ( RE_SEARCH_URL.test( path ) === false ) {
+			this._prevLocation = path;
+		}
+		// Resolve a search URL based on the search query:
+		path = config.mount + 'search?q=' + encodeURIComponent( this.state.query );
+
+		// Manually update the history to trigger navigation to the search page:
+		this.props.history.push( path );
+	}
+
+	/**
+	* Callback invoked upon closing search results.
+	*
+	* @private
+	*/
+	_onSearchClose = () => {
+		// Manually update the history to trigger navigation to a previous (non-search) page:
+		this.props.history.push( this._prevLocation );
+
+		// Update the component state:
+		this.setState({
+			'query': '' // reset the search input element
+		});
+	}
+
+	/**
+	* Callback invoked when the search input element receives focus.
+	*
+	* @private
+	*/
+	_onSearchFocus = () => {
+		// Whenever the search input element receives focus, we want to disable keyboard shortcuts:
+		this.setState({
+			'shortcuts': false
+		});
+	}
+
+	/**
+	* Callback invoked when the search input element loses focus.
+	*
+	* @private
+	*/
+	_onSearchBlur = () => {
+		// Whenever the search input element loses focus, we can enable keyboard shortcuts:
+		this.setState({
+			'shortcuts': true
+		});
+	}
+
+	/**
+	* Callback invoked when the side menu filter receives focus.
+	*
+	* @private
+	*/
+	_onFilterFocus = () => {
+		// Whenever the side menu filter receives focus, we want to disable keyboard shortcuts:
+		this.setState({
+			'shortcuts': false
+		});
+	}
+
+	/**
+	* Callback invoked when the side menu filter loses focus.
+	*
+	* @private
+	*/
+	_onFilterBlur = () => {
+		// Whenever the side menu filter loses focus, we can enable keyboard shortcuts:
+		this.setState({
+			'shortcuts': true
+		});
+	}
+
+	/**
+	* Closes a notification.
+	*
+	* @private
+	*/
+	_closeNotification = () => {
+		this.setState({
+			'notification': false
+		});
+	}
+
+	/**
+	* Callback invoked upon closing help page.
+	*
+	* @private
+	*/
+	_onHelpClose = () => {
+		// Manually update the history to trigger navigation to a previous page:
+		this.props.history.goBack();
+	}
+
+	/**
+	* Renders top navigation.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	_renderTopNav() {
+		// TODO
+	}
+
+	/**
+	* Renders a README.
+	*
+	* @private
+	* @param {Object} match - match object
+	* @param {string} match.url - resource URL
+	* @param {Object} match.params - URL parameters
+	* @returns {ReactElement} React element
+	*/
+	_renderReadme( match ) {
+		// TODO
+	}
+
+	/**
+	* Renders landing page content.
+	*
+	* @private
+	* @param {Object} match - match object
+	* @param {string} match.url - resource URL
+	* @param {Object} match.params - URL parameters
+	* @returns {ReactElement} React element
+	*/
+	_renderWelcome( match ) {
+		return (
+			<Fragment>
+				<Head
+					title={ config.title }
+					description={ config.description }
+					url={ match.url }
+				/>
+				<Welcome />
+			</Fragment>
+		);
+	}
+
+	/**
+	* Renders search results.
+	*
+	* @private
+	* @param {Object} match - match object
+	* @param {string} match.url - resource URL
+	* @param {Object} match.params - URL parameters
+	* @returns {ReactElement} React element
+	*/
+	_renderSearch( match ) {
+		var query = this.props.location.search || '';
+		if ( query ) {
+			query = qs.parse( query, {
+				'ignoreQueryPrefix': true
+			});
+			query = query.q || '';
+		}
+		return (
+			<Fragment>
+				<Head
+					title='Search'
+					description={ config.description }
+					url={ match.url }
+				/>
+				<p>TODO</p>
+			</Fragment>
+		);
+	}
+
+	/**
+	* Renders a help page.
+	*
+	* @private
+	* @param {Object} match - match object
+	* @param {string} match.url - resource URL
+	* @returns {ReactElement} React element
+	*/
+	_renderHelp( match ) {
+		return (
+			<Fragment>
+				<Head
+					title='Help'
+					description={ config.description }
+					url={ match.url }
+				/>
+				<p>TODO</p>
+			</Fragment>
+		);
+	}
+
+	/**
+	* Returns a rendering function.
+	*
+	* @private
+	* @param {string} content - content type
+	* @returns {Function} rendering function
+	*/
+	_renderer( content ) {
+		var method;
+		var self;
+
+		self = this;
+		method = RENDER_METHOD_NAMES[ content ];
+
+		return render;
+
+		/**
+		* Renders the main content.
+		*
+		* @private
+		* @param {Object} props - route properties
+		* @param {Object} props.match - match object
+		* @returns {ReactElement} React element
+		*/
+		function render( props ) {
+			return (
+				<Fragment>
+					<div className="skip-links" tabIndex="-1" ref={ self._focusRef } role="navigation" aria-label="Skip links post nav">
+						<a className="skip-link" href="#main">Skip to main content</a>
+						<a className="skip-link" href="#top-nav-search">Skip to search</a>
+						<a className="skip-link" href="#top-nav-menu">Skip to top navigation</a>
+						<a className="skip-link" href="#side-menu-list">Skip to side menu</a>
+						<a className="skip-link" href="#bottom-nav">Skip to bottom navigation</a>
+					</div>
+					<main
+						id="main"
+						className={ 'main '+( ( self.state.sideMenu ) ? 'translate-right' : '' ) }
+						aria-live="polite"
+						aria-atomic="true"
+					>
+						{ self[ method ]( props.match ) }
+					</main>
+				</Fragment>
+			);
+		}
+	}
+
+	/**
+	* Callback invoked immediately after mounting a component (i.e., is inserted into a tree).
+	*
+	* @private
+	*/
+	componentDidMount() {
+		var self;
+		var bool;
+		var w;
+
+		self = this;
+
+		// Query the current viewport width:
+		w = viewportWidth();
+
+		// Default to showing the side menu, except on smaller devices:
+		bool = Boolean( w && ( w >= 1080 ) );
+
+		// Delay showing the side menu in order to avoid a flash:
+		setTimeout( onTimeout, SIDE_MENU_TIMEOUT );
+
+		/**
+		* Callback invoked after a specified duration.
+		*
+		* @private
+		*/
+		function onTimeout() {
+			self.setState({
+				'sideMenu': bool
+			});
+		}
+	}
+
+	/**
+	* Callback invoked immediately after updating a component.
+	*
+	* @private
+	* @param {Object} prevProps - previous properties
+	* @param {Object} prevState - previous state
+	*/
+	componentDidUpdate( prevProps, prevState ) {
+		// Whenever we navigate to a new page, reset the window scroll position and focus...
+		if ( this.props.location !== prevProps.location ) {
+			resetScroll();
+			if ( this._focusRef.current ) {
+				this._focusRef.current.focus();
+			}
+			if (
+				this.props.location.search !== prevProps.location.search &&
+				!prevState.notification
+			) {
+				this.setState({
+					'notification': this.props.location.search.indexOf( 'notification' ) >= 0
+				});
+			}
+		}
+	}
+
+	/**
+	* Renders the component.
+	*
+	* @private
+	* @returns {ReactElement} React element
+	*/
+	render() {
+		return (
+			<Fragment>
+				{ this._renderTopNav() }
+				<Switch>
+					<Route
+						exact
+						path={ routes.SEARCH }
+						render={ this._renderer( 'search' ) }
+					/>
+					<Route
+						exact
+						path={ routes.HELP }
+						render={ this._renderer( 'help' ) }
+					/>
+					<Route
+						exact
+						path={ routes.DEFAULT }
+						render={ this._renderer( 'welcome' ) }
+					/>
+					<Redirect to={ config.mount } />
+				</Switch>
+				<Footer />
+			</Fragment>
+		);
+	}
+}
+
+
+// EXPORTS //
+
+export default withRouter( App );

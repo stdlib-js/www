@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ THEME }}" >
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+	<title>{{ TITLE }}</title>
+
+	<meta name="description" content="{{ DESCRIPTION }}" data-rh="true">
+	<meta name="author" content="stdlib">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<!-- Only send the origin in the Referer header (e.g., https://stdlib.io/docs/api => https://stdlib.io; see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy) -->
+	<meta name="referrer" content="origin">
+
+	<!-- Stylesheets -->
+	<link rel="preload" as="font" type="font/woff2" href="/css/common/fonts/lato/latin/LatoLatin-Light.woff2" crossorigin>
+	<link rel="preload" as="font" type="font/woff2" href="/css/common/fonts/lato/latin/LatoLatin-LightItalic.woff2" crossorigin>
+	<link rel="stylesheet" type="text/css" href="/css/docs/bundle.min.css">
+
+	<!-- Links -->
+	<link rel="canonical" href="https://stdlib.io{{ URL }}" data-rh="true">
+
+	<!-- Icons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="theme-color" content="#ffffff">
+
+	<!-- Facebook Open Graph -->
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="stdlib">
+	<meta property="og:url" content="https://stdlib.io{{ URL }}" data-rh="true">
+	<meta property="og:title" content="{{ TITLE }}" data-rh="true">
+	<meta property="og:description" content="{{ DESCRIPTION }}" data-rh="true">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:image" content="">
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="{{ TITLE }}" data-rh="true">
+	<meta name="twitter:site" content="@stdlibjs">
+	<meta name="twitter:url" content="https://stdlib.io{{ URL }}" data-rh="true">
+	<meta name="twitter:title" content="stdlib">
+	<meta name="twitter:description" content="{{ DESCRIPTION }}" data-rh="true">
+	<meta name="twitter:image" content="">
+
+	<!-- Styles -->
+	<style id="mui-ssr-styles"></style>
+</head>
+<body>
+	<noscript>
+		Please enable JavaScript in order to run this web application.
+	</noscript>
+	<div class="skip-links" role="navigation" aria-label="Skip links pre nav">
+		<a class="skip-link" href="#main">Skip to main content</a>
+		<a class="skip-link" href="#top-nav-search">Skip to search</a>
+		<a class="skip-link" href="#top-nav-menu">Skip to top navigation</a>
+		<a class="skip-link" href="#side-menu-list">Skip to side menu</a>
+		<a class="skip-link" href="#bottom-nav">Skip to bottom navigation</a>
+	</div>
+	<div id="root"></div>
+	<!--
+		This HTML file is a template. If you open it directly in the browser, you will see an empty page.
+
+		You can add webfonts, meta tags, or analytics to this file. The build step will place the bundled scripts into the <body> tag.
+	-->
+	<script type="text/javascript">
+		/* TODO: add analytics */
+	</script>
+</body>
+</html>
