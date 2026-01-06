@@ -21,7 +21,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import pkgPath from 'pkg-doc-path';
-import ExpandMoreIcon from 'components/icons/expand_more.jsx';
+import ExpandMoreIcon from './../../icons/expand_more.jsx';
 import Benchmarks from './benchmarks.jsx';
 import Docs from './docs.jsx';
 import Home from './home.jsx';

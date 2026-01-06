@@ -23,7 +23,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import pkgPath from 'pkg-doc-path';
 import config from 'config';
-import LogoIcon from 'components/icons/logo.jsx';
+import LogoIcon from './../icons/logo.jsx';
 
 
 // VARIABLES //

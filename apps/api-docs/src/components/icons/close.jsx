@@ -1,7 +1,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2019 The Stdlib Authors.
+* Copyright (c) 2021 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,44 +19,24 @@
 // MODULES //
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import config from 'config';
-import EditIcon from './../icons/edit.jsx';
 
 
 // MAIN //
 
 /**
-* Component for rendering a link to edit a README on GitHub.
+* Component for rendering a close icon.
 *
 * @private
 * @param {Object} props - component properties
-* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @returns {ReactElement} React element
 */
-function EditLink( props ) {
+function CloseIcon( props ) {
 	return (
-		<a
-			href={ config.repository + '/edit/develop/lib/node_modules/@stdlib/' + props.pkg + '/README.md' }
-		>
-			<EditIcon />Edit on GitHub
-		</a>
+		<svg className="icon close-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 24 24" focusable="false" aria-hidden="true" {...props}><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
 	);
 }
-
-/**
-* Component property types.
-*
-* @constant
-* @name propTypes
-* @memberof EditLink
-* @type {Object}
-*/
-EditLink.propTypes = {
-	'pkg': PropTypes.string.isRequired
-};
 
 
 // EXPORTS //
 
-export default EditLink;
+export default CloseIcon;

@@ -30,7 +30,7 @@ import pkg2title from 'pkg2title';
 import randomInt from 'random-integer';
 import OFFSETS from 'pkg-resource-offsets';
 import config from 'config';
-import Head from 'components/head/new_page.jsx';
+import Head from './components/head/new_page.jsx';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
 import Readme from './components/readme/index.jsx';

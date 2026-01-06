@@ -1,7 +1,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2019 The Stdlib Authors.
+* Copyright (c) 2021 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,44 +19,24 @@
 // MODULES //
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import config from 'config';
-import EditIcon from './../icons/edit.jsx';
 
 
 // MAIN //
 
 /**
-* Component for rendering a link to edit a README on GitHub.
+* Component for rendering an edit icon.
 *
 * @private
 * @param {Object} props - component properties
-* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @returns {ReactElement} React element
 */
-function EditLink( props ) {
+function EditIcon( props ) {
 	return (
-		<a
-			href={ config.repository + '/edit/develop/lib/node_modules/@stdlib/' + props.pkg + '/README.md' }
-		>
-			<EditIcon />Edit on GitHub
-		</a>
+		<svg className="icon edit-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 24 24" focusable="false" aria-hidden="true" {...props}><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg>
 	);
 }
-
-/**
-* Component property types.
-*
-* @constant
-* @name propTypes
-* @memberof EditLink
-* @type {Object}
-*/
-EditLink.propTypes = {
-	'pkg': PropTypes.string.isRequired
-};
 
 
 // EXPORTS //
 
-export default EditLink;
+export default EditIcon;

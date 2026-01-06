@@ -24,7 +24,7 @@ import PropTypes from 'prop-types';
 import fetchMessage from 'fetch-error-message';
 import pkgPath from 'pkg-doc-path';
 import log from 'log';
-import ClearIcon from 'components/icons/close.jsx';
+import ClearIcon from './../icons/close.jsx';
 import NotFound from './../not-found/index.jsx';
 
 

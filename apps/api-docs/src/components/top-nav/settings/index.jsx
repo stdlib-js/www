@@ -20,8 +20,8 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import GearIcon from 'components/icons/gear.jsx';
-import ChevronDownIcon from 'components/icons/chevron_down.jsx';
+import GearIcon from './../../icons/gear.jsx';
+import ChevronDownIcon from './../../icons/chevron_down.jsx';
 import Head from './head.jsx';
 
 

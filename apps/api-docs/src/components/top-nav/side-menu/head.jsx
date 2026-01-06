@@ -22,8 +22,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import config from 'config';
-import Logo from 'components/logo/index.jsx';
-import ChevronLeftIcon from 'components/icons/chevron_left.jsx';
+import Logo from './../../logo/index.jsx';
+import ChevronLeftIcon from './../../icons/chevron_left.jsx';
 
 
 // MAIN //

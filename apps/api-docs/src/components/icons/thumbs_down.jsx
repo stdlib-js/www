@@ -1,7 +1,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2019 The Stdlib Authors.
+* Copyright (c) 2021 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,44 +19,24 @@
 // MODULES //
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import config from 'config';
-import EditIcon from './../icons/edit.jsx';
 
 
 // MAIN //
 
 /**
-* Component for rendering a link to edit a README on GitHub.
+* Component for rendering a thumbs down icon.
 *
 * @private
 * @param {Object} props - component properties
-* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @returns {ReactElement} React element
 */
-function EditLink( props ) {
+function ThumbsDownIcon( props ) {
 	return (
-		<a
-			href={ config.repository + '/edit/develop/lib/node_modules/@stdlib/' + props.pkg + '/README.md' }
-		>
-			<EditIcon />Edit on GitHub
-		</a>
+		<svg className="icon thumbs-down-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 24 24" focusable="false" aria-hidden="true" {...props}><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path></svg>
 	);
 }
-
-/**
-* Component property types.
-*
-* @constant
-* @name propTypes
-* @memberof EditLink
-* @type {Object}
-*/
-EditLink.propTypes = {
-	'pkg': PropTypes.string.isRequired
-};
 
 
 // EXPORTS //
 
-export default EditLink;
+export default ThumbsDownIcon;

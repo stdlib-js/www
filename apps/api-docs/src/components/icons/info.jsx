@@ -1,7 +1,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2019 The Stdlib Authors.
+* Copyright (c) 2021 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,44 +19,24 @@
 // MODULES //
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import config from 'config';
-import EditIcon from './../icons/edit.jsx';
 
 
 // MAIN //
 
 /**
-* Component for rendering a link to edit a README on GitHub.
+* Component for rendering an info icon.
 *
 * @private
 * @param {Object} props - component properties
-* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @returns {ReactElement} React element
 */
-function EditLink( props ) {
+function InfoIcon( props ) {
 	return (
-		<a
-			href={ config.repository + '/edit/develop/lib/node_modules/@stdlib/' + props.pkg + '/README.md' }
-		>
-			<EditIcon />Edit on GitHub
-		</a>
+		<svg className="icon info-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 24 24" focusable="false" aria-hidden="true" {...props}><path d="M11,7 L13,7 L13,9 L11,9 z M11,11 L13,11 L13,17 L11,17 z M12,2 C6.48,2 2,6.48 2,12 C2,17.52 6.48,22 12,22 C17.52,22 22,17.52 22,12 C22,6.48 17.52,2 12,2 z M12,20 C7.59,20 4,16.41 4,12 C4,7.59 7.59,4 12,4 C16.41,4 20,7.59 20,12 C20,16.41 16.41,20 12,20 z"/></svg>
 	);
 }
-
-/**
-* Component property types.
-*
-* @constant
-* @name propTypes
-* @memberof EditLink
-* @type {Object}
-*/
-EditLink.propTypes = {
-	'pkg': PropTypes.string.isRequired
-};
 
 
 // EXPORTS //
 
-export default EditLink;
+export default InfoIcon;

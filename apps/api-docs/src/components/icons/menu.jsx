@@ -1,7 +1,7 @@
 /**
 * @license Apache-2.0
 *
-* Copyright (c) 2019 The Stdlib Authors.
+* Copyright (c) 2021 The Stdlib Authors.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -19,44 +19,24 @@
 // MODULES //
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import config from 'config';
-import EditIcon from './../icons/edit.jsx';
 
 
 // MAIN //
 
 /**
-* Component for rendering a link to edit a README on GitHub.
+* Component for rendering a menu icon.
 *
 * @private
 * @param {Object} props - component properties
-* @param {string} props.pkg - package name (e.g., `math/base/special/sin`)
 * @returns {ReactElement} React element
 */
-function EditLink( props ) {
+function MenuIcon( props ) {
 	return (
-		<a
-			href={ config.repository + '/edit/develop/lib/node_modules/@stdlib/' + props.pkg + '/README.md' }
-		>
-			<EditIcon />Edit on GitHub
-		</a>
+		<svg className="icon menu-icon" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 24 24" focusable="false" aria-hidden="true" {...props}><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
 	);
 }
-
-/**
-* Component property types.
-*
-* @constant
-* @name propTypes
-* @memberof EditLink
-* @type {Object}
-*/
-EditLink.propTypes = {
-	'pkg': PropTypes.string.isRequired
-};
 
 
 // EXPORTS //
 
-export default EditLink;
+export default MenuIcon;

@@ -21,7 +21,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import InputBase from '@mui/material/InputBase'; // FIXME: replace; use native HTML
-import SearchIcon from 'components/icons/search.jsx';
+import SearchIcon from './../icons/search.jsx';
 
 
 // MAIN //
