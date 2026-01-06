@@ -22,8 +22,8 @@
 
 var path = require( 'path' );
 var httpServer = require( './../lib/server' );
-var config = require( './../src/node_modules/config' );
-var App = require( './../src/server.jsx' ).default;
+var config = require( './../src/api-docs/node_modules/config' );
+var App = require( './../src/api-docs/server.jsx' ).default;
 
 
 // VARIABLES //
