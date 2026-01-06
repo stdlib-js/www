@@ -1,0 +1,15 @@
+{
+  "address": "127.0.0.1",
+  "logger": false,
+  "port": 0,
+  "prefix": "/",
+  "root": "",
+  "static": "",
+  "trustProxy": false,
+  "ignoreTrailingSlash": true,
+  "app": {
+    "title": "Developer Documentation | stdlib",
+    "description": "Developer documentation for stdlib, the fundamental numerical and scientific computing library for JavaScript and TypeScript.",
+    "theme": "light"
+  }
+}
