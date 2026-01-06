@@ -18,9 +18,9 @@
 
 # DEPENDENCIES #
 
-include $(TOOLS_MAKE_LIB_DIR)/docs/app.mk
-include $(TOOLS_MAKE_LIB_DIR)/docs/app_resources.mk
-include $(TOOLS_MAKE_LIB_DIR)/docs/typescript.mk
+include $(TOOLS_MAKE_LIB_DIR)/docs/api/app.mk
+include $(TOOLS_MAKE_LIB_DIR)/docs/api/app_resources.mk
+include $(TOOLS_MAKE_LIB_DIR)/docs/api/typescript.mk
 
 
 # RULES #
