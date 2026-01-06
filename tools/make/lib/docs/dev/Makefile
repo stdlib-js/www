@@ -1,7 +1,7 @@
 #/
 # @license Apache-2.0
 #
-# Copyright (c) 2021 The Stdlib Authors.
+# Copyright (c) 2026 The Stdlib Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,28 +18,27 @@
 
 # DEPENDENCIES #
 
-include $(TOOLS_MAKE_LIB_DIR)/docs/api/Makefile
-include $(TOOLS_MAKE_LIB_DIR)/docs/dev/Makefile
+include $(TOOLS_MAKE_LIB_DIR)/docs/dev/app.mk
 
 
 # RULES #
 
 #/
-# Builds documentation.
+# Builds the developer documentation.
 #
 # @example
-# make docs
+# make dev-docs
 #/
-docs: api-docs dev-docs
+dev-docs: dev-docs-app
 
-.PHONY: docs
+.PHONY: dev-docs
 
 #/
-# Removes documentation artifacts.
+# Deletes developer documentation artifacts.
 #
 # @example
-# make clean-docs
+# make clean-dev-docs
 #/
-clean-docs: clean-api-docs clean-dev-docs
+clean-dev-docs: clean-dev-docs-app
 
-.PHONY: clean-docs
+.PHONY: clean-dev-docs
