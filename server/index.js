@@ -18,6 +18,9 @@
 
 // MAIN //
 
+// Load environment variables from .env.local:
+require( 'dotenv' ).config({ path: '.env.local' });
+
 // @babel/register hook to ignore imported style files when running in Node.js:
 require( 'ignore-styles' );
 

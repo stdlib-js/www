@@ -1,18 +1,21 @@
 {
   "files": {
-    "main.js": "/docs/api/static/js/main.9da52304.chunk.js",
-    "main.js.map": "/docs/api/static/js/main.9da52304.chunk.js.map",
-    "runtime-main.js": "/docs/api/static/js/runtime-main.28fd50f1.js",
-    "runtime-main.js.map": "/docs/api/static/js/runtime-main.28fd50f1.js.map",
-    "static/js/2.f02b9aa0.chunk.js": "/docs/api/static/js/2.f02b9aa0.chunk.js",
-    "static/js/2.f02b9aa0.chunk.js.map": "/docs/api/static/js/2.f02b9aa0.chunk.js.map",
-    "index.html": "/docs/api/index.html",
-    "precache-manifest.50a9ea8399fbbfb4dbfb708fcd76003e.js": "/docs/api/precache-manifest.50a9ea8399fbbfb4dbfb708fcd76003e.js",
-    "service-worker.js": "/docs/api/service-worker.js"
+    "main.js": "/docs/static/js/main.c138e389.js",
+    "runtime-main.js": "/docs/static/js/runtime-main.6cde86de.js",
+    "static/js/830.a47b91a5.js": "/docs/static/js/830.a47b91a5.js",
+    "workbox-eed74ff1.js.map": "/docs/workbox-eed74ff1.js.map",
+    "workbox-eed74ff1.js": "/docs/workbox-eed74ff1.js",
+    "index.html": "/docs/index.html",
+    "service-worker.js.map": "/docs/service-worker.js.map",
+    "service-worker.js": "/docs/service-worker.js",
+    "static/media/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;": "/docs/static/media/1feff74faaf0efc6a044.1feff74f",
+    "main.c138e389.js.map": "/docs/static/js/main.c138e389.js.map",
+    "runtime-main.6cde86de.js.map": "/docs/static/js/runtime-main.6cde86de.js.map",
+    "830.a47b91a5.js.map": "/docs/static/js/830.a47b91a5.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.28fd50f1.js",
-    "static/js/2.f02b9aa0.chunk.js",
-    "static/js/main.9da52304.chunk.js"
+    "static/js/runtime-main.6cde86de.js",
+    "static/js/830.a47b91a5.js",
+    "static/js/main.c138e389.js"
   ]
 }

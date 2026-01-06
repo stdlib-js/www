@@ -1,0 +1,20 @@
+{
+  "method": "GET",
+  "url": "/docs/versions.json",
+  "schema": {
+    "response": {
+      "200": {
+        "type": "object",
+        "properties": {
+          "versions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "handler": null
+}

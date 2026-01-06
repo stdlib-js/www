@@ -64,7 +64,7 @@ function main() {
 		'port': PORT,
 		'prefix': [
 			// Note: number of prefixes must equal the number of static directories...
-			'/docs/api/static/',
+			'/docs/static/',
 			'/css/',
 			'/js/',
 			'/img/'

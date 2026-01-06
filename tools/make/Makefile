@@ -32,6 +32,7 @@ include $(TOOLS_MAKE_LIB_DIR)/html/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/install/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/ls/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/notes/Makefile
+include $(TOOLS_MAKE_LIB_DIR)/r2/Makefile
 include $(TOOLS_MAKE_LIB_DIR)/tests/Makefile
 
 

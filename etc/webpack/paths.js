@@ -72,7 +72,7 @@ module.exports = {
 	appJsConfig: resolveApp('jsconfig.json'),
 	appNodeModules: resolveApp('node_modules'),
 	publicUrl: 'https://stdlib.io',
-	servedPath: '/docs/api/'
+	servedPath: '/docs/'
 };
 
 
