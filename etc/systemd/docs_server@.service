@@ -28,7 +28,7 @@ Type=simple
 Environment="NODE_ENV=production"
 Environment="NODE_PATH=./node_modules/@stdlib/stdlib/lib/node_modules"
 WorkingDirectory=/srv/www/stdlib.io
-ExecStart=/usr/bin/node ./server/index.js
+ExecStart=/usr/bin/node ./srv/api-docs/index.js
 Restart=always
 RestartSec=500ms
 StartLimitInterval=0
