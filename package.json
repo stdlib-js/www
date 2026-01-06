@@ -17,11 +17,24 @@
   "scripts": {
     "build": "make build",
     "clean": "make clean",
-    "start": "NODE_ENV=production node ./srv/api-docs/index.js",
-    "start-dev": "NODE_ENV=development node ./srv/api-docs/index.js",
-    "start-watch": "NODE_ENV=development PORT=8000 node ./etc/webpack/api-docs/start_dev_server.js",
-    "restart": "make api-docs-app && make css-minify && npm run start",
-    "restart-dev": "make api-docs-app && make css-minify && npm run start-dev"
+
+    "start": "npm run api-docs:start",
+    "start-dev": "npm run api-docs:start-dev",
+    "start-watch": "npm run api-docs:start-watch",
+    "restart": "npm run api-docs:restart",
+    "restart-dev": "npm run api-docs:restart-dev",
+
+    "api-docs:start": "NODE_ENV=production node ./srv/api-docs/index.js",
+    "api-docs:start-dev": "NODE_ENV=development node ./srv/api-docs/index.js",
+    "api-docs:start-watch": "NODE_ENV=development PORT=8000 node ./etc/webpack/api-docs/start_dev_server.js",
+    "api-docs:restart": "make api-docs-app && make css-minify && npm run start",
+    "api-docs:restart-dev": "make api-docs-app && make css-minify && npm run start-dev",
+
+    "dev-docs:start": "NODE_ENV=production node ./srv/dev-docs/index.js",
+    "dev-docs:start-dev": "NODE_ENV=development node ./srv/dev-docs/index.js",
+    "dev-docs:start-watch": "NODE_ENV=development PORT=8001 node ./etc/webpack/dev-docs/start_dev_server.js",
+    "dev-docs:restart": "make dev-docs-app && make css-minify && npm run start",
+    "dev-docs:restart-dev": "make dev-docs-app && make css-minify && npm run start-dev"
   },
   "main": "",
   "repository": {
