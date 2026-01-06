@@ -26,7 +26,7 @@ require( 'ignore-styles' );
 // Register `require` hooks to allow import JSX and other non-standard Node.js behavior when dynamically compiling the React-based web application:
 require( '@babel/register' )({
 	ignore: [ /(node_modules)/ ],
-	root: './server',
+	root: './srv/dev-docs',
 	plugins: [
 		'@babel/plugin-transform-react-jsx',
 		'@babel/plugin-proposal-function-bind',
