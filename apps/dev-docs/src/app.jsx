@@ -26,7 +26,7 @@ import log from 'log';
 import resetScroll from 'reset-scroll';
 import viewportWidth from 'viewport-width';
 import config from 'config';
-import Head from 'components/head/new_page.jsx';
+import Head from './components/head/new_page.jsx';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
 import routes from './routes.js';
