@@ -17,8 +17,8 @@
   "scripts": {
     "build": "make build",
     "clean": "make clean",
-    "start": "NODE_ENV=production node ./server/index.js",
-    "start-dev": "NODE_ENV=development node ./server/index.js",
+    "start": "NODE_ENV=production node ./server/api-docs/index.js",
+    "start-dev": "NODE_ENV=development node ./server/api-docs/index.js",
     "start-watch": "NODE_ENV=development PORT=8000 node ./etc/webpack/api-docs/start_dev_server.js",
     "restart": "make api-docs-app && make css-minify && npm run start",
     "restart-dev": "make api-docs-app && make css-minify && npm run start-dev"

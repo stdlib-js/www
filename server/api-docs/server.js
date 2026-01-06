@@ -23,14 +23,14 @@
 // MODULES //
 
 var path = require( 'path' );
-var httpServer = require( './../lib/server' );
-var config = require( './../src/api-docs/node_modules/config' );
-var App = require( './../src/api-docs/server.jsx' ).default;
+var httpServer = require( './../../lib/server' );
+var config = require( './../../src/api-docs/node_modules/config' );
+var App = require( './../../src/api-docs/server.jsx' ).default;
 
 
 // VARIABLES //
 
-var PUBLIC_DIR = path.resolve( __dirname, '..', 'public' );
+var PUBLIC_DIR = path.resolve( __dirname, '..', '..', 'public' );
 var BUILD_DIR = path.join( PUBLIC_DIR, 'docs', 'api' );
 var PORT = 3000;
 
