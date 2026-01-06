@@ -65,7 +65,6 @@ class ClientApp extends React.Component {
 		var query;
 		var loc;
 		var i;
-		var j;
 
 		super( props );
 
