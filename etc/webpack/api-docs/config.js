@@ -31,7 +31,7 @@
 // The following content can be edited...
 
 var resolve = require( 'path' ).resolve;
-var BUNDLE_REPORT_PATH = resolve( __dirname, '..', '..', '..', 'build', 'bundle_report.html' );
+var BUNDLE_REPORT_PATH = resolve( __dirname, '..', '..', '..', 'build', 'api_docs_bundle_report.html' );
 
 
 // == DO NOT EDIT == //
