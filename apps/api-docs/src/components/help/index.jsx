@@ -20,7 +20,7 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import ClearIcon from './../icons/close.jsx';
+import ClearIcon from 'components/icons/close.jsx';
 
 
 // MAIN //

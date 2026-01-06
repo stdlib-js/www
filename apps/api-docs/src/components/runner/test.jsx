@@ -22,7 +22,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import log from 'log';
 import config from 'config';
-import LogoIcon from './../icons/logo.jsx';
+import LogoIcon from 'components/icons/logo.jsx';
 
 
 // VARIABLES //

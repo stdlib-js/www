@@ -20,7 +20,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import CloseIcon from './../../icons/close.jsx';
+import CloseIcon from 'components/icons/close.jsx';
 
 
 // MAIN //

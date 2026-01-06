@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 
-# Documentation Server
+# API Documentation Server
 
 > Create an HTTP server for serving API documentation.
 

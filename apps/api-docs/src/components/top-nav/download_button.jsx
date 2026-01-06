@@ -23,8 +23,8 @@ import PropTypes from 'prop-types';
 import fetchDownloadData from 'fetch-download-data';
 import download from 'download-assets';
 import log from 'log';
-import DownloadIcon from './../icons/download.jsx';
-import CancelIcon from './../icons/close.jsx';
+import DownloadIcon from 'components/icons/download.jsx';
+import CancelIcon from 'components/icons/close.jsx';
 
 
 // MAIN //

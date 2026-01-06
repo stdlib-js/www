@@ -20,7 +20,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import MenuIcon from './../../icons/menu.jsx';
+import MenuIcon from 'components/icons/menu.jsx';
 
 
 // MAIN //

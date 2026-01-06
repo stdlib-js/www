@@ -29,8 +29,8 @@ import pkgPath from 'pkg-doc-path';
 import pkgKind from 'pkg-kind';
 import pkgBasename from 'pkg-basename';
 import log from 'log';
-import LogoIcon from './../icons/logo.jsx';
-import ClearIcon from './../icons/close.jsx';
+import LogoIcon from 'components/icons/logo.jsx';
+import ClearIcon from 'components/icons/close.jsx';
 
 
 // MAIN //

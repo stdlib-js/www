@@ -21,7 +21,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import config from 'config';
-import PrintIcon from './../icons/print.jsx';
+import PrintIcon from 'components/icons/print.jsx';
 
 
 // MAIN //

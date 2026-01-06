@@ -19,7 +19,7 @@
 // MODULES //
 
 import React from 'react';
-import Logo from './../logo/index.jsx';
+import Logo from 'components/logo/index.jsx';
 
 
 // MAIN //

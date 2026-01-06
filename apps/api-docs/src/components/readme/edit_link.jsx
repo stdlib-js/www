@@ -21,7 +21,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import config from 'config';
-import EditIcon from './../icons/edit.jsx';
+import EditIcon from 'components/icons/edit.jsx';
 
 
 // MAIN //

@@ -22,8 +22,8 @@ import React, { Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
-import ThumbsUpIcon from './../icons/thumbs_up.jsx';
-import ThumbsDownIcon from './../icons/thumbs_down.jsx';
+import ThumbsUpIcon from 'components/icons/thumbs_up.jsx';
+import ThumbsDownIcon from 'components/icons/thumbs_down.jsx';
 
 
 // MAIN //
