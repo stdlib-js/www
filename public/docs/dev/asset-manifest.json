@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/docs/dev/static/js/main.9304ef95.js",
+    "runtime-main.js": "/docs/dev/static/js/runtime-main.d25431c1.js",
+    "static/js/795.34fdbd22.js": "/docs/dev/static/js/795.34fdbd22.js",
+    "workbox-eed74ff1.js.map": "/docs/dev/workbox-eed74ff1.js.map",
+    "workbox-eed74ff1.js": "/docs/dev/workbox-eed74ff1.js",
+    "index.html": "/docs/dev/index.html",
+    "service-worker.js.map": "/docs/dev/service-worker.js.map",
+    "service-worker.js": "/docs/dev/service-worker.js",
+    "static/media/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;": "/docs/dev/static/media/1feff74faaf0efc6a044.1feff74f",
+    "main.9304ef95.js.map": "/docs/dev/static/js/main.9304ef95.js.map",
+    "runtime-main.d25431c1.js.map": "/docs/dev/static/js/runtime-main.d25431c1.js.map",
+    "795.34fdbd22.js.map": "/docs/dev/static/js/795.34fdbd22.js.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d25431c1.js",
+    "static/js/795.34fdbd22.js",
+    "static/js/main.9304ef95.js"
+  ]
+}
