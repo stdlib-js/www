@@ -27,7 +27,7 @@ limitations under the License.
 ## Usage
 
 ```javascript
-var httpServer = require( '@stdlib/_tools/docs/www/server' );
+var httpServer = require( 'path/to/apps/api-docs/server' );
 ```
 
 #### httpServer( \[options] )

@@ -23,9 +23,9 @@
 // MODULES //
 
 var path = require( 'path' );
-var httpServer = require( './../../lib/server' );
-var config = require( './../../src/api-docs/node_modules/config' );
-var App = require( './../../src/api-docs/server.jsx' ).default;
+var httpServer = require( './../../apps/api-docs/server' );
+var config = require( './../../apps/api-docs/src/node_modules/config' );
+var App = require( './../../apps/api-docs/src/server.jsx' ).default;
 
 
 // VARIABLES //

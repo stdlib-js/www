@@ -33,7 +33,7 @@
 var PUBLIC_URL = 'https://stdlib.io';
 var MOUNT_PATH = 'public/docs/api';
 var SERVE_PATH = '/docs/api/';
-var SRC_PATH = 'src/api-docs';
+var SRC_PATH = 'apps/api-docs/src';
 var SRC_PATH_HTML = SRC_PATH+'/index.html';
 var SRC_PATH_INDEX = SRC_PATH+'/index';
 

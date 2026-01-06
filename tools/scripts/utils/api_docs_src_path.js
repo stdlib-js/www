@@ -18,37 +18,25 @@
 
 'use strict';
 
-/**
-* Create an HTTP server for serving API documentation.
-*
-* @module @stdlib/_tools/docs/www/server
-*
-* @example
-* var httpServer = require( '@stdlib/_tools/docs/www/server' );
-* var App = require( 'my-app' );
-*
-* var opts = {
-*     'port': 7331,
-*     'address': '0.0.0.0'
-* };
-* var createServer = httpServer( opts );
-*
-* function done( error, fastify ) {
-*     if ( error ) {
-*         return console.error( error.message );
-*     }
-*     console.log( 'Success!' );
-*     fastify.close();
-* }
-*
-* createServer( App, done );
-*/
-
 // MODULES //
 
-var main = require( './main.js' );
+var join = require( 'path' ).join;
+var root = require( './root.js' );
+
+
+// MAIN //
+
+/**
+* Returns the API documentation source path.
+*
+* @private
+* @returns {string} source path
+*/
+function path() {
+	return join( root(), 'apps', 'api-docs', 'src' );
+}
 
 
 // EXPORTS //
 
-module.exports = main;
+module.exports = path;
