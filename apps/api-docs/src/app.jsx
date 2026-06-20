@@ -175,6 +175,36 @@ class App extends React.Component {
 	}
 
 	/**
+	* Callback invoked upon a new page view.
+	*
+	* @private
+	* @returns {void}
+	*/
+	_onNewPageView = () => {
+		// Ensure we are currently in a browser context...
+		if ( typeof window === 'undefined' || typeof document === 'undefined' ) {
+			return;
+		}
+		// Delay sending an event to the analytics backend to allow logic for updating browser history and the document `<head>` to complete:
+		window.requestAnimationFrame( clbk );
+
+		/**
+		* Callback invoked upon the next animation frame.
+		*
+		* @private
+		*/
+		function clbk() {
+			// Send an event to the analytics backend...
+			window._mtm = window._mtm || [];
+			window._mtm.push({
+				'event': 'spaPageReady',
+				'pageTitle': document.title,
+				'pageUrl': window.location.href
+			});
+		}
+	}
+
+	/**
 	* Callback invoked upon toggling the side menu.
 	*
 	* @private
@@ -885,6 +915,7 @@ class App extends React.Component {
 		var w;
 
 		self = this;
+		this._onNewPageView();
 
 		// TODO: if the version is not the latest supported version, display a message indicating that this version of the docs is "out-of-date"
 
@@ -933,6 +964,7 @@ class App extends React.Component {
 					'notification': this.props.location.search.indexOf( 'notification' ) >= 0
 				});
 			}
+			this._onNewPageView();
 		}
 	}
 

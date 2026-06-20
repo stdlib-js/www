@@ -25,7 +25,6 @@ import log from 'log';
 import resetScroll from 'reset-scroll';
 import viewportWidth from 'viewport-width';
 import config from 'config';
-import pageTitle from 'page-title';
 import Head from './components/head/new_page.jsx';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
@@ -115,8 +114,6 @@ class App extends React.Component {
 		* @private
 		*/
 		function clbk() {
-			console.log( document.title, window.location.href );
-
 			// Send an event to the analytics backend...
 			window._mtm = window._mtm || [];
 			window._mtm.push({
