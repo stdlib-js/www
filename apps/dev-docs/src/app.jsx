@@ -115,6 +115,8 @@ class App extends React.Component {
 		* @private
 		*/
 		function clbk() {
+			console.log( document.title, window.location.href );
+
 			// Send an event to the analytics backend...
 			window._mtm = window._mtm || [];
 			window._mtm.push({
