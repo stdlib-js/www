@@ -337,7 +337,7 @@ SOFTWARE.
 		_paq.push( [ 'trackPageView' ] );
 		_paq.push( [ 'enableLinkTracking' ] );
 		(function() {
-			var u = 'https://analytics.stdlib.io/';
+			var u = 'https://stdlib.io/';
 			_paq.push( [ 'setTrackerUrl', u+'matomo.php' ] );
 			_paq.push( [ 'setSiteId', '2' ] );
 			var d = document;
