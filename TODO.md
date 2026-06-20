@@ -194,11 +194,7 @@
 
 40. 
 
-41. setup [Matomo](https://matomo.org/) for site analytics as self-hosted alternative to GA
-
-    -   <https://www.linode.com/docs/uptime/analytics/piwik-on-ubuntu-12-04-precise-pangolin/>
-    -   <https://www.linode.com/docs/uptime/analytics/open-web-analytics-install-and-launch-on-your-server/>
-    -   <https://matomo.org/docs/requirements/>
+41. 
 
 42. (docs) add "See Also" section to package READMEs (**update**: this has been done)
 

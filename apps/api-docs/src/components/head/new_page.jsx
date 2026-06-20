@@ -21,6 +21,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet-async';
+import pageTitle from 'page-title';
 
 
 // MAIN //
@@ -39,7 +40,7 @@ function Head( props ) {
 	var url;
 	var t;
 
-	t = props.title + ' | stdlib';
+	t = pageTitle( props.title );
 	url = 'https://stdlib.io' + props.url;
 
 	return (

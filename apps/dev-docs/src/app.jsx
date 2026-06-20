@@ -25,6 +25,7 @@ import log from 'log';
 import resetScroll from 'reset-scroll';
 import viewportWidth from 'viewport-width';
 import config from 'config';
+import pageTitle from 'page-title';
 import Head from './components/head/new_page.jsx';
 import Welcome from './components/welcome/index.jsx';
 import Footer from './components/footer/index.jsx';
@@ -92,6 +93,36 @@ class App extends React.Component {
 
 		// Create a `ref` to point to a DOM element for resetting focus on page change:
 		this._focusRef = React.createRef();
+	}
+
+	/**
+	* Callback invoked upon a new page view.
+	*
+	* @private
+	* @returns {void}
+	*/
+	_onNewPageView = () => {
+		// Ensure we are currently in a browser context...
+		if ( typeof window === 'undefined' || typeof document === 'undefined' ) {
+			return;
+		}
+		// Delay sending an event to the analytics backend to allow logic for updating browser history and the document `<head>` to complete:
+		window.requestAnimationFrame( clbk );
+
+		/**
+		* Callback invoked upon the next animation frame.
+		*
+		* @private
+		*/
+		function clbk() {
+			// Send an event to the analytics backend...
+			window._mtm = window._mtm || [];
+			window._mtm.push({
+				'event': 'spaPageReady',
+				'pageTitle': document.title,
+				'pageUrl': window.location.href
+			});
+		}
 	}
 
 	/**
@@ -433,6 +464,7 @@ class App extends React.Component {
 		var w;
 
 		self = this;
+		this._onNewPageView();
 
 		// Query the current viewport width:
 		w = viewportWidth();
@@ -477,6 +509,7 @@ class App extends React.Component {
 					'notification': this.props.location.search.indexOf( 'notification' ) >= 0
 				});
 			}
+			this._onNewPageView();
 		}
 	}
 
