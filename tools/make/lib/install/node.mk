@@ -42,6 +42,23 @@ install-node: $(ROOT_PACKAGE_JSON)
 .PHONY: install-node
 
 #/
+# Installs production package dependencies by executing [`npm install`][1].
+#
+# ## Notes
+#
+# -   Packages will be installed in a local `node_modules` directory relative to the project's `package.json` file.
+#
+# [1]: https://docs.npmjs.com/cli/install
+#
+# @example
+# make install-node-production
+#/
+install-node-production: $(ROOT_PACKAGE_JSON)
+	$(QUIET) $(NPM) install --production
+
+.PHONY: install-node-production
+
+#/
 # Cleans the `node_modules` directory by removing it entirely.
 #
 # @example
