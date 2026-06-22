@@ -25,6 +25,9 @@
 var join = require( 'path' ).join;
 var mkdir = require( 'fs' ).mkdirSync;
 var exists = require( '@stdlib/fs/exists' ).sync;
+var readFile = require('@stdlib/fs/read-file').sync;
+var readdir = require('@stdlib/fs/read-dir').sync;
+var writeFile = require('@stdlib/fs/write-file').sync;
 var build = require( '@stdlib/_tools/docs/www/readme-fragment-file-tree' );
 var stdlibPath = require( './../utils/stdlib_path.js' );
 var stdlibVersion = require( './../utils/stdlib_version.js' );
@@ -76,7 +79,57 @@ function main() {
 			throw err;
 		}
 		console.log( 'Finished generating HTML fragments.' );
+		processHeadings(dir);
 	}
+}
+
+/**
+* Processes html files to add anchor tag with ids to headings.
+* @param {string} baseDir - Api docs directory
+*/
+
+function processHeadings(baseDir){
+	const outputDir = join(baseDir, '@stdlib');
+	
+	function processDir(currentDir){
+		const items = readdir(currentDir);
+		if(items instanceof Error){
+			console.error(`Error: ${items.message}`);
+			return;
+		}
+		
+		items.forEach(item => {
+			const fullPath = join(currentDir, item)
+			if(!exists(fullPath)){
+				return;
+			}
+			 
+			const dirContents = readdir(fullPath);
+			if(dirContents && !(dirContents instanceof Error)){
+				processDir(fullPath);
+			}else if(item === 'index.html'){
+				
+				let html = readFile(fullPath, 'utf8');
+				if(html instanceof Error){
+					console.error(`Error: ${html.message}`);
+					return;
+				}
+				
+				const headingRegex = /<(h[1-6])(.*?)>(.*?)<\/\1>/gi;
+				html = html.replace(headingRegex, (match, tag, attrs, content) => {
+					let id = content.toLowerCase().replace(/[^a-z0-9\s]/g, '').trim().replace(/\s+/g, '-').replace(/-+/g, '-');
+					return `<div class="heading-wrapper"><a id="${id}" class="heading-link" href="#${id}"></a><${tag}${attrs}>${content}</${tag}></div>`;
+				})
+				
+				const err = writeFile(fullPath, html);
+				if(err){
+					console.error(`Error: ${err.message}`);
+				}
+			}
+		});
+		
+	}
+	processDir(outputDir);
 }
 
 main();
