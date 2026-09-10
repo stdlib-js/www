@@ -577,7 +577,7 @@ server {
     # Syntax: `return code URL;`
     #
     # [1]: http://nginx.org/en/docs/stream/ngx_stream_return_module.html#return
-    return 301 https://docs.google.com/forms/d/e/1FAIpQLSe1MtIYn_WDfiFKGBFBugPC-bJljdQ6k_C1hTIDcb3C91KngA/viewform;
+    return 301 https://docs.google.com/forms/d/e/1FAIpQLSfQfoQI8VBHHtb_UnOM4wNxW6RDudwbS5tcrDwLKgy8TAEn3g/viewform;
   }
 
   # Define a root location directive:
