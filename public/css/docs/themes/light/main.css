@@ -85,7 +85,7 @@ html[data-theme="light"] {
 	/*
 	* To distinguish the search input from the top-navigation, set the background color to a light grey.
 	*/
-	--top-nav-search-background-color: #fafafa;
+	--top-nav-search-background-color: #f3f1f1;
 	--top-nav-shadow-color: #ced4da;
 
 	/*
